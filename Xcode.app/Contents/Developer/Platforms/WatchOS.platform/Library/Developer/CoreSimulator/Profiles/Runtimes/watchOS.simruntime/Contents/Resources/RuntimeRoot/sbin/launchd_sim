@@ -410,6 +410,7 @@ SystemRoots
 .plist
 .xpc
 .pluginkit
+forbidden-launchd-control
 invalid xpaths type
 CFBundleVersion
 Conflicts exist in System services. Randomly deciding: path1 = %s, path2 = %s
@@ -998,6 +999,8 @@ simhack
 _dirty
 com.apple.keyboard-service
 %s: removing child: %s
+job-creation
+process-info-pidinfo
 underflow of on-demand count
 exiting ondemand mode
 pended nondemand spawn failed: %d
@@ -1102,7 +1105,9 @@ com.apple.
 Invalid XPCService dictionary.
 Application
 MultipleInstance XPC services are not supported for any service type other than Application. Forcing service to PID domain.
+mach-lookup
 pid-local registration
+mach-register
 Service "%s" tried to register for aliased endpoint: %s
 Preventing "%s" from registering for %s due to non-launching property mismatch
 Service "%s" tried to register for endpoint "%s" already registered by owner: %s
@@ -1615,7 +1620,7 @@ v16@0:8
 <key>CFBundleShortVersionString</key>
 <string>7.0.0</string>
 <key>CFBundleVersion</key>
-<string>2038.40.35</string>
+<string>2038.40.38</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformName</key>

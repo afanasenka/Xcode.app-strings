@@ -67,6 +67,7 @@ Airpod-R-B298
 Airpod-Case-B298
 beats-b419
 beats-b364
+beats-b372
 -[BCPUIAccessoryGaugeViewModel layoutViews]
 -[BCPUIAccessoryGaugeViewModel connectedDevicesDidChange:]
 hash
@@ -636,11 +637,11 @@ B32@0:8@"NSURL"16@"NSString"24
 B24@0:8@"NSUserActivity"16
 @"<CUISAlertProviderDelegate>"
 @"BatteryCenterAlertViewController"
-@@0\
-C@0\
-C@0\
-C@0\
-@@0\
-C@0\
-C@0\
-C@0\
+@@``
+C@``
+C@``
+C@``
+@@``
+C@``
+C@``
+C@``

@@ -439,15 +439,17 @@ com.apple.audio.HALB_DQ.ClientNormalPrioritySerialQueue
 com.apple.audio.HALB_DQ.ClientHighPrioritySerialQueue
 com.apple.audio.HALB_DQ.ServerNormalPrioritySerialQueue
 com.apple.audio.HALB_DQ.ServerHighPrioritySerialQueue
+Unducking
+Ducking
 com.apple.coreaudio
 AMCP
-/Library/Caches/com.apple.xbs/Sources/AudioHAL_Sim/AudioHAL-237.8/Source/AHAL/Client/HAL_Client.mm
+/Library/Caches/com.apple.xbs/Sources/AudioHAL_Sim/AudioHAL-237.11/Source/AHAL/Client/HAL_Client.mm
 v16@?0@"Core_Audio_XPC_Raw_Transporter"8
 v16@?0@"NSError"8
 v12@?0i8
-/Library/Caches/com.apple.xbs/Sources/AudioHAL_Sim/AudioHAL-237.8/Source/AHAL/IO/HALIO_IPC_Client_Transport.h
+/Library/Caches/com.apple.xbs/Sources/AudioHAL_Sim/AudioHAL-237.11/Source/AHAL/IO/HALIO_IPC_Client_Transport.h
 allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size
-/Library/Caches/com.apple.xbs/Sources/AudioHAL_Sim/AudioHAL-237.8/Source/AMCP/Utility/Realtime_Message_Queue.h
+/Library/Caches/com.apple.xbs/Sources/AudioHAL_Sim/AudioHAL-237.11/Source/AMCP/Utility/Realtime_Message_Queue.h
 not (in_total_messages > 0)
 v16@?0i8{Device_Token=I}12
 result != kAudioHardwareNoError
@@ -1386,6 +1388,8 @@ Collect IO perfdata: %s
  HALDevice::StopIOProc: device hasn't been initialized
  HALDevice::Read: device hasn't been initialized
  HALDevice::Duck: device hasn't been initialized
+ HALDevice::Duck: Device %lu is an aggregate.
+ HALDevice::Duck: %s subdevice %lu.
  HALDevice::Duck: ducking not implmented by device
  HALDevice::TranslateTime: device hasn't been initialized
  HALDevice::GetCurrentTime: device hasn't been initialized

@@ -17,6 +17,8 @@ v16@?0@"NSError"8
 v24@?0@"NSURL"8@"NSError"16
 appInfoFetcher
 T@"<CPSAppInfoFetching>",R,N,V_appInfoFetcher
+Cache-Control
+max-age
 App Asset: %@
 bundleIdentifier
 T@"NSString",R,N,V_bundleIdentifier
@@ -117,6 +119,7 @@ allSessions
 T@"NSArray",R,N
 Info.plist
 B16@?0@"CPSWebClip"8
+v32@?0@"NSString"8@"NSMutableArray"16^B24
 webclip
 icon.png
 Library/WebClips
@@ -441,6 +444,7 @@ hasBusinessItemMetadata
 hasAppStoreMetadata
 poweredByThirdParty
 invocationPolicy
+expirationDate
 fullAppBundleID
 fullAppContentRating
 fullAppIconURL
@@ -506,6 +510,8 @@ View
   clipVersionIdentifier = %llu 
   clipRequestsLocationConfirmationPermission = %@ 
   clipRequestsNotificationPermission = %@ 
+  expirationDate = %@ 
+  bundleDisplayName = %@ 
 buyParams
 T@"NSString",C,N,V_buyParams
 T@"NSString",C,N,V_clipBundleID
@@ -524,6 +530,9 @@ T@"NSString",&,N,V_clipURLHash
 test_clipVerifiedAssociatedDomains
 T@"NSArray",&,N
 TB,R,N,V_isDeveloperOverride
+T@"NSDate",C,N,V_expirationDate
+expired
+TB,R,N,GisExpired
 amsDictionary
 T@"NSDictionary",C,N,V_amsDictionary
 clipVersionIdentifier
@@ -550,6 +559,7 @@ TB,R,N,V_hasAppStoreMetadata
 TB,R,N,GisPoweredByThirdParty,V_poweredByThirdParty
 fullAppCachedIconFilePath
 T@"NSString",C,N,V_fullAppCachedIconFilePath
+bundleDisplayName
 6014
 app-genres
 parentId
@@ -754,6 +764,7 @@ CPSClipCleanupManager: Deleted an app clip due to age restriction: %{private}@
 CPSClipCleanupManager: Assertion target process did exit %@
 CPSClipCleanupManager: Clip not found for assertion %@
 CPSClipCleanupManager: Detected installation of new app (%{private}@)
+CPSClipCleanupManager: Failed to update web clip title for %{private}@ due to %{public}@
 CPSClipCleanupManager: Clip bundleID (%{private}@) prefix does not match %{sensitive}@
 CPSClipCleanupManager: Found no match for parent bundle IDs (count: %lu) from clip
 CPSClipCleanupManager: Clip (%{private}@) matching %{private}@ should not be deleted
@@ -800,6 +811,7 @@ End creating placeholder.
 Received memory warning
 Handling memory pressure (warning) by purging cached sessions.
 Clearing session: %@ for URL: %{private}@
+Metadata associated with cached session: %@ for url: %{sensitive}@ is expired. Clearing and refetching metadata.
 Use an overriden app clip experince for session: %@, bundleID: %{private}@
 Unable to remove web clip to Home Screen %d
 CPSWebClipStore doesn't support writing traditional web clips to disk. Attempting to do so may result in data loss. Use -[UIWebClip createOnDisk] from <UIKit/UIWebClip.h> instead.
@@ -812,6 +824,7 @@ Couldn't change WebClip icon's data protection class: %{public}@
 Could not copy icon from path %{private}@ to %{private}@: %{public}@
 Could not remove existing icon from path %{private}@: %{public}@
 Unable to retrieve contents of the web clip directory: %{public}@
+Removed duplicate web clip for %{private}@, error: %{public}@
 Unable to update matched web clip on disk
 An error occurred when requesting remote proxy object for session proxy: %@
 _CreateBitmapContext - invalid size: (%zu x %zu)
@@ -953,6 +966,7 @@ Failed to remove a row from the app_clips table: %@ (%d)
 start looking up clip metadata
 lookUpClipMetadataAction
 end looking up clip metadata
+Set expiration date for metadata: (%p) to: %{public}@
 ClipServices: cannot create folder at URL: %@
 Unexpected invalid icon URL from App Store
 Error writing icon data to disk at path: %{sensitive}@
@@ -980,6 +994,7 @@ CPSBusinessItemFetching
 NSObject
 CPSAppInstaller
 CPSAppInstalling
+ClipServicesAMSExtras
 CPSAppBundleInstaller
 IXAppInstallCoordinatorObserver
 CPSClipCleanupManager
@@ -1100,6 +1115,15 @@ appInfoFetcher
 _appBundleInstaller
 _archiveService
 _appInfoFetcher
+objectForKey:
+whitespaceAndNewlineCharacterSet
+componentsSeparatedByString:
+count
+objectAtIndex:
+stringByTrimmingCharactersInSet:
+hasPrefix:
+doubleValue
+maxAge
 placeholderForInstallable:client:installType:metadata:error:
 bundleID
 coordinatorForAppWithBundleID:withClientID:createIfNotExisting:created:error:
@@ -1149,7 +1173,6 @@ cps_errorWithCode:
 finishWithError:
 dealloc
 sharedStore
-count
 array
 addObject:
 _removeClipCancellingPendingRemovalIfNeeded:completionHandler:
@@ -1204,7 +1227,8 @@ safari_mapObjectsUsingBlock:
 parentApplicationIdentifiers
 safari_mapAndFilterObjectsUsingBlock:
 sourceApp
-hasPrefix:
+localizedName
+updateWebClipTitle:forAppClipBundleIdentifier:completionHandler:
 containsObject:
 sharedLogger
 didUpgradeToFullAppFromClip:
@@ -1394,6 +1418,8 @@ initWithURL:usingQueue:
 setBusinessItemFetcher:
 setAppInfoFetcher:
 getSessionWithURL:configuration:completion:
+isExpired
+clearMetadataAndRefetch
 clipBundleID
 usedByPPT
 useLocalContent
@@ -1440,6 +1466,9 @@ _temporaryIconPath
 _copyOrReplaceExistingFileAtPath:withNewFileAtPath:
 iconImagePath
 _reloadSpringBoardIconForWebClipWithIdentifier:
+_webClipsBackedbyAppClipIdentifier:
+title
+setTitle:
 path
 _removeFileFromPath:
 copyItemAtPath:toPath:error:
@@ -1456,8 +1485,10 @@ fileExistsAtPath:isDirectory:
 stringByDeletingPathExtension
 updateWebClipPropertiesWithIdentifier:
 _createOrUpdateExistingWebClipWithClipMetadata:createdNewWebClip:error:
+isPoweredByThirdParty
 _updateWithClipMetadata:
 pageURL
+removeObjectAtIndex:
 saveWebClip:completionHandler:
 updateAppClipIcon:forWebClipWithIdentifier:completionHandler:
 removeAppClipIconForWebClipWithIdentifier:completionHandler:
@@ -1469,6 +1500,7 @@ reloadSpringBoardIconForWebClipWithIdentifier:
 createOrUpdateExistingWebClipWithMetadata:comletionHandler:
 getWebClipWithURL:completionHandler:
 getWebClipsBackedbyAppClipIdentifier:completion:
+purgeDuplicateWebClipsWithCompletionHandler:
 stringByAppendingPathExtension:
 _web_createDirectoryAtPathWithIntermediateDirectories:attributes:
 setObject:forSetting:
@@ -1511,7 +1543,6 @@ forwardingTargetForSelector:
 _xpcProxy
 clipName
 fullAppName
-isPoweredByThirdParty
 poweredByCaptionForAppName:
 clipCaption
 fullAppCaption
@@ -1528,10 +1559,10 @@ safari_stringForKey:
 setPageURL:
 setRegisteredURL:
 _web_intForKey:
+bundleDisplayName
 fullAppCachedIconFilePath
 fullAppStoreURL
 clipLaunchURL
-setPoweredBy:
 numberWithUnsignedInteger:
 numberWithBool:
 bundleWithURL:
@@ -1543,8 +1574,6 @@ _bundleResourceWithName:
 fullApplicationName
 fullApplicationCaption
 getAppClipRecordWithBundleID:completion:
-localizedName
-title
 bundleVersion
 scenelessBackgroundLaunch
 appClipUserActivity
@@ -1552,9 +1581,9 @@ localizedSubtitle
 appClips
 iconImage
 set_temporaryIconPath:
-setTitle:
 setIdentifier:
 setScenelessBackgroundLaunch:
+setPoweredBy:
 setFullAppName:
 setFullAppCaption:
 setFullAppStoreURL:
@@ -1609,7 +1638,6 @@ originIsControlCenter
 eligiblePolicy
 isDeveloperOverride
 fetchHeroImage
-clearMetadataAndRefetch
 invocationPolicyWithAMSDict:
 clipHeroImageURL
 _retrieveHeroImageWithHeroImageURL:
@@ -1732,7 +1760,6 @@ bundleWithPath:
 queryItems
 mutableCopy
 setQueryItems:
-objectAtIndex:
 intAtIndex:
 initWithSQLiteRow:bundleID:
 setBundleID:
@@ -1765,7 +1792,6 @@ standardConfiguration
 setUseLocalContent:
 setUsedByPPT:
 _defaultSourceBundleIDToReasonMap
-objectForKey:
 localConfiguration
 pptConfiguration
 pptLocalConfiguration
@@ -1891,8 +1917,10 @@ clipIncompatibleWithCurrentDevice
 clipIpaURL
 setClipIpaURL:
 deviceCapabilitiesDontMatch
+expirationDate
 serviceSpecifiersWithEntitlementValue:error:
 domainEncompassesDomain:
+compare:
 clipOpenButtonTitle
 initWithDemoBundleURL:
 updateWithStoreParentAppMetadata:
@@ -1905,6 +1933,7 @@ setClipURLHash:
 hasBusinessItemMetadata
 hasAppStoreMetadata
 setDeviceCapabilitiesDontMatch:
+setExpirationDate:
 setAmsDictionary:
 _storeClipName
 _storeClipCaption
@@ -1941,6 +1970,7 @@ _provider
 _itemID
 _webClipID
 _buyParams
+_expirationDate
 _amsDictionary
 _clipVersionIdentifier
 objectEnumerator
@@ -2151,6 +2181,8 @@ initWithClientID:bag:
 setClientInfo:
 perform
 responseDataItems
+responseHeaders
+dateByAddingTimeInterval:
 addFinishBlock:
 bagKeySet
 registerBagKeySet:forProfile:profileVersion:
@@ -2184,7 +2216,6 @@ synchronize
 _indexOf:
 replaceObjectAtIndex:withObject:
 persistAllOverrides
-removeObjectAtIndex:
 isComplete
 isBeta
 isProfileValidated
@@ -2367,6 +2398,7 @@ B24@0:8^B16
 @"NSDictionary"
 @"NSArray"
 @"CPSClipInvocationPolicy"
+@"NSDate"
 v32@0:8Q16@?24
 @"CPSImageDownloader"
 @"CPSMapsImageLoader"

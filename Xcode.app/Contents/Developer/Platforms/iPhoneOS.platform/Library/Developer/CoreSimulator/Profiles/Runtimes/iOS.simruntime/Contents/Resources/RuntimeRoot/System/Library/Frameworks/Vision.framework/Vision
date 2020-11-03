@@ -3869,7 +3869,7 @@ Unable to generate smoothed float-32 image buffer
 {CGRect={CGPoint=dd}{CGSize=dd}}
 Internal error:  detection of Animals should be handled by ANFD Detector Compound Request
 VNRecognizeAnimalsRequestPrivateRevisionANODv3
-facerec_fp3.0_fa1.2_d6.espresso
+facerec_fp3.0_fa1.3_d7.espresso
 Could not get output. Error = %s
 Could not analyze face. Error = %s
 Unable to lock pixel buffer

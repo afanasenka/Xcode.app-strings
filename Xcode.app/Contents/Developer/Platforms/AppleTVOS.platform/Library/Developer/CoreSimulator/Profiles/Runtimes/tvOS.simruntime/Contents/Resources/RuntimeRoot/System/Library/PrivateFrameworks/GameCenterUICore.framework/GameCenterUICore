@@ -486,6 +486,7 @@ Class getOBPrivacyFlowClass(void)_block_invoke
 ?RRRRRR
 ?333333
 ?ffffff
+?333333
 9@3333330@
 >@333?
 GKLocalPlayerAuthenticator
@@ -1111,6 +1112,8 @@ setSize:
 _scale
 _CGContext
 _size
+objectAtIndexedSubscript:
+userInterfaceLayoutDirection
 initWithRootViewController:
 sharedTheme
 formSheetSize

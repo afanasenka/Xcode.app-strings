@@ -294,7 +294,7 @@ quality
 TQ,V_quality
 lastKnownQuality
 TQ,V_lastKnownQuality
-appBlacklist
+appBlocklist
 T@"NSSet",R
 T@"SSPlistDataReader",R,N
 parsecEnabled
@@ -444,7 +444,6 @@ com.apple.searchd.latency.store.SPCalculationDatastore
 v12@?0B8
 sharedInstance
 T@"SDNetworkQualityInquiry",R,N
-((%@="*") || (%@="*") || (%@="*") || (%@="*") || (%@="*") || (%@="*")) && ((%@!="*") || (%@<$time.now(-1d)))
 /var/mobile/Library/Logs/CrashReporter/DiagnosticLogs/Search
 com.apple.searchd.ttr
 Spotlight_Ranking_Diagnostic_Dump_L
@@ -491,7 +490,7 @@ v32@?0@"NSNumber"8Q16^B24
 (_kMDItemBundleID = com.apple.MobileAddressBook) && (_kMDItemIncomingCounts=* || _kMDItemOutgoingCounts=* || _kMDItemIncomingMailCounts=* || _kMDItemOutgoingMailCounts=* || _kMDItemIncomingSMSCounts=* || _kMDItemOutgoingSMSCounts=*)
 v32@?0@"CNLabeledValue"8Q16^B24
 DOMAIN_ZKWS
-whitelistedOnly
+allowlistedOnly
 kMDItemLastUsedDate
 /Library/Spotlight/CoreSpotlight
 indexer
@@ -1540,7 +1539,7 @@ searchTimeOut
 disableAsTypedSuggestion
 setBool:forKey:
 synchronize
-appBlacklist
+appBlocklist
 createResultObject
 sessionReceivedBagWithEnabledDomains:
 updateCorrectionDict:
@@ -1700,10 +1699,6 @@ localizedOutputValueAndUnit
 localizedInputValueAndUnit
 isCurrency
 processConversionWithCompletion:
-timeIntervalSinceNow
-updatedCountsFromExisting:shouldUpdateMonth:
-addAttributesFromDictionary:
-numberWithUnsignedInteger:
 clearExistingFiles
 collectResultSetForQueryString:
 dumpFeatureVectorForSections:query:
@@ -1804,7 +1799,7 @@ privateIndex
 indexQueue
 indexingEnabled
 setupHasComplete
-blacklistCheck:withOptions:
+blocklistCheck:withOptions:
 updateApplicationsWithCompletion:
 disabledBundleSet
 recordEngagementForBundleID:uniqueIdentifier:protectionClass:userQuery:date:
@@ -2150,6 +2145,7 @@ _maxMovieRating
 _loadTrialFactors
 _renderEngagementCounts
 _isCJK
+numberWithUnsignedInteger:
 setText:
 setItemIdentifier:
 setUserActivityType:
@@ -2306,6 +2302,7 @@ initWithOrderedSet:range:copyItems:
 setResultSet:
 initWithQueryId:categoryToResultMapping:currentTopHitSection:queryContext:ranker:
 tagOrFilterHiddenSectionsForClient:isCommittedSearch:maxVisibleSections:maxTopHitsCount:minThresholdForBigResult:topHitSection:
+dedupeWebURLSuggestionsFromSections:
 sendTTRLogsWithSections:
 initWithName:batchSize:
 geoUserSessionEntityString
@@ -2338,6 +2335,7 @@ applyTopSectionPolicy:withTopHitSection:isPeopleSearch:queryKind:correction:quer
 duplicateSuggestions
 setDuplicateSuggestions:
 enumerateSubstringsInRange:options:usingBlock:
+timeIntervalSinceNow
 setDetailText:
 sortedArrayUsingSelector:
 detailTextFromBundleIDs:
@@ -2431,6 +2429,7 @@ _parsecCameLaterThanSRT
 _sentTaggedTopHits
 _receivedLateParsecResults
 _shouldRecomputeSuggestions
+_sentCompleted
 _topHitsManager
 _bundlesSupportingAppScoping
 _isRewrite
@@ -2478,6 +2477,7 @@ initWithLocalizedStrings:
 setDisplayName:
 addDefaultBundleInformationForURL:attrSet:altNames:namesOnly:withApp:enName:
 setAlternateNames:
+addAttributesFromDictionary:
 initWithUniqueIdentifier:domainIdentifier:attributeSet:
 _updateItemForIdentifier:withLaunchCounts:requiresLocalizationInfo:
 removeObjectsForKeys:
@@ -2537,7 +2537,6 @@ SPBackupRankingMetadataHandler
 SPCalculationDatastoreToken
 SPCalculationDatastore
 SDNetworkQualityInquiry
-SPContactsUpdater
 SDTTRSupport
 SDBundleTracker
 SDController
@@ -2696,7 +2695,6 @@ i24@0:8^{__CFData=}16
 v40@0:8@16Q24Q32
 @"SFStartLocalSearchFeedback"
 @"SPCalculationDatastore"
-@28@0:8@16B24
 v36@0:8@16@24B32
 B28@0:8@16i24
 v40@0:8i16@20@28i36
@@ -2889,10 +2887,6 @@ QOS %@ performQuery: %d
 #query calculation finish %@
 QOS %@ storeCompletedSearch: %d
 CalcSearch results for %@: %@
-3 Enter group %p
-4 Enter group %p
-4 Leave group %p
-3 Leave group %p
 Resuming "%s" queue
 Got apps from %@
 Accepting apps from %@

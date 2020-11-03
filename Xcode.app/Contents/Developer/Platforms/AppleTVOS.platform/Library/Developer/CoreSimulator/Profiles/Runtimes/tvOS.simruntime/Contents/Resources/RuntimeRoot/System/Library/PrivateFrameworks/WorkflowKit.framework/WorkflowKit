@@ -1357,7 +1357,9 @@ needsDefaultShortcutUpdate
 syncedFlagsHash
 Tq,R
 lastSyncedFlagsHash
++[WFCloudKitSyncSession fetchCloudKitSyncFlagsIfNecessaryWithCompletionHandler:]
 v24@?0@"WFCloudKitSyncFlags"8@"NSError"16
++[WFCloudKitSyncSession fetchCloudKitSyncFlagsIfNecessaryWithCompletionHandler:]_block_invoke
 WFCloudKitSyncSession.m
 -[WFCloudKitSyncSession applyConflictResolution:inDatabase:]
 -[WFCloudKitSyncSession applyConflictResolution:inDatabase:]_block_invoke
@@ -2305,6 +2307,7 @@ Multiple parameters of %@ use key %@
 WFAction.m
 GroupingIdentifier
 v24@?0@"<WFRemoteUserInterface>"8@"NSError"16
+-[WFAction requestInterfacePresentationWithCompletionHandler:]_block_invoke
 -output
 This action cannot be run in the current environment.
 This action could not be run with the current user interface.
@@ -2358,14 +2361,19 @@ T@"<WFSequentialParameterInputProviderDelegate>",W,N,V_delegate
 v20@?0B8@"<WFParameterState>"12
 -[WFSequentialParameterInputProvider askForParameterIfAvailable]_block_invoke
 @16@?0@"WFParameter"8
+screenOnObserver
+T@"WFScreenOnObserver",R,N,V_screenOnObserver
 T@"WFWorkflowRunningContext",R,N,V_runningContext
 voiceShortcutClient
 T@"VCVoiceShortcutClient",R,N,V_voiceShortcutClient
 suspendedRequest
 T@"WFDialogRequest",&,N,V_suspendedRequest
+screenDidTurnOffDuringActiveRequest
+TB,N,V_screenDidTurnOffDuringActiveRequest
 suspendedRequestCompletion
 T@?,C,N,V_suspendedRequestCompletion
--[WFDaemonDialogPresenter applicationContext:applicationStateDidChange:]_block_invoke
+-[WFDaemonDialogPresenter screenOnStateDidChange:]
+-[WFDaemonDialogPresenter applicationContext:applicationStateDidChange:]
 -[WFDaemonDialogPresenter showDialogRequest:completionHandler:]_block_invoke
 v24@?0@"WFDialogResponse"8@"NSError"16
 -[WFDaemonDialogPresenter showDialogRequest:completionHandler:]_block_invoke_2
@@ -2514,9 +2522,11 @@ T@"NSArray",R,N,V_schemes
 exportedFileTypes
 documentTypes
 documentActions
+restricted
+TB,R,N,GisRestricted
 installed
 TB,R,N,GisInstalled,V_installed
--[ICApp state]
+-[ICApp isRestricted]
 -[ICApp loadIconWithCompletionHandler:]_block_invoke
 artworkUrl512
 artworkUrl100
@@ -2549,6 +2559,16 @@ makeAvailableCompletionHandler
 T@?,C,N,V_makeAvailableCompletionHandler
 your location
 Location
+WFScreenOnObserver
+token
+Ti,N,V_token
+T@"NSObject<OS_dispatch_queue>",&,N,V_queue
+screenOn
+TB,R,N,V_screenOn
+T@"<WFScreenOnObserverDelegate>",W,N,V_delegate
+-[WFScreenOnObserver stateChanged:]
+com.apple.springboard.hasBlankedScreen
+com.apple.shortcuts.WFScreenOnObserver
 ShortcutsExtension
 Shortcut Input
 currentIndex
@@ -2867,6 +2887,7 @@ collections
 workflowID
 shortcutOrdering
 shortcuts
+-[WFCoreDataCollection(RecordStorage) descriptor]
 deserializedInputClasses
 inputClasses
 deserializedImportQuestions
@@ -3232,7 +3253,6 @@ T@"NSError",R,N,V_possibleStatesLoadingError
 T@"<WFDynamicEnumerationDataSource>",W,N,V_dataSource
 -[WFDynamicEnumerationParameter defaultSerializedRepresentation]_block_invoke_2
 -[WFDynamicEnumerationParameter reloadPossibleStates]_block_invoke
-token
 Ti,R,N,V_token
 supportedIdentifiers
 T@"NSArray",R,N,V_supportedIdentifiers
@@ -4244,6 +4264,10 @@ When %@ is disconnected from power
 When %@ is connected to power
 When %@ is connected or disconnected from power
 Charger
+is.workflow.actions.deletephotos
+1093
+photos
+WFInputPhotos
 www.
 WFCurrentPlatformAppBundleIdentifierForBundleIdentifier
 serializedService
@@ -4740,6 +4764,12 @@ com.apple.shortcuts.run-database-fixups
 WFRestoreOrphanedFolders
 WFPruneShortcutsInFoldersFromRootCollection
 WFAppendOrphanedShortcutsToRootCollection
+WFUnconflictShortcutsWithAddedWatchWorkflowType
+SELF != %@
+parents
+conflictOf
+%K != nil
+WFDidUnconflictShortcuts
 @"NSString"24@?0@"WFWorkflowReference"8Q16
 CloudKit
 InitialSetup
@@ -4845,9 +4875,7 @@ WFTriggerManager.m
 -[WFTriggerManager deleteTriggerWithIdentifier:notifyDaemon:completion:]
 -[WFTriggerManager updateConfiguredTrigger:triggerID:notifyDaemon:completion:]
 newRecord
--[WFTriggerManager saveNewConfiguredTrigger:workflowReference:notifyDaemon:completion:]_block_invoke
-workflowReference
-v24@?0@"WFConfiguredTrigger"8@"NSError"16
+-[WFTriggerManager saveNewConfiguredTrigger:workflow:notifyDaemon:completion:]_block_invoke
 Automation %@
 NSDictionary * _Nonnull WFTriggerNotificationUserInfo(NSString * _Nonnull __strong, NSArray<WFImage *> * _Nullable __strong, NSArray<NSString *> * _Nullable __strong)
 WFTriggerNotificationUserInfo
@@ -4920,6 +4948,8 @@ T@"NSString",C,N,V_currentWorkflowName
 currentDialogAttribution
 T@"WFDialogAttribution",C,N,V_currentDialogAttribution
 T@"WFTimer",&,N,V_timer
+isPersonalAutomation
+TB,N,V_isPersonalAutomation
 T@"<WFOutOfProcessWorkflowControllerDelegate>",W,N,V_delegate
 presentationMode
 Tq,N,V_presentationMode
@@ -5125,7 +5155,6 @@ syncHash
 %K = 0
 triggers.@count == 0
 conflictOf.tombstoned
-conflictOf
 %K == YES OR (%K != nil AND %K == NO)
 v24@?0@"<WFRecordStorage>"8^@16
 Item does not exist
@@ -5138,6 +5167,7 @@ v16@?0@"NSArray"8
 @"WFCoreDataObjectChange"16@?0@"NSManagedObjectID"8
 com.apple.shortcuts.coredata-operation
 com.apple.shortcuts.coredata-persistent-store-load
+WFPersistentStoreCoordinator
 com.apple.shortcuts.WFCoreDataDatabase-callback
 -[WFDatabase initWithStoreDescription:runMigrationsIfNecessary:error:]
 storeDescription
@@ -5277,7 +5307,6 @@ v24@?0@"WFCoreDataWorkflow"8^@16
 %K == YES AND (%K == nil OR %K == YES)
 @"WFWorkflowReference"24@?0@"WFCoreDataWorkflow"8Q16
 %K = YES
-parents
 ANY parents.identifier == %@
 is.workflow.actions.image.resize
 is.workflow.actions.image.crop
@@ -5302,6 +5331,7 @@ sqlite-shm
 Reset Shortcuts
 The Shortcuts database cannot be read because it is corrupt. You can fix this by resetting your shortcuts. Your shortcuts will be lost, but if you use iCloud Sync they will be restored.
 Corrupt Database
+WFInitializeProcess_block_invoke
 /private/var/containers/Bundle/
 /private/var/Managed Preferences
 /private/var/containers/Shared/SystemGroup/systemgroup.com.apple.nsurlstoragedresources
@@ -7086,10 +7116,10 @@ Trigger with ID %@ does not exist
 v24@?0@"WFCoreDataTrigger"8^@16
 shortcut.workflowID == %@
 @"WFConfiguredTrigger"16@?0^@8
-hidden
 com.apple.TapToRadar
 com.apple.webapp1
 com.apple.webapp
+hidden
 userActivityForViewing
 T@"NSUserActivity",R,N
 WFActions
@@ -7166,7 +7196,6 @@ T@"NSDictionary",R,C,N,V_classNamesByType
 classNamesByType
 actionClassName
 <%@: %p, actionClassName: %@, classNamesByType: %@>
-wf_appState
 is between
 is today
 is in the last
@@ -7857,6 +7886,7 @@ workflowIdentifier
 T@"NSString",R,C,N,V_workflowIdentifier
 isSelf
 TB,R,N,V_isSelf
+workflowReference
 WFWorkflowParameterState.m
 WFEnforceClass
 [value isKindOfClass:[WFWorkflowParameterStateDescriptor class]]
@@ -8170,6 +8200,8 @@ Invalid INCLUDE path at [%1, %2]: all columns in the path must be a link/list/ba
 %s Failed to read stop request protobuf, %{public}@
 %s Couldn't load workflow glyph font data.
 %s Loading icon drawer context into cache
+%s Fetching sync flags record from CloudKit, needsDefaultShortcutUpdate = %{public}d, voiceShortcutMigrationDidSync = %{public}d
+%s Finished fetching sync flags record from CloudKit, item.defaultShortcutsVersion = %{public}ld, item.migratedVoiceShortcuts = %{public}d, error = %{public}@
 %s applying conflict resolution: %@
 %s Conflict resolution: keeping both local and remote change
 %s Failed to save remoteWorkflow: %{public}@
@@ -8259,6 +8291,7 @@ appIdentifier=%{signpost.telemetry:string1, Name=AppID}@
 %s Locking input parameter of action: %{public}@
 %s User added action %{public}@ to workflow
 %s Failed to initialize parameter with definition: %@
+%s Action is not running during the completion of a UI presentation request, returning
 %s Action %{public}@ started processing parameter states: %@, input: %@
 %s Action %{public}@ finished processing parameter states. Values: %@
 %s Action %{public}@ started running
@@ -8268,6 +8301,7 @@ appIdentifier=%{signpost.telemetry:string1, Name=AppID}@
 %s Warning: Attempted to set a parameter state of class %@ when %@ requires %@
 %s Action "%@" is being rate limited because it passed the threshold of %li runs. Delaying execution for %li seconds.
 %s Unable to set parameter state: %@ for key: %@ in sequential parameter input provider
+%s Screen did turn off
 %s Application did become active again, showing request: %@
 %s Enqueuing dialog request: %@
 %s Received a suspended response code, storing the current request and completion so that we can bring it back when the application becomes active again
@@ -8294,6 +8328,8 @@ appIdentifier=%{signpost.telemetry:string1, Name=AppID}@
 %s <%{public}@> sending stop request
 %s Unable to get app record for %{public}@, %{public}@
 %s Failed to fetch icon for %{public}@, %{public}@
+%s previous state (%i) and new state (%i) match, not notifying
+%s screen on state transitioned from %i to %i
 %s Failed to generate JSC representation: %@
 %s Unsupported value: %{public}@
 %s Started listening for run requests
@@ -8336,6 +8372,7 @@ appIdentifier=%{signpost.telemetry:string1, Name=AppID}@
 %s Failed to deserialize last remote shortcut ordering subset from plist data: %{public}@
 %s Failed to serialize last remote shortcut ordering into plist data: %{public}@
 %s Failed to deserialize last remote shortcut ordering from plist data: %{public}@
+%s Trying to create a descriptor for a collection with nil identifier, name = %{public}@, parents = %{public}@, collections = %{public}@, shortcuts = %{public}@, lastSyncedHash = %{public}lld, tombstoned = %{public}d
 %s Starting migration from Realm to Core Data
 RealmToCoreData
 %s Migrating %lu shortcuts
@@ -8526,7 +8563,12 @@ WorkflowMigration
 %s Unable to convert data into the ace command's dictionary representation: %{public}@
 %s Attempting to restore orphaned folders and misplaced shortcuts
 %s Failed to save root collection: %{public}@
+%s Modifying ordering of root collection after pruning from root collection shortcuts that are known to be in folders
 %s Attempting to move orphaned shortcuts to the root collection
+%s Already un-conflicted shortcuts with added 'watch' workflow type, bailing out
+%s Attempting to un-conflict shortcuts with added 'watch' workflow type
+%s Un-conflicted shortcuts with added 'watch' workflow type
+%s Failed to un-conflict shortcuts with added 'watch' workflow type: %{public}@
 %s Fetching %lu records by ID. Desired keys: %@
 %s Fetching %lu records by ID completed
 %s Updated %lu items
@@ -8590,6 +8632,7 @@ WorkflowMigration
 %s Received remote context save notification: %@
 %s Notifying observers about changes from remote context save notification: %@
 %s Posting distributed notification.
+%s Model version from persistent store metadata is '%@' and is greater than the current model version '%@'. This likely indicates a schema downgrade, which is not supported
 %s Subscribed to distributed notifications
 %s Unable to migrate to core data. %{public}@
 %s failed to read stop request: %{public}@
@@ -8603,6 +8646,7 @@ WorkflowMigration
 %s Failed to terminate siriactionsd before resetting the database: %{public}@
 %s Failed to destroy persistent store at URL: %{public}@. %{public}@
 %s Failed to delete database file at %{public}@: %{public}@
+%s Failed to initialize database: %{public}@
 %s Asset fetch operation starting: %@ %@
 %s Unable to find matching record type. Received response: %@
 %s Querying CloudKit: %@
@@ -8885,6 +8929,7 @@ WFActionRateLimiter
 WFSequentialParameterInputProvider
 WFDaemonDialogPresenter
 WFDialogPresenter
+WFScreenOnObserverDelegate
 WFTagFieldParameter
 WFGranularAccessResourcePerWorkflowStateEntry
 WFDailyRoutineShortcutSetupLocation
@@ -8904,6 +8949,7 @@ WFDictionaryParameterState
 ICApp
 CLLocationManagerDelegate
 WFLocationAccessResource
+WFScreenOnObserver
 WFExtensionInputVariable
 WFRepeatAction
 WFDailyRoutineShortcutSetupTriggerBuilder
@@ -9094,6 +9140,7 @@ WFIntentAvailableResource
 WFIntentResultUIAvailableResource
 WFInputParameterMigration
 WFPlugInTrigger
+WFDeletePhotosInputParameterKeyMigration
 WFTruncatedDisplay
 WFHMServiceParameterState
 Definition
@@ -11531,19 +11578,26 @@ setDefaultStates:
 inputtedStates
 setInputtedStates:
 orderedSetWithOrderedSet:
+_screenDidTurnOffDuringActiveRequest
+_screenOnObserver
 _runningContext
 _voiceShortcutClient
 _suspendedRequest
 _suspendedRequestCompletion
 showWebPage:completionHandler:
 showDialogRequest:completionHandler:
+screenOnStateDidChange:
 initWithRunningContext:
+reset
 beginObservingApplicationStateIfNecessary
 stopObservingApplicationStateIfNecessary
+screenOnObserver
 runningContext
 voiceShortcutClient
 suspendedRequest
 setSuspendedRequest:
+screenDidTurnOffDuringActiveRequest
+setScreenDidTurnOffDuringActiveRequest:
 suspendedRequestCompletion
 setSuspendedRequestCompletion:
 isShortcutsApp
@@ -11683,7 +11737,7 @@ documentActions
 metadata
 iconName
 loadIconWithCompletionHandler:
-state
+isRestricted
 determinesInstallStatusViaURLScheme
 isCurrentlyInstalled
 resetInstalledStatus
@@ -11697,6 +11751,7 @@ setCheckedInstallStatus:
 stateAccessQueue
 appState
 applicationProxyForIdentifier:
+applicationState
 initWithBundleIdentifier:allowPlaceholder:error:
 applicationIconImageWithFormat:
 imageWithData:scale:allowAnimated:
@@ -11742,6 +11797,13 @@ makeAvailableCompletionHandler
 setMakeAvailableCompletionHandler:
 stopUpdatingLocation
 requestWhenInUseAuthorization
+_screenOn
+start
+stateChanged:
+screenOn
+token
+setToken:
+setQueue:
 _variableProvider
 initWithVariableProvider:aggrandizements:
 initWithDictionary:variableProvider:
@@ -11778,7 +11840,6 @@ onFocus
 setOnFocus:
 onBackground
 setOnBackground:
-applicationState
 decodeBoolForKey:
 containsValueForKey:
 encodeBool:forKey:
@@ -12129,6 +12190,7 @@ descriptorFetchRequest
 setRelationshipKeyPathsForPrefetching:
 setReturnsObjectsAsFaults:
 enabled
+shortcuts
 isFolder
 setShortcuts:
 lastRemoteShortcutOrderingData
@@ -12152,8 +12214,8 @@ setDeserializedLastRemoteCollectionOrdering:
 deserializedLastRemoteCollectionOrderingSubset
 setDeserializedLastRemoteCollectionOrderingSubset:
 initWithIdentifier:objectType:
-relationshipsByName
 tombstoned
+relationshipsByName
 destinationEntity
 fetchRequestWithEntityName:
 setResultType:
@@ -12403,8 +12465,8 @@ _lastFetchedValues
 _modifiedPropertyNamesSinceLastSave
 _lastSavedOrFetchedValues
 _storageIdentifier
-initWithStorage:error:
-initWithStorage:properties:error:
+initWithStorage:
+initWithStorage:properties:
 allProperties
 fetchedProperties
 modifiedPropertiesSinceLastSave
@@ -12448,7 +12510,6 @@ _increments
 _progressTimer
 _timer
 initWithParent:pendingUnitCount:duration:
-start
 duration
 increments
 progressTimer
@@ -12496,7 +12557,6 @@ supportedIdentifiers
 selectedAppDidChange
 appSection
 selectedAppNotSupportedError
-token
 _setLaunchId:
 initWithIntentClassName:launchableAppBundleId:
 facadeClass
@@ -12521,6 +12581,7 @@ intent
 populatedSkeletonIntentWithUserInput:forKeyPath:completionBlock:
 failWithError:
 intentKeyPathToResolve
+state
 extensionConnection
 extensionProxy
 setValue:forKeyPath:
@@ -12963,7 +13024,6 @@ _run
 stopWithError:
 queue_stopWithError:
 setFinishedRunningWithSuccess:
-reset
 queue_reset
 evaluateRemoteQuarantinePolicyWithCompletionHandler:
 variableTable
@@ -14063,7 +14123,6 @@ remoteWorkflowRecord
 setRemoteWorkflowRecord:
 conflictForWorkflowReference:
 saveNewConfiguredTrigger:workflow:notifyDaemon:completion:
-saveNewConfiguredTrigger:workflowReference:notifyDaemon:completion:
 updateConfiguredTrigger:triggerID:notifyDaemon:completion:
 deleteTriggerWithIdentifier:notifyDaemon:completion:
 allConfiguredTriggers
@@ -14110,6 +14169,7 @@ inputMapping
 outputMapping
 setItems:options:
 copyToPasteboard:options:completionHandler:
+_isPersonalAutomation
 _presentationMode
 _extension
 _extensionRequestIdentifier
@@ -14145,6 +14205,8 @@ currentWorkflowName
 setCurrentWorkflowName:
 currentDialogAttribution
 setCurrentDialogAttribution:
+isPersonalAutomation
+setIsPersonalAutomation:
 cancelExtensionRequestWithIdentifier:
 setInvalidationHandler:
 _auxiliaryConnection
@@ -14463,7 +14525,6 @@ setTombstoned:
 countForFetchRequest:error:
 invertedSet
 rangeOfCharacterFromSet:
-shortcuts
 sortedWorkflowsWithQuery:
 defaultSearchableIndex
 deleteInteractionsWithGroupIdentifiers:bundleID:protectionClass:completionHandler:
@@ -14483,14 +14544,16 @@ duplicateReference:error:
 renameReference:to:error:
 deleteReference:error:
 conflictingReferenceForReference:
+remoteConflictingReferenceForReference:
+localConflictingReferenceForReference:
 hasConflictingReferenceForReference:
 setConflictingReference:forReference:
 workflowFetchRequestWithCollectionID:includeTombstones:limit:
 workflowResultWithFetchRequest:
 folderIdentifier
-clearTemporaryFiles
 addDisallowedDirectory:
 fileURLWithPath:isDirectory:
+clearTemporaryFiles
 _minimumValue
 _maximumValue
 _singularNoun
@@ -15498,10 +15561,11 @@ triggerResultWithFetchRequest:
 setTrigger:
 createTriggerWithRecord:workflow:error:
 accessResourceFromDatabaseState:
+compatibilityObject
 bundleType
 appTags
-wf_isUserFacing
-isRestricted
+isLaunchProhibited
+wf_isAvailableInContext:
 userActivityForViewing
 wf_referenceInDatabase:
 appGroupIdentifier
@@ -15555,9 +15619,6 @@ _classNamesByType
 initWithActionClassName:classNamesByType:attribution:
 actionClassName
 classNamesByType
-wf_appState
-serviceWithDefaultShellEndpoint
-canOpenApplication:reason:
 _setMarkedForDeletionOnDeallocation:
 wf_fileRepresentation
 typeIdentifier
@@ -16494,11 +16555,13 @@ v56@0:8@16@24@32@?40@?48
 @20@0:8B16
 @"NSUserDefaults"
 @"<WFSequentialParameterInputProviderDelegate>"
+@"WFScreenOnObserver"
 @"WFWorkflowRunningContext"
 @"VCVoiceShortcutClient"
 @"WFDialogRequest"
 v32@0:8@"WFDialogRequest"16@?<v@?@"WFDialogResponse">24
 B32@0:8@"NSURL"16@?<v@?B>24
+v24@0:8@"WFScreenOnObserver"16
 @"<NSObject><NSSecureCoding>"
 @"WFContact"
 @"WFPhoneNumber"
@@ -16526,6 +16589,7 @@ v24@0:8@"CLLocationManager"16
 v32@0:8@"CLLocationManager"16@"CLVisit"24
 v28@0:8@16i24
 @"CLLocationManager"
+@"<WFScreenOnObserverDelegate>"
 @"<WFVariableProvider>"
 @"WFTrigger"
 {?="preferredStyle"b1}

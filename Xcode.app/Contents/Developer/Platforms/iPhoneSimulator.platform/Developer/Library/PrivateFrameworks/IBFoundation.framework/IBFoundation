@@ -1505,7 +1505,7 @@ allSlottedAssetsOfClass:withName:
 catalogForAbsolutePath:
 collectionWithCatalogPaths:results:
 catalogCollectionByAddingCatalogsAtPaths:results:
-slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:slottedAssetFilter:
+slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:hostOSAvailabilityProcessor:slottedAssetFilter:
 findEmptyPlaceholderForSlottedAssetOfPossibleClasses:withName:error:
 catalogPathsToIdentifierPathsForItems:
 itemsFromCatalogPathsToIdentifierPaths:
@@ -4187,8 +4187,8 @@ v20@?0B8@"NSError"12
 v28@?0B8@"NSArray"12@"NSError"20
 @16@?0@"IBICLocale"8
 q24@?0@"IBICAbstractCatalog"8@"IBICAbstractCatalog"16
--[IBICCatalogCollection slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:slottedAssetFilter:]
-/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Model/CatalogItems/Catalog/IBICCatalogCollection.m
+-[IBICCatalogCollection slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:hostOSAvailabilityProcessor:slottedAssetFilter:]
+/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Model/CatalogItems/Catalog/IBICCatalogCollection.m
 slottedAssetRepFilter
 [(Class)slottedAssetClass conformsToProtocol:@protocol(IBICAssetWithSlottedChildren)]
 %@ is a subclass for IBICSlottedAsset
@@ -4209,14 +4209,14 @@ T@"NSArray",R,V_catalogsOrderedByPath
 catalogs
 T@"NSSet",R,V_catalogs
 @16@?0@"NSArray"8
-B16@?0@"IBICSlottedAssetRep"8
+B32@?0@"IBICAbstractCatalogItem"8@"IBICSlot"16@"NSMutableArray"24
 IBICImageSetWritingMask
 IBICDataSetWritingMask
 %@%@%@%@%@
 <%@: %p compressPNGs=%@ enableOnDemandResources=%@ enableIncrementalDistill=%@ optimization=%ld outputDirectory=%@ targetName=%@ => carFileName=%@ appIconName=%@ brandAssetCollectionName=%@ minimumDeploymentTarget=%@ targetPlatform=%@ targetDevices=%ld impliedIdiomIdentifiers=%ld masksByName=%@ assetPackOutputSpecifications=%p filterForDeviceTraits=%p stickerPackIdentifierPrefix=%@ stringFilesByStickerPackAndLanguage=%@ buildEnvironment=%@>
 NOT SET
 -[IBICCatalogCompilerOptions isTargetingDeploymentTargetsPriorTo:]
-/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Compiler/IBICCatalogCompilerOptions.m
+/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Compiler/IBICCatalogCompilerOptions.m
 _minimumDeploymentTarget
 marketingVersion
 -[IBICCatalogCompilerOptions isDeployingToAtLeast:]
@@ -5222,28 +5222,29 @@ objectPackage
 T@"IBMarshallableObjectPackage",R,N,V_objectPackage
 sticker-rep
 -[IBICStickerRep setAssetData:]_block_invoke
-/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Model/CatalogItems/Stickers/IBICStickerRep.m
+/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Model/CatalogItems/Stickers/IBICStickerRep.m
 The compiled %@ "%@" cannot be larger than %lld bytes, but it's %lu bytes.
 -[IBICStickerRep fileType]
 -[IBICStickerRep matchesFileType:]
 localizable
 +[IBICSlottedAsset defaultName]
-/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Model/CatalogItems/SlottedAssets/SlottedAsset/IBICSlottedAsset.m
+/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Model/CatalogItems/SlottedAssets/SlottedAsset/IBICSlottedAsset.m
 +[IBICSlottedAsset catalogItemFileExtension]
 +[IBICSlottedAsset assetRepClass]
+B16@?0@"IBICSlottedAssetRep"8
 The %@ "%@" has an unassigned child.
 The %@ "%@" has %ld unassigned children.
 TB,N,GisLocalizable,V_localizable
 XCAppIcon
 +[IBICMemoryClass componentID]
-/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Model/Schema/SlotComponents/IBICMemoryClass.m
+/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Model/Schema/SlotComponents/IBICMemoryClass.m
 +[IBICMemoryClass setComponentID:]
 -[IBICMemoryClass componentID]
 Memory Class
 memoryClass
 Tq,R,V_memoryClass
 -[IBICManifestPropertyMutator initWithItem:andValue:forKeyPath:]
-/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Mutators/IBICManifestPropertyMutator.m
+/Library/Caches/com.apple.xbs/Sources/IBAutolayoutFoundationIOS/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Mutators/IBICManifestPropertyMutator.m
 !({ typeof(keyPath) _va = (keyPath); typeof(@"fileName") _vb = (@"fileName"); (BOOL)((_va == _vb) || (_va && _vb && [_va isEqual:_vb])); })
 Use the move mutator to change the file name.
 -[IBICManifestPropertyMutator initWithItem:propertyName:value:getter:setter:]
@@ -7042,7 +7043,7 @@ v40@0:8@16{CGSize=dd}24
 v24@0:8@"<IBICActivtyItem>"16
 @"<IBICActivityReportingDelegate>"
 v56@0:8@16@24@32@40@?48
-@56@0:8#16@24@32@40@?48
+@64@0:8#16@24@32@40@?48@?56
 @40@0:8@16@24^@32
 @"NSMutableSet"
 @"IBICDeviceThinningTraits"

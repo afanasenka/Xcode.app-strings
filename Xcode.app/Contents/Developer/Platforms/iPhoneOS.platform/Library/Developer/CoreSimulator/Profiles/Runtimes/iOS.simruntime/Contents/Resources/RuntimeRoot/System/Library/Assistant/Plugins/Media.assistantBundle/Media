@@ -1002,6 +1002,7 @@ actionType
 volumeValue
 acknowledgedExceedingVolumeLimit
 floatValue
+containsUID:
 previousItemCount
 nextItemCount
 preemptiveNowPlayingQueueDetailsTimeOut

@@ -243,6 +243,7 @@ PowerbeatsPro
 Beats419
 Beats364
 B298
+B372
 (unknown: %i)
 com.apple.NanoMusic.NACRunAssertion
 eventBlock
@@ -1156,6 +1157,7 @@ isAirpodsRoute
 isB298Route
 isPowerbeatsRoute
 isB364Route
+isB372Route
 isB444Route
 isBeatsSoloRoute
 isB419Route

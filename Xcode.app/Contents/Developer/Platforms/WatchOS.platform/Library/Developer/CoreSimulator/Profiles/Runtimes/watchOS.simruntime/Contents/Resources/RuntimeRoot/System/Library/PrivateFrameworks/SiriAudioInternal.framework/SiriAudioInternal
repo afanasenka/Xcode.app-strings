@@ -18,6 +18,7 @@ PodcastLibraryProviding
  enableTelemetry=YES 
 playMediaIntentHandlerResolveMediaItems
 playMediaIntentHandlerHandle
+playMediaIntentHandlerResolveNowPlayingItem
 addMediaIntentHandlerResolveMediaItems
 addMediaIntentHandlerResolveMediaDestination
 addMediaIntentHandlerHandle
@@ -142,6 +143,9 @@ INPlayMediaIntentHandler#item %{public}s Creating radio station from currently p
 INPlayMediaIntentHandler#item evaluating if create radio and server search was suppressed (we have to handle on client)...
 INPlayMediaIntentHandler#item Overriding results with disambiguation selected item: %{public}s
 INPlayMediaIntentHandler#item working to resolve item to play...
+INPlayMediaIntentHandler: resolveNowPlayingItem resolving...
+INPlayMediaIntentHandler: resolveNowPlayingMediaItem now playing: title:%{public}s artist:%{public}s album:%{public}s songId:%{public}s albumId:%{public}s
+INPlayMediaIntentHandler: resolveNowPlayingMediaItem nowPlaying item error: %{public}s
 INPlayMediaIntentHandler#item %{public}s No results from local search
 INPlayMediaIntentHandler#item %{public}s Successful search result: %{public}@
 INPlayMediaIntentHandler#resolveMediaItems No search results from remote or local, returning unsupported
@@ -212,6 +216,7 @@ ySo011INPlayMediaB20ItemResolutionResultCG
 So19_INPBMediaItemValueCSgz_Xx
 SaySo11INMediaItemCGSgIegg_
 ySo11INMediaItemCG
+SaySo11INMediaItemCGSgIegn_
 SaySo11INMediaItemCG
 yypG
 ySo19_INPBMediaItemValueCG
@@ -224,6 +229,7 @@ subscription
 playbackService
 localSearch
 deviceProvider
+nowPlaying
 string
 mediaName
 artistName

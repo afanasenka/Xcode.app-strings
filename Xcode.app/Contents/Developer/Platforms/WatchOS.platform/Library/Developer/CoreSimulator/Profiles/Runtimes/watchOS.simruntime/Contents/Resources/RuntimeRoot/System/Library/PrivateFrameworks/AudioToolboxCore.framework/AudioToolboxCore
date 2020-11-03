@@ -213,10 +213,6 @@ jmdc>907"%,+
 /System/Library/Frameworks/AudioToolbox.framework
 St12out_of_range
 xfua
-umuaD$iN-IN-
-umua2MiN-IN-
-umua4aBN-IN-
-umua6RiN-IN-
 |}|y|u|q|m|i|e|a|]|Y|U|Q|M|I|E|A|>|<|:|8|6|4|2|0|.|,|*|(|&|$|"| 
 @@3$_0
 St8bad_cast
@@ -2900,7 +2896,7 @@ Base16 decoding: unexpected exception.
  AudioCodecUninitialize failed
 %d: au@%p {%s} (bus %d, scope %d): inconsistent #channels in asbd %d, layout %d.. retrying
 %d: au@%p {%s} (bus %d, scope %d): inconsistent #channels in asbd %d, layout %d, faking a format
-%d: Deadlock: setting ClassInfo in main thread did no execute on time. Audio Unit state might be broken.
+%d: setStateAndNotify: failed to execute on the main queue. Falling back to secondary thread.
 %d: AudioGetParameter %d (%d/%d): err %d
 %d: AUParameterSet %d (%d/%d): err %d
 %d: AUEventListener encountered unknown AUEventType: %d

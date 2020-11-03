@@ -668,8 +668,8 @@ QRAlignmentPattern
 Number of rows and columns must be even
 Error version not found
 Unrecognizd barcode format
-@(#)BUILD_DATE:20200920 04:39:26
-20200920 04:39:26
+@(#)BUILD_DATE:20201002 04:59:50
+20201002 04:59:50
 This luminance source does not support cropping.
 This luminance source does not support rotation.
 _MRCMetalHybridBinarizer_calculateBlackPoints

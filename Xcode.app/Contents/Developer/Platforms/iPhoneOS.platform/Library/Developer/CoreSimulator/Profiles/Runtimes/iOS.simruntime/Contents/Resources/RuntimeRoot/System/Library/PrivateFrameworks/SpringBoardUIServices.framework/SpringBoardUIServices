@@ -413,6 +413,7 @@ Cannot be simple and have a non-simple passcode type.
 SBSUIWindowSceneSessionRoleInCall
 v16@?0@"UIMutableApplicationSceneClientSettings"8
 SBSUIInCallWindowSceneIdleTimerDisabledReason %@
+{CGRect={CGPoint=dd}{CGSize=dd}}
 preferredHardwareButtonEventTypes
 TQ,N,V_preferredHardwareButtonEventTypes
 preferredStatusBarStyleOverridesToSuppress
@@ -427,6 +428,10 @@ callConnected
 TB,N,GisCallConnected,V_callConnected
 presentationMode
 Tq,R,N,V_presentationMode
+deviceAttachedToWindowedAccessory
+TB,R,N,GisDeviceAttachedToWindowedAccessory,V_deviceAttachedToWindowedAccessory
+windowedAccessoryCutoutFrameInScreen
+T{CGRect={CGPoint=dd}{CGSize=dd}},R,N,V_windowedAccessoryCutoutFrameInScreen
 SBLaunchImageIngestionInfo
 guid
 installInstanceID
@@ -642,6 +647,7 @@ SBSUIInCallTransitionAnalyticsSourceSwitcherDismissal
 SBSUIInCallTransitionAnalyticsSourceBannerTap
 SBSUIInCallTransitionAnalyticsSourceDeviceLock
 SBSUIInCallTransitionAnalyticsSourceDisplayWake
+SBSUIInCallTransitionAnalyticsSourceWindowedAccessoryAttach
 SBSUIInCallTransitionAnalyticsSourceHomeButton
 SBSUIInCallTransitionAnalyticsSourceFullscreenOverlayDismissal
 SBSUIInCallTransitionAnalyticsSourceSceneDestroyed
@@ -929,7 +935,12 @@ visible
 animatingIn
 animatingOut
 inCallPresentationMode
+attachedToWindowedAccessory
+TB,R,N,GisAttachedToWindowedAccessory
+T{CGRect={CGPoint=dd}{CGSize=dd}},R,N
 Tq,N,V_inCallPresentationMode
+TB,N,GisAttachedToWindowedAccessory
+T{CGRect={CGPoint=dd}{CGSize=dd}},N
 Button-UI
 TOUCH_ID
 SpringBoardUIServices-j307
@@ -1056,6 +1067,7 @@ Pending bio-unlock expired for passcode view (%p)
 Declined handleDeviceLockAction because didReceiveDeviceLockEvent is not implemented %{public}@
 Handling handleDeviceLockAction for session %{public}@
 Send deviceLockAction response (didConsume: %{BOOL}u) for session %{public}@
+Updating scene settings to attachedToWindowedAccessory: %{BOOL}u windowedAccessoryCutoutFrameInScreen: %{public}@
 Popover Extension did terminate with error: %@
 Received: Screen  %{public}@
 Received:  %{public}@Authenticated
@@ -2336,6 +2348,8 @@ initWithSession:connectionOptions:
 _FBSScene
 settings
 inCallPresentationMode
+isAttachedToWindowedAccessory
+windowedAccessoryCutoutFrameInScreen
 setPreferredHardwareButtonEventTypes:
 _updateUIClientSettingsWithBlock:
 setPreferredStatusBarStyleOverridesToSuppress:
@@ -2360,10 +2374,13 @@ inCallWindowSceneDidChangePresentationMode:
 inCallWindowScene:didChangePresentationModeWithAnalyticsSource:
 _isInAnimationBlockWithAnimationsEnabled
 _allWindows
+valueWithBytes:objCType:
+inCallWindowScene:didTransitionToAttachedToWindowedAccessory:windowedAccessoryCutoutFrameInScreen:
 setSupportsDeviceLockEvents:
 requestTransitionToPresentationMode:
 _updatePresentationMode:analyticsSource:
 _handleFrameChanged
+_setAttachedToWindowedAccessory:windowedAccessoryCutoutFrameInScreen:
 preferredHardwareButtonEventTypes
 preferredStatusBarStyleOverridesToSuppress
 supportsDeviceLockEvents
@@ -2371,13 +2388,16 @@ isIdleTimerDisabled
 shouldBecomeVisibleWhenWakingDisplay
 isCallConnected
 presentationMode
+isDeviceAttachedToWindowedAccessory
 _supportsDeviceLockEvents
 _idleTimerDisabled
 _shouldBecomeVisibleWhenWakingDisplay
 _callConnected
+_deviceAttachedToWindowedAccessory
 _preferredStatusBarStyleOverridesToSuppress
 _preferredHardwareButtonEventTypes
 _presentationMode
+_windowedAccessoryCutoutFrameInScreen
 _observeOtherLoginUISetting:withBlock:
 observeOtherSetting:withBlock:
 observeIdleTimerModeWithBlock:
@@ -3287,6 +3307,7 @@ _inCallSceneSettingsDiffInspector
 inspectDiff:withContext:
 observeInCallPresentationModeWithBlock:
 observeFrameWithBlock:
+observeAttachedToWindowedAccessoryWithBlock:
 _performActionsForUIScene:withUpdatedFBSScene:settingsDiff:fromSettings:transitionContext:lifecycleActionType:
 requestDismiss
 cancel
@@ -3543,6 +3564,8 @@ _gradientLayer
 _animationTimer
 _animationCompletionBlocks
 setInCallPresentationMode:
+setAttachedToWindowedAccessory:
+setWindowedAccessoryCutoutFrameInScreen:
 _inCallPresentationMode
 _contentSizeCategoryDidChange
 sbf_imageUsingContextType:
@@ -3654,6 +3677,7 @@ handleDoubleHeightStatusBarTap
 noteActivatedForActivityContinuationWithIdentifier:
 setUserInfo:
 didInvalidateForRemoteAlert
+didTransitionToAttachedToWindowedAccessory:windowedAccessoryCutoutFrameInScreen:
 sb_becomeFirstResponder
 sb_resignFirstResponder
 sb_preserveInputViewsAnimated:
@@ -3957,6 +3981,9 @@ v24@0:8@"_SBFVibrantSettings"16
 @32@0:8@16@24
 v36@0:8q16B24@28
 v32@0:8q16@24
+v52@0:8B16{CGRect={CGPoint=dd}{CGSize=dd}}20
+{CGRect={CGPoint=dd}{CGSize=dd}}16@0:8
+{CGRect="origin"{CGPoint="x"d"y"d}"size"{CGSize="width"d"height"d}}
 v32@0:8Q16@?24
 @"NSString"24@0:8@"NSString"16
 @"BSDescriptionBuilder"24@0:8@"NSString"16
@@ -4009,7 +4036,6 @@ i24@0:8q16
 v32@0:8@"SBUIPasscodeLockNumberPad"16@"UIControl<SBUIPasscodeNumberPadButton>"24
 v24@0:8@"SBUIPasscodeLockNumberPad"16
 d64@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16d48d56
-{CGRect={CGPoint=dd}{CGSize=dd}}16@0:8
 @"SBUIPasscodeLockNumberPad"
 @"<_SBUIPopoverExtensionHostDelegate>"
 @56@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16Q48
@@ -4084,7 +4110,6 @@ v48@0:8@16@24@32^v40
 @"_SBSUIOrientedImageView"
 @"<SBFLegibilitySettingsProviderDelegate>"
 @"<SBSUIWallpaperPreviewViewControllerDelegate>"
-{CGRect="origin"{CGPoint="x"d"y"d}"size"{CGSize="width"d"height"d}}
 @"NSHashTable"
 v36@0:8Q16B24d28
 @"UIMorphingLabel"

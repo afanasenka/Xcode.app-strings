@@ -10935,7 +10935,6 @@ _isEnvironmentalAudioExposureRoom
 _buildAudioAverageDataSourceWithUnitController:displayType:healthStore:averageOverVisibleRange:
 initWithCustomDataSource:primaryDisplayType:
 _initialPillForPreference:
-indexSetWithIndex:
 _makeHeadphoneDeviceFiltersUsingContextCreator:
 audioExposureDevicesDataSource
 devicesByName
@@ -11041,6 +11040,7 @@ _buttonCellForTableView:
 isDeletingSamples
 isEditing
 _enableFeature:
+indexSetWithIndex:
 reloadSections:withRowAnimation:
 setDeletingSamples:
 deleteAllSamplesWithTypes:sourceBundleIdentifier:options:completion:

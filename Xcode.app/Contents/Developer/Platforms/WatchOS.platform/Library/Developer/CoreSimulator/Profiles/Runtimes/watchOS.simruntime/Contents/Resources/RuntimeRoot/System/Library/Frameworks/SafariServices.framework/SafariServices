@@ -361,8 +361,6 @@ showingReader
 TB,N,V_showingReader
 displayingStandaloneImage
 TB,N,V_displayingStandaloneImage
-readingListBookmarkID
-Ti,N,V_readingListBookmarkID
 wasOpenedFromLink
 TB,N,V_wasOpenedFromLink
 privateBrowsing
@@ -382,6 +380,8 @@ compressedSessionStateData
 T@"NSData",R,N
 skipSavingSessionState
 TB,N,V_skipSavingSessionState
+readingListBookmarkID
+Ti,N,V_readingListBookmarkID
 Saved Tabs
 bookmarkNavDelegate
 T@"<_SFSingleBookmarkNavigationControllerDelegate>",W,N,V_bookmarkNavDelegate
@@ -1158,6 +1158,10 @@ B16@?0@"WKBackForwardListItem"8
 ___IndexedDB
 Cookies
 /Cookies.binarycookies
+NetworkCache
+OfflineWebApplicationCache
+MediaCache
+MediaKeys
 _UIViewServiceHostWillEnterForegroundNotification
 _UIViewServiceHostDidEnterBackgroundNotification
 Audio Recording
@@ -5027,6 +5031,7 @@ setShouldAutoFillPasswordsFromKeychain:
 boolRestrictionForFeature:
 initWithRootViewController:
 indexPathsForSelectedRows
+isKeychainSyncEnabled
 _deletePasswordsAtIndexPaths:
 setEnabled:
 _updateDeleteButton
@@ -5172,8 +5177,8 @@ buttonWithTitle:textStyle:icon:handler:
 setAccessibilityIdentifier:
 trackerInfo
 trackingPreventionEnabled
-preventedKnownTrackingThirdParties
 setSubtitle:
+preventedKnownTrackingThirdParties
 updateKnownTrackingThirdPartiesWithCompletionHandler:
 safari_highLevelDomainFromHost
 viewControllerForPresentationForItemController:
@@ -5652,8 +5657,6 @@ showingReader
 setShowingReader:
 displayingStandaloneImage
 setDisplayingStandaloneImage:
-readingListBookmarkID
-setReadingListBookmarkID:
 wasOpenedFromLink
 setWasOpenedFromLink:
 privateBrowsing
@@ -5670,6 +5673,8 @@ uncompressedSessionStateDataSize
 setUncompressedSessionStateDataSize:
 skipSavingSessionState
 setSkipSavingSessionState:
+readingListBookmarkID
+setReadingListBookmarkID:
 _showingReader
 _displayingStandaloneImage
 _wasOpenedFromLink
@@ -6005,6 +6010,7 @@ fontDescriptorWithSymbolicTraits:
 defaultParagraphStyle
 setLineSpacing:
 setLineBreakMode:
+_messageLabelFont
 initWithString:attributes:
 setAttributedText:
 systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:
@@ -6025,6 +6031,9 @@ setOpenButton:
 openActionHandler
 setOpenActionHandler:
 _separator
+_titleTopConstraint
+_messageTopConstraint
+_messageBottomConstraint
 _icon
 _messageLabel
 _openButton
@@ -6876,6 +6885,7 @@ sharedHTTPCookieStorage
 webui_trackerProtectionEnabled
 _flushKnownTrackingThirdParties
 _updateKnownTrackingThirdPartiesWithCompletionHandler:
+distantFuture
 setByAddingObjectsFromArray:
 getKnownTrackingDomainsForWebView:after:before:completionHandler:
 _clearLoadedSubresourceDomainsFor:
@@ -8154,6 +8164,12 @@ setSourceApplicationBundleIdentifier:
 setStandaloneApplicationURL:
 _canonicalPageURL
 setAlternativeServicesStorageDirectory:
+_setCacheStorageDirectory:
+_setServiceWorkerRegistrationDirectory:
+setNetworkCacheDirectory:
+setApplicationCacheDirectory:
+setMediaCacheDirectory:
+setMediaKeysStorageDirectory:
 websiteDataStoreConfiguration
 safari_dataStoreWithConfiguration:
 webViewConfiguration
@@ -8359,8 +8375,6 @@ stringByResolvingSymlinksInPath
 systemDataContainerURLWithAppBundleID:
 _webDataStoreRootURLForHSTSStorage:
 _ensureWebsiteDataStoreURL:cookieStoreURL:
-_setCacheStorageDirectory:
-_setServiceWorkerRegistrationDirectory:
 applicationProxyForIdentifier:
 dataContainerURL
 checkInAppBundleIDIfNeeded:
@@ -10740,7 +10754,6 @@ setHairlineTopSpacing:
 _updateTopConstraints
 titleLabelTopSpacing
 hairlineTopSpacing
-_titleTopConstraint
 _hairlineTopConstraint
 _bodyLabel
 _titleLabelTopSpacing
@@ -11920,7 +11933,6 @@ _imageData
 currentRunLoop
 getCFRunLoop
 _getMainResourceDataWithCompletionHandler:
-distantFuture
 runMode:beforeDate:
 activityViewController:dataTypeIdentifierForActivityType:
 _imageOnlyDocumentData
@@ -12398,9 +12410,9 @@ B28@0:8@16B24
 B32@0:8B16@20B28
 @"SFAuthenticationViewController"
 @"<_SFAuthenticationSessionDelegate>"
+v24@0:8Q16
 i16@0:8
 v20@0:8i16
-v24@0:8Q16
 @"NSData"
 v28@0:8@"_SFBookmarkInfoViewController"16B24
 B24@0:8@"_SFBookmarkInfoViewController"16

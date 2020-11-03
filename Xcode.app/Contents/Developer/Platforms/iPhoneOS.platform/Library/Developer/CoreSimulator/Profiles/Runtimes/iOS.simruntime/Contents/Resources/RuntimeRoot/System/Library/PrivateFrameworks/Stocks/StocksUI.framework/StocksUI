@@ -170,7 +170,7 @@ ForYouFeedTestSuite
 BilingualFeedPromptViewRendererType
 BilingualFeedPromptViewRenderer
 StockFeedLayoutModel
-2@StockViewStylerType
+StockViewStylerType
 StockViewStyler
 StockFeedPriceViewRendererType
 StockFeedPriceViewRenderer
@@ -184,6 +184,7 @@ ForYouFeedBlueprintViewSupplementaryViewProvider
 StocksV1UserActivityHandler
 333333
 ?ForYouFeedContainerViewController
+AdIgnorableView
 AdComponentTracker
 NewsPlacardStockFeedGroup
 ForYouFeedViewCollapsingAnimator
@@ -192,7 +193,7 @@ StockListLayoutModel
 StockFeedInteractorType
 StockFeedInteractorTypeDelegate
 StockFeedInteractor
-ChartCategoryProviderType
+n@ChartCategoryProviderType
 ChartCategoryProvider
 StockChartRangeCalloutViewOptions
 StockChartRangeCalloutViewProviderType
@@ -552,6 +553,7 @@ StockChartRangeCalloutRenderer
 AlertWatchlistRemoval
 PlacardViewStylerType
 PlacardViewStyler
+ForYouFeedBlueprintCellPrefetcher
 TodayModel
 Model
 SidebarConfiguration
@@ -792,6 +794,7 @@ InterstitialAdvertisementCoordinator
 QuoteDetailViewLayoutAttributes
 LayoutComponent
 NewsStockFeedGroupEmitter
+StockFeedBlueprintCellPrefetcher
 StocksUI
 StockSectionFooterView
 StockTitleView
@@ -1658,9 +1661,11 @@ lazyForYouFeedViewController
 activityIndicatorView
 StocksUI/ForYouFeedContainerViewController.swift
 StocksUI.ForYouFeedContainerViewController
+_TtC8StocksUI15AdIgnorableView
+APPCVisibilityIgnorable
 _TtC8StocksUI18AdComponentTracker
 trackerConfiguration
-/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-669/StocksUI/Trackers/AdComponentTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-678.1/StocksUI/Trackers/AdComponentTracker.swift
 _TtC8StocksUI32ForYouFeedViewCollapsingAnimator
 $__lazy_storage_$_contentView
 $__lazy_storage_$_clippingView
@@ -2369,6 +2374,8 @@ Alert message when a stock is removed from the watchlist with stock symbol.
 SUWatchlistRemovalTitleWithSymbol
 Title for the alert shown when a stock is removed from the watchlist
 _TtC8StocksUI17PlacardViewStyler
+_TtC8StocksUI33ForYouFeedBlueprintCellPrefetcher
+feedItemPrefetcher
 SUTodayTitleAppleNews
 The title for the Today view cell in Apple News mode
 The branding title describing the source of the Today view in Apple News mode
@@ -2569,6 +2576,8 @@ webViewControllerFactory
 headlineProviderFactory
 sceneProvider
 v12@?0B8
+identifier identifiers navigationAction 
+identifier navigationAction 
 _TtC8StocksUI19StockSearchCellView
 exchangeLabel
 priceLabel
@@ -2712,6 +2721,7 @@ lastRefreshDate
 ForYouFeed start expanding identifier=%@, forYouLocation=%@
 ForYouFeed failed expanded gap, time=%fms, identifier=%@, error=%{public}@
 ForYouFeed successfully expanded gap, time=%fms, identifier=%@, expandedData=%@
+ tracker 
 ForYouFeed start refreshing feed
 ForYouFeed failed to refreshing the top of the feed, time=%fms, error=%{public}@
 ForYouFeed successfully refreshed the top of the feed, time=%fms, forYouFetch=%@
@@ -2721,11 +2731,12 @@ Title for the context menu item for adding a stock
 stocksui.watchlist.watch_stock
 SUUserActivityHandlerAssembly
 _TtC8StocksUI36InterstitialAdvertisementCoordinator
-/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-669/StocksUI/Coordinators/InterstitialAdvertisement/InterstitialAdvertisementCoordinator.swift
+/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-678.1/StocksUI/Coordinators/InterstitialAdvertisement/InterstitialAdvertisementCoordinator.swift
 _TtC8StocksUI25NewsStockFeedGroupEmitter
 Failed to emit next group, error=%{public}@
 NewsStockFeedGroupEmitter failed to emit group due to error=
 Chunking headlines into groups based on chunkSize=%ld
+_TtC8StocksUI32StockFeedBlueprintCellPrefetcher
 _TtC8StocksUI22StockSectionFooterView
 moreLabel
 symbolLabel
@@ -3222,7 +3233,6 @@ yxGXo
 yxGXoz_x_So16UIViewControllerCRbz
 RzlXX
 xIegg_
-So6UIViewCSg
 5model_
 16layoutAttributest
 5model_
@@ -3468,6 +3478,7 @@ So8UIButtonC
 So8UIButtonCSg
 $s8StocksUI34StockChartRangeCalloutRendererTypeP
 $s8StocksUI21PlacardViewStylerTypeP
+$s5TeaUI27BlueprintCellPrefetcherTypeP
 _pSg
 $s8StocksUI19StockListModuleTypeP
 14stockViewModel_
@@ -3546,6 +3557,7 @@ ySo18UISearchControllerCG
 ySo11UITableViewC
 yAeM
 yAeOGAOGAOG
+So6UIViewCSg
 Sb9isEditing_Sb15allowAddControltSg
 So18UISearchControllerCIegg_
 Xoz_Xx
@@ -4179,8 +4191,8 @@ View
 Cell
 news
 newsPlacard
-AllCases
 RawValue
+AllCases
 stock
 today
 description
@@ -4426,8 +4438,8 @@ resolver
 sceneStateManager
 topStories
 stock
-AllCases
 RawValue
+AllCases
 styler
 lastKnownContentOffset
 styler
@@ -4784,6 +4796,9 @@ Model
 article
 stockSymbol
 baseStyler
+feedItemPrefetcher
+LayoutModel
+View
 apple
 yahoo
 title
@@ -5335,6 +5350,9 @@ knobs
 newsSource
 name
 FeedServiceConfig
+feedItemPrefetcher
+LayoutModel
+View
 moreLabel
 symbolLabel
 arrowShapeView
@@ -6229,7 +6247,6 @@ initWithName:actionHandler:
 numberOfRowsInSection:
 dataSource
 tableView:canMoveRowAtIndexPath:
-isHighlighted
 isEditing
 ts_sideBarSelectionEffect
 initWithEffect:
@@ -6488,6 +6505,7 @@ safeAreaInsets
 applicationState
 accessibilityFrame
 setAccessibilityFrame:
+isHighlighted
 setHighlighted:
 contentView
 isEnabled
@@ -6657,7 +6675,6 @@ heightAnchor
 constraintEqualToConstant:
 setActive:
 widthAnchor
-newAdsEnabled
 application
 initWithMissingClass:
 topViewController

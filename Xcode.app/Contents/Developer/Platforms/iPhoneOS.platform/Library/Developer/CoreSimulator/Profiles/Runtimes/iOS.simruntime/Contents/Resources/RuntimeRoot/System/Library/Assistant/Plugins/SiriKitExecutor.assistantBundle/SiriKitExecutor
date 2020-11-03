@@ -8,6 +8,7 @@ LogConst
 Category
 SiriKitExecutorSignpost
 AnalyticsEventConst
+DirectInvocationIdentifierConst
 TaskMetricsConst
 GradingEvent
 Timeouts
@@ -93,6 +94,7 @@ q16@0:8
 @24@0:8:16
 com.apple.siri.sirikit
 RequestDispatcher
+com.apple.siri.SiriKit.Flow.DeviceUnlockComplete
 error#genericError
 ExecuteAutoHandle
 ExecuteHandle

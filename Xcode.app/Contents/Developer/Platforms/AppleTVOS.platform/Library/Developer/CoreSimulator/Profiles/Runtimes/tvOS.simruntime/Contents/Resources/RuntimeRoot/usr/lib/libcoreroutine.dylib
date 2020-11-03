@@ -883,6 +883,7 @@ Not serving contexts due to suspension.
 Failed to return a valid managed object context. (in %s:%d)
 %@, request, %@, deleted count, %@, error, %@
 userInfo returned is nil for key, %@, userInfo, %@ (in %s:%d)
+hasUserInfo, %@, hasDeviceRecordID, %@, hasCurrentDeviceMO, %@, currentDeviceMo.identifier, %@, error, %@
 objectWithID, %@, returned nil (in %s:%d)
 No existing device with object ID: %@
 Invalid parameter not satisfying: _espressoContext
@@ -2227,6 +2228,8 @@ Failed to submit AWDCoreRoutineModelAlgorithmSet, error, %@
 AWDCoreRoutineModelAlgorithmInstance, type, %lu, source, %lu, previousType, %lu, truthSource, %lu, truthType, %lu, distanceFromTruth, %g, isRotted, %s
 Invalid parameter not satisfying: settledStateTransition
 Managed object contexts inserting subclasses of RTCloudManagedObject cannot have an undo manager. (in %s:%d)
+Attempting to modify property, %@, on a cloud managed object, %@
+object device, %@, current device, %@.
 Invalid parameter not satisfying: eventStore (in %s:%d)
 access to event entity type granted, %@, error, %@
 no access to event store (in %s:%d)
@@ -6424,8 +6427,8 @@ Sandbox
 +[RTDiagnostics createDiagnosticsURLWithError:]
 failed to create diagnostic url, parent path was nil.
 failed to create diagnostic url at path, %@, error, %@
-Sep 21 2020
-00:01:47
+Oct  7 2020
+02:15:26
 encrypetd data unavailable - please ensure the device is unlocked and try again.
 numberOfCandidates
 numberOfLearnedPlaceKnownTypeCandidates
@@ -6726,7 +6729,7 @@ TB,N,V_isRotted
 true
 (%K & %lu) != %lu
 -[RTCloudManagedObject awakeFromInsert]
-Attempting to modify property, %@, on a cloud managed object, %@, across devices (object device, %@, current device, %@).
+Attempting to modify property on a cloud managed object, device id nonnull, %@, managed object id nonnull, %@
 T@"NSData",C,D,N
 T@"NSUUID",C,N
 TQ,D,N
@@ -8663,7 +8666,6 @@ doubleWithSignificantDigits:digits:
 roundTimeInterval:byIntervalUnit:
 doubleToInt:shifts:
 intWithSignificantDigits:digits:
-kuzcoSaysNoTouchy
 dontOpenDeadInside
 defaultXPCActivityCriteria
 performUpdateOfAssetsWithTypeAssetType:handler:

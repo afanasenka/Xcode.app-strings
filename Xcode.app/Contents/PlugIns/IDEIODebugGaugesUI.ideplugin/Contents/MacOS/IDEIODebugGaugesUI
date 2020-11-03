@@ -1,4 +1,5 @@
-@(#)PROGRAM:IDEIODebugGaugesUI  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:IDEIODebugGaugesUI  PROJECT:IDEPlugIns-17510.1
+ffff
 setNeedsDisplay:
 isEqual:
 copy

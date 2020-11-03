@@ -22,12 +22,12 @@ CARD_INFO_DIGITAL_NUMBER
 cardNumber
 serviceNumber
 CARD_INFO_SERVICE_ID
-PASS_INFO_HEADER
+ACCOUNT_INFORMATION
+NanoPassKitUI
 CARD_INFO_HEADER
 ACCOUNT_SERVICE_CARD_NUMBERS_VIRTUAL_FOOTER
 PEER_PAYMENT_PIN_MESSAGE
 DPAN_FOOTER_NO_DEBIT_WATCH
-NanoPassKitUI
 DPAN_FOOTER_WATCH
 deviceAccountNumber
 DPAN_TITLE
@@ -131,6 +131,7 @@ T@"PKCurrencyAmount",R,N
 valueString
 updating
 TB,R,N,GisUpdating
+ACCOUNT_NOT_AVAILABLE_TITLE
 CARD_NOT_AVAILABLE_TITLE
 TRANSACTION_FAILED_MESSAGE
 READER_REQUESTING_PAYMENT
@@ -337,8 +338,10 @@ dotColor
 T@"UIColor",&,N,V_dotColor
 PrivacyInformation
 childTransparencyInfo
+GDPRButton
 PEER_PAYMENT_TRANSPARENCY_CHILD_INFO_BODY
 PEER_PAYMENT_TRANSPARENCY_CHILD_INFO_HEADER
+GDPR_HEADER
 TOP_UP_ADD_MONEY_BUTTON
 TOP_UP_BALANCE_AND_LAST_TOP_UP_LABEL_FORMAT
 TOP_UP_BALANCE_LABEL_FORMAT
@@ -554,7 +557,7 @@ lineItems
 T@"NSArray",&,N,V_lineItems
 cancelBlock
 T@?,C,N,V_cancelBlock
-IN_APP_PAYMENT_PIN_CODE_PROMPT_FMT
+AUTHENTICATION_PIN_INITIAL_TEXT
 TRANSACTION_AUTHENTICATION_USER_CONFIRMATION_MESSAGE
 TRANSACTION_AUTHENTICATION_USER_CONFIRMATION_YES
 v16@?0@"PUICActionSheetItem"8
@@ -1125,9 +1128,11 @@ v24@?0@"PKPass"8@?<v@?@"PKTransitPassProperties">16
 v16@?0@"PKTransitAppletState"8
 v16@?0@"PKTransitPassProperties"8
 DELETE_CARD_WITH_VALUE_SHEET_MESSAGE
+REMOVE_CARD_CONFIRMATION_ACCOUNT
 REMOVE_CARD_CONFIRMATION_PAYMENT
 REMOVE_CARD_CONFIRMATION_NON_PAYMENT
 REMOVE_SHEET_TITLE
+REMOVE_ACCOUNT
 REMOVE_CARD
 REMOVE_PASS
 PASS_ACTION_UNAVAILABLE_OK_BUTTON_TITLE
@@ -1738,9 +1743,13 @@ Top status view covering status bar
 Bottom status view positioning
 v32@?0@?<v@?>8Q16^B24
 v20@?0B8@"NSString"12
+DEFAULT_ACCOUNT_CHANGED_FROM_WALLET_TITLE_FORMAT
 DEFAULT_CARD_CHANGED_FROM_WALLET_TITLE_FORMAT
+DEFAULT_ACCOUNT_CHANGED_FROM_WALLET_MESSAGE
 DEFAULT_CARD_CHANGED_FROM_WALLET_MESSAGE
+DEFAULT_ACCOUNT_CHANGED_FROM_WALLET_NOT_AVAILABLE_TITLE_FORMAT
 DEFAULT_CARD_CHANGED_FROM_WALLET_NOT_AVAILABLE_TITLE_FORMAT
+DEFAULT_ACCOUNT_CHANGED_FROM_WALLET_MESSAGE_NOT_AVAILABLE
 DEFAULT_CARD_CHANGED_FROM_WALLET_MESSAGE_NOT_AVAILABLE
 DEFAULT_CARD_CHANGED_FROM_WALLET_OK_BUTTON_TITLE
 animated
@@ -1840,12 +1849,18 @@ cardStatusActionItem
 ACTIVATING_TITLE
 VERIFICATION_REQUIRED_TITLE
 PAYMENT_APP_SUSPENDED_LOST_MODE_TITLE
+ACCOUNT_ACTIVATING_MESSAGE
 ACTIVATING_MESSAGE
+ACCOUNT_PAYMENT_APP_VERIFICATION_TERMINATED
 PAYMENT_APP_VERIFICATION_TERMINATED
+ACCOUNT_VERIFICATION_REQUIRED_MESSAGE
 VERIFICATION_REQUIRED_MESSAGE
+ACCOUNT_PAYMENT_APP_SUSPENDED_BY_ISSUER
 PAYMENT_APP_SUSPENDED_BY_ISSUER
 PAYMENT_APP_SUSPENDED_LOST_MODE_DETAIL
+ACCOUNT_PAYMENT_APP_REMOVED_BY_ISSUER
 PAYMENT_APP_REMOVED_BY_ISSUER
+ACCOUNT_PAYMENT_APP_ERROR_BODY
 PAYMENT_APP_ERROR_BODY
 PAYMENT_APP_SUSPENDED_LOST_MODE_ACTION
 v16@?0@"NSError"8
@@ -2345,6 +2360,7 @@ Warning: Missing unique ID (%@) or settings (%@) in settings changed notificatio
 Notice: [TransactionAuthentication] Transaction authentication UI is dismissed.
 Notice: [TransactionAuthentication] Presented pinCodeEntryViewController for authentication request with transaction: %@
 Notice: [TransactionAuthentication] Presented legacyPinInputController for authentication request with transaction: %@
+Error: [TransactionAuthentication] Transaction requested pin authentication, but format is unrecognized: %@. Skipped.
 Notice: [TransactionAuthentication] Presented user intention confirmation alert for authentication request with transaction: %@
 Notice: [TransactionAuthentication] Presented app redirect alert for authentication request with transaction: %@
 Notice: [TransactionAuthentication] Skipped authentication request because we are handling an existing one.
@@ -2406,6 +2422,7 @@ Notice: Payment pass selected for express: %@ %@
 Notice: %{public}@: Unable to find index of group for pass with unique ID %@!
 Notice: %{public}@: Successfully redeemed shareable credentials: %@
 Notice: %{public}@: Failed to redeem shareable credentials: %@. Error: %@
+Notice: %{public}@: Expected to find a shareable credential to provision, but found none.
 Notice: %{public}@: Successfully redeemed shareable credential: %@
 Notice: %{public}@: Failed to shareable credential: %@. Error: %@
 Notice: Calling updateWithConfiguration on %@
@@ -2590,6 +2607,7 @@ Notice: Presenting barcode reloading alert.
 Notice: Barcode reloading alert is already presented. Skipped.
 Notice: Recent transactions section provider %@ received updated transaction with identifier %@
 Notice: Recent transactions section provider %@ applying updated section provider configuration %@ to pushed detail view controller %@
+Notice: Recent transactions section provider %@ ignored updated transaction with identifier %@, because it's not approved barcode payment transaction.
 Notice: Recent transactions section provider %@ popping pushed detail view controller %@
 Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: Expected the available width to be a positive number!)
 Warning: %{public}@: Expected to find a title label, but instead found nil! titleLabel: %@
@@ -2998,9 +3016,9 @@ localizedValueForFieldKey:
 supportsBarcodePayment
 organizationName
 _shouldShowDeviceAccountNumberForPass:
-isEqualToString:
 bundleForClass:
 localizedStringForKey:value:table:
+isEqualToString:
 _updateWithConfiguration:previousConfiguration:
 delegate
 sectionProvider:didReloadSectionWithIdentifier:
@@ -3102,8 +3120,11 @@ systemRedColor
 setTextColor:
 bundleWithIdentifier:
 blackColor
+setNumberOfLines:
+setTextAlignment:
 initWithArrangedSubviews:
 setBarcodeUnavailableView:
+constraintLessThanOrEqualToAnchor:constant:
 removeFromSuperview
 barcodesContainerView
 arrangedSubviews
@@ -3113,8 +3134,6 @@ addArrangedSubview:
 _handleTapGesture:
 initWithTarget:action:
 addGestureRecognizer:
-setNumberOfLines:
-setTextAlignment:
 setExpirationStatusLabel:
 barcodesScrollViewBottomConstraint
 deactivateConstraints:
@@ -3282,6 +3301,7 @@ setLineBreakMode:
 setAdjustsFontSizeToFitWidth:
 setMinimumScaleFactor:
 failureType
+currentPass
 _attributedFailureStringForStatusString:
 setAttributedText:
 constraintLessThanOrEqualToAnchor:
@@ -3892,10 +3912,11 @@ _readyDotLayer
 _dotColor
 variantForIconSize:
 iconForImage:size:
+shouldShowPrivacyDetailsForPass:
+localizedDescription
 account
 role
-shouldShowPrivacyDetailsForPass:
-shouldShowChildTransparencyInfoForPass:
+provisioningCredentialHash
 minLoadAmount
 minLoadedBalance
 decimalNumberBySubtracting:
@@ -3993,7 +4014,6 @@ section
 _explanationCellForIndexPath:
 _passCellForIndexPath:
 dequeueReusableCellWithReuseIdentifier:forIndexPath:
-localizedDescription
 bodyLabel
 expressSelectionViewController:didSelectPaymentPass:
 dictionary
@@ -4023,7 +4043,6 @@ _requestScreenOnAssertion
 _releaseScreenOnAssertion
 _disablePaymentSession
 paymentSession
-currentPass
 setIsSessionEnabled:
 errorWithDomain:code:userInfo:
 VASPassContactlessInterfaceManager:didActivatePass:error:
@@ -4122,7 +4141,6 @@ _heightWithVisibleState:
 _updateBubbleHeight:forView:
 setView:
 constraintGreaterThanOrEqualToAnchor:constant:
-constraintLessThanOrEqualToAnchor:constant:
 _bubbleColorForState:
 logoImageView
 _createLogoImageView
@@ -4404,12 +4422,12 @@ setCancelBlock:
 _cancelBlock
 handlingTransactionAuthentication
 setHandlingTransactionAuthentication:
-_deactivateButtonTapAssertionIfNecessary
 authenticationCompletionBlock
 setAuthenticationCompletionBlock:
 legacyPinInputController
 dismiss
 setLegacyPinInputController:
+_deactivateButtonTapAssertionIfNecessary
 transactionStatus
 invalidateTransactionAuthenticationContextIfNecessary
 authenticationRequested
@@ -4431,6 +4449,7 @@ alertSheetControllerWithActions:message:style:
 presentViewController:animated:completion:
 _handleAppRedirectAlert
 alertSheetControllerWithActions:title:message:style:
+handleApplicationRedirectRequestOnPairedDeviceForPaymentPass:transaction:
 carouselButtonHandler
 setCarouselButtonHandler:
 setHandlerForButtons:event:serviceIdentifier:handlerWithTimestamps:
@@ -4886,6 +4905,7 @@ _transactionDirection
 _transactionStatus
 setWithObjects:
 loadContentSync
+drawViewHierarchyInRect:afterScreenUpdates:
 needsUpdateUI
 _setNeedsUpdateUI
 _performUIWork:
@@ -6494,6 +6514,8 @@ sessionState
 _sessionState
 setMagnificationFilter:
 altText
+monospacedSystemFontOfSize:weight:
+wristOrientation
 barcodeImageView
 setBarcodeImageView:
 barcodeLabel

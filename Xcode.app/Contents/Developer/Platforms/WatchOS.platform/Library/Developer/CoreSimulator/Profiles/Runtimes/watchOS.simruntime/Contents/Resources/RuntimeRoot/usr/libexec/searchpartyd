@@ -1,569 +1,13 @@
 FeatureFlags
-So8NSStringC
-_AAt
-_A255At
-So7NSErrorC
-_A2At
-_A15At
-$sSY
-$ss21_ObjectiveCBridgeableP
-$ss25ExpressibleByArrayLiteralP
-$ss10SetAlgebraP
-$ss9OptionSetP
-$s10Foundation21_BridgedStoredNSErrorP
-$s10Foundation18_ErrorCodeProtocolP
-ySS_SStG
-SDyS2SG
-SSSg
-So17OS_dispatch_groupC
-SSSgz_Xx
-Sbz_Xx
-SiSDyS2SGIeggyg_
-So17OS_os_transaction_pSg
-So14OS_os_activity_p
-$s12searchpartyd26DeviceInformationProvidingP
-_pSg
-ySo10CKRecordIDCG
-Sgz_Xx
-SbIegy_
-So10CKRecordIDCIegg_
-SgXw
-SgXwz_Xx
-Ieg_
-ypSg
-SaySo8CKRecordCG
-_pGG
-So14FMStateCaptureC
-So17OS_dispatch_queueC
-SgXw
-_pGG
-_pGSg
-3url_
-8metaDatatG
-3url_
-8metaDatat
-_pGG
-_pGSg
-SgXwz_Xx
-ySo10CKRecordIDC_SStG
-So10CKRecordIDC_SSt
-ySo8CKRecordCG
-ySo14CKRecordZoneIDCG
-ySdG
-_pGG
-_pGSg
-ySNy
-yShy
-_GGG
-_pGSg
-_pGG
-13advertisement_
-_p13beaconPayloadtG
-13advertisement_
-_p13beaconPayloadt
-13advertisement_
-_p13beaconPayloadtG
-13advertisement_
-_p13beaconPayloadt
-ySo14SPBeaconingKeyCG
-_pSg
-_pGSg
-_pGG
-SaySSG
-SDySSShy
-SiSg
-SiSgG
-SDySSShy
-SaySSGG
-Ieg_Sg
-ySS_
-ySSG
-$s8SPShared12SubscribableP
-So13CKRecordValue_p
-SgSg
-yShySo14FAFamilyMemberCG
-yShySo14FAFamilyMemberCG
-_pGz_Xx
-7fileURL_Sb7deletedt
-Si5count_
-Sg8intervalt
-SDySSSay
-$s12searchpartyd19FinderStateProtocolP
-$s12searchpartyd18PowerStateDelegateP
-$s12searchpartyd17PowerStateMonitorP
-$s12searchpartyd26BeaconPayloadCacheProtocolP
-So8NSObjectC
-So31SPAdvertisementCacheXPCProtocol_So8NSObjectCXcSg
-tcSg
-$s12searchpartyd26AdvertisementCacheDecodingP
-ySay
-_pGG
-ySay
-ySo8NSObjectCmG
-So7NSErrorCSgIeyBy_
-So32SPAdvertisementCacheSearchResultCIeyBy_
-So32SPAdvertisementCacheSearchResultCIegg_
-So32SPBeaconPayloadCacheSearchResultCIeyBy_
-So32SPBeaconPayloadCacheSearchResultCIegg_
-SgXw
-SgXwz_Xx
-XDXMT
-SS_SSt
-$s12searchpartyd14SignalHandlingP
-SaySo25OS_dispatch_source_signal_pG
-$ss12CaseIterableP
-So14CKNotificationCSg
-ySSG
-ySNy
-ySo8SPBeaconCG
-ySo13SPBeaconShareCG
-ySo14FAFamilyMemberCG
-_pSgIegg_
-SbSg
-_pSg
-ySS_yyctG
-SS_yyct
-Iego_
-Iegr_
-$s12searchpartyd11SchedulableP
-$s12searchpartyd26FinderPublishDateProvidingP
-$s12searchpartyd20PublishDateProvidingP
-ySSSay
-ySSShy
-ySSSo8NSStringCG
-_ypt
-_ypt
-ySSSo8NSObjectCG
-ySSyycG
-ySSSo8NSNumberCG
-yS2SG
-yycG
-_Say
-GtSg
-_Say
-ySSypG
-SS_ypt
-SgXw
-SgXwz_Xx
-_pSg
-11destination_
-Sg14identifierDatat
-_pSgccSg
-_pGIegg_
-4data_Si10statusCodeSDyS2SG15responseHeaderst
-SgXw
-SaySiG
-ySNy
-ySo13SPBeaconShareCG
-ySo10CLLocationCG
-ySo17SPRawSearchResultCG
-yypG
-11destination_
-Sg14identifierDatatG
-SgtG
-ySo14FAFamilyMemberCG
-ySo9IDSDeviceCG
-ySo21SPBeaconAdvertisementCG
-ySo8NSNumberCG
-$s12searchpartyd31IdentifiableBeaconAdvertisementP
-$s12searchpartyd23CLLocationRepresentableP
-So14SPBeaconingKeyCSgIegg_
-So9ACAccountCSg
-SgIegn_
-$s12searchpartyd35ConfigurationCoordinatorSubscribingP
-$s12searchpartyd33ConfigurationCoordinatorProvidingP
-10Subscriber
-9publicKey_t
-10privateKey_t
-$s12searchpartyd24MessagingServiceDelegateP
-_pSgXw
-SayypGSg
-ySo10IDSAccountC_G
-SgSg
-SdSg
-SaySdG
-$s12searchpartyd16KeyRepresentableP
-8RawValueSYQz
-$s12searchpartyd15KeyRepresentingP
-$s12searchpartyd24SecurityKeyRepresentableP
-Si8expected_Si6actualt
-So16SPBeaconLocationCGIegg_
-_pSg
-GGIegg_
-ySS_So8NSObjectCtG
-SS_So8NSObjectCt
-So8SPBeaconCSgIegg_Iegng_
-_ySo8SPBeaconCSgctc
-So8SPBeaconCSgytIegnr_
-4data_Si10statusCodeSDyS2SG15responseHeaderstG
-$s12searchpartyd27FMIPStateManagerSubscribingP
-_pGG
-SDySSyycGSg
-SgXw
-SgXwz_Xx
-_pGIegn_
-_pGIegg_
-$s12searchpartyd13ServiceDaemonP
-So8NSBundleC
-$s12searchpartyd30CurrentLocationMonitorDelegateP
-_pSgXw
-So10CLLocationCSg
-So17CLLocationManagerCSg
-ySay
-ySay
-ySbG
-3key_Say
-G5valuetSg
-3key_Say
-G5valuet
-_pSgz_Xx
-SDyShy
-GSiG
-SDyShy
-GSiGIegg_
-SDyShy
-GSiGz_Xx
-ySDy
-SaySo11IDSEndpointCGG
-_pGIegg_
-ySSSaySo11IDSEndpointCGG
-3key_yp5valuet
-SaySo11IDSEndpointCG
-yShySo9FMFHandleCG
-_pGIegn_
-ySS_yptG
-ShySSG
-_pGIegn_
-ySDy
-_pGIegg_
-SgXw
-GSDy
-Iegggggg_
-Sgz_Xx
-Sgz_Xx
-SgXw
-_pSgIegg_Sg
-$s12searchpartyd24CloudCoordinatorDelegateP
-So10IDSAccountC
-$s12searchpartyd18HistoricalLocationP
-$s12searchpartyd19CachedAdvertisementP
-$s12searchpartyd19CachedBeaconPayloadP
-$s12searchpartyd19BeaconAdvertisementP
-$s12searchpartyd12IdentifiableP
-SDySSypG
-SS3key_yp5valuet
-3key_yp5valuetSg
-_yptSg
-3key_yp5valuetSg
-_yptSg
-SS3key_yp5valuetSg
-SS_yptSg
-SaySo14SPBeaconingKeyCGIegg_
-SaySo14SPBeaconingKeyCG
-ShySo8SPBeaconCG
-ShySo8SPBeaconCGz_Xx
-ShySo8SPBeaconCGIegg_
-So7NSArrayCIeyBy_
-$s12searchpartyd28BeaconPayloadCacheReadAccessP
-SgXw
-Ieggg_
-$s12searchpartyd18LocalStorageBackedP
-_pGG
-GGGSg
-$s12searchpartyd33BeaconObservationStoreSubscribingP
-SgXw
-$s12searchpartyd20OwnerSessionProtocolP
-So12NSDictionaryCIeyBy_
-IeyB_
-7ElementSTQy_
-yxq_G
-8IteratorSTQy_
-SayxG
-yxq__G
-SnySiG
-$sST
-$sSt
-8oldState_AB03newB0t
-AAIegnn_
-8oldState_AC03newB0t
-GSo17OS_dispatch_queueCG
-8oldState_AB03newB0t
-SgXw
-_yyctG
-_yyct
-8oldState_AA03newB0t
-So22SPSchedulerXPCProtocol_So8NSObjectCXcSg
-_pSg
-SgycSg
-13advertisement_
-_p13beaconPayloadtSg
-_pSg
-SayShy
-yx_GGG
-7version_t
-6length_t
-yyXlXpG
-$s12searchpartyd26AdvertisementCacheProtocolP
-$s12searchpartyd11FetchPolicyP
-$s12searchpartyd26LocalBeaconManagerProtocolP
-$s12searchpartyd44BeaconManagerUserAgentDaemonInternalProtocolP
-_yptG
-So14SPBeaconingKeyCSgIeyBy_
-IeyBy_
-So6NSUUIDCSgIeyBy_
-IeyBy_
-SuSg
-SaySSGSg
-SDySSShy
-GGSg
-ySiG
-ySS_Shy
-SS_Shy
-_pGG
-SgSg
-SgXw
-Iegn_
-SgXwz_Xx
-SgABc
-So13OS_xpc_object_pSgXw
-ySo13OS_xpc_object_pcSg
-SgXw
-So13OS_xpc_object_p
-So13OS_xpc_object_pSg
-$s12searchpartyd23BeaconPayloadEncrypting33_708911EFAD92707E20B0F827189C9A2DLLP
-$s12searchpartyd21BeaconManagerProtocolP
-$s12searchpartyd27LocalPairingManagerProtocolP
-$s12searchpartyd22PairingManagerProtocolP
-SgGSg
-So14FMStateCaptureCSg
-GIegg_
-SgXw
-_pGIegn_
-Iegl_
-ySo8CKRecordCG
-So8CKRecordCIegg_
-So8CKRecordCSg
-_pSgIeggg_
-Iegl_
-_pGIegn_
-Sgz_Xx
-Iego_
-Iegr_
-$s12searchpartyd27DelegateCryptoTokenProtocolP
-So14CKRecordZoneIDC
-_pSgXw
-yycSg
-Iegl_
-_pGIegn_
-_pGIegn_
-_pGIegn_
-GGIego_
-GGIegr_
-_pGIegn_
-3key_Say
-G5valuetSg
-_Say
-GtSg
-3key_Say
-G5valuet
-_Say
-yShySo9FMFHandleCG
-_pGz_Xx
-ySo9FMFHandleCG
-ySo10IDSAccountCG
-$s12searchpartyd21ContainerPushDelegateP
-_pSgXw
-Sg_ABt
-Sg_ABt
-Sg_ABt
-So10CKRecordIDC
-So9IDSDeviceC
-3key_
-5valuetSg
-3key_
-5valuet
-_ACtG
-_ADtGSo17OS_dispatch_queueCG
-Iegnn_
-SbIegny_
-7fileURL_Sb7deletedt
-SbIegyyd_
-8keyIndex_
-0A8SequencetG
-$s12searchpartyd17SchedulerProtocolP
-Gz_Xx
-ySay
-GGSg
-ySay
-GGSgz_Xx
-ySay
-GGIegn_
-ySay
-GGz_Xx
-4data_Si10statusCodeSDyS2SG15responseHeaderstG
-_Sit
-$s12searchpartyd23ServiceStateConfiguringP
-So14NSUserDefaultsCSg
-SgXw
-SaySo10CLLocationCG
-SDyS2SGz_Xx
-Iegn_
-SJSg
-$ss26ExpressibleByStringLiteralP
-$ss43ExpressibleByExtendedGraphemeClusterLiteralP
-$ss33ExpressibleByUnicodeScalarLiteralP
-So17IDSMessageContextC
-Iegy_
-So5NSSetCIeyBy_
-$s12searchpartyd18ConfigurationLayerP
-$s12searchpartyd24ConfigurationSubscribingP
-$s12searchpartyd22ConfigurationProvidingP
-_pSgXw
-So21OS_dispatch_semaphoreC
-So11CKContainerCSg
-So13APSConnectionCSg
-Iegg_
-Iegg_
-So8CKRecordC
-So8CKRecordCIegl_
-So24CKModifyRecordsOperationC
-3key_
-5valuet
-Iegy_
-ySo12CKRecordZoneCG
-So12CKRecordZoneC
-SgXwz_Xx
-So10CKDatabaseC
-SaySo14CKRecordZoneIDCG
-SaySo14CKRecordZoneIDCGz_Xx
-So19CKServerChangeTokenCSg
-SDySo14CKRecordZoneIDCSo013CKFetchRecordB20ChangesConfigurationCG
-SaySo10CKRecordIDC_SStG
-SaySo8CKRecordCGz_Xx
-SaySo10CKRecordIDC_SStGz_Xx
-ySo10CKRecordIDCG
-SaySo10CKRecordIDCGSg
-SgXw
-ySo13CKAccountInfoC
-_pGIegg_
-ySay
-_pSgIegyg_
-So17SPFinderStateInfoCSgSo7NSErrorCSgIeyByy_
-So17SPFinderStateInfoCSg
-_pSgIeggg_
-So7NSErrorCSgIeyByy_
-So10IDSServiceC
-So20IDSIDQueryControllerC
-_pSgtcSg
-tcSg
-yxGSDy
-tcSg
-yShy
-GcSg
-ySay
-GcSg
-$s12searchpartyd27CodedDataRangeRepresentableP
-$s12searchpartyd29EncodedDataRangeRepresentableP
-$s12searchpartyd29DecodedDataRangeRepresentableP
-$s12searchpartyd16PayloadEncodableP
-$s12searchpartyd16PayloadDecodableP
-$s12searchpartyd6DaemonP
-SgXw
-ySbcSg
-So15NWPathEvaluatorCSg
-So17OS_dispatch_queueCSg
-$s12searchpartyd16KeychainManagingP
-4udid_t
-6chipId_
-4ecid
-12serialNumbert
-_AAtKc
-_AAtKc
-SbSd_SdtKc
-GGz_Xx
-Gz_Xx
-GGz_Xx
-3key_Say
-G5valuet
-_Say
-_Say
-GtSg
-3key_Shy
-G5valuetSg
-_Shy
-GtSg
-3key_Shy
-G5valuet
-_Shy
-3key_Say
-G5valuetSg
-3key_Say
-G5valuet
-16beaconIdentifier_
-8keyIndex
-8sequencetSg
-16beaconIdentifier_
-8keyIndex
-8sequencet
-GSpySo8NSObjectCGSgSpyypGSgytIeglllr_
-GIegg_
-ySay
-_pSg
-$s12searchpartyd11CloudBackedP
-SDySSSo8NSObjectCG
-ySS_So8NSStringCtG
-SS_So8NSStringCt
-ySS_So8NSNumberCtG
-SS_So8NSNumberCt
-3key_Say
-G5valuetSg
-_pGG
-SgXw
-13advertisement_
-_p13beaconPayloadtG
-13advertisement_
-_p13beaconPayloadtG
-13advertisement_
-_p13beaconPayloadtGz_Xx
-13advertisement_
-_p13beaconPayloadtGz_Xx
-ySnySiGG
-3url_
-8metaDatatSg
-$s12searchpartyd29BeaconPayloadCacheSubscribingP
-SgXw
-SgXwz_Xx
-$s12searchpartyd24BeaconPublishingProtocolP
-$s12searchpartyd15ServiceProtocolP
-So12NSFileHandleC
-5index_t
-$s12searchpartyd11MessageTypeP
-yycG
-ySo14CKRecordZoneIDCSo013CKFetchRecordB20ChangesConfigurationCG
-So23SPBeaconTaskInformationCG
-8keyIndex_
-0A8SequencetG
-ySo8NSObjectCypG
-So16SPBeaconLocationCG
-SaySo11IDSEndpointCGG
-yShy
-GSiG
-$s12searchpartyd12BeaconRecordP
-SgXo
-yycG
-So16NSOperationQueueCSg
-7fileURL_Sb7deletedt
-So16NSBlockOperationC
-ySSG
-ytIegr_
-GGSo17OS_dispatch_queueCG
-GGSo17OS_dispatch_queueCG
-G8rootKeys_t
-10privateKey_
-06publicB0
-012sharedSecretB0t
-tXEKc
-So9FMFDeviceCSg
+SPMembership
+SPMembership isLocalAccountUUID: %@
+SPMembership Failed calling mbr_check_membership_by_id, assuming local user exists.
+SPMembership isLocalAccountUUID: %@, LocalGroup: staff(20), result: %i
+SPMembership Failed calling mbr_uid_to_uuid
+UTF8String
+stringWithCString:encoding:
+isLocalAccountUUID:
+currentMachineUserUUID
 currentRunLoop
 saveAdvertisements:completion:
 markAdvertisementsProcessed:completion:
@@ -616,7 +60,6 @@ recordID
 setStateCaptureBlock:
 removeItemAtURL:error:
 createSymbolicLinkAtURL:withDestinationURL:error:
-createDirectoryAtURL:withIntermediateDirectories:attributes:error:
 initRequiringSecureCoding:
 encodeSystemFieldsWithCoder:
 finishEncoding
@@ -802,6 +245,7 @@ beaconIdentifier
 beaconForUUID:completion:
 allBeaconsWithCompletion:
 unacceptedBeaconsWithCompletion:
+createDirectoryAtURL:withIntermediateDirectories:attributes:error:
 archivedDataWithRootObject:requiringSecureCoding:error:
 ownerName
 zoneName
@@ -813,14 +257,15 @@ setAlwaysBeaconState:completion:
 alwaysBeaconStateWithCompletion:
 pushLocalBeaconRecord:completion:
 purgeLocalBeaconRecordWithCompletion:
+containerWithName:completion:
 notifyConfigurationChanged:completion:
 notifyBeaconKeyURLChanged:deleted:completion:
 currentBeaconingKeyWithCompletion:
-setAttributes:ofItemAtPath:error:
 defaultCenter
 addObserverForName:object:queue:usingBlock:
 meDeviceChangedWithNotification:
 writeToURL:atomically:
+setAttributes:ofItemAtPath:error:
 setObject:forKeyedSubscript:
 valueStore
 resetChangedKeys
@@ -833,10 +278,9 @@ beaconingKeysForUUID:dateInterval:completion:
 removeLocalAccountDataWithCompletion:
 primaryAccountModified
 setServiceState:completion:
+repairDataStore:
 URLsForDirectory:inDomains:
-deleteDataForAccount:service:
 integerForKey:
-addBarrierBlock:
 moveItemAtURL:toURL:error:
 forceRefresh
 getHandlesFollowingMyLocation:
@@ -906,6 +350,7 @@ sharedDefaultEvaluator
 addKVOBlockForKeyPath:options:handler:
 postNotification:
 dataForAccount:service:
+deleteDataForAccount:service:
 setData:forAccount:service:synchronizable:dataProtectionClass:migratable:
 initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:
 locationByReductivelyFilteringLocations:options:
@@ -925,16 +370,616 @@ createFileAtPath:contents:attributes:
 seekToOffset:error:
 fileHandleWithNullDevice
 readDataOfLength:
+addBarrierBlock:
 processIdentifier
-fileHandleForReadingFromURL:error:
+addOperations:waitUntilFinished:
+addDependency:
 truncateAtOffset:error:
 fileHandleForUpdatingURL:error:
+fileHandleForReadingFromURL:error:
 isReadableFileAtPath:
-addDependency:
 fileHandleForReadingAtPath:
 setMaxConcurrentOperationCount:
 isThisDevice
 postNotificationName:object:
+B24@0:8@16
+@16@0:8
+So8NSStringC
+_AAt
+_A255At
+So7NSErrorC
+_A2At
+_A15At
+$sSY
+$ss21_ObjectiveCBridgeableP
+$ss25ExpressibleByArrayLiteralP
+$ss10SetAlgebraP
+$ss9OptionSetP
+$s10Foundation21_BridgedStoredNSErrorP
+$s10Foundation18_ErrorCodeProtocolP
+ySS_SStG
+SDyS2SG
+SSSg
+So17OS_dispatch_groupC
+SSSgz_Xx
+Sbz_Xx
+SiSDyS2SGIeggyg_
+So17OS_os_transaction_pSg
+So14OS_os_activity_p
+$s12searchpartyd26DeviceInformationProvidingP
+_pSg
+ySo10CKRecordIDCG
+Sgz_Xx
+SbIegy_
+So10CKRecordIDCIegg_
+SgXw
+SgXwz_Xx
+Ieg_
+ypSg
+SaySo8CKRecordCG
+_pGG
+So14FMStateCaptureC
+So17OS_dispatch_queueC
+SgXw
+_pGG
+_pGSg
+3url_
+8metaDatatG
+3url_
+8metaDatat
+_pGG
+_pGSg
+SgXwz_Xx
+ySo10CKRecordIDC_SStG
+So10CKRecordIDC_SSt
+ySo8CKRecordCG
+ySo14CKRecordZoneIDCG
+ySdG
+_pGG
+_pGSg
+ySNy
+yShy
+_GGG
+_pGSg
+_pGG
+13advertisement_
+_p13beaconPayloadtG
+13advertisement_
+_p13beaconPayloadt
+13advertisement_
+_p13beaconPayloadtG
+13advertisement_
+_p13beaconPayloadt
+ySo14SPBeaconingKeyCG
+_pSg
+_pGSg
+_pGG
+SaySSG
+SDySSShy
+SiSg
+SiSgG
+SDySSShy
+SaySSGG
+Ieg_Sg
+ySS_
+ySSG
+$s8SPShared12SubscribableP
+So13CKRecordValue_p
+SgSg
+yShySo14FAFamilyMemberCG
+yShySo14FAFamilyMemberCG
+_pGz_Xx
+7fileURL_Sb7deletedt
+Si5count_
+Sg8intervalt
+SDySSSay
+$s12searchpartyd19FinderStateProtocolP
+$s12searchpartyd18PowerStateDelegateP
+$s12searchpartyd17PowerStateMonitorP
+$s12searchpartyd26BeaconPayloadCacheProtocolP
+So8NSObjectC
+So31SPAdvertisementCacheXPCProtocol_So8NSObjectCXcSg
+tcSg
+$s12searchpartyd26AdvertisementCacheDecodingP
+ySay
+_pGG
+ySay
+ySo8NSObjectCmG
+So7NSErrorCSgIeyBy_
+So32SPAdvertisementCacheSearchResultCIeyBy_
+So32SPAdvertisementCacheSearchResultCIegg_
+So32SPBeaconPayloadCacheSearchResultCIeyBy_
+So32SPBeaconPayloadCacheSearchResultCIegg_
+SgXw
+SgXwz_Xx
+XDXMT
+SS_SSt
+$s12searchpartyd14SignalHandlingP
+SaySo25OS_dispatch_source_signal_pG
+$ss12CaseIterableP
+So14CKNotificationCSg
+ySSG
+ySNy
+ySo8SPBeaconCG
+ySo13SPBeaconShareCG
+ySo14FAFamilyMemberCG
+_pSgIegg_
+SbSg
+_pSg
+ySS_yyctG
+SS_yyct
+Iego_
+Iegr_
+$s12searchpartyd11SchedulableP
+$s12searchpartyd26FinderPublishDateProvidingP
+$s12searchpartyd20PublishDateProvidingP
+ySSSay
+ySSShy
+ySSSo8NSStringCG
+_ypt
+_ypt
+ySSSo8NSObjectCG
+ySSSo8NSNumberCG
+ySSyycG
+yS2SG
+yycG
+_Say
+GtSg
+_Say
+ySSypG
+SS_ypt
+SgXw
+SgXwz_Xx
+_pSg
+11destination_
+Sg14identifierDatat
+_pSgccSg
+_pGIegg_
+4data_Si10statusCodeSDyS2SG15responseHeaderst
+SgXw
+SaySiG
+ySNy
+ySo13SPBeaconShareCG
+ySo10CLLocationCG
+ySo17SPRawSearchResultCG
+yypG
+11destination_
+Sg14identifierDatatG
+SgtG
+ySo14FAFamilyMemberCG
+ySo9IDSDeviceCG
+ySo21SPBeaconAdvertisementCG
+ySo8NSNumberCG
+$s12searchpartyd31IdentifiableBeaconAdvertisementP
+$s12searchpartyd23CLLocationRepresentableP
+So14SPBeaconingKeyCSgIegg_
+So9ACAccountCSg
+SgIegn_
+$s12searchpartyd35ConfigurationCoordinatorSubscribingP
+$s12searchpartyd33ConfigurationCoordinatorProvidingP
+10Subscriber
+9publicKey_t
+10privateKey_t
+$s12searchpartyd24MessagingServiceDelegateP
+_pSgXw
+SayypGSg
+ySo10IDSAccountC_G
+SgSg
+SdSg
+SaySdG
+$s12searchpartyd16KeyRepresentableP
+8RawValueSYQz
+$s12searchpartyd15KeyRepresentingP
+$s12searchpartyd24SecurityKeyRepresentableP
+Si8expected_Si6actualt
+So16SPBeaconLocationCGIegg_
+_pSg
+GGIegg_
+ySS_So8NSObjectCtG
+SS_So8NSObjectCt
+So8SPBeaconCSgIegg_Iegng_
+_ySo8SPBeaconCSgctc
+So8SPBeaconCSgytIegnr_
+4data_Si10statusCodeSDyS2SG15responseHeaderstG
+$s12searchpartyd27FMIPStateManagerSubscribingP
+_pGG
+SDySSyycGSg
+SgXw
+SgXwz_Xx
+_pGIegn_
+_pGIegg_
+$s12searchpartyd13ServiceDaemonP
+So8NSBundleC
+$s12searchpartyd30CurrentLocationMonitorDelegateP
+_pSgXw
+So10CLLocationCSg
+So17CLLocationManagerCSg
+ySay
+ySay
+ySbG
+3key_Say
+G5valuetSg
+3key_Say
+G5valuet
+_pSgz_Xx
+SDyShy
+GSiG
+SDyShy
+GSiGIegg_
+SDyShy
+GSiGz_Xx
+ySDy
+SaySo11IDSEndpointCGG
+_pGIegg_
+ySSSaySo11IDSEndpointCGG
+3key_yp5valuet
+SaySo11IDSEndpointCG
+yShySo9FMFHandleCG
+_pGIegn_
+ySS_yptG
+ShySSG
+_pGIegn_
+ySDy
+_pGIegg_
+SgXw
+GSDy
+Iegggggg_
+Sgz_Xx
+Sgz_Xx
+SgXw
+_pSgIegg_Sg
+$s12searchpartyd24CloudCoordinatorDelegateP
+So10IDSAccountC
+$s12searchpartyd18HistoricalLocationP
+$s12searchpartyd19CachedAdvertisementP
+$s12searchpartyd19CachedBeaconPayloadP
+$s12searchpartyd19BeaconAdvertisementP
+$s12searchpartyd12IdentifiableP
+SDySSypG
+SS3key_yp5valuet
+3key_yp5valuetSg
+_yptSg
+3key_yp5valuetSg
+_yptSg
+SS3key_yp5valuetSg
+SS_yptSg
+SaySo14SPBeaconingKeyCGIegg_
+SaySo14SPBeaconingKeyCG
+ShySo8SPBeaconCG
+ShySo8SPBeaconCGz_Xx
+ShySo8SPBeaconCGIegg_
+So7NSArrayCIeyBy_
+$s12searchpartyd28BeaconPayloadCacheReadAccessP
+SgXw
+Ieggg_
+$s12searchpartyd18LocalStorageBackedP
+_pGG
+GGGSg
+$s12searchpartyd33BeaconObservationStoreSubscribingP
+SgXw
+$s12searchpartyd20OwnerSessionProtocolP
+So12NSDictionaryCIeyBy_
+IeyB_
+7ElementSTQy_
+yxq_G
+8IteratorSTQy_
+SayxG
+yxq__G
+SnySiG
+$sST
+$sSt
+8oldState_AB03newB0t
+AAIegnn_
+8oldState_AC03newB0t
+GSo17OS_dispatch_queueCG
+8oldState_AB03newB0t
+SgXw
+_yyctG
+_yyct
+8oldState_AA03newB0t
+So22SPSchedulerXPCProtocol_So8NSObjectCXcSg
+_pSg
+SgycSg
+13advertisement_
+_p13beaconPayloadtSg
+_pSg
+SayShy
+yx_GGG
+7version_t
+6length_t
+yyXlXpG
+$s12searchpartyd26AdvertisementCacheProtocolP
+$s12searchpartyd11FetchPolicyP
+$s12searchpartyd26LocalBeaconManagerProtocolP
+$s12searchpartyd44BeaconManagerUserAgentDaemonInternalProtocolP
+So14SPBeaconingKeyCSgIeyBy_
+IeyBy_
+So6NSUUIDCSgIeyBy_
+IeyBy_
+SuSg
+SaySSGSg
+SDySSShy
+GGSg
+ySiG
+ySS_Shy
+SS_Shy
+_pGG
+SgXw
+Iegn_
+SgXwz_Xx
+SgABc
+So13OS_xpc_object_pSgXw
+ySo13OS_xpc_object_pcSg
+SgXw
+So13OS_xpc_object_p
+So13OS_xpc_object_pSg
+$s12searchpartyd23BeaconPayloadEncrypting33_708911EFAD92707E20B0F827189C9A2DLLP
+$s12searchpartyd21BeaconManagerProtocolP
+$s12searchpartyd27LocalPairingManagerProtocolP
+$s12searchpartyd22PairingManagerProtocolP
+SgGSg
+So14FMStateCaptureCSg
+GIegg_
+SgXw
+_pGIegn_
+Iegl_
+ySo8CKRecordCG
+So8CKRecordCIegg_
+So8CKRecordCSg
+_pSgIeggg_
+Iegl_
+_pGIegn_
+Sgz_Xx
+Iego_
+Iegr_
+$s12searchpartyd27DelegateCryptoTokenProtocolP
+So14CKRecordZoneIDC
+_pSgXw
+yycSg
+Iegl_
+_pGIegn_
+_pGIegn_
+_pGIegn_
+SgXw
+ySiG
+GGIego_
+GGIegr_
+_pGIegn_
+SgXw
+3key_Say
+G5valuetSg
+_Say
+GtSg
+3key_Say
+G5valuet
+_Say
+yShySo9FMFHandleCG
+_pGz_Xx
+ySo9FMFHandleCG
+ySo10IDSAccountCG
+$s12searchpartyd21ContainerPushDelegateP
+_pSgXw
+Sg_ABt
+Sg_ABt
+Sg_ABt
+So10CKRecordIDC
+So9IDSDeviceC
+3key_
+5valuetSg
+3key_
+5valuet
+_ACtG
+_ADtGSo17OS_dispatch_queueCG
+Iegnn_
+SbIegny_
+7fileURL_Sb7deletedt
+SbIegyyd_
+8keyIndex_
+0A8SequencetG
+$s12searchpartyd17SchedulerProtocolP
+Gz_Xx
+ySay
+GGSg
+ySay
+GGSgz_Xx
+ySay
+GGIegn_
+ySay
+GGz_Xx
+4data_Si10statusCodeSDyS2SG15responseHeaderstG
+_Sit
+$s12searchpartyd23ServiceStateConfiguringP
+So14NSUserDefaultsCSg
+SgXw
+SaySo10CLLocationCG
+SDyS2SGz_Xx
+Iegn_
+SJSg
+$ss26ExpressibleByStringLiteralP
+$ss43ExpressibleByExtendedGraphemeClusterLiteralP
+$ss33ExpressibleByUnicodeScalarLiteralP
+So17IDSMessageContextC
+Iegy_
+So5NSSetCIeyBy_
+$s12searchpartyd18ConfigurationLayerP
+$s12searchpartyd24ConfigurationSubscribingP
+$s12searchpartyd22ConfigurationProvidingP
+_pSgXw
+So21OS_dispatch_semaphoreC
+So11CKContainerCSg
+So13APSConnectionCSg
+Iegg_
+Iegg_
+So8CKRecordC
+So8CKRecordCIegl_
+So24CKModifyRecordsOperationC
+3key_
+5valuet
+Iegy_
+ySo12CKRecordZoneCG
+So12CKRecordZoneC
+SgXwz_Xx
+So10CKDatabaseC
+SaySo14CKRecordZoneIDCG
+SaySo14CKRecordZoneIDCGz_Xx
+So19CKServerChangeTokenCSg
+SDySo14CKRecordZoneIDCSo013CKFetchRecordB20ChangesConfigurationCG
+SaySo10CKRecordIDC_SStG
+SaySo8CKRecordCGz_Xx
+SaySo10CKRecordIDC_SStGz_Xx
+ySo10CKRecordIDCG
+SaySo10CKRecordIDCGSg
+SgXw
+ySo13CKAccountInfoC
+_pGIegg_
+ySay
+ycSg
+_pSgIegyg_
+So17SPFinderStateInfoCSgSo7NSErrorCSgIeyByy_
+So17SPFinderStateInfoCSg
+_pSgIeggg_
+So7NSErrorCSgIeyByy_
+So10IDSServiceC
+So20IDSIDQueryControllerC
+_pSgtcSg
+tcSg
+yxGSDy
+tcSg
+yShy
+GcSg
+ySay
+GcSg
+$s12searchpartyd27CodedDataRangeRepresentableP
+$s12searchpartyd29EncodedDataRangeRepresentableP
+$s12searchpartyd29DecodedDataRangeRepresentableP
+$s12searchpartyd16PayloadEncodableP
+$s12searchpartyd16PayloadDecodableP
+$s12searchpartyd6DaemonP
+SgXw
+ySbcSg
+So15NWPathEvaluatorCSg
+So17OS_dispatch_queueCSg
+$s12searchpartyd16KeychainManagingP
+yyKcSg
+SgXwz_Xx
+_pGIegg_Iegg_
+_pGIegg_
+Sgz_Xx
+Iegg_
+_pGIegn_
+_pGIegg_
+4udid_t
+6chipId_
+4ecid
+12serialNumbert
+_AAtKc
+_AAtKc
+SbSd_SdtKc
+GGz_Xx
+Gz_Xx
+GGz_Xx
+3key_Say
+G5valuet
+_Say
+_Say
+GtSg
+3key_Shy
+G5valuetSg
+_Shy
+GtSg
+3key_Shy
+G5valuet
+_Shy
+3key_Say
+G5valuetSg
+3key_Say
+G5valuet
+16beaconIdentifier_
+8keyIndex
+8sequencetSg
+16beaconIdentifier_
+8keyIndex
+8sequencet
+GSpySo8NSObjectCGSgSpyypGSgytIeglllr_
+GIegg_
+ySay
+_pSg
+$s12searchpartyd11CloudBackedP
+SDySSSo8NSObjectCG
+ySS_So8NSStringCtG
+SS_So8NSStringCt
+ySS_So8NSNumberCtG
+SS_So8NSNumberCt
+_pGG
+SgXw
+13advertisement_
+_p13beaconPayloadtG
+13advertisement_
+_p13beaconPayloadtG
+13advertisement_
+_p13beaconPayloadtGz_Xx
+13advertisement_
+_p13beaconPayloadtGz_Xx
+ySnySiGG
+3url_
+8metaDatatSg
+_yptG
+$s12searchpartyd29BeaconPayloadCacheSubscribingP
+SgXw
+SgXwz_Xx
+$s12searchpartyd24BeaconPublishingProtocolP
+$s12searchpartyd15ServiceProtocolP
+So12NSFileHandleC
+10privateKey_t
+5index_t
+$s12searchpartyd11MessageTypeP
+yycG
+ySo14CKRecordZoneIDCSo013CKFetchRecordB20ChangesConfigurationCG
+So23SPBeaconTaskInformationCG
+8keyIndex_
+0A8SequencetG
+ySo8NSObjectCypG
+So16SPBeaconLocationCG
+SaySo11IDSEndpointCGG
+yShy
+GSiG
+$s12searchpartyd12BeaconRecordP
+SgXo
+yycG
+So16NSOperationQueueCSg
+7fileURL_Sb7deletedt
+So16NSBlockOperationC
+ytSg
+_pIegdzo_
+GSgz_Xx
+Sgz_Xx
+So11NSOperationCSgXw
+_pIegozo_
+_pIegozo_
+Siz_Xx
+ySo11NSOperationCG
+ytSg
+xSgz_yt_lXX
+ytSg
+_pIegrzo_
+ySSG
+ytIegr_
+So13NSFileManagerC
+XDXMT
+_pIegzo_
+xSgz_
+_lXX
+_pIegrzo_
+GGSo17OS_dispatch_queueCG
+GGSo17OS_dispatch_queueCG
+3key_Say
+G5valuetSg
+G8rootKeys_t
+10privateKey_
+06publicB0
+012sharedSecretB0t
+tXEKc
+So9FMFDeviceCSg
 com.apple.icloud.searchpartyd.location-monitor
 com.apple.icloud.searchpartd-TimeLatchRecord.event
 default
@@ -1107,6 +1152,8 @@ keyDistributionSendFrequencyInMin
 keyDistributionSendGracePeriodInMin
 keyDistributionDurationInMin
 com.apple.icloud.searchpartyd.useragentdaemoninternal
+PrivateAdvertisementKeys
+AdvertisementKeys
 com.apple.icloud.searchpartyd.finder.publish.observation
 com.apple.icloud.searchpartyd.finder.publish.restricted
 com.apple.icloud.searchpartyd.item.connection
@@ -1183,13 +1230,13 @@ NotifyWhenFoundRecord
 Ignoring record delete for unknown record type: %@
 com.apple.icloud.searchparty-deleteRelatedRecords
 Deleted current self-beacon MasterBeaconRecord %@
+com.apple.icloud.searchpartyd.KeyGenerationOperation
 BeaconStore removing %i locations for beacon %@
 Attempting to remove: %@
 Attempting to delete the record with ID: %@
 Failed to delete from disk: %@ %@. Continuing
 cloudBacked item deleted from disk: %@
 Error deleting cloudBacked %@: %@
-com.apple.icloud.searchpartyd.KeyGenerationOperation
 Adding delete keys operation for beacon: %@
 BeaconStoreFileManager enumerating records at %@
 BeaconStoreFileManager fetched %i records at %@
@@ -1200,6 +1247,7 @@ Invalid file identifier at URL: %@
 Could not read item %@ for records at %@
 Reading from LocalStorageBacked file: %@
 Error reading record: %@
+Error decrypting record: %@
 Error decoding %@: %@
 databaseUpdated recordsChanged: processed %d change records.
 databaseUpdated recordsChanged: %@
@@ -1450,6 +1498,7 @@ com.apple.icloud.searchpartyd.finder.publish.session
 com.apple.icloud.searchpartyd.finder.publish.record
 com.apple.icloud.searchpartyd.finder.beacon.period
 com.apple.icloud.searchpartyd.item.refreshList
+com.apple.icloud.searchpartyd.item.keyGeneration
 batteryWiFiCount
 batteryCellCount
 observationCount
@@ -1469,6 +1518,11 @@ locationAccuracy
 numLocationsFetched
 requestedInterval
 responseInterval
+basePrimaryKeyIndex
+requestedFirstIndex
+requestedLastIndex
+existingFirstIndex
+existingLastIndex
 exceededMaxPublish
 harvesterOnDiskWild
 harvesterNetwork
@@ -1646,7 +1700,6 @@ v28@0:8@"CLLocationManager"16i24
 v24@0:8@"CLLocationManager"16
 v32@0:8@"CLLocationManager"16@"CLVisit"24
 _TtC12searchpartyd20BeaconSharingManager
-service
 gracePeriod
 expirationTimer
 expirationQueue
@@ -1914,6 +1967,7 @@ keyCount
 partitions
 Unknown CKDatabase.Scope!
 Unable to decode token: %@
+Error decrypting cloudkit token: %@
 CKTokens/Database
 _TtC12searchpartyd34LightweightBeaconManagerTrampoline
 v36@0:8@16B24@?28
@@ -1925,9 +1979,6 @@ beaconExtension
 configSubscription
 beaconKeyManager
 Fixing daemon app container permissions
-Updated daemon permissions for BeaconPayloadCache root url %@
-Updated daemon permissions for daemonKeyBaseDirectory %@
-Updated daemon permissions for appContainerURL %@
 lightweightBeaconManagerService
 Posting SPBeaconingStateChangedNotification Darwin notification
 BeaconManagerService
@@ -1956,6 +2007,7 @@ Vv24@0:8@?<v@?@"SPBeaconingKey">16
 SPBeaconManagerUserAgentDaemonInternalXPCProtocol
 Vv36@0:8@16B24@?28
 Vv32@0:8@"NSData"16@?<v@?B>24
+Vv32@0:8@"NSString"16@?<v@?@"NSURL"@"NSError">24
 Vv32@0:8@"NSURL"16@?<v@?B>24
 Vv36@0:8@"NSURL"16B24@?<v@?B>28
 NSObject
@@ -2096,6 +2148,7 @@ FMIP was turned off. `removeBeacon` returned error. Could not remove record.
 Local beaconing record %@ destroyed
 Publishing keyAlignmentRecord changed: %@
 KeyAlignmentRecord
+com.apple.searchpartyd.beaconstore.repairdatastore
 com.apple.icloud.searchpartyd.RecordsPendingDeletion
 com.apple.icloud.searchpartyd.reevaluateLocalBeaconing
 EnableLocalBeaconing preference changed -- 
@@ -2183,7 +2236,7 @@ cloudBacked item deleted: %@
 com.apple.icloud.fmip.siri_data_changed
 prune BeaconEstimatedLocations predating, %@, identifier, %@, deleted, %i/%i
 Could not delete tombstoned record %@
-Purging encryption key
+Attempting to purge encryption key
 Key sync record not found. Creating a new one.
 com.apple.icloud.searchpartyd-keySyncSave
 Error saving LocalStorageBacked record: %@
@@ -2205,6 +2258,8 @@ com.apple.icloud.searchpartyd.BeaconObservationStore.save
 Decimating beacon BeaconEstimatedLocation %@: deleting %i tracked location of %i
 Migration attempting to re-initialize store.
 Migration failed to re-initialize store %@
+Started repairing cryptor.
+Completed repairing cryptor.
 com.apple.icloud.searchpartyd.CloudKitCoordinator.defaultClientQueue
 com.apple.icloud.searchpartyd.CloudKitCoordinator.serialQueue
 com.apple.icloud.searchpartyd.CloudKitCoordinator.availableWaitQueue
@@ -2230,11 +2285,11 @@ com.apple.icloud.searchpartyd.advertisementCacheQueue
 com.apple.icloud.searchpartyd.cachedBeaconRecords
 _TtC12searchpartyd22BeaconStoreFileManager
 cryptor
+cryptorRepair
 beaconRecordPublisher
 typeErasedBeaconRecordPublisher
 keyAlignmentRecordPublisher
 typeErasedKeyAlignmentRecordPublisher
-Purging cloud backed storage
 Could not restore record %@
 Tombstoned record %@
 Could not get deepEnumerator for: %@
@@ -2242,14 +2297,18 @@ Skipping file with unexpected name: %@
 Could not delete record %@
 Deleted record %@
 Reading from record file: %@
+Error decrypting BeaconRecord: %@
 Unsupported baseURL: %@
 Obliterating all iCloud user's local storage
 Could not delete iCloud user file: %@
 Deleted iCloud user file: %@
+Purging all cache storage
+Cryptor.destroyKey
+Error purging storage %@
+Purging cloud backed storage
 Purging local cache storage
 Error deleting %@: %@
 com.apple.icloud.searchpartyd.BeaconStoreFileManager
-com.apple.searchpartyd.cryptor
 BeaconStoreFileManager init.
 Unable to create FMFSession!
 v24@?0@"NSSet"8@"NSError"16
@@ -2374,6 +2433,8 @@ _TtC12searchpartyd20BeaconKeySubsequence
 sequence
 subsequenceHandle
 Failed to read intermediate and public keys for index %u
+Skipped private encrypted key for index %u. Cryptor: %@
+Skipped private encrypted key for index %u. %@
 Failed to read private key for index %u
 Index (%u) is not in range (%u - %u)
 application/octet-stream
@@ -2579,6 +2640,14 @@ Record created
 error saving the record: %@: %@
 No error message found
 Successfully saved the record: %@
+_TtC12searchpartyd17CryptorRepairTool
+throttle
+countLock
+count
+dateProvider
+repairBlock
+Decryption error count %i. Will attempt repair!
+Decryption error count %i. Should repair? %i
 _TtC12searchpartydP33_A237235B9060AAA443FA0E26E38E988121FinderStateTrampoline
 v32@0:8q16@?24
 _TtC12searchpartyd25FinderStateManagerService
@@ -2615,7 +2684,6 @@ refKey
 certs
 _TtC12searchpartyd16PublishScheduler
 publishBlock
-dateProvider
 finderDateProvider
 checkedInActivities
 activitiesCheckedIn
@@ -2640,12 +2708,21 @@ $__lazy_storage_$_callbackQueue
 v32@?0@"NSString"8@16@"NSDictionary"24
 Network state changed: %@
 com.apple.icloud.searchpartyd.NetworkMonitor
-_TtC12searchpartydP33_A75E79E58BE6FB444670CF513A92FB7D10CryptorKey
-encryptionKey
+_TtC12searchpartyd7Cryptor
+account
+service
+purgeBlock
+purgeQueue
+encryptQueue
+keychainManager
+_encryptionKey
+Error decoding EncryptedData: %@
 New encryption key generated
 searchpartyd/Cryptor.swift
 Random key could not be generated.
-Error decoding EncryptedData: %@
+Asking client to purge.
+Error trying to purge storage: %@
+Removing key a: %@ s: %@ result: %i
 #Location: using %@
 searchpartyd/BeaconLocationExtensions.swift
 Missing a switch case in BeaconLocationExtensions.swift:  
@@ -2699,6 +2776,7 @@ battery
 wifi
 beaconPayloads
 _TtC12searchpartyd37SPAnalyticsItemRefreshDeviceListEvent
+_TtC12searchpartyd29SPAnalyticsKeyGenerationEvent
 com.apple.icloud.searchpartyd.analytics.trampoline
 Analytics: %@ %@
 SPAnalytics not submitting /metrics on watchOS to BA.
@@ -2743,6 +2821,10 @@ SharedBeaconRecord unexpectedly has advertisedIndex of 0: %@
 Location Provider: 
 _TtC12searchpartyd15KeyMapGenerator
 outputFile
+keyUnion
+intermediateKey
+searchpartyd/KeyMapGenerator.swift
+KeyMap > Record > KeyUnion failed to init with data representation.
 firstIndex is unexpectedly large: %lu
 Expected %ld keys but only received %ld
 Expected %ld keys but received %ld
@@ -2759,10 +2841,13 @@ completionBlocks
 $__lazy_storage_$_buildQueue
 lowestBuildPriorityAllowed
 highestBuildPriorityAllowed
+$__lazy_storage_$__fileManagerQueue
+fileManagerLock
 keyRollsPerDay
 publisher
 urlPublisher
 privateURLPublisher
+cryptorRepairTool
 Completed delete map operation for %@.
 Removing key deletion operation for beacon: %@
 Delete map files for %@
@@ -2770,6 +2855,7 @@ Error removing map files for %@: %@
 BeaconKeyManager - self beacon UUID changed. Re-evaluating keys. %@
 BeaconKeyManager - service state changed. Reevaluating xpc activity. Service State %@
 com.apple.icloud.searchpartyd.BeaconKeyManager.reevaluateXPCActivity
+BeaconKeyManager - failed to encrypt private key %@
 Unexpected file in key directory: %@
 Multiple keys files in %@
 Multiple keymap files in %@
@@ -2777,8 +2863,7 @@ Multiple keymap files in %@
 Requested range for %@: %@ - %@
 Existing range for %@: %@ - %@
 Building key maps for %@: %@/%@
-Error building key maps: %@
-FAULT: indexBuilderRange: %lu...%lu, builderRange = %lu...%lu
+Error building: calling `generator` for key maps: %@
 Updating key maps for %@: %@ - %@
 Using %d sub-builds to satisfy request for %@: %@ - %@
 Adjust requested range to fill hole %@ for %@: %@ - %@
@@ -2787,6 +2872,9 @@ Large hole %@ would be created for %@: %@ - %@
 Deleting  %@
 requested [%@] and hole [%@] cannnot overlap!
 ERROR: Unadjacent hole! requested [%@] and hole [%@]
+Error finalizing key maps: %@
+FAULT: indexBuilderRange: %lu...%lu, builderRange = %lu...%lu
+Error building key maps: %@
 Hole created %@
 Error reading header %@
 Expected keyMap and key ranges to overlap: %@/%@
@@ -2809,8 +2897,13 @@ BeaconKeyManager XPC criteria: delay %d, gracePeriod %d, interval %d
 Completed key generation for %@. Finished in %f seconds.
 Removing key generation operation for beacon: %@, sequence: %@
 Caught error %@ processing instruction: %@
+Skipped
 Enough existing keys on disk - NOT processing instruction: %@
+Success
 <keyCriteria: %@ priority: %@ pruneIndex: %d>
+checkForMissingKeyMaps(beacon:) invoked for %@
+Not building keys for devices other than this watch. Returning without building for beacon %@
+Adding key generation operations for beacon: %@, sequence: %@
 Verifying key file integrity: %@ [%@]
 Failed to get enumerator for %@
 TOSS: %@ [%d...%d]
@@ -2818,30 +2911,40 @@ KEEP: %@ [%d...%d]
 Removing unexpected file: %@
 Removing corrupted file: %@
 Removing unexpected file version %u: %@
-checkForMissingKeyMaps(beacon:) invoked for %@
-Not building keys for devices other than this watch. Returning without building for beacon %@
-Adding key generation operations for beacon: %@, sequence: %@
 ERROR: could not get master beacon record for %@
 Forcing rebuild for %@ because requested range is earlier than existing range
 Primary Range %@ calculated for %@
 ERROR: could not get beaconStore!
-Informing subscribers of key file deletion at %@
+Could not obtain subsequenceURL for %@:%@
+Could not open FileHandle for reading: %@
 Did not find subsequence File URL for %@
 skipping non-keys file %@
 Found subsequence File URL %@
-skipping non-keymap %@
+Informing subscribers of key file deletion at %@
+Error getting keys %@. %@
+Error decrypting keys %@. %@
 no keymap url for identifier %@, sequence %@
 could not open keymap for reading identifier %@, sequence %@
-Build keymap queue
-BeaconKeyManager could not unsubscribe from ConfigurationCoordinator %@
+skipping non-keymap %@
 Deleting all key map files.
 Error removing all map files: %@
+Cryptor.generateInitialKey
+Finalize Files queue
+Build keymap queue
+BeaconKeyManager could not unsubscribe from ConfigurationCoordinator %@
 beaconStore became available
 opening all keymaps
 opened all keymaps %@
 com.apple.icloud.searchpartyd.BeaconKeyManager.buildInProgressQueue
 com.apple.icloud.BeaconKeyManager.publish
+SPBeaconKeyManagerKey
+SPBeaconKeyManager
 Initialized BeaconKeyManager for writing %@
+BeaconKeyManager generated new SPBeaconKeyManagerKey purging existing keys.
+com.apple.searchpartyd.cryptor
+com.apple.searchpartyd.cryptor.purge
+com.apple.searchpartyd.cryptor.encrypt
+BeaconKeyManager detected invalid encryption. Purging existing keys.
 Initialized BeaconKeyManager for reading %@
 _TtC12searchpartyd17SystemInfoDynamic
 isThisMeDevice
@@ -2885,11 +2988,11 @@ CKError
 NCKErrorCode
 FileProtectionType
 NNSFileProtectionType
+FileAttributeKey
+NNSFileAttributeKey
 CFNotificationName
 CFNotificationCenter
 NCFNotificationCenterRef
-FileAttributeKey
-NNSFileAttributeKey
 URLResourceKey
 NNSURLResourceKey
 SPFinderDisabledReason
@@ -3003,6 +3106,7 @@ KeyRepresentableInternal
 SecurityKeyRepresentable
 LocationDecryptionKey
 CommitmentKey
+EncryptedPrivateKey
 PrivateKey
 StandardPublicKey
 PublicKey
@@ -3089,6 +3193,7 @@ LocalBeaconManagerProtocol
 BeaconManagerUserAgentDaemonInternalProtocol
 LightweightBeaconManagerTrampoline
 LightweightBeaconManagerService
+LightweightBeaconManagerServiceError
 LightweightBeaconManagerEntitlement
 ShareType
 SubmitFoundArray
@@ -3209,6 +3314,7 @@ ZoneSetupReason
 FieldError
 SubmitPayloadFieldLength
 ConfigurationEndpoint
+CryptorRepairTool
 FinderStateTrampoline
 FinderStateManagerService
 FinderStateEntitlement
@@ -3229,9 +3335,9 @@ BeaconSharingMessageType
 PublishScheduler
 Daemon
 NetworkMonitor
-CryptorKey
 KeychainManaging
 Cryptor
+CryptorError
 FMKeychainManager
 StableIdentifier
 StableIdentifierError
@@ -3247,9 +3353,10 @@ LocationFetcherError
 LocationFetcher
 searchpartyd
 CloudBacked
-SPTimedAnalyticsEvent
+ASPTimedAnalyticsEvent
 SPAnalyticsFinderSessionEvent
 SPAnalyticsItemRefreshDeviceListEvent
+SPAnalyticsKeyGenerationEvent
 SearchPartyAnalytics
 FamilyShareEnvelopeV1
 LegacyShareEnvelope
@@ -3272,6 +3379,8 @@ ServiceProtocol
 LocationProvider
 CodingKeys
 KeyMapGenerator
+Record
+KeyUnion
 Error
 Header
 MessageType
@@ -3723,6 +3832,7 @@ cryptor
 beaconManagerAccess
 pairingManagerAccess
 userAgentAccess
+unsupported
 RawValue
 unknown
 automatic
@@ -4019,6 +4129,7 @@ zoneID
 fileManager
 deviceIdentityUtility
 $__lazy_storage_$_cloudCoordinator
+cryptor
 advertisementCacheQueue
 beaconPayloadCache
 transactionManager
@@ -4047,6 +4158,7 @@ recordNotFound
 invalidRecordName
 serialQueue
 cryptor
+cryptorRepair
 beaconRecordPublisher
 typeErasedBeaconRecordPublisher
 keyAlignmentRecordPublisher
@@ -4277,6 +4389,7 @@ apsConnection
 apsConnectionBridge
 identityUpdateNotificationListener
 watchdog
+cryptor
 failure
 unknown
 creating
@@ -4295,6 +4408,11 @@ unsupportedPayloadCount
 mustRepresentValuesGreaterThanZero
 acsn
 accountType
+throttle
+countLock
+count
+dateProvider
+repairBlock
 implementation
 name
 serviceQueue
@@ -4432,12 +4550,18 @@ activitiesCheckedIn
 monitorBlock
 evaluator
 $__lazy_storage_$_callbackQueue
-encryptionKey
 account
 service
+purgeBlock
 serialQueue
+purgeQueue
+encryptQueue
 keychainManager
-cryptorKey
+_encryptionKey
+unspecifiedError
+cannotEncryptSyncWithPurgeBlock
+timedOutBecauseClientLockedUpPurgeBlock
+missingEncryptionKey
 selfBeaconingDevice
 durian
 value
@@ -4595,12 +4719,19 @@ lastIndex
 index
 keyCount
 outputFile
+keyUnion
+intermediateKey
+private
+public
+encryptedPrivate
 unsupportedVersion
 badRecordLength
 badFirstIndex
 invalidMagic
 unparsableFile
 invalidRange
+missingKeyUnion
+ambiguousKeyUsage
 version
 recordLength
 type
@@ -4638,12 +4769,16 @@ $__lazy_storage_$_buildQueue
 lowestBuildPriorityAllowed
 highestBuildPriorityAllowed
 configurationSubscription
+$__lazy_storage_$__fileManagerQueue
+fileManagerLock
 keyRollsPerDay
 privatePublisher
 publishQueue
 publisher
 urlPublisher
 privateURLPublisher
+cryptor
+cryptorRepairTool
 beaconIdentifier
 sequence
 closedRange
@@ -4653,6 +4788,7 @@ keyCriteria
 buildKeyIndexMap
 priority
 pruneIndex
+analyticsEvent
 primary
 secondary
 uuid
@@ -4662,19 +4798,21 @@ masterBeacon
 none
 completeUntilFirstUserAuthentication
 range
-keyIndexURL
-keyMapURL
 generator
 missingSecondarySharedSecret
 lengthMismatch
 noExtensionRange
 missingSharedSecretKey
-header
+indexOutOfRange
 index
-high
+header
 intermediateKey
 publicKey
 privateKey
+encryptedPrivateKey
+keyIndexURL
+keyMapURL
+high
 RawValue
 isThisMeDevice
 meDevice
@@ -4707,13 +4845,13 @@ body
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>12A8179f</string>
+<string>18R5569x</string>
 <key>DTPlatformName</key>
 <string>watchsimulator</string>
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R5569x</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>
@@ -4840,6 +4978,8 @@ body
 <true/>
 <key>com.apple.private.network.socket-delegate</key>
 <true/>
+<key>com.apple.private.security.storage.SearchParty</key>
+<true/>
 <key>com.apple.private.storagekitd.info</key>
 <true/>
 <key>com.apple.private.tcc.allow</key>
@@ -4882,6 +5022,8 @@ onPowerOnWiFi
 onPowerOnCell
 onBatteryOnWiFi
 onBatteryOnCell
+SharedKeys
+Advertisement
 X-Apple-Sign1
 X-Apple-Sign2
 X-Apple-Sign3

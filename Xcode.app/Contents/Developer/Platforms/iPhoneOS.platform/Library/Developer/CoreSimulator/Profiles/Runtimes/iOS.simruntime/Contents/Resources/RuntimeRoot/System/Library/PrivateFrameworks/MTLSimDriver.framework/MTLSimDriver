@@ -82,8 +82,8 @@ startTime
 endTime
 notificationRef
 command buffers
-Sep 19 2020
-23:30:16
+Oct  7 2020
+02:13:07
 simulatorDummyPlugin
 -[MTLSimDevice sparseTileSizeWithTextureType:pixelFormat:sampleCount:]
 not supported in the simulator

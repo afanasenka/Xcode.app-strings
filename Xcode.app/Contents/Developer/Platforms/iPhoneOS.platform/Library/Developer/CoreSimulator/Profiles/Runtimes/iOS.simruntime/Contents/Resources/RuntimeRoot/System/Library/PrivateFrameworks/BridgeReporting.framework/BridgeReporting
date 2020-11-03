@@ -34,7 +34,6 @@ Archived
 %@.plist
 event
 value
-TinkerPairing
 pairingMetric
 T@"BRRTCPairingMetric",&,N,V_pairingMetric
 openPairingTimeEvents
@@ -116,6 +115,7 @@ FaceTimeSignInFailureError
 SignInTimed
 SilentSignInTimed
 NRSubreason
+TinkerPairing
 PairingEndedBeforeNRPairing
 LastSetupControllerAction
 SignInFailureError
@@ -258,6 +258,7 @@ T@"NSString",&,N,V_suspectTransaction
 %s Open start time: %@ closing end time: %@
 %s No matching opening timed event for event %@
 Posting notification that a metric has changed! %@
+external device, trimming precision
 %s watch activation finished before beginning. This is unexpected, and we will not add the finished key
 Setting up pairing metric
 Failed to cleanup metric folder with error %@
@@ -344,7 +345,6 @@ submitAnyPendingMetrics
 defaultCenter
 dictionaryWithObjects:forKeys:count:
 postNotificationName:object:userInfo:
-metricKeyIsBlacklisted:
 trimPrecision:
 currentPairingMetricBridgePlistPath
 dictionaryWithContentsOfURL:
@@ -586,7 +586,6 @@ v20@0:8B16
 v24@0:8@?16
 v32@0:8@16@?24
 v32@0:8Q16@24
-B24@0:8@16
 @?16@0:8
 B16@0:8
 @"BRRTCPairingMetric"
@@ -594,6 +593,7 @@ B16@0:8
 @"BRSetupControllerTracker"
 @"NSURL"
 @"NSObject<OS_dispatch_queue>"
+B24@0:8@16
 #16@0:8
 @24@0:8:16
 @32@0:8:16@24

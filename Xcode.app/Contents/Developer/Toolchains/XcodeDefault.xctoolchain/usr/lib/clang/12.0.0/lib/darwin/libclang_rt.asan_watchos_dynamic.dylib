@@ -3229,6 +3229,12 @@ Sanitizer tool reported a failure.
 Consult syslog for more information.
 @2i 
 @i 
+pDX
+PDX
+0DX
+pCX
+PCX
+0CX
 pBX
 PBX
 0BX

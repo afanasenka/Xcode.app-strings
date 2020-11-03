@@ -2531,10 +2531,9 @@ complicationset
 Complication
 complication-set
 -[IBICWatchComplicationSet requiredPixelSizeForRep:ofChild:]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderPepperIntegration/IDEInterfaceBuilderPepperIntegration-17034/IBPepperShared/AssetCatalog/Model/CatalogItems/Complication/IBICWatchComplicationSet.m
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderPepperIntegration/IDEInterfaceBuilderPepperIntegration-17500/IBPepperShared/AssetCatalog/Model/CatalogItems/Complication/IBICWatchComplicationSet.m
 [castedInstance isKindOfClass:[IBICImageSetRep class]]
 The %@ "%@" in the %@ "%@" should be %ld x %ld pixels.
-The %@ "%@" is not applicable to this complication.
 c16@?0@"IBICAddMutator"8
 IBWatchKitIcons
 Storyboard_WKHostingController

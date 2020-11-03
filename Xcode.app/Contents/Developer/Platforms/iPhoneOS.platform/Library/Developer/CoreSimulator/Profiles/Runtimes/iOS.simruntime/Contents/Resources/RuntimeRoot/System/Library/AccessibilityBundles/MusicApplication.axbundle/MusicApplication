@@ -401,14 +401,15 @@ AX_Play
 FOLLOW_REQUEST
 UIButton
 MusicApplication.LiveRadioCell
-accessibilitySupertitle
+accessibilityHeaderTitle
+accessibilityHeaderSubtitle
 accessibilityHeadline
 accessibilityTitle
 accessibilitySubtitle
 accessibilityAccessoryButton
 MusicApplication.FeaturedMaterialCell
 accessibilityPlayButton
-accessibilitySupertitle, accessibilityHeadline, accessibilityTitle, accessibilitySubtitle
+accessibilityHeaderTitle, accessibilityHeaderSubtitle, accessibilityHeadline, accessibilityTitle, accessibilitySubtitle
 _UIButtonBarButton
 _visualProvider
 _UIButtonBarButtonVisualProvider

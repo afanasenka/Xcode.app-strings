@@ -1494,7 +1494,6 @@ INGetCurrentRestaurantQueueingTicketsIntent
 INGetRestaurantQueueingTableAvailabilityDateIntent
 INRequestRestaurantQueueingTicketIntent
 MKWebContentViewControllerDidFinishLoadingNotification
-MKWebContentDefaultHeight
 placeCardNativeController
 placeCardWebController
 setHeight
@@ -2599,6 +2598,8 @@ SFAirDropActivitySubjectMapsLinkType
 map url
 %@.loc.vcf
 T@"CNContact",&,N,V_contact
+@"NSString"24@?0@"NSString"8@"NSString"16
+%@, %@
 destinationMapItem
 sourceMapItem
 T@"MKMapItem",&,N,V_sourceMapItem
@@ -2673,6 +2674,8 @@ TB,R,N,G_balloonCalloutShouldShowArrow
 balloonCalloutShouldCenterWhenOffscreen
 TB,R,N,G_balloonCalloutShouldCenterWhenOffscreen
 A custom transform was applied to '%@' and is not supported with MKUserTrackingModeFollowWithHeading.
+wantsViewBasedPositioning
+TB,R,G_wantsViewBasedPositioning
 _calloutView
 T@"MKCalloutView",&,N,G_calloutView,S_setCalloutView:,V_calloutView
 pendingSelectionAnimated
@@ -3021,7 +3024,6 @@ Unknown Location
 {?=d{CLLocationCoordinate2D=dd}}
 {?={?=dd}{?=dd}}
 Address component delimiter
-%@, %@
 Failed to serialize %@ with error %@
 NetworkIO
 MKPlacePhotosViewControllerWillDisplayPhotos
@@ -5105,7 +5107,6 @@ result
 T@"<NSCopying>",C,N,V_result
 JSONObject
 @"NSString"32@?0q8q16Q24
-@"NSString"24@?0@"NSString"8@"NSString"16
 Accident
 Roadwork
 Road Closed
@@ -5624,6 +5625,8 @@ Debug_AllowOverridingPhotoSlideshowCounts
 Debug_PhotoSlideshowOverrideCount
 MKCollectionCoverPhotoCacheMemoryCapacity
 MKCollectionCoverPhotoCacheDiskCapacity
+MKWebContentDefaultHeight
+MKWebContentMaxHeight
 __invalid__
 doubleBounds
 doublePosition
@@ -11049,8 +11052,6 @@ analyticsDelegate
 collectionsCarouselDidRouteToCollectionId:atIndex:isSaved:
 collectionIdentifier
 isCollectionSavedAtIndex:
-dataSource
-didEndDisplayingCellAtIndexpath:usingSnapShot:
 willDisplayCellAtIndexpath:
 scrollViewDelegate
 scrollViewDidScroll:
@@ -14165,6 +14166,7 @@ automaticallyNotifiesObserversForKey:
 _mapkit_instanceImplementationOfSelector:isFromSubclassOfClass:
 _defaultZPriority
 _defaultSelectedZPriority
+_wantsViewBasedPositioning
 removeObserverForObject:forKeyPath:context:
 setAnnotationView:
 _removePopover
@@ -14527,6 +14529,7 @@ initWithTableView:mapItem:
 setHost:
 setLimitInteraction:
 setSupportSystemSectionCollapsing:
+dataSource
 reloadSections
 willTransitionToSize:
 didTransition
@@ -18625,7 +18628,6 @@ initializeFormatter
 buildCuratedCollectionsFrom:shouldCancelImageDownloads:
 setCollections:
 createBatchControllerIfNeededUsingIdentifiers:andPlaceCollections:usingCollectionFetcher:usingGuideConsumer:usingBatchSize:
-endDisplayingCellAtIndexPath:
 batchController
 itemIdentifiersInSectionWithIdentifier:
 deleteItemsWithIdentifiers:
@@ -18652,6 +18654,7 @@ updateCollectionsWithoutPreparingSnapshot:usingBatchedIdentifiers:usingCollectio
 identifierForCollectionAtIndex:
 initWithPlaceCollections:usingSyncCoordinator:inContext:
 clearSnapshotData
+endDisplayingCellAtIndexPath:
 _collections
 _geoCollections
 _batchController

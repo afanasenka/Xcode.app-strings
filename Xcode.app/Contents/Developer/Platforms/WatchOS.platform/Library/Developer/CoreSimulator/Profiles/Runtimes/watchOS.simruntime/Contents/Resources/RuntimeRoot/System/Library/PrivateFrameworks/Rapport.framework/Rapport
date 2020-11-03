@@ -392,6 +392,7 @@ Enet
 Direct
 Cloud
 AudioAccessory1,
+AudioAccessory5,
 HomePod
 ### Activate without role?
 Client immediate non-RPIdentity retry
@@ -468,7 +469,7 @@ server no ack
 local.
 0x%llX
 rpVr
-200.31
+210.4
 atag
 cnid
 RPDevice
@@ -882,15 +883,18 @@ Idle timer start: %u/%u seconds, %llu frames
 -[RPConnection _idleTimerFired]
 Idle timer check: %llu -> %llu frames
 Idle disconnect
+_accID
 _appID
 _appInfo
 _clFl
 _forcedRole
 _hkID
+_hkUID
+-[RPConnection _receivedSystemInfo:xid:]
+Original homeKitUserIdentifiers %@ changed %@
 _idsID
 _dIRK
 _edPK
--[RPConnection _receivedSystemInfo:xid:]
 Received identity from IDS '%.8@'
 Received SharedHome identity: ID '%.8@'
 _mrID
@@ -937,6 +941,8 @@ forcedSelfIdentity
 T@"RPIdentity",&,N,V_forcedSelfIdentity
 homeKitManager
 T@"CUHomeKitManager",&,N,V_homeKitManager
+homeKitUserIdentifierHandler
+T@?,C,N,V_homeKitUserIdentifierHandler
 identifierOverride
 T@"NSString",C,N,V_identifierOverride
 identityDaemon
@@ -1017,7 +1023,7 @@ hkUI
 idsD
 MRtI
 RPEndpoint
-, HKUI '%.*@'
+, HKUID '%.*@'
 , ST %@
 TrTy
 rpMd
@@ -1038,8 +1044,8 @@ T@"NSArray",C,N,V_serviceTypes
 TQ,N,V_statusFlags
 sourceVersion
 T@"NSString",C,N,V_sourceVersion
-homeKitUserIdentifier
-T@"NSString",R,C,N,V_homeKitUserIdentifier
+homeKitUserIdentifiers
+T@"NSArray",C,N,V_homeKitUserIdentifiers
 hotspotInfo
 TI,R,N,V_hotspotInfo
 serviceInfo
@@ -1447,6 +1453,7 @@ T{CGSize=dd},N,V_screenSize
 dIRK
 edPK
 edSK
+hkUID
 , Type %s
 , ID '%{mask}'
 , IDS '%{mask}'
@@ -1503,6 +1510,8 @@ deviceIRKData
 T@"NSData",C,N,V_deviceIRKData
 edPKData
 T@"NSData",C,N,V_edPKData
+homeKitUserIdentifier
+T@"NSUUID",C,N,V_homeKitUserIdentifier
 T@"NSString",C,N,V_idsDeviceID
 sendersKnownAlias
 T@"NSString",C,N,V_sendersKnownAlias
@@ -3364,6 +3373,9 @@ initWithUUIDString:
 findPairedPeer:options:completion:
 _idleTimerFired
 _identityProofsVerify:
+setAccountID:
+setHomeKitUserIdentifiers:
+homeKitUserIdentifiers
 saveIdentityWithIDSDeviceID:message:error:
 addSharedHomeIdentityWithRPMessage:
 setIdsDeviceIdentifier:
@@ -3402,6 +3414,8 @@ forcedSelfIdentity
 setForcedSelfIdentity:
 homeKitManager
 setHomeKitManager:
+homeKitUserIdentifierHandler
+setHomeKitUserIdentifierHandler:
 identifierOverride
 setIdentifierOverride:
 identityDaemon
@@ -3498,6 +3512,7 @@ _flowControlWriteChangedHandler
 _forcedPeerIdentity
 _forcedSelfIdentity
 _homeKitManager
+_homeKitUserIdentifierHandler
 _identifierOverride
 _identityDaemon
 _identityResolved
@@ -3531,8 +3546,6 @@ removeBonjourDevice:
 updateWithIDSDevice:
 removeIDSDevice
 removeSFDevice:
-setAccountID:
-homeKitUserIdentifier
 serviceInfo
 bonjourDevice
 setBonjourDevice:
@@ -3545,7 +3558,7 @@ _mediaRemoteIdentifier
 _mediaRouteIdentifier
 _serviceTypes
 _sourceVersion
-_homeKitUserIdentifier
+_homeKitUserIdentifiers
 _serviceInfo
 _idsDevice
 _activateWithCompletion:
@@ -3880,6 +3893,8 @@ setDateRemoved:
 setDeviceIRKData:
 featureFlags
 setFeatureFlags:
+homeKitUserIdentifier
+setHomeKitUserIdentifier:
 setIdsDeviceID:
 setMediaRemoteID:
 setMediaRouteID:
@@ -3903,6 +3918,7 @@ _deviceIRKData
 _edPKData
 _edSKData
 _featureFlags
+_homeKitUserIdentifier
 _idsDeviceID
 _mediaRemoteID
 _mediaRouteID

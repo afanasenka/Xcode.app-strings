@@ -524,6 +524,7 @@ T@"NSArray",C,D,N
 dateSent
 T@"NSDateComponents",C,D,N
 B16@?0@"EMMailbox"8
+B16@?0@"<EMMessageListItem>"8
 hasNonJunkMessages
 messageListItems
 T@"NSArray",R,N,V_messageListItems
@@ -1404,8 +1405,6 @@ confirmationRequiredWithReadStatusToConfirm:
 hasNonJunkMessagesInSelection:
 changesJunkLevelTo:
 initWithMessageListSelection:delegate:destinationMailboxType:flagChange:copyMessages:
-combinedFlagsForMessageListItems:forDisplay:
-junkLevel
 hasNonJunkMessages
 initWithMailboxes:excludedMessageListItems:
 _isSelectAll
@@ -1524,6 +1523,7 @@ _reproducibility
 _classification
 _extensionIdentifiers
 read
+combinedFlagsForMessageListItems:forDisplay:
 changesReadTo:
 emailProviderForSearchSessionController:
 mutableSessionEngagements

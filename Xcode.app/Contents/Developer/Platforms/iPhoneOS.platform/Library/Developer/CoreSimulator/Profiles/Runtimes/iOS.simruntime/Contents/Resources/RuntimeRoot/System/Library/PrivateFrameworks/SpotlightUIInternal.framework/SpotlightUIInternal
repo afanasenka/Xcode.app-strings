@@ -767,6 +767,8 @@ setFooterView:
 sections
 rankingDebugLog
 openTapToRadarWithQuery:sections:rankingDebugLog:
+setIdentifier:
+initWithResult:triggerEvent:destination:
 animateChunkyEnabled:
 unfocusSearchFieldWithReason:
 purgeMemory

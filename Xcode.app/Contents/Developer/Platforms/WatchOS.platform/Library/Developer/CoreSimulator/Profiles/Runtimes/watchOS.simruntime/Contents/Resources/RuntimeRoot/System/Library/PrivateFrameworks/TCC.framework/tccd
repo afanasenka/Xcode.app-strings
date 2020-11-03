@@ -648,6 +648,7 @@ Update Access Record: %@ for %@ to %@ (v%llu) at %lld (%@)
 Timeout
 SB Ext
 Allow Standard User to Set System Service
+Next Request Should Prompt
  CodeReq: %@
  Indirect %@ : %@
  Indirect : %@
@@ -1027,7 +1028,6 @@ Auth
 %llu
 AuthVersion
 Flags
-subjectIdentity
 T@"TCCDIdentity",&,V_subjectIdentity
 accessObject
 T@"TCCDAccessObject",&,V_accessObject
@@ -1085,6 +1085,7 @@ T@"NSString",&,N,V_messageIdentifier
 T@"TCCDService",&,N,V_service
 attributionChain
 T@"TCCDAttributionChain",&,N,V_attributionChain
+subjectIdentity
 T@"TCCDAccessIdentity",&,N,V_subjectIdentity
 promptingPolicy
 TQ,N,V_promptingPolicy
@@ -1239,6 +1240,7 @@ AllowStandardUserToSetSystemService
 SELECT flags FROM access WHERE service = ? AND client = ? AND client_type = ?
 UPDATE access SET flags = ? WHERE service = ? AND client = ? AND client_type = ?
 SELECT service, client, client_type, flags FROM access WHERE flags & ?
+Receiver must not be the empty string.
 open() for F_GETPATH failed.
 fcntl(,F_GETPATH) failed.
 identityType
@@ -1711,9 +1713,11 @@ messageIdentifier
 authorizationReason
 setAuthorizationValue:
 setAuthorizationReason:
-spiVersion
-upgradeV1AuthorizationValue
 authorizationVersionNumber
+upgradeV1AuthorizationValue
+spiVersion
+recordUpgradePolicy
+promptRightsMask
 setDatabaseAction:
 setReplyNoCacheAuthorization:
 promptingPolicy
@@ -1736,7 +1740,6 @@ auditToken
 isAccessAllowedByDefault
 defaultAllowedIdentifiersList
 setDatabaseFlags:
-recordUpgradePolicy
 setV1AuthorizationUpgrade:
 setV1AuthorizationValue:
 setV1AuthorizationReason:
@@ -1757,7 +1760,6 @@ displayName
 dictionary
 requestTitleTextLocalizationKey
 requestAdditionalTextLocalizationKey
-promptRightsMask
 authorizationPromptRightsMask
 allowAuthorizationButtonTitleLocalizationKey
 denyAuthorizationButtonTitleLocalizationKey
@@ -1891,6 +1893,11 @@ initWithService:indirectObject:
 _serviceObject
 _indirectObject
 fileExistsAtPath:
+loadAndParse
+watchPlistChanges
+plistFilePath
+allowedParser:
+watchedPath
 allowsInternalSecurityPolicies
 homeRelativePathToStateDirectory
 prepareForAbort
@@ -2210,29 +2217,23 @@ setTimeZone:
 _dateFormatter
 stringFromDate:
 copyWithZone:
-_subjectIdentity
 _accessObject
 _authorizationValue
 _authorizationReason
 _flags
 _lastModifiedDate
 orderedOverridePolicies
-loadAndParse
 _locked_evaluateAccessByIdentity:toService:withIndirectObjectIdentityIdentity:authorizationReason:
 setPolicyAccessByIdentifier:
-plistFilePath
 setPlistDictionary:
 plistDictionary
 loadPlist
 parsePlist
 policyAccessByIdentifier
-allowedParser:
 validateEntry:identifierType:codeRequirementString:serviceName:allowed:comment:
 parseCodeRequirements:
 watchedFileVnodeSource
 setWatchedFileVnodeSource:
-watchedPath
-watchPlistChanges
 loadPolicyData
 evaluateOverridePolicyForAccessByIdentity:toService:withIndirectObjectIdentityIdentity:authorizationReason:
 setPromptingPolicy:
@@ -2254,6 +2255,7 @@ _functionName
 _messageIdentifier
 _service
 _attributionChain
+_subjectIdentity
 _promptingPolicy
 _usageStringPolicy
 _recordUpgradePolicy
@@ -2390,7 +2392,9 @@ _accessingProcess
 _responsibleProcess
 _requestingProcess
 alerts
+isDisplayableForCondition:
 displayQueue
+display
 initWithAlerts:
 setAlerts:
 setDisplayQueue:
@@ -2404,8 +2408,6 @@ displayCountlimit
 setPersistentStateValue:
 persistentStateValue
 initWithCondition:platformName:service:displayPolicy:persistentStateType:displayCountlimit:configuration:
-isDisplayableForCondition:
-display
 setPersistentStateType:
 setCondition:
 setPlatformName:
@@ -3141,13 +3143,13 @@ AttributionChain: %{public}@
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>12A8179f</string>
+<string>18R5569x</string>
 <key>DTPlatformName</key>
 <string>watchsimulator</string>
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R5569x</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>

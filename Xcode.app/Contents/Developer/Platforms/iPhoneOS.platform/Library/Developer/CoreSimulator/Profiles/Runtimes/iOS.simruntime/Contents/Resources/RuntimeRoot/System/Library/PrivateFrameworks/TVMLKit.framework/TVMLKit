@@ -789,6 +789,7 @@ shouldChangeToMediaAtIndex
 video
 audio
 tvshow
+modifier
 boundaries
 intervals
 keys

@@ -21,7 +21,7 @@ source.notification.sema_disabled
 v8@?0
 request dropped while restoring service
 v16@?0^v8
-com.apple.SourceKitService.1200.0.39_osx
+com.apple.SourceKitService.1200.0.41_osx
 Connection interrupt
 connection invalid error (shutdown)
 Received unexpected error event: 

@@ -478,13 +478,20 @@ getLatestStateOfVehicle: Tried to fetch SoC for %@, but failed with error: %@.
 getLatestStateOfVehicle: Fetched latest vehicle state: %@
 Color does not have 4 components
 Color is not in RGB colorspace
-_accessoryDidConnect: received an unsupported accessory: %@
+init: created new VGExternalAccessory: %p, connected EAAccessory: %@.
+dealloc: deallocating accessory: %p
+_accessoryDidConnect: received an unsupported accessory: %p, %@
 _accessoryDidConnect: new accessory: %p, %@
+_accessoryDidUpdateVehicle: accessory: %p, did update vehicle with vehicleInfo: %@
+_accessoryDidUpdate: accessory %p does not support CarPlay
+_accessoryDidUpdate: accessory %p supports CarPlay, will load initial state and update from userInfo
 _accessoryDidDisconnect: accessory %p
 _strongDelegate went away in %s line %d
+_loadInitialAccessoryState: loading initial accessory state for accessory: %p
+_updateFromVehicleInfo: tried to update from a nil vehicleInfo.
 _updateFromVehicleInfo: received userInfo of an accessory that we don't track.
-_updateFromVehicleInfo: did update accessoryState: %@
-updated _currentVehicleState: %@
+_updateFromVehicleInfo: did update accessoryState: %@ from vehicleInfo: %@
+updated _currentVehicle: %@
 Either accessory is not connected or we don't have any _currentVehicleState yet.
 SoC requested for %@ but the currently connected vehicle is %@
 Tried to get a string version of a multiple option bitmask: %lu. This is not supported.
@@ -941,6 +948,8 @@ registerForLocalNotifications
 connectedAccessories
 supportsCarPlay
 _loadInitialAccessoryState
+unregisterForLocalNotifications
+removeObserver:
 userInfo
 _updateFromVehicleInfo:
 accessoryUpdateDelegate
@@ -1046,7 +1055,6 @@ _addOEMApplicationForApplicationRecordIfNeeded:
 enumeratorWithOptions:
 nextObject
 _removeOEMApplicationForBundleIdentifier:
-removeObserver:
 applicationInstallsDidStart:
 applicationInstallsDidChange:
 applicationInstallsDidUpdateIcon:

@@ -110,6 +110,7 @@ T@"NSDictionary",R
 T@"NSObject<OS_dispatch_queue>",&,N,V_dispatchQueue
 AppleTV
 AudioAccessory1,
+AudioAccessory5,
 HomePod
 Invalid
 NoOp
@@ -133,8 +134,19 @@ WatchIdentityResponse
 FriendIdentityRequest
 FriendIdentityResponse
 FriendIdentityUpdate
+RPHomeKitManager
+-[RPHomeKitManager invalidate]
+homeManager
+T@"HMHomeManager",&,N,V_homeManager
+homeKitCurrentUserIDs
+T@"NSArray",&,N,V_homeKitCurrentUserIDs
+invalidateCalled
+TB,N,V_invalidateCalled
 mediaGroupsChangedHandler
 T@?,C,N,V_mediaGroupsChangedHandler
+HMHomeManagerConfiguration
+/System/Library/Frameworks/HomeKit.framework/HomeKit
+HMHomeManager
 HMAccessoryPairingIdentityUpdatedNotification
 CLinkD
 RPCompanionLinkDaemon %{ptr}
@@ -417,7 +429,7 @@ rpHN
 rpHA
 rpHI
 rpMd
-200.31
+210.4
 -[RPCompanionLinkDaemon _serverBonjourAWDLAdvertiserEnsureStarted]
 Deferring Bonjour AWDL advertise without BT addr
 Deferring Bonjour AWDL advertise without TCP listening port
@@ -525,12 +537,16 @@ stereo_leader_info
 DeviceColor
 -[RPCompanionLinkDaemon _localDeviceUpdate]
 HomeKit SelfAccessory identifier: %@
+HomeKit SelfAccessory accountID: %@
+HomeKit SelfAccessory homeKitUserIdentifiers: %@
 Unique ID updated: <%@>
 ProductType
 PersonalIDSDeviceIdentifier (me device) changed: %@ -> %@
 PersonalDeviceState changed: %s -> %s
 StatusFlags changed: %#ll{flags} -> %#ll{flags}
 _hkID
+_accID
+_hkUID
 _stA
 _systemInfoUpdate
 -[RPCompanionLinkDaemon _mediaControlEnsureStarted]
@@ -1891,10 +1907,33 @@ _systemMonitor
 _dispatchQueue
 _nearbyIDSService
 containsString:
+initWithOptions:cachePolicy:
+initWithHomeMangerConfiguration:
+setDelegate:
+homes
+currentUser
+uniqueIdentifier
+array
+addObject:
+users
+containsObject:
+mutableCopy
+removeObjectsInArray:
 initWithQueue:
+homeKitUserIdentifiers
+filterHomeKitUserIdentifiers:
+resetHomeKitUserIdentifiers
 mediaGroupsChangedHandler
 setMediaGroupsChangedHandler:
+homeManager
+setHomeManager:
+homeKitCurrentUserIDs
+setHomeKitCurrentUserIDs:
+invalidateCalled
+setInvalidateCalled:
 _mediaGroupsChangedHandler
+_homeManager
+_homeKitCurrentUserIDs
 _getAppleID
 selfAccessory
 home
@@ -1926,7 +1965,6 @@ identifier
 publicIdentifier
 _activate
 initWithMachServiceName:
-setDelegate:
 _setQueue:
 resume
 removeAllObjects
@@ -2079,6 +2117,9 @@ _receivedRequestID:request:options:responseHandler:unauth:cnx:
 setReceivedRequestHandler:
 _connectionStateChanged:cnx:
 setStateChangedHandler:
+_filterHomeKitUserIdentifiers:
+setHomeKitUserIdentifiers:
+setHomeKitUserIdentifierHandler:
 appID
 setAppID:
 setNetCnx:
@@ -2148,7 +2189,6 @@ label
 _connectionConfigureCommon:
 invalidationHandled
 _serverTCPHandleConnectionEnded:
-addObject:
 removeObject:
 setInvalidationHandled:
 setListenPSM:
@@ -2176,7 +2216,6 @@ _sessionHandlePeerDisconnect:
 _personalDeviceUpdate
 deviceInfo
 sendReachabilityProbe:
-uniqueIdentifier
 selfAccessoryMediaSystem
 components
 mediaProfile
@@ -2213,6 +2252,9 @@ setDeviceColor:
 wifiFlags
 homeKitIdentifier
 setHomeKitIdentifier:
+homeKitIdentity
+accountID
+setAccountID:
 initWithBytes:length:
 setModel:
 setIdsPersonalDeviceIdentifier:
@@ -2223,7 +2265,6 @@ _mediaRouteIDGet
 personalDeviceState
 meDeviceValid
 setPersonalDeviceState:
-containsObject:
 _duetSyncEnsureStarted
 setPublicIdentifier:
 serversChangedState
@@ -2269,12 +2310,16 @@ _homeKitGetPairingIdentities
 defaultCenter
 _homeKitPairingUpdated:
 addObserver:selector:name:object:
+_homeKitUpdateUserIdentifiers
 removeObserver:name:object:
 _homeKitIdentityUpdated:error:
+userID
+setHomeKitUserIdentifier:
 publicKey
 setEdPKData:
 secretKey
 setEdSKData:
+_homeKitGetUserInfo:
 setHomeKitIdentity:
 homeKitIdentityUpdated
 selfAccessoryMediaAccessPassword
@@ -2639,12 +2684,8 @@ _ensureStarted
 device
 rapportIRK
 data
-currentUser
 homeAccessControlForUser:
 isOwner
-users
-userID
-setAccountID:
 setDeviceIRKData:
 setIdsDeviceID:
 setType:
@@ -2692,7 +2733,6 @@ resolveIdentityForSignature:data:typeFlags:error:
 resolveIdentityTypesForSignature:data:typeFlags:
 addSharedHomeIdentityWithRPMessage:
 removeIdentity:error:
-homeKitIdentity
 _homeViewChangeToken
 _identitiesChangedCoalescer
 _keychainRefetchTicks
@@ -2762,7 +2802,6 @@ _updateFriendPrivacy
 _pruneFriends:
 _resetFriends
 _regenerateSelfIdentity:
-accountID
 contactID
 _updateFriendIdentityWithAppleID:contactID:sendersKnownAlias:userAdded:updateDateRequested:
 _updateIdentityType:idsDeviceID:appleID:contactID:msg:
@@ -2976,6 +3015,8 @@ B64@0:8@16@24C32@36I44@48^@56
 @"IDSService"
 @?16@0:8
 v24@0:8@?16
+v20@0:8B16
+@"HMHomeManager"
 v28@0:8i16I20i24
 v28@0:8@16I24
 v48@0:8@16@24@32@?40
@@ -3018,7 +3059,6 @@ v28@0:8i16@20
 @40@0:8@16@24^@32
 v48@0:8@16@24@32^v40
 v20@0:8i16
-v20@0:8B16
 v60@0:8@16@24@32I40@44@?52
 v60@0:8@16@24@32@?40B48@52
 v44@0:8@16@24I32@?36
@@ -3368,13 +3408,13 @@ Strangers
 <key>CFBundlePackageType</key>
 <string>APPL</string>
 <key>CFBundleShortVersionString</key>
-<string>2.0.0</string>
+<string>2.1.0</string>
 <key>CFBundleSupportedPlatforms</key>
 <array>
 <string>WatchSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>200.31</string>
+<string>210.4</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
@@ -3384,7 +3424,7 @@ Strangers
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R569</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>
@@ -3463,6 +3503,8 @@ Strangers
 <string>WifiAddressData</string>
 <string>WifiAddress</string>
 </array>
+<key>com.apple.private.SkyLight.displaycontrol</key>
+<true/>
 <key>com.apple.private.associated-domains</key>
 <true/>
 <key>com.apple.private.ckks</key>

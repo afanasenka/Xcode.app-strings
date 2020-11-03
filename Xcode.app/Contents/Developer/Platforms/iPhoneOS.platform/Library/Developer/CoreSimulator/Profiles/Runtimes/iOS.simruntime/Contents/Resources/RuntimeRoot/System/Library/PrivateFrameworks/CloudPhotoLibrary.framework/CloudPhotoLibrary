@@ -1,5 +1,6 @@
 MbP?
-@(#)PROGRAM:CloudPhotoLibrary  PROJECT:CloudPhotoLibrary-310.1.190
+@(#)PROGRAM:CloudPhotoLibrary  PROJECT:CloudPhotoLibrary-310.2.160
+33333cs@
 Registering %@ for %@ argument #%lu
 Registering %@ for %@ argument #%lu of reply
 %@ has been deallocated
@@ -1788,7 +1789,7 @@ The Photos Diagnostics may contain some of your personal information, including 
 This information is used by Apple in accordance with its privacy policy (www.apple.com/privacy) and is not shared with any other company. By using this tool and sending the results to Apple, you consent to Apple using the contents of these files to improve Apple products.
 com.apple.photos.cpl
 engine
-CloudPhotoLibrary-310.1.190
+CloudPhotoLibrary-310.2.160
 ProductVersion
 ProductName
 BuildVersion
@@ -2968,6 +2969,7 @@ TB,N,V_canGenerateDerivative
 itemIdentifier
 T@"NSString",C,N
 Unknown_
+VideoHDRMedium_
 AdjustmentOriginalResource_
 VideoLargeSize_
 AdjustmentBaseVideo_
@@ -3026,6 +3028,7 @@ AdjustmentBaseVideoCompl
 AdjustmentBaseVideo
 AdjustedMediaMetaData
 AdjustmentOriginalResource
+VideoHDRMedium
 Unused1
 Unused2
 MaxNormal
@@ -3057,6 +3060,7 @@ CPLResourceTypeAdjustmentBaseVideoComplement
 CPLResourceTypeAdjustmentBaseVideo
 CPLResourceTypeAdjustedMediaMetaData
 CPLResourceTypeAdjustmentOriginalResource
+CPLResourceTypeVideoHDRMediumSize
 CPLResourceTypeUnused1
 CPLResourceTypeUnused2
 CPLResourceTypeMax

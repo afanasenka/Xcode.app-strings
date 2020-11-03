@@ -3239,6 +3239,7 @@ duration
 statusOfValueForKey:error:
 tracksWithMediaType:
 naturalSize
+legibilityWeight
 sectionHeaderFont
 sectionTitleLeadingInsetFromMargin
 setSectionTitleLeadingInsetFromMargin:

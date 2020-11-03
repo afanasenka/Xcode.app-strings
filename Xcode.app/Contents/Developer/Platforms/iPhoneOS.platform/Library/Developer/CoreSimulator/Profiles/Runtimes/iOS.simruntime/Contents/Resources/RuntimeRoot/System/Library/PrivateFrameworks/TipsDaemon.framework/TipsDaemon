@@ -678,6 +678,7 @@ TPSCloudController
 TPSBetaUserValidation
 TPSApplePaySetupValidation
 TPSSiriLanguageValidation
+TPSPairedSmallHomePodValidation
 TPSSiriEnabledValidation
 TPSDualSimValidation
 TPSCloudDeviceInfo
@@ -1166,6 +1167,7 @@ excludeLanguages
 sharedPreferences
 languageCode
 initWithTargetLanguages:excludeLanguages:
+areAnySmallHomePodsConfigured
 assistantIsEnabled
 initWithQueue:
 getDualSimCapability:

@@ -486,7 +486,7 @@ initWithSearchSuggestion:query:sectionBundleIdentifier:queryId:
 sectionsForCompletions
 displayedText
 _topResultOnlySectionFrom:
-_whiteListedTopResultFromSection:
+_allowListedTopResultFromSection:
 _originalTopResultFromSections:
 currentLocale
 languageCode

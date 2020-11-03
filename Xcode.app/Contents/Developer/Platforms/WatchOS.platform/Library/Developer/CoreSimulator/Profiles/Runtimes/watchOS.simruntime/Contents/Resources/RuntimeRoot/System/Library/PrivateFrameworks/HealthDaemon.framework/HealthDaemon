@@ -820,24 +820,29 @@ Invalid format string- missing numeric value.
 Parameter index out of bounds.
 _buffer != nullptr || _length == 0
 RawBuffer
-/Library/Caches/com.apple.xbs/Sources/HealthKit_Sim/HealthKit-1774.2.2.25.1/HealthKit/HealthDaemon/Database/HighFrequencyData/Utility/HDRawBuffer.h
+/Library/Caches/com.apple.xbs/Sources/HealthKit_Sim/HealthKit-1774.2.2.34.1/HealthKit/HealthDaemon/Database/HighFrequencyData/Utility/HDRawBuffer.h
 Unable to create a raw buffer of length > 0 at nullptr
 sizeof(T) <= _length
 extractRaw
-/Library/Caches/com.apple.xbs/Sources/HealthKit_Sim/HealthKit-1774.2.2.25.1/HealthKit/HealthDaemon/Database/HighFrequencyData/Utility/HDEncoder.h
+/Library/Caches/com.apple.xbs/Sources/HealthKit_Sim/HealthKit-1774.2.2.34.1/HealthKit/HealthDaemon/Database/HighFrequencyData/Utility/HDEncoder.h
 Extract would overflow deserialization buffer.
 childCount > 0
 childForKey
-/Library/Caches/com.apple.xbs/Sources/HealthKit_Sim/HealthKit-1774.2.2.25.1/HealthKit/HealthDaemon/Database/HighFrequencyData/HDBPlusTree.hpp
+/Library/Caches/com.apple.xbs/Sources/HealthKit_Sim/HealthKit-1774.2.2.34.1/HealthKit/HealthDaemon/Database/HighFrequencyData/HDBPlusTree.hpp
 Looking for child for key in an empty node.
-index >= 0
-_valueForKeyInChildAtIndex
-Invalid negative child index.
 index < node.childCount
+_valueForKeyInChildAtIndex
 Child index out of bounds.
 valueCount > 0
 indexForKey
 Looking for index for key in an empty node.
+_interiorChildAtIndex
+depth < kMaximumRecursionDepth
+Maximum recursion depth reached.
+child.children[0].key >= node.children[index].key
+Child node's smallest key is < parent's key
+child.children[child.childCount - 1].key < node.children[index + 1].key
+Child node's largest key is >= parent's next key
 Attempt to indirect through to the value of an invalid optional.
 appendRaw
 Append would overflow serialization buffer.
@@ -847,6 +852,12 @@ copyElementsFromArrayToIndex
 Copy would overflow destination.
 sourceIndex + elementCount <= Length
 Copy would overflow source.
+key > lastKey
+_enumerateLeaves
+Out of order keys during btree enumeration.
+leaf.valueCount > 0
+Empty leaf encountered during enumeration.
+key < lastKey
 diagnostic_test_coding_collection
 panel_name
 results
@@ -1918,6 +1929,8 @@ Remote authorization request complete
 v28@?0@"NSUUID"8B16@"NSError"20
 v28@?0B8@"NSString"12@"NSError"20
 Unable to look up host app with requested bundle identifier.
+Reset Received Nanosync Anchors
+@16@?0@"HDSyncStoreEntity"8
 v16@?0@"<HDNanoSyncManagerObserver>"8
 Master: %s
 Active Store:
@@ -3893,6 +3906,7 @@ includeAutomaticTimeZones
 TB,R,N,V_includeAutomaticTimeZones
 includeContributorInformation
 TB,R,N,V_includeContributorInformation
+HKHFDRebuildStage
 DatabaseAccessibility
 HDDatabase.mm
 [profile directoryPath] != nil
@@ -3929,6 +3943,7 @@ Fatal migration failure attaching protected database: %@
 Invalid database pair (removed)
 Migration must be performed inside a database transaction
 Transaction database connection must be nil before migration
+schemaName
 database != nil
 Database invalidated
 %@ %@ %lld
@@ -3944,7 +3959,7 @@ Failed to take cloned database accessibility assertion
 _protectedDataFlushDeadlineDate != nil
 Attempt to add a journal entry when no journal is active.
 Failed to merge required journal.
-HFD Index Rebuild
+healthdb_archive.hfd
 Observed content protection state: %@
 Protected data availability state: %@
 Protected data flush required by %@
@@ -4938,6 +4953,7 @@ Duration_6month
 Duration_1year
 Duration_2years_or_more
 HDSyncStoreEntity.m
+B16@?0@"HDSQLiteEntity"8
 sync_stores
 v32@?0@"NSURL"8@"CKShareMetadata"16@"NSError"24
 Failed to retrieve any share metadata.
@@ -6928,6 +6944,10 @@ Delete profile called on health store of the same profile.
 Cannot delete primary profile.
 Display name must not be nil.
 NRDevice must not be nil.
+HDProfileStoreServer.m
+Profile %@ is of type Tinker but is not an instance of type HDTinkerProfile (#t0)
+Owner appleID is nil.
+v24@?0@"CKShareParticipant"8@"NSError"16
 T@"HDProfileManager",R
 <%@>
 v16@?0@"<HDNanoSyncDescription>"8
@@ -7014,7 +7034,6 @@ finalSchemaVersion
 Tq,R,N,V_finalSchemaVersion
 foreignKeyStatus
 Tq,N,V_foreignKeyStatus
-schemaName
 T@"NSString",R,C,N,V_schemaName
 requiredPrimarySchemaVersion
 Tq,R,N,V_requiredPrimarySchemaVersion
@@ -7688,7 +7707,6 @@ Td,N,V_deletionDate
 Unable to find location series %@ during data insert.
 HDLocationSeriesSampleEntity.mm
 Unable to add data to a frozen series.
-B16@?0@"HDSQLiteEntity"8
 Series contains no data.
 Failed to lookup HFD series for location sample.
 %@ - insert %lld location datums into %@
@@ -8597,7 +8615,6 @@ Tq,N,V_median
 Profiles
 HDProfileManagerObservers
 HDProfileManager.m
-Profile %@ is of type Tinker but is not an instance of type HDTinkerProfile (#t0)
 v16@?0@"<HDProfileManagerObserver>"8
 Unable to create profiles after invalidation.
 Profile identifier is nil.
@@ -9875,6 +9892,7 @@ Leaf node {0} failed validation: {1}
 Interior node {0} failed validation: {1}
 Value retrieval failed for {0}: enumerated value {1} but lookup value is {2}.
 Value retrieval failed for {0}: enumerated value {1} but lookup failed.
+Target block for {0} has 0 length
 Attempt to get the value from an invalid optional.
 ({0}: {1})
 Caught exception during tree rebuild: {0}
@@ -10523,6 +10541,7 @@ T@"_HKMedicalIDData",&,N,V_localMedicalIDData
 mergedMedicalIDData
 T@"_HKMedicalIDData",R,N,V_mergedMedicalIDData
 q24@?0@"HDCloudSyncTarget"8@"HDCloudSyncTarget"16
+v16@?0@"HDCloudSyncLookupParticipantOperation"8
 CloudSyncRegistry
 CloudSyncRegistryRecord
 HDCloudSyncRegistryRecord.m
@@ -10729,6 +10748,7 @@ runtimeError
 ioException
 systemException
 unknownException
+notFoundError
 Unknown failure type (%ld)
 HDLastReportDate.%@.%@
 SQLiteDatabaseCorruption
@@ -10737,6 +10757,8 @@ databaseType
 HFDDatabaseCorruption
 corruption.hfd
 failureType
+currentRebuildStage
+newRebuildStage
 identifier-mismatch
 has-unprotected-identifier
 has-protected-identifier
@@ -11503,6 +11525,8 @@ hasAssociationUuid
 T@"NSData",&,N,V_associationUuid
 hasObjectUuids
 T@"NSData",&,N,V_objectUuids
+CPUArchitecture
+armv7k
 No provenance information on codable object collection received from %@
  or create
 Source %@ is deleted
@@ -11909,16 +11933,17 @@ PFbPN6health9DataStoreES1_yE
 FbPN6health9DataStoreES1_yE
 NSt3__110__function6__funcIZL27azul_migrateQuantitySamplesPN6health9DataStoreES4_yE3$_0NS_9allocatorIS5_EEFvRKNS3_15ReadTransactionEEEE
 NSt3__110__function6__funcIZL14migrateSamplesI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreES6_NS5_16ObjectIdentifierEEUlRKT_E_NS_9allocatorISB_EEFvRKNS5_13SampleHistoryIS3_EEEEE
-NSt3__110__function6__funcIZN6health9DataStore43accessSampleHistoryWithIdentifierForWritingI29QuantitySampleValueBehaviorV1EEbRKNS3_16ObjectIdentifierEbNS_8functionIFbRNS3_20MutableSampleHistoryIT_EEEEEEUlRNS3_16WriteTransactionEE_NS_9allocatorISI_EEFbSH_EEE
+ZN6health9DataStore43accessSampleHistoryWithIdentifierForWritingI29QuantitySampleValueBehaviorV1EEbRKNS0_16ObjectIdentifierEbNSt3__18functionIFbRNS0_20MutableSampleHistoryIT_EEEEEEUlRNS0_16WriteTransactionEE_
 NSt3__110__function6__funcIZZL14migrateSamplesI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreES6_NS5_16ObjectIdentifierEENKUlRKT_E_clINS5_13SampleHistoryIS3_EEEEDaSA_EUlRS8_E_NS_9allocatorISH_EEFbRNS5_20MutableSampleHistoryIS3_EEEEE
-NSt3__110__function6__baseIFbRN6health9DataStore20MutableSampleHistoryI29QuantitySampleValueBehaviorV1EEEEE
 NSt3__110__function6__funcIZZZL14migrateSamplesI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreES6_NS5_16ObjectIdentifierEENKUlRKT_E_clINS5_13SampleHistoryIS3_EEEEDaSA_ENKUlRS8_E_clINS5_20MutableSampleHistoryIS3_EEEEbSG_EUlSA_RKT0_E_NS_9allocatorISO_EEFbRKdRK27_HDRawQuantitySampleValueV1EEE
 ZZZL14migrateSamplesI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreES3_NS2_16ObjectIdentifierEENKUlRKT_E_clINS2_13SampleHistoryIS0_EEEEDaS7_ENKUlRS5_E_clINS2_20MutableSampleHistoryIS0_EEEEbSD_EUlS7_RKT0_E_
 ZZL14migrateSamplesI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreES3_NS2_16ObjectIdentifierEENKUlRKT_E_clINS2_13SampleHistoryIS0_EEEEDaS7_EUlRS5_E_
 ZL14migrateSamplesI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreES3_NS2_16ObjectIdentifierEEUlRKT_E_
+NSt3__110__function6__funcIZNK6health9DataStore43accessSampleHistoryWithIdentifierForReadingI29QuantitySampleValueBehaviorV0EEbRKNS3_16ObjectIdentifierENS_8functionIFvRKNS3_13SampleHistoryIT_EEEEEEUlRKNS3_15ReadTransactionEE_NS_9allocatorISK_EEFvSJ_EEE
 NSt3__110__function6__funcIZL14migrateSamplesI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreES6_NS5_16ObjectIdentifierEEUlRKT_E_NS_9allocatorISB_EEFvRKNS5_13SampleHistoryIS3_EEEEE
+NSt3__110__function6__baseIFvRKN6health9DataStore13SampleHistoryI29QuantitySampleValueBehaviorV0EEEEE
+ZN6health9DataStore43accessSampleHistoryWithIdentifierForWritingI29QuantitySampleValueBehaviorV0EEbRKNS0_16ObjectIdentifierEbNSt3__18functionIFbRNS0_20MutableSampleHistoryIT_EEEEEEUlRNS0_16WriteTransactionEE_
 NSt3__110__function6__funcIZZL14migrateSamplesI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreES6_NS5_16ObjectIdentifierEENKUlRKT_E_clINS5_13SampleHistoryIS3_EEEEDaSA_EUlRS8_E_NS_9allocatorISH_EEFbRNS5_20MutableSampleHistoryIS3_EEEEE
-NSt3__110__function6__baseIFbRN6health9DataStore20MutableSampleHistoryI29QuantitySampleValueBehaviorV0EEEEE
 NSt3__110__function6__funcIZZZL14migrateSamplesI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreES6_NS5_16ObjectIdentifierEENKUlRKT_E_clINS5_13SampleHistoryIS3_EEEEDaSA_ENKUlRS8_E_clINS5_20MutableSampleHistoryIS3_EEEEbSG_EUlSA_RKT0_E_NS_9allocatorISO_EEFbRKdSS_EEE
 ZZZL14migrateSamplesI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreES3_NS2_16ObjectIdentifierEENKUlRKT_E_clINS2_13SampleHistoryIS0_EEEEDaS7_ENKUlRS5_E_clINS2_20MutableSampleHistoryIS0_EEEEbSD_EUlS7_RKT0_E_
 ZZL14migrateSamplesI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreES3_NS2_16ObjectIdentifierEENKUlRKT_E_clINS2_13SampleHistoryIS0_EEEEDaS7_EUlRS5_E_
@@ -11993,20 +12018,22 @@ ZL38_getFirstTimeEndTimeCountWithDataStoreI29QuantitySampleValueBehaviorV1EbPKN6
 NSt3__110__function6__funcIZZ90+[HDQuantitySampleSeriesEntity primitiveInsertValues:seriesVersion:HFDKey:database:error:]EUb_E3$_0NS_9allocatorIS2_EEFvRKN6health9DataStore15ReadTransactionEEEE
 ZZ90+[HDQuantitySampleSeriesEntity primitiveInsertValues:seriesVersion:HFDKey:database:error:]EUb_E3$_0
 NSt3__110__function6__funcIZN6health9DataStore43accessSampleHistoryWithIdentifierForWritingI29QuantitySampleValueBehaviorV0EEbRKNS3_16ObjectIdentifierEbNS_8functionIFbRNS3_20MutableSampleHistoryIT_EEEEEEUlRNS3_16WriteTransactionEE_NS_9allocatorISI_EEFbSH_EEE
-ZN6health9DataStore43accessSampleHistoryWithIdentifierForWritingI29QuantitySampleValueBehaviorV0EEbRKNS0_16ObjectIdentifierEbNSt3__18functionIFbRNS0_20MutableSampleHistoryIT_EEEEEEUlRNS0_16WriteTransactionEE_
+N6health15not_found_errorE
 NSt3__110__function6__funcIZZ90+[HDQuantitySampleSeriesEntity primitiveInsertValues:seriesVersion:HFDKey:database:error:]EUb_E3$_3NS_9allocatorIS2_EEFbRN6health9DataStore20MutableSampleHistoryI29QuantitySampleValueBehaviorV0EEEEE
+NSt3__110__function6__baseIFbRN6health9DataStore20MutableSampleHistoryI29QuantitySampleValueBehaviorV0EEEEE
 ZZ90+[HDQuantitySampleSeriesEntity primitiveInsertValues:seriesVersion:HFDKey:database:error:]EUb_E3$_3
-ZN6health9DataStore43accessSampleHistoryWithIdentifierForWritingI29QuantitySampleValueBehaviorV1EEbRKNS0_16ObjectIdentifierEbNSt3__18functionIFbRNS0_20MutableSampleHistoryIT_EEEEEEUlRNS0_16WriteTransactionEE_
+NSt3__110__function6__funcIZN6health9DataStore43accessSampleHistoryWithIdentifierForWritingI29QuantitySampleValueBehaviorV1EEbRKNS3_16ObjectIdentifierEbNS_8functionIFbRNS3_20MutableSampleHistoryIT_EEEEEEUlRNS3_16WriteTransactionEE_NS_9allocatorISI_EEFbSH_EEE
 NSt3__110__function6__funcIZZ90+[HDQuantitySampleSeriesEntity primitiveInsertValues:seriesVersion:HFDKey:database:error:]EUb_E3$_4NS_9allocatorIS2_EEFbRN6health9DataStore20MutableSampleHistoryI29QuantitySampleValueBehaviorV1EEEEE
+NSt3__110__function6__baseIFbRN6health9DataStore20MutableSampleHistoryI29QuantitySampleValueBehaviorV1EEEEE
 ZZ90+[HDQuantitySampleSeriesEntity primitiveInsertValues:seriesVersion:HFDKey:database:error:]EUb_E3$_4
 NSt3__110__function6__funcIZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV1ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_5ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_6EbPKN6health9DataStoreERKNS7_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_EUlRKNS7_13SampleHistoryIS3_EEE_NS_9allocatorISR_EEFvSQ_EEE
 NSt3__110__function6__funcIZZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV1ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_5ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_6EbPKN6health9DataStoreERKNS7_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_ENKUlRKNS7_13SampleHistoryIS3_EEE_clESQ_EUld27_HDRawQuantitySampleValueV1E_NS_9allocatorIST_EEFbRKdRKSS_EEE
 ZZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV1ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_5ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_6EbPKN6health9DataStoreERKNS4_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_ENKUlRKNS4_13SampleHistoryIS0_EEE_clESN_EUld27_HDRawQuantitySampleValueV1E_
 ZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV1ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_5ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_6EbPKN6health9DataStoreERKNS4_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_EUlRKNS4_13SampleHistoryIS0_EEE_
-NSt3__110__function6__funcIZNK6health9DataStore43accessSampleHistoryWithIdentifierForReadingI29QuantitySampleValueBehaviorV0EEbRKNS3_16ObjectIdentifierENS_8functionIFvRKNS3_13SampleHistoryIT_EEEEEEUlRKNS3_15ReadTransactionEE_NS_9allocatorISK_EEFvSJ_EEE
+ZNK6health9DataStore43accessSampleHistoryWithIdentifierForReadingI29QuantitySampleValueBehaviorV0EEbRKNS0_16ObjectIdentifierENSt3__18functionIFvRKNS0_13SampleHistoryIT_EEEEEEUlRKNS0_15ReadTransactionEE_
 NSt3__110__function6__funcIZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV0ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_7ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_8EbPKN6health9DataStoreERKNS7_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_EUlRKNS7_13SampleHistoryIS3_EEE_NS_9allocatorISR_EEFvSQ_EEE
-NSt3__110__function6__baseIFvRKN6health9DataStore13SampleHistoryI29QuantitySampleValueBehaviorV0EEEEE
 NSt3__110__function6__funcIZZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV0ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_7ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_8EbPKN6health9DataStoreERKNS7_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_ENKUlRKNS7_13SampleHistoryIS3_EEE_clESQ_EUlddE_NS_9allocatorISS_EEFbRKdSW_EEE
+NSt3__110__function6__baseIFbRKdS3_EEE
 ZZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV0ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_7ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_8EbPKN6health9DataStoreERKNS4_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_ENKUlRKNS4_13SampleHistoryIS0_EEE_clESN_EUlddE_
 ZL27_enumerateDataWithDataStoreI29QuantitySampleValueBehaviorV0ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_7ZZ93+[HDQuantitySampleSeriesEntity _statisticsWithHFDKey:statisticsCalculator:transaction:error:]EUb2_E3$_8EbPKN6health9DataStoreERKNS4_16ObjectIdentifierEPU15__autoreleasingP7NSErrorRKT0_RKT1_EUlRKNS4_13SampleHistoryIS0_EEE_
 NSt3__110__function6__funcIZZ73+[HDQuantitySampleSeriesEntity hasSeriesDataForHFDKey:transaction:error:]EUb0_E3$_1NS_9allocatorIS2_EEFvRKN6health9DataStore15ReadTransactionEEEE
@@ -12039,7 +12066,7 @@ ZN6health9DataStore19deleteSampleHistoryI29QuantitySampleValueBehaviorV0EEvRKNS0
 ZL26_deleteSeriesWithDataStoreI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreERKNS2_16ObjectIdentifierEPU15__autoreleasingP7NSErrorEUlRKT_E_
 NSt3__110__function6__funcIZL26_removeDatumsWithDataStoreI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreERKNS5_16ObjectIdentifierEP7NSArrayIP6NSDateEPU15__autoreleasingP7NSErrorEUlRKT_E_NS_9allocatorISM_EEFbRNS5_16WriteTransactionEEEE
 NSt3__110__function6__funcIZZL26_removeDatumsWithDataStoreI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreERKNS5_16ObjectIdentifierEP7NSArrayIP6NSDateEPU15__autoreleasingP7NSErrorENKUlRKT_E_clINS5_16WriteTransactionEEEbSL_EUlRNS5_20MutableSampleHistoryIS3_EEE_NS_9allocatorISS_EEFbSR_EEE
-ZZL26_removeDatumsWithDataStoreI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreERKNS2_16ObjectIdentifierEP7NSArrayIP6NSDateEPU15__autoreleasingP7NSErrorENKUlRKT_E_clINS2_16WriteTransactionEEEbSI_EUlRNS2_20MutableSampleHistoryIS0_EEE_
+0123456789ABCDEF0123456789abcdefZZL26_removeDatumsWithDataStoreI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreERKNS2_16ObjectIdentifierEP7NSArrayIP6NSDateEPU15__autoreleasingP7NSErrorENKUlRKT_E_clINS2_16WriteTransactionEEEbSI_EUlRNS2_20MutableSampleHistoryIS0_EEE_
 ZL26_removeDatumsWithDataStoreI29QuantitySampleValueBehaviorV1EbPN6health9DataStoreERKNS2_16ObjectIdentifierEP7NSArrayIP6NSDateEPU15__autoreleasingP7NSErrorEUlRKT_E_
 NSt3__110__function6__funcIZL26_removeDatumsWithDataStoreI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreERKNS5_16ObjectIdentifierEP7NSArrayIP6NSDateEPU15__autoreleasingP7NSErrorEUlRKT_E_NS_9allocatorISM_EEFbRNS5_16WriteTransactionEEEE
 NSt3__110__function6__funcIZZL26_removeDatumsWithDataStoreI29QuantitySampleValueBehaviorV0EbPN6health9DataStoreERKNS5_16ObjectIdentifierEP7NSArrayIP6NSDateEPU15__autoreleasingP7NSErrorENKUlRKT_E_clINS5_16WriteTransactionEEEbSL_EUlRNS5_20MutableSampleHistoryIS3_EEE_NS_9allocatorISS_EEFbSR_EEE
@@ -12084,10 +12111,8 @@ ZZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV1EvP36HDQuant
 NSt3__110__function6__funcIZZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV1EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEENKUlRKNS7_13SampleHistoryIS3_EEE_clESD_EUld27_HDRawQuantitySampleValueV1E0_NS_9allocatorISG_EEFbRKdRKSF_EEE
 ZZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV1EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEENKUlRKNS4_13SampleHistoryIS0_EEE_clESA_EUld27_HDRawQuantitySampleValueV1E0_
 ZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV1EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEEUlRKNS4_13SampleHistoryIS0_EEE_
-ZNK6health9DataStore43accessSampleHistoryWithIdentifierForReadingI29QuantitySampleValueBehaviorV0EEbRKNS0_16ObjectIdentifierENSt3__18functionIFvRKNS0_13SampleHistoryIT_EEEEEEUlRKNS0_15ReadTransactionEE_
 NSt3__110__function6__funcIZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV0EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEEUlRKNS7_13SampleHistoryIS3_EEE_NS_9allocatorISE_EEFvSD_EEE
 NSt3__110__function6__funcIZZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV0EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEENKUlRKNS7_13SampleHistoryIS3_EEE_clESD_EUlddE_NS_9allocatorISF_EEFbRKdSJ_EEE
-NSt3__110__function6__baseIFbRKdS3_EEE
 ZZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV0EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEENKUlRKNS4_13SampleHistoryIS0_EEE_clESA_EUlddE_
 NSt3__110__function6__funcIZZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV0EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEENKUlRKNS7_13SampleHistoryIS3_EEE_clESD_EUlddE0_NS_9allocatorISF_EEFbRKdSJ_EEE
 ZZL31_HDFillValueBufferForEnumeratorI29QuantitySampleValueBehaviorV0EvP36HDQuantitySampleSeriesDataEnumeratorPKN6health9DataStoreEENKUlRKNS4_13SampleHistoryIS0_EEE_clESA_EUlddE0_
@@ -12611,6 +12636,9 @@ Received authorization complete from companion for request UUID: %@, but no requ
 Received authorization error from companion for request UUID: %@; error: %{public}@
 Received authorization complete from companion for request UUID: %@
 No completion handler found for authorization complete message; dropping.
+Attempting reset of sync anchors
+%{public}@: Failed to reset sync anchors as requested after HFD rebuild step.
+Reset of sync anchors completed
 failed to get received anchors for outgoing change pull request: %{public}@
 store %{public}@ remote system build version changed to %{public}@
 store %{public}@ device name did change
@@ -13055,6 +13083,11 @@ Flushing protected data%{public}@
 Finished post-journal merge cleanup.
 Failed to perform post-journal merge cleanup: %{public}@
 HFD data corruption detected: %{public}@
+Requesting rebuild of the HFD
+Moving aside corrupted HFD
+Corrupted HFD archive successful
+Failed to archive the current HFD - %{public}@
+Scheduling nano sync anchor reset
 Notifying %@ observer of journal merge completion for journal type %ld
 Deleting Health databases in "%@": %@
 Removing journal chapter at '%{public}@'
@@ -13731,6 +13764,7 @@ Adding final progress update
 %{public}@ Starting sharing setup (#t0)
 %{public}@: Starting remove participants operation with participants %@ (#t0)
 %{public}@: Starting fetch participants operation with participants (#t0)
+%{public}@: Starting fetch owner participants operation with participants (#t0)
 Failed to fetch records in database %{public}@ with error %{public}@
 %{public}@: %{public}@: Fetched %ld records in database %{public}@
 %{public}@: Limit exceeded fectching %ld records. Splitting record request in half and re-fetching.
@@ -13764,6 +13798,11 @@ Workouts successfully opened
 %{public}@: Detected app (%{public}@) onscreen
 %{public}@: Detected app (%{public}@) deactivated
 Creating new profile of type %ld
+%{public}@ Profile is nil for profileIdentifier: %{public}@
+%{public}@ Found profiles with missing NRDevice UUID. Fetch share owner participant email address.
+%{public}@ Error retrieving share owner participant for owner ID %{public}@, %{public}@
+%{public}@ Timed out waiting for owner participant from CloudKit.
+%{public}@ Error retrieving share owner participant for tinker profile %{public}@, %{public}@
 %{public}@: failed to notify client of profile changes due to: %{public}@
 Codable authorization request contains an invalid object type code (%ld) which will be ignored.
 Failed to decode object of type HKUnknownRecord with error %@
@@ -14033,7 +14072,6 @@ Posted %@ with success %@, error: %@
 %{public}@: Beginning fresh fetch for %{public}@ with nil server change token after receiving change token expiration error.
 %{public}@: Ignoring record with future schema: %{public}@
 %{public}@: Failed to decode change record %{public}@: %{public}@
-%{public}@ Profile is nil for profileIdentifier: %{public}@
 %{public}@ Error fetching deviceUUID for profile: %{public}@ error: %{public}@
 %@: %@ Overriding existing profile %@ for identifier %@ with new profile %@
 Error while enumerating profiles directory. URL: %@ Error: %{public}@
@@ -15101,6 +15139,7 @@ softlink:r:path:/System/Library/PrivateFrameworks/SockPuppetGizmo.framework/Sock
 softlink:r:path:/System/Library/Frameworks/UIKit.framework/UIKit
 softlink:r:path:/System/Library/PrivateFrameworks/SockPuppetGizmo.framework/SockPuppetGizmo
 softlink:r:path:/System/Library/Frameworks/WatchKit.framework/WatchKit
+zPLR
 zPLR
 zPLR
 zPLR
@@ -16426,6 +16465,7 @@ CMWorkoutManagerDelegate
 Eagle
 HDCloudSyncMedicalIDMergeOperation
 HDCloudSyncPipelineStagePull
+HDCloudSyncPipelineStageLookupParticipant
 HDCloudSyncRegistryRecord
 HDHealthDataCollectorProvider
 HDDataCollectionManager
@@ -19940,6 +19980,12 @@ decodedReadTypes
 enqueueAuthorizationRequestForBundleIdentifier:writeTypes:readTypes:authorizationNeededHandler:completion:
 requestSentHandler
 hk_UUIDWithData:
+contextForWriting
+allSyncStoreEntitiesOfType:transaction:error:
+resetAllSyncAnchorsOfType:syncProvenances:transaction:error:
+maintenanceOperationWithName:queue:synchronousBlock:
+maintenanceWorkCoordinator
+enqueueMaintenanceOperation:
 changeSetWithChanges:statusCode:error:
 _queue_sendChangeSet:status:session:completion:
 cancelPendingRequestsWithMessageID:device:
@@ -19977,6 +20023,7 @@ sendTinkerSharingOptInRequest:forNRDeviceUUID:completion:
 sendTinkerWatchPairingRequest:forNRDeviceUUID:completion:
 sendTinkerEndToEndCloudSyncRequestForNRDeviceUUID:completion:
 _watchOffWristNotification:
+_scheduleResetReceivedNanoSyncAnchorsForHFD
 pairedDevicesSnapshot
 syncQueue
 setSyncQueue:
@@ -20272,9 +20319,6 @@ _queue_alertObserversDidUpdateUserProfile
 _mostRecentQuantitySampleOfType:error:
 performWriteTransactionWithHealthDatabase:context:error:block:
 _mostRecentSampleOfType:beforeDate:error:
-maintenanceOperationWithName:queue:synchronousBlock:
-maintenanceWorkCoordinator
-enqueueMaintenanceOperation:
 _queue_updateCharacteristicsAndUserProfileIfNeeded
 _queue_updateCharacteristicsAndUserProfileWithDelay
 didRecieveDayChangeNotification:
@@ -20310,6 +20354,7 @@ setShareParticipantFetchedBlock:
 participant
 setFetchShareParticipantsCompletionBlock:
 initWithConfiguration:cloudState:identityLookupInfo:
+_unitTest_setParticipant:
 _participant
 _identityLookupInfo
 setApplicationIdentifier:
@@ -22929,8 +22974,15 @@ mergeWithProfile:
 performPostJournalMergeCleanupWithTransaction:profile:error:
 performMergeTransactionWithProfile:transactionContext:error:block:
 journalChapterCount
-database_reportHFDCorruptionWithFailureType:code:description:profile:
-_considerRebuildingHFDIndex
+currentHFDRebuildStage
+shouldRequestRebuildForFailure:code:
+requestHFDRebuild
+database_reportHFDCorruptionWithFailureType:code:description:profile:initialRebuildStage:newRebuildStage:
+setCurrentHFDRebuildStage:
+reportHFDRebuildStatus:error:
+setInteger:forKey:
+integerForKey:
+archiveHFDTo:error:
 discardStoreWithError:
 contentsOfDirectoryAtPath:error:
 countForObject:
@@ -22946,6 +22998,7 @@ checkOutUnprotectedDatabase:error:
 checkInDatabase:type:
 databaseJournalMergeDidComplete:
 HFDataStore:detectedCorruptionOfType:code:error:shouldPromptUser:
+rebuildIfNeeded:
 addProtectedDataObserver:
 isDataProtectedByFirstUnlockAvailable
 beginExtendedTransactionWithContext:transactionTimeout:continuationTimeout:error:
@@ -23368,7 +23421,6 @@ overrideDayIndex
 setOverrideDayIndex:
 removeContentProtectionObserver:
 _queue_performMigrationWithCompletion:
-contextForWriting
 needsProtectedDataMigration
 setNeedsProtectedDataMigration:
 _needsProtectedDataMigration
@@ -23740,8 +23792,6 @@ unitTest_defaults
 hk_remoteFeatureAvailabilityUserDefaults
 downloadManager
 mobileAssetTypeName
-integerForKey:
-setInteger:forKey:
 getLocalFileUrl
 initWithContentsOfURL:error:
 _updateMobileAssetsDownloadedMetricDefaultsValues
@@ -24789,6 +24839,7 @@ _maxFriendDuration
 _medianFriendDuration
 _minFriendDuration
 _predicateWithStoreUUID:type:
+enumerateEntitiesInDatabase:predicate:error:enumerationHandler:
 existingSyncStoreEntityWithUUID:database:error:
 initWithShareURLs:invitationTokensByShareURL:
 setPerShareMetadataBlock:
@@ -27248,6 +27299,7 @@ lastPushForwardProgressDate
 didCompleteSuccessfulPullOfUpdateWithDate:
 _addFinalProgressUpdateWithTaskTree:progress:
 removeAllParticipantsFromSharesWithCompletion:
+lookupParticipantWithIdentityLookUpInfo:completion:
 requestDataUploadWithCompletion:
 unitTest_setSupportsRebase:
 inProgressSyncCount
@@ -27403,6 +27455,7 @@ remote_createProfileOfType:displayName:completion:
 remote_deleteProfile:completion:
 remote_getAllProfilesWithCompletion:
 remote_profileIdentifierForNRDeviceUUID:completion:
+remote_profileIdentifierForNRDeviceUUID:ownerAppleID:completion:
 remote_fetchDisplayNameWithCompletion:
 remote_setDisplayFirstName:lastName:completion:
 remote_fetchDisplayImageData:
@@ -28389,7 +28442,6 @@ _deleteHFDSeriesIfFoundForPersistentID:database:error:
 _insertCodableSeriesDataFromObject:persistentID:database:error:
 insertLocationData:database:error:
 initWithSeriesPersistentID:locationData:
-enumerateEntitiesInDatabase:predicate:error:enumerationHandler:
 enumerateLocationDataInDatabase:HFDKey:error:handler:
 _routeSampleWithID:canBeUnfrozen:profile:error:
 _frozenUUIDForUnfrozenSeriesSample:HFDKey:frozenStartTime:frozenEndTime:frozenCount:profile:transaction:error:
@@ -33942,6 +33994,9 @@ B48@0:8@16@24q32^@40
 v32@0:8q16q24
 v56@0:8@16@24@32B40B44@48
 @"HKQueryAnchor"
+q24@0:8q16
+@"NSArray"24@0:8q16
+v32@0:8q16@"HDDatabaseMigrator"24
 @"HDSQLiteDatabase"32@0:8@"HDSQLiteDatabasePool"16^@24
 v32@0:8@"HDSQLiteDatabasePool"16@"NSArray"24
 @"HDSQLiteDatabase"40@0:8@"HDDatabaseTransaction"16^@24^@32
@@ -33974,6 +34029,7 @@ v44@0:8q16@24B32@36
 v36@0:8@16q24B32
 @44@0:8@16B24d28^@36
 Q24@0:8q16
+B28@0:8q16i24
 @"HDDatabaseJournal"
 @"NSConditionLock"
 @"NSOperationQueue"
@@ -34407,6 +34463,7 @@ v40@0:8@"FBSDisplayLayoutMonitor"16@"FBSDisplayLayout"24@"FBSDisplayLayoutTransi
 v40@0:8q16@"NSString"24@?<v@?@"HKProfileIdentifier"@"NSError">32
 v32@0:8@"HKProfileIdentifier"16@?<v@?B@"NSError">24
 v32@0:8@"NSUUID"16@?<v@?@"HKProfileIdentifier"@"NSError">24
+v40@0:8@"NSUUID"16@"NSString"24@?<v@?@"HKProfileIdentifier"@"NSError">32
 v24@0:8@?<v@?@"NSString"@"NSString"@"NSError">16
 v24@0:8@?<v@?@"NSData"@"NSError">16
 v32@0:8@"NSData"16@?<v@?B@"NSError">24
@@ -35038,7 +35095,7 @@ v24@0:8@"SCLSchoolMode"16
 @"SCLState"
 @"<HDSchoolTimeObserverDelegate>"
 v36@0:8i16q20@28
-v44@0:8q16i24@28@36
+v52@0:8q16i24@28@36i44i48
 v56@0:8q16@24q32@40q48
 v64@0:8@16@24@32@40@48@?56
 v64@0:8@"NSArray"16@"HKDevice"24@"NSDictionary"32@"NSUUID"40@"NSUUID"48@?<v@?B@"NSError">56

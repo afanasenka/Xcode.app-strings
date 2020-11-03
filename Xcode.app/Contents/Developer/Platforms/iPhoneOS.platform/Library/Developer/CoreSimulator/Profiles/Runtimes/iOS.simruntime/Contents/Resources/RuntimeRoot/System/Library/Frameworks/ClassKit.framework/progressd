@@ -25,17 +25,17 @@
 <string>iPhoneSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>146.1.5</string>
+<string>146.1.11</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18B5060x</string>
+<string>12A8179f</string>
 <key>DTPlatformName</key>
 <string>iphonesimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B5060x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>
@@ -166,6 +166,7 @@ v32@?0@"NSArray"8@"NSArray"16@"NSError"24
 data observation
 com.apple.Preferences
 com.apple.ClassKit.pdtool
+14.2
 Cannot search roster because a MAID user is not logged in
 Cannot search roster because ASMConfig is not available
 Fetching student activity is not allowed.
@@ -174,6 +175,7 @@ Publishing handouts not allowed.
 v16@?0@"PDHandoutPublish"8
 deletedAtDate >= ?
 v24@?0@8^B16
+Repairing handout attachments not allowed.
 Fetching Collections not allowed. Not a Dashboard Client.
 Fetching Collection Items not allowed. Not a Dashboard Client.
 Deleting Collections not allowed. Not a Dashboard Client.
@@ -2407,6 +2409,7 @@ UNKNOWN_ACTION
 CREATE
 CHANGE
 REPLACE
+REPAIR
 ee.sync
 v24@?0@"PDASMRecordZone"8^B16
 X-Apple-ClassKit-LastSuccessTime
@@ -3140,23 +3143,28 @@ setTransaction:
 current
 personaUniqueString
 accountInfo:matchesClientPersonaUniqueString:error:
+isDataSeparatedAccount
+linkedOnOrAfterSDKVersion:
 _init
 setPerson:
 setPersonaUniqueString:
-currentUserRoles
-setRoles:
-currentUserLocationIDsByAXMRoleType
-setLocationIDsByAXMRoleType:
-setDevMode:
 currentUserOrganizationName
 setOrganizationName:
 currentUserOrganizationProgressTrackingAllowed
 setOrganizationProgressTrackingAllowed:
-setCatalogEnvironment:
 handoutServiceAuthenticationState
 setHandoutServiceAuthenticationState:
 rosterServiceAuthenticationState
 setRosterServiceAuthenticationState:
+currentUserRoles
+setRoles:
+currentUserLocationIDsByAXMRoleType
+setLocationIDsByAXMRoleType:
+setClientPersonaUniqueString:
+setHasDataSeparatedAccount:
+setHasMatchingPersona:
+setDevMode:
+setCatalogEnvironment:
 person
 setHasEDUAccount:
 isEDUMAID
@@ -3170,6 +3178,7 @@ operationError
 responseStatusError
 addOnFinishBlock:
 entityIdentity
+setNeedsRepair:
 initForCollectionsWithDatabase:
 initForCollectionItemsWithDatabase:
 initWithDatabase:andObjectsToDelete:
@@ -3240,6 +3249,7 @@ remote_setShouldSyncTeacherBrowsedContexts:completion:
 remote_fetchDeletedObjectIDsNewerThanDate:completion:
 remote_authTreeWithCompletion:
 remote_fetchAndCompleteActiveAssignedActivitiesForContextPath:withCompletion:
+remote_repairHandoutAttachments:completion:
 remote_studentActivityForAttachmentsWithIDs:completion:
 remote_publishHandoutGraph:completion:
 remote_publishClass:membersToInsert:membersToDelete:completion:
@@ -3343,7 +3353,6 @@ dsID
 altDSID
 orionToken
 axmToken
-isDataSeparatedAccount
 updateAuthenticationState:forServiceID:
 isValid
 setDsID:
@@ -4710,10 +4719,14 @@ offset
 limit
 _limit
 _offset
+auditToken
+bundleRecordForAuditToken:error:
 isDashboardAPIEnabled
 isSearchAPIEnabled
 isRegisterDashboardEnabled
 entitlements
+SDKVersion
+compare:options:
 isInDevelopmentEnvironment
 isRegisterDashboardClient
 initWithBundleIdentifier:allowPlaceholder:error:
@@ -4724,6 +4737,7 @@ schoolworkAppVersionString
 initWithBundleIdentifier:connection:entitlements:
 setConnection:
 setEntitlements:
+_bundleRecord
 _overrideBundleIdentifier
 _bundleIdentifier
 _mayQueryCrossApp
@@ -5906,7 +5920,6 @@ issueFairPlayCertOperation
 isFairPlayOperation:
 issueFairPlaySessionOperation
 fetchUserRecordIDWithCompletionHandler:
-compare:options:
 serverPreferredPushEnvironmentWithCompletionHandler:
 notificationFromRemoteNotificationDictionary:
 recordZoneID
@@ -5976,6 +5989,8 @@ _icloudDriveRelativeFilePath
 _ownerId
 _isOriginal
 handoutGraph
+classIDsForHandoutAttachmentWithID:
+needsRepair
 _handoutGraph
 _handoutID
 _classID
@@ -6078,7 +6093,6 @@ studentID
 reportID
 primaryActivityReport
 additionalActivityReports
-classIDsForHandoutAttachmentWithID:
 subarrayWithRange:
 _statusID:deniedCount:authCount:forContextPath:
 _pruneAuthTreeAtNodeWithStatusID:
@@ -6719,6 +6733,7 @@ B36@0:8@16q24B32
 @48@0:8q16@24@32@40
 @"PDDPSchoolworkSearchCriteria"
 {?="limit"b1}
+@"LSBundleRecord"
 @"NSXPCConnection"
 @"CLSEntitlements"
 {?="source"b1"isAdhocOriginated"b1"isEditable"b1}
@@ -7095,6 +7110,7 @@ removed from zoneIDs: zone %@
 %{public}@ failed to delete classMembers class:%{public}@ persons:%{public}@
 PDRetry aborting operation %@. Dependent operation %@ failed with %@
 Failed to get credential for spyglass account. Error: = %{public}@;
+Failed to get credential for data-separated account. Error: = %{public}@;
 No valid account found
 Failed to get a persona for the chosen account.
 ACAccountStore pd_renewCredentialsForAccount has no accountStore.

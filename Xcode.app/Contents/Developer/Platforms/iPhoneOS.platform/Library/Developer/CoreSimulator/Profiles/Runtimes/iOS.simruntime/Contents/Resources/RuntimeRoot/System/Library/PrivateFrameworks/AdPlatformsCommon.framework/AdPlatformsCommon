@@ -402,7 +402,12 @@ https://iad2v2-cf.iad.apple.com/adserver/
 https://iad2v3-cf.iad.apple.com/adserver/
 https://iad2v4-cf.iad.apple.com/adserver/
 Binary data, %ld bytes, ...
-rate
+InFeedRate
+InArticleRate
+BetweenArticleRate
+VideoInArticleRate
+NativeInFeedRate
+NativeInArticleRate
 APMetric
 APMetricDaemonDelivery
 APMetricNotificationRegistrar

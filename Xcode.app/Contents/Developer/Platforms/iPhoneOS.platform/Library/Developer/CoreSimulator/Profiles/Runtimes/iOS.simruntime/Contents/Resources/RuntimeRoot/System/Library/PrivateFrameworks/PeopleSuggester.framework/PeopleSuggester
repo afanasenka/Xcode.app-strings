@@ -952,6 +952,7 @@ T@"NSString",R,N,V_reason
 T@"NSString",R,N,V_reasonType
 conversationIdentifier
 modelSuggestionProxies
+utiList
 familySuggestion
 <%@ %p> conversationIdentifier: %@, groupName: %@, bundleID: %@, reason: %@, reasonType: %@, recipients: %@, image: %@, derivedIntentIdentifier: %@, trialID: %@
 T@"NSString",R,C,N,V_derivedIntentIdentifier
@@ -961,6 +962,7 @@ TB,N,V_isAdaptedModelCreated
 TB,N,V_isAdaptedModelUsed
 T@"NSString",&,N,V_adaptedModelRecipeID
 T@"NSString",&,N,V_supportedBundleIDs
+T@"NSString",&,N,V_utiList
 T@"NSDictionary",&,N,V_modelSuggestionProxies
 T@"NSString",C,N,V_reason
 T@"NSString",C,N,V_reasonType
@@ -1094,6 +1096,7 @@ Prediction Context - Start to re-order
 Process Proxy: %@
 Error fetching SuggestLess Share Sheet events from Knowledge Store: %@
 _PSShareSheetPeopleDedupingAndTrimming
+UTI list passed in _PSSuggestion objects: %@
 Supported bundle IDs passed in _PSSuggestion objects: %@
 Error fetching interaction to create Messages suggestion template: %@
 Problem encountred when fetching contacts by identifiers. Fewer contacts were returned, different identifiers were returned or an error occured: %@
@@ -1123,6 +1126,7 @@ Feedback with unknown action type
 Set selected suggestion in context store for bundleID %@
 Adapted model use and availability indicators are set as isAdaptedModelCreated:%@, isAdaptedModelUsed:%@, adaptedModelRecipeID:%@
 Comma seperated supported bundleID list:%@
+Comma seperated UTI list:%@
 Error loading compiled CoreML Model from path %@ : %@
 Error while creating input MultiArray : %@
 Error while trying to fetch ordered features from plist.
@@ -1699,10 +1703,12 @@ suggestionsFromSuggestionProxies:supportedBundleIDs:contactKeysToFetch:meContact
 addAdaptedModelUsageInfoToSuggestions:
 addSupportedBundleIDs:
 setModelSuggestionProxies:
+addUTIInfo:predictionContext:
 setIsAdaptedModelCreated:
 setIsAdaptedModelUsed:
 setAdaptedModelRecipeID:
 componentsJoinedByString:
+setUtiList:
 setSupportedBundleIDs:
 shareSheetTargetBundleIdMessages
 initWithObjects:
@@ -1866,6 +1872,7 @@ suggestion
 keyPathWithKey:
 adaptedModelRecipeID
 supportedBundleIDs
+utiList
 feedbackPayloadShowFamily:
 knowledgeEvent
 feedbackPayload
@@ -2823,6 +2830,7 @@ _recipients
 _derivedIntentIdentifier
 _adaptedModelRecipeID
 _supportedBundleIDs
+_utiList
 _modelSuggestionProxies
 setRuleRankingModel:
 set_PSRuleMiningIsMLModelInUse:
@@ -2944,6 +2952,7 @@ B24@0:8@16
 @32@0:8@16Q24
 @24@0:8Q16
 @40@0:8@16Q24@32
+v32@0:8@16@24
 @56@0:8@16@24@32@40Q48
 @48@0:8@16@24Q32@40
 @48@0:8@16@24@32@40
@@ -2977,7 +2986,6 @@ v48@0:8@16@24@32@40
 @24@0:8^{_NSZone=}16
 Q16@0:8
 @"NSMutableArray"
-v32@0:8@16@24
 @"NSMutableSet"
 @"ContactEmbeddingAnalysisPETNeuralNetEmbedding"
 @"<_DKKnowledgeQuerying>"

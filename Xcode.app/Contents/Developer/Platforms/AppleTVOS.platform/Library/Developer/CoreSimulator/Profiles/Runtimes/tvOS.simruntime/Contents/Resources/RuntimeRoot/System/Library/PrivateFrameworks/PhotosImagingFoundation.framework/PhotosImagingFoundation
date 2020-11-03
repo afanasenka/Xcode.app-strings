@@ -1,23 +1,24 @@
 @UUUUUU
 @UUUUUU
 @ffffff
-@(#)PROGRAM:PhotosImagingFoundation  PROJECT:PhotosImagingFoundation-310.1.190
+@(#)PROGRAM:PhotosImagingFoundation  PROJECT:PhotosImagingFoundation-310.2.160
+33333cs@
 N2PA16centerRectFinderE
 N2PA10RectFinderE
 <%@.%p orientation:%@>
 oriented
 +[IPAOrientationOperator operatorWithIdentifier:orientation:]
-/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.1.190/lib/photosimagingfoundation/source/geometry/image/operators/affine/IPAOrientationOperator.mm
+/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.2.160/lib/photosimagingfoundation/source/geometry/image/operators/affine/IPAOrientationOperator.mm
 orientation != IPAOrientationUnknown
 Invalid parameter not satisfying: %s
 <%@.%p xScale:%f yScale:%f>
 scaled
 +[IPAScaleOperator operatorWithIdentifier:scaleX:Y:]
-/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.1.190/lib/photosimagingfoundation/source/geometry/image/operators/affine/IPAScaleOperator.mm
+/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.2.160/lib/photosimagingfoundation/source/geometry/image/operators/affine/IPAScaleOperator.mm
 expected positive scales: x:%f y:%f
 scale
 -[IPAVideoPlaybackSettings(Time) scaledPlaybackRangeForScaledDuration:]
-/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.1.190/lib/photosimagingfoundation/source/operations/video/IPAVideoPlaybackSettings+Time.m
+/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.2.160/lib/photosimagingfoundation/source/operations/video/IPAVideoPlaybackSettings+Time.m
 invalid scaled duration %@ passed
 -[IPAVideoPlaybackSettings(Time) naturalPlaybackRange]
 trimRange %@ falls outside of natural playback range %@; clipping to %@ 
@@ -571,10 +572,12 @@ warmFace
 DepthEffect
 depthInfo
 aperture
+glassesMatteAllowed
 PortraitEffect
 portraitInfo
 portraitEffectFilterName
 strength
+spillMatteAllowed
 RedEyeBB
 redEyeCorrections
 autoRedEyeCorrections
@@ -705,8 +708,9 @@ region != nil
 -[IPARegion initWithRect:]
 !CGRectIsInfinite(rect)
 CGRect PARectAspectConstrain(CGRect, CGPoint, PAAspectRatio, CGPoint)
-/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.1.190/lib/photosimagingfoundation/source/geometry/IPAGeometry.mm
+/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.2.160/lib/photosimagingfoundation/source/geometry/IPAGeometry.mm
 !PAAspectRatioIsUndefined(ratio)
+PAAffineTransform:[scale: %0.2f, %0.2f; translation: %0.2f, %0.2f; rotation: %0.2f]
  quad:%@
 <Quad2 %@ %@ %@ %@>
 <%0.4f %0.4f>
@@ -849,12 +853,13 @@ format and formatVersion are nil
 format is nil
 formatVersion is nil
 no mapping to format:%@ formatVersion:%@
+disablePhotoEditSupportForAdjustmentVersion_1_8
 [%g %g %g %g %g %g]
 T#,&,N,V_autoSettingsClass
 persistable
 TB,N,V_persistable
 -[IPAAutoRegistry _entryForAutoIdentifier:operationIdentifier:]
-/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.1.190/lib/photosimagingfoundation/source/operations/photo/auto/IPAAutoRegistry.m
+/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.2.160/lib/photosimagingfoundation/source/operations/photo/auto/IPAAutoRegistry.m
 v8@?0
 %@-%@
 expected non-nil operation identifier

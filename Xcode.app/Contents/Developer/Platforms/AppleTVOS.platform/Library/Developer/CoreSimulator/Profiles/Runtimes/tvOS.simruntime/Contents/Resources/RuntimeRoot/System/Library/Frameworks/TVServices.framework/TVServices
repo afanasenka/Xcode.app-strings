@@ -1010,15 +1010,18 @@ ConnectionKeepAliveInterval
 AssertName
 com.apple.MobileAccessoryUpdater.SleepAssertionID.ModalClient
 caffeinate command-line tool
+DeviceDisconnect
 Successfully
 Unable to
-AppleEmbeddedBluetoothDeviceManagement
-FactoryReset
-DeviceDisconnect
-AdvertiseNonConnectable
-AppleBluetoothRemote
+IOHIDDevice
 VendorID
 ProductID
+DeviceUsagePairs
+failed
+AppleEmbeddedBluetoothDeviceManagement
+FactoryReset
+AdvertiseNonConnectable
+AppleBluetoothRemote
 IOClass
 AppleEmbeddedBluetoothButtons
 com.apple.TVSlideshow
@@ -1929,6 +1932,11 @@ Deferring network change notification.
 New Network State: PhysicalNetworkAvailable:%@ InternetAvailable:%@ 
 Reachability changed from %@ to %@.
 Skipping kATVInternetAvailabilityChanged notification - no change in reachability.
+BTRemoteUtils: KeepAlive:0 requested
+BTRemoteUtils: Currently connected devices are - %@
+BTRemoteUtils: Checking if deviceDisconnect needed for - %@...
+BTRemoteUtils: Sending deviceDisconnect to - %@...
+BTRemoteUtils: deviceDisconnect does NOT need to be sent for - %@...
 BTRemoteUtils: Bluetooth remote proximity sensing method count: %ld
 BTRemoteUtils: Device Property: Remote is not connected. Skip turning presence detection %@
 This method does not nest. PowerSource run loop already exists. Do not call twice.
@@ -1946,6 +1954,7 @@ Power assertion info is not a dictionary: %@
 Power assertion for process is not an array: %@
 BTRemoteUtils: Device Property: %@ set %@ property to a value of %@
 BTRemoteUtils: Bluetooth remote error: failed to set %@ property with value of %@; code: %d
+BTRemoteUtils: Device Disconnect HID feature report %s
 Cannot disconnect remote; Firmware update in progress!
 Start listening for Bluetooth Remote
 Unable to remove remote service.
@@ -2033,6 +2042,10 @@ device is of type %ld which is not the same a receiving object %ld
 resetting internal device to %p '%@' for %@
 found no accessory for device '%@'
 INTERNAL: Overriding remoteType with value %ld
+Returning remoteType with value .SiriRemote
+Returning remoteType with value .SiriRemote4K
+Returning remoteType with value .ExtType1
+Returning default remoteType as .SiriRemote4K since the device state is not .Connected
 device '%@' identifier changing to '%@'
 device '%@' name changing to '%@'
 device '%@' state changing to %ld, was %ld
@@ -2070,8 +2083,10 @@ device with serialNumber %@ has firmware version '%@'
 device with serialNumber %@ has no firmware version
 device with serialNumber %@ has hardware version '%@'
 device with serialNumber %@ has no hardware version
+CACHED: device with serialNumber %{public}@ has vendor ID '%{public}@'
 device with serialNumber %{public}@ has vendor ID '%{public}@'
 device with serialNumber %{public}@ has no vendor ID
+CACHED: device with serialNumber %{public}@ has product ID '%{public}@'
 device with serialNumber %{public}@ has product ID '%{public}@'
 device with serialNumber %{public}@ has no product ID
 device with serialNumber %@ has an activity timestamp of %llu
@@ -4004,6 +4019,7 @@ isB239ButtonEvent:
 startListeningForPowerSources
 stopListeningForPowerSources
 numberWithUnsignedInt:
+remoteType
 setInteger:forKey:
 integerForKey:defaultValue:
 repeatPhotos
@@ -4288,7 +4304,6 @@ __accessory
 manufacturer
 firmwareRevision
 tvs_firmwareVersion
-remoteType
 tvs_multiTouchFirmwareVersion
 hardwareRevision
 tvs_hardwareVersion

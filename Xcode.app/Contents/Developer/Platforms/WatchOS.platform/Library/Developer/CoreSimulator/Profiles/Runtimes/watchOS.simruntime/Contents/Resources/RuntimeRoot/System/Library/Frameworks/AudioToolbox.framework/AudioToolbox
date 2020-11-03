@@ -421,11 +421,10 @@ aqiotime
 aqiotime_verbose
 v16@?0^{__sFILE=*iiss{__sbuf=*i}i^v^?^?^?^?{__sbuf=*i}^{__sFILEX}i[3C][1C]{__sbuf=*i}iq}8
 AQME
-v12@?0i8
 aqme_captureoutput
 aqme_captureinput
 readCommand
-/Library/Caches/com.apple.xbs/Sources/CoreAudioServices_Sim/CoreAudioServices-1180.12/Aspen/Haptics/HapticSharedMemory.h
+/Library/Caches/com.apple.xbs/Sources/CoreAudioServices_Sim/CoreAudioServices-1180.14/Aspen/Haptics/HapticSharedMemory.h
 srcCmd->head.mSize != 0
 SequenceTrack @%p
 Num Events: %d, Track Length: %.2f beats
@@ -452,7 +451,11 @@ TimePitchDownstream
 AQME_AUMultiChannelMixer
 AQME_AUScotty
 AQME_AUControlFreak
+com.apple.mobilemusicsettings.latenightmode
 AQME_AULoudnessNormalization
+latenightmode
+com.apple.preferences-sounds
+v12@?0i8
 AQME_AULoudnessNormalizer
 Converter
 Source
@@ -653,6 +656,7 @@ HDMIOutput
 AirPlay
 CarAudioInput
 CarAudioOutput
+AirPlayLowLatency
 ActiveAudioRouteDidChange_OldDetailedRoute
 ActiveAudioRouteDidChange_NewDetailedRoute
 RouteDetailedDescription_Inputs
@@ -1377,6 +1381,7 @@ inBeats >= lastEventTime -- curloop set to %d
 %d: error %d setting mLimiterUnit output format
 %d: error %d setting mNormalizerUnit input format
 %d: error %d setting mNormalizerUnit output format
+%d: mInLateNightMode = %d
 %d: error %d setting mLoudnessNormalizerUnit input format
 %d: error %d setting mLoudnessNormalizerUnit output format
 %d: error %d setting mLoudnessNormalizerUnit kAudioUnitProperty_AudioChannelLayout

@@ -246,7 +246,6 @@ camera
 cameraGrid
 cameraFunCamCarousel
 cameraWatchface
-cameraGridMemoji
 hash
 TQ,R
 superclass
@@ -3687,6 +3686,7 @@ T@"AVTAvatarEnvironment",&,N,V_environment
 async
 TB,N,V_async
 AVTViewSnapshotDisableSuperSamplingFactorKey
+cameraGridMemoji
 [AvatarKit] Failed to find the "%@" camera, using the default one instead ("%@")
 [AvatarKit] Min latency: %f ms
 [AvatarKit] Max latency: %f ms
@@ -3714,6 +3714,8 @@ v24@?0@"NSString"8@"NSData"16
 v32@?0@"NSString"8@"SCNAnimation"16^B24
 v32@?0@"NSString"8@"NSArray"16^B24
 /%@.morpher.weights[%ld]
+v48@?0@"NSString"8{?=@@qB}16
+v40@?0{?=@@qB}8
 /%@.%@
 -%ld
 staticPose
@@ -4324,8 +4326,7 @@ _properties
 _dictionary
 setOptimizeForSnapshot:
 rendererWithDevice:options:
-scene
-setPointOfView:
+setFramingMode:
 setAvatar:
 device
 texture2DDescriptorWithPixelFormat:width:height:mipmapped:
@@ -4350,9 +4351,6 @@ setPreset:forCategory:
 setColorPreset:forCategory:
 setColorPreset:forCategory:colorIndex:
 update
-cameraNode
-avatarNode
-addChildNode:
 addToAvatar:useStaticPhysicsState:
 backgroundColor
 CGColor
@@ -4442,11 +4440,11 @@ numberOfAnimationsForState:
 sleepPose
 setBakedAnimationReferenceTime:
 animatePhysicsScaleFactor:duration:
-transitionToPose:duration:delay:completionHandler:
 removeFromAvatar:transitionDuration:
 addToAvatar:options:transitionDuration:
 timingAnimation
 transitionFromPose:toPose:duration:delay:timingAnimation:completionHandler:
+transitionToPose:duration:delay:completionHandler:
 debugIdentifierForNeutralPose
 debugIdentifierForSleepPose
 debugIdentifierForTickTockPoseAnimationAtIndex:
@@ -4460,7 +4458,6 @@ debugIdentifierForState:animationIndex:
 animationIndex
 _state
 _animationIndex
-_neutralStaticPose
 _currentStaticPose
 _currentAnimatedPose
 _previousRandomAnimationIndicesTickTock
@@ -4592,6 +4589,7 @@ reload
 _assetsByName
 mirrored
 node
+addChildNode:
 assetNode
 componentsSeparatedByString:
 substringFromIndex:
@@ -4668,8 +4666,10 @@ diffuse
 setContents:
 bundleForClass:
 pathForResource:ofType:
+updateCustomCameras
 updateSpecializedLighting
 updateARMode:
+cameraNode
 lightingNode
 setHidden:
 light
@@ -4713,6 +4713,9 @@ _shadowPlaneMaterial
 _whitePlane
 _environmentNode
 _defaultPointOfView
+_animojiCamera
+_memojiCameraGroup
+_customCamera
 _specializedLightingNode
 _defaultLightingNode
 numberWithUnsignedInteger:
@@ -4990,6 +4993,7 @@ setLoadingNodes:
 _moviePlayerItem
 _movieURL
 _loadingNodes
+scene
 updateStickerMorphVariantsInNodeHierarchy:
 presetCategory
 presetForCategory:
@@ -5017,6 +5021,7 @@ lookAt:
 poseByApplyingToPose:forAvatar:
 addProps:toScene:forAvatar:withCamera:forExport:completion:
 createPropsParentNodeIfNeededInScene:
+avatarNode
 childNodesPassingTest:
 setupAvatar:
 willRemoveFromScene:
@@ -5026,6 +5031,7 @@ setStartTime:
 setScene:
 didAddToScene:
 environment
+setPointOfView:
 applyConfiguration:toScene:withAvatar:context:defaultCamera:forExport:completion:
 stickerImageWithConfiguration:options:completionHandler:
 pointOfView
@@ -5069,6 +5075,7 @@ lockAvatar
 _drawAtTime:
 unlockAvatar
 avatarView:didRenderAvatar:
+updatePointOfViewFromFramingMode
 avatarDidChange
 _resetFaceToRandomPosition
 snapshotWithSize:scaleFactor:
@@ -5088,7 +5095,6 @@ _renderer:updateAtTime:
 faceIsFullyActive
 warmupMemoji
 framingMode
-setFramingMode:
 snapshotWithSize:
 _renderer:willRenderScene:atTime:
 currentlyRenderedTrackingDate
@@ -5127,8 +5133,10 @@ animation
 subAnimations
 animationFromRepresentation:keyPath:
 enumerateRepresentationsForAnimation:block:
-blendShapeIndexForBlendShapeName:
+animationWithCAAnimation:
+blendShapeIndexForARKitBlendShapeName:
 morphInfoForARKitBlendShapeIndex:
+enumerateMorphInfoForCustomCustomBlendShapeName:usingBlock:
 animationsForAvatar:
 setRepeatCount:
 setFillsForward:
@@ -5209,8 +5217,8 @@ movabilityHint
 setMovabilityHint:
 rndRange::
 rndIndex:
-unapplyPresetDependenciesForPreset:ignoringDependenciesFromCategories:recursionDepth:
-applyPresetDependenciesForPreset:ignoringDependenciesFromCategories:recursionDepth:
+unapplyPresetDependenciesForPreset:presetsBeingReplacedCategories:recursionDepth:
+applyPresetDependenciesForPreset:presetsBeingReplacedCategories:recursionDepth:
 _applyAllColorPresets:
 removeCustomBehavioursInHierarchy:
 skinTextureSize
@@ -5390,7 +5398,7 @@ evaluatePhysicalizedDescriptors
 applyCorrectiveDescriptors
 updateEyeOrientationAndReflections
 updateMorpherDrivenMaterialsWithDeltaTime:
-blendShapeNameForBlendShapeIndex:
+blendShapeNameForARKitBlendShapeIndex:
 setSimdOrientation:
 bakedAnimationPlayer
 setBlendFactor:

@@ -1,5 +1,4 @@
-@(#)PROGRAM:PreviewFoundation  PROJECT:Ultraviolet-17517.1
-ffffF
+@(#)PROGRAM:PreviewFoundation  PROJECT:Ultraviolet-17521
 PreviewFoundation
 PredicateProtocol
 Value Proof
@@ -565,10 +564,11 @@ debugDescription
 c24@0:8@"Protocol"16
 @"NSString"16@0:8
 PreviewFoundation/AnyFuture.swift
+Fatal error
 value
 initializationCallsite
 underlying
-/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17517.1/Shared/EitherFuture.swift
+/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17521/Shared/EitherFuture.swift
 unified()
 _box
 implementation
@@ -581,10 +581,9 @@ Property list contained invalid value for key "
 Property list missing value for required key "
 Property list: 
 key value 
-/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17517.1/Shared/PropertyList.swift
+/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17521/Shared/PropertyList.swift
 confidentlyMerging(_:)
-Swift/x86_64-apple-macos.swiftinterface
-Fatal error
+Swift/NativeDictionary.swift
 Duplicate values for key: '
 executor
 previews-diagnostics
@@ -883,9 +882,18 @@ SaySSGSg
 ySnySiGG
 yS2iG
 ySSSo8NSObjectCG
+ySiG
+ySaySDySSypGycGGcG
+ySDySSypGycG
+ySay
+ySDySSypGycGGAE___GG
 ySay
 ySDySSypGycGGAD___G
+ySDySSypGycGcG
+ySDySSypGycGG
 ySDySSypGycG
+_pGGcG
+ySsG
 ySS_SS14fileNamePrefixtG
 7ElementSTQz
 8IteratorSTQz
@@ -895,7 +903,9 @@ Say8IteratorSTQzG
 $sSt
 8IteratorST_7ElementStQZ
 $s17PreviewFoundation11KeyValueMapP
+ySS_So8NSObjectCtG
 SS_So8NSObjectCt
+ySDySSypGG
 ySS_SStG
 SaySsG
 $s17PreviewFoundation011CommandLineC8ProtocolP
@@ -1141,17 +1151,6 @@ Qy_GIegn_
 5Proof
 SaySDySSypGG
 5Value
-ySS_So8NSObjectCtG
-ySiG
-ySDySSypGG
-ySaySDySSypGycGGcG
-ySDySSypGycG
-ySay
-ySDySSypGycGGAE___GG
-ySDySSypGycGcG
-ySDySSypGycGG
-_pGGcG
-ySsG
 $ss12CaseIterableP
 yxGG
 ShyxG

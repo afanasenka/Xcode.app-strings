@@ -62,6 +62,7 @@ filters
 T@"NSArray",C,N
 thumbnailSize
 T{CGSize=dd},N
+ glasses:%p
  (raw)
  bracket:%d/%d lens:%d %@
 pts:%f %d/%d%@%@ settings:%@
@@ -79,6 +80,8 @@ replacementSkinSegmentationMatte must be an instance of AVSemanticSegmentationMa
 replacementSkinSegmentationMatte must have a matteType of AVSemanticSegmentationMatteTypeSkin
 replacementTeethSegmentationMatte must be an instance of AVSemanticSegmentationMatte
 replacementTeethSegmentationMatte must have a matteType of AVSemanticSegmentationMatteTypeTeeth
+replacementGlassesSegmentationMatte must be an instance of AVSemanticSegmentationMatte
+replacementGlassesSegmentationMatte must have a matteType of AVSemanticSegmentationMatteTypeGlasses
 i16@?0^{__CFDictionary=}8
 timestamp
 T{?=qiIq},R
@@ -148,6 +151,7 @@ level
 AVSemanticSegmentationMatteTypeSkin
 AVSemanticSegmentationMatteTypeHair
 AVSemanticSegmentationMatteTypeTeeth
+AVSemanticSegmentationMatteTypeGlasses
  v.%d.%d
 %@ %@ %zux%zu%@
 Unsupported Exif orientation
@@ -159,6 +163,7 @@ mattingImage
 Hair
 Skin
 Teeth
+Glasses
 com.apple.avfoundation.depthdataoutput.queue
 videoMirrored
 videoOrientation
@@ -447,6 +452,8 @@ previewPhotoFormat
 availableEmbeddedThumbnailPhotoCodecTypes
 availableRawEmbeddedThumbnailPhotoCodecTypes
 rawEmbeddedThumbnailPhotoFormat
+autoContentAwareDistortionCorrectionEnabled
+TB,N,GisAutoContentAwareDistortionCorrectionEnabled
 bracketedSettings may not be nil
 Bracketed capture settings array contains 0 elements
 Bracketed capture settings array may only contain AVCaptureBracketedStillImageSettings objects
@@ -478,6 +485,8 @@ TB,N,GisLensStabilizationEnabled
  hair-matte:{%dx%d}
  skin-matte:{%dx%d}
  teeth-matte:{%dx%d}
+ glasses-matte:{%dx%d}
+ distortion-correction:1
  spatial-overcapture:{%dx%d}
  time:%.3f-%.3f
 uid:%lld %@%@%@%@%@%@%@%@%@%@%@%@%@%@
@@ -502,6 +511,8 @@ TB,R,GisDualCameraFusionEnabled
 expectedPhotoCount
 photoProcessingTimeRange
 T{?={?=qiIq}{?=qiIq}},R
+contentAwareDistortionCorrectionEnabled
+TB,R,GisContentAwareDistortionCorrectionEnabled
 TQ,R,N
 HDRMode
 burstQualityCaptureEnabled
@@ -510,6 +521,7 @@ TIFF
 HEIF
 HEIC
 Unknown
+glasses,
  seg-mattes:{%@%@%@%@}
 hair,
 skin,
@@ -1036,6 +1048,10 @@ J421
 D421
 D431
 N104
+D52g
+D53g
+D53p
+D54p
 J307
 J308
 Device
@@ -1050,7 +1066,7 @@ SourceDeviceTypesInUse
 VISEnabledForSourceDeviceType
 multiCamSupported
 TB,R,N,GisMultiCamSupported
-description=CameraCapture_AVF_Sim-79.4
+description=CameraCapture_AVF_Sim-79.9
 <%@: %p (%@: %p)%@%@ %@ %.4s%@ %s>
 disabled
 input
@@ -1206,6 +1222,7 @@ AVGQCaptureVPLOrientationAndMirroringPropertiesAreDeprecated
 AVGQCaptureMFOStabilizationIsAlwaysOn
 AVGQCaptureVDOFrameRatePropertiesAreDeprecated
 D331-D331p
+D52g-D53g-D53p-D54p
 J171a-J172a
 J307-J308
 J317-J317x-J318-J318x
@@ -1442,6 +1459,7 @@ interrupted
 startRunning may not be called between calls to beginConfiguration and commitConfiguration
 stopRunning may not be called between calls to beginConfiguration and commitConfiguration
 masterClock
+capture10BitHDRVideosInP3D65
 *** Not supported when running outside of xctest
 *** Can't pass a nil AVCaptureSession
 TB,R,N,GisRunning
@@ -1587,6 +1605,7 @@ enabledSemanticSegmentationMatteTypes may only contain matte types present in av
 NULL sample buffer
 Not a jpeg sample buffer
 sample buffer contains no data buffer
+Content aware distortion correction is not supported in this configuration
 Image optimization for offline video stabilization is not supported on this device
 timeLapseCaptureRate
 videoCaptureEnabled and movieRecordingEnabled may not both be YES
@@ -1671,6 +1690,9 @@ TB,N,GisLivePhotoCaptureSuspended
 livePhotoAutoTrimmingEnabled
 TB,N,GisLivePhotoAutoTrimmingEnabled
 availableLivePhotoVideoCodecTypes
+contentAwareDistortionCorrectionSupported
+TB,R,N,GisContentAwareDistortionCorrectionSupported
+TB,N,GisContentAwareDistortionCorrectionEnabled
 Nil settings
 Settings may not be re-used
 settings.processedFileType must be present in self.availablePhotoFileTypes
@@ -1717,6 +1739,7 @@ Square crop must be NO when livePhotoMovieFileURL is non-nil
 HDR mode must not be on when flash mode is on
 You are not authorized to use custom shutter sounds
 settings.processedPhotoZoomWithoutUpscalingEnabled may not be set to YES unless self.processedPhotoZoomWithoutUpscalingSupported is YES
+settings.autoContentAwareDistortionCorrectionEnabled may not be set to YES unless self.contentAwareDistortionCorrectionEnabled is YES
 settings.depthDataDeliveryEnabled must be NO if self.isDepthDataDeliveryEnabled is NO
 Your delegate must respond to the selector captureOutput:didFinishProcessingPhoto:error: if you set depthDataDeliveryEnabled to YES
 settings.portraitEffectsMatteDeliveryEnabled must be NO if self.isPortraitEffectsMatteDeliveryEnabled is NO
@@ -1779,7 +1802,7 @@ pw@L7
  |@)?
 @gDio
 ?33333S7
-f6"E
+f6"EH
 ffffff
 ?333333
 <<<< AVCaptureDevice >>>> %s: Did not find front wide camera. registeredVideoDevices: %{public}@
@@ -2059,6 +2082,8 @@ skinSegmentationMatte
 didTryToDecodeSkinSegmentationMatte
 teethSegmentationMatte
 didTryToDecodeTeethSegmentationMatte
+glassesSegmentationMatte
+didTryToDecodeGlassesSegmentationMatte
 isRawPhoto
 bracketSettings
 sequenceCount
@@ -2103,7 +2128,7 @@ deviceType
 pixelBuffer
 _embeddedThumbnailSourcePixelBuffer
 semanticSegmentationMatteForType:
-_fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:replacementPortraitEffectsMatte:replacementHairSegmentationMatte:replacementSkinSegmentationMatte:replacementTeethSegmentationMatte:exceptionReason:
+_fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:replacementPortraitEffectsMatte:replacementHairSegmentationMatte:replacementSkinSegmentationMatte:replacementTeethSegmentationMatte:replacementGlassesSegmentationMatte:exceptionReason:
 exceptionWithName:reason:userInfo:
 replacementMetadataForPhoto:
 replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:
@@ -2134,7 +2159,7 @@ depthDataMap
 copyAuxiliaryMetadata
 mattingImage
 AVFileTypeFromFigCaptureStillImageSettingsFileType:codec:unresolvedSettings:
-initWithTimestamp:photoSurface:photoSurfaceSize:processedFileType:previewPhotoSurface:embeddedThumbnailSourceSurface:metadata:depthDataSurface:depthMetadataDictionary:portraitEffectsMatteSurface:portraitEffectsMatteMetadataDictionary:hairSegmentationMatteSurface:hairSegmentationMatteMetadataDictionary:skinSegmentationMatteSurface:skinSegmentationMatteMetadataDictionary:teethSegmentationMatteSurface:teethSegmentationMatteMetadataDictionary:captureRequest:bracketSettings:sequenceCount:photoCount:expectedPhotoProcessingFlags:sourceDeviceType:
+initWithTimestamp:photoSurface:photoSurfaceSize:processedFileType:previewPhotoSurface:embeddedThumbnailSourceSurface:metadata:depthDataSurface:depthMetadataDictionary:portraitEffectsMatteSurface:portraitEffectsMatteMetadataDictionary:hairSegmentationMatteSurface:hairSegmentationMatteMetadataDictionary:skinSegmentationMatteSurface:skinSegmentationMatteMetadataDictionary:teethSegmentationMatteSurface:teethSegmentationMatteMetadataDictionary:glassesSegmentationMatteSurface:glassesSegmentationMatteMetadataDictionary:captureRequest:bracketSettings:sequenceCount:photoCount:expectedPhotoProcessingFlags:sourceDeviceType:
 description
 fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:
 fileDataRepresentationWithCustomizer:
@@ -2475,6 +2500,7 @@ arrayWithArray:
 portraitEffectsMatteMainImageDownscalingFactor
 supportedSemanticSegmentationMatteURNs
 geometricDistortionCorrectedFieldOfView
+intelligentDistortionCorrectionVersion
 isVideoStabilizationModeSupported:
 AVCaptureSessionPresets
 prefersSensorHDREnabled
@@ -2530,6 +2556,7 @@ isHighestPhotoQualitySupported
 unsupportedCaptureOutputClasses
 isPortraitEffectsMatteStillImageDeliverySupported
 supportedSemanticSegmentationMatteTypes
+isContentAwareDistortionCorrectionSupported
 prefersVideoHDREnabledForSessionPreset:
 videoHDRFlavor
 supportsDynamicCrop
@@ -2663,6 +2690,7 @@ spatialOverCaptureLivePhotoMovieMetadataForOriginalPhoto
 spatialOverCaptureLivePhotoContentIdentifierForOriginalPhoto
 spatialOverCaptureGroupIdentifierForOriginalPhoto
 processedPhotoZoomWithoutUpscalingEnabled
+autoContentAwareDistortionCorrectionEnabled
 livePhotoContentIdentifier
 livePhotoContentIdentifierForOriginalPhoto
 _initWithFormat:processedFileType:rawPixelFormatType:rawFileType:burstQualityCaptureEnabled:uniqueID:exceptionReason:
@@ -2713,6 +2741,7 @@ setSpatialOverCaptureMetadataForOriginalPhoto:
 setSpatialOverCaptureLivePhotoMovieFileURLForOriginalPhoto:
 setSpatialOverCaptureLivePhotoMovieMetadataForOriginalPhoto:
 setProcessedPhotoZoomWithoutUpscalingEnabled:
+setAutoContentAwareDistortionCorrectionEnabled:
 setSquareCropEnabled:
 setTurboModeEnabled:
 setLivePhotoContentIdentifier:
@@ -2769,6 +2798,7 @@ previewCGSize
 embeddedThumbnailCGSize
 rawEmbeddedThumbnailCGSize
 isProcessedPhotoZoomWithoutUpscalingEnabled
+isAutoContentAwareDistortionCorrectionEnabled
 lensStabilizationEnabled
 _initWithFormat:processedFileType:rawPixelFormatType:rawFileType:bracketedSettings:uniqueID:exceptionReason:
 photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:
@@ -2784,6 +2814,7 @@ portraitEffectsMatteDimensions
 hairSegmentationMatteDimensions
 skinSegmentationMatteDimensions
 teethSegmentationMatteDimensions
+glassesSegmentationMatteDimensions
 spatialOverCapturePhotoDimensions
 flashEnabled
 redEyeReductionEnabled
@@ -2793,12 +2824,13 @@ stillImageStabilizationEnabled
 virtualDeviceFusionEnabled
 deferredPhotoProxyDimensions
 photoProcessingTimeRange
+contentAwareDistortionCorrectionEnabled
 photoManifest
 digitalFlashUserInterfaceHints
 digitalFlashUserInterfaceRGBEstimate
 captureBeforeResolvingSettingsEnabled
-_initWithUniqueID:photoDimensions:rawPhotoDimensions:previewDimensions:embeddedThumbnailDimensions:rawEmbeddedThumbnailDimensions:livePhotoMovieEnabled:livePhotoMovieDimensions:portraitEffectsMatteDimensions:hairSegmentationMatteDimensions:skinSegmentationMatteDimensions:teethSegmentationMatteDimensions:spatialOverCapturePhotoDimensions:turboModeEnabled:flashEnabled:redEyeReductionEnabled:HDREnabled:adjustedPhotoFiltersEnabled:EV0PhotoDeliveryEnabled:stillImageStabilizationEnabled:virtualDeviceFusionEnabled:squareCropEnabled:deferredPhotoProxyDimensions:photoProcessingTimeRange:photoManifest:digitalFlashUserInterfaceHints:digitalFlashUserInterfaceRGBEstimate:captureBeforeResolvingSettingsEnabled:
-resolvedSettingsWithUniqueID:photoDimensions:rawPhotoDimensions:previewDimensions:embeddedThumbnailDimensions:rawEmbeddedThumbnailDimensions:livePhotoMovieEnabled:livePhotoMovieDimensions:portraitEffectsMatteDimensions:hairSegmentationMatteDimensions:skinSegmentationMatteDimensions:teethSegmentationMatteDimensions:spatialOverCapturePhotoDimensions:turboModeEnabled:flashEnabled:redEyeReductionEnabled:HDREnabled:adjustedPhotoFiltersEnabled:EV0PhotoDeliveryEnabled:stillImageStabilizationEnabled:virtualDeviceFusionEnabled:squareCropEnabled:deferredPhotoProxyDimensions:photoProcessingTimeRange:photoManifest:digitalFlashUserInterfaceHints:digitalFlashUserInterfaceRGBEstimate:captureBeforeResolvingSettingsEnabled:
+_initWithUniqueID:photoDimensions:rawPhotoDimensions:previewDimensions:embeddedThumbnailDimensions:rawEmbeddedThumbnailDimensions:livePhotoMovieEnabled:livePhotoMovieDimensions:portraitEffectsMatteDimensions:hairSegmentationMatteDimensions:skinSegmentationMatteDimensions:teethSegmentationMatteDimensions:glassesSegmentationMatteDimensions:spatialOverCapturePhotoDimensions:turboModeEnabled:flashEnabled:redEyeReductionEnabled:HDREnabled:adjustedPhotoFiltersEnabled:EV0PhotoDeliveryEnabled:stillImageStabilizationEnabled:virtualDeviceFusionEnabled:squareCropEnabled:deferredPhotoProxyDimensions:photoProcessingTimeRange:contentAwareDistortionCorrectionEnabled:photoManifest:digitalFlashUserInterfaceHints:digitalFlashUserInterfaceRGBEstimate:captureBeforeResolvingSettingsEnabled:
+resolvedSettingsWithUniqueID:photoDimensions:rawPhotoDimensions:previewDimensions:embeddedThumbnailDimensions:rawEmbeddedThumbnailDimensions:livePhotoMovieEnabled:livePhotoMovieDimensions:portraitEffectsMatteDimensions:hairSegmentationMatteDimensions:skinSegmentationMatteDimensions:teethSegmentationMatteDimensions:glassesSegmentationMatteDimensions:spatialOverCapturePhotoDimensions:turboModeEnabled:flashEnabled:redEyeReductionEnabled:HDREnabled:adjustedPhotoFiltersEnabled:EV0PhotoDeliveryEnabled:stillImageStabilizationEnabled:virtualDeviceFusionEnabled:squareCropEnabled:deferredPhotoProxyDimensions:photoProcessingTimeRange:contentAwareDistortionCorrectionEnabled:photoManifest:digitalFlashUserInterfaceHints:digitalFlashUserInterfaceRGBEstimate:captureBeforeResolvingSettingsEnabled:
 dimensionsForSemanticSegmentationMatteOfType:
 isFlashEnabled
 isRedEyeReductionEnabled
@@ -2807,6 +2839,7 @@ isAdjustedPhotoFilterRenderingEnabled
 isStillImageStabilizationEnabled
 isVirtualDeviceFusionEnabled
 isDualCameraFusionEnabled
+isContentAwareDistortionCorrectionEnabled
 isCaptureBeforeResolvingSettingsEnabled
 digitalFlashRGBEstimate
 autoStillImageStabilizationEnabled
@@ -3064,6 +3097,7 @@ isDigitalFlashCaptureEnabled
 setDigitalFlashCaptureEnabled:
 isPreviewQualityAdjustedPhotoFilterRenderingEnabled
 setPreviewQualityAdjustedPhotoFilterRenderingEnabled:
+setIntelligentDistortionCorrectionEnabled:
 isFastCapturePrioritizationEnabled
 setFastCapturePrioritizationEnabled:
 setMaxFrameRate:
@@ -3959,6 +3993,7 @@ _globalToneMappingEnabled
 _variableFrameRateVideoCaptureEnabled
 _timeOfFlightProjectorMode
 _cameraPoseMatrix
+_degradedCaptureQualityFactorsNeedInitialization
 _activeDelegate
 _activeCallbackQueue
 _validateCallbackQueue:exceptionReason:
@@ -4455,6 +4490,7 @@ lastMomentSettingsUniqueID
 deferredProcessingSupported
 deferredProcessingEnabled
 processedPhotoZoomWithoutUpscalingSupported
+contentAwareDistortionCorrectionSupported
 previewQualityAdjustedPhotoFilterRenderingSupported
 previewQualityAdjustedPhotoFilterRenderingEnabled
 fastCapturePrioritizationSupported
@@ -4472,6 +4508,7 @@ isDeferredProcessingSupported
 _updateSceneMonitoringForSourceDevice:
 isLivePhotoCaptureSupported
 setFigCaptureSessionSectionProperty:withHostTime:settingStateVariableToNoOnFailure:
+_updateContentAwareDistortionCorrectionSupportedForDevice:
 availableSemanticSegmentationMatteTypes
 _updateTimeLapseCaptureRate
 initWithSettingsID:userInitiatedCaptureTime:
@@ -4549,6 +4586,7 @@ setSpatialOverCaptureMovieURLForOriginalImage:
 setSpatialOverCaptureMovieLevelMetadataForOriginalImage:
 setBravoConstituentImageDeliveryDeviceTypes:
 setZoomWithoutUpscalingEnabled:
+setAutoIntelligentDistortionCorrectionEnabled:
 setStillImageUserInitiatedRequestTime:
 bracketedImageCount
 setBracketedImageCount:
@@ -4607,6 +4645,7 @@ setLivePhotoAutoTrimmingEnabled:
 isLivePhotoMovieProcessingSuspended
 setLivePhotoMovieProcessingSuspended:
 isPortraitEffectsMatteDeliverySupported
+setContentAwareDistortionCorrectionEnabled:
 isImageOptimizationForOfflineVideoStabilizationSupported
 userInitiatedCaptureRequestAtTime:
 isMovieRecordingSupported
@@ -4677,13 +4716,13 @@ B32@0:8@16^@24
 @"AVCapturePhotoPrivateClientMetadata"
 @"AVApplePortraitMetadata"
 @32@0:8i16I20@24
-@212@0:8{?=qiIq}16^{__IOSurface=}40Q48@56^{__IOSurface=}64^{__IOSurface=}72@80^{__IOSurface=}88@96^{__IOSurface=}104@112^{__IOSurface=}120@128^{__IOSurface=}136@144^{__IOSurface=}152@160@168@176Q184Q192I200@204
+@228@0:8{?=qiIq}16^{__IOSurface=}40Q48@56^{__IOSurface=}64^{__IOSurface=}72@80^{__IOSurface=}88@96^{__IOSurface=}104@112^{__IOSurface=}120@128^{__IOSurface=}136@144^{__IOSurface=}152@160^{__IOSurface=}168@176@184@192Q200Q208I216@220
 ^{__CVBuffer=}16@0:8
 @24@0:8@16
 @48@0:8@16@24^{__CVBuffer=}32@40
 ^{CGImage=}16@0:8
 I16@0:8
-@88@0:8@16@24^{__CVBuffer=}32@40@48@56@64@72^@80
+@96@0:8@16@24^{__CVBuffer=}32@40@48@56@64@72@80^@88
 @"AVCapturePhotoInternal"
 @60@0:8{?=qiIq}16@40@48I56
 @132@0:8{?=qiIq}16^{__IOSurface=}40Q48@56^{__IOSurface=}64@72@80Q88Q96@104@112I120@124
@@ -4790,7 +4829,7 @@ v24@0:8Q16
 @"AVCapturePhotoBracketSettingsInternal"
 {?="width"i"height"i}
 {?="start"{?="value"q"timescale"i"flags"I"epoch"q}"duration"{?="value"q"timescale"i"flags"I"epoch"q}}
-@236@0:8q16{?=ii}24{?=ii}32{?=ii}40{?=ii}48{?=ii}56B64{?=ii}68{?=ii}76{?=ii}84{?=ii}92{?=ii}100{?=ii}108B116B120B124B128B132B136B140B144B148{?=ii}152{?={?=qiIq}{?=qiIq}}160@208Q216@224B232
+@248@0:8q16{?=ii}24{?=ii}32{?=ii}40{?=ii}48{?=ii}56B64{?=ii}68{?=ii}76{?=ii}84{?=ii}92{?=ii}100{?=ii}108{?=ii}116B124B128B132B136B140B144B148B152B156{?=ii}160{?={?=qiIq}{?=qiIq}}168B216@220Q228@236B244
 {?=ii}24@0:8@16
 {?={?=qiIq}{?=qiIq}}16@0:8
 @"AVCaptureResolvedPhotoSettingsInternal"

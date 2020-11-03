@@ -22135,6 +22135,7 @@ roadsWithSimpleLineMeshesAvailable
 tilePrefetchNumberOfScreens
 supportsHiResRTT
 isPad
+isMac
 shouldDrawWhenReady
 shouldStyleLabelsInParallel
 canMakeSharingThumbnails
@@ -36357,15 +36358,16 @@ Zero Length edge on polygon boundary
 Create MapEngine:%p VKMapPurpose:%s
 Destroy MapEngine:%p
 Destroy MapEngine End
+RenderLayout
 DisplayLinkUnpause
 DisplayLinkPause
 DisplayLinkSkip
 Transitioning configuration from '%s' to '%s'
 Transitioning mode from '%s' to '%s'
 InitMapEngine
-RunLogic
-RenderLayout
+RunLogicBefore
 LayoutScene
+RunLogicAfter
 frameTime=%f
 FrameDrop
 Frame
@@ -39113,6 +39115,7 @@ tilePrefetchNumberOfScreens
 supportsHiResRTT
 canMakeSharingThumbnails
 isPad
+isMac
 shouldDrawWhenReady
 supportsHiResBuildings
 shouldStyleLabelsInParallel

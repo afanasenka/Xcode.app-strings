@@ -1,4 +1,5 @@
-@(#)PROGRAM:IDEDocViewer  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:IDEDocViewer  PROJECT:IDEPlugIns-17510.1
+ffff
 DVTFilterIdentifier
 OperatingSystemVersion
 NNSOperatingSystemVersion
@@ -1039,31 +1040,28 @@ extraIdentifiers
 interfaceLanguageMap
 Tc,N,VfinishedLoading
 Missing Swift collections inside the index.
-/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17507/IDEDocViewer/IDEAllDocsExplorableSource.swift
+/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17510.1/IDEDocViewer/IDEAllDocsExplorableSource.swift
 processExtraIndexes(_:)
-validate(identifier:function:)
 Docs identifier invalid even after index finished loading: %@
 Root node of a built documentation is invalid, skipping insertion inside the navigator tree.
 insertFeaturedItems(index:)
 IDEAllDocsCollectionExplorableSource
+validate(identifier:function:)
 handlePendingQueries()
 Pended identifier: 
 .  Sending change note...
 Unable to retrieve local documentation: %@
 subscribeToExtraIndexing()
-Swift/x86_64-apple-macos.swiftinterface
 loadCoreDocumentationIndex(_:)
  failed loading index 
 Index failed loading content from the index %@
  failed loading content from the index 
-Fatal error
-Duplicate values for key: '
 Finished loading all docs in 
 IDEAllDocsExplorableSourceDidProcessDocumentation
 c24@0:8@16
 @32@0:8:16@24
 Failed to load documentation collection with identifier: '%@'.
-/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17507/IDEDocViewer/IDECollectionSpecificExplorableSource.swift
+/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17510.1/IDEDocViewer/IDECollectionSpecificExplorableSource.swift
 init(with:allDocsSource:)
 IDEDocViewer.IDECollectionSpecificExplorableSource
 _TtC12IDEDocViewer37IDECollectionSpecificExplorableSource
@@ -1074,6 +1072,10 @@ predicateProducer
 pendingFilterSession
 $__lazy_storage_$_availablePlatformIDsToNames
 T@"_TtC12IDEDocViewer26IDEAllDocsExplorableSource",N,R,VallDocsSource
+Swift/Dictionary.swift
+Swift/NativeDictionary.swift
+Fatal error
+Duplicate values for key: '
 v8@?0
 IDEDocViewer2
 filteringQueue
@@ -1287,6 +1289,7 @@ loadedURLString
 dvt_isNonEmpty
 anyIdentifierFor:
 userDidSelectIdentifier:
+dvt_isDocumentationURL
 navigatorArea
 updateWithURL:explorableIdentifier:
 hasSelection
@@ -1366,7 +1369,6 @@ isFileURL
 dvt_isAppleReferenceURL
 dvt_isUnmappedReferenceURL
 isEntityIdentifierInCacheFor:
-dvt_isDocumentationURL
 propertyForKey:inRequest:
 scheme
 mainFrameTitle
@@ -2361,6 +2363,7 @@ initWithTitle:image:alternateImage:handler:
 declareTypes:owner:
 setControllerClass:
 isViewLoaded
+dvt_mappedReferenceURL
 remappedDocumentationURLForAppleReferenceURL:
 sharingService:willShareItems:
 sharingService:didFailToShareItems:error:
@@ -3252,8 +3255,8 @@ SaySsG
 3key_yp5valuetSg
 _yptSg
 ySSSo8NSNumberCG
-SS3key_yp5valuet
 ySSypG
+SS3key_yp5valuet
 So20DVTDelayedInvocationCSg
 So12NSMutableSetC
 So11DVTFilePathCSg
@@ -3272,14 +3275,13 @@ ySo18NSLayoutConstraintCG
 SgXw
 _pSg
 _pSg
-ySnySiGG
-_SSt
 _SStG
+_SSt
 yS2SG
-SaySSG
 ySaySSGG
-So42IDEKeyDrivenNavigableItemRepresentedObject_p
+SaySSG
 ySo42IDEKeyDrivenNavigableItemRepresentedObject_pG
+So42IDEKeyDrivenNavigableItemRepresentedObject_p
 ySo10NSMenuItemCG
 ySo25DVTCustomFilterExpressionCG
 ySsG
@@ -3354,8 +3356,10 @@ So17OS_dispatch_queueC
 SdSg
 SDySS
 SDySS
+ySnySiGG
 SayypGSgIegg_
 ySayypGSg
+SaySo19DVTFilterExpressionCG
 $s16DVTExplorableKit16ExplorableSourceP
 So36DVTFilterExpressionPredicateProducerC
 So16DVTFilterSession_pSg

@@ -246,7 +246,7 @@ T@"NSString",&,N,V_name
 com.apple.WebAMSObject.observer
 Invalid action provided by JS
 AMSLogAction
-v24@?0@8@"NSError"16
+v24@?0@"NSData"8@"NSError"16
 v24@?0@"JSValue"8@"JSValue"16
 Invalid AMS object for service: %@
 callService
@@ -332,7 +332,7 @@ v16@0:8
 d16@0:8
 @"AMSUIWebJSRequest"
 v40@0:8@16@24@?32
-v40@0:8@"NSString"16@"NSString"24@?<v@?@@"NSError">32
+v40@0:8@"NSData"16@"NSString"24@?<v@?@"NSData"@"NSError">32
 v32@0:8@16@?24
 v24@0:8@"AMSUIWebPluginConfiguration"16
 v32@0:8@"AMSUIWebJSRequest"16@?<v@?@"AMSUIWebJSResponse"@"NSError">24
@@ -377,7 +377,7 @@ v52@0:8@"WKWebProcessPlugInBrowserContextController"16@"WKWebProcessPlugInFrame"
 v48@0:8@"WKWebProcessPlugInBrowserContextController"16@"WKWebProcessPlugInFrame"24Q32@"NSURLRequest"40
 v40@0:8@"WKWebProcessPlugInBrowserContextController"16@"WKWebProcessPlugInFrame"24Q32
 v48@0:8@"WKWebProcessPlugInBrowserContextController"16@"WKWebProcessPlugInFrame"24Q32@"NSError"40
-v32@0:8@"NSString"16@?<v@?@@"NSError">24
+v32@0:8@"NSData"16@?<v@?@"NSData"@"NSError">24
 v20@0:8B16
 @"WKWebProcessPlugInBrowserContextController"
 @"AMSUIWebPluginConfiguration"
@@ -394,6 +394,7 @@ JSValue+AMSWebPlugin: Value is not a promise!
 JSValue+AMSWebPlugin: Failed to make JSON object. %{public}@
 %{public}@: [%{public}@] Dropping invalid JSONAction: %{public}@
 %{public}@: [%{public}@] Receiving action: %@
+%{public}@: [%{public}@] JSON error. %{public}@
 %{public}@: [%{public}@] Error occurred running action. %{public}@
 %{public}@: [%{public}@] Action finished. [%f] Result: %@
 %{public}@: [%{public}@] Calling service: %{public}@ %@

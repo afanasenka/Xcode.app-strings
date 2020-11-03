@@ -546,6 +546,7 @@ None
 Cancel
 Change
 DoNotReply
+NewAnnouncement
 NewCall
 NewConversation
 NewMessage
@@ -3422,6 +3423,7 @@ _conversationTranscriptItems
 setLineBreakMode:
 _configureWithAceObject:
 nameLabel
+announcerName
 confirmationDisplayText
 _updateYOffset:
 isEqualToNumber:
@@ -4058,6 +4060,7 @@ previouslyFocusedItem
 layoutFrame
 _dismisserView
 messagesContactContainerView
+isOrbFocused
 setMessagesContactContainerView:
 setSnippetView:animated:
 setGatekeeperHeader:
@@ -5790,6 +5793,7 @@ afui_hasMapItemScheme
 _dismissForIdle
 _dismissWithReason:
 _buttons:hasType:
+_isEligibleForHoldToTalk
 _selectButtonHoldToTalkTimer
 _setSelectButtonHoldToTalkTimer:
 _setSelectButtonTimeInterval:

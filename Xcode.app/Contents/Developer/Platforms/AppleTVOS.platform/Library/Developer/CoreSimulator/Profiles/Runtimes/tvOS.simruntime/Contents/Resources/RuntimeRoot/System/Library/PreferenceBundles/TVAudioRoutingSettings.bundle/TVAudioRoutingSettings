@@ -195,35 +195,79 @@ tableView
 registerClass:forCellReuseIdentifier:
 viewWillAppear:
 viewDidDisappear:
+odeonEnabled
 bundleForClass:
 localizedStringForKey:value:table:
+defaultAudioRouteGroup
 legacyAudioRouteGroup
-isLocal
-localizedStringWithFormat:
 _toggleRoutePicked:
 actionItemWithTitle:description:representedObject:keyPath:target:action:
-canBeGrouped
+isAvailable
+setCanFocus:
 unsignedIntegerValue
 setAccessoryTypes:
+isLocal
 setLocalizedValue:
 setUpdateBlock:
+activateKonamiCode
+codeWithSequence:action:
+setTarget:
+addKonamiCode:
 listGroupWithTitle:representedObject:keyPath:configurationBlock:
+localizedStringWithFormat:
+canBeGrouped
+routingController
+homeDestinationController
+initWithSuiteName:
+integerForKey:
+stringForKey:
+stringWithString:
+identifier
+appendString:
+destination
+availableDestinations
+componentsJoinedByString:
+currentRoutes
+sharedInstance
+homeConfigurationState
+initWithTitle:text:
+initWithType:
+setSelectHandler:
+presentPlayerWithAssetPath:fromViewController:
+addButton:
+setShouldDismissAutomatically:
+setModalPresentationStyle:
+presentViewController:animated:completion:
+fileURLWithPath:
+URLAssetWithURL:options:
+playerItemWithAsset:
+playerWithPlayerItem:
+setPlayer:
+setCategory:mode:options:error:
+play
+dismissPlayer
+player
+currentItem
+presentedViewController
+dismissViewControllerAnimated:completion:
 _updateExternalValue
 section
 settingGroupAtIndex:
 settingItemAtIndexPath:
 dequeueReusableCellWithIdentifier:forIndexPath:
 setDirty:
+audioDestinationName
 _legacyDetailString
 dictionaryWithObjects:forKeys:count:
 setExternalValue:
-currentRoutes
 firstObject
 outputDeviceRoute
 logicalLeaderOutputDevice
 isW1Route
 currentDestination
 destinationName
+mediaDestination
+selectOdeonDestination:
 pickOrUnpickSettingsItem:
 pickOrUnpickRoute:
 selectionState
@@ -233,19 +277,19 @@ applicationState
 setDiscoveryMode:
 externalValue
 loadSettingGroups
-activateKonamiCode
 tableView:cellForRowAtIndexPath:
 tableView:heightForRowAtIndexPath:
 viewIsOrWillBeVisible
-routingController
 _viewIsOrWillBeVisible
+_odeonEnabled
 _externalValue
 _routingController
 automaticallyNotifiesObserversForKey:
 initWithOutputContextUID:allowsRetargeting:initalFetchCompletion:
 init
-sharedInstance
 reloadHomeConfiguration
+UUID
+UUIDString
 initWithDataSource:name:
 setRoutingContextUID:
 fetchAvailableRoutesWithCompletionHandler:
@@ -270,6 +314,11 @@ mediaProfile
 indexOfObjectPassingTest:
 isPicked
 selectRoute:operation:completion:
+audioDestinationIdentifier
+localRouteIdentifier
+setPendingSelectedMediaDestination:
+_updateWithAvailableMediaDestinations:
+updateLocalAccessoryAudioDestination:forceUpdateWithUnavailableDestination:completionHandler:
 setActiveRoute:completion:
 _setNeedsDisplayedRoutesUpdate
 _endpointRoutesWithForcedLocalRoute:
@@ -292,7 +341,23 @@ localizedCompare:
 sortUsingDescriptors:
 canModifyGroupMembership
 systemRouteWithContextUID:
-componentsJoinedByString:
+_init
+setRouteUID:
+systemImageNamed:
+setDeviceImage:
+setDeviceType:
+setLocal:
+setAvailable:
+setSelectionState:
+sharedPineBoardServicesPreferences
+pbs_buddySelectedHomeTheaterSpeakerIdentifier
+pbs_buddySelectedHomeTheaterSpeakerType
+_iconImageForIdentifier:
+pbs_buddySelectedRoomName
+pendingSelectedMediaDestination
+updateWithMediaDestination:selectionState:
+hmAccessory
+audioDestinationController
 routingControllerAvailableRoutesDidChange:
 routingController:didFailToPickRouteWithError:
 routingController:pickedRoutesDidChange:
@@ -301,11 +366,13 @@ routingController:shouldHijackRoute:alertStyle:busyRouteName:presentingAppName:c
 routingController:volumeControlAvailabilityDidChange:
 routingControllerExternalScreenTypeDidChange:
 routingControllerDidPauseFromActiveRouteChange:
+mediaDestinationController:didUpdateDestination:
+mediaDestinationControllerDidUpdateAvailableDestinations:
 targetDestination:
 discoveryMode
 setCurrentDestination:
-availableDestinations
 availableRoutes
+eligibleOdeonRoutes
 allowsDestinationSelection
 numberOfExternalRoutesInLocalDestination
 setOutputContextUID:
@@ -317,6 +384,10 @@ endpointRoutingDataSource
 outputDeviceRoutingDataSource
 endpointRoutingController
 outputDeviceRoutingController
+mediaDestinationIdentifiersToRoutes
+placeholderRouteIdentifier
+selectedMediaDestinationIdentifier
+setSelectedMediaDestinationIdentifier:
 outputDeviceIdentifiersToRoutes
 endpointIdentifiersToDestinations
 allOutputDevices
@@ -336,6 +407,8 @@ _currentDestination
 _currentRoutes
 _discoveryMode
 _numberOfExternalRoutesInLocalDestination
+_homeDestinationController
+_eligibleOdeonRoutes
 _outputContextUID
 _systemOutputRouteName
 _endpointRoutingDataSource
@@ -343,6 +416,11 @@ _outputDeviceRoutingDataSource
 _endpointRoutingController
 _outputDeviceRoutingController
 _homeManager
+_mediaDestinationIdentifiersToRoutes
+_localRouteIdentifier
+_placeholderRouteIdentifier
+_pendingSelectedMediaDestination
+_selectedMediaDestinationIdentifier
 _outputDeviceIdentifiersToRoutes
 _endpointIdentifiersToDestinations
 _allOutputDevices
@@ -442,7 +520,6 @@ _lastUpdate
 _requestController
 _observerTokensToHandlers
 _artworkSize
-_init
 _nameForAVRoute:destination:
 isSplitterCapable
 routeSubtype
@@ -450,24 +527,15 @@ isProxyGroupPlayer
 _imageForAVRoute:destination:
 setVolume:withNoticationDelay:
 isCurrentDestination
-systemImageNamed:
 _currentDeviceRoutingIconImage
 isGroupLeader
 deviceType
 setOutputDeviceRoute:
 setVolumeController:
 _outputDeviceRoute
-setRouteUID:
-setDeviceImage:
-setDeviceType:
-setLocal:
-setSelectionState:
 setCanBeGrouped:
 volumeLevel
-destination
 setDestination:
-isAvailable
-setAvailable:
 isSilentPrimary
 setSilentPrimary:
 _routeUID
@@ -480,6 +548,14 @@ _volumeLevel
 _destination
 _silentPrimary
 _available
+audioDestinationType
+_availableStatusForMediaDestination:
+components
+accessory
+settings
+isControllable
+setMediaDestination:
+_mediaDestination
 subtitle
 singleLineTitle
 setDestinationName:
@@ -564,15 +640,43 @@ TB,D,N
 endpointRoute
 T@"MPAVEndpointRoute",R,N,V_endpointRoute
 currentRoutes
+Home
+cce7c4ecef404121ae8971
+eligibleOdeonRoutes
 RoutingViewControllerTitle
 Localizable
+Odeon
+selectionState
+RoutingViewControllerSettingUpText
+v24@?0@"TSKSettingItem"8@16
+@"TSKSettingItem"24@?0@"TSKListSettingGroup"8@"TVNPRoute"16
 availableRoutes
 OutputTitleLocal
 TVSpeakersTitle
 TV Speakers
-selectionState
-v24@?0@"TSKSettingItem"8@16
-@"TSKSettingItem"24@?0@"TSKListSettingGroup"8@"TVNPRoute"16
+com.apple.airplay
+persistentGroupSize
+persistentGroupType
+persistentGroupUUID
+Audio Destination Controller Identifier:
+Selected Audio Destination:
+Available Audio Destinations:
+Persistent Group Size: %ld
+Persistent Group Type: %ld
+Persistent Group UUID:
+Selected AirPlay Routes:
+HomeKit State:
+Odeon Debug
+airplayutil ka
+/usr/local/bin/airplayutil ka
+Atmos Leaf
+/AppleInternal/Library/Application Support/TVSettingsMultiChannelAudioTestFiles/dolby-atmos-trailer_leaf_1080.mp4
+Atmos Channel ID
+/AppleInternal/Library/Application Support/TVSettingsMultiChannelAudioTestFiles/channel_ID_714_speech.ec3
+5.1 PCM Channel ID
+/AppleInternal/Library/Application Support/TVSettingsMultiChannelAudioTestFiles/channel_ID_51_speech.wav
+7.1 PCM Channel ID
+/AppleInternal/Library/Application Support/TVSettingsMultiChannelAudioTestFiles/channel_ID_71_speech.wav
 localizedValue
 OutputTitleAirPlay
 OutputTitleBluetooth
@@ -581,15 +685,19 @@ T@,R,N
 T@,&,N,V_externalValue
 viewIsOrWillBeVisible
 TB,R,N,V_viewIsOrWillBeVisible
+odeonEnabled
+TB,R,N,V_odeonEnabled
 routingController
 T@"NSObject<TVNPRoutingController>",R,N,V_routingController
 currentDestination
 com.apple.TVNowPlayingService.TVNPGroupableRoutingController
+localAccessory
 TVNP-Endpoint
 TVNP-OutputDevice
 v16@?0@"NSArray"8
 B32@?0@"HMAccessory"8Q16^B24
 v16@?0@"NSError"8
+v20@?0B8@"NSError"12
 %@ (%@)
 Dock Connector
 B32@?0@8Q16^B24
@@ -600,10 +708,15 @@ uniqueIdentifier
 availableDestinations
 systemOutputRouteName
 numberOfExternalRoutesInLocalDestination
+tv.and.hifispeaker.fill
+homePod-pair
+homePod
 discoveryMode
 TQ,N
 T@"TVNPRoutingDestination",&,N
 T@"NSArray",R,C,N
+homeDestinationController
+T@"HMMediaDestinationController",R,N
 allowsDestinationSelection
 TB,R,N
 Tq,R,N
@@ -617,6 +730,16 @@ outputDeviceRoutingController
 T@"MPAVRoutingController",R,N,V_outputDeviceRoutingController
 homeManager
 T@"TVCSHomeManager",R,N,V_homeManager
+mediaDestinationIdentifiersToRoutes
+T@"NSMutableDictionary",R,C,N,V_mediaDestinationIdentifiersToRoutes
+localRouteIdentifier
+T@"NSString",R,N,V_localRouteIdentifier
+placeholderRouteIdentifier
+T@"NSString",R,N,V_placeholderRouteIdentifier
+pendingSelectedMediaDestination
+T@"NSString",&,N,V_pendingSelectedMediaDestination
+selectedMediaDestinationIdentifier
+T@"NSString",&,N,V_selectedMediaDestinationIdentifier
 outputDeviceIdentifiersToRoutes
 T@"NSMutableDictionary",R,C,N,V_outputDeviceIdentifiersToRoutes
 endpointIdentifiersToDestinations
@@ -645,6 +768,8 @@ T@"TVNPRoutingDestination",&,N,V_currentDestination
 T@"NSArray",R,C,N,V_currentRoutes
 T@"NSArray",R,C,N,V_availableDestinations
 T@"NSArray",R,C,N,V_availableRoutes
+T@"HMMediaDestinationController",R,N,V_homeDestinationController
+T@"NSArray",R,C,N,V_eligibleOdeonRoutes
 TB,R,N,V_allowsDestinationSelection
 Tq,R,N,V_numberOfExternalRoutesInLocalDestination
 TVNPEndpointRouteConnectionArtworkCacheIdentifier
@@ -707,7 +832,6 @@ outputDeviceRoute
 silentPrimary
 available
 deviceImage
-tv.and.hifispeaker.fill
 -[TVNPOutputDeviceRoute _updateVolume]
 T@"MPVolumeController",&,N,V_volumeController
 T@"MPAVOutputDeviceRoute",&,N,V_outputDeviceRoute
@@ -722,6 +846,9 @@ TB,N,GisSilentPrimary,V_silentPrimary
 TB,N,GisAvailable,V_available
 TQ,N,V_selectionState
 T@"NSNumber",C,N,V_volumeLevel
+%@: HMMediaDestination: %@ available: %@
+mediaDestination
+T@"<HMMediaDestination>",&,N,V_mediaDestination
 subtitle
 T@"NSString",C,N,V_subtitle
 singleLineTitle
@@ -757,6 +884,7 @@ TVNPSettingsAudioRoutingViewController
 TSKViewControllerExternalObserving
 TVNPGroupableRoutingController
 MPAVRoutingControllerDelegate
+HMMediaDestinationControllerDelegate
 TVNPRoutingController
 TVNPEndpointRouteConnection
 MPRequestResponseControllerDelegate
@@ -820,14 +948,19 @@ v32@0:8@"MPAVRoutingController"16@"NSArray"24
 v32@0:8@"MPAVRoutingController"16@"MPAVRoute"24
 v64@0:8@"MPAVRoutingController"16@"MPAVRoute"24q32@"NSString"40@"NSString"48@?<v@?B>56
 v28@0:8@"MPAVRoutingController"16B24
+v32@0:8@"HMMediaDestinationController"16@"<HMMediaDestination>"24
+v24@0:8@"HMMediaDestinationController"16
 q16@0:8
 v32@0:8@"TVNPRoute"16@"TVNPRoutingDestination"24
+v24@0:8@"<HMMediaDestination>"16
 v24@0:8@"TVNPRoutingDestination"16
 @"TVNPRoutingDestination"16@0:8
 @"NSArray"16@0:8
+@"HMMediaDestinationController"16@0:8
 @28@0:8@16B24
 @36@0:8@16B24@?28
 @"TVNPRoutingDestination"
+@"HMMediaDestinationController"
 @"NSString"
 @"MPAVEndpointRoutingDataSource"
 @"MPAVOutputDeviceRoutingDataSource"
@@ -853,6 +986,8 @@ f16@0:8
 {CGSize="width"d"height"d}
 v40@0:8@16Q24@32
 @"MPAVOutputDeviceRoute"
+v32@0:8@16Q24
+@"<HMMediaDestination>"
 ShouldUseGrouping: %d CanUseGrouping: %d RouteIsInRoom: %d AlwaysPickRatherThanAdd: %d
 Add Picked Route: %{public}@ to Endpoint: %{public}@
 Add Picked Route result: %{public}@
@@ -860,6 +995,8 @@ Set Picked Route: %{public}@ for Endpoint: %{public}@
 Set Picked Route result: %@
 Remove Picked Route: %{public}@ from Endpoint: %{public}@
 Remove Picked Route result: %{public}@
+Successfully updated media destination to %@
+Error updating media destination %@
 Retarget to Endpoint: %{public}@
 Can't create destination, no MRAVEndpointRef. {endpointRoute_ptr=%p, endpointRoute=%{public}@}
 No destination for endpoint route. {endpointRoute_ptr=%p, endpointRoute=%{public}@}
@@ -869,6 +1006,7 @@ System output route: %@
 Available Routes (Input) [%{public}@]
 Available Routes (Output) [%{public}@]
 Update Routing DataSource. {availableDestinations_input=%ld, availableDestinations_output=%ld, availableRoutes_input=%ld, availableRoutes_output=%ld, shouldShowRoutes=%{bool}d, allowsDestinationSelection=%{bool}d, endpointRoute_ptr=%p, endpointRoute=%{public}@}
+HMMediaDestinationController did update destination %@
 (%{public}@) Send %{public}@ to route %@, status: %{public}@
 METADATA: (%{public}@) update with song: %{public}@
 METADATA: (%{public}@) apply update artwork with image: %{public}@

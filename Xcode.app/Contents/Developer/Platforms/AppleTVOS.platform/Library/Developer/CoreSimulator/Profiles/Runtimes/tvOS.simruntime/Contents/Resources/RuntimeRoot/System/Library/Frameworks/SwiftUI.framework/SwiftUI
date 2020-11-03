@@ -1,4 +1,5 @@
-@(#)PROGRAM:SwiftUI  PROJECT:_SwiftUI-111
+@(#)PROGRAM:SwiftUI  PROJECT:_SwiftUI-114.1
+fffff
 SwiftUI
 ToolbarContent
 Body
@@ -336,10 +337,8 @@ Body
 PageTabView
 EdgeInsets
 CodableEdgeInsets
-SwiftUI
+>SwiftUI
 SheetBridge
-SheetHostingControllerDelegate
-SheetHostingController
 SwiftUI
 ArrayWith3InlineStorage
 ArrayWith2InlineStorage
@@ -1782,6 +1781,10 @@ GestureStateProtocol
 StateContainerGesture
 StateContainerPhase
 Q@PopoverAttachmentAnchor
+PopoverPresentationModifier
+ItemPopoverPresentationModifier
+PopoverModifier
+PopoverContent
 PopoverPresentation
 LineStyle
 DefaultUnderlineStyleKey
@@ -1872,6 +1875,7 @@ _Body
 _TextFieldStyleLabel
 TextFieldStyleModifier
 ResolvedTextFieldStyle
+L@iH
 Angle
 Alignment
 ZStack
@@ -2669,6 +2673,9 @@ RoundedRectangle
 Capsule
 Ellipse
 Circle
+SwiftUI
+PresentationHostingControllerDelegate
+PresentationHostingController
 Semantics
 _UIGraphicsView
 _UIInheritedView
@@ -2680,6 +2687,7 @@ ToOptional
 BindingOperations
 NilCoalescing
 DisclosureGroup
+IsExpandedTraitKey
 DisclosureGroupConfiguration
 DisclosureGroupDepthKey
 ForegroundStyle
@@ -3537,11 +3545,7 @@ presentedVC
 lastPresentation
 presenterOverride
 lastEnvironment
-dismissedProgramatically
 Action caused unbalanced updates.
-SwiftUI.SheetHostingController
-init(coder:rootView:)
-init(coder:) has not been implemented
 SheetBridge: abandoned presentation detected
 ArrayWith2Inline index out of range
 index out of range
@@ -3938,6 +3942,7 @@ invalidationPending
 intrinsicContentSize
 T{CGSize=dd},N,R
 SwiftUI.PlatformViewHost
+init(coder:) has not been implemented
 _TtCV7SwiftUI16_ViewListOutputs12ListModifier
 _TtCV7SwiftUI12_ViewList_ID5Views
 isDataDependent
@@ -4058,6 +4063,7 @@ SwiftUI9
 @32@0:8d16q24
 @"NSArray"8@?0
 B16@?0@8
+B8@?0
 UIAccessibilityReadingContent
 @"NSString"24@0:8q16
 @"NSAttributedString"24@0:8q16
@@ -4194,6 +4200,7 @@ _blendMode
 clipLayer
 savedState
 ^{CGColor=}24@?0@"NSString"8^{CGColor=}16
+controlAccentColor
 multiplyBlendMode
 overlayBlendMode
 lightenBlendMode
@@ -4352,7 +4359,6 @@ completion
 @"NSDictionary"8@?0
 v16@?0@"NSDictionary"8
 ^^{CGColor}24@?0@"NSString"8^{CGColor=}16
-controlAccentColor
 unrotatedPixelSize
 resolvedTintColor
 resolvedAccentColor
@@ -4456,6 +4462,9 @@ _TtCV7SwiftUI14LayoutComputer8Delegate
 engine
 _TtCV7SwiftUI14LayoutComputer15DefaultDelegate
 implement or don't call me!
+dismissedProgramatically
+SwiftUI.PresentationHostingController
+init(coder:rootView:)
 _TtC7SwiftUI15_UIGraphicsView
 _TtC7SwiftUIP33_A34643117F00277B93DEBAB70EC0697116_UIInheritedView
 @40@0:8{CGPoint=dd}16@32
@@ -6397,8 +6406,6 @@ yx_GG
 AAyAbAyA2BGGG
 $s7SwiftUI12CodableProxyP
 yxGSgXw
-$s7SwiftUI30SheetHostingControllerDelegateP
-_pSgXw
 GGXo
 GGXo
 ySnySiGSi
@@ -7244,6 +7251,8 @@ yx_G
 yxGG
 yxGG
 14SelectionValue
+AByABy
+GGAHGG
 $s7SwiftUI11ToggleStyleP
 yqd__GG
 yxGG
@@ -7822,6 +7831,7 @@ So6UIViewCSg
 $s7SwiftUI22AccessibilityStridableP
 Sb8required_t
 tc_Sb8animatedt
+SgIegyyd_
 SgIegyyd__Sb8animatedt
 $s7SwiftUI9_ViewTestP
 8RootView
@@ -8019,12 +8029,15 @@ yq0_Gxz_AAyq_Gtc
 yxq0_q_GG
 yq0_GG
 yq_G
-_GSg
-yqd__SgG
-qd__qd_0_Iegnr_
-qd__Iegr_
+yqd__qd_0_GG
+yqd__GG
+yxq__G
+yx_G
+yxq__GG
+yx_GG
 SgGSay
 GIeggo_
+yAAyx
 yAAyAAyAAy
 GAIG
 So13NSFileWrapperCSg
@@ -8175,6 +8188,7 @@ GAKGAKG
 q0_Sg
 q1_Sg
 yxq_GG
+yqd__SgG
 yAAyAAyAAyAAyAAy
 ySbGG
 yq_GG
@@ -8492,6 +8506,8 @@ $s7SwiftUI22LayoutComputerDelegateP
 ySi_SaySo14NSItemProviderCGtc
 yqd__GG
 12InternalBody
+$s7SwiftUI37PresentationHostingControllerDelegateP
+_pSgXw
 yAAy
 xGGACy
 AAyq_
@@ -8503,7 +8519,6 @@ y18TransitionModifier
 Iegly_
 tcSg
 SgXwz_Xx
-SgIegyyd_
 SgXw
 yxGG
 yqd__GG
@@ -9360,8 +9375,6 @@ presentedVC
 lastPresentation
 presenterOverride
 lastEnvironment
-delegate
-dismissedProgramatically
 storage
 many
 empty
@@ -12076,13 +12089,22 @@ BodyValue
 PhaseValue
 rect
 point
-content
-arrowEdge
-targetAnchor
+_item
 onDismiss
+popoverContent
+attachmentAnchor
+arrowEdge
+_isPresented
+_namespace
+environment
+minimumPopoverSize
+content
+_mode
+targetAnchor
 viewID
 itemID
-environment
+ResolvedModifier
+Body
 Value
 active
 color
@@ -13807,6 +13829,8 @@ cornerSize
 style
 AnimatableData
 Body
+delegate
+dismissedProgramatically
 value
 path
 defaultValue
@@ -14853,10 +14877,21 @@ customTabItem
 toolbarCoordinator
 swiftUIToolbar
 toolbarBridge
-*P+
-1@2
-8 :
-DpE
+@!
+#0$
+p'
+P,9p,
+`-8
+<5 <
+`=4
+ >3@>
+ B1@B
+G/0G.`G
+H-0H
+J, K+PK*
+M(@M
+`N'
+]O0]
 _NoAnimationDelegate
 SwiftUIAdditions
 _TSHostingViewInvocationTarget
@@ -14942,18 +14977,6 @@ punctuationCharacterSet
 removeCharactersInString:
 componentsSeparatedByCharactersInSet:
 componentsJoinedByString:
-scale
-contentBounds
-alignmentRect
-_imageWithContentInsets:
-baselineOffset
-imageWithBaselineOffsetFromBottom:
-pointSize
-systemFontOfSize:
-ascender
-descender
-imageWithAlignmentRectInsets:
-applyingMetricsFromGlyph:
 _defaultLeadingCellMarginWidth
 horizontalMargin
 layoutManager
@@ -14966,6 +14989,7 @@ _referenceBounds
 _pointsPerInch
 delegateClass
 sceneDelegate
+scale
 _SwiftUITesting_currentScreenScale
 _wantsWideContentMargins
 _SwiftUITesting_wantsWideContentMargins
@@ -15366,16 +15390,14 @@ dataWithJSONObject:options:error:
 defaultManager
 stringByDeletingLastPathComponent
 createDirectoryAtPath:withIntermediateDirectories:attributes:error:
-viewDidDisappear:
 screen
 displayLinkTimer:
 displayLinkWithTarget:selector:
 mainRunLoop
 addToRunLoop:forMode:
 invalidate
-isBeingDismissed
-presentViewController:animated:completion:
 setModalPresentationStyle:
+presentViewController:animated:completion:
 dismissViewControllerAnimated:completion:
 viewControllerForView:
 setPaused:
@@ -15389,6 +15411,7 @@ rootViewController
 viewIfLoaded
 handleLongPressWithRecognizer:
 gestureRecognizerShouldBegin:
+viewDidDisappear:
 initWithNibName:bundle:
 addTarget:action:
 _setButtonType:
@@ -15479,6 +15502,8 @@ setMinimumFontSize:
 textChanged:
 setText:
 setOverrideTraitCollection:forChildViewController:
+viewControllers
+setViewControllers:
 initWithProgressViewStyle:
 setActivityIndicatorViewStyle:
 startAnimating
@@ -15501,6 +15526,7 @@ scaledLineHeight
 actualScaleFactor
 firstBaselineOffset
 scaledBaselineOffset
+baselineOffset
 numberOfLineFragments
 setWantsNumberOfLineFragments:
 observeValueForKeyPath:ofObject:change:context:
@@ -15518,7 +15544,9 @@ standardUserDefaults
 userInfo
 __swift_objectForKeyedSubscript:
 setUserInfo:
+alignmentRect
 capHeight
+contentBounds
 defaultValueForKey:
 setAnchorPoint:
 setCompositingFilter:
@@ -15584,7 +15612,8 @@ runMode:beforeDate:
 sleepForTimeInterval:
 initWithCGImage:scale:orientation:
 imageWithRenderingMode:
-imageWithTintColor:renderingMode:
+_imageWithSymbolMetricsFromNamedVectorGlyph:
+imageWithTintColor:
 _systemImageNamed:
 CGImage
 ioSurface
@@ -15701,6 +15730,8 @@ bezierPathWithCGPath:
 _setAccessibilityElementsBlock:
 _setAccessibilityLinkedUIElementsBlock:
 _accessibilitySetActionBlock:withValue:forKey:
+_setIsAccessibilityElementBlock:
+_setAccessibilityElementsHiddenBlock:
 _accessibilityDidChangeSonificationPlaybackPosition:
 _ui_attributedSubstringFromRange:scaledByScaleFactor:
 replaceCharactersInRange:withString:
@@ -15901,8 +15932,10 @@ baseWritingDirection
 setAttributes:range:
 isUserInteractionEnabled
 selectedViewController
+imageWithBaselineOffsetFromBottom:
 colorWithName:displayGamut:appearanceName:
 imageWithName:scaleFactor:deviceIdiom:deviceSubtype:displayGamut:layoutDirection:sizeClassHorizontal:sizeClassVertical:appearanceName:
+appearance
 namedVectorGlyphWithName:scaleFactor:deviceIdiom:layoutDirection:glyphSize:glyphWeight:glyphPointSize:appearanceName:
 imageView
 tintColor
@@ -15948,7 +15981,6 @@ selectionChanged:
 setSelectedSegmentIndex:
 selectedSegmentIndex
 setImage:forSegmentAtIndex:
-infoViewForSegment:
 imageForSegmentAtIndex:
 titleForSegmentAtIndex:
 insertSegmentWithImage:atIndex:animated:
@@ -15965,8 +15997,6 @@ contentScrollView
 setTabBarObservedScrollView:
 setTabBarItem:
 tabBarItem
-setViewControllers:
-viewControllers
 tabBarController:shouldSelectViewController:
 tabBarController:willBeginCustomizingViewControllers:
 tabBarController:willEndCustomizingViewControllers:changed:
@@ -15998,6 +16028,7 @@ controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:
 controller:didChangeSection:atIndex:forChangeType:
 controllerWillChangeContent:
 controller:sectionIndexTitleForSectionName:
+isBeingDismissed
 hitTest:withEvent:
 setFilters:
 setAutoresizesSubviews:
@@ -16130,6 +16161,7 @@ insertRowsAtIndexPaths:withRowAnimation:
 reloadSections:withRowAnimation:
 moveRowAtIndexPath:toIndexPath:
 reloadData
+_performBlockAfterCATransactionCommits:
 scrollToRowAtIndexPath:atScrollPosition:animated:
 layoutIfNeeded
 setEstimatedRowHeight:
@@ -16213,7 +16245,6 @@ _outermostNavigationController
 _updateBarsForCurrentInterfaceOrientation
 popViewControllerAnimated:
 popToViewController:animated:
-_performBlockAfterCATransactionCommits:
 showColumn:
 pushViewController:animated:
 setNavigationBarHidden:
@@ -16303,8 +16334,8 @@ v20@0:8B16
 @"NSDate"
 @"NSString"
 @"NSDateFormatter"
-@24@0:8@16
 d16@0:8
+@24@0:8@16
 @56@0:8@16@24@32@40@48
 {_NSRange=QQ}24@0:8@16
 {_NSRange=QQ}32@0:8@16@?24

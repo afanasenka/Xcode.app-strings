@@ -5,7 +5,8 @@
 ffffff
 ?ffffff
 ?333333
-@(#)PROGRAM:PhotosPlayer  PROJECT:PhotosPlayer-310.1.190
+@(#)PROGRAM:PhotosPlayer  PROJECT:PhotosPlayer-310.2.160
+33333cs@
 is_highFramerate
 TB,R,N,Gis_isHighFramerate
 filters.LivePhotoBlur.inputRadius

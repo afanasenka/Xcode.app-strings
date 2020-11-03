@@ -24,6 +24,7 @@ iUK:
 hp|i1
 UUUUUU
 ?333333
+>ffffff
 N6homeai3mod28ImageDescriptorBufferFloat32E
 NSt3__118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE
 NSt3__115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEEE
@@ -218,6 +219,7 @@ debugDescription
 HMIMutableCluster
 centroid
 T@"HMIDESMutableFloatArray",R,V_centroid
+count
 TQ,R,N
 faceprintUUIDs
 T@"NSArray",R
@@ -596,8 +598,10 @@ input
 T@"MLMultiArray",&,N,V_input
 transformed_features
 classProbability
-FaceQualityFilterSVM
-FaceQualityFilterSVMDataScaler
+FaceRecognizabilityFilterSVM
+FaceRecognizabilityFilterSVMDataScaler
+FaceAestheticQualityFilterSVM
+FaceAestheticQualityFilterSVMDataScaler
 facequality.filter.svm
 scalerModel
 T@"MLModel",R,V_scalerModel
@@ -752,6 +756,7 @@ T@"NSMutableData",R
 T@"NSURL",&,N,V_url
 sequenceNumber
 TQ,R,V_sequenceNumber
+data
 T@"NSData",R,V_data
 moovFragment
 T@"NSData",R,N,V_moovFragment
@@ -890,6 +895,7 @@ Failed saving activity zone data into file
 [%@] <%lu> Object coordinate:%@
 @"NSSet"16@?0@"HMIVideoAnalyzerEvent"8
 outcome
+flags
 cameraManufacturer
 cameraModel
 faceRecognitionEnabled
@@ -956,11 +962,10 @@ floats
 Tr^f,R,N
 mutableFloats
 T^f,R,N
-Unable to get face quality prediction from the SVM model : %@
-Face below face quality thresholds: SVM prediction = %lf, Yaw = %lf, discarding
-Face with face mask detected, discarding
+Face below face quality thresholds: SVM recognizability = %lf, Yaw = %lf, discarding
 Face below ANFR face quality threshold: ANFR confidence = %lf, discarding
 personsModelPredictions is empty
+Face removed from unknown & uncertain bucket, hasFaceMask is YES
 Face removed from unknown and uncertian bucket, SSD confidence = %f, entropy of laplacian = %f, Face yaw = %f, box size: %f
 Added to unknown bucket yaw: %@
 Added to uncertain bucket yaw: %@
@@ -969,8 +974,10 @@ Face recognition set is empty
 face.classifier.vip
 faceprinter
 T@"HMIFaceprinter",R,V_faceprinter
-faceQualityFilter
-T@"HMIFaceQualityFilterSVM",R,V_faceQualityFilter
+faceRecognizabilityFilter
+T@"HMIFaceQualityFilterSVM",R,V_faceRecognizabilityFilter
+faceAestheticQualityFilter
+T@"HMIFaceQualityFilterSVM",R,V_faceAestheticQualityFilter
 classificationThresholdKnown
 Td,R,V_classificationThresholdKnown
 classificationThresholdUnknown
@@ -1066,9 +1073,7 @@ frameAnalyzerDidAnalyzeFrame
 T@?,C,V_frameAnalyzerDidAnalyzeFrame
 timeOffset
 T{?=qiIq},R,V_timeOffset
-width
 TQ,R,V_width
-height
 TQ,R,V_height
 generationFrequency
 T{?=qiIq},R,V_generationFrequency
@@ -1104,7 +1109,6 @@ mediaType == kCMMediaType_Video
 T@"<HMIVideoRetimerDelegate>",W,V_delegate
 retimerDidRetimeSampleBuffer
 T@?,C,V_retimerDidRetimeSampleBuffer
-allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size
 Descriptor count = 
 Descriptor length = 
  bytes
@@ -1204,6 +1208,9 @@ T@"HMICameraVideoFrame",&,V_frame
 markedAsFinished
 TB,GisMarkedAsFinished,V_markedAsFinished
 T@"<HMICameraVideoFrameSamplerDelegate>",W,V_delegate
+Skipping sentinel faceprint in existingAtCurrentVersion
+v16@?0@"HMIFaceprint"8
+Skipping sentinel faceprint in createdAtCurrentVersion
 allAtCurrentVersion
 existingAtOtherVersions
 T@"NSSet",R,V_existingAtOtherVersions
@@ -1229,6 +1236,7 @@ B16@?0@"HMIFaceprint"8
 Using existing faceprint for face crop:%@
 Faceprinting face crop:%@
 Skipping crop, encountered error faceprinting: %@
+Face crop has a facemask, creating sentinel faceprint
 Vision run-time version: %d.%02d.%02d (%d)
 face.detector.vision
 HMIFP.ck.u
@@ -1241,6 +1249,8 @@ Data
 Model UUID
 Face Crop UUID
 Could not initialize from decoded UUID: %@ data: %@ modelUUID: %@ faceCropUUID: %@
+sentinelFaceprint
+TB,R,GisSentinelFaceprint
 T@"NSData",R,C,V_data
 T@"NSUUID",R,C,V_modelUUID
 T@"NSUUID",R,C,V_faceCropUUID
@@ -1391,6 +1401,7 @@ TB,GisPersonDataAvailableViaHomeKit,V_personDataAvailableViaHomeKit
 %.2f[%c]
 levelThresholds
 T@"NSArray",R,V_levelThresholds
+level
 Td,R,V_value
 HMIErrorDomain
 Unexpected error
@@ -1486,7 +1497,6 @@ WARNING: no motion detection to use for face tracking
 Face event doesn't have a recognition, ignoring
 B16@?0@"NSUUID"8
 v24@?0@"NSUUID"8^B16
-v16@?0@"HMIFaceprint"8
 Transition Pr(detectionIdx: %lu, previousIndex: %lu, sessionUUID:%@) = %lf
 Face embedding distance to cluster (detectionIdx: %lu, sessionUUID:%@) = %lf
 Face embedding distance to previous face (detectionIdx: %lu, sessionUUID:%@) = %lf
@@ -1653,7 +1663,15 @@ Failed to encode and recover from failure.
 HMIVideoEncoder
 T@"<HMIVideoEncoderDelegate>",W,V_delegate
 averageBitRate
+Tq,N,V_averageBitRate
 maxKeyFrameIntervalDuration
+Tq,N,V_maxKeyFrameIntervalDuration
+dataRateLimit
+T{HMIVideoEncoderDataRate=qq},N,V_dataRateLimit
+expectedFrameRate
+Tq,N,V_expectedFrameRate
+expectedDuration
+Td,N,V_expectedDuration
 numberOfDroppedFrames
 TQ,R,V_numberOfDroppedFrames
 encoderDidEncodeSampleBuffer
@@ -1776,6 +1794,7 @@ Loaded Home HMIPersonsModel for homeUUID: %@ sourceUUID: %@
 Loaded %lu user defined equivalencies found for home: %@
 No user defined equivalencies found for home: %@ (reason: %@)
 Invalid file path in load model attempt: %@
+Refusing to load %@ VNPersonsModel at path: %@
 Failed to load VNPersonsModel at path: %@
 @24@?0@"NSUUID"8@"HMIPersonsModel"16
 v32@?0@"HMIPersonSourceUUIDPair"8@"NSSet"16^B24
@@ -2136,6 +2155,7 @@ qosMap
 isProductTypeJ42
 isProductTypeJ105
 isProductTypeB238
+isProductTypeB520
 isAudioAccessory
 isInternalInstall
 preferenceCacheFlushTimer
@@ -2187,11 +2207,24 @@ Td,V_totalDuration
 T@"NSError",&,V_error
 HMIHomePersonClusteringTask
 Error performing cloud pull:%@
+Fetching persons
+@"NSUUID"16@?0@"HMIPerson"8
+Fetched %lu persons (%lu unnamed)
+Exiting early because task was canceled.
+Skipping named person
+B16@?0@"HMIPersonSourceUUIDPair"8
+Fetching face crops for person: %@
+Found unnamed person %@ with no face crops!
+Error on dispatch_group_wait (expireUnnamedPersons)
+Finished calls to fetchFaceCropsForPersonsWithUUIDs
+Error removing persons with UUIDs:%@, error:%@
 Error fetching face crops:%@
 @"NSUUID"16@?0@"HMIFaceCrop"8
 Error fetching faceprints:%@
-Storing newly created faceprints: %@
+Storing %lu newly created faceprints
 Error saving new faceprints:%@
+Removing %lu faceprints from old versions
+Error removing faceprints from old versions:%@
 Number of faceprints to cluster: %lu
 Clustering error:%@
 Number of clusters: %lu
@@ -2201,19 +2234,10 @@ Error adding new persons:%@
 @16@?0@"NSNumber"8
 Error associating face crops with person (%@): %@
 v32@?0@"VNCluster"8@"NSUUID"16^B24
+Error on dispatch_group_wait (associateFaceCrops)
 Finished calls to associateFaceCropsWithUUIDs
 Error associating face crops for %lu person%@: (
  ...
-Fetching persons
-@"NSUUID"16@?0@"HMIPerson"8
-Fetched %lu persons (%lu unnamed)
-Exiting early because task was canceled.
-Skipping named person
-B16@?0@"HMIPersonSourceUUIDPair"8
-Fetching face crops for person: %@
-Found unnamed person %@ with no face crops!
-Finished calls to fetchFaceCropsForPersonsWithUUIDs
-Error fetching removing persons with UUIDs:%@, error:%@
 v16@?0@"HMIPersonFaceCrop"8
 T@"HMIClusteringTaskSummary",R,V_summary
 startTime
@@ -2226,12 +2250,16 @@ Error fetching facecrops for person:%@, error:%@
 Fetched %lu face crops for person: %@
 Ignoring error fetching faceprints for person:%@, error:%@
 Error faceprinting face crops for person:%@, error:%@
+Storing newly created faceprints: %@
 Removing existing faceprints at other versions: %@
 Failed to generate persons model, error:%@
 Invalid configuration: isExternalLibrary is NO but self.dataSource does not conform to HMIHomePersonManagerDataSource protocol!
 Successfully updated persons model
+B16@?0@"HMIPerson"8
+WARNING: Model has %lu named persons -- limit supported is %d
 Error fetching faces to subsample for %@: %@
 Fetched 0 training faces for %@, this would remove all face crops! Skipping face crop removal.
+Expected subsampling to leave no more than %d, but got %lu faces selected. Enforcing limit.
 Subsampling will retain %lu from a total of %lu faces for %@
 @"NSUUID"16@?0@"VNFaceObservation"8
 @"NSUUID"16@?0@"NSUUID"8
@@ -2379,7 +2407,7 @@ Started writing at %@
 didOutputSegmentData segmentType: %ld
 B16@?0@"AVAssetSegmentTrackReport"8
 HMICMSampleBufferIsAudio(sbuf)
-Trying to recover by adjusting trim duration from %@ to: %@
+Trying to recover by adjusting trim duration from %@ to the minimum trim duration: %@
 Asset writer has failed fatally, ignoring %@
 Failed to start asset writer.
 Underlying asset writer has failed.
@@ -2388,6 +2416,7 @@ Restarted asset writer.
 Dropped  %@ because an input for the media type was not found.
 Dropped  %@ because asset writer is waiting for a sync sample.
 Dropped  %@ because of input error %@
+Couldn't append sample buffer because, exception %@
 Dropped  %@ because an input %@ is not ready for more media data.
 Asset writer has failed fatally, ignoring flush.
 Finished waiting for flushSegment, assetWriter.status: %ld, assetWriter.error: %@
@@ -2426,7 +2455,6 @@ Failed to update persons model, error:%@, retrying...
 Failed to update persons model, error:%@
 Submitted persons model update task, taskID:%u, retryOnError:%@
 update.persons.model.operation
-origin
 T{CGPoint=dd},R,V_origin
 target
 T{CGPoint=dd},R
@@ -2701,7 +2729,6 @@ icvDecodeFormat
 fmt_pairs != 0 && max_len > 0
 Invalid data type specification
 Too long data type specification
-(align & (align-1)) == 0 && size < INT_MAX
 %.8e
 -.Inf
 .Inf
@@ -2714,8 +2741,6 @@ The key is too long
 Key must start with a letter or _
 Key names may only contain alphanumeric characters [a-zA-Z0-9], '-', '_' and ' '
 icvReleaseSeq
-flags
-count
 Some of essential sequence attributes are absent
 icvReadSeq
 The sequence flags are invalid
@@ -2727,9 +2752,11 @@ header_dt
 header_user_data
 One of "header_dt" and "header_user_data" is there, while the other is not
 rect
+origin
 Only one of "header_user_data", "rect" and "origin" tags may occur
+width
+height
 color
-data
 The image data is not found in file storage
 The number of stored elements does not match to "count"
 Too complex format for the matrix
@@ -2742,7 +2769,6 @@ icvWriteSeqTree
 CV_IS_SEQ( seq )
 sequences
 icvWriteSeq
-level
 The size of element calculated from "dt" and the elem_size do not match
 icvGetFormat
 Size of sequence element (elem_size) is inconsistent with seq->flags
@@ -2864,10 +2890,11 @@ prevPyr[level * lvlStep1].type() == nextPyr[level * lvlStep2].type()
 depth == CV_8U
 calcSharrDeriv
 cvAlign
-/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.5/OpenCV/include/opencv2/core/internal.hpp
+/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.10/OpenCV/include/opencv2/core/internal.hpp
+(align & (align-1)) == 0 && size < INT_MAX
 scn == 1
 convertAndUnrollScalar
-/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.5/OpenCV/src/core/arithm.cpp
+/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.10/OpenCV/src/core/arithm.cpp
 op == CMP_LT || op == CMP_LE || op == CMP_EQ || op == CMP_NE || op == CMP_GE || op == CMP_GT
 compare
 The operation is neither 'array op array' (where arrays have the same size and the same type), nor 'array op scalar', nor 'scalar op array'
@@ -3092,11 +3119,12 @@ Unknown %s code %d
 status
 module != 0 && module->name != 0 && module->version != 0
 cvRegisterModule
-/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.5/OpenCV/src/core/system.cpp
+/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.10/OpenCV/src/core/system.cpp
 cxcore
 2.4.13.6
+allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size
 unknown function
-/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.5/OpenCV/include/opencv2/dynamicuda/dynamicuda.hpp
+/Library/Caches/com.apple.xbs/Sources/HomeAI_Sim/HomeAI-141.2.10/OpenCV/include/opencv2/dynamicuda/dynamicuda.hpp
 copy
 copyWithMask
 convert
@@ -3941,8 +3969,11 @@ dataScalerOutputName
 svmInputName
 svmOutputName
 dictionaryValue
-defaultModelPath
-defaultDataScalerPath
+modelPathForResource:
+defaultRecognizabilityModelPath
+defaultRecognizabilityDataScalerPath
+defaultAestheticQualityModelPath
+defaultAestheticQualityDataScalerPath
 initWithModelPath:dataScalerPath:error:
 predict:output:error:
 _scalerModel
@@ -4182,11 +4213,14 @@ analysisSubmissionTime
 firstObject
 dimensions
 initWithDimensions:codecType:realTime:error:
+maxVideoEncoderFrameRate
+setExpectedFrameRate:
+setAverageBitRate:
+setDataRateLimit:
 initWithVideoFormat:audioFormat:
 firstSequenceNumber
 setNextSequenceNumber:
 setAllowRecovery:
-maxVideoEncoderFrameRate
 initWithFrameRate:
 encoder
 retimer
@@ -4233,7 +4267,7 @@ shouldSkipAnalysis
 shouldFailAnalysis
 loadAttributes
 startAnalysis
-startEncodingSessionForAsset:error:
+startEncodingSessionForAsset:expectedFrameRate:error:
 startPosterFrameGeneratorWithInterval:frameHeight:
 startAssetReaderWithWorkQueue:logIdentifier:
 startFrameSelector
@@ -4457,12 +4491,12 @@ faceObservationWithRequestRevision:unalignedBoundingBox:alignedBoundingBox:
 faceprinter
 createFacePixelBufferForFaceDetection:pixelBuffer:roll:error:
 computeJunkScoreForPixelBuffer:
-qualityPredictionFromSVMUsingDetectorConfidence:laplacian:yaw:boxSize:error:
+qualityPredictionFromSVMUsingFaceQualityFilterSVM:detectorConfidence:laplacian:yaw:boxSize:error:
 createFaceprintForFacePixelBuffer:fastMode:error:
+predictPersonFromFaceObservation:homeUUID:error:
 faceAttributes
 facemaskCategory
 label
-predictPersonFromFaceObservation:homeUUID:error:
 descriptorData
 currentModelUUID
 floatValue
@@ -4473,9 +4507,11 @@ initWithUUID:sourceUUID:sessionEntityUUID:faceCrop:faceprint:confidence:familiar
 initWithFaceCrop:faceprint:classifications:predictedLinkedEntityUUIDs:faceQualityScore:sessionEntityAssignment:
 classifyFaceEvent:pixelBuffer:fastMode:homeUUID:error:
 initWithError:
-faceQualityFilter
+faceRecognizabilityFilter
+faceAestheticQualityFilter
 _faceprinter
-_faceQualityFilter
+_faceRecognizabilityFilter
+_faceAestheticQualityFilter
 _classificationThresholdKnown
 _classificationThresholdUnknown
 setFrameAnalyzer:
@@ -4696,7 +4732,7 @@ _unmatchedSampleFrames
 _targetInterval
 _sampleInterval
 existingAtCurrentVersion
-unionSet:
+isSentinelFaceprint
 createdAtCurrentVersion
 initWithExistingAtCurrentVersion:createdAtCurrentVersion:existingAtOtherVersions:
 allAtCurrentVersion
@@ -4714,7 +4750,9 @@ setRevision:
 performRequests:error:
 setFaceprint:
 createFacePixelBufferFromFaceCrop:error:
+unionSet:
 generateFaceprintForFaceCrop:error:
+sentinelFaceprintWithUUID:modelUUID:faceCropUUID:
 updatedFaceprintsForFaceCrops:withExistingFaceprints:error:
 initWithData:options:
 detectFacesInPixelBuffer:error:
@@ -5089,17 +5127,23 @@ _currentFrameId
 _resourceLoaderWorkQueue
 _initSessionWithError:
 setMaxKeyFrameIntervalDuration:
-setAverageBitRate:
 _invalidateSession
 _encodeSampleBuffer:attemptRecovery:
+setExpectedDuration:
 maxKeyFrameIntervalDuration
+dataRateLimit
+expectedFrameRate
+expectedDuration
 numberOfDroppedFrames
 _forceKeyFrameOnNextEncodedFrame
 _codecType
 _realTime
 _maxKeyFrameIntervalDuration
 _averageBitRate
+_expectedFrameRate
+_expectedDuration
 _numberOfDroppedFrames
+_dataRateLimit
 encoderDidEncodeSampleBuffer
 encoderDidFailWithError
 setEncoderDidEncodeSampleBuffer:
@@ -5141,6 +5185,7 @@ _linkedEntityUUID
 initWithPersonsModels:userDefinedPersonLinks:error:
 personsModelsByHome
 setMaximumIdentities:
+setMaximumTrainingFaceprintsPerIdentity:
 initWithConfiguration:
 userDefinedPersonLinksByHome
 isEqualToDictionary:
@@ -5179,6 +5224,8 @@ loadPersonsModelFromURL:externalLibrary:homeUUID:error:
 loadUserDefinedPersonLinksForHomeUUID:error:
 URLByDeletingPathExtension
 pathExtension
+attributesOfItemAtPath:error:
+fileSize
 loadModelAtPath:error:
 personToEquivalencyCell
 buildPersonsModelForHomeUUID:sourceUUID:externalLibrary:faceObservationsByPerson:error:
@@ -5391,6 +5438,7 @@ _face
 flattenTrainingResult:
 encryptedDataWithPublicKey:inPlaceDataFloatNumbers:count:error:
 packageTrainingResult:privatize:maxNorm:normBinCount:encryptionKey:error:
+isProductTypeB520
 preferenceCache
 preferenceOverridesInternal
 addEntriesFromDictionary:
@@ -5442,17 +5490,17 @@ _numberOfUnknownFaceprintsAssociated
 _faceprintingDuration
 _clusteringDuration
 _totalDuration
-_stageZero_fetchFaceCrops
-_stageOne_fetchFaceprints:
-_stageTwo_generateFaceprintsForFaceCrops:existingFaceprints:
-_stageThree_clusterFaceprints:
-personsModelManager
-_stageFour_addPersons:clusterMapping:faceprints:
-_stageFive_associateFaceCropsWithClusterMapping:faceprints:
-_stageSix_expireUnnamedPersons
+_stageZero_expireUnnamedPersons
 isCancelled
+personsModelManager
 hmf_isEqualToUUID:
 personCreatedDateFromFaceCrops:
+_stageOne_fetchFaceCrops
+_stageTwo_fetchFaceprints:
+_stageThree_generateFaceprintsForFaceCrops:existingFaceprints:
+_stageFour_clusterFaceprints:
+_stageFive_addPersons:clusterMapping:faceprints:
+_stageSix_associateFaceCropsWithClusterMapping:faceprints:
 startTime
 _clusterer
 _faceClassifier
@@ -5460,6 +5508,7 @@ _personsModelManager
 _summary
 _startTime
 waitUntilFinished
+limitEnforcedSubsetFromPersons:
 initWithDataSource:faceCropUUIDs:
 faceprints
 initWithDataSource:faceprints:
@@ -5588,7 +5637,7 @@ allowRecovery
 isReadyForMoreMediaData
 _removeTrimDurationAttachmentsFromAudioSampleBuffer:
 allowRecoveryFromInsufficientAudioTrim
-_ensureAudioSampleBufferHasSufficientPrimingTrim:
+_ensureFirstAudioSampleBufferHasSufficientPrimingTrim:
 appendSampleBuffer:
 flushSegment
 assetWriter:didFailWithError:
@@ -5889,7 +5938,7 @@ v72@0:8@16@24{?=qiIq}32{CGSize=dd}56
 v32@0:8@"HMICameraVideoFrameSelector"16@"HMICameraVideoFrame"24
 v72@0:8@"HMICameraVideoFrameSelector"16@"NSArray"24{?=qiIq}32{CGSize=dd}56
 @40@0:8@16@24d32
-B32@0:8@16^@24
+B40@0:8@16q24^@32
 B32@0:8Q16Q24
 @"HMICameraVideoResourceAttributes"
 @"HMIVideoEncoder"
@@ -5932,7 +5981,7 @@ r^f16@0:8
 @52@0:8@16^{__CVBuffer=}24B32@36^@44
 @"HMIVideoAnalyzerEventFace"52@0:8@"HMIVideoAnalyzerEventFace"16^{__CVBuffer=}24B32@"NSUUID"36^@44
 @24@0:8^@16
-@56@0:8d16d24d32d40^@48
+@64@0:8@16d24d32d40d48^@56
 @"HMIFaceprinter"
 @"HMIFaceQualityFilterSVM"
 B24@0:8^@16
@@ -5955,6 +6004,7 @@ B32@0:8^{opaqueCMSampleBuffer=}16@24
 v40@0:8@"HMIVideoFrameAnalyzer"16@"HMIVideoFrameAnalyzerResult"24@"NSError"32
 @64@0:8@16{?=qiIq}24Q48Q56
 @48@0:8{?=qiIq}16Q40
+B32@0:8@16^@24
 @"HMICameraVideoPosterFrameGeneratorInput"
 {CGRect={CGPoint=dd}{CGSize=dd}}24@0:8@16
 @72@0:8@16@24@32{CGRect={CGPoint=dd}{CGSize=dd}}40
@@ -6053,9 +6103,12 @@ Q24@0:8@16
 B32@0:8^@16^@24
 @40@0:8{?=ii}16I24B28^@32
 B28@0:8^{opaqueCMSampleBuffer=}16B24
+v32@0:8{HMIVideoEncoderDataRate=qq}16
+{HMIVideoEncoderDataRate=qq}16@0:8
 ^{OpaqueVTCompressionSession=}
 {?="width"i"height"i}
 @"<HMIVideoEncoderDelegate>"
+{HMIVideoEncoderDataRate="bytes"q"seconds"q}
 v24@0:8@?<v@?@"HMIHomePersonManagerSettings"@"NSError">16
 v40@0:8@"NSSet"16@"NSUUID"24@?<v@?@"NSError">32
 @"HMHomePersonManager"

@@ -745,12 +745,9 @@ __swift5_proto
 _pSg
 _pSg
 So8NSStringC
-ySo6NSViewCG
-ySbG
-ySo5NSURLCSgG
 $ss9OptionSetP
-$sSY
 $ss10SetAlgebraP
+$sSY
 $ss25ExpressibleByArrayLiteralP
 $ss21_ObjectiveCBridgeableP
 _yptG
@@ -763,8 +760,11 @@ So25NSMutableAttributedStringC
 SiSg
 SSSg
 SDyS2SGSg
+ySo6NSViewCG
 ySSypG
 SS_ypt
+ySbG
+ySo5NSURLCSgG
 So5NSURLCSg
 SaySbG
 _pSg

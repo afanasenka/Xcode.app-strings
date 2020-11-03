@@ -1613,7 +1613,7 @@ DVTPortal.DeveloperAPIBundleIDCapability
 _TtC9DVTPortal30DeveloperAPIBundleIDCapability
 capability
 parentBundleID
-Swift/x86_64-apple-macos.swiftinterface
+Swift/NativeDictionary.swift
 Fatal error
 Duplicate values for key: '
 There is a problem with the request entity
@@ -2922,6 +2922,7 @@ SSSg
 SDySS
 SDySS
 ySSG
+ySay
 So16DVTPortalProgramC
 So15DVTPortalDevice_p_So0A4TeamCt
 SS27portalDeviceClassIdentifier_SS10deviceNamet
@@ -2930,8 +2931,12 @@ GSgz_Xx
 So15DVTDispatchLockC
 ShySSG
 10capability_
+10attributestG
+10capability_
 10attributest
+y9DVTPortal28DeveloperAPIBundleIDProtocol_pG
 9DVTPortal28DeveloperAPIBundleIDProtocol_p
+ySo35DVTPortalQualifiableProfileProtocol_pG
 So35DVTPortalQualifiableProfileProtocol_p
 So20DVTCodeSignatureHashC
 $s9DVTPortal26DeveloperAPIRemoteSignableP
@@ -2965,12 +2970,7 @@ SS4name_t
 So20DVTPortalProfileTypeC
 So13DVTPortalTeamC_SaySo0A15CertificateTypeCGt
 So22DVTProvisioningProfileC
-10capability_
-10attributestG
-y9DVTPortal28DeveloperAPIBundleIDProtocol_pG
 ySo24DVTPortalCertificateTypeCG
-ySo35DVTPortalQualifiableProfileProtocol_pG
-ySay
 So24DVTSigningCertificateCSRCSg
 So24DVTPortalCertificateTypeC
 ySo24DVTPortalCertificateTypeCG

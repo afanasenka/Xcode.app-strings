@@ -205,6 +205,8 @@
 <true/>
 <key>com.apple.locationd.effective_bundle</key>
 <true/>
+<key>com.apple.locationd.motion_alarms</key>
+<true/>
 <key>com.apple.locationd.place_inference</key>
 <true/>
 <key>com.apple.locationd.prompt_behavior</key>

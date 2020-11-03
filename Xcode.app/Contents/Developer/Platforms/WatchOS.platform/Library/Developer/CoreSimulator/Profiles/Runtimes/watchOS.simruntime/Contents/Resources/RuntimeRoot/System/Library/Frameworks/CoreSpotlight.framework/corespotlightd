@@ -1,5 +1,4 @@
-@(#)PROGRAM:corespotlightd  PROJECT:CoreSpotlight-2146.1
-33333
+@(#)PROGRAM:corespotlightd  PROJECT:CoreSpotlight-2148
 init
 sharedInstanceWithDelegate:
 setDelegate:memoryStatusFlags:
@@ -40,7 +39,7 @@ deviceFirstUnlockedInSB
 deviceUnlocked
 indexingEnabled
 setupHasComplete
-blacklistCheck:withOptions:
+blocklistCheck:withOptions:
 updateApplicationsWithCompletion:
 taskForTopHitQueryWithQueryString:queryContext:eventHandler:resultsHandler:completionHandler:
 disabledBundleSet

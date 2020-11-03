@@ -167,13 +167,13 @@ v20@0:8B16
 <key>CFBundleInfoDictionaryVersion</key>
 <string>6.0</string>
 <key>CFBundleShortVersionString</key>
-<string>950</string>
+<string>961</string>
 <key>CFBundleSupportedPlatforms</key>
 <array>
 <string>AppleTVSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>950</string>
+<string>961</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
@@ -183,7 +183,7 @@ v20@0:8B16
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18K35x</string>
+<string>18K5047c</string>
 <key>DTSDKName</key>
 <string>appletvsimulator14.2.internal</string>
 <key>DTXcode</key>

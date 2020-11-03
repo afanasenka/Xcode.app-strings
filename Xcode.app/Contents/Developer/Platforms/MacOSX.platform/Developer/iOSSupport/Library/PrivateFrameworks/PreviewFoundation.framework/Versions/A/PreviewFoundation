@@ -1,5 +1,4 @@
-@(#)PROGRAM:PreviewFoundation  PROJECT:Ultraviolet-17517.1
-ffffF
+@(#)PROGRAM:PreviewFoundation  PROJECT:Ultraviolet-17521
 PreviewFoundation
 PredicateProtocol
 Value Proof
@@ -532,20 +531,20 @@ Property list contained invalid value for key "
 Property list missing value for required key "
 Property list: 
 key value 
-/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/UITestingAgent_macCatalyst/UITestingAgent-17517.1/Shared/PropertyList.swift
+/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/UITestingAgent_macCatalyst/UITestingAgent-17521/Shared/PropertyList.swift
 confidentlyMerging(_:)
-Swift/x86_64-apple-ios-macabi.swiftinterface
+Swift/NativeDictionary.swift
 Duplicate values for key: '
 executor
 We went through all the lines but couldn't find a diff, this sounds like a bug somewhere
 Intersection of content the same, but different number of lines (currently 
 Content first diffs on line 
-/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/UITestingAgent_macCatalyst/UITestingAgent-17517.1/Shared/SynchronousAccessProviding.swift
+/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/UITestingAgent_macCatalyst/UITestingAgent-17521/Shared/SynchronousAccessProviding.swift
 syncSetValue(at:to:)
 observers
 handlingWillChange
 handlingDidChange
-/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/UITestingAgent_macCatalyst/UITestingAgent-17517.1/Shared/ChunkStack.swift
+/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/UITestingAgent_macCatalyst/UITestingAgent-17521/Shared/ChunkStack.swift
 push(_:)
 PreviewFoundation/EnglishName.swift
 _*(?:[A-Za-z]|_[A-Z]+)(?:[a-hj-z0-9]|i
@@ -700,8 +699,8 @@ UVBSMessage payload could not be deserialized: %@
 UVBSMessage payload was not a [String: Any] dictionary
 $s17PreviewFoundation17PredicateProtocolP
 $ss25ExpressibleByArrayLiteralP
-$ss10SetAlgebraP
 $sSY
+$ss10SetAlgebraP
 $ss9OptionSetP
 yx_G
 5Value
@@ -818,9 +817,14 @@ $sSt
 8IteratorST_7ElementStQZ
 $s17PreviewFoundation11KeyValueMapP
 SaySSG
+ySS_So8NSObjectCtG
 SS_So8NSObjectCt
+ySDySSypGG
+ySay
+ySDySSypGycGGAE___GG
 ySay
 ySDySSypGycGGAD___G
+ySDySSypGycGG
 ySDySSypGycG
 ySS_SStG
 SaySsG
@@ -835,6 +839,11 @@ yxGG
 $sSk
 $sSK
 $s17PreviewFoundation22EnglishNameConvertibleP
+ySiG
+ySaySDySSypGycGGcG
+ySDySSypGycG
+ySDySSypGycGcG
+ySsG
 yxGG
 yxGG
 yxGG
@@ -1045,16 +1054,6 @@ Qy_GIegn_
 5Proof
 SaySDySSypGG
 5Value
-ySS_So8NSObjectCtG
-ySiG
-ySDySSypGG
-ySaySDySSypGycGGcG
-ySDySSypGycG
-ySay
-ySDySSypGycGGAE___GG
-ySDySSypGycGcG
-ySDySSypGycGG
-ySsG
 $ss12CaseIterableP
 yxGG
 ShyxG
@@ -1072,13 +1071,13 @@ yx__G
 SDyS2iG
 $s17PreviewFoundation21AnyCommandLinePrinterP
 yypG
-yS2iG
-ySSSo8NSObjectCG
 qd__
 yxGIgl_Ieggy_
 yxGytIglr_Iegy_
 yxGIgl_Iegy_
 SDySS
+yS2iG
+ySSSo8NSObjectCG
 _pIegyo_
 Iegyo_
 y5Value
@@ -1113,8 +1112,8 @@ origin
 size
 rawValue
 ArrayLiteralElement
-Element
 RawValue
+Element
 value
 implementation
 Value

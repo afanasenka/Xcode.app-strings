@@ -813,7 +813,7 @@ HealthExperienceUI/UIViewController+DataTypeDetailDefaultDataSources.swift
 No health store to make highlights data source
 Options button text in Data Type room
 [%{public}@]: profile information for profile identifier %@ does not exist)
-[%{public}@]: profile information updated. Updating data sources with activityMoveMode: %@, hasDataInOtherActivityMoveMode: %@
+[%{public}@]: profile information updated. Updating data sources with activityMoveModeState: %@
 Unable to decode cached user data because there isn't anything stored.
 Unable to decode cached user data: %@
 [%{public}@] App data sources did not get fetched
@@ -4636,6 +4636,7 @@ setShadowPath:
 createHKUnitPreferenceController
 keyPathsForValuesAffectingValueForKey:
 relevantStartDateForSectionName
+notPredicateWithSubpredicate:
 doneButtonTapped
 segmentedControlChanged
 selectedSegmentIndex

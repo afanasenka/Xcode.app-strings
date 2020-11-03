@@ -4761,10 +4761,17 @@ file://
 Could not determine the base URL for loading.
 Referrering script's url is not valid: 
 Could not form valid URL from identifier and base. Tried:
+/System/Volumes/Data/SWE/iOS/BuildRoots/BuildRoot877/Applications/Xcode.app/Contents/Developer/Platforms/WatchSimulator.platform/Developer/SDKs/WatchSimulator7.1.Internal.sdk/usr/local/include/wtf/text/StringConcatenate.h
+static unsigned int WTF::StringTypeAdapter<const unsigned char *, void>::computeLength(const LChar *)
 Property did get replaced
+numberOfSlotsForMaxOffset doesn't match totalSize
+inlineOverflowAccordingToTotalSize doesn't match numberOfOutOfLineSlotsForMaxOffset
+Detected offset inconsistency: 
+m_inlineCapacity = 
+propertyTable = 
+totalSize = 
 /System/Volumes/Data/SWE/iOS/BuildRoots/BuildRoot877/Applications/Xcode.app/Contents/Developer/Platforms/WatchSimulator.platform/Developer/SDKs/WatchSimulator7.1.Internal.sdk/usr/local/include/wtf/ConcurrentPtrHashSet.h
 bool WTF::ConcurrentPtrHashSet::containsImpl(void *) const
-void *JSC::IsoSubspace::allocateNonVirtual(JSC::VM &, size_t, JSC::GCDeferralContext *, JSC::AllocationFailureMode)
 Cache path `%@` is not a local file
 Cache path `%@` already exists and is not a file
 Cache path `%@` does not contain in a valid directory
@@ -4772,6 +4779,7 @@ Cache directory `%@` is not a directory or does not exist
 Cache directory `%@` is not a data vault
 JSScriptErrorDomain
 message
+length
 v16@?0^{objc_method=}8
 bool WTF::ConcurrentPtrHashSet::addImpl(void *)
 First argument of resolution callback is not a JSScript
@@ -6449,7 +6457,6 @@ iterationKindValue
 iterationKindEntries
 MAX_ARRAY_INDEX
 MAX_STRING_LENGTH
-MAX_SAFE_INTEGER
 ModuleFetch
 ModuleTranslate
 ModuleInstantiate
@@ -6508,8 +6515,8 @@ iteratedObject
 iteratedString
 promise
 promiseOrCapability
-Number
 Array
+ArrayBuffer
 RegExp
 trunc
 create
@@ -7331,7 +7338,7 @@ bool JSC::PropertyCondition::isWatchableWhenValid(JSC::Structure *, JSC::Propert
 Presence
 Absence
 Equivalence
-CustomFunctionEquivalence
+HasStaticProperty
 HasPrototype
 void WTF::printInternal(WTF::PrintStream &, JSC::PropertyCondition::Kind)
 viaProxy = 
@@ -7375,7 +7382,6 @@ WeakSetObject
 ProxyObject
 DerivedArray
 DataView
-String
 StringIdent
 StringVar
 Symbol
@@ -7385,7 +7391,6 @@ BytecodeDouble
 AnyIntAsDouble
 NonIntAsDouble
 DoublePureNaN
-BigInt
 DoubleImpureNaN
 Bool
 Other
@@ -11882,6 +11887,7 @@ lastIndexOf
 push cannot produce an array of length larger than (2 ** 53) - 1
 Splice cannot produce an array of length larger than (2 ** 53) - 1
 unshift cannot produce an array of length larger than (2 ** 53) - 1
+AsyncFunction
 AsyncGeneratorFunction
 Species construction did not get a valid constructor
 ./runtime/JSArrayInlines.h
@@ -11919,27 +11925,15 @@ Could not write the full cache file to disk. Only wrote
  of the expected 
 uid:(
 ,cell:(
+./runtime/CachedSpecialPropertyAdaptiveStructureWatchpoint.cpp
+JSC::CachedSpecialPropertyAdaptiveStructureWatchpoint::CachedSpecialPropertyAdaptiveStructureWatchpoint(const JSC::ObjectPropertyCondition &, JSC::StructureRareData *)
+void JSC::CachedSpecialPropertyAdaptiveStructureWatchpoint::install(JSC::VM &)
+Visiting of empty Variant
 ./runtime/CachedTypes.cpp
 CompactVariableMap::Handle JSC::Decoder::handleForEnvironment(JSC::CompactVariableEnvironment *) const
 void JSC::Decoder::setHandleForEnvironment(JSC::CompactVariableEnvironment *, const CompactVariableMap::Handle &)
 bool JSC::GenericCacheEntry::decode(JSC::Decoder &, std::pair<SourceCodeKey, UnlinkedCodeBlock *> &) const
 bool JSC::GenericCacheEntry::isStillValid(JSC::Decoder &, const JSC::SourceCodeKey &, JSC::CachedCodeBlockTag) const
-auto JSC::CachedUniquedStringImplBase<WTF::UniquedStringImpl>::decode(JSC::Decoder &)::(anonymous class)::operator()(const auto *) const [T = WTF::UniquedStringImpl]
-void JSC::Encoder::Page::alignEnd()
-RefPtr<JSC::CachedBytecode> JSC::Encoder::release(JSC::BytecodeCacheError &)
-ptrdiff_t JSC::Encoder::offsetOf(const void *)
-JSC::Encoder::Allocation JSC::Encoder::malloc(unsigned int)
-void JSC::CachedJSValue::encode(JSC::Encoder &, const WriteBarrier<JSC::Unknown>)
-Visiting of empty Variant
-JSC::SourceProvider *JSC::CachedSourceProvider::decode(JSC::Decoder &) const
-[WebAssembly source]
-auto JSC::CachedUniquedStringImplBase<WTF::StringImpl>::decode(JSC::Decoder &)::(anonymous class)::operator()(const auto *) const [T = WTF::StringImpl]
-void JSC::CachedJSValue::decode(JSC::Decoder &, WriteBarrier<JSC::Unknown> &, const JSC::JSCell *) const
-JSC::ScopedArgumentsTable *JSC::CachedScopedArgumentsTable::decode(JSC::Decoder &) const
-const T *JSC::CachedPtr<JSC::CachedSymbolTableRareData, JSC::SymbolTable::SymbolTableRareData>::get() const [T = JSC::CachedSymbolTableRareData, Source = JSC::SymbolTable::SymbolTableRareData]
-JSC::JSBigInt *JSC::CachedBigInt::decode(JSC::Decoder &) const
-const T *JSC::CachedPtr<JSC::CachedVariableEnvironmentRareData, JSC::VariableEnvironment::RareData>::get() const [T = JSC::CachedVariableEnvironmentRareData, Source = JSC::VariableEnvironment::RareData]
-void JSC::CachedSourceProvider::encode(JSC::Encoder &, const JSC::SourceProvider &)
 ./runtime/CallData.cpp
 JSC::JSValue JSC::call(JSC::JSGlobalObject *, JSC::JSValue, const JSC::CallData &, JSC::JSValue, const JSC::ArgList &, NakedPtr<JSC::Exception> &)
 Arguments
@@ -12056,6 +12050,25 @@ usage
 weekday
 year
 #constructor
+auto JSC::CachedUniquedStringImplBase<WTF::UniquedStringImpl>::decode(JSC::Decoder &)::(anonymous class)::operator()(const auto *) const [T = WTF::UniquedStringImpl]
+void JSC::Encoder::Page::alignEnd()
+RefPtr<JSC::CachedBytecode> JSC::Encoder::release(JSC::BytecodeCacheError &)
+ptrdiff_t JSC::Encoder::offsetOf(const void *)
+JSC::Encoder::Allocation JSC::Encoder::malloc(unsigned int)
+void JSC::CachedJSValue::encode(JSC::Encoder &, const WriteBarrier<JSC::Unknown>)
+JSC::SourceProvider *JSC::CachedSourceProvider::decode(JSC::Decoder &) const
+[WebAssembly source]
+auto JSC::CachedUniquedStringImplBase<WTF::StringImpl>::decode(JSC::Decoder &)::(anonymous class)::operator()(const auto *) const [T = WTF::StringImpl]
+void JSC::CachedJSValue::decode(JSC::Decoder &, WriteBarrier<JSC::Unknown> &, const JSC::JSCell *) const
+JSC::ScopedArgumentsTable *JSC::CachedScopedArgumentsTable::decode(JSC::Decoder &) const
+const T *JSC::CachedPtr<JSC::CachedSymbolTableRareData, JSC::SymbolTable::SymbolTableRareData>::get() const [T = JSC::CachedSymbolTableRareData, Source = JSC::SymbolTable::SymbolTableRareData]
+JSC::JSBigInt *JSC::CachedBigInt::decode(JSC::Decoder &) const
+const T *JSC::CachedPtr<JSC::CachedVariableEnvironmentRareData, JSC::VariableEnvironment::RareData>::get() const [T = JSC::CachedVariableEnvironmentRareData, Source = JSC::VariableEnvironment::RareData]
+void JSC::CachedSourceProvider::encode(JSC::Encoder &, const JSC::SourceProvider &)
+auto JSC::ClonedArguments::createStructure(JSC::VM &, JSC::JSGlobalObject *, JSC::JSValue, JSC::IndexingType)::(anonymous class)::operator()(const JSC::GCSafeConcurrentJSLocker &, JSC::PropertyOffset, JSC::PropertyOffset) const
+./runtime/CodeCache.h
+std::enable_if_t<std::is_base_of<UnlinkedCodeBlock, UnlinkedCodeBlockType>::value && !std::is_same<UnlinkedCodeBlockType, UnlinkedEvalCodeBlock>::value, UnlinkedCodeBlockType *> JSC::CodeCacheMap::fetchFromDisk(JSC::VM &, const JSC::SourceCodeKey &) [UnlinkedCodeBlockType = JSC::UnlinkedProgramCodeBlock]
+std::enable_if_t<std::is_base_of<UnlinkedCodeBlock, UnlinkedCodeBlockType>::value && !std::is_same<UnlinkedCodeBlockType, UnlinkedEvalCodeBlock>::value, UnlinkedCodeBlockType *> JSC::CodeCacheMap::fetchFromDisk(JSC::VM &, const JSC::SourceCodeKey &) [UnlinkedCodeBlockType = JSC::UnlinkedModuleProgramCodeBlock]
 CommonSlowPaths
 ./runtime/CommonSlowPaths.cpp
 JSC::SlowPathReturnType JSC::slow_path_has_structure_property(JSC::CallFrame *, const JSC::Instruction *)
@@ -12064,15 +12077,6 @@ JSC::SlowPathReturnType JSC::slow_path_in_structure_property(JSC::CallFrame *, c
 LLInt log full.
 JSC::SlowPathReturnType JSC::slow_path_throw_static_error(JSC::CallFrame *, const JSC::Instruction *)
 JSC::SlowPathReturnType JSC::slow_path_new_array_with_spread(JSC::CallFrame *, const JSC::Instruction *)
-./runtime/JSString.h
-./runtime/GetPutInfo.h
-auto JSC::ClonedArguments::createStructure(JSC::VM &, JSC::JSGlobalObject *, JSC::JSValue, JSC::IndexingType)::(anonymous class)::operator()(const JSC::GCSafeConcurrentJSLocker &, JSC::PropertyOffset, JSC::PropertyOffset) const
-./runtime/CodeCache.h
-std::enable_if_t<std::is_base_of<UnlinkedCodeBlock, UnlinkedCodeBlockType>::value && !std::is_same<UnlinkedCodeBlockType, UnlinkedEvalCodeBlock>::value, UnlinkedCodeBlockType *> JSC::CodeCacheMap::fetchFromDisk(JSC::VM &, const JSC::SourceCodeKey &) [UnlinkedCodeBlockType = JSC::UnlinkedProgramCodeBlock]
-std::enable_if_t<std::is_base_of<UnlinkedCodeBlock, UnlinkedCodeBlockType>::value && !std::is_same<UnlinkedCodeBlockType, UnlinkedEvalCodeBlock>::value, UnlinkedCodeBlockType *> JSC::CodeCacheMap::fetchFromDisk(JSC::VM &, const JSC::SourceCodeKey &) [UnlinkedCodeBlockType = JSC::UnlinkedModuleProgramCodeBlock]
-JSC::SlowPathReturnType JSC::iterator_next_try_fast(JSC::CallFrame *, const JSC::Instruction *) [width = JSC::Narrow]
-JSC::SlowPathReturnType JSC::iterator_next_try_fast(JSC::CallFrame *, const JSC::Instruction *) [width = JSC::Wide16]
-JSC::SlowPathReturnType JSC::iterator_next_try_fast(JSC::CallFrame *, const JSC::Instruction *) [width = JSC::Wide32]
 CompilationFailed
 CompilationInvalidated
 CompilationSuccessful
@@ -12107,7 +12111,8 @@ groupCollapsed
 groupEnd
 recordEnd
 screenshot
-SourceID: 
+./runtime/JSString.h
+./runtime/GetPutInfo.h
 Failed to open file JSC Config file '%s'.
 jscOptions
 logFile
@@ -12145,8 +12150,10 @@ INFO
 WARN
 ERROR
 CONSOLE
-./runtime/ControlFlowProfiler.cpp
-JSC::BasicBlockRange JSC::findBasicBlockAtTextOffset(int, const Vector<JSC::BasicBlockRange> &)
+JSC::SlowPathReturnType JSC::iterator_next_try_fast(JSC::CallFrame *, const JSC::Instruction *) [width = JSC::Narrow]
+JSC::SlowPathReturnType JSC::iterator_next_try_fast(JSC::CallFrame *, const JSC::Instruction *) [width = JSC::Wide16]
+JSC::SlowPathReturnType JSC::iterator_next_try_fast(JSC::CallFrame *, const JSC::Instruction *) [width = JSC::Wide32]
+SourceID: 
 CustomGetterSetter
 DOMAttributeGetterSetter
  GMT
@@ -12159,6 +12166,8 @@ Invalid Date
 Date.prototype[Symbol.toPrimitive] expected |this| to be an object.
 Date.prototype[Symbol.toPrimitive] expected a first argument.
 toISOString is not a function
+./runtime/ControlFlowProfiler.cpp
+JSC::BasicBlockRange JSC::findBasicBlockAtTextOffset(int, const Vector<JSC::BasicBlockRange> &)
 toDateString
 toTimeString
 getTime
@@ -12204,6 +12213,8 @@ capturedArgumentInvalid
 capturedArgument
 StrictMode
 NotStrictMode
+./runtime/GenericArgumentsInlines.h
+void JSC::GenericArguments<JSC::DirectArguments>::initModifiedArgumentsDescriptor(JSC::JSGlobalObject *, unsigned int) [Type = JSC::DirectArguments]
 Not enough arguments
 calling 
  constructor without new is invalid
@@ -12212,8 +12223,6 @@ Syntax error
 Type error
 Out of memory
 Out of memory: 
-./runtime/GenericArgumentsInlines.h
-void JSC::GenericArguments<JSC::DirectArguments>::initModifiedArgumentsDescriptor(JSC::JSGlobalObject *, unsigned int) [Type = JSC::DirectArguments]
 ./runtime/ErrorHandlingScope.cpp
 JSC::ErrorHandlingScope::ErrorHandlingScope(JSC::VM &)
 JSC::ErrorHandlingScope::~ErrorHandlingScope()
@@ -12264,8 +12273,6 @@ virtual JSC::SpeculatedType JSC::FileBasedFuzzerAgent::getPredictionInternal(JSC
 [34m
  original: 
  generated: 
-register
-unregister
  (near '...
 ...')
  is not an Object. (evaluating '
@@ -12280,12 +12287,8 @@ a Symbol
 an instance of 
 object is not a function.
 First argument to FinalizationRegistry should be a function
-register requires an object as the target
-register expects the target object and the holdings parameter are not the same. Otherwise, the target can never be collected
-register requires an object as the unregistration token
-Called FinalizationRegistry function on non-object
-Called FinalizationRegistry function on a non-FinalizationRegistry object
-unregister requires an object is the unregistration token
+register
+unregister
 function *
 async function 
 async function*
@@ -12298,16 +12301,21 @@ JSC::FunctionCodeBlock *JSC::FunctionExecutable::baselineCodeBlockFor(JSC::CodeS
 <nogen>
 FunctionRareData
 AllocationProfileClearingWatchpoint fired.
-./runtime/FuzzerPredictions.cpp
-JSC::FuzzerPredictions::FuzzerPredictions(const char *)
+register requires an object as the target
+register expects the target object and the holdings parameter are not the same. Otherwise, the target can never be collected
+register requires an object as the unregistration token
+Called FinalizationRegistry function on non-object
+Called FinalizationRegistry function on a non-FinalizationRegistry object
+unregister requires an object is the unregistration token
 () {
     [native code]
 function* 
 async 
 async function* 
-WTF::String JSC::readFileIntoString(const char *)
-/Library/Caches/com.apple.xbs/Sources/JavaScriptCore_Sim/JavaScriptCore-7610.2.4.0.1/bytecode/ObjectAllocationProfileInlines.h
+/Library/Caches/com.apple.xbs/Sources/JavaScriptCore_Sim/JavaScriptCore-7610.2.8/bytecode/ObjectAllocationProfileInlines.h
 void JSC::ObjectAllocationProfileBase<JSC::ObjectAllocationProfileWithPrototype>::initializeProfile(JSC::VM &, JSC::JSGlobalObject *, JSC::JSCell *, JSC::JSObject *, unsigned int, JSC::JSFunction *, JSC::FunctionRareData *) [Derived = JSC::ObjectAllocationProfileWithPrototype]
+./runtime/FuzzerPredictions.cpp
+JSC::FuzzerPredictions::FuzzerPredictions(const char *)
 GeneratorFunction
 Generator
 GetterSetter
@@ -12316,8 +12324,7 @@ GlobalExecutable
 void JSC::HashMapImpl<JSC::HashMapBucket<JSC::HashMapBucketDataKeyValue> >::finishCreation(JSC::JSGlobalObject *, JSC::VM &, HashMapImpl<HashMapBucketType> *) [HashMapBucketType = JSC::HashMapBucket<JSC::HashMapBucketDataKeyValue>]
 void JSC::HashMapImpl<JSC::HashMapBucket<JSC::HashMapBucketDataKey> >::finishCreation(JSC::JSGlobalObject *, JSC::VM &, HashMapImpl<HashMapBucketType> *) [HashMapBucketType = JSC::HashMapBucket<JSC::HashMapBucketDataKey>]
 HashMapBucket
-PrivateSymbol.
-<null identifier>
+WTF::String JSC::readFileIntoString(const char *)
 ThrowIfNotFound
 DoNotThrowIfNotFound
 GlobalProperty
@@ -12343,6 +12350,8 @@ static bool JSC::GetterSetter::deleteProperty(JSC::JSCell *, JSC::JSGlobalObject
 static bool JSC::GetterSetter::getOwnPropertySlot(JSC::JSObject *, JSC::JSGlobalObject *, JSC::PropertyName, JSC::PropertySlot &)
 static bool JSC::GetterSetter::defineOwnProperty(JSC::JSObject *, JSC::JSGlobalObject *, JSC::PropertyName, const JSC::PropertyDescriptor &, bool)
 static bool JSC::GetterSetter::setPrototype(JSC::JSObject *, JSC::JSGlobalObject *, JSC::JSValue, bool)
+PrivateSymbol.
+<null identifier>
 |MayHaveIndexedAccessors
 Allocated masquerading object
 standard
@@ -12369,14 +12378,10 @@ sensitivity must be either "base", "accent", "case", or "variant"
 -u-co-search
 failed to initialize Collator
 Failed to compare strings.
-Intl.Collator
 supportedLocalesOf
-compare
-resolvedOptions
-Intl.Collator.prototype.compare called on value that's not an object initialized as a Collator
-Intl.Collator.prototype.resolvedOptions called on value that's not an object initialized as a Collator
 ./runtime/InitializeThreading.cpp
 auto JSC::initialize()::(anonymous class)::operator()() const
+Intl.Collator
 gregorian
 gregory
 islamic-civil
@@ -12442,6 +12447,10 @@ colcasefirst
 colnumeric
 numbers
 failed to initialize Locale
+compare
+resolvedOptions
+Intl.Collator.prototype.compare called on value that's not an object initialized as a Collator
+Intl.Collator.prototype.resolvedOptions called on value that's not an object initialized as a Collator
 yearName
 dayPeriod
 relatedYear
@@ -12451,7 +12460,6 @@ Intl.DateTimeFormat.prototype.formatToParts called on value that's not an object
 Intl.DateTimeFormat.prototype.resolvedOptions called on value that's not an object initialized as a DateTimeFormat
 Intl.DisplayNames.prototype.of called on value that's not an object initialized as a DisplayNames
 Intl.DisplayNames.prototype.resolvedOptions called on value that's not an object initialized as a DisplayNames
-First argument to Intl.Locale must be a string or an object
 Intl.Locale
 failed to initialize NumberFormat due to invalid locale
 decimal
@@ -12484,7 +12492,7 @@ type must be "cardinal" or "ordinal"
 failed to initialize PluralRules
 pluralCategories
 failed to select plural value
-Intl.PluralRules
+First argument to Intl.Locale must be a string or an object
 maximize
 minimize
 baseName
@@ -12513,9 +12521,7 @@ Intl.NumberFormat.prototype.resolvedOptions called on value that's not an object
 getCanonicalLocales
 ./runtime/IntlObject.cpp
 JSC::MatcherResult JSC::lookupMatcher(JSC::JSGlobalObject *, const HashSet<WTF::String> &, const Vector<WTF::String> &)
-select
-Intl.PluralRules.prototype.select called on value that's not an object initialized as a PluralRules
-Intl.PluralRules.prototype.resolvedOptions called on value that's not an object initialized as a PluralRules
+Intl.PluralRules
 failed to initialize RelativeTimeFormat due to invalid locale
 style must be either "long", "short", or "narrow"
 always
@@ -12693,6 +12699,9 @@ JSC::JSValue JSC::JSArray::pop(JSC::JSGlobalObject *)
 bool JSC::JSArray::shiftCountWithArrayStorage(JSC::VM &, unsigned int, unsigned int, JSC::ArrayStorage *)
 bool JSC::JSArray::shiftCountWithAnyIndexingType(JSC::JSGlobalObject *, unsigned int &, unsigned int)
 bool JSC::JSArray::unshiftCountWithArrayStorage(JSC::JSGlobalObject *, unsigned int, unsigned int, JSC::ArrayStorage *)
+select
+Intl.PluralRules.prototype.select called on value that's not an object initialized as a PluralRules
+Intl.PluralRules.prototype.resolvedOptions called on value that's not an object initialized as a PluralRules
 week
 quarter
 Intl.RelativeTimeFormat.prototype.format called on value that's not an object initialized as a RelativeTimeFormat
@@ -12701,8 +12710,6 @@ Intl.RelativeTimeFormat.prototype.resolvedOptions called on value that's not an 
 bool JSC::JSObject::hasSparseMap()
 JSC::JSArray *JSC::constructArray(JSC::ObjectInitializationScope &, JSC::Structure *, unsigned int)
 void JSC::JSObject::initializeIndex(JSC::ObjectInitializationScope &, unsigned int, JSC::JSValue, JSC::IndexingType)
-length
-ArrayBuffer
 ArrayBufferView
 ./runtime/JSArrayBufferView.cpp
 JSC::JSArrayBufferView::ConstructionContext::ConstructionContext(JSC::Structure *, uint32_t, void *)
@@ -12718,35 +12725,24 @@ WastefulTypedArray
 DataViewMode
 void WTF::printInternal(WTF::PrintStream &, JSC::TypedArrayMode)
 ArrayIterator
-AsyncFunction
 Allocating an async function
 JSAsyncGeneratorFunction
 Allocating an async generator
-0123456789abcdefghijklmnopqrstuvwxyz
-BigInt generated from this operation is too big
-Conversion from 'BigInt' to 'number' is not allowed.
-/Library/Caches/com.apple.xbs/Sources/JavaScriptCore_Sim/JavaScriptCore-7610.2.4.0.1/heap/IsoSubspaceInlines.h
 ./runtime/ArrayBufferSharingMode.h
 WTF::ASCIILiteral JSC::arrayBufferSharingModeName(JSC::ArrayBufferSharingMode)
-numberOfSlotsForMaxOffset doesn't match totalSize
-inlineOverflowAccordingToTotalSize doesn't match numberOfOutOfLineSlotsForMaxOffset
-Detected offset inconsistency: 
-m_inlineCapacity = 
-propertyTable = 
-totalSize = 
-/System/Volumes/Data/SWE/iOS/BuildRoots/BuildRoot877/Applications/Xcode.app/Contents/Developer/Platforms/WatchSimulator.platform/Developer/SDKs/WatchSimulator7.1.Internal.sdk/usr/local/include/wtf/text/StringConcatenate.h
-static unsigned int WTF::StringTypeAdapter<const unsigned char *, void>::computeLength(const LChar *)
 Receiver of slice must be an ArrayBuffer.
 Receiver should be an array buffer but was not an object
 Receiver should be an array buffer
 Receiver should not be a shared array buffer
 Receiver should be a shared array buffer
 ./runtime/ButterflyInlines.h
-/Library/Caches/com.apple.xbs/Sources/JavaScriptCore_Sim/JavaScriptCore-7610.2.4.0.1/heap/GCMemoryOperations.h
+/Library/Caches/com.apple.xbs/Sources/JavaScriptCore_Sim/JavaScriptCore-7610.2.8/heap/GCMemoryOperations.h
 void JSC::gcSafeMemcpy(T *, T *, size_t) [T = JSC::JSValue]
-Failed to parse String to BigInt
-Negative exponent is not allowed
-0 is an invalid divisor value.
+BigInt
+0123456789abcdefghijklmnopqrstuvwxyz
+BigInt generated from this operation is too big
+Conversion from 'BigInt' to 'number' is not allowed.
+Function
 ./runtime/JSBoundFunction.cpp
 JSC::EncodedJSValue JSC::boundThisNoArgsFunctionCall(JSC::JSGlobalObject *, JSC::CallFrame *)
 JSC::EncodedJSValue JSC::boundThisNoArgsFunctionConstruct(JSC::JSGlobalObject *, JSC::CallFrame *)
@@ -12756,6 +12752,7 @@ static void JSC::Config::enableRestrictedOptions()
 <JSValue()>
 Int32: %d
 Double: %lld, %lf
+String
  (rope)
  (atomic)
  (symbol)
@@ -12808,13 +12805,19 @@ static JSC::JSValue JSC::JSCell::getPrototype(JSC::JSObject *, JSC::JSGlobalObje
 void JSC::reportZappedCellAndCrash(JSC::Heap &, const JSC::JSCell *)
 get 
 set 
-Attempting to write to read-only typed array property.
-Attempting to define read-only typed array property.
+void *JSC::IsoSubspace::allocateNonVirtual(JSC::VM &, size_t, JSC::GCDeferralContext *, JSC::AllocationFailureMode)
+./runtime/IndexingHeader.h
+void JSC::StructureIDTable::validate(JSC::StructureID)
+Failed to parse String to BigInt
+Negative exponent is not allowed
+0 is an invalid divisor value.
 Lock not held!
 /System/Volumes/Data/SWE/iOS/BuildRoots/BuildRoot877/Applications/Xcode.app/Contents/Developer/Platforms/WatchSimulator.platform/Developer/SDKs/WatchSimulator7.1.Internal.sdk/usr/local/include/wtf/LockAlgorithmInlines.h
 static void WTF::LockAlgorithm<unsigned char, '@', '\x80', WTF::EmptyLockHooks<unsigned char> >::lockSlow(Atomic<LockType> &) [LockType = unsigned char, isHeldBit = '@', hasParkedBit = '\x80', Hooks = WTF::EmptyLockHooks<unsigned char>]
 Invalid value for lock: 
 static void WTF::LockAlgorithm<unsigned char, '@', '\x80', WTF::EmptyLockHooks<unsigned char> >::unlockSlow(Atomic<LockType> &, WTF::LockAlgorithm::Fairness) [LockType = unsigned char, isHeldBit = '@', hasParkedBit = '\x80', Hooks = WTF::EmptyLockHooks<unsigned char>]
+Attempting to write to read-only typed array property.
+Attempting to define read-only typed array property.
 DataView.prototype.buffer expects |this| to be a DataView object
 This should not be visible: please report a bug to bugs.webkit.org
 Allocating a function
@@ -12826,7 +12829,6 @@ static JSC::EncodedJSValue JSC::JSFunction::callerGetter(JSC::JSGlobalObject *, 
 Store to prototype property of a function
 wasm-stub
 Allocating a generator function
-JSGlobalLexicalEnvironment
 getInt8
 getUint8
 getInt16
@@ -12857,6 +12859,7 @@ void JSC::MarkedBlock::Handle::specializedSweep(JSC::FreeList *, MarkedBlock::Ha
 void JSC::MarkedBlock::Handle::specializedSweep(JSC::FreeList *, MarkedBlock::Handle::EmptyMode, MarkedBlock::Handle::SweepMode, MarkedBlock::Handle::SweepDestructionMode, MarkedBlock::Handle::ScribbleMode, MarkedBlock::Handle::NewlyAllocatedMode, MarkedBlock::Handle::MarksMode, const DestroyFunc &) [specialize = false, specializedEmptyMode = JSC::MarkedBlock::Handle::IsEmpty, specializedSweepMode = JSC::MarkedBlock::Handle::SweepOnly, specializedDestructionMode = JSC::MarkedBlock::Handle::BlockHasNoDestructors, specializedScribbleMode = JSC::MarkedBlock::Handle::DontScribble, specializedNewlyAllocatedMode = JSC::MarkedBlock::Handle::HasNewlyAllocated, specializedMarksMode = JSC::MarkedBlock::Handle::MarksStale, DestroyFunc = JSC::JSDestructibleObjectDestroyFunc]
 ./runtime/JSCast.h
 To JSC::jsSecureCast(JSC::VM &, From) [To = JSC::JSObject *, From = JSC::JSValue]
+JSGlobalLexicalEnvironment
 ./runtime/JSGlobalObject.cpp
 void JSC::JSGlobalObject::init(JSC::VM &)
 __enableSamplingProfiler
@@ -12882,7 +12885,6 @@ JSC::EncodedJSValue JSC::globalFuncImportModule(JSC::JSGlobalObject *, JSC::Call
 JSC::EncodedJSValue JSC::globalFuncPropertyIsEnumerable(JSC::JSGlobalObject *, JSC::CallFrame *)
 Immutable Butterfly
 InternalPromisePrototype
-JSLexicalEnvironment
 escape
 unescape
 decodeURI
@@ -12920,117 +12922,119 @@ static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::cal
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::set(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::setMayBeNull(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:612:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:617:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:622:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:627:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::GetterSetter>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::GetterSetter, Func = (lambda at ./runtime/JSGlobalObject.cpp:633:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:616:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:621:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:626:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:631:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::GetterSetter>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::GetterSetter, Func = (lambda at ./runtime/JSGlobalObject.cpp:637:9)]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::GetterSetter>::set(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::GetterSetter]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::GetterSetter>::setMayBeNull(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::GetterSetter]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewPrototype>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewPrototype, Func = (lambda at ./runtime/JSGlobalObject.cpp:663:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewPrototype>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewPrototype, Func = (lambda at ./runtime/JSGlobalObject.cpp:667:9)]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewPrototype>::set(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewPrototype]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewPrototype>::setMayBeNull(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewPrototype]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewConstructor>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewConstructor, Func = (lambda at ./runtime/JSGlobalObject.cpp:670:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewConstructor>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewConstructor, Func = (lambda at ./runtime/JSGlobalObject.cpp:674:9)]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewConstructor>::set(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewConstructor]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSTypedArrayViewConstructor>::setMayBeNull(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSTypedArrayViewConstructor]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/LazyClassStructureInlines.h:37:9)]
 ./runtime/JSGenericTypedArrayViewInlines.h
 DataView constructor requires at least one argument.
 Expected ArrayBuffer for the first argument.
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:697:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:701:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:705:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:709:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:716:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:723:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:713:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:720:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:727:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:733:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:731:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:737:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:770:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:741:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:774:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:778:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:782:9)]
 ./runtime/ProxyObject.h
 static JSC::Structure *JSC::ProxyObject::createStructure(JSC::VM &, JSC::JSGlobalObject *, JSC::JSValue, bool)
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:783:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:788:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:793:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:787:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:792:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:797:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:801:9)]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::set(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::setMayBeNull(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:967:9)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:971:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:975:9)]
 ./runtime/ObjectConstructor.h
 JSC::Structure *JSC::createDataPropertyDescriptorObjectStructure(JSC::VM &, JSC::JSGlobalObject &)
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:975:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:979:9)]
 JSC::Structure *JSC::createAccessorPropertyDescriptorObjectStructure(JSC::VM &, JSC::JSGlobalObject &)
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:980:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:985:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:991:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:997:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1003:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1009:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1015:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1021:9)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::IntlCollator>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::IntlCollator, Func = (lambda at ./runtime/JSGlobalObject.cpp:1027:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSFunction>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSFunction, Func = (lambda at ./runtime/JSGlobalObject.cpp:984:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:989:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:995:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1001:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1007:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1013:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1019:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1025:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::IntlCollator>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::IntlCollator, Func = (lambda at ./runtime/JSGlobalObject.cpp:1031:9)]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::IntlCollator>::set(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::IntlCollator]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::IntlCollator>::setMayBeNull(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::IntlCollator]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSModuleLoader>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSModuleLoader, Func = (lambda at ./runtime/JSGlobalObject.cpp:1041:9)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSModuleLoader>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSModuleLoader, Func = (lambda at ./runtime/JSGlobalObject.cpp:1045:9)]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSModuleLoader>::set(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSModuleLoader]
 void JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSModuleLoader>::setMayBeNull(JSC::VM &, const OwnerType *, ElementType *) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSModuleLoader]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1092:5)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1104:81)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1107:91)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1110:91)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1113:90)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1116:92)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1119:91)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1122:91)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1125:90)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1096:5)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1108:81)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1111:91)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1114:91)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1117:90)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1120:92)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1123:91)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1126:91)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1129:90)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1132:98)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1135:85)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1138:88)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1141:91)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1144:92)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1148:94)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1151:110)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1154:92)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1157:94)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1160:102)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1163:93)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1166:102)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1169:88)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1172:88)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1175:93)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1178:83)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1181:93)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1184:96)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1187:89)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1190:90)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1193:90)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1196:105)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1199:102)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1203:91)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1206:87)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1211:90)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1214:86)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1217:93)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1220:94)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1223:93)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1226:92)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1231:100)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1234:99)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1237:93)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1240:101)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1245:95)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1248:98)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1252:92)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1257:97)]
-static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1296:13)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1133:90)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1136:98)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1139:85)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1142:88)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1145:91)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1148:92)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1152:94)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1155:110)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1158:92)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1161:94)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1164:102)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1167:93)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1170:102)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1173:88)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1176:88)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1179:93)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1182:83)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1185:93)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1188:96)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1191:89)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1194:90)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1197:90)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1200:105)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1203:102)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1207:91)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1210:87)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1215:90)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1218:86)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1221:93)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1224:94)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1227:93)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1230:92)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1235:100)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1238:99)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1241:93)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1244:101)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1249:95)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1252:98)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1256:92)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::JSCell>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::JSCell, Func = (lambda at ./runtime/JSGlobalObject.cpp:1261:97)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1300:13)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1304:13)]
 static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1308:13)]
+static ElementType *JSC::LazyProperty<JSC::JSGlobalObject, JSC::Structure>::callFunc(const JSC::LazyProperty::Initializer &) [OwnerType = JSC::JSGlobalObject, ElementType = JSC::Structure, Func = (lambda at ./runtime/JSGlobalObject.cpp:1312:13)]
 void JSC::SymbolTable::add(const JSC::ConcurrentJSLocker &, WTF::UniquedStringImpl *, Entry &&) [Entry = JSC::SymbolTableEntry]
 have a bad time breaking internal function allocation
+JSLexicalEnvironment
 ./runtime/JSLock.cpp
 void JSC::JSLock::didAcquireLock()
 void JSC::JSLock::unlock(intptr_t)
@@ -13049,12 +13053,6 @@ Loader [evaluate]
 ModuleNamespaceObject
 ./runtime/JSModuleNamespaceObject.cpp
 bool JSC::JSModuleNamespaceObject::getOwnPropertySlotCommon(JSC::JSGlobalObject *, JSC::PropertyName, JSC::PropertySlot &)
-ModuleRecord
-Indirectly exported binding name '
-' cannot be resolved due to ambiguous multiple bindings.
-Indirectly exported binding name 'default' cannot be resolved by star export entries.
-Importing binding name '
-Importing binding name 'default' cannot be resolved by star export entries.
 Primitive gigacage disabled asynchronously
 moduleDeclarationInstantiation
 getModuleNamespaceObject
@@ -13063,6 +13061,12 @@ requestedModules
 resolveSync
 fetch
 Loader [link] 
+ModuleRecord
+Indirectly exported binding name '
+' cannot be resolved due to ambiguous multiple bindings.
+Indirectly exported binding name 'default' cannot be resolved by star export entries.
+Importing binding name '
+Importing binding name 'default' cannot be resolved by star export entries.
 JSON.stringify cannot serialize BigInt.
 JSON.stringify cannot serialize cyclic structures.
 ./runtime/JSObject.cpp
@@ -13096,7 +13100,6 @@ bool JSC::JSObject::putByIndexBeyondVectorLength(JSC::JSGlobalObject *, unsigned
 bool JSC::JSObject::putDirectIndexSlowOrBeyondVectorLength(JSC::JSGlobalObject *, unsigned int, JSC::JSValue, unsigned int, JSC::PutDirectIndexMode)
 static uint32_t JSC::JSObject::getEnumerableLength(JSC::JSGlobalObject *, JSC::JSObject *)
 JSPropertyNameEnumerator
-JSProxy
 UChar WTF::StringBuilder::operator[](unsigned int) const
 stringify
 bool JSC::JSObject::ensureLength(JSC::VM &, unsigned int)
@@ -13107,9 +13110,10 @@ static JSC::Butterfly *JSC::Butterfly::createOrGrowPropertyStorage(JSC::Butterfl
 void JSC::gcSafeMemcpy(T *, T *, size_t) [T = JSC::WriteBarrierBase<JSC::Unknown, DumbValueTraits<JSC::Unknown> >]
 JSON Parse error: 
 JSON Parse error: Unable to parse JSON string
-Symbol.toPrimitive returned an object
 Symbol.toPrimitive is not a function, undefined, or null
+Symbol.toPrimitive returned an object
 bool JSC::JSObject::getPropertySlot(JSC::JSGlobalObject *, JSC::PropertyName, JSC::PropertySlot &) [checkNullStructure = true]
+JSProxy
 ./runtime/JSRunLoopTimer.cpp
 void JSC::JSRunLoopTimer::Manager::registerVM(JSC::VM &)
 void JSC::JSRunLoopTimer::Manager::unregisterVM(JSC::VM &)
@@ -13386,14 +13390,15 @@ NarrowingNumberPredictionFuzzerAgent::getPrediction name:(
 NativeExecutable
 ./runtime/NativeExecutable.cpp
 JSC::CodeBlockHash JSC::NativeExecutable::hashFor(JSC::CodeSpecializationKind) const
-Function
 EPSILON
 MAX_VALUE
 MIN_VALUE
+MAX_SAFE_INTEGER
 MIN_SAFE_INTEGER
 NEGATIVE_INFINITY
 POSITIVE_INFINITY
 isInteger
+Number
 0123456789abcdefghijklmnopqrstuvwxyz
 Cannot set prototype of undefined or null
 Prototype value can only be an object or null
@@ -13425,7 +13430,6 @@ toLocaleString
 toFixed() argument must be between 0 and 100
 toExponential() argument must be between 0 and 100
 toPrecision() argument must be between 1 and 100
-void JSC::StructureIDTable::validate(JSC::StructureID)
 thisNumberValue called on incompatible 
 setPrototypeOf
 getOwnPropertyDescriptor
@@ -13446,16 +13450,12 @@ fromEntries
 ./runtime/JSObject.h
 ./runtime/JSObjectInlines.h
 void JSC::JSObject::setIndexQuicklyForTypedArray(unsigned int, JSC::JSValue)
-./runtime/IndexingHeader.h
 ./runtime/ObjectConstructor.cpp
 JSC::JSValue JSC::defineProperties(JSC::JSGlobalObject *, JSC::JSObject *, JSC::JSObject *)
 static JSC::JSImmutableButterfly *JSC::JSImmutableButterfly::create(JSC::VM &, JSC::IndexingType, unsigned int)
-/Library/Caches/com.apple.xbs/Sources/JavaScriptCore_Sim/JavaScriptCore-7610.2.4.0.1/runtime/JSArray.h
+/Library/Caches/com.apple.xbs/Sources/JavaScriptCore_Sim/JavaScriptCore-7610.2.8/runtime/JSArray.h
 ./runtime/ArgList.h
 void JSC::MarkedArgumentBuffer::appendWithAction(JSC::JSValue) [action = JSC::MarkedArgumentBuffer::CrashOnOverflow]
-./runtime/ObjectToStringAdaptiveStructureWatchpoint.cpp
-JSC::ObjectToStringAdaptiveStructureWatchpoint::ObjectToStringAdaptiveStructureWatchpoint(const JSC::ObjectPropertyCondition &, JSC::StructureRareData *)
-void JSC::ObjectToStringAdaptiveStructureWatchpoint::install(JSC::VM &)
 Invalid mix of BigInt and other type in addition.
 WARNING: failed to parse %s=%s
  %u:%u
@@ -14656,6 +14656,7 @@ createDOMJITGetterBaseJSObject
 createBuiltin
 createWasmStreamingParser
 createStaticCustomAccessor
+createStaticCustomValue
 createObjectDoingSideEffectPutWithoutCorrectSlotStatus
 createEmptyFunctionWithName
 getPrivateProperty
@@ -14694,6 +14695,7 @@ setUserPreferredLanguages
 icuVersion
 assertEnabled
 isMemoryLimited
+toUncacheableDictionary
  total ms: 
 JSC::FunctionOverridesAssertScope::FunctionOverridesAssertScope()
 JSC::FunctionOverridesAssertScope::~FunctionOverridesAssertScope()
@@ -14762,6 +14764,9 @@ JSC::EncodedJSValue (anonymous namespace)::testStaticAccessorGetter(JSC::JSGloba
 testField
 bool (anonymous namespace)::testStaticAccessorPutter(JSC::JSGlobalObject *, JSC::EncodedJSValue, JSC::EncodedJSValue)
 thinAirCustomGetter
+StaticCustomValue
+testStaticValue
+bool (anonymous namespace)::testStaticValuePutter(JSC::JSGlobalObject *, JSC::EncodedJSValue, JSC::EncodedJSValue)
 JSC::EncodedJSValue JSC::functionCreateObjectDoingSideEffectPutWithoutCorrectSlotStatus(JSC::JSGlobalObject *, JSC::CallFrame *)
 Unknown private name.
 argument is not an ImpureGetter
@@ -14784,11 +14789,13 @@ customValue
 customAccessor
 customValueGlobalObject
 customAccessorGlobalObject
+customFunction
 JSC::EncodedJSValue (anonymous namespace)::customGetValue(JSC::JSGlobalObject *, JSC::EncodedJSValue, JSC::PropertyName)
 JSTestCustomGetterSetter
 bool (anonymous namespace)::customSetValue(JSC::JSGlobalObject *, JSC::EncodedJSValue, JSC::EncodedJSValue)
 bool (anonymous namespace)::customSetAccessor(JSC::JSGlobalObject *, JSC::EncodedJSValue, JSC::EncodedJSValue)
 Expected first argument to be an array
+Expected first argument to be an object
 ObjectDoingSideEffectPutWithoutCorrectSlotStatus
 Before Marking
 After Marking
@@ -16378,9 +16385,8 @@ November
 December
 janfebmaraprmayjunjulaugsepoctnovdec
 /Library/Caches/com.apple.xbs/Binaries/WTF_Sim/install/Root/usr/local/include/wtf/text/StringConcatenate.h
-static unsigned int WTF::StringTypeAdapter<const unsigned char *, void>::computeLength(const LChar *)
 Infinity
-/Library/Caches/com.apple.xbs/Sources/WTF_Sim/WTF-7610.2.4.0.1/wtf/FastBitVector.cpp
+/Library/Caches/com.apple.xbs/Sources/WTF_Sim/WTF-7610.2.8/wtf/FastBitVector.cpp
 void WTF::FastBitVectorWordOwner::resizeSlow(size_t)
 TQ,R
 superclass

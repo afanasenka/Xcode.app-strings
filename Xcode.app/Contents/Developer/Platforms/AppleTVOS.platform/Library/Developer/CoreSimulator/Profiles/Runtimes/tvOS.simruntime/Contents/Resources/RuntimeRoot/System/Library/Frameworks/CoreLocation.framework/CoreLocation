@@ -46,6 +46,7 @@ CL: CLClientIsAuthorizationPromptMapDisplayEnabled
 #Warning CLInternalGetAuthorizationPromptMapDisplayEnabled failed: could not reach daemon
 {"msg%{public}.0s":"invalidating client", "client":"%{public}p"}
 CLClient is deprecated. Will be obsolete soon. (%{public}s)
+{"msg%{public}.0s":"#NullIsland Received a latitude or longitude from getLocationForBundleID that was exactly zero", "latIsZero":%{public}hhd, "lonIsZero":%{public}hhd, "location":%{private, location:CLClientLocation}.*P}
 {"msg%{public}.0s":"CLClientShowHeadingCalibration", "showHeadingCal":%{public}hhd, "isHeadingCalibrated":%{public}hhd, "isApplicationActive":%{public}hhd, "isUpdatingHeading":%{public}hhd}
 Application inactive, will not show heading calibration
 Fence: CLClientRequestRegionState, unsupported fence type, %{private}d
@@ -85,6 +86,9 @@ initializing CLLocationManager with a nil limiting identifier
 {"msg%{public}.0s":"CLLocationManager", "event":%{public, location:escape_only}s, "_cmd":%{public, location:escape_only}@, "self":"%{public}p", "pausesLocationUpdatesAutomatically":%{public}hhd}
 {"msg%{public}.0s":"CLLocationManager", "event":%{public, location:escape_only}s, "_cmd":%{public, location:escape_only}@, "self":"%{public}p", "allows":%{public}hhd}
 {"msg%{public}.0s":"CLLocationManager", "event":%{public, location:escape_only}s, "_cmd":%{public, location:escape_only}@, "self":"%{public}p", "shows":%{public}hhd}
+{"msg%{public}.0s":"#NullIsland Either the latitude or longitude was exactly 0! That's highly unlikely", "latIsZero":%{public}hhd, "lonIsZero":%{public}hhd}
+{"msg%{public}.0s":"We have a valid, cached location. Fetching from internal state", "location":%{private, location:CLClientLocation}.*P}
+{"msg%{public}.0s":"No valid, cached location. Fetched from daemon", "location":%{private, location:CLClientLocation}.*P}
 {"msg%{public}.0s":"CLLocationManager", "event":%{public, location:escape_only}s, "_cmd":%{public, location:escape_only}@, "self":"%{public}p", "supportInfo":%{public}hhd}
 Obsolete
 {"msg%{public}.0s":"CLLocationManager", "event":%{public, location:escape_only}s, "_cmd":%{public, location:escape_only}@, "self":"%{public}p", "privateMode":%{public}hhd}
@@ -133,6 +137,7 @@ Location event received with empty payload
 New location is identical to old location; discarding
 New location predates old location, and the event types differ; discarding
 {"msg%{public}.0s":"#CLLocationManager invoking #delegate - invalid location", "self":"%{public}p", "delegate":"%{public}p", "selector":%{public, location:escape_only}@}
+{"msg%{public}.0s":"#NullIsland onClientEventLocation:forceMapMatching: got a latitude or longitude that was exactly zero", "latIsZero":%{public}hhd, "lonIsZero":%{public}hhd, "location":%{private, location:CLClientLocation}.*P}
 {"msg%{public}.0s":"#CLLocationManager invoking #delegate", "self":"%{public}p", "delegate":"%{public}p", "selector":%{public, location:escape_only}@, "location":%{private, location:CLClientLocation}.*P, "eventType":%{public, location:escape_only}@}
 {"msg%{public}.0s":"#CLLocationManager invoking #delegate - location unavailable", "self":"%{public}p", "delegate":"%{public}p", "selector":%{public, location:escape_only}@}
 could not get updated heading
@@ -1332,8 +1337,8 @@ Unplugged!
 void CLLog::logHeader()
 CoreLocation-%s
 locationd was compiled on %s at %s
-Sep 20 2020
-23:15:15
+Oct  7 2020
+00:31:07
 %s @ system model %s / version %s
 /usr/libexec/locationd @ system model %s / version %s
 IOPlatformSerialNumber: %s

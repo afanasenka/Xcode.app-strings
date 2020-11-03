@@ -359,6 +359,7 @@ requirement->type == kACMCredentialTypePassphraseEntered
 requirement->type == kACMRequirementTypeBiometryMatched
 requirement->type == kACMRequirementTypeKofN
 requirement->type == kACMRequirementTypeUserOutputDisplayed
+opcode == kCmdPing || opcode == kCmdPingOnDoubleClick
 LibCall_ACMPing
 LibCall_ACMKernDoubleClickNotify
 data && dataLength
@@ -381,10 +382,6 @@ LibCall_ACMContextSetData
 LibCall_ACMContextAppendData
 outBuffer && outSize
 LibCall_ACMContextGetData
-!accUUIDsSize || accUUIDs
-accUUIDsSize <= (16 * 16)
-accUUIDsSize % sizeof(uuid_t) == 0
-LibCall_ACMPublishTrustedAccessories
 transport && context && value
 responseBufferSize >= sizeof(Response)
 response->version >= kCmdCurrentVersion_ContextGetInfo

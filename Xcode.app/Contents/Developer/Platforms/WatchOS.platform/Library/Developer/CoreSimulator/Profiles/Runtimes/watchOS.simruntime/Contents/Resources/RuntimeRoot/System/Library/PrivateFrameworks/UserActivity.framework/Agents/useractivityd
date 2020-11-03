@@ -2359,8 +2359,8 @@ signposts
 -disableReconnectionNotification
 -exitAfter
 com.apple.useractivityd
-Sep 20 2020
-06:19:41
+Oct  2 2020
+07:18:19
 Logger
 AppsActivityCreator
 BestAppController
@@ -2561,7 +2561,7 @@ kLSUserActivityDebuggingInfoLastAdvertisedBytes
 kLSUserActivityDebuggingInfoAdvertising
 Dynamic User Activities: (domain=%@) %@
 Manager status: pid=%lld, uid=%lld, uptime=%@ %@ (Version %s, built %s %s %s)
-06:19:50
+07:18:22
 q24@?0@"UAAdvertiser"8@"UAAdvertiser"16
 ADVERTISING:
 *** No UAAdvertisers defined at present, so no advertising is taking place.
@@ -4956,7 +4956,7 @@ doGetPairedDevices(%{public}@)
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R569</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>

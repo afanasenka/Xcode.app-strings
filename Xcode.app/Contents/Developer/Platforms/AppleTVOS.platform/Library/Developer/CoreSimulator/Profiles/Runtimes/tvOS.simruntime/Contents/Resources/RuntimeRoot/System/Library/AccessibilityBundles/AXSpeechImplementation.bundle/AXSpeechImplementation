@@ -52,6 +52,7 @@ assetSize
 isCombinedVoice
 nonCombinedVoiceId
 gender
+nameWithoutQuality
  (Installed: %d, Size: %d, Can be downloaded: %d)
 [%@ %p] Language: %@, Name: %@, Quality: %@ [%@]%@
 Default
@@ -69,6 +70,7 @@ AXSystemGetRootDirectoryPath
 Using AT preferred settings for voice and rate for: %@
 %{public}@
 No identifier for voice, %@
+Could not find any name for this voice: %@
 __AXSpeechActionPublicImplementation_super
 SafeCategory
 Implementation_iOS
@@ -267,6 +269,7 @@ encodeInt64:forKey:
 isCombinedVoice
 gender
 decodeObjectOfClass:forKey:
+setBackupName:
 decodeIntegerForKey:
 decodeInt64ForKey:
 setAssetSize:
@@ -283,7 +286,9 @@ name
 numberWithInteger:
 integerValue
 nameForVoiceIdentifier:
+backupName
 localizedName:forLanguage:
+voiceForIdentifier:
 nameWithoutQuality
 containsString:
 _localizedNameFormat

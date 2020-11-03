@@ -516,6 +516,8 @@ Error creating directory: %{public}@
 %s - Using manifest: %{public}@
 %s - Error fetching categories: %{public}@
 %s - Attempting asset download - limit=%lu (minimum=%lu, incremental=%lu, existing=%lu, all=%lu, isAccelerated=%d)
+%s - No asset downloads needed. Finishing
+%s - %lu assets requested on a customer build. Truncating to max of %lu
 %s - Starting batch download of %lu assets: %{public}@
 %s - Error fetching next downloadable assets: %@
 %s - Asset download interval set to Never. Skipping asset download.

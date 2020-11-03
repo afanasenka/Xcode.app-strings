@@ -15,7 +15,7 @@ ListShortcutsRCHFlowDelegate
 VoiceCommandSnippetProvider
 Phase
 RunVoiceShortcutFlowErrors
-ShortcutsRequestDeviceUnlockStrategy
+ShortcutsUnlockDeviceStrategy
 RunVoiceShortcutFlow
 State
 RunCustomIntentPaginationDelegate
@@ -260,13 +260,13 @@ setApplicationBundleIdentifier:
 setSash:
 setReferencedCommands:
 setConfirmationOptions:
-voiceCommand
-spokenPhrase
 previousIntentIdentifier
 intentId
+voiceCommand
 originDevice
 initWithVoiceCommand:originDevice:executionResult:previousIntentIdentifier:
 _setMetadata:
+spokenPhrase
 intentToExecute
 initWithSuiteName:
 boolForKey:
@@ -578,7 +578,7 @@ buttonTemplating
 sirikit.intents.custom
 voiceCommandConfirmation
 Creating voice command snippet
-_TtC31VoiceCommandsFlowDelegatePlugin36ShortcutsRequestDeviceUnlockStrategy
+_TtC31VoiceCommandsFlowDelegatePlugin29ShortcutsUnlockDeviceStrategy
 runVoiceCommandIntent
 dialogingTemplates
 metricsState
@@ -1071,6 +1071,7 @@ $s31VoiceCommandsFlowDelegatePlugin16AppNameResolvingP
 ySSG
 $ss12CaseIterableP
 ySo23INRunVoiceCommandIntentCGG
+_pGIegg_
 ySo23INRunVoiceCommandIntentCG
 _p5error_t
 $s11SiriKitFlow018NeedsExecuteIntentC0P
@@ -1447,10 +1448,11 @@ nextIntent
 deviceState
 aceServiceInvoker
 metricsState
+waitingForUnlock
 error
 executeIntent
+unlocked
 complete
-requiresDeviceUnlock
 IntentType
 ExitValue
 customIntent

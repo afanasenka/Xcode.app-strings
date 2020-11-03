@@ -1,5 +1,4 @@
-@(#)PROGRAM:XCPreviewKit  PROJECT:Ultraviolet-17517.1
-ffffF
+@(#)PROGRAM:XCPreviewKit  PROJECT:Ultraviolet-17521
 self
 XCPreviewKit
 MacOSPreviewRenderer
@@ -432,6 +431,7 @@ So18NSVisualEffectViewC
 $s7SwiftUI4ViewP
 $s7SwiftUI19NSViewRepresentableP
 $s12XCPreviewKit19PreviewHostProtocolP
+ySo8NSWindowCG
 $s7Combine16ObservableObjectP
 $s12XCPreviewKit12RenderBufferP
 $s12XCPreviewKit20DynamicProductLoaderP
@@ -536,7 +536,6 @@ So16NSViewControllerCSgSDySSypGIeggg_
 ySo16NSViewControllerCSg_SDySSypGt
 _pGG
 So16NSViewControllerCSg
-ySo8NSWindowCG
 $s12XCPreviewKit16MessageTransportP
 12_MessageType
 $s12XCPreviewKit20MessageResponderBaseP

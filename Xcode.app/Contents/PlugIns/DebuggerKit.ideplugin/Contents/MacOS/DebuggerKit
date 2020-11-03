@@ -1,7 +1,8 @@
-@(#)PROGRAM:DebuggerKit  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:DebuggerKit  PROJECT:IDEPlugIns-17510.1
+ffff
 v8@?0
 +[DBGLayerExporterPool generateImageForLayer:bounds:options:handler:]
-/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17507/IDEDebugger/ViewDebugger/Editor/DBGLayerExporterPool.m
+/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17510.1/IDEDebugger/ViewDebugger/Editor/DBGLayerExporterPool.m
 ((block)) != nil
 %@ should not be nil.
 (block)

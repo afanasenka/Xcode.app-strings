@@ -19,13 +19,12 @@ complication
 Complication
 complication-set
 -[IBICWatchComplicationSet requiredPixelSizeForRep:ofChild:]
-/Library/Caches/com.apple.xbs/Sources/IBPepperSimulatorComponents_WatchSim/IDEInterfaceBuilderPepperIntegration-17034/IBPepperShared/AssetCatalog/Model/CatalogItems/Complication/IBICWatchComplicationSet.m
+/Library/Caches/com.apple.xbs/Sources/IBPepperSimulatorComponents_WatchSim/IDEInterfaceBuilderPepperIntegration-17500/IBPepperShared/AssetCatalog/Model/CatalogItems/Complication/IBICWatchComplicationSet.m
 %s should be an instance inheriting from %@, but it is nil
 castedInstance
 [castedInstance isKindOfClass:[IBICImageSetRep class]]
 %s should be an instance inheriting from %@, but it is %@
 The %@ "%@" in the %@ "%@" should be %ld x %ld pixels.
-The %@ "%@" is not applicable to this complication.
 B16@?0@"IBICAddMutator"8
 watchOS
 Apple Watch

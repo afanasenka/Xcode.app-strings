@@ -37,8 +37,8 @@ Y=X94</n#
 =B`e<M
 u`=e
 w=B`e
-A333?fff?ff
-?N2ma24FineSubjectMotionSegmentE
+333?fff?ff
+N2ma24FineSubjectMotionSegmentE
 NSt3__120__shared_ptr_emplaceI21VCPCNNEspressoContextNS_9allocatorIS1_EEEE
 ]@lwh
 333?
@@ -1781,7 +1781,6 @@ T#,R
 description
 T@"NSString",R,C
 debugDescription
-SaveStabilizationRecipe
 analysisResultRef
 T^v,N,V_analysisResultRef
 correctionResultRef
@@ -1797,7 +1796,6 @@ analysisConfidence
 Tf,N,V_analysisConfidence
 validStabilization
 TB,N,V_validStabilization
-HumanKeypoints
 cnn_human_pose.espresso.net
 res_256x256
 res_192x192
@@ -1960,7 +1958,6 @@ asset
 T@"PHAsset",R,N,V_asset
 analysis
 T@"NSDictionary",R,N,V_analysis
-QueryInternalFields
 com.apple.mediaanalysis.sql
 SELECT id, version, dateModified, dateAnalyzed, analysisTypes, flags, quality, masterFingerprint, adjustedFingerprint
 , statsFlags
@@ -1994,8 +1991,8 @@ humanScore
 Tf,N,V_absoluteScore
 Tf,N,V_relativeScore
 Tf,N,V_humanScore
-PHAssetScene
 AveStats
+Failed to parse AVE statistics frame attachment; re-generating statistics
 iChatUsageString
 EnableStatsCollect
 EnableUserQPForFacetime
@@ -2082,7 +2079,7 @@ master
 T@"NSString",R,V_master
 adjusted
 T@"NSString",R,V_adjusted
-DisableANEForFaceAnalysis
+Requested unavailable frame %d
 com.apple.mediaanalysis.FaceProcessingGroup
 @"VNSession"8@?0
 Error: no faceObservation
@@ -2108,7 +2105,6 @@ TB,N,V_hasFlash
 Tf,N,V_stillTime
 sceneprintBlob
 T@"NSData",&,N,V_sceneprintBlob
-useSceneprintInSceneAnalysis
 mammal
 bird
 people
@@ -2219,7 +2215,6 @@ T@?,C,N,V_cancelBlock
 Tf,R,N,V_exposureScore
 faceAdjustmentVersion != nil
 additionalAttributes.sceneAnalysisVersion >= %d &&  additionalAttributes.sceneAnalysisVersion != %d
-ScreenProgress
 v24@?0@"NSDictionary"8@"NSError"16
 Video stabilization task cancelled
 Video stabilization processing failed
@@ -2263,7 +2258,6 @@ SceneType
 AggregatedBoundingBoxSizeRatio
 LargestBoundingBoxSizeRatio
 Quick Face ID task cancelled
-ConcurrentFaceAnalysis
 faceAdjustmentVersion = nil
 Quick Face ID canceled with %lu job done
 T{CGPoint=dd},N,V_location
@@ -2282,7 +2276,6 @@ Ti,N,V_handID
 com.apple.mediaanalysis.VCPImageManager.decodequeue
 VCPImageManager
 @"VCPImageManager"8@?0
-LogImageManager
 v16@?0@"NSData"8
 v16@?0@"NSError"8
 v32@?0@8Q16^B24
@@ -2325,6 +2318,7 @@ v24@?0@"NSNumber"8^B16
 v32@?0@"NSString"8@"NSNumber"16^B24
 Saving clustering results cancelled
 Canceled operation to reset library clusters
+-[VCPPhotosPersistenceDelegate updateKeyFacesOfPersonsWithLocalIdentifiers:forceUpdate:canceler:error:]
 person localIdentifiers
 Failed to find persons with local identifiers: '%@'
 B24@?0@"PHPerson"8@"NSDictionary"16
@@ -2332,6 +2326,9 @@ UpdateKeyFaces: Operation canceled
 Unimplemented %s in VCPPhotosPersistenceDelecate
 -[VCPPhotosPersistenceDelegate associateFace:withFaceCrop:error:]
 -[VCPPhotosPersistenceDelegate clearDirtyStateOnFaceCrops:error:]
+-[VCPPhotosPersistenceDelegate dirtyFaceCropsWithLimit:]
+-[VCPPhotosPersistenceDelegate faceAssociatedWithFaceCrop:]
+-[VCPPhotosPersistenceDelegate facesFromAsset:]
 -[VCPPhotosPersistenceDelegate persistFaces:deleteFaces:forAsset:persistedFaces:error:]
 -[VCPPhotosPersistenceDelegate persistGeneratedFaceCrops:error:]
 -[VCPPhotosPersistenceDelegate recordNeedToPersonBuildOnFaceGroupContainingFace:error:]
@@ -2373,6 +2370,7 @@ level1 cluster - create 'unverifed person : training person' pair
 invalid merge candidate pair because we have a cluster rejection
 v32@?0@"NSMutableSet"8@"NSMapTable"16@"NSSet"24
 invalid merge candidate pair because we have a face on verified person but cluster-rejected on another verified person
+-[VCPPhotosPersistenceDelegate buildPersonsWithFaceClusterer:keyFaceUpdateBlock:canceler:context:extendTimeoutBlock:]
 faceLocalIdentifier is nil
 fetched %lu faces for %@
 clusterSequenceNumber is nil
@@ -2408,20 +2406,6 @@ res_0
 res_1
 res_2
 VCPSaliencyFullEspresso
-DisableANEForSceneAnalysis
-IncludeNSFW
-IncludeLandmark
-IncludeTaboo
-IncludeSDG
-DominantObjectDetection
-SaliencyObjectnessDetection
-JunkR14J9
-SharpnessModel
-TabooModel
-NSFWModel
-SDGModel
-EnableSceneAssetConcurrency
-PanoVNRequestMethod
 com.apple.mediaanalysis.SceneProcessingGroup
 v16@?0Q8
 PVSceneTaxonomy
@@ -2591,7 +2575,6 @@ GyroStabilization
 PixelStabilization
 MaxNumberOfAssetToProcess
 ForceFullScan
-None
 Full Face, 
 Face, 
 Voice, 
@@ -2655,11 +2638,9 @@ UsingBestResource
 FacesToDelete
 FacesToPersist
 QuickFaceIdentification
-failed
 processed
 Confidence
 BoundingBox
-BaseRetryInterval
 UserInteractive
 UserInitiated
 Default
@@ -2759,21 +2740,22 @@ StoreAnalysis
 com.apple.mediaanalysis.ondemand
 com.apple.mediaanalysis.storage
 com.apple.mediaanalysis.VCPMediaAnalyzer.sandboxQueue
-NoResultStrip
 VCPMediaAnalyzer
 v16@?0@"NSString"8
 creationDate
-UseSceneprintDistance
 T{?={?=qiIq}{?=qiIq}},R,N,V_timeRange
 numOfFrames
 TQ,R,N,V_numOfFrames
+frame idx = %d
+size = %d, track_target_exist = %d, target_lost = %d, tracking_score = %6.2f
+before filter: frame(%d): time_stamp=%f, ave_motion=(%f,%f)
+frame(%d): time_stamp=%f, ave_motion=(%f,%f), acc_var=(%f, %f), motion_chg=(%f, %f)
 faceprintData
 T@"NSData",R,N
 qualityMeasure
 ageType
 TS,R,N
 Tq,D,N
-MaximumHighlightInSec
 enabled
 formatDescriptions
 naturalSize
@@ -2803,8 +2785,23 @@ UserOrig
 UserAlgo
 NoUserAlgo
 NoAlgo
-PHAssetFace
-PHAssetFaceExpression
+variation = %6.2f
+sum = %6.2f, tracking_score = %6.2f
+Target Captured @ [%5.0f, %5.0f, %5.0f, %5.0f]
+initial @ [%d %d] s = %6.5f
+stop    @ [%d %d] s = %6.5f
+lost = %d
+[%6.2f, %6.2f, %6.2f, %6.2f]
+box0: (x = %2.1f, y = %2.1f, w = %2.1f, h = %2.1f)
+box1: (x = %2.1f, y = %2.1f, w = %2.1f, h = %2.1f)
+box : (x = %2.1f, y = %2.1f, w = %2.1f, h = %2.1f)
+overlap_area = %6.2f, max_area = %6.2f, weight = %6.2f
+derr = %6.2f, terr = %6.2f
+add new expert with weight %6.2f
+expert %d was replaced: voting weight(%6.2f --> %6.2f)!
+after voting --> update target
+detector and tracker did not match well --> experts vote
+detector and tracker matched well --> update experts
 v32@?0@"NSString"8@"NSString"16@"NSError"24
 com.apple.mediaanalysis.quickfaceid.management
 verifiedType = %@ OR verifiedType = %@
@@ -2823,7 +2820,14 @@ faceWorkerState.plist
 MediaAnalysis
 mediaanalysis.db
 Angle
-PHAssetSceneprint
+seg %d: [%d, %d], sceneCut=%d
+prev(%d) [%d, %d][%6.1f, %6.1f] qs = %6.2f, curr(%d) [%d, %d] [%6.1f, %6.1f]qs = %6.2f:
+dist({%d %d}, {%d %d}) = %6.2f, th = %6.2f
+prev: type = %d, fast = %d, gmv_sum {%6.1f, %6.1f}, merge = %d, split = 0
+curr: type = %d, fast = %d, gmv_sum {%6.1f, %6.1f}, merge = %d, split = 0
+segments
+===========SceneChangeSegments=============
+[%f, %f]
 com.apple.mediaanalysisd.generic
 Failed to created sandbox extension for %@
 CVPixelBuffer must be IOSurface-backed
@@ -2954,11 +2958,15 @@ T^i,R,V_blendshapeComponentIndex
 Tracking
 NumOfValidFrames
 TrackingScore
+Destructive Trim Range: [%.2f - %.2f]
 after repare
 after consecutive short merge
 after sparse short merge
 after post processing
+=========Segment %s==========
 v32@?0@"VCPSegment"8Q16^B24
+ [%.2f - %.2f]: %.2f
+--[%.2f - %.2f]
 NotImplementedException
 [VCPAsset %@] should not be called
 mediaType
@@ -3165,8 +3173,19 @@ HMITaskService
 mediaanalysis://in-memory
 com.apple.mediaanalysisd.VCPInMemoryAVAsset
 com.apple.mediaanalysis.reachability
+Not c
 hasWifiOrEthernetConnection
 TB,R,N,V_hasWifiOrEthernetConnection
+None
+TransientConnection
+Reachable
+ConnectionRequired
+ConnectionOnTraffic
+InterventionRequired
+ConnectionOnDemand
+IsLocalAddress
+IsDirect
+IsWWAN
 Frame: %u
 canceled
 TB,N,V_canceled
@@ -3203,6 +3222,12 @@ could not locate face %@
 v40@?0@"VCPFaceCropSourceDescriptor"8Q16Q24@"NSError"32
 PVFaceCropUtils
 PVFaceCrop
+Measurement
+Min (s)
+Max (s)
+Avg (s)
+Total
+Count
 signpost
 q24@?0@"PHSceneClassification"8@"PHSceneClassification"16
 resources
@@ -3572,6 +3597,8 @@ v32@?0@"NSSet"8Q16^B24
 v32@?0@"NSString"8@"NSArray"16^B24
 verifiedType != %d
 VCPFaceProcessingDeleteAllVerifiedPersons
+succeeded
+failed
 VCPFaceProcessingReclusterFacesWithThreshold
 VCPFaceProcessingBuildPersons
 VCPBuildPersons failed %d
@@ -3661,6 +3688,14 @@ numOfValidFrames
 TQ,R,N,V_numOfValidFrames
 VCPMovieWriter.mediaDataRequest
 com.apple.mediaanalysis.VCPSharedInstanceManager
+Received action score %f - %f
+=========%s==========
+[%.2f - %.2f]: %.2f
+capturePointSegmentIdx: %d
+----[%.2f - %.2f]
+startIdx = %d, endIdx = %d, count = %d, [%f, %f] with score %f captureTime=%f
+interesting trim: [%f, %f], score = %.2f
+ --[%.2f - %.2f]
 com.apple.mediaanalysis.VCPVideoChatAnalysis
 sport
 cnn_activitylevel.dat
@@ -3975,66 +4010,264 @@ Unimplemented function
 {OptimizedCabacDecoder::UpdateBitStreamPtr} bitstream parsing error!!!!!!!!!!!!!!
 Wrong filter type!
 {PostProcDitherNoiseUpon2VUY} Dithering noise strength (=%u) not currently supported.
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/HomeAI.framework/HomeAI
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/ShazamKit.framework/ShazamKit
-softlink:r:path:/System/Library/PrivateFrameworks/HomeAI.framework/HomeAI
-softlink:r:path:/System/Library/PrivateFrameworks/HomeAI.framework/HomeAI
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
-softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
-softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+    Analyzing Audio Track - ID: %d Start: %lld/%d (%0.3fs) End: %lld/%d (%0.3fs)
+    Pixel Stabilization confidence doesn't pass the threshold
+Failed to lock CVPixelBuffer (%p, %d)
+Cannot lock NULL CVPixelBuffer
+Lock attempt failed; cannot unlock buffer
+Multiple unlock attempts; cannot unlock buffer
+Failed to unlock CVPixelBuffer (%p, %d)
+Video track rotation angle is not multiple of 90
+Gyro analytics stored via dodML
 copyImageToBGRHandKeypointCallFromSPI
 preProcessingHandKeypointCallFromSPI
+Not implemented, please use initWithOptions
+Multiple sampling times (%0.1fs) intersect frame at %lld/%d
+%@ skipping sample %lld at %lld/%d
+%@ failed for sample at %lld/%d (%@)
+[MediaAnalysis] Failed to open database
+Closed analysis database
+[MediaAnalysis] Unknown result key for result type %u
+[MediaAnalysis] Error querying blacklist status for %@
+[MediaAnalysis] Failed to query blacklisted assets
+[MediaAnalysis] Failed to query asset %@
+[MediaAnalysis] Failed to query analysis properties of asset %@
+[MediaAnalysis] queryAnalysesForAssets Failed
+[MediaAnalysis] Failed to query assets since %@
+[MediaAnalysis] Failed to query failed assets for taskID: %lu
+[MediaAnalysis] WARNING: ProcessingStatus entry with nil localIdentifier
+Failed to extract NSArray from column %d (%@)
+Creating faceprint for face crop
+Multiple faces present in face crop; using first
+Loading quick identification model
+Performing quick identification
+Quick identification match found: %@
+No quick identification match found
+Home face identification task failed (%@)
 Getting no object IDs when fetching assets on moment %@
 VCPFaceAnalyzerReleaseCachedResources
+Error: missing VNDetectFaceRectanglesRequest
+Error: missing VNDetectFaceLandmarksRequest
+Error: missing VNDetectFaceExpressionsRequest
+Error: missing VNDetectFacePoseRequest
+Error: missing VNCreateFaceTorsoprintRequest
+Error: missing VNClassifyFaceAttributesRequest
+Error: missing VNDetectFaceCaptureQualityRequest
+Error: creating VNDetectFaceRectanglesRequest
+Error: creating VNDetectFaceLandmarksRequest
+Error: creating VNDetectFaceExpressionsRequest
+Error: creating VNDetectFacePoseRequest
+Error: creating VNCreateFaceTorsoprintRequest
+Error: creating VNClassifyFaceAttributesRequest
+Error: creating VNDetectFaceCaptureQualityRequest
+Error: creating VNImageBlurScoreRequest
+Error: creating VNImageExposureScoreRequest
+Faceprint request failed to return a faceprint
+Error creating Face VNRequest
 VCPFaceAnalyzerImageRequestHandlerPerformRequest
+Error: Face VNImageRequestHandler::performRequests: %@
+Error: failed to create blur/exposure request
+Error: blurScore %f out of bound [%f, %f]
+Error: VNImageRequestHandler failed to perform blurRequests: %@
+Error: exposureScore %f out of bound [%f, %f]
+Error: VNImageRequestHandler failed to perform exposureRequests: %@
 VCPFaceAnalyzerBlurExposureAnalysis
 VCPFaceAnalyzerPVFaceCreation
 VCPFaceAnalyzerVerifyAndMergeFaces
+ [%@] Analysis completed; facesDetected %lu | facesToPersist: %lu | facesToDelete: %lu
 VCPFaceAnalyzerLoadImageRequestHandler
+Failed to create VNImageRequestHandler
+Failed to analyze PVImage
+Failed to refine analysis
 VCPFaceAnalyzerPerformAnalysis
+Unexpected media type (%lu)
+[%@] Unexpected media type (%d)
+%@ canceled (%@)
+%@ failed (%@)
+[MediaAnalysis] Image descriptor - found more than 1 VNImageprintObservations
+VNImageprint init error: %@
+Query progress: unsupport taskID (%lu)
+Query progress: output parameter statistics must be non-nil
+Query progress: unsupported taskID (%lu)
+Query progress: %@ - %@
+Query progress: unsupported taskID (%@)
+Query progress: %@ - %lu out of %lu
 VCPVideoStabilizationAssetProcessingTask
+Video Stabilization processing failed
+[%@] Quick Face ID task failed; skip processing
+Quick Face ID batch %lu, jobs: %lu
+Quick Face ID task canceled (%@)
+Quick Face ID task failed (%@)
+[Decode] Downscaling %zux%zu --> %zux%zu
+[Decode] %.0fx%.0f --> %zu; subsampling %dx on decode
+[Decode] Accelerated decode failed; falling back to CGImage
+Found %lu faces with CSN > 0 but not in any face groups
+VCP: %@
+PersistFaceGroups: Photo library is missing a face with CSN = %@
+PersistFaceGroups: Faces with these CSNs will be removed from the cluster cache: %@
+PersistFaceGroups: Faces with these localIdentifiers will be re-clustered: %@
+PersistFaceGroups: We should not get here! If we did, then we have a previously clustered face without a face group!
+PersistFaceGroups: Failed to create a face group change request to add faces!
+PersistFaceGroups: Failed to find a faceGroup for face '%@' with CSN: %d
+PersistFaceGroups: No faces added to face groups!
+PersistFaceGroups: Failed to find face with localIdentier: %@. Could not set its CSN to %@
+PersistFaceGroups: Set personBuilderState of faceGroups: %@
+PersistFaceGroups: Failed to delete empty face groups with error: %@
+PersistFaceGroups: Canceled updating key faces unverified persons after persisting face groups.
+PersistFaceGroups: Failed to update key faces unverified persons after persisting face groups. Error: %@
+%s: Input parameter is empty or nil: '%@'
+%s: %@
+UpdateKeyFaces: Key Face exists. Ignoring %@
+Updating key face %@ on person %@
+Error: did not find single face group for unverified person, unable to set key face on face group, (number of face groups: %lu)
+Error: could not set key face for person %@
+Warning: Couldn't get faceprint data for face: %@. Ignoring
+Error: Failed to get VNFaceTorsoprint from faceprint data, error: %@
+Warning: Could not get representativeness for faces, error: %@
+PersonBuilder: Deleted duplicate graph-verified persons '%@' from face group %@
+PersonBuilder: Failed to delete duplicate graph-verified persons '%@' from face group %@
+PersonBuilder: Deduped graph-verified persons '%@' from face group %@
+PersonBuilder: Failed to dedupe graph-verified persons '%@' from face group %@
+personLocalIdentifier for PHFace %@ is null; skip processing
+Found no persons rejected for a rejection training face: %@
+PersonBuilder: Did not find merge candidate persons with local identifiers: '%@'
+PersonBuilder: Found invalid merge candidate pair ['%@' : '%@']
+PersonBuilder: Already found merge candidate pair ['%@' : '%@']
+PersonBuilder: Unexpected error - could not create merge candidate pair '%@' : '%@'
+PersonBuilder: Unexpected error - could not create invalid merge candidate pair '%@' : '%@'
+PersonBuilder: Cleared personBuilderState of faceGroup: '%@'
+Could not find a face with clusterSequenceNumber '%@' in the library
+PersonBuilder: Got a 'nil' photoLibrary. Cannot build persons
+PersonBuilder: Failed to find unverified person for faceGroups '%@'; These will be fixed up and retried later
+PersonBuilder: Failed to fix up face groups without unverified person. Error: '%@'
+PersonBuilder: Person Building faceGroup '%@'
+PersonBuilder: Failed to find unverified person [unverifiedPerson: %@, unverifiedPersonLocalIdentifier: %@] for faceGroup '%@', skipping this face group
+Person Builder: Quick classification faces found. Number of faces retained: %@. Number of faces reassigned %@
+PersonBuilder: We may have a dirty level0 cluster, persons with training faces: %@
+PersonBuilder: We may have a dirty level0 cluster, verified persons with confirmed face: %@
+PersonBuilder: Unnamed unconfirmed faces in face group, '%@', without a training face: %@
+PersonBuilder: Found training rejection, unassigned faces on trainingPersonLocalIdentifier in level0 cluster: %@
+PersonBuilder: Skip processing level0 cluster since we have rejected face for training person '%@' in level1 cluster
+PersonBuilder: Failed to build persons [Error: '%@']
+PersonBuilder: ---> buildPersonsWithFaceClusterer, %s
+PersonBuilder: Person Building is Disabled!
+PersonBuilder: Cleared personBuilderState of faceGroups: %@
+PersonBuilder: Failed to clear personBuilderState of faceGroups: %@, error: %@
+PersonBuilder: <--- buildPersonsWithFaceClusterer
+Got a 'nil' photoLibrary. Cannot remove auto assigned faces
+Failed to remove auto-assigned faces from person '%@', error: %@
+Failed to load PVSceneTaxonomySoft
 VCPSceneAnalyzerReleaseCachedResources
+Failed to create VNClassifyImageAestheticsRequest
+Failed to create VNSceneClassificationRequest
+Failed to create VNCreateSceneprintRequest
+Failed to create VNClassifyJunkImageRequest
+Failed to create VNGenerateAttentionBasedSaliencyImageRequest
+Failed to set VNCreateSceneprintRequest::setPrivateRevision %lu: %@
+Failed to set VNClassifyJunkImageRequest::setPrivateRevision %lu: %@
+Failed to set %@::setPrivateRevision %lu: %@
+Failed to create %@
+Unsupported observation label %@
+Error creating VNRequest
 VCPSceneAnalyzerImageRequestHandlerPerformRequest
+Failed to run VNImageRequestHandler::performRequests: %@
 VCPSceneAnalyzerImageBlurAnalysis
 VCPSceneAnalyzerExposureAnalysis
 VCPSceneAnalyzerLoadImageRequestHandler
+Failed to load imageURL: %@
 VCPSceneAnalyzerPerformAnalysis
+Analysis Cancelled
 SceneProcessingLoadAsset
 SceneProcessingAnalyzeAsset
+  [%@] Failed to decode last frame of video, fall back to thumbnail 
+[MediaAnalysis] Junk analayzer - unexpected %d VNObservations
+CNNHandsDetectorEspresso: adopting model config: %@
+CNNHandsDetectorEspresso: updating model config to %@
 inferenceHandDetectorCallFromSPI
+Unknown Media Analysis version specified (%d)
+[MediaAnalysis][%@] No slow-mo timestamp mapping file URL found
+[MediaAnalysis][%@] No slow-mo timestamp mapping file found
+[MediaAnalysis][%@] Resource required for slow-mo timestamp adjustment is not present
+[MediaAnalysis][%@] Failed to load resource for slow-mo timestamp adjustment
+  [%@] Unknown analysis version %d; discarding
+[MediaAnalysisResultsTypesForAnalysisTypes] Unknown result type
+Not all needed analysis are available for video highlights.
+[%.2f - %.2f] expressionScore=%.2f, actionScore=%.2f, voiceScore=%.2f, Score=%.2f
+[%.2f - %.2f] keyFrameScore=%.2f, expressionScore=%.2f, actionScore=%.2f, voiceScore=%.2f, humanActionScore=%.2f, humanPoseScore=%0.2f, Score=%.2f
+Media analysis client XPC connection interrupted
+Media analysis client XPC connection invalidated
+[MediaAnalysis] [MediaAnalyzer requestAnalysisTypes] call with invalid resourceURLs
+Failed to issue sandbox extension on %@
+[MediaAnalysis] Error connecting to background analysis service
+[MediaAnalysis] Request %d has completed
+[MediaAnalysis] Error connecting to Photos background analysis service
+[MediaAnalysis] Unsupported task %lu
+[MediaAnalysis] Asset processing request %d has completed
+Failed to open Photo Library at %@
+[MediaAnalysis] Error connecting to Photos Quick Face Identification service
+[MediaAnalysis] Request %d is %.2f%% complete
+[MediaAnalysis] Unknown analysis request %d; dropping cancellation request
+[MediaAnalysis] No active analysis requests; dropping cancellation request
+[MediaAnalysis] Failed to cancel background analysis: %@
+[MediaAnalysis] Background analysis canceled
+[MediaAnalysis] Error connecting to background analysis service: %@
+[MediaAnalysis] Error connecting to request PersonPromoterStatus service
+[MediaAnalysis] Request Person Preference %d has completed
+[MediaAnalysis] Request VIP model filepath Preference %d has completed
+[MediaAnalysis] Error connecting to request SuggestedPersons service
+[MediaAnalysis] Request SuggestedPersons %d has completed
+[MediaAnalysis] Error connecting to request UpdateKeyFacesOfPersons service
+[MediaAnalysis] Request UpdateKeyFacesOfPersons %d has completed
+[MediaAnalysis] Error connecting to request FaceCandidatesforKeyFace service
+[MediaAnalysis] Request FaceCandidatesforKeyFace %d has completed
+[MediaAnalysis] Error connecting to request ResetFaceClassificationModel service
+[MediaAnalysis] Request ResetFaceClassificationModel %d has completed
+[MediaAnalysis] Error connecting to request SuggestedMePersonIdentifier service
+[MediaAnalysis] Request SuggestedMePersonIdentifier %d has completed
+[MediaAnalysis] Request PersonPromoterStatus %d has completed
+[MediaAnalysis] Error connecting to request ClusterCacheValidation service
+[MediaAnalysis] Request ClusterCacheValidation %d has completed
+[MediaAnalysis] Error connecting to request ResetFaceClusteringState service
+[MediaAnalysis] Request ResetFaceClusteringState %d has completed
+[MediaAnalysis] Error connecting to request ReclusterFaces service
+[MediaAnalysis] Request ReclusterFaces %d has completed
+[MediaAnalysis] Error connecting to request RebuildPersons service
+[MediaAnalysis] Request RebuildPersons %d has completed
+[MediaAnalysis] failed to get database sandbox extension
+[MediaAnalysis] failed to consume sandbox extension
+[MediaAnalysis] Consumed sandbox extension
+[MediaAnalysis][%@] Storing on-demand analysis
+[MediaAnalysis][%@] Failed to store on-demand analysis
+[MediaAnalysis][%@]Unable to open movie
+[MediaAnalysis][%@]Failed to create asset
+[MediaAnalysis][%@] Received analysis request: %@
+[MediaAnalysis][%@] Analysis requested for blacklisted asset
+[MediaAnalysis][%@] Existing analysis based on old modification
+[MediaAnalysis][%@] Existing analysis based on degraded asset
+[MediaAnalysis][%@] Existing analysis satisfies request (%@)
+[MediaAnalysis][%@] Existing analysis doesn't match asset state
+[MediaAnalysis][%@] Existing analysis doesn't satisfy request (%@)
+[MediaAnalysis][%@] Generating analysis on-demand: %@
+[MediaAnalysis][%@] Analysis served: (%@)
+[MediaAnalysis] [MediaAnalyzer requestAnalysisForAsset] call from invalid instance
+[MediaAnalysis] Failed to obtain database for Photo Library %@
+[MediaAnalysis] [MediaAnalyzer assetsAnalyzedSinceDate] call from invalid instance
+[MediaAnalysis] Failed to obtain database for Photo Library (%@)
+Cannot load %@ for %@, NSData length: %lu, content: %@
+Cannot load %@ from PHAsset, NSData length: %lu, content: %@
+[MediaAnalysis] [MediaAnalyzer distanceFromAsset] call from invalid instance
+[MediaAnalysis] Failed to obtain database for assets
+[MediaAnalysis] failed to request analyses
+[MediaAnalysis] [requestAnalysesForAssets] call from invalid instance
+[MediaAnalysis] [requestAnalysesForAssets] in standalone mode but on-demand not allowed
+[MediaAnalysis] call from invalid instance
+[MediaAnalysis] on-demand analysis requested in standalone mode
+Warning: On demand analysis is not supported.
+[MediaAnalysis] Failed to obtain database for collection %@
+Warning: No face specified.
+[MediaAnalysis] [requestLivePhotoEffectsForAssets] call from invalid instance
+[MediaAnalysis] [requestLivePhotoEffectsForAssets] in standalone mode but on-demand not allowed
+  [%@] Existing analysis outdated; dropping
 VCPLightVideoAnalyzer
 VCPVideoStabilizerPixel
 VCPVideoFaceDetector
@@ -4047,9 +4280,54 @@ VCPVideoHumanActionClassifier
 VCPVideoPetsAnalyzer
 VCPMovieCurationAnalyzer
 VCPVideoStabilizer
+    Analyzing Video Segment - Track ID: %d Start: %lld/%d (%0.3fs) End: %lld/%d (%0.3fs)
 VCPAudioAnalyzer
+    Video track has invalid full frame dimensions (%.f,%.f)
+    Video track has invalid clean aperture rect
 VCPVideoStabilizerGyro
+  [%@] Asset doesn't have gyro metadata
+    Video track has invalid dimensions (%.f,%.f)
 VCPMovieAnalyzer
+  [%@] Need Face Processing: no faceAdjustmentVersion
+  [%@] Need Face Processing: faceAdjustmentVersion %@ != adjustmentTimestamp %@
+  [%@] Fingerprint requested for asset with no objectID
+  [%@] Fingerprinting failed
+QuickFaceID Model: persistent storageDirectoryURL is nil; skip loading FaceID Model
+QuickFaceID Model: cannot load FaceID Model: %@
+ [%@] QuickFaceID: no local resource
+ [%@] QuickFaceID: failed to load image
+ [%@] QuickFaceID: failed to analyze asset (%d)
+ [%@] QuickFaceID: image too small to classify
+ [%@] QuickFaceID: classifying face: %@; skip processing face
+ [%@] QuickFaceID: did not find a matching person for face located at (%.3f, %.3f)
+ [%@] QuickFaceID: found person: %@
+ [%@] QuickFaceID: expected to find a person for person uuid = %@; skipping
+ [%@] QuickFaceID: failed to persist classification results: %@
+Quick Face ID failed to load persons model
+ [%@] QuickFaceID: analyzing asset (deferType: %d)
+ [%@] QuickFaceID: asset is not image
+ [%@] QuickFaceID: processed %lu faces
+QuickFaceID Model: Last job generation %.0fs ago, job is due = %d
+QuickFaceID Model: Begin model generation
+QuickFaceID Model: Model generation cancelled. Quitting
+FaceID Model: fetch count for person %@: %lu
+FaceID Model: fetch count without roll predicate for person %@: %lu
+QuickFaceID Model: Could not create faceprint for face: %@. Error: %@
+QuickFaceID Model: Could not add faceprint to model for face: %@.
+QuickFaceID Model: Could not add faceprints to model. Error: %@
+QuickFaceID Model: Finished model generation
+QuickFaceID Model: Failed to persist model %@
+QuickFaceID Model: Could not get face observations for person %@ - %@
+QuickFaceID Model: Could not persist isInVIPModel on trained faces - %@
+QuickFaceID Model: Finished model generation and persistence
+QuickFaceID Model: No need to generate model
+[%@] Asset has no small video derivative; skipping
+[%@] File size exceeds streaming threshold; skipping
+[%@] Duration exceeds streaming threshold; skipping
+Unknown VCPTaskID (%lu); redirect to VCPTaskID_MediaAnalysis
+  Analyzing degraded version of Movie
+  [%@] missing Pre Analysis result
+  Analyzing degraded version of Photo
 VCPImageFaceDetector
 VCPImageFaceExpressionAnalyzer
 VCPImageJunkAnalyzer
@@ -4065,24 +4343,219 @@ VCPImageHumanPoseAnalyzer
 VCPImageHandsAnalyzer
 VCPLivePhotoAnalysis
 VCPEffectsAnalyzer
+[MediaAnalysis] PhotoAnalyzer - Original movie is not available, skip effects analysis
 VCPLivePhotoKeyFrameAnalyzer
 VCPPhotoAnalyzer
+Face Processing storage directory: %@
+No persistentStorageDirectoryURL for photoLibrary: %@
+Unable to serialize library analysis preferences for %@: %@
+Unable to write library analysis preferences for %@: %@
+Key for setLibraryAnalysisPreferencesValue is nil
+Error -[VNCreateSceneprintRequest setPrivateRevision:error:]
+Error -[VNImageRequestHandler requestHandler:error:]
+NSKeyedUnarchiver error: %@
+[Generic] Client XPC connection interrupted
+[Generic] Client XPC connection invalidated
+[Generic] Error connecting to analysis service
+VCPVoiceOverAssetProcessingTask: missing processingTypes
+VCPVoiceOverAssetProcessingTask: pixelBuffer is nil
+VCPVoiceOverAssetProcessingTask: completionHandler is nil
+VCPVoiceOverAssetProcessingTask: invalid processingTypes
+VCPVoiceOverAssetProcessingTask: analyze face error: %@
+VCPVoiceOverAssetProcessingTask: analyze scene error: %@
+ VCPFaceShapeModel - caught exception in find_min_box_constrained()
+VCPFaceShapeModel - caught exception in find_min()
+ VCPFaceShapeModel - caught exception in find_min_using_approximate_derivatives()
+Fail to initialize motionFlowAnalyzer
+Fail in generating motion flow
+Motion flow is null
+Invalid VNRequest configuration (%@)
+VNRequest must be non-nil
+VCPFaceGeometry initWithCoder - vertices data missing
+VCPFaceAnchor initWithCoder - unexpected size of transform data
+VCPCaptureAnalysis - missing resolution properties for prewarming
+Failed to open analysis database for Photo Library (%@)
+Specified Photo Library has no URL (<%@>); cannot find analysis database
+[DAS QoS] %@: %@ (%@) download %lu bytes
+Requested resource exceeds maximum supported size
+Resource already in the buffer. Skip downloading.
+requestDownloadOfResource: %@
+Download progress: %.2f
+    Received %llu bytes (Overall: %llu/%llu)
+Data received exceeds maximum supported size
+Failed to download asset resource (%@)
+Successfully downloaded asset resource
+Failed to issue resource request
+Download resource timed-out
+Cancelling download
+No faceprint is decoded from PHFace.
+  [%@] Processing
+[MediaAnalysis][%@]Unable to open movie, skip
+  [%@] Analysis cancelled
+  [%@] Analysis failed to complete
+Failed to create media analysis directory
+Successfully loaded FaceTime persistent store
+Failed to load FaceTime persistent store
+Failed to fetch all FaceTime sessions
+Storing FaceTime Session
+Cannot create VCPPersonBuilder
+---> Canceling VCPBuildPersons
+VCPBuildPersons canceled
+VCPBuildPersons failed: %@
+Cannot create PVPersonPromoter
+---> Canceling VCPPromotePersons
+Person Processing: Starting Person Promoting
+Person Processing: Person Promoting %@
+VCPPromotePersons canceled
+VCPPromotePersons failed
+HomeKit analysis client XPC connection interrupted
+HomeKit analysis client XPC connection invalidated
+[HomeKitAnalysis] Error connecting to background analysis service
+[HomeKitAnalysis] Request %d is %.2f%% complete
+[HomeKitAnalysis] Unknown analysis request %d; dropping cancellation request
+[HomeKitAnalysis] No active analysis requests; dropping cancellation request
+[HomeKit] Error connecting to background analysis service
+  Fullfilled content request: %@
+  Fullfilled data request: %@
+Reachability initialization failed; assuming no connection
+Reachability flags invalid; assuming no connection
+%sonnected to internet via WiFi/Ethernet
+Network reachability flag changed to: %@
+Generated faceCropData is nil
+faceCropSourceDescriptors is 0
+ [%@] facesToPersist: %lu | facesToDelete: %lu
+ [%@] Publish facecrop %@ 
+Failed to generate faceprint from facecrop %@ - %@
+Failed to persist association of face %@ with facecrop %@ - %@
+Failed to fetch just-persisted face with local identifier '%@', error: %@
+failed to generate faceprint from facecrop %@ - %@
+failed to update faceprint of face %@ associated with facecrop %@ - %@
+PersonBuilder: Set personBuilderState of faceGroup: %@
+Analyzing facecrop: %@
+Facecrop %@ is not in a dirty state
+Facecrop %@ does not have a payload (image data)
+_updateFace failed for facecrop %@: %@
+_recordNeedToPersonBuildOnFaceGroupContainingFace failed for facecrop %@: %@
+  [%@] No faces detected; skip facecrop generation
+ [%@] Facecrop will not be generated for the manual face %@
+Library: %lu dirty face crops to analyze
+Failed processing dirty facecrop %@ - %@
 VCPFaceProcessingDirtyFaceCrops
+[Perf] %s: %0.6fs
+%-40s  %10s  %10s  %10s  %10s  %10s
+  %-38s  %10.6f  %10.6f  %10.6f  %10.6f  %10zu
+  [%@] No scene classification result fetched from pre analysis
+Scene identifier %u has no name; ignoring
+[%@] Asset has no small video derivative; cannot download
+VCPPriorityAnalysis - Start initializing
+VCPPriorityAnalysis - Finished initializing hand detector
+VCPPriorityAnalysis - Finished initializing hand keypoint detector
+VCPPriorityAnalysis - Finished initializing gesture recognizer
+VCPPriorityAnalysis - gesture score = %f, priority score after thresholding = %f
+VCPPriorityAnalysis - Analysis subsampling ratio = %f
+VCPPriorityAnalysis - output priority score = %f
+song analysis failed %@
+VoiceOver analysis client XPC connection interrupted
+VoiceOver analysis client XPC connection invalidated
+Pixel buffer not IOSurface-backed; dropping analysis request
+[VoiceOverAnalysis] Error connecting to Photos background analysis service
+[VoiceOverAnalysis] Asset processing request %d has completed
+VCPObjectPool failed to allocate object
+ImageHandAnalyzer: input image aspectRatio = %f
+ImageHandAnalyzer: aspectRatio = %@, queryAspectRatioVal = %@
+ImageHandAnalyzer: feasibleShapeIndex = %d
+ImageHandAnalyzer: detectorHeight = %d, detectorWidth = %d
+Running Home Resident Maintenance task
+Canceling Home Resident Maintenance task (%d)
+HomeAI request submitted (%d)
+[HomeKit] Failed to connect to analysis service (%@)
+[HomeKit] VCPHomeKitAnalysisSession initialization fails (%@)
+[HomeKit] Client XPC connection interrupted
+[HomeKit] Client XPC connection invalidated
 copyImageToBGRHandDetectorCallFromSPI
 scalerHandDetectorCallFromSPI
+Restore clusterer error (ClusterState = %ld): %@
+Restored clusterer, ClusterState = %ld
+UpdateKeyFaces for: '%@'
+could not update key faces for suggestions: %@
+Loaded clustererState: %ld
+Returning no suggestions because the clusterer is working
+suggestions first phase query start
+suggestions first phase query end
+suggestions middle phase query start (includes face groups for person query)
+suggestions middle phase query end
+suggestions last phase query start
+suggestions last phase query end
+Getting suggestions for person: '%@', numberOfToBeConfirmedPersonSuggestions: %lu, numberOfToBeRejectedPersonSuggestions: %lu
+Got %lu suggestions for person: '%@', numberOfToBeConfirmedPersonSuggestions: %lu, numberOfToBeConfirmedPersonSuggestions: %lu
+Input parameter is empty or nil: '%@'
+FaceID Model: Error could not remove person model at %@: %@
+Person Processing: Starting Deleting Persons
 VCPFaceProcessingDeleteAllVerifiedPersons
+Person Processing: Deleting Persons %@
+Person Processing: Starting Face Reclustering
 VCPFaceProcessingReclusterFacesWithThreshold
+Person Processing: Face Clustering %@
+Person Processing: Starting Person Building
 VCPFaceProcessingBuildPersons
+Person Processing: Person Building %@
+Person Processing: Starting Person Promotion
 VCPFaceProcessingPromotePersons
+Person Processing: Person Promotion %@
+Attempt to download resource: %@
+Choosing asset resource from preferred list: %@
+Network is available, filtering list to remove the CPL Thumb, new list is: %@
+No resources locally available, returning a downloadable hi-res resource: %@
+Error resetting all FaceGroups Person Builder state: %@
+Failed to clean up merge candidates. Error: %@
 VCPFaceProcessingCleanupMergeCandidates
+->->-> Enabling personBuilderMergeCandidates
+Warning: Could not update the key faces of some merge candidates %@
+Sceneprint task failed (%@)
+Did cluster: %s
+Reset restore clusterer error (ClusterState = %ld): %@
+Reset restored clusterer, ClusterState = %ld
+Person Processing: Starting Reset Face Clustering
 VCPFaceProcessingResetFaceClusteringState
+Person Processing: Reset Face Clustering Done
+Person Processing: Starting Face Clustering
 VCPFaceProcessingPerformFaceClusteringAndWait
+Person Processing: Face Clustering Done
 VCPFaceProcessingClusterFacesWithExtendTimeoutBlock
+---> Start face cluster (%ld) with clustering status: %@
+---> Finished face cluster (%ld) with clustering status: %@
+---> Canceling face cluster
 VCPFaceProcessingClusterFaces
 VCPFaceProcessingClusterFacesIfNecessary
+Real-time analysis client XPC connection interrupted
+Real-time analysis client XPC connection invalidated
+Real-time analysis client XPC connection error
+VCPSceneTaxonomy - Failed to load PVSceneTaxonomy
+VCPSceneTaxonomy - cannot find scene name for id %d
+VCPSceneTaxonomy - cannot find scene id for scene name %@
+Removing existing file at path %@
+Failed to remove existing file at path %@ (%@)
+Failed to create asset writer (%@)
+Failed to create asset writer input
+Failed to start asset writer
+Pixel buffers are not IOSurface-backed; copying
+VCPLandmarkValidator failed to validate image (%d)
+Failed to align face bbox: aligner returned an empty rectange
+Failed to align face bbox for faces in image, error: %@
+Cannot Merge: %s faceprint, candidateFaceVersion: %u, contextVersion:%u
+Cannot Merge: faceprintDistance (%f) < faceprintThreshold (%f)
+Cannot Merge: could not get distance between queryFace: '%@' and candidateFace: '%@', error: '%@'
+Cannot Merge in final stage: [mutableDetectedFaces containsObject:detectedFace] %d [facesToDelete containsObject:matchedExistingFace] %d
+%lu Face(s) merged based on faceprints: %@
+%lu Face(s) merged based on geometries (before): %@
+%lu Face(s) merged based on geometries (filtered): %@
 inferenceHandKeypointCallFromSPI
+time=%.2f sharpness=%.2f, faceSharpness=%.2f, cameraM=%.2f, subjectM=%.2f, junk=%.2f, obstr=%.2f, exposure=%.2f, score=%.2f
 VCPVideoKeyFrameBlurAnalyzer
 VCPVideoKeyFrameFaceQualityAnalyzer
+[MediaAnalysis] [VCPVideoMetaAnalyzer] Unknown analysis type %@
+  Extreme aspect ratio %f; initialization failed
+[MediaAnalysis] Sample at %lld/%d is being extended %0.1fx
 Failed to serialize %@ (%@)
 pixel format (%d) is not supported
 Failed to get chroma subsampling shift
@@ -4128,6 +4601,46 @@ Failed to get src frame resource from frame pool.
 Failed to alloc resources!
 Failed to get rc frame resource from frame pool.
 Invalid timescale
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/HomeAI.framework/HomeAI
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/ShazamKit.framework/ShazamKit
+softlink:r:path:/System/Library/PrivateFrameworks/HomeAI.framework/HomeAI
+softlink:r:path:/System/Library/PrivateFrameworks/HomeAI.framework/HomeAI
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+softlink:r:path:/System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+softlink:r:path:/System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
 VCPAudioAnalyzer
 VCPSoundDetector
 SNResultsObserving
@@ -4504,6 +5017,8 @@ finalizeAnalysisAtTime:
 dictionary
 vcp_enabledTracksWithMediaType:
 countByEnumeratingWithState:objects:count:
+timeRange
+trackID
 initWithAsset:error:
 audioFormatRequirements
 assetReaderTrackOutputWithTrack:outputSettings:
@@ -4513,7 +5028,6 @@ copyNextSampleBuffer
 setupWithSample:
 processSampleBuffer:
 status
-timeRange
 results
 addEntriesFromDictionary:
 voiceDetections
@@ -4608,9 +5122,6 @@ _correctionResultRef
 _motionBlurVector
 isEnabled
 vcp_isShortMovie
-standardUserDefaults
-persistentDomainForName:
-boolValue
 vcp_mediaAnalysisBundle
 resourceURL
 URLWithString:relativeToURL:
@@ -4906,6 +5417,7 @@ _existingPersons
 _existingPersonsArray
 _blocks
 _quantFactor
+boolValue
 path
 UTF8String
 getPlanPhase
@@ -5042,6 +5554,7 @@ _sqlSerialQueue
 _filepath
 dateWithTimeIntervalSinceReferenceDate:
 propertyListWithData:options:format:error:
+timeIntervalSinceReferenceDate
 flags
 setFlags:
 bounds
@@ -5106,7 +5619,6 @@ setRightEyeClosed:
 smile
 setSmile:
 setYaw:
-trackID
 setTrackID:
 faceQuality
 setFaceQuality:
@@ -5779,6 +6291,7 @@ deleteFaceGroups:
 cleanupUngroupedFacesWithNonZeroClusterSequenceNumbersWithCanceler:error:
 fetchEmptyFaceGroupsWithOptions:
 performChangesAndWait:error:
+localizedDescription
 newVisibleFacesFetchOptionsWithPhotoLibrary:
 fetchKeyFaceForPerson:options:
 bestRepresentativeFaceForPerson:qualityMeasureByFace:canceler:
@@ -5930,12 +6443,6 @@ imageManager
 loadFullPixelBuffer:scaledPixelBuffer:fromImageURL:isPano:
 _pixelBufferPoolBGRA
 sharedTaxonomy
-_includeDO
-_includeSO
-_includeLM
-_includeNSFW
-_includeSE
-_includeSDG
 numberWithUnsignedInt:
 _createPixelBufferPool:withPixelFormat:
 _convertFromBuffer:toLumaPixelBuffer:isPano:
@@ -5948,8 +6455,14 @@ maximumHierarchicalObservations
 setMaximumHierarchicalObservations:
 setPrivateRevision:error:
 _useR14J9
+_includeDO
+_includeSO
+_includeLM
+_includeNSFW
 _getNSFWModelRevision
+_includeSE
 _getSERevision
+_includeSDG
 _getSDGModelRevision
 stringValue
 nodeForName:
@@ -6082,6 +6595,8 @@ _metaTracks
 _publicMutableResults
 _privateMutableResults
 timeWithCMTime:
+standardUserDefaults
+persistentDomainForName:
 currentLocale
 setLocale:
 sharedLogManager
@@ -6503,7 +7018,6 @@ _computeFingerPrintsOfAsset:completionHandler:
 fetchAssetsMatchingAdjustedFingerPrint:photoLibrary:
 fetchAssetsMatchingMasterFingerPrint:photoLibrary:
 vcp_fetchAssetsMatchingFingerprint:forPhotoLibrary:
-timeIntervalSinceReferenceDate
 loadModelAtPath:error:
 creationDate
 imageWithURL:assetWidth:assetHeight:imageCreationOptions:adjustmentVersion:creationDate:
@@ -8062,13 +8576,13 @@ getClusters:threshold:utilizingGPU:error:
 clustererState
 _resetFaceClusteringStateWithContext:error:
 clusterFacesWithExtendTimeoutBlock:andCancelBlock:
+clusteringStatus
 performFaceClusteringWithCompletion:
 cancelFaceClustering
 performFaceClusteringIfNecessaryAndWait
 scheduleClusteringOfFacesWithLocalIdentifiers:
 scheduleUnclusteringOfFacesWithClusterSequenceNumbers:
 numberOfFacesPendingClustering
-clusteringStatus
 reclusterFacesWithThreshold:shouldRecluster:error:
 getFaceClusters:clusteringThreshold:utilizingGPU:error:
 clustererIsReadyToReturnSuggestions

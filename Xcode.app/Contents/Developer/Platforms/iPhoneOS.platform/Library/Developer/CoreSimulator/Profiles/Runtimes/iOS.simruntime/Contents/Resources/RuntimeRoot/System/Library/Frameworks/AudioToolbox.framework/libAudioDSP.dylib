@@ -11080,12 +11080,12 @@ WARNING:
  details:  
  minutiae: 
            
-/Library/Caches/com.apple.xbs/Sources/AudioDSP_Sim/AudioDSP-432.32/CoreAudioUtility/Source/PublicUtility/AUOutputBL.cpp
+/Library/Caches/com.apple.xbs/Sources/AudioDSP_Sim/AudioDSP-432.35/CoreAudioUtility/Source/PublicUtility/AUOutputBL.cpp
 Prepare
 .austrip
 *** done.
 Error loading plist file 
-@@ Strips Sep 20 2020 00:38:56
+@@ Strips Oct  7 2020 03:04:55
 '%s' | <unknown type id: %d)>
 AUPreset
 '%s' | %sData{%d} | %d bytes

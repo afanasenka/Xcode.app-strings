@@ -1,7 +1,6 @@
 @(#)PROGRAM:SiriKitRuntime  PROJECT:SiriKitExecutor-1
 SiriKitFlowActivity
 CodingKeys
-AFFetchContextsKey
 AFAnalyticsEventType
 SiriKitRuntime
 IntentLoggingEventBusAware
@@ -25,6 +24,7 @@ LogConst
 Category
 SiriKitExecutorSignpost
 AnalyticsEventConst
+DirectInvocationIdentifierConst
 TaskMetricsConst
 GradingEvent
 Timeouts
@@ -94,9 +94,7 @@ SayMetricsLogger
 RunLocation
 Logger
 SiriKitRuntimeCrashHelper
-So8NSStringC
 $sSY
-$ss21_ObjectiveCBridgeableP
 ySo8SADialogCG
 yypG
 ySo9SAAceViewCG
@@ -232,6 +230,8 @@ ySaySo13SABaseCommandCG
 z_Xx
 So10AFPeerInfoCSg
 SayypGSgIegg_
+SaySo22AFServiceDeviceContextCGSgIegg_
+ySSG
 12activityType_
 3appSo8INIntentC6intent
 _p12metricsStateSS13parameterNameSiSg15descriptionCode
@@ -478,6 +478,7 @@ remoteMeCard
 localMeCardFetcher
 com.apple.siri.sirikit
 RequestDispatcher
+com.apple.siri.SiriKit.Flow.DeviceUnlockComplete
 error#genericError
 ExecuteAutoHandle
 ExecuteHandle
@@ -872,9 +873,7 @@ isSiriKit
 isSiriKitSupportedApp
 responseId
 slotName
-_rawValue
 RawValue
-_ObjectiveCType
 Input
 Failure
 flowLoader

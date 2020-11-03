@@ -1044,6 +1044,9 @@ Ignoring lock state change from %@ to %@
 %@ has incorrect file protection type %{public}@, expected %{public}@
 %@ has no file protection type, expected %{public}@
 Could not get file protection type for %@: %{public}@
+Concatenate [first %@, rest %@] to debouncedObservable: %@
+Subscribing to %@ with %@
+Observer: %@ received result: %@
 Exception occured: %{public}@
 Symbols:
 %{public}@
@@ -1524,7 +1527,6 @@ ef_publicDescription
 observableObserver
 take:
 observeOn:
-skip:
 arrayWithObjects:count:
 concatenate:
 subscribeWithResultBlock:
@@ -2136,6 +2138,7 @@ doOnNext:
 doOnCancel:
 doOnTerminate:
 delay:scheduler:
+skip:
 filter:
 publish
 replay

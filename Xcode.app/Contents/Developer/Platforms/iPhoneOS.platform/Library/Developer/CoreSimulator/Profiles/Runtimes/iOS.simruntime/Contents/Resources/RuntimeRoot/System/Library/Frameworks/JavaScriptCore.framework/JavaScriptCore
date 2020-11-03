@@ -7337,7 +7337,7 @@ bool JSC::PropertyCondition::isWatchableWhenValid(JSC::Structure *, JSC::Propert
 Presence
 Absence
 Equivalence
-CustomFunctionEquivalence
+HasStaticProperty
 HasPrototype
 void WTF::printInternal(WTF::PrintStream &, JSC::PropertyCondition::Kind)
 viaProxy = 
@@ -14663,6 +14663,7 @@ createDOMJITGetterBaseJSObject
 createBuiltin
 createWasmStreamingParser
 createStaticCustomAccessor
+createStaticCustomValue
 createObjectDoingSideEffectPutWithoutCorrectSlotStatus
 createEmptyFunctionWithName
 getPrivateProperty
@@ -14770,6 +14771,9 @@ JSC::EncodedJSValue (anonymous namespace)::testStaticAccessorGetter(JSC::JSGloba
 testField
 bool (anonymous namespace)::testStaticAccessorPutter(JSC::JSGlobalObject *, JSC::EncodedJSValue, JSC::EncodedJSValue)
 thinAirCustomGetter
+StaticCustomValue
+testStaticValue
+bool (anonymous namespace)::testStaticValuePutter(JSC::JSGlobalObject *, JSC::EncodedJSValue, JSC::EncodedJSValue)
 JSC::EncodedJSValue JSC::functionCreateObjectDoingSideEffectPutWithoutCorrectSlotStatus(JSC::JSGlobalObject *, JSC::CallFrame *)
 Unknown private name.
 argument is not an ImpureGetter

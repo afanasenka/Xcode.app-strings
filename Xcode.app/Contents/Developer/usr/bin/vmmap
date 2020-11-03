@@ -1,5 +1,5 @@
-@(#)PROGRAM:vmmap  PROJECT:SamplingTools-64541.6
-3333
+@(#)PROGRAM:vmmap  PROJECT:SamplingTools-64541.7.1
+ffff
 @DYLD_INSERT_LIBRARIES=
 setPurposeDescription:
 setSyntaxDescription:
@@ -328,19 +328,19 @@ examining %@ [%u]
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>12B5025b</string>
+<string>12B5035e</string>
 <key>DTPlatformName</key>
 <string>macosx</string>
 <key>DTPlatformVersion</key>
 <string>11.0</string>
 <key>DTSDKBuild</key>
-<string>20A2353</string>
+<string>20A2381</string>
 <key>DTSDKName</key>
 <string>macosx11.0internal</string>
 <key>DTXcode</key>
 <string>1220</string>
 <key>DTXcodeBuild</key>
-<string>12B5025b</string>
+<string>12B5035e</string>
 <key>LSMinimumSystemVersion</key>
 <string>10.14.6</string>
 <key>SecTaskAccess</key>

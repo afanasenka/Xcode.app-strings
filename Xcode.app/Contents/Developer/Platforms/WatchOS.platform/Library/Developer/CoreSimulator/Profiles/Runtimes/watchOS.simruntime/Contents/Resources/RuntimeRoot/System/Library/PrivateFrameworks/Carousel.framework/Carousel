@@ -2109,6 +2109,9 @@ None
 Warn
 Severe
 Critical
+gestureType
+com.apple.carousel.scrollCenter.trigger
+com.apple.carousel.scrollCenter.appear
 VOICEOVER_ANNOUNCEMENT_PRESENTED_CLOCK
 General
 VOICEOVER_ANNOUNCEMENT_PRESENTED_LAUNCHER
@@ -8763,6 +8766,8 @@ performing navigation for session %@
 dismissing session because app isn't top app and app is not auto launch or super sticky %@
 session is super sticky but not launchable, not dismissing or launching %@
 session already dismissed %@
+Initiating dismissal, screenOn = %{BOOL}u, navigateAway = %{BOOL}u, unseeen = %{BOOL}u %{public}@
+Not initiating dismissal, screenOn = %{BOOL}u, navigateAway = %{BOOL}u, unseeen = %{BOOL}u %{public}@
 crowning to clock or launcher, ask model to dismiss sessions
 %{public}@: relaunched recently (%3.1fs), not allowing relaunch now.
 %{public}@: has not relaunched recently, could relaunch now.
@@ -9482,7 +9487,7 @@ switcher updated items: %@
 Ambient light monitor starting monitoring
 Ambient light monitor could not initialize the client, exiting before we set up callbacks
 Ambient light monitor ending monitoring
-isAlertableBulletinInNonCriticalSection: %@ ignoresQuietMode: %{BOOL}u contactIdentifier: %@ deviceConnectedNearby: %{BOOL}u
+isAlertableBulletinInNonCriticalSection: %@ ignoresQuietMode: %{BOOL}u contactIdentifier: %@ deviceConnectedNearby: %{BOOL}u hasCriticalIcon: %{BOOL}u
 On wrist: %{BOOL}u
 Screen on: %{BOOL}u
 DND active: %{BOOL}u
@@ -9501,6 +9506,8 @@ punchThruDeviceLock: %{BOOL}u
 punchThruCall: %{BOOL}u
 punchThruOffWrist: %{BOOL}u
 isLocalOnlyBulletin: %{BOOL}u
+hasCriticalIcon: %{BOOL}u
+criticalAlertMustAlert: %{BOOL}u
 isAlertable: %{BOOL}u sectionID: %@
 isBulletinCoordinated: punchThruDeviceLock: %{BOOL}u section: %@ bulletin: %@ isPasscodeLocked: %{BOOL}u shouldShowQLWhileLocked: %{BOOL}u isLocalClockSection: %{BOOL}u
 isBulletinCoordinated: canSuppressPhoneAlert: %{BOOL}u section: %@ bulletin: %@
@@ -10121,6 +10128,8 @@ Enabled secure display mode.
 Disabled secure display mode.
 device lock state changed: isLocked=%s
 blocked state changed: isBlocked=%s
+backlight turned on, removing all unseen sessions
+backlight off, adding unseen session %{public}@
 CSLUIUsageMetering starting up
 Tried to pop location that wasn't the current base location
 Ignoring move to nil clockFaceName
@@ -10517,7 +10526,7 @@ received notify and will load preferences
 could not determine backlight factor: %f [willSet:%{BOOL}u]
 backlight on:%{BOOL}u during initialization (%.2f)
 aot suppressed: %@
-%@ stealthMode:%{BOOL}u aotEnabled:%{BOOL}u aotSuppressedByAssertions:%{BOOL}u usesFlipbook:%{BOOL}u forceAOTSupport:%{BOOL}u forceDemoModeBlankingHack:%{BOOL}u
+%@ stealthMode:%{BOOL}u aotEnabled:%{BOOL}u aotSuppressedByAssertions:%{BOOL}u usesFlipbook:%{BOOL}u forceAOTSupport:%{BOOL}u forceDemoModeBlankingHack:%{BOOL}u measureNextCommit:%{BOOL}u
 config update is needed
 config change is locked
 active request, waiting for configuration update: %@
@@ -12622,6 +12631,7 @@ AlertExtensionSupport
 CSLAddressBookResetHack
 CSLDuetActivationHandler
 CSLThermalController
+CSLScrollCenterStateMachineAnalytics
 CSLAccessibilityPolicy
 CSLUIUsageMeteringLocation
 CSLEcoModeConfirmationAlertProvider
@@ -18483,7 +18493,7 @@ scrollViewShouldScrollToTop:
 scrollViewDidScrollToTop:
 scrollViewDidChangeAdjustedContentInset:
 stateMachineDidScrollContent:
-stateMachine:willBeginFromGesture:
+stateMachine:willbeginFromGesture:
 stateMachine:didChangeViewState:animated:
 peekingRectEdgeForStateMachine:
 stateMachine:commitAppearingWithRectEdge:
@@ -19070,6 +19080,8 @@ _coldLevel
 _level
 _trapping
 _xpcServer
+postAppearingOnEdge:fromGesture:
+postAppearedOnEdge:fromGesture:
 notifyZoomAppActivationAnimationDidFinish
 notifyZoomAppActivationAnimationWillBegin
 _voiceOverAnnouncePresentedView:
@@ -21363,12 +21375,12 @@ _recentSimultaneousApps
 _eligibleBundleIDs
 inCall
 inTinCanCall
-isAlertableBulletinInNonCriticalSection:ignoresQuietMode:contactIdentifier:deviceConnectedNearby:
+isAlertableBulletinInNonCriticalSection:ignoresQuietMode:contactIdentifier:deviceConnectedNearby:hasCriticalIcon:
 resolveBehaviorForEventThatShouldAlwaysInterrupt:contactIdentifier:completion:
 publisherBulletinID
 isBulletinCoordinated:
 inCallAndCannotAlert
-isAlertableBulletinInNonCriticalSection:ignoresQuietMode:deviceConnectedNearby:
+isAlertableBulletinInNonCriticalSection:ignoresQuietMode:contactIdentifier:deviceConnectedNearby:
 _backingWindow
 initWithEvent:for:scheduled:
 addEvent:for:scheduled:toHistory:
@@ -23171,6 +23183,7 @@ _upgradeMonitor
 isAppExecutableRunning:
 failedTest:withResults:
 launchLocation
+wantsSceneBasedTestForLocation:
 operationForNavigatingToLaunchLocation
 initWithApplication:testName:
 mainQueue
@@ -23528,6 +23541,7 @@ setUnpeekingState:
 setPresentingState:
 setPresentedState:
 _settingContentOffset
+_analytics
 _longPressRecognizer
 _disappearedState
 _peekingState
@@ -26981,10 +26995,32 @@ audioServicesPlaySystemSound:shouldPlayHaptics:
 _playedSystemSoundIDLog
 _volumeController
 statusWithCompletion:
+_withOutstandingSendsLock:
+unsignedLongValue
+_setConnection:isWaitingOnSend:
+_sendNeededUpdatesForConnection:
+_setConnection:needsUpdateOnSuccessfulSend:updateType:
+scheduleSendBarrierBlock:
+_updateTypesNeededOnSuccessfulSendForConnection:
+_sendConnectionStatusDidChange:toConnection:
+_sendWifiSignalStrengthBarsDidChange:toConnection:
+_sendRegistrationStatusDidChange:toConnection:
+_sendCellularSignalStrengthBarsDidChange:toConnection:
+_sendSimActiveDidChange:toConnection:
+_isConnectionWaitingOnSend:
+_confirmSendForConnection:updateType:
 remoteObjectInterface
 _removeConnection:
 _informListener:
 _connectionsLock
+_outstandingSendsLock
+_connectionPIDsWaitingOnSendBarrier
+_connectionsUpdateTypesNeeded
+_latestConnectionStatus
+_latestWifiSignalStrengthBars
+_latestRegistrationStatus
+_latestCellularSignalStrengthBars
+_latestSimActive
 applicationInfoForCompanionBundleIdentifier:completion:
 applicationInfoForApplicationIdentifier:completion:
 initWithApplicationBundleID:supportsAutoLaunch:isTracked:
@@ -30410,9 +30446,9 @@ d24@0:8r^d16
 v24@0:8^{__IOHIDEvent=}16
 {deque<double, std::__1::allocator<double> >="__map_"{__split_buffer<double *, std::__1::allocator<double *> >="__first_"^^d"__begin_"^^d"__end_"^^d"__end_cap_"{__compressed_pair<double **, std::__1::allocator<double *> >="__value_"^^d}}"__start_"Q"__size_"{__compressed_pair<unsigned long, std::__1::allocator<double> >="__value_"Q}}
 @40@0:8Q16Q24Q32
+B44@0:8@16B24@28B36B40
+B44@0:8@"NSString"16B24@"NSString"28B36B40
 B40@0:8@16B24@28B36
-B40@0:8@"NSString"16B24@"NSString"28B36
-B32@0:8@16B24B28
 @"CSLEclipseBackingWindow"
 v48@0:8q16@24@32@40
 v40@0:8q16@24@32
@@ -30754,6 +30790,7 @@ v32@0:8d16@?<v@?B>24
 @"CUISAlertHeaderView"
 @"CUISAlertChevronView"
 v40@0:8{CGPoint=dd}16B32B36
+@"CSLScrollCenterStateMachineAnalytics"
 @"<CSLScrollCenterStateMachineDelegate>"
 @"CSLScrollCenterStateMachineDisappearedState"
 @"CSLScrollCenterStateMachinePeekingState"
@@ -31154,6 +31191,7 @@ v32@0:8@16f24f28
 v24@0:8@"CSLStatusBarGlobalContextIndicatorsView"16
 @64@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48q56
 v36@0:8{CGSize=dd}16B32
+B32@0:8@16B24B28
 B32@0:8B16B20B24B28
 {CSLStatusBarGlobalContextViewLayoutAttributes="indicatorsRightMargin"d"indicatorsLeftMargin"d"pillInteriorPadding"d"rightPadding"d"pillRightPadding"d"pillTopPadding"d"pillHeight"d"pillCornerRadius"d}
 @"<CSLStatusBarGlobalContextViewDelegate>"
@@ -31333,6 +31371,7 @@ v28@0:8I16Q20
 v32@0:8I16I20@24
 @"<NACVolumeController>"
 v24@0:8@?<v@?Q>16
+v28@0:8i16@20
 v32@0:8@"NSString"16@?<v@?@"CSLSApplicationInfo">24
 @"CSLDeveloperDockMonitor"
 @"<CSLDefaultsTracking>"

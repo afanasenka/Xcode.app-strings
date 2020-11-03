@@ -306,6 +306,7 @@ allowsNonContiguousRanges
 TB,V_allowsNonContiguousRanges
 rotatesCoordinateSystemForLayoutOrientation
 TB,V_rotatesCoordinateSystemForLayoutOrientation
+v32@?0@"NSTextLayoutFragment"8Q16^B24
 __NSTextLayoutManagerThrowsExceptionOnAssertionError
 __NSTextLayoutManagerValidatesInternalCaches
 -[NSTextLayoutManager _validateTextContainerEntries]
@@ -313,6 +314,7 @@ NSTextLayoutManager.m
 _textContainerEntries inconsistency, _textContainerEntries:%p, _textContainerEntriesSize:%lu
 _textContainerEntriesSize inconsistency, _textContainerEntriesSize:%lu, _textContainerEntriesCount:%lu
 _textContainerEntriesAccessHint inconsistency, _textContainerEntriesAccessHint:%p, _textContainerEntries:%p, _textContainerEntriesCount:%lu, (_textContainerEntriesAccessHint - _textContainerEntries):%ld
+v24@?0@"NSTextElement"8^B16
 NSUsesDefaultHyphenation
 NS.flags
 NS.delegate
@@ -323,8 +325,6 @@ usageBoundsForLastTextContainer
 v24@?0@"NSTextLayoutFragment"8^B16
 B24@?0@"NSTextContainer"8@"NSTextRange"16
 i24@?0r^v8r^v16
-v32@?0@"NSTextLayoutFragment"8Q16^B24
-v24@?0@"NSTextElement"8^B16
 v48@?0{CGRect={CGPoint=dd}{CGSize=dd}}8@"NSTextRange"40
 B72@?0@"NSTextLineFragment"8@"NSTextRange"16@"NSTextRange"24{CGPoint=dd}32q48B56B60@"NSTextContainer"64
 v32@?0@"NSTextLineFragment"8Q16^B24
@@ -3204,6 +3204,7 @@ addAttributes:range:
 enumerateAttributesInRange:options:usingBlock:
 _prepareAttributedString:forTextLayoutFragment:
 endEditing
+_configureCoreTypesetter:forTextParagraph:
 setAttributedString:
 setCharacterRange:
 setTextContainerSize:
@@ -3222,10 +3223,7 @@ setWantsExtraLineFragment:
 setTextLineFragments:
 setState:
 updateLayoutWithTextLayoutFragment:
-attributesAtIndex:effectiveRange:
-_getLineMetricsForRange:attributes:applySpacing:usesSystemFontLeading:usesNegativeFontLeading:
-allowsFontSubstitutionAffectingVerticalMetrics
-boundingRectForFont
+estimatedIntrinsicContentSizeForTextLayoutManager:
 _layout
 addOperationWithBlock:
 removeAllObjects
@@ -3251,6 +3249,7 @@ _selectionAndMarkedTextAttributesForLocation:inTextRange:effectiveTextRange:
 mutableCopy
 addEntriesFromDictionary:
 textParagraph
+attributesAtIndex:effectiveRange:
 objectForKey:
 initWithLocation:attributes:
 strongToStrongObjectsMapTable
@@ -3337,21 +3336,11 @@ setDestinationVerticalDelta:
 setDestinationGlyphRange:
 setDestinationBoundingRect:
 drawAtPoint:contentType:
-applicationFrameworkContext
-setApplicationFrameworkContext:
-usesFontLeading
-setUsesFontLeading:
-usesDefaultHyphenation
-setUsesDefaultHyphenation:
-setAllowsFontSubstitutionAffectingVerticalMetrics:
-limitsLayoutForSuspiciousContents
-setLimitsLayoutForSuspiciousContents:
-attributes
-set_extraLineFragmentAttributes:
 textStorage
 cuiCatalog
 styleEffectConfiguration
 layoutManager:effectiveCUICatalogForTextEffect:
+applicationFrameworkContext
 _usesSimpleTextEffects
 initWithTextEffectName:catalog:styleEffectConfiguration:font:color:applicationFrameworkContext:useSimplifiedEffect:
 drawGlyphs:positions:count:context:
@@ -3519,6 +3508,7 @@ _rectArrayForRange:withinSelectionRange:rangeIsCharRange:singleRectOnly:fullLine
 _rectArrayForRange:withinSelectionRange:rangeIsCharRange:singleRectOnly:fullLineRectsOnly:inTextContainer:rectCount:rangeWithinContainer:glyphsDrawOutsideLines:
 _setCachedTextContainer:isVertical:
 substituteFontForFont:
+boundingRectForFont
 attachmentSizeForGlyphAtIndex:
 _resetCachedTextContainer
 elementAtIndex:
@@ -3696,6 +3686,7 @@ endScrollingForView:textContainer:
 prepareLayoutForBoundingRect:textContainer:
 setUnderlineColorForTextAlternatives:
 setUnderlineColorForSpelling:
+setApplicationFrameworkContext:
 _inBackgroundLayout
 _doSomeBackgroundLayout
 currentHandler
@@ -3792,6 +3783,8 @@ setDefaultTighteningFactor:
 allowsDefaultLineBreakStrategy
 defaultLineBreakStrategy
 setLineBreakStrategy:
+limitsLayoutForSuspiciousContents
+setLimitsLayoutForSuspiciousContents:
 _flushCachedObjects
 _setBaselineRenderingMode:
 initialize
@@ -3824,6 +3817,7 @@ _range
 _characters
 _buffer
 _forceOriginalFontBaseline
+usesFontLeading
 _isDefaultFace
 renderingMode
 _kernOverride
@@ -3945,6 +3939,7 @@ processEditing
 setAttributes:range:
 _contents
 _textContainer
+setUsesFontLeading:
 setSize:
 _setForceOriginalFontBaseline:
 setParagraphGlyphRange:separatorGlyphRange:
@@ -4088,6 +4083,13 @@ setElementRange:
 _throwsOnAssertionError
 stringWithUTF8String:
 handleFailureInFunction:file:lineNumber:description:
+usesDefaultHyphenation
+setUsesDefaultHyphenation:
+allowsFontSubstitutionAffectingVerticalMetrics
+setAllowsFontSubstitutionAffectingVerticalMetrics:
+attributes
+set_extraLineFragmentAttributes:
+enumerateTextElementsFromLocation:options:usingBlock:
 companionLayoutManagerClass
 _commonInit
 decodeInt32ForKey:
@@ -4117,7 +4119,6 @@ textViewportElementAtPoint:
 ensureLayoutForBounds:
 textLayoutManager:textLayoutFragmentForLocation:inTextElement:
 synchronizeTextLayoutManagers:
-enumerateTextElementsFromLocation:options:usingBlock:
 _textParagraphForEmptyDocument
 glyphOrigin
 enumerateTextSegmentBoundsInTextRange:withTextSElementProvider:baseLocation:usingBlock:
@@ -4157,6 +4158,7 @@ _setValidatesInternalCaches:
 enumerateViewportElementsFromLocation:options:usingBlock:
 _hasLayoutForLocation:
 _validateTextContainerEntries
+_estimatedVerticalSizeForTextRange:adjustedTextRange:
 companionLayoutManager
 replaceTextContentManager:
 _removeTextContainer
@@ -4512,6 +4514,7 @@ initWithTextContentManager:
 _elementRange
 setAttributes:
 setTextDataProvider:
+_getLineMetricsForRange:attributes:applySpacing:usesSystemFontLeading:usesNegativeFontLeading:
 setParagraphContentRange:
 setParagraphSeparatorRange:
 synchronizeDocumentRange
@@ -6439,6 +6442,7 @@ q24@0:8@"<NSTextLocation>"16
 v32@0:8@"<NSTextLocation>"16@?<v@?d@"<NSTextLocation>"B^B>24
 @"NSTextRange"40@0:8{CGPoint=dd}16@"<NSTextLocation>"32
 v36@0:8@"<NSTextLocation>"16B24@?<v@?@"<NSTextLocation>"^B>28
+d32@0:8@16o^@24
 {CGRect={CGPoint=dd}{CGSize=dd}}24@0:8q16
 v28@0:8@16B24
 @40@0:8{CGPoint=dd}16q32

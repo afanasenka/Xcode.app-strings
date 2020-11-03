@@ -561,6 +561,7 @@ v24@?0@"NSData"8@"NSError"16
       on-going index started:     %.3fs ago
       on-going index batch count: %lu
       last error: %s
+    not dumping extension: not running
     can't dump the extension: %@
 T@"FPDExtension",W,N,V_extension
 needsAuthentication
@@ -852,7 +853,7 @@ shortDescription
 unknown process
  (ignored)
  presenting %@ (%@)
-presenter for %@
+presenter for %@ by %@[%u]
 T@"FPItemID",&,N,V_itemID
 filePresenterID
 T@,C,N,V_filePresenterID
@@ -1653,6 +1654,7 @@ xcyndicate
  Deregistered file provider extension %@ (%@) for path %@
 [ERROR] can't notify extension %@ of item change %lu for item %@; %@
 [DEBUG] %s: %@
+[INFO] Extension %@ signalled for item at %@ without active enumerators, not launching it
 [ERROR] Could not tell extension %@ that item at %@ did change. Error: %@
 [DEBUG] 
 %llx move-reader: create move reader
@@ -3041,6 +3043,7 @@ itemIdentifier
 signalChangesWithCompletionHandler:
 signalPresentersForItemID:
 workingSetDidChangeWithCompletionHandler:
+existingFileProviderProxyWithTimeout:onlyAlreadyLifetimeExtended:pid:
 containsPhotos
 ejectable
 presentersForDomain:
@@ -3210,7 +3213,6 @@ persistNeedsIndexingOnDisk
 _signalChangesWithCompletionHandler:
 timeIntervalSinceDate:
 initWithFileDescriptor:closeOnDealloc:
-existingFileProviderProxyWithTimeout:pid:
 setIndexingEnabled:completionHandler:
 setNeedsAuthentication:
 setDomainIdentifier:
@@ -4114,11 +4116,13 @@ v24@0:8:16
 @"FPXPCAutomaticErrorProxy"
 v28@0:8@"FPDProcessMonitor"16B24
 @24@0:8B16i20
+@28@0:8B16B20i24
 v48@0:8{?=[8I]}16
 @"<FPXPCAutomaticErrorProxy><FPXVendor>"20@0:8i16
 @"<FPXPCAutomaticErrorProxy><FPXVendor>"24@0:8B16i20
 @"<FPXPCAutomaticErrorProxy><FPXVendor>"16@0:8
 @"<FPXPCAutomaticErrorProxy><FPXVendor>"20@0:8B16
+@"<FPXPCAutomaticErrorProxy><FPXVendor>"28@0:8B16B20i24
 v24@0:8@"<FPDLifetimeExtender>"16
 v24@0:8@"FPCTLTermDumper"16
 B32@0:8q16^@24

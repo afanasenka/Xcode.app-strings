@@ -1,4 +1,3 @@
-%QLk
 --driver-mode=clnonical-prefixes-no-canonical-pr
 -?:\,[]{}#&*!|>'"%@`
 01234567
@@ -53217,9 +53216,7 @@ removeMember
 getNumMembers
 hasMember
 getModule
-removeGlobalResource
 global_resource_clear
-hasGlobalResource
 getVIDMAList
 setVIDMAList
 getVIRemap
@@ -53240,7 +53237,6 @@ getAliasAnalysisGlobals
 setAmpIdCount
 hasReadLiteralConstantLocation
 getSharedRegisterLiteralConstantBase
-getLiteralConstantOf32BitSharedRegister
 setCommonStoreRegisterForGlobal
 hasSharedRegisterAllocations
 hasCoefficientRegisterAllocations
@@ -60987,7 +60983,7 @@ $parent_frame_offset
 __ehtable$
 .group
 inconsistent use of embedded source
-llvm-mc (based on LLVM 31001.40)
+llvm-mc (based on LLVM 31001.43)
 Fragment can't be larger than a bundle size
 Padding cannot exceed 255 bytes
 Unterminated .bundle_lock when changing a section
@@ -63135,7 +63131,7 @@ OPTIONS:
 Apple
 LLVM
  version 
-31001.40
+31001.43
 Optimized build
   Default target: 
   Host CPU: 
@@ -81834,11 +81830,11 @@ annot_pragma_metal_internals
 annot_module_include
 annot_module_begin
 annot_module_end
-metalfe-31001.40
+metalfe-31001.43
 llvm/
 Apple 
- version 31001.40 
-LLVM 31001.40 
+ version 31001.43 
+LLVM 31001.43 
 expected root node
 expected mapping node
 case-sensitive
@@ -84529,7 +84525,7 @@ clang LLVM compiler
 openclc
 Command line argument parsing
 --no-demangle
-609.5
+609.6
 -fopenmp
 nvptx64-nvidia-cuda
 nvptx-nvidia-cuda
@@ -89780,7 +89776,7 @@ Clang front-end time report
 Clang front-end timer
 -%%%%%%%%
 .tmp
-clang -cc1 version 31001.40
+clang -cc1 version 31001.43
  default target 
  warning
  error
@@ -90372,7 +90368,7 @@ __clang_major__
 __clang_minor__
 __clang_patchlevel__
 __clang_version__
-"31001.40 
+"31001.43 
 __GNUC_MINOR__
 __GNUC_PATCHLEVEL__
 __GNUC__
@@ -112837,9 +112833,9 @@ __tracepoint_variable
         <key>CFBundleName</key>
         <string>Apple clang</string>
 <key>CFBundleShortVersionString</key>
-<string>31001.40</string>
+<string>31001.43</string>
         <key>CFBundleVersion</key>
-        <string>31001.40.0</string>
+        <string>31001.43.0</string>
 <key>CFBundleSignature</key>
 <string>????</string>
 </dict>
@@ -112861,4 +112857,4 @@ $,6
 +,6
 ,,6
 -,6
-31001.40
+31001.43

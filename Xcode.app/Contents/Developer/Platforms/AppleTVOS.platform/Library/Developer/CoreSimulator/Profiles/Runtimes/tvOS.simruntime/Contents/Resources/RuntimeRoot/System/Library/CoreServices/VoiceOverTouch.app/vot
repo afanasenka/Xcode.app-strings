@@ -33,10 +33,11 @@ v24@?0Q8^B16
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 he-IL
 ar-SA
-en-US
-RotorItem
+VoiceOver
 string
 language
+en-US
+RotorItem
 skipsUnpronounceable
 Enabled
 [%p] OutputRequest:
@@ -133,8 +134,8 @@ T@"AXVoiceOverActivity",&,N,V_lastUsedActivity
 lastUsedActivityTime
 Td,N,V_lastUsedActivityTime
 voiceover.avaccessqueue.output
-/Library/Caches/com.apple.xbs/Sources/VoiceOverTouch_Sim/VoiceOverTouch-2192/Sources/VOTOutputManager.m
--[VOTOutputManager _updateSupportedLanguageMap]
+/Library/Caches/com.apple.xbs/Sources/VoiceOverTouch_Sim/VoiceOverTouch-2194.1/Sources/VOTOutputManager.m
+-[VOTOutputManager updateSupportedLanguageMap]
 Could not find a language map: %@
 Audio/Video
 HDMI
@@ -579,7 +580,6 @@ void *UIKitLibrary(void)
 VOTRotorChangedNotification
 display-queue
 VOTAXUIClientIdentifier
-VoiceOver
 FocusChangeFrameKey
 FocusChangeTypeKey
 animate
@@ -2234,6 +2234,7 @@ q24@?0@"NSValue"8@"NSValue"16
 T@"<VOTBrailleGesturePatternRecognitionEngineDelegate>",W,N,V_delegate
 shouldUseEightDotBraille
 shouldReverseDots
+%C%C%C%C%C%C%C%C%C%C%C
 [-()\s]
 Tq,N,V_direction
 T@"VOTElement",&,N,V_element
@@ -2800,17 +2801,17 @@ canSpeakCharacter:
 canSpeakString:
 doNotTranslateWords
 containsObject:
+null
+dictionaryWithObjects:forKeys:count:
 languageRotorItems
 hasPrefix:
 replacesCharacterAsPunctuation:
-dictionaryWithObjects:forKeys:count:
 dialectsThatCanSpeakCharacter:overridePreferredLanguages:
 isDialectSecondaryForCharacter:
 langMap
 isWestern
 generalLanguageID
 firstObject
-null
 keyboardLanguageHint
 stringShouldSeparateDueToLanguage:language:keyboardLanguageHint:
 initWithTextDisplay:
@@ -2999,7 +3000,7 @@ initWithTargetAccessQueue:
 setAutomaticallyCancelPendingBlockUponSchedulingNewBlock:
 externalAudioRouteSelected
 setAudioDestinationRequestExternal:
-_updateSupportedLanguageMap
+updateSupportedLanguageMap
 addObserver:selector:name:object:
 resetSpeechRate
 _setVolume:
@@ -3258,6 +3259,7 @@ addTVElement:
 addTVElements:
 originalElementforElement:
 setSoundThread:
+initWithTarget:selector:thread:
 bundleForClass:
 resourcePath
 initFileURLWithPath:isDirectory:
@@ -3290,6 +3292,8 @@ isPlaying
 soundMuted
 voiceOverIsIdle
 play
+_cancelHelperFired:
+dispatchAfterDelay:withBlock:
 playAvoidingSSS:
 initWithSoundPath:thread:
 _hearingAidRouteChange:
@@ -3315,6 +3319,8 @@ _player
 _completionBlockLock
 _soundChannels
 _hearingAidStreamSelected
+_soundPlayGeneration
+_cancelHelperTimer
 _isPlaying
 _isVolumeSound
 _soundThread
@@ -4172,6 +4178,7 @@ _usingAllChannels
 category
 categoryOptions
 setCategory:withOptions:error:
+setParticipatesInMutePriority:error:
 _updateChannelLayout
 outputs
 channel
@@ -4869,6 +4876,7 @@ applicationForPID:
 rotorManager
 _setUSBRMPreferenceDisabled
 handleUSBMFiBrailleDisplayConnected
+setUnitTestSystemSpokenLanguage:
 voiceOverMuted
 navigateImagesOption
 setAdditionalLanguageRotorItem:
@@ -4938,7 +4946,6 @@ setUserUnlockedDeviceForUnitTesting:
 setIsRingerSwitchSilentForUnitTesting:
 setCurrentCallStateForUnitTests:
 setUnitTestSpeechRate:
-setUnitTestSystemSpokenLanguage:
 reachabilityIdentifier
 setReachabilityIdentifier:
 characterSoundMap
@@ -5223,7 +5230,6 @@ _allowedCharacterSets
 setTargetThread:
 _handleRepeaterTimerDidFire:
 targetThread
-initWithTarget:selector:thread:
 setRepeaterTimer:
 repeaterTimer
 setSelectButtonReceivedNotificationObserverToken:
@@ -5470,7 +5476,6 @@ _similarMonitoredElement:
 _monitoredElementCachedText:
 _elementMonitoringOutputElement:userMonitored:
 _monitorElements
-dispatchAfterDelay:withBlock:
 voiceOverContinuousPathKeyboardStartTimeout
 setContinuousPathTimeout:
 continuousPathTimeout
@@ -6037,6 +6042,7 @@ _updateApplicationAndSpeak:
 _tvOS_updateWithNativeFocus:withDelayNumber:
 nextElementToFocus
 nextStringToSpeakOnScreenChange
+_isWebAppStillOpen
 _clearWebLoadedSound
 _addApplicationLabelsAndSummariesToRequest:applicationNames:summaryElements:
 lastDuckingDisablementSessionStart
@@ -6680,6 +6686,7 @@ initWithAttributedString:
 _copyMathTextualInformationWithBrailleLineRange:brailleDescriptionRange:position:rotorSelection:shouldPreferRotorSelection:
 appendAttributedString:
 _languageRangesForText:
+generateCVMLContentForBraille
 importance
 applyBrailleSubstitutions:
 hasExplicitRowInfo
@@ -8078,9 +8085,7 @@ Updating sound properties with new channels: %{public}@
 Existing sound channel count: %ld
 Player channels: %d, selected channels: %d
 finish player?  %@ -> %@
-finish player?2  %@ %@
-delegate me player?2  %@
-play mute SSS: %@
+Cancel helper fired, %llu = %llu, playing: %d
 play avoid SSS AudioServices: %@
 Activating AudioServices
 finish play mute SSS: %@
@@ -8154,6 +8159,8 @@ Not really different options (different: %d) (lastSet: %lu, newSet: %lu)
 Changing route? [%{public}@] - categories [%{public}@/%{public}@], options: [%lu/%lu]
 Setting category to %@ with options: %d
 Set category error: %{public}@
+Opting VoiceOver out of audio session participatesInMutePriority
+Failed to opt VoiceOver out of participatesInMutePriority. error: %@
 Route %@: Channel layout %{public}@ and channels %{public}@
 Default port channels: %@
 No selected channels, but we're on tv and we have surround sound, so VO uses center channel: %@
@@ -8805,6 +8812,7 @@ v32@0:8@16B24B28
 ^{OpaqueAudioComponentInstance=}
 @"AVAudioPlayer"
 {os_unfair_lock_s="_os_unfair_lock_opaque"I}
+@"SCRCTargetSelectorTimer"
 v32@0:8@16Q24
 @24@0:8Q16
 {CGPoint=dd}16@0:8
@@ -8951,7 +8959,6 @@ f32@0:8@16@24
 I24@0:8@16
 v28@0:8@16f24
 @"NSDictionary"
-@"SCRCTargetSelectorTimer"
 @"AXSSPunctuationGroup"
 @"TTSSpeechSynthesizer"
 @"<BSInvalidatable>"
@@ -9334,6 +9341,10 @@ softlink:r:path:/System/Library/Frameworks/UIKit.framework/UIKit
 </array>
 <key>com.apple.private.coreaudio.viewInterruptorName.allow</key>
 <true/>
+<key>com.apple.private.donotdisturb.behavior.resolution.client-identifiers</key>
+<array>
+<string>com.apple.accessibility.AXTapticChimesScheduler</string>
+</array>
 <key>com.apple.private.externalaccessory.showallaccessories</key>
 <true/>
 <key>com.apple.private.hid.client.event-dispatch</key>
@@ -9377,10 +9388,13 @@ softlink:r:path:/System/Library/Frameworks/UIKit.framework/UIKit
 <key>com.apple.security.exception.iokit-user-client-class</key>
 <array>
 <string>IOHIDResourceDeviceUserClient</string>
+<string>RootDomainUserClient</string>
 </array>
 <key>com.apple.security.exception.mach-lookup.global-name</key>
 <array>
 <string>com.apple.accessibility.BrailleTranslation.BrailleTranslationService</string>
+<string>com.apple.Carousel.wristmonitor</string>
+<string>com.apple.donotdisturb.service</string>
 <string>com.apple.TextInput.accessibility</string>
 <string>com.apple.accessibility.AXSpringBoardServer</string>
 <string>com.apple.SpringBoard.VOT</string>
@@ -9404,6 +9418,7 @@ softlink:r:path:/System/Library/Frameworks/UIKit.framework/UIKit
 <string>com.apple.purplebuddy</string>
 <string>com.apple.frontboardservices.device_emulation</string>
 <string>com.apple.avfaudio</string>
+<string>com.apple.NanoTimeKit.face</string>
 </array>
 <key>com.apple.security.exception.shared-preference.read-write</key>
 <array>

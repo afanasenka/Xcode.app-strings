@@ -1,4 +1,5 @@
-@(#)PROGRAM:DVTFoundation  PROJECT:DVTFrameworks-17511
+@(#)PROGRAM:DVTFoundation  PROJECT:DVTFrameworks-17515.1
+ffff
 MbP?
 ?333333
 ?ffffff
@@ -2254,7 +2255,7 @@ void _DVTGetBuildDateComponentsWithoutCaching(char * _Nonnull, NSArray *__autore
 DVTFoundationUtilities.m
 Invalid parameter not satisfying: %@
 [dateComponents count] == 3
-Sep 22 2020
+Oct  7 2020
 BOOL _DVTIsBuildDateAfterDateStringWithoutCaching(NSInteger, NSInteger, NSInteger, NSString * _Nonnull __strong)
 You can disable this assertion by setting the hidden user default '%@' to NO. 
 This was automatically enabled for QuickLooks on %@.
@@ -3315,6 +3316,8 @@ foundRange.location == NSNotFound || (foundRange.location >= range.location && (
 (shouldGroup)
 -[NSArray(DVTFoundationClassAdditions) dvt_unorderedArrayByGroupingObjectsUsingKeyPaths:]
 keyPaths.dvt_isNonEmpty
+-[NSArray(DVTFoundationClassAdditions) dvt_unorderedArrayByGroupingObjectsUsingKeys:]
+key.dvt_isNonEmpty
 %@ %@ %@
 %@%@%@ %@
 -[NSArray(DVTFoundationClassAdditions) dvt_objectAtWrappedIndex:]
@@ -5613,6 +5616,7 @@ unarchivedObjectOfClasses:fromData:error:
 dvt_unarchiveData:withBlock:
 dvt_unarchiveObjectOfClass:fromData:error:
 dvt_rangeOfArray:inRange:
+dvt_unorderedArrayByGroupingObjectsUsingKeys:
 removeObjectsInArray:
 null
 dvt_arrayByAddingObjects:

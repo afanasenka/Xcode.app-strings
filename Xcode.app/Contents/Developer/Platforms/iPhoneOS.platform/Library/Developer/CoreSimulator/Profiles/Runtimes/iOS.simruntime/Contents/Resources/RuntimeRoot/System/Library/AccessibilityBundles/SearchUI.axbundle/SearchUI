@@ -199,7 +199,6 @@ B24@?0@"UIView"8^B16
 CNActionView
 TLKStoreButton
 SearchUIInlineActionsView
-SearchUIInlineActionsViewController
 initWithMessageMbutton:inlineActionsViewController:directionsButton:
 directionsButton
 messageButton
@@ -285,6 +284,7 @@ tableIdentifier
 SFCardSection
 resultForIndexPath:
 SearchUIHomeScreenAppIconView
+SearchUICardSectionTableCell
 SCKPMediaControlCardSectionView
 SearchUIDetailedRowModel
 siri.shortcut

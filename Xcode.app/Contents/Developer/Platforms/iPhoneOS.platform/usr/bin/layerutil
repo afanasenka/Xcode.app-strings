@@ -7048,6 +7048,9 @@ CUIThemeGradient needs the same number of opacities as there are of opacity loca
 Calling drawInRect: witha a CUIThemeGradient.  This operation is not supported.
 %@: need to implement %@
 labelColor
+secondaryLabelColor
+tertiaryLabelColor
+quaternaryLabelColor
 highlightColor
 shadowColor
 systemRedColor
@@ -7153,6 +7156,9 @@ knockout-systemGrayColor
 knockout-systemTealColor
 knockout-systemIndigoColor
 knockout-labelColor
+knockout-secondaryLabelColor
+knockout-tertiaryLabelColor
+knockout-quaternaryLabelColor
 knockout-controlAccentColor
 knockout-tintColor
 fontMatchingScaleFactor

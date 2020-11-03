@@ -349,6 +349,7 @@ DoNotDisturbWhileDriving
 DoNotDisturbBedtime
 IdleTimer
 MotionGesture
+MotionAlarm
 Wallet
 LiquidDetection
 AutoLaunching

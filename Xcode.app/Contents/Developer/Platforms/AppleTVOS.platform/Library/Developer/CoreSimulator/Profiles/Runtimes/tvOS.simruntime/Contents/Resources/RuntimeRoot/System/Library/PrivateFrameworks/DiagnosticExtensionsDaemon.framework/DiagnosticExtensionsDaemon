@@ -32,21 +32,22 @@ TB,R,N
 T@"NSString",&,N,V_extension
 hasDelay
 TQ,N,V_delay
+com.apple.DiagnosticExtensions.sysdiagnose
 ded-radar-finisher
 Tap-to-Radar upload for rdar://%@ via diagnosticextensionsd
 https://radar-webservices.apple.com
-%@/problems/%@/attachments/%@
+problems/%@/attachments/%@/%@
 Radar-Authentication
 true
 X-Override-File
 unknown
+%@ (%@) - %@
+%@/%@
 session
 T@"DEDBugSession",W,V_session
 T@"NSObject<OS_os_log>",&,V_log
 percentComplete
 Tf,V_percentComplete
-attachments
-T@"NSArray",&,V_attachments
 uploadItems
 T@"NSMutableSet",&,V_uploadItems
 numtasks
@@ -432,7 +433,6 @@ Waiting
 Ready
 NeedsPairing
 NotAvailable
-com.apple.DiagnosticExtensions.sysdiagnose
 com.apple.diagnosticextensions-service
 de-collector
 -[DEDDiagnosticCollector collectItemsWithIdentifier:parameters:]
@@ -482,6 +482,7 @@ attachmentURLs
 T@"NSArray",&,V_attachmentURLs
 attachmentRecords
 T@"NSMutableArray",&,V_attachmentRecords
+attachments
 T@"NSMutableArray",&,V_attachments
 uploadedBytes
 T@"NSMutableDictionary",&,V_uploadedBytes
@@ -953,13 +954,12 @@ T@"NSURLSessionUploadTask",&,V_uploadTask
 Starting Tap-to-Radar finishSession...
 config.radarProblemID = %{public}@
 config.radarAuthToken = %{public}@
-attachments = %{public}@
-No attachments were sent to radar finisher
 Starting upload for %{public}@
 Calculated Radar API URL: %{public}@
 File at URL %{public}@ encountered reachable error: %{public}@, skipping
 Starting uploadTask %{public}@
 self.uploadItems: %{public}@
+No attachments were sent to radar finisher
 uploadTask complete: %{public}@
 %{public}@
 Finished upload item: %{public}@
@@ -1208,6 +1208,7 @@ Session [%{public}@] will timeout after [%.1lf] seconds
 session start timed out for session id [%{public}@]
 Preparing to copy files to test directory.
 Error: Found folder that does not map to a completed extension: %{public}@
+attachments = %{public}@
 Error creating destination directory. %@
 Error copying to destination directory. %@
 Expected to complete %lu files, but only completed %lu.
@@ -1671,25 +1672,23 @@ setWithObject:
 radarProblemID
 radarAuthToken
 setPercentComplete:
-directoryForBugSession:
-findAllfiles:
-setAttachments:
-attachments
-count
-session
-uploadProgress:total:
-didFinishAllUploads
 identifier
 backgroundSessionConfigurationWithIdentifier:
 setUpDataUsageWithConfiguration:
 sessionWithConfiguration:delegate:delegateQueue:
 initWithFormat:
 setSessionDescription:
+availableDiagnosticExtensions
+collectedGroupsForSession:matchingExtensions:
 countByEnumeratingWithState:objects:count:
+folderNameForAttachmentGroup:
+rootURL
+findAllfiles:
 lastPathComponent
 URLPathAllowedCharacterSet
 stringByAddingPercentEncodingWithAllowedCharacters:
 URLWithString:
+URLByAppendingPathComponent:
 requestWithURL:cachePolicy:timeoutInterval:
 setHTTPMethod:
 addValue:forHTTPHeaderField:
@@ -1700,6 +1699,17 @@ initWithUploadTask:andAttachment:
 uploadItems
 addObject:
 resume
+count
+session
+uploadProgress:total:
+didFinishAllUploads
+currentDevice
+name
+productType
+build
+extensionID
+displayName
+stringByReplacingOccurrencesOfString:withString:
 taskIdentifier
 isUploaded
 response
@@ -1739,7 +1749,6 @@ didFinishAllCollections
 _percentComplete
 _session
 _log
-_attachments
 _uploadItems
 setNumtasks:
 setHasNumtasks:
@@ -1756,15 +1765,11 @@ arrayWithCapacity:
 itemWithDictionary:
 arrayWithArray:
 setAttachmentItems:
-rootURL
-displayName
-currentDevice
 attachmentItems
 itemWithDEItem:
 fileSize
 integerValue
 numberWithInteger:
-extensionID
 firstObject
 attachedPath
 UUID
@@ -1811,27 +1816,23 @@ attachToDestinationDir:
 enumeratorForAllItems:
 excludeFromBackup:
 removeFile:
+directoryForBugSession:
 defaultManager
 fileExistsAtPath:
 initWithCapacity:
 lsDir:
 extensionIdentifier
 findWithBlock:
-name
 createWithName:rootURL:
 _createEmptyMessageFileForDE:extensionName:forSession:device:withRootDir:
-stringByReplacingOccurrencesOfString:withString:
 date
 localizedStringFromDate:dateStyle:timeStyle:
 publicLogDescription
-build
-URLByAppendingPathComponent:
 writeToFile:atomically:encoding:error:
 getDirectorySize:
 createUserOwnedDirectoryAtUrl:
 processAttachments:forSession:extension:
 removeDEFiles:inSession:
-collectedGroupsForSession:matchingExtensions:
 createEmptyMessageFileForDE:extensionName:forSession:device:
 removeDirectoryForBugSession:
 directorySizeForBugSession:
@@ -2423,7 +2424,6 @@ _startDiagnosticWithIdentifier:parameters:session:runSetup:
 diagnosticCollector
 prepareItemsWithDeferredExtensionInfo:
 cleanupItemsWithIdentifier:parameters:session:
-availableDiagnosticExtensions
 recommendedGracePeriodForDate:
 initWithBugSessionIdentifier:dedIdentifier:runOnDate:withGracePeriod:
 setParameters:
@@ -2469,7 +2469,6 @@ color
 deviceClass
 enclosureColor
 model
-productType
 platform
 capabilities
 setAddress:
@@ -2569,6 +2568,7 @@ setState:
 setSessionState:
 didCheckInDeferredExtensionsWithCount:
 setAttachmentRecords:
+setAttachments:
 setUploadedBytes:
 createLoggingEventWith:
 createLoggingEventWith:postfix:
@@ -2586,6 +2586,7 @@ setAutomaticallyRetryNetworkFailures:
 domain
 code
 setPerRecordCompletionBlock:
+attachments
 initWithRecord:action:
 initWithFileURL:
 attachmentRecords
@@ -2610,6 +2611,7 @@ URLByDeletingLastPathComponent
 encryptLogsAtPath:outputDirectory:
 _attachmentURLs
 _attachmentRecords
+_attachments
 _uploadedBytes
 attachmentsName
 extensionWithDicionary:
@@ -3153,10 +3155,10 @@ f16@0:8
 v20@0:8f16
 @"DEDBugSession"
 @"NSObject<OS_os_log>"
-@"NSArray"
 @"NSMutableSet"
 {?="numtasks"b1"timestamp"b1}
 @"NSURL"
+@"NSArray"
 @"DEDExtensionIdentifier"
 @48@0:8@16@24@32@40
 @56@0:8@16@24@32@40@48

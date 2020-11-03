@@ -84,6 +84,8 @@ T@"NSString",C,N,V_clientIdentifier
 connection
 T@"NSObject<OS_xpc_object>",&,N,V_connection
 AXUIServerModifiedWindowInterfaceStyle
+v24@?0q8@"NSDictionary"16
+v16@?0@"NSString"8
 v12@?0B8
 v8@?0
 B32@?0@8Q16^B24
@@ -91,13 +93,11 @@ v32@?0@8@16^B24
 %@|%@
 <%@: %p>
 AXUIAlert
-invertUI
-com.apple.nano
 __AXStringForVariablesSentinel
 q24@?0@8@16
 v32@?0@8Q16^B24
 Got nubbit moving gesture recognizer %@, which had no nubbit associated with it.
-/Library/Caches/com.apple.xbs/Sources/AccessibilityFrameworks_Sim/AccessibilityFrameworks-2883/AccessibilityUmbrellaFramework/Frameworks/AccessibilityUI/Service/AXUIDisplayManager.m
+/Library/Caches/com.apple.xbs/Sources/AccessibilityFrameworks_Sim/AccessibilityFrameworks-2885.1/AccessibilityUmbrellaFramework/Frameworks/AccessibilityUI/Service/AXUIDisplayManager.m
 -[AXUIDisplayManager _beginMoveForNubbitContext:]
 Should have made an animator for the nubbit when it was registered
 v32@?0@"NSNumber"8@"UIWindow<AXUIWindowProtocol>"16^B24
@@ -469,7 +469,15 @@ _attemptToInitializeActiveInterfaceOrientation
 defaultCenter
 _didReceiveMemoryWarning:
 addObserver:selector:name:object:
+carouselServer
+objectForKey:
+integerValue
+_activeInterfaceOrientationDidChange:duration:
+setSystemServerActionHandlerIdentifier:
+registerCarouselActionHandler:withIdentifierCallback:
 systemAppServerReady
+systemServerActionHandlerIdentifier
+removeCarouselActionHandler:
 setAlertQueues:
 setVisibleAlertContexts:
 setActiveWindows:
@@ -477,12 +485,10 @@ setPassiveWindows:
 setActiveContentViewControllers:
 setPassiveContentViewControllers:
 setNubbitContexts:
-setSystemServerActionHandlerIdentifier:
 setReachabilityHandlerIdentifier:
 dealloc
 server
 activeInterfaceOrientation
-_activeInterfaceOrientationDidChange:duration:
 _contentViewControllersWithUserInteractionEnabled:forService:createIfNeeded:
 arrayWithArray:
 addContentViewController:withUserInteractionEnabled:forService:context:completion:
@@ -524,7 +530,6 @@ serviceManager
 beginTransactionWithIdentifier:forService:
 _showOrEnqueueAlertWithContext:
 visibleAlertContexts
-objectForKey:
 cancel
 _hideAlertWithContext:notifyDelegate:
 alertQueues
@@ -600,7 +605,6 @@ alertWithIdentifierWasActivated:
 defaultAlertStyleProvider
 setAlpha:
 _windowWithUserInteractionEnabled:windowLevel:createIfNeeded:purposeIdentifier:
-setTransform:
 afterDelay:processBlock:
 animateWithDuration:animations:completion:
 frameOrigin
@@ -675,7 +679,6 @@ enumerateContentViewControllersUsingBlock:
 pinNubbitToEdge:
 cancelNubbitFade:
 _resetServiceManager
-systemServerActionHandlerIdentifier
 userInterfaceStyle
 setUserInterfaceStyle:
 reachabilityHandlerIdentifier

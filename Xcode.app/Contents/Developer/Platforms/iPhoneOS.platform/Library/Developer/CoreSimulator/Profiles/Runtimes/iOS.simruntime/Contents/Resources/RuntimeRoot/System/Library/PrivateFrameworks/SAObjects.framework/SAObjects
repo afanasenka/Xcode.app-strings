@@ -1340,6 +1340,8 @@ T@"SACFProvideContext",&,N
 recognitionText
 voiceSearchResults
 VoiceSearchFinalResult
+announcerName
+AnnouncementSnippet
 PHONE
 ZEUS
 WATCH
@@ -2075,6 +2077,7 @@ Memory
 SerialNumber
 Storage
 StartSpeaking
+AnnouncementAudioRecordingStart
 Feet
 Miles
 Meters
@@ -2246,6 +2249,9 @@ Compact
 fetchContentCommand
 TabularDataRowActionShowModalSnippet
 T@"<SAServerBoundCommand>",&,N
+datePlaybackFinished
+datePlaybackStarted
+Announcement
 acousticFeatures
 speechRecognitionFeatures
 AudioAnalytics
@@ -3741,6 +3747,7 @@ T@"SAGuidanceGuideSnippet",&,N
 T@"SAGuidanceSuggestedUtterances",&,N
 TemplatedModalView
 IncomingMessage
+IncomingHomeCommunication
 headers
 queryParameters
 StartVoiceSearchRequest
@@ -4639,6 +4646,8 @@ NotificationsSearch
 NodeIntent
 Value
 MatchingSpans
+com.apple.ace.homecommunication
+SAHomeCommunication
 GetSupportedLocales
 com.apple.ace.system
 HOME_PREDICTED
@@ -4818,7 +4827,6 @@ Alarm
 RunningTimer
 Timer
 Media
-Announcement
 statusValue
 NavStatus
 clientVoiceKeyList
@@ -5214,6 +5222,7 @@ com.apple.ace.command.assistant.intent
 SAIntentGroup
 SERVICE_GROUP
 MEDIA_SYSTEM
+HOME_THEATER
 OpenVideosSettings
 com.apple.ace.radar
 SARadar
@@ -5948,6 +5957,7 @@ SASettingSettingsAction
 SAHomeMemberInfo
 SACFFlowCompleted
 SASVoiceSearchFinalResult
+SAHomeCommunicationAnnouncementSnippet
 SACFPEXItem
 SACFClientFlowRequestCallback
 SAABContactGroup
@@ -6105,6 +6115,7 @@ SALocalSearchNavigationEndCompleted
 SAIntentGroupIntentSignal
 SASetMultipleClientStates
 SAUITemplateTabularDataRowActionShowModalSnippet
+SAHomeCommunicationAnnouncement
 SAWeatherLocationSnippet
 SAWeatherObject
 SASAudioAnalytics
@@ -8951,6 +8962,8 @@ recognitionText
 setRecognitionText:
 voiceSearchResults
 setVoiceSearchResults:
+announcerName
+setAnnouncerName:
 item
 itemWithDictionary:context:
 itemSource
@@ -9955,6 +9968,10 @@ tabularDataRowActionShowModalSnippet
 tabularDataRowActionShowModalSnippetWithDictionary:context:
 fetchContentCommand
 setFetchContentCommand:
+datePlaybackFinished
+setDatePlaybackFinished:
+datePlaybackStarted
+setDatePlaybackStarted:
 audioAnalyticsWithDictionary:context:
 acousticFeatures
 setAcousticFeatures:

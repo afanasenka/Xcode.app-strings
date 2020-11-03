@@ -24,7 +24,8 @@ x<@{
 $tIo
 @?fff?
 =333?
-@(#)PROGRAM:PhotosGraph  PROJECT:PhotosGraph-310.1.190
+@(#)PROGRAM:PhotosGraph  PROJECT:PhotosGraph-310.2.160
+33333cs@
 ?333333
 MbP?333333
 333333
@@ -2412,8 +2413,10 @@ featuredNode
 T@"PGGraphNode",&,N,V_featuredNode
 tripLocationNode
 T@"PGGraphNode<PGGraphLocationOrArea>",&,N,V_tripLocationNode
+tripTitleLocationType
+TQ,N,V_tripTitleLocationType
 startDate <= %@ && endDate >= %@
-/Library/Caches/com.apple.xbs/Sources/Photos_Swift_Sim/Photos-310.1.190/workspaces/photoanalysis/PhotosGraph/Framework/Sharing/LearningStream/Sources/PGFeatureExtractionSourceMomentShare.m
+/Library/Caches/com.apple.xbs/Sources/Photos_Swift_Sim/Photos-310.2.160/workspaces/photoanalysis/PhotosGraph/Framework/Sharing/LearningStream/Sources/PGFeatureExtractionSourceMomentShare.m
 @"NSString"16@?0@"PGGraphPetNode"8
 InvariantPet
 Duration
@@ -4396,7 +4399,9 @@ MixUp
 SupervisedMixUp
 PGMeaningfulEventMemoryTitleTypePublicEvent %@ inCityOrAOI %@
 PGMeaningfulEventMemoryTitleTypePublicEvent %@ atBusiness %@
-PGFoodieMemoryTitleWithLocationName3 %@
+PGFoodieMemoryTitleWithCountryLocationName %@
+PGFoodieMemoryTitleWithStateLocationName %@
+PGFoodieMemoryTitleWithCityLocationName %@
 PGFoodieMemoryTitleWithLocationName2 %@
 PGFoodieMemoryTitleWithLocationName %@
 PGFoodieMemoryTitleWithPerson %@
@@ -5477,6 +5482,7 @@ usedTitleComponents
 T@"NSArray",&,N,V_usedTitleComponents
 tripTitleType
 TQ,R,N,V_tripTitleType
+TQ,R,N,V_tripTitleLocationType
 PGLocationTitleFormatTwoLocationsWithLocation %@ otherLocation %@
 PGLocationTitleTitleFormatTripMultipleLocationsWithLocation %@ otherLocation %@
 v24@?0@"NSArray"8@"NSSet"16
@@ -12990,6 +12996,7 @@ _relevantFoodAssetUUIDsByMomentNodeLocalIdentifier
 _personAssetUUIDsByMomentNodeLocalIdentifier
 _featuredNode
 _tripLocationNode
+_tripTitleLocationType
 initWithMomentNodes:kind:type:
 relevantFoodAssetCount
 kind
@@ -13001,6 +13008,8 @@ featuredNode
 setFeaturedNode:
 tripLocationNode
 setTripLocationNode:
+tripTitleLocationType
+setTripTitleLocationType:
 extractSharingRecordsWithManager:progressBlock:
 fetchMomentsOverlappingMomentShare:inPhotoLibrary:
 isSystemPhotoLibrary
@@ -15625,7 +15634,7 @@ appendVector:
 closePersistentStore
 specCollectionForMemoryCategory:subcategory:
 specCollectionForMemoryCategory:subcategory:personNodes:
-specCollectionForFoodieMemoryWithPersonNodes:locationName:allowInspiredTastesTitle:genericOnly:
+specCollectionForFoodieMemoryWithPersonNodes:locationName:tripTitleLocationType:allowInspiredTastesTitle:genericOnly:
 _specForCelebration
 _specForWedding
 _specForBirthday
@@ -15650,7 +15659,7 @@ _specForBabyGrowingUp
 _specForEarlyMomentsWithPersonNodes:
 _specForPeopleVisiting
 _specForThrowbackThursday
-_specForFoodieWithPersonNodes:locationName:allowInspiredTastesTitle:genericOnly:
+_specForFoodieWithPersonNodes:locationName:tripTitleLocationType:allowInspiredTastesTitle:genericOnly:
 _publicEventSpecEventName
 _publicEventSpecPerformerNames
 _publicEventSpecCategoryNameAtBusiness
@@ -18810,7 +18819,7 @@ initWithMomentNodes:cityNode:
 initWithMomentNodes:businessNode:
 initWithMomentNodes:personNode:
 initWithMomentNodes:addressNode:
-initWithMomentNodes:tripLocationNode:
+initWithMomentNodes:tripLocationNode:tripTitleLocationType:
 _reportLibrary
 reportMetricsLogs
 _reportMobility
@@ -19802,7 +19811,7 @@ v32@0:8Q16Q24
 @"<PGFeatureAugmenter>"32@0:8@"NSArray"16^@24
 @36@0:8Q16f24^@28
 @40@0:8Q16Q24@32
-@40@0:8@16@24B32B36
+@48@0:8@16@24Q32B40B44
 @24@0:8B16B20
 @24@0:8@"PGManager"16
 @"NSArray"32@0:8Q16@?<v@?d^B>24
@@ -19985,7 +19994,6 @@ v52@0:8@16@24Q32f40@44
 @48@0:8@16Q24@32^@40
 @52@0:8@16Q24@32B40^@44
 @56@0:8@16Q24@32@40^@48
-@48@0:8@16@24Q32B40B44
 B48@0:8@16Q24@32^@40
 @"PGPhotosChallengeMetricEventFetchHelper"
 @"PGPrecisionRecallEvaluation"

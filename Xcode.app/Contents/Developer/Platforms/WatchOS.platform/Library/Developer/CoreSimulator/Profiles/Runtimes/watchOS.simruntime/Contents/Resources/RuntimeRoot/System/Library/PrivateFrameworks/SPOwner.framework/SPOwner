@@ -61,7 +61,8 @@ unrecognized magic %3s for fd %d (expected KIM)
 index %4u: %s
 unrecognized magic %3s for fd %d (expected KEY)
 index %4lu:  (public) 
-index %4lu: (public) 
+index %4lu: (private) 
+index %4lu: (public_enc) 
 failed to stat fd %d
 failed to mmap fd %d
 failed to munmap handle
@@ -200,7 +201,7 @@ enableLostMode
 TB,N,V_enableLostMode
 taskName
 T@"NSString",R,C,N
-/com.apple.icloud.searchpartyd/savedConfiguration.plist
+/private/var/db/searchparty/daemon/savedConfiguration.plist
 configurations
 serviceSettings
 baUUID
@@ -441,6 +442,7 @@ v16@?0@"NSArray"8
 -[SPBeaconManager unacceptedBeaconsWithCompletion:]
 -[SPBeaconManager beaconingKeysForUUID:dateInterval:completion:]
 v32@?0@"NSDateInterval"8Q16^B24
+-[SPBeaconManager repairDataStore:]
 T@"<SPBeaconManagerXPCProtocol>",&,N,V_proxy
 T@"<SPBeaconManagerXPCProtocol>",&,N,V_userAgentProxy
 periodicActionXpcTimer
@@ -940,10 +942,7 @@ _lostModePhoneNumber
 _obfuscatedIdentifier
 sharedDefaults
 objectForKey:
-defaultManager
-URLsForDirectory:inDomains:
-firstObject
-URLByAppendingPathComponent:isDirectory:
+fileURLWithPath:isDirectory:
 initWithContentsOfURL:error:
 objectForKeyedSubscript:
 countByEnumeratingWithState:objects:count:
@@ -1288,6 +1287,7 @@ beaconingKeysForUUID:dateInterval:completion:
 removeLocalAccountDataWithCompletion:
 primaryAccountModified
 setServiceState:completion:
+repairDataStore:
 beaconsChanged:
 addObserver:selector:name:object:
 beaconingStateChangedNotification:
@@ -1337,6 +1337,7 @@ beaconingKeyChangedBlock
 beaconingKeyChangedBlockWithCompletion
 scheduleDateInterval:
 mutableCopy
+firstObject
 removeObjectAtIndex:
 isBeaconing
 setStateChangedBlockWithCompletion:

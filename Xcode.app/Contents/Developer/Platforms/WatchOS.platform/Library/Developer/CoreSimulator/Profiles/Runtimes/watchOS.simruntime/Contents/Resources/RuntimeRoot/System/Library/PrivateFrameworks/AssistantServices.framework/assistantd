@@ -658,7 +658,7 @@ playbackStateSnapshot
 playbackState
 fromLocalDevice
 ad_requiresProximityInformation
-ad_executionDeviceForDeviceContexts:proximityMap:logNearbyDeviceMetrics:
+ad_executionDeviceForDeviceContexts:proximityMap:localDeviceIsFollower:logNearbyDeviceMetrics:
 allValues
 roomName
 initWithPeerInfo:proximity:commandRelayProxyIdentifier:
@@ -672,6 +672,7 @@ initWithQueue:
 updateContext:
 getPreferredDeviceToHandleCommand:logNearbyDeviceMetrics:completion:
 _currentContext
+_isLocalDeviceFollowerInStereoPair
 mostRecentFiringAlarm
 firedDate
 mostRecentFiringTimer
@@ -745,6 +746,7 @@ _cursor
 _ringFull
 _offlineDictationStatusStringToDictionary:
 setOfflineDictationStatus:
+isEqualToNumber:
 initWithDelegate:instanceUUID:
 _updateOfflineDictationStatus:error:
 getOfflineDictationStatusIgnoringCache:withCompletion:
@@ -752,15 +754,15 @@ offlineDictationStatusIgnoringCache:error:
 offlineDictationStatus
 _offlineDictationStatus
 _callStateDidChange:
-_handleCommand:forDomain:reply:
+_handleCommand:forDomain:executionContext:reply:
 _hasIncomingCall
 initWithErrorCode:
 targetDevice
 _processPendingCallResultBlocks
-_remoteExecute_remoteDeviceExecuteCommand:onDeviceForAssistantId:completion:
+_remoteExecute_remoteDeviceExecuteCommand:onDeviceForAssistantId:executionContext:completion:
 setAceId:
 setDomain:
-_remoteExecute_remoteDeviceExecuteCommand:completion:
+_remoteExecute_remoteDeviceExecuteCommand:executionContext:completion:
 _isInCall
 _serialQueue
 _pendingCallResultBlocks
@@ -771,7 +773,6 @@ initWithObjects:
 _systemDomains
 allObjects
 arrayWithObject:
-_saRequestCompleted:completion:
 _saCommandFailed:completion:
 _saCommandIgnored:completion:
 _saSendCommands:completion:
@@ -823,13 +824,10 @@ _sasVoiceIdentificationSignal:completion:
 _saAcknowledgeAlert:completion:
 _saDeviceConfiguration:completion:
 _saDeviceMyriadConfiguration:completion:
-_saGetRequestOrigin:completion:
 _saSetLatencyDiagnosticConfiguration:completion:
 _saAIRequestSearch:completion:
 _saAISearchCompleted:completion:
 _saAIRetrySearch:completion:
-_saRemoteDeviceExecute:completion:
-_saQuickStop:completion:
 _saLogSignatureWithABC:completion:
 _saLogNumericEvent:completion:
 _saLogStringEvent:completion:
@@ -839,6 +837,10 @@ _saTTSGetSpeechSynthesisVolume:completion:
 _saTTSSetSpeechSynthesisVolume:completion:
 _saNotificationSearch:completion:
 _sasExtractSpeechData:completion:
+_saRequestCompleted:executionContext:completion:
+_saExecuteOnRemoteRequest:executionContext:completion:
+_saQuickStop:executionContext:completion:
+_saGetRequestOrigin:executionContext:completion:
 _saUnhandledObject:completion:
 _handleQuickStopCompleted:inResponseTo:completion:
 isSystemService
@@ -847,9 +849,10 @@ domains
 commandsForDomain:
 implementsCommand:forDomain:
 controlCenterLockRestrictedCommands
-handleCommand:forDomain:reply:
+handleCommand:forDomain:executionContext:reply:
 handleResponse:toCommand:completion:
 _commandMap
+_commandMapV2
 UUID
 invalidateTimer
 initWithTimeoutInterval:onQueue:timeoutHandler:
@@ -879,6 +882,7 @@ compatibilityStateChanged:
 _updateSiriDataSharingOptInStatus
 crownActivationEnabled
 setCrownActivationEnabled:
+setSiriDataSharingOptInStatus:
 setUseDeviceSpeakerForTTS:
 isLanguageAndGenderEqual:
 synchronizeNanoDomain:keys:
@@ -958,6 +962,7 @@ _keychainValueForKey:
 _setKeychainValue:forKey:
 setPeerLoggingAssistantIdentifier:
 setPeerLanguageCode:
+unarchivedObjectOfClasses:fromData:error:
 setPeerSiriEnabled:
 setPairedWatches:
 _markKeychainValuesAsDirty
@@ -1012,26 +1017,24 @@ connectionPolicyExpirationDate
 responseCode
 ad_aceResponseCommandRepresentationWithErrorCode:reason:
 stop
-_adPeerInfoForCurrentCommand
 reset
-handleCommand:fromPeer:completion:
+handleCommand:withExecutionContextMatchingInfo:completion:
 openURL:completion:
 isDeviceLocked
 isInStarkMode
 isTimeoutSuspended
-sharedQueue
-_peerInfoForCommandId:
-afPeerInfo
+originPeerInfo
 ad_shouldUseExtendedFlowTimeout
 errorWithCode:description:underlyingError:
 initWithReason:
-initToHandleCommandWithAceId:watchdogTimer:timerQueue:
+info
+initToHandleCommandWithAceId:executionInfo:watchdogTimer:timerQueue:
 initWithServiceHelper:withConnectionName:
 peerInfoForCurrentCommand
 cancelIfNotAlreadyCanceled
 aceObjectWithDictionary:
 executeCommand:peerInfo:completion:
-performWithTargetQueue:withClientCommand:replyHandler:
+performWithTargetQueue:withClientCommand:executionContext:replyHandler:
 openSensitiveURL:
 dismissAssistant
 assistantLocalizedStringForKey:table:bundle:
@@ -1044,11 +1047,12 @@ prepareForAudioHandoffFailedWithCompletion:
 fetchContextsForKeys:includesNearbyDevices:completion:
 _clientFlowServiceHelperQueue
 _aceId
+_executionInfo
 _timerQueue
 _timerPauseCount
 encodedClassName
 errorWithCode:
-_ad_performWithTargetQueue:replyHandler:
+_ad_performWithTargetQueue:executionContext:replyHandler:
 warmUpWithSignal:completion:
 dataWithJSONObject:options:error:
 initWithData:encoding:
@@ -1295,6 +1299,16 @@ _audioConverter
 _bufferedAudio
 _packetIndex
 _bytesConsumed
+isAnnounceEnabled
+handleHomeAnnouncementSnapshotUpdate:
+registerSnapshotUpdater:
+registerContextTransformer:forType:
+dateByAddingTimeInterval:
+initWithType:deliveryDate:expirationDate:redactedKeyPaths:
+donateContext:withMetadata:pushToRemote:
+getRedactedContextForContextSnapshot:metadata:privacyPolicy:completion:
+getAceObjectsForContextSnapshot:completion:
+_homeAnnouncementContextAdaptor
 initWithGeneration:date:timersByID:notifiedFiringTimerIDs:
 _resetStateWithCompletion:
 _didStopListening
@@ -1335,14 +1349,27 @@ _proxyService
 _peerLocationService
 _sharedDataService
 listenForSharedDataFromCloud
+startListeningForRemote
+initWithMachServiceName:
+_setQueue:
+resume
+processIdentifier
 _bundleID:andPath:forPID:
+sharedService
 beginEventsGrouping
 preheatWithStyle:forOptions:completion:
+acquireLocationInUseAssertionForReason:completion:
+setRemoteObjectInterface:
+setExportedInterface:
 initWithXPCConnection:
+setExportedObject:
 connectionDisconnected
 clientDisconnected:
+releaseLocationInUseAssertionForReason:
 endEventsGrouping
+setInvalidationHandler:
 clientConnected:
+numberWithInt:
 countForObject:
 startRequestActivityWithCompletion:
 startRecordingForPendingDictationWithLanguageCode:options:speechOptions:reply:
@@ -1366,6 +1393,8 @@ requestOfflineDictationSupportForLanguage:completion:
 reportIssueForError:eventType:context:
 reportIssueForError:eventType:subtype:context:
 sendUserSelectedAlternativeDictationLanguageCode:
+interfaceWithProtocol:
+remoteObjectProxy
 initWithServiceDelegate:
 queue
 sanityCheckAutodownloadedAssetsForced:
@@ -1375,6 +1404,7 @@ saveAccountWithMessageDictionary:setActive:
 deleteAccountWithIdentifier:
 setActiveAccountIdentifier:
 setAssistantEnabled:
+setDictationEnabled:
 _shutdownSessionIfIdle
 _killDaemon
 barrierWithReply:
@@ -1398,6 +1428,7 @@ startUIRequestWithSpeechAudioFileURL:
 startMultiUserUIRequestWithText:expectedSpeakerSharedUserID:expectedSpeakerConfidenceScore:nonspeakerConfidenceScores:completion:
 dismissUI
 startUIMockServerRequestWithReplayFileURL:completion:
+startRemoteRequest:onPeer:completion:
 getPeerIdentifiers:
 startAudioPlaybackRequest:completion:
 stopAudioPlaybackRequest:immediately:
@@ -1418,6 +1449,7 @@ fetchExperimentContextWithCompletion:
 disableAndDeleteCloudSyncWithCompletion:
 getDevicesWithAvailablePHSAssetsForLanguage:completion:
 getDevicesWithAvailablePHSAssetsOnDeviceCheck:
+getMeCard:
 getStereoPartnerLastMyriadWinDate:
 getStereoPairState:
 setConfigOverrides:completion:
@@ -1428,6 +1460,7 @@ getCurrentContextSnapshotWithCompletion:
 getOriginDeviceInfoForContextIdentifier:completion:
 getContextCollectorsInfoWithCompletion:
 setHardcodedBluetoothProximity:
+getSiriOutputVolumeForAudioRoute:completion:
 setSiriOutputVolume:forAudioRoute:completion:
 getBluetoothDeviceInfoWithAddress:completion:
 getBluetoothDeviceInfoWithUID:completion:
@@ -1485,6 +1518,8 @@ trimRecordedAudioWithIdentifier:offset:duration:outputFileType:completion:
 getRecordedAudioDirectoryPathsWithCompletion:
 pushMyriadAdvertisementContext:completionHandler:
 initWithBytes:length:encoding:
+initFileURLWithPath:isDirectory:
+bundleIdentifier
 deleteEverything
 recordVocabulary:forIntentSlot:withValidationCompletion:
 askToSyncSlot:
@@ -1502,8 +1537,14 @@ getKnowledgeStoreDataForKey:inStoreWithName:completion:
 resetKnowledgeStoreWithName:completion:
 connectionDisconnected:
 connectionInterrupted:
+setInterruptionHandler:
 connectionConnected:
 setObserverConnection:
+sharedProviderInDaemon
+postNotificationRequest:completion:
+withdrawNotificationRequestWithIdentifier:
+initWithConnection:
+receivedNotificationResponse:
 _clientListenerShouldAcceptNewConnection:
 _settingsListenerShouldAcceptNewConnection:
 _dictationListenerShouldAcceptNewConnection:
@@ -1513,17 +1554,26 @@ _analyticsListenerShouldAcceptNewConnection:
 _securityListenerShouldAcceptNewConnection:
 _analyticsObservationListenerShouldAcceptNewConnection:
 _notificationServiceListenerShouldAcceptNewConnection:
+initWithUTF8String:
+defaultCenter
+postNotificationName:object:
 initWithActivationEvent:
 updateSharedDataFromPeerUseCache:completion:
+stringWithUTF8String:
 _syncForReason:withCoalescing:
+effectiveSettingsChanged
 managedConfigurationEffectiveSettingsChanged
 sharedDictationOfflineStatusObserver
 fetchOfflineDictationStatusIgnoringCache:asynchronously:
 resetCacheAndCompileAllAssets
 updateOfflineDictationStatus
 syncForReason:withCoalescing:
+_enabledBitsChanged:
+addObserver:selector:name:object:
 sharedListener
 startListening
+listen
+sharedInfoManager
 installedAssetSizeWithError:
 purgeInstalledAssetsExceptLanguages:error:
 _setupCacheDelete
@@ -1552,12 +1602,15 @@ _setupPairedSync
 _setupHomeKit
 _setupCloudKit
 _setupMultiUserCloudSyncer
+startAcceptingCloudSharesForMultiUserService
 _setupMemoryPressureObservation
 _setupWirelessCoexManagerSubscription
 _setupNanoPreferences
 _setupNotificationServiceListener
 _setupMobileGestaltNotificationHandlers
 prepareForShutdown
+sharedDiagnostics
+flush
 setLanguageCodeIfNeeded
 syncAnchorKeys:forceReset:reasons:
 dictationIsEnabled
@@ -1565,10 +1618,14 @@ keepAlive
 _syncCoalesced
 processLaunchTime
 processLaunchMachTime
+listener:shouldAcceptNewConnection:
 shutdown
 startUIRequestWithInfo:
 startUISpeechRequest
 scheduleDestroyJob
+unscheduleDestroyJob
+scheduleValidationRefreshForInterval:
+scheduleUnlockedWork:
 _analyticsListener
 _analyticsObservationListener
 _clientListener
@@ -1579,6 +1636,7 @@ _managedStorageListener
 _securityListener
 _notificationServiceListener
 _syncListener
+_externalRequestListener
 _clientLiteListener
 _siriTetherListener
 _lastSyncRequested
@@ -1637,9 +1695,7 @@ _isActive
 _isPrepared
 _completion
 _options
-defaultCenter
 _sharedDataDidChange:
-addObserver:selector:name:object:
 removeObserver:
 _pushSharedDataToPeerFromNotification:completion:
 userInfo
@@ -1668,11 +1724,10 @@ success
 assistantId
 dictionaryWithPlistData:
 plistData
-executeCommandFromRemote:fromPeer:reply:
+executeCommand:fromPeer:remoteExecutionInfo:reply:
 peerConnection:peerAvailabilityDidChange:
 initWithDelegate:
 pushSharedDataToPeer:
-effectiveSettingsChanged
 _getDataWithPBCompletion:
 _startRemoteRequest:completion:
 getSharedDataFromPeerUseCache:completion:
@@ -1907,7 +1962,6 @@ _setCollectingContext:
 _startPeriodicContextFetchFromNearbyDevices
 _unregisterForBGUpdates
 _registerForBGUpdates
-_setDelegate:
 _cancelNowPlayingCoalescingTimer
 _filteredApplicationInfosForLockedStark:
 pidRestrictedCenterNamed:
@@ -1929,31 +1983,23 @@ _currentUserActivityUUIDWithOptions:completionHandler:
 _alarmAceObjectFromAlarm:withProximity:inDeviceContext:
 _timerAceObjectFromTimer:withProximity:inDeviceContext:
 _getNowPlayingMediaIsResumable:
-queueState
 _isResumableFirstPartyBundleID:
-applicationProxyForIdentifier:
 genreID
 _isResumableThirdPartyGenreID:
-isEqualToNumber:
-getContextSnapshotIncludingKeys:excludingMandatoryKeys:completion:
 af_serviceDeviceContextForKeys:excludeContextExpiredBefore:
 af_lenientMappedArray:
 voiceTriggerEnabled
-getContextSnapshotFromDevicesWithIDSIdentifiers:completion:
 _getDevicesWithContexts:passingTest:capabilitesPassingTest:completion:
 _fetchContextSnapshotForCurrentRequest
 _saveContextHistory
 dataWithContentsOfFile:
-unarchivedObjectOfClasses:fromData:error:
-archivedDataWithRootObject:requiringSecureCoding:error:
-getContextSnapshotFromAllDevicesWithCompletion:
 _inlineUpdatePhoneState
 _inlineUpdateCurrentHomeKitHome
 _updateNavStatusWithContext:completion:
 _updateNowPlayingInfoWithContext:completion:
 _updateSimpleThingsWithContext:completion:
 _updateMusicPersonalizationTokenWithContext:completion:
-backgroundContextWithCachedObjects
+_updateHomeAnnouncementWithContext:supplementalSnapshot:completion:
 getBackgroundContext:
 _getBackgroundContext:
 navStatusDidChange:
@@ -1961,15 +2007,11 @@ updateBackgroundContextIfHomeKitInfoChanged
 _notePossiblePlayPausedStateChange:
 _updateBackgroundContextIfNowPlayingInfoChanged:
 _updateBackgroundContextIfMusicPersonalizationTokenChanged
-startCollectingContext
-stopCollectingContext
-setIsFiring:
+_handleHomeAnnouncementSnapshotUpdate:
 fireTimeInterval
-title
 _dataSourceInfoWithProximity:deviceContext:
 setDataSourceInfo:
 repeatOptions
-setFrequency:
 setFiring:
 setProximityHint:
 setContextIdentifier:
@@ -1977,35 +2019,21 @@ isCommunalDevice
 setSourceDeviceOwnership:
 _stopPeriodicContextFetchFromNearbyDevices
 remoteContextStore
-getSerializedDeviceContextSnapshotIncludingKeys:excludingMandatoryKeys:completion:
 localContextStore
-setDeviceContext:withIncludedKeys:excludedKeys:forDeviceWithIDSDeviceUniqueIdentifier:withCompletion:
-musicPersonalizationToken
-setMusicPersonalizationToken:
-allMusicPersonalizationTokens
-setAllMusicPersonalizationTokens:
 getAllTokensForAssistantForcingRefresh:completion:
 getTokenForcingRefresh:completion:
 contextManagerDidUpdateBackgroundContext:
 setCurrentHomeIdentifier:
-currentHome
-setCurrentHome:
-navStatus
-localSearchGetNavigationStatusCompleted
 currentNavigationState
 setStatusValue:
-setNavStatus:
-setLocalSearchGetNavigationStatusCompleted:
 _reallyUpdateBackgroundContextIfNowPlayingInfoChangedForReason:
-setQueueState:
 _scheduleNowPlayingRefreshForReason:
 setActive:
 setIncoming:
-phoneCallState
-setPhoneCallState:
-contextData
 contextFetchDelay
 _isCollectingContext
+setDatePlaybackStarted:
+setDatePlaybackFinished:
 alertContextIsDirty
 clearAlertContextDirtyState
 backgroundContextIsDirty
@@ -2154,9 +2182,7 @@ ad_setLocation:
 _startBestLocationTimer
 _hasActiveBestLocationRequest
 _startUpdatingLocation
-acquireLocationInUseAssertionForReason:completion:
 stopUpdatingLocation
-releaseLocationInUseAssertionForReason:
 _executeBestLocationCompletionWithLocation:error:
 _ad_performWithPeerLocationManagerRemote:completion:
 locationManager:didUpdateToLocation:fromLocation:
@@ -2216,7 +2242,6 @@ hasHostname
 setActivityContinuationAllowed:
 setHasActivityContinuationAllowed:
 hasActivityContinuationAllowed
-setDictationEnabled:
 setHasDictationEnabled:
 hasDictationEnabled
 hasSharedId
@@ -2364,8 +2389,6 @@ hasGender
 genderAsString:
 StringAsGender:
 _gender
-listen
-_externalRequestListener
 setLegacyDirectActionIdentifier:
 setActivationEvent:
 initForReadingFromData:error:
@@ -2465,7 +2488,6 @@ applicationType
 isLaunchProhibited
 appTags
 arrayByAddingObject:
-bundleIdentifier
 setLocalizedBundleDisplayName:
 shortVersionString
 setVersion:
@@ -2497,7 +2519,6 @@ _handlePullDeltaForDataType:generation:limit:completion:
 _handlePullSnapshotForDataType:completion:
 _handlePushedOrPulledGeneration:forDataType:
 getIncrementalChangesAfterGeneration:limit:completion:
-getSnapshotWithCompletion:
 initWithDataType:generation:limit:
 incrementalChanges
 _pingWithCompletion:
@@ -2555,19 +2576,11 @@ _codedLocation
 _samplesPerInterval
 _cleanUpConnection
 initWithServiceName:
-_setQueue:
 setSampleRate:
 appendAcousticData:sampleCount:sampleRate:
 getSignature:
-interfaceWithProtocol:
-setRemoteObjectInterface:
 _connectionInterrupted
-setInterruptionHandler:
 _connectionInvalidated
-setInvalidationHandler:
-resume
-setExportedObject:
-remoteObjectProxy
 _configureWithCurrentASBD
 _needsConversion
 initWithLength:
@@ -2579,7 +2592,6 @@ _serviceWithErrorHandler:
 setFingerprintInterval:
 setASBD:
 appendPCMData:
-flush
 _asxConnection
 _totalSampleCount
 _nextFingerprintSampleNumber
@@ -2589,7 +2601,6 @@ _fingerprinterConverter
 closeWithError:
 stringByStandardizingPath
 _insertEventRecords:error:
-scheduleUnlockedWork:
 _fetchEventStreamUIDsWithError:
 _fetchEventRecords:afterTimestamp:eventStreamUID:deliveryStream:error:
 _deleteEventRecordsBeforeOrEqualToTimestamp:deliveryStream:eventStreamUID:error:
@@ -2667,10 +2678,8 @@ _timestampValue
 _contextDataValue
 _contextDataTypeValue
 _dateCreatedValue
-initWithMachServiceName:
 fetchSiriKitApplicationsWithNotificationPreviewRestrictionsWithCompletion:
 getPersonalSettingsForSharedUserID:completion:
-setExportedInterface:
 fetchSiriRelatedNotificationPreviewRestrictedAppsWithCompletion:
 getMultiUserSettingsForSharedUserID:completion:
 sharedDataManager
@@ -2683,7 +2692,6 @@ setTwentyFourHourTimeDisplay:
 setRegion:
 setCountryCode:
 setPreferredLanguage:
-listener:shouldAcceptNewConnection:
 setupListener
 bundleProxyForIdentifier:
 _tccAccessInfoForAppID:
@@ -2701,8 +2709,6 @@ _setLaunchToForeground:
 _setOriginatingAceID:
 taskmaster:didReceivePunchoutOutcome:
 taskmaster:didLaunchApplicationForRequestWithId:
-_fetchPairedBluetoothDevicesFromSourceWithCompletion:
-_fetchWirelessSplitterSessionInfoAndStartObservingFromSourceWithCompletion:
 _ad_transformedWorkoutRequest
 _ad_transformedWorkoutSuccessResponse
 workoutType
@@ -2766,17 +2772,12 @@ mediaType
 nowPlayingTimestamp
 isEqualToDate:
 initWithPlaybackState:nowPlayingTimestamp:mediaType:groupIdentifier:
-initWithType:deliveryDate:expirationDate:redactedKeyPaths:
-registerContextTransformer:forType:
-donateContext:withMetadata:pushToRemote:
 getGroupIdentifierWithCompletion:
 getNowPlayingInfoWithCompletion:
 _updateProximityObservationsForPlayState:
 performProximityScan
 nowPlayingObserver:playbackStateDidChangeFrom:to:
 nowPlayingObserverNowPlayingInfoDidChange:
-getRedactedContextForContextSnapshot:metadata:privacyPolicy:completion:
-getAceObjectsForContextSnapshot:completion:
 _previousState
 _proximityRescanTimer
 _clientStateObserver
@@ -2827,9 +2828,9 @@ _registerLocalExtensions
 commandIdentifiers
 handleCommand:completionHandler:
 extensionContext
-_peerInfoForCommand:
 airPlayRouteIdentifiers
 _setAirPlayRouteIdentifiers:
+_speechCapturingContext
 _setRecordRoute:
 _setRecordDeviceIdentifier:
 _setRecordDeviceUID:
@@ -2837,10 +2838,12 @@ getAudioRecordRouteAndDeviceIdentificationWithCompletion:
 _intentNeedsPreparation:
 _preparePerson:meCardCache:
 _intents_enumerateObjectsOfClass:withBlock:
+_setIsTimeoutSuspended:
 commandCenterClient
 adWantsToCacheImage:
 adExtensionRequestWillStartForApplication:
 adExtensionRequestFinishedForApplication:error:
+handleIntent:inBackgroundAppWithBundleId:reply:
 handleIntentForwardingAction:inBackgroundApplicationWithBundleIdentifier:completionHandler:
 _meCardWithCache:
 firstName
@@ -2890,7 +2893,14 @@ deviceContextForDeviceContextKeys:excludingMandatoryKeys:
 _fetchContextFromCollectorAndForceFetchingFromDevices:completion:
 partiallyUpdatedContextForDeviceContextKeys:excludingMandatoryKeys:fromDeviceContext:
 _dumpStateForReason:
+startCollectingContext
+stopCollectingContext
+getContextSnapshotIncludingKeys:excludingMandatoryKeys:completion:
+getContextSnapshotFromDevicesWithIDSIdentifiers:completion:
+getContextSnapshotFromAllDevicesWithCompletion:
 _fetchContextFromDeviceWithIDSIdentifier:completion:
+setDeviceContext:withIncludedKeys:excludedKeys:forDeviceWithIDSDeviceUniqueIdentifier:withCompletion:
+getSerializedDeviceContextSnapshotIncludingKeys:excludingMandatoryKeys:completion:
 _remoteContext
 _contextCollectionAllowed
 deviceCount
@@ -2985,7 +2995,6 @@ _peerInfoForAssistantId:allowNonPeers:
 _setAssistantId:forUniqueId:
 _cachedSharedDataForUniqueId:
 isActive
-postNotificationName:object:
 _updateAirPlayRouteIdentifierWithCompletion:
 getRouteIdentifierWithCompletion:
 _sendProto:ofType:toPeers:
@@ -2995,7 +3004,7 @@ objectEnumerator
 _sendProto:ofType:toPeers:responseType:completion:
 _unexpectedMessageError
 _startRemoteRequest:onPeers:completion:
-startRemoteSerialzedCommandExecution:onPeer:completion:
+startRemoteSerialzedCommandExecution:onPeer:executionContext:completion:
 firstRoutableInternetDestinationForSelf
 setSourceIDSFirstRoutableDestination:
 setSourceAirplayId:
@@ -3005,9 +3014,7 @@ setIdsFirstRoutableDestination:
 _ad_performWithCloudService:fromPeer:completion:
 initWithIDSIdentifer:
 removeObjectsForKeys:
-startRemoteExecution:onPeer:allowsRelay:throughProxyDevice:completion:
-startRemoteRequest:onPeer:completion:
-startListeningForRemote
+startRemoteExecution:onPeer:allowsRelay:throughProxyDevice:executionContext:completion:
 hasActiveAccount
 uniqueIdentifierForPeer:
 localPeerIDSDeviceUniqueIdentifier
@@ -3248,7 +3255,6 @@ setContextSnapshot:withMetadata:
 removeContextSnapshotForType:
 _updateDeviceInfoWithMediaRouteIdentifier:deviceName:roomName:isCommunalDevice:
 strongToWeakObjectsMapTable
-_enabledBitsChanged:
 _initializeBuiltInContextProviders
 _setupListener
 _deviceContextToVendForPrivacyClass:
@@ -3421,8 +3427,17 @@ _contextManager
 preheatBackgroundContext
 _flowServiceListener
 _context_reset
+_createRootExecutionContextForRequestID:
 _removeHandledCommandIdsForRequestId:
 _removePostCommandHandlingBlocksForRequestId:
+_destroyRootExecutionContextForRequestID:
+requestID
+_rootExecutionContextForRequestID:
+executionID
+_remoteExecutionContextForExecutionID:
+initWithExecutionID:requestID:originPeerInfo:userInfo:
+initWithInfo:
+afPeerInfo
 _hasOutstandingRequestId:
 _handledCommandIdsForRequestId:
 initWithCommandType:requestTransformer:responseTransformer:requestHandler:
@@ -3491,16 +3506,16 @@ _handleGenericConcreteAceCommand:withDelegate:interruptOutstandingRequest:reply:
 _ad_speechRequestOptions
 _reallyHandleNewStartLocalRequest:
 _replaceSpeechDelegateWhenReady:suppressAlert:withCompletion:
-_handleNextCallbacksForReply:forCommand:forRequestId:
 _resultObjectCache
 commandsForReply:toCommand:missingReferences:
-_handleCommandAndClientReply:
+_handleCommandAndClientReply:executionContext:
 initWithMissingReferences:forRequestId:
+_handleNextCallbacksForReply:forCommand:forRequestId:withExecutionContext:
 setFulfillmentBlock:
 addMissingReferencesContext:
 setObjectIdentifiers:
 hasBeenFulfilled
-_handleCommand:peer:completion:
+_handleCommand:executionContext:completion:
 _currentRequest
 logRequestCancelAfterSeconds:
 requestWasCancelledWithInfo:origin:client:
@@ -3534,22 +3549,20 @@ setCallbacks:
 ad_requiresResponse
 _invokeCompletionForCommand:
 _preheatCallbacksForCommand:
-_setPeer:forCommandId:
-_removePeerInfoForAceId:
-_handleCommandResponse:error:forCommand:fromPeer:completion:
+isFromRemote
+_handleCommandResponse:error:forCommand:executionContext:completion:
 delegateDidHandleCommand:
 ad_getNetworkActivityTracingLabel
-_handleServiceCommand:afterMyriadDecision:completion:
+_handleServiceCommand:afterMyriadDecision:executionContext:completion:
 ad_willHaveReply
 _addHandledCommandId:forRequestId:
 _dispatchAndRemovePostCommandHandlingBlocksForCommandId:requestId:
 ad_shouldBeHandledByClientAsResponseToCommand:fromPeer:
-_performCallbacksForCommand:reply:error:
+_performCallbacksForCommand:reply:executionContext:error:
 ad_hasCallbacks
 _callIsLikely
 callIsPossibleForRequestId:
 ad_shouldIgnoreCallbacksOnReply
-_handleNextCallbacksForReply:forCommand:
 _firstChanceServiceForCommand:
 ad_shouldLogToMetrics
 resultCallbackCode
@@ -3636,7 +3649,6 @@ resultId
 _acceptResultCandidate:featuresToLog:completion:
 setProcessedAudioDuration:
 setResultId:
-_speechCapturingContext
 updateSelectedResultCandidateId:
 recordUserAudio
 resultCandidateId
@@ -3735,7 +3747,7 @@ _handleClientReply:error:forSessionCommand:
 peerInfo
 commandRelayProxyIdentifier
 _logCrossDeviceCommandEndedMetricsForCommand:targetProductType:targetProximity:response:error:
-_remoteExecute_remoteDeviceExecuteCommand:onPeer:allowsRelay:throughProxyDevice:completion:
+_remoteExecute_remoteDeviceExecuteCommand:onPeer:allowsRelay:throughProxyDevice:executionContext:completion:
 categoryStopped
 confirmationRequired
 ad_sendReplyEvenIfCallbacksExist
@@ -3860,7 +3872,9 @@ setConfidenceScoresByLanguage:
 adSpeechRecordingDidDetectLanguage:confidenceScores:isConfident:
 adSpeechRecordingPerformTwoShotPromptWithType:sessionUUID:completion:
 logSiriQuickStopAction:
-_quickStopMediaForRequestID:completion:
+homeAnnouncementSnapshot
+stopPlayback
+_quickStopMediaForRequestID:executionContext:completion:
 _presentDialogIdentifier:withCATParameters:listenAfterSpeaking:completion:
 _sendNLContextForConfirmationWithTargetDomain:confirmationNode:responseOptions:nlInput:
 getFiringStatesWithCompletion:
@@ -3883,7 +3897,7 @@ setNlInput:
 _sendCommandToServer:completion:
 setCategoryStopped:
 setConfirmationRequired:
-_reallyDoQuickStopWithDeviceContexts:optionalRequestID:mediaRemoteOptions:completion:
+_reallyDoQuickStopWithDeviceContexts:executionContext:optionalRequestID:mediaRemoteOptions:completion:
 bundleForClass:
 initWithInputLocale:outputVoiceLocale:
 speak
@@ -3961,6 +3975,7 @@ applicationDisplayName
 setApplicationDisplayName:
 setApplicationBundleIdentifier:
 _context_setSTApplicationContext:
+setInitialDictationLanguage:
 setPrimaryDictationLanguage:
 setDictationLanguages:
 startSpeechCaptureForDictationWithOptions:sessionUUID:secureOfflineOnly:
@@ -3976,7 +3991,7 @@ _sendWillStopRecordingForCommand:
 ad_setAFSpeechCorrectionInfo:
 ad_setAFCorrectionContext:
 _startNonSpeechRequest:forDelegate:
-_handleServiceCommand:completion:
+_handleServiceCommand:executionContext:completion:
 handleCommand:
 initWithRequestDelegate:
 _setFirstChanceService:forAceId:
@@ -4003,7 +4018,6 @@ activateWithRequestInfo:context:completion:
 handoffRequiresUserInteraction
 userNotificationRequestForRemoteRequest
 actionIdentifier
-handleIntent:inBackgroundAppWithBundleId:reply:
 adRequestRequestedOpenURL:completion:
 _remoteSpeechRequestHelper
 _domainObjectCache
@@ -4060,7 +4074,7 @@ _context_fetchAppicationContextForApplicationInfo:supplementalContext:refID:
 _context_setOverriddenApplicationContext:withContext:
 _context_setApplicationContextForApplicationInfos:withRefId:
 _context_setAlertContextDirty
-getDeviceContextsForKeys:includesNearbyDevices:completion:
+getDeviceContextsForKeys:forForeignRequestID:includesNearbyDevices:completion:
 getContextHistoryWithCompletion:
 _prepareForPhoneCall
 _telephonyRequestCompleted
@@ -4095,6 +4109,7 @@ adRequestRequestedOpenApplicationWithBundleID:URL:completion:
 adRequestRequestedDismissAssistant
 adWillProcessAppLaunchWithBundleIdentifier:
 adFailedToLaunchAppWithBundleIdentifier:
+_executionContextMatchingExecutionInfo:fallbackRequestID:
 getOfflineDictationStatusIgnoringCache:completion:
 _stopObservingCallStateWithCompletion:
 cancelSynchronously
@@ -4116,6 +4131,7 @@ resignCurrent
 becomeCurrent
 _adviseSessionArbiterToContinueWithPreviousWinner:
 getInfoWithCompletion:
+sharedQueue
 assistantSessionManager:receivedCommand:
 assistantSessionManager:receivedError:isRetryableError:
 assistantSessionManager:shouldLogVisibleRequestFailureForError:
@@ -4168,6 +4184,8 @@ UIService:executeHandler:forCommand:
 adCallStateChangedCallInProcess:
 adCallStateChangedCallIncoming:
 _hasOutstandingRequests
+_beginRemoteExecutionContextForCommand:fromPeer:withRemoteExecutionInfo:
+_endRemoteExecutionContext:
 _didLaunchAppForRequestWithIdentifier:
 _fetchStarkDeviceLockedStateWithCompletion:
 setSyncVerificationNeededAndFullReportNeeded:shouldPostNotification:
@@ -4176,7 +4194,6 @@ recievedLocation:locationStatus:
 _isRequestDelaying
 _saSetMultilingualDictationConfig:completion:
 resumeInterruptedAudioPlaybackIfNeeded
-_setIsTimeoutSuspended:
 _prepareForAppLaunchForRequest:
 _firstChanceServiceChangeIdFrom:to:
 _handleIntent:inBackgroundAppWithBundleId:reply:
@@ -4218,6 +4235,7 @@ setApplicationContext:
 fetchAppicationContextForApplicationInfo:supplementalContext:refID:
 setOverriddenApplicationContext:withContext:
 setApplicationContextForApplicationInfos:withRefId:
+getDeviceContextsForKeys:forRequestID:includesNearbyDevices:completion:
 prepareForPhoneCall
 telephonyRequestCompleted
 requestBarrier:
@@ -4282,9 +4300,10 @@ _continuePendedRequestTimestamp
 _droppedPackets
 _outstandingRequestIds
 _aceCompletionMap
-_peerInfoForCommandId
 _handledCommandIdsByRequestId
 _postCommandHandlingBlockMap
+_rootExecutionContextsByRequestID
+_remoteExecutionContextsByExecutionID
 _shutdownAssertions
 _deviceIsShowingLockScreen
 _requestEffectiveStartTime
@@ -4343,13 +4362,14 @@ initWithGeneration:date:alarmsByID:notifiedFiringAlarmIDs:
 snapshotAvailable:forEvent:
 setAlarmID:
 setAlarmURL:
+title
 setRepeatOptions:
+setIsFiring:
 setAlarmsByID:
 setNotifiedFiringAlarmIDs:
 initWithString:
 absoluteString
 stringByAppendingString:
-initFileURLWithPath:isDirectory:
 createDirectoryAtURL:withIntermediateDirectories:attributes:error:
 URLByAppendingPathComponent:
 _listenForAudioRouteChanges
@@ -4395,7 +4415,6 @@ openSensitiveURL:withOptions:
 initWithBytes:length:
 beginMatchingExtensionsWithAttributes:completion:
 endMatchingExtensions:
-initWithUTF8String:
 groupIdentifier
 mutableCopyWithZone:
 initWithDictionary:context:
@@ -4428,13 +4447,11 @@ systemLanguagePreferenceHasChanged
 _notifyObserver
 _changed
 adShouldSpeakStateDidChange:
-sharedInfoManager
 infoForThisDevice
 getCurrentHomeMemberIds:
 settingsForMultiUser:
 settingsForMultiUserWithRefresh:completion:
 getVoiceSettingsForHomeMembers:
-startAcceptingCloudSharesForMultiUserService
 restartSharing
 restartShareDeletion
 disableVoiceID
@@ -4458,8 +4475,8 @@ _canUseZLL
 hostTimeForSeconds:
 _alertBehaviorForRecordRoute:playbackRoute:attemptsToUsePastDataBufferFrames:
 _eventIsRaiseToSpeak
-_eventIsVoiceTrigger
 _isVoiceOverTouchEnabledInAccessibility
+_eventIsVoiceTrigger
 accessibilityState
 isVoiceOverTouchEnabled
 isVibrationDisabled
@@ -4863,6 +4880,7 @@ _voiceIdentificationTraining_allowedResultCandidateIds
 _voiceIdentificationTraining_resultCandidateToSharedUserIdMap
 _turnIdentifier
 _voiceIdentificationTraining_withoutResultCandidateSharedUserId
+_stopRecordingInstrumented
 _wantsRecordedAudioBufferLogs
 _sessionUUID
 getCurrentFanInfo:
@@ -5058,11 +5076,11 @@ boostQueuedEvents:
 setService:
 logEvent:
 logEvents:
-_group
 requestCanBeHandled
 hasEligibleSetup
 supportedByApplicationWithBundleID:
 canBeHandled
+archivedDataWithRootObject:requiringSecureCoding:error:
 supportedOnPlatform
 supportedForApplicationWithBundleId:
 performRequestWithCompletion:
@@ -5074,17 +5092,20 @@ fetchInitialState
 announcementTypeForBundleID:
 _requiredIntentIdentifiersForAnnouncementType:
 _announceableIntentIdentifiersForAnnouncementType:
+_fetchPairedBluetoothDevicesFromSourceWithCompletion:
 fetchLocalVoiceAssetAvailabilityWithCompletion:
 notifyObserversOfCurrentEligibleSetupState:
 fetchEligibleSetupStateWithCompletion:
 updateWirelessSplitterSessionInfoAndObserve
 fetchWirelessSplitterSessionInfoAndStartObservingSync
 _updateAudioRouteAvailabilityForSpokenMessagesAndBroadcast:
+_fetchWirelessSplitterSessionInfoAndStartObservingFromSourceWithCompletion:
 hasEligibleSetupChanged:
 requestCanBeHandledChanged:
 _settingsConnection
 startObservingWirelessSplitterSession
 notifyObserversOfCurrentRequestCanBeHandledState
+_setDelegate:
 applicationWithBundleID:canAnnounceNotificationWithIntentIdentifiers:
 _isRouteAvailableForAnnouncement:
 _settingsConnectionDidDisconnect
@@ -5126,10 +5147,27 @@ setDefaultUserState:
 setSyncSharedUserId:
 setInContextUsersStates:
 _backgroundContextWithObjects:
+backgroundContextWithCachedObjects
+navStatus
+setNavStatus:
+localSearchGetNavigationStatusCompleted
+setLocalSearchGetNavigationStatusCompleted:
+queueState
+setQueueState:
 errorIndicatorStatus
 setErrorIndicatorStatus:
+currentHome
+setCurrentHome:
+phoneCallState
+setPhoneCallState:
+musicPersonalizationToken
+setMusicPersonalizationToken:
+allMusicPersonalizationTokens
+setAllMusicPersonalizationTokens:
 playbackDeviceList
 setPlaybackDeviceList:
+homeAnnouncement
+setHomeAnnouncement:
 _navStatus
 _localSearchGetNavigationStatusCompleted
 _queueState
@@ -5139,6 +5177,7 @@ _phoneCallState
 _musicPersonalizationToken
 _allMusicPersonalizationTokens
 _playbackDeviceList
+_homeAnnouncement
 _createDeviceAuthenticationSessionForVersion:
 deviceAuthSession
 _setRequestData:
@@ -5317,7 +5356,11 @@ _createDictationSampledPlistIfItDoesNotExist
 date:matchesComponents:
 isDictationOnDeviceSamplingDisabled
 isSamplingDateCurrent
+dictionaryWithContentsOfURL:error:
 _writeDictationSamplingVariblesToFile:
+updateRequestCountWithFlag:
+decrementRequestCount
+isRequestSelectedForSampling
 numberOfRequestsTillNow
 setNumberOfRequestsTillNow:
 currentSamplingDate
@@ -5334,6 +5377,7 @@ _ad_getAlarmRequestRepresentationWithCompletionHandler:
 _ad_alarmResponseForResponse:
 enabled
 frequency
+setFrequency:
 _ad_alarm
 _ad_setAlarm:
 isOverrideAlarm
@@ -5425,7 +5469,6 @@ _audioMetadataDict
 _sessionTracker
 _dictationOptions
 _maxChunkSize
-dictionaryWithContentsOfURL:error:
 timeZoneWithAbbreviation:
 dateFromString:
 components:fromDate:toDate:options:
@@ -5436,7 +5479,7 @@ _bundleClassForDomain:commandName:
 _timeoutForCommand:
 _removeTimerForUUID:
 _providerServiceWithErrorHandler:
-doCommandForServicePath:className:infoDictionary:reply:
+doCommandForServicePath:className:infoDictionary:executionInfo:reply:
 _addWatchdogTimer:forUUID:
 _providerServiceDelegate
 clearSyncRequestWithUUID:
@@ -5453,7 +5496,7 @@ runMaintenanceWorkForServicePath:className:completion:
 reloadServiceBundleAtPath:
 _stopTimersWithContinuation
 initWithIdentifier:path:commandMap:anchorMap:clearingClass:maintenanceClass:queue:
-sendClientBoundCommand:domain:reply:
+sendClientBoundCommand:domain:executionContext:reply:
 sendBeginSyncWithInfo:chunkHandler:completion:
 sendFetchSyncSnapshotForInfo:completion:
 sendClearDomainObjects
@@ -5462,9 +5505,8 @@ runMaintenanceWorkWithCompletion:
 _getLockStateWithReply:
 _getCarDNDModeWithReply:
 _getStarkModeWithReply:
-_handleCommand:completion:
+_handleCommand:executionInfo:completion:
 _getTimeoutSuspendedWithReply:
-_getPeerInfoForCommandId:completion:
 _targetQueue
 _syncQueue
 _serviceLoaded
@@ -5480,9 +5522,10 @@ openURL:reply:
 getLockStateWithReply:
 getCarDNDModeWithReply:
 getStarkModeWithReply:
+handleCommand:executionInfo:completion:
 getTimeoutSuspendedWithReply:
 assistantServiceWillCrashForStuckSyncPluginAtPath:
-getPeerInfoForCommandId:completion:
+fetchContextsForKeys:forRequestID:includesNearbyDevices:completion:
 _serviceConnection
 _syncRequestsByUUID
 hashedRouteUID
@@ -5708,7 +5751,6 @@ _typeMap
 _modelLoading
 snapshot
 initWithSnapshot:
-_snapshot
 setSnapshot:
 _handleCommandInAMOS:completion:
 _sendAMOSCommand:domain:toBundleWithIdentifier:completion:
@@ -5869,7 +5911,6 @@ descriptorsForRequiredKeysForConversionType:
 _crossPlatformUnifiedMeContactWithKeysToFetch:error:
 personFromMeContact:
 addressBookManagerDidUpdateData:meCard:
-getMeCard:
 contactHandlesForPerson:
 unregisterChangeHistory
 setContactStore:
@@ -5975,6 +6016,20 @@ _ADPBLocationRequestType
 _appPunchOutHandler:forDomain:completion:
 insertObject:atIndex:
 savedCustomVocabularyOverviewDictionary
+_processAndEvaluateSnapshot:
+getSnapshotWithCompletion:
+lastPlayedAnnouncement
+_setSnapshot:
+setLastPlayedAnnouncement:
+homeAnnouncementObserver:stateDidUpdateFrom:to:
+homeAnnouncementObserver:snapshotDidUpdateFrom:to:
+unregisterSnapshotUpdater
+_group
+_snapshot
+_snapshotUpdater
+_expirationDuration
+finishedDate
+startedDate
 _setLastMyriadWin:
 _syncLastWinWithStereoPartner
 _setLastTimeStereoPartnerWon:
@@ -6012,7 +6067,6 @@ redirectForServerURLString:
 URLWithString:
 assistantSessionWillStartConnection:
 _startConnectionPreferringWWAN:skipPeer:skipPeerError:useWiFiHint:forceReconnect:
-sharedDiagnostics
 logConnectionStart
 acquireDormancySuspendAssertion:
 _connectionURL
@@ -6058,7 +6112,6 @@ needsDestruction
 _resetConnectionPolicyBlacklisting
 timeToLive
 doubleValue
-dateByAddingTimeInterval:
 timeIntervalSinceNow
 connectionPolicyFirstFailureDate
 hasConnectionPolicyFailed
@@ -6157,7 +6210,6 @@ setValidationData:
 setValidationExpiration:
 _persistValidationData:withExpiration:
 initWithTimeIntervalSinceNow:
-scheduleValidationRefreshForInterval:
 setValidationDataSync:
 _reallyRetryPreferringWWAN:skipPeer:skipPeerError:useWiFiHint:causedByError:forceReconnect:useSecondary:
 _informDelegateWillRetryOnError:
@@ -6220,7 +6272,6 @@ _setAssistantDataAnchorIfNeeded:
 activeAccount
 clearAssistantData
 assistantSessionDidDestroyAssistant:
-unscheduleDestroyJob
 aceHostHeader
 reconnectNow
 reason
@@ -6236,7 +6287,6 @@ sendCommands:errorHandler:
 setDeviceAuthVersion:
 _sendServerCommand:
 setSessionInfoRequest:
-processIdentifier
 reportIssueForType:subType:context:processIdentifier:walkboutStatus:
 connectionMode
 loggingAssistantIdentifier
@@ -6272,7 +6322,6 @@ setRemoteDeviceHasNoAssistantId:
 setRemoteDeviceUnreachable:
 saRemoteDevice:
 setBrandName:
-sharedService
 sharedRemoteDevices
 setRemoteDevices:
 _sendSetRemoteDevicesWithAccount:multiUserInfo:
@@ -6551,12 +6600,14 @@ launchURL
 isMessagesOnSiriKitNative
 _createSiriKitNativeAnnounceMessageRequestFromNotification:appId:
 _createClientFlowAnnounceMessageRequestFromNotification:appID:
+_createAnnounceInHomeRequestFromBundleID:announcementIdentifier:notificationType:
 _initWithShowUIDuringListening:playAlertBeforeListening:
 setRequestCompletionOptions:
 setNotificationID:
 setOutputVoiceLanguageCode:
 setCode:
 announceMessagesRequestFromNotificationIdentifier:fromApp:
+announceHomeAnnouncementRequestFromApp:withAnnouncementIdentifier:withUserNotificationType:
 initWithEnvironmentName:namedDelegatePort:queue:
 _setEnabledTopics:
 topic
@@ -6572,13 +6623,13 @@ _hmConnection
 sendSiriCommand:completionHandler:
 _remoteExecute_shouldSendCommandToPrimaryUser:
 _remoteExecute_primaryUserDevicesWithTypes:
-_remoteExecute_remoteDeviceExecuteSerializedCommand:onPeer:completion:
-_remoteExecute_remoteDeviceExecuteSerializedCommand:onDeviceForAssistantId:completion:
+_remoteExecute_remoteDeviceExecuteSerializedCommand:onPeer:executionContext:completion:
+_remoteExecute_remoteDeviceExecuteSerializedCommand:onDeviceForAssistantId:executionContext:completion:
 remoteDevice
 setRemoteDevice:
 requiresResponseFromRemote
 setResponseFromRemote:
-_remoteExecute_remoteDeviceExecuteSerializedCommand:onSpecifiedDeviceTypes:preferredMessagingOption:completion:
+_remoteExecute_remoteDeviceExecuteSerializedCommand:onSpecifiedDeviceTypes:preferredMessagingOption:executionContext:completion:
 filterUsingPredicate:
 _startRemoteRequest:onPeer:completion:
 siriCore_serializedAceDataError:
@@ -6624,6 +6675,7 @@ _startHouseKeepingTimer
 unionSet:
 _unstageEvents
 contextDataType
+contextData
 shouldDeliverEvent:
 deliverEvent:eventStreamId:
 _houseKeeperArrived
@@ -6658,7 +6710,6 @@ _isMonitoringUnlockActivity
 _startMonitoringUnlockActivity
 trigger
 requestWithIdentifier:content:trigger:
-postNotificationRequest:completion:
 addNotificationRequest:withCompletionHandler:
 removeDeliveredNotificationsWithIdentifiers:
 _clearNotificationWithIdentifier:
@@ -6670,14 +6721,10 @@ setTransitionHandler:
 monitorWithConfiguration:
 _stopMonitoringUnlockActivity
 remoteObjectProxyWithErrorHandler:
-receivedNotificationResponse:
 notification
-sharedProviderInDaemon
 userNotificationCenter:willPresentNotification:withCompletionHandler:
 userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:
 userNotificationCenter:openSettingsForNotification:
-withdrawNotificationRequestWithIdentifier:
-initWithConnection:
 postNotificationRequest:options:responseHandler:
 _notificationCenter
 _responseHandlersByNotificationID
@@ -7212,8 +7259,6 @@ taskHint
 offlineLanguage
 recognitionOverrides
 fieldLabel
-isRequestSelectedForSampling
-updateRequestCountWithFlag:
 _localSpeechRecognizerSupportingBackground:
 maximumRecognitionDuration
 farField
@@ -7227,7 +7272,6 @@ setSecureOfflineOnly:
 instanceUUID
 speechDidProcessAudioDuration:
 speechDidRecognizePackage:
-decrementRequestCount
 localSpeechRecognizer:didRecognizeTokens:
 localSpeechRecognizer:didProcessAudioDuration:
 localSpeechRecognizer:didRecognizeRawEagerRecognitionCandidate:
@@ -7265,7 +7309,7 @@ _lastAudioBufferReceivedWithEndpointMode:totalPacketCount:endpointerMetrics:
 _tellDelegateSpeechFinished
 _releaseSession
 preferOnlineRecognition
-_detectOnDeviceDictationOrchestrationMismatchForLanguage:dictationTask:preferOnlineRecognition:modelType:onDeviceRequest:context:
+_detectOnDeviceDictationOrchestrationMismatchForLanguage:initialLanguage:eligibleForOnDeviceDictation:modelType:onDeviceRequest:context:
 _tellDelegateSpeechStartedWithRecordingInfo:
 _speechCodecError
 _cancelRecordingWithError:suppressAlert:
@@ -7329,6 +7373,7 @@ isLocallyRecognizingInSiriMiniMode
 isCapturing
 stopSpeechCaptureIfFingerprintingOnlyWithOptions:
 stopFingerprintingForSuccess:
+initialDictationLanguage
 primaryDictationLanguage
 inputAudioPowerUpdater
 _localSpeechRecognizerTask
@@ -7356,6 +7401,7 @@ _hasFetchedSmartSiriVolume
 _hasUpdatedSiriOutputVolume
 _dirtySiriOutputVolumeHostTime
 _hasReceivedLastAudioBuffer
+_initialDictationLanguage
 _primaryDictationLanguage
 _dictationLanguages
 _inputAudioPowerUpdater
@@ -7428,7 +7474,6 @@ setMultiUserIsOnboardingDevice:
 accessStoreUsingBlock:
 getConfigurationsWithCompletion:
 getContextWithCompletion:
-setSiriDataSharingOptInStatus:
 resetSessionsAtNextRequestBoundary
 _postWatchNotificationWithContext:withError:
 initWithBlock:defaultValue:
@@ -7448,7 +7493,6 @@ adSyncVerificationServerReport:
 _appIdentifierfromConnection:
 _serviceDelegateWithErrorHandler:
 _xpcConnection
-numberWithInt:
 deviceIDPair
 observationDate
 initWithDeviceIDPair:proximity:observationDate:
@@ -7494,10 +7538,9 @@ fetchSmartSiriVolume
 updateSiriOutputVolume:completion:
 waitUntilSiriOutputVolumeUpdatesAfterTimestamp:withTimeout:block:
 setClientConfiguration:
-getSiriOutputVolumeForAudioRoute:completion:
 setSiriOutputVolume:forAudioRoute:operationType:completion:
 systemVolumeChanged:
-_handleSystemVolumeChangeForCategory:volume:reason:
+_handleSystemVolumeChangeForCategory:volume:audioCategory:reason:
 _fetchSmartSiriVolume
 _setNeedsUpdateSiriVolume
 _speechController
@@ -7521,7 +7564,6 @@ siriConnection:didEncounterError:
 _fetchLostModeState
 _isLostModeActive
 _init
-stringWithUTF8String:
 initWithName:queue:
 wirelessSplitterSession
 addObserver:
@@ -7603,22 +7645,24 @@ userFacingReasonDescription
 ad_shouldClassLogToMetrics
 views
 speakableText
+isDeviceOwnedByCurrentUser
+mediaSystemIdentifier
+rapportEffectiveIdentifier
+userInterfaceIdiom
+aceVersion
+mediaRouteIdentifier
 setIsDeviceOwnedByCurrentUser:
 setIdsIdentifier:
 setMediaSystemIdentifier:
 setRapportEffectiveIdentifier:
 setAceVersion:
 setBuildVersion:
-isDeviceOwnedByCurrentUser
+initWithAFPeerInfo:
 setDeviceOwnedByCurrentUser:
 idsFirstRoutableDestination
 setAirPlayRouteIdentifiers:
-rapportEffectiveIdentifier
-mediaSystemIdentifier
 preferredMessagingOptionsForCommands
 setPreferredMessagingOptionsForCommands:
-userInterfaceIdiom
-aceVersion
 _deviceOwnedByCurrentUser
 _idsIdentifier
 _name
@@ -7672,6 +7716,7 @@ _fetchInitialState
 _getNotificationsFromBulletinBoard
 _getRestrictedAppsFromBulletinBoard
 _fetchFromDataSourceIfNecessary
+applicationProxyForIdentifier:
 appInfoWithAppProxy:
 supportedIntents
 availableOnLockScreen
@@ -7692,6 +7737,7 @@ _settingsGroup
 _batchedUpdatePending
 _siriRelatedPreviewRestrictedApps
 _spokenNotificationEnabledApps
+_info
 IOPrimaryInterface
 IOBuiltin
 IODeviceTree:/
@@ -7921,6 +7967,7 @@ T@"ADDeviceSyncCommandPullDeltaResponse",R,C,N,V_commandPullDeltaResponse
 T@"ADDeviceSyncCommandPullSnapshotRequest",R,C,N,V_commandPullSnapshotRequest
 T@"ADDeviceSyncCommandPullSnapshotResponse",R,C,N,V_commandPullSnapshotResponse
 -[ADExternalNotificationRequest dealloc]
+notification
 T@"UNNotification",&,N,V_notification
 appID
 T@"NSString",&,N,V_appID
@@ -7930,16 +7977,16 @@ requestInfo
 T@"AFRequestInfo",&,N,V_requestInfo
 requestWasInterrupted
 TB,N,V_requestWasInterrupted
-ADAudioSessionPortBluetoothA2DP
-ADAudioSessionPortBluetoothHFP
-ADAudioSessionPortBluetoothLE
-ADAudioSessionPortBuiltInMic
-ADAudioSessionPortBuiltInSpeaker
-ADAudioSessionPortHeadphones
-ADAudioSessionPortHeadsetMic
-ADAudioSessionPortHDMI
-ADAudioSessionPortLineIn
-ADAudioSessionPortUSBAudio
+BluetoothA2DPOutput
+BluetoothHFP
+BluetoothLE
+MicrophoneBuiltIn
+Speaker
+Headphones
+MicrophoneWired
+HDMIOutput
+LineIn
+USBAudio
 ADAudioSessionPortOther
 -[ADAudioSession currentInputRoute]_block_invoke
 v24@?0^v8Q16
@@ -8109,7 +8156,7 @@ IDSLocalMessageStateAcked
 Invalid store type
 Storage could not be initialized
 Unhandled %@
--[ADKnowledgeService handleCommand:forDomain:reply:]
+-[ADKnowledgeService handleCommand:forDomain:executionContext:reply:]
 -[ADKnowledgeService handleGetValuesForKeys:completion:]
 -[ADKnowledgeService handleGetValuesForKeys:completion:]_block_invoke
 v24@?0@"NSError"8@"NSArray"16
@@ -8125,11 +8172,13 @@ B32@?0@"AFDeviceContext"8Q16^B24
 q24@?0@"AFDeviceContext"8@"AFDeviceContext"16
 dismiss
 @"ADDeviceRouterResult"28@?0q8q16B24
--[SAQuickStop(DeviceRouting) ad_executionDeviceForDeviceContexts:proximityMap:logNearbyDeviceMetrics:]_block_invoke
+-[SAQuickStop(DeviceRouting) ad_executionDeviceForDeviceContexts:proximityMap:localDeviceIsFollower:logNearbyDeviceMetrics:]_block_invoke
 @"ADDeviceRouterResult"24@?0q8q16
 snooze
 -[ADDeviceRouter updateContext:]_block_invoke
 v32@?0@"NSString"8@"AFDeviceContext"16^B24
+-[ADDeviceRouter updateContext:]_block_invoke_2
+v12@?0B8
 v16@?0@"NSDictionary"8
 ADDeviceRouterResultForDeviceContextWithFiringAlarm
 ADDeviceRouterResultForDeviceContextWithFiringTimer
@@ -8168,9 +8217,9 @@ Tf,R,N,V_movingAverage
 offlineDictationStatus
 T@"NSDictionary",&,N,V_offlineDictationStatus
 Companion Routing Service Queue
--[ADCompanionRoutingService _handleCommand:forDomain:reply:]
--[ADCompanionRoutingService _handleCommand:forDomain:reply:]_block_invoke_2
--[ADCompanionRoutingService _handleCommand:forDomain:reply:]_block_invoke
+-[ADCompanionRoutingService _handleCommand:forDomain:executionContext:reply:]
+-[ADCompanionRoutingService _handleCommand:forDomain:executionContext:reply:]_block_invoke_2
+-[ADCompanionRoutingService _handleCommand:forDomain:executionContext:reply:]_block_invoke
 -[ADCompanionRoutingService preheatDomain:]
 -[ADCompanionRoutingService preheatDomain:]_block_invoke
 -[ADCompanionRoutingService _processPendingCallResultBlocks]
@@ -8224,6 +8273,7 @@ useDeviceSpeakerForTTS
 Tq,N,V_useDeviceSpeakerForTTS
 nanoTTSSpeakerVolume
 Tf,N,V_nanoTTSSpeakerVolume
+language
 T@"NSString",&,N,V_language
 T@"AFVoiceInfo",&,N,V_outputVoice
 crownActivationEnabled
@@ -8304,6 +8354,7 @@ T@"NSString",C,N,V_assistantIdentifier
 loggingAssistantIdentifier
 T@"NSString",C,N,V_loggingAssistantIdentifier
 T@"NSString",C,N,V_speechIdentifier
+group
 T@"NSString",C,N,V_group
 predefinedServer
 T@"NSString",C,N,V_predefinedServer
@@ -8342,13 +8393,12 @@ assistantd
 ADClientFlowServiceHelper
 v24@?0@"<SAAceCommand>"8@"NSError"16
 -[ADClientFlowServiceHelper openSensitiveURL:]
-v12@?0B8
-+[ADClientFlowServiceHelper performWithTargetQueue:withClientCommand:replyHandler:]
++[ADClientFlowServiceHelper performWithTargetQueue:withClientCommand:executionContext:replyHandler:]
 Watch dog timed out for command %@
-+[ADClientFlowServiceHelper performWithTargetQueue:withClientCommand:replyHandler:]_block_invoke
-+[ADClientFlowServiceHelper performWithTargetQueue:withClientCommand:replyHandler:]_block_invoke_2
--[SABaseCommand(ADClientFlowService) _ad_performWithTargetQueue:replyHandler:]
--[SACFSignal(ADClientFlowService) _ad_performWithTargetQueue:replyHandler:]_block_invoke
++[ADClientFlowServiceHelper performWithTargetQueue:withClientCommand:executionContext:replyHandler:]_block_invoke
++[ADClientFlowServiceHelper performWithTargetQueue:withClientCommand:executionContext:replyHandler:]_block_invoke_2
+-[SABaseCommand(ADClientFlowService) _ad_performWithTargetQueue:executionContext:replyHandler:]
+-[SACFSignal(ADClientFlowService) _ad_performWithTargetQueue:executionContext:replyHandler:]_block_invoke
 -[SACFSpokenNotificationFlowCommand(ADClientFLowService) _failedWithErrorDescription:error:completion:]
 Flow command could not be created for Spoken messages %@
 Spoken Notification Command failed with error %@
@@ -8356,7 +8406,7 @@ Spoken Notification Client Flow Failed with %@
 Spoken Notification Client Flow unknown response %@
 Client flow service
 -[ADClientFlowService cancelOperationsForRequestID:]
--[ADClientFlowService handleCommand:forDomain:reply:]
+-[ADClientFlowService handleCommand:forDomain:executionContext:reply:]
 com.apple.private.alloy.siri.device
 com.apple.assistant.device-sync.messaging-service.rapport
 -[ADDeviceSyncMessagingServiceRapport sendMessage:toDeviceWithIdentifier:completion:]
@@ -8503,6 +8553,9 @@ Too many buffers
 Cannot produce ASPD for PCM
 i32@?0^I8^{AudioBufferList=I[1{AudioBuffer=II^v}]}16^^{AudioStreamPacketDescription}24
 -[ADSpeechCompressor addAudioSampleData:]
+v16@?0@"AFHomeAnnouncementSnapshot"8
+-[ADHomeAnnouncementContextProvider handleHomeAnnouncementSnapshotUpdate:]
+v16@?0@"<AFContextDonation>"8
 -[ADTimerContextProvider clockTimerObserver:timerDidFire:]
 -[ADTimerContextProvider clockTimerObserver:timerDidDismiss:]
 -[ADTimerContextProvider clockTimerObserver:snapshotDidUpdateFrom:to:]
@@ -8561,10 +8614,12 @@ com.apple.notifyd.matching
 -[ADDaemon _setupNotifyHandlers]_block_invoke
 com.apple.MobileAsset.VoiceServices.VoiceResources.new-asset-installed
 com.apple.voiceservices.notification.voice-update
+com.apple.voicetrigger.EarlyDetect
 com.apple.siri.preheat.quiet
 com.apple.nanoregistry.devicedidpair
 Safety net
 com.apple.managedconfiguration.effectivesettingschanged
+v16@?0@"NSObject<OS_xpc_object>"8
 com.apple.distnoted.matching
 -[ADDaemon _setupDistributedNotificationHandlers]_block_invoke
 UserInfo
@@ -8578,7 +8633,7 @@ r^{__CFDictionary=}20@?0i8r^{__CFDictionary=}12
 CACHE_DELETE_VOLUME
 CACHE_DELETE_AMOUNT
 -[ADDaemon _setupCacheDelete]_block_invoke_3
-MobileAssistantDaemons_Sim-2152.26
+MobileAssistantDaemons_Sim-2152.31.2
 -[ADDaemon _daemonDidLaunch]
 systemBuild
 -[ADDaemon _daemonWillShutdown]
@@ -8835,8 +8890,6 @@ v32@?0@"NSUUID"8@"NSString"16@"NSError"24
 com.apple.reminders
 -[ADContextManager getAlertContextWithBulletins:externalAlarmSnapshot:timerSnapshot:nlAlertContextCompletion:fullAlertContextCompletion:]_block_invoke
 -[ADContextManager getAlertContextWithBulletins:externalAlarmSnapshot:timerSnapshot:nlAlertContextCompletion:fullAlertContextCompletion:]_block_invoke_2
-v32@?0@"NSUUID"8@"AFClockAlarm"16^B24
-v32@?0@"NSUUID"8@"AFClockTimer"16^B24
 -[ADContextManager getAlertContextWithBulletins:externalAlarmSnapshot:timerSnapshot:nlAlertContextCompletion:fullAlertContextCompletion:]_block_invoke_4
 ADContextManager.m
 -[ADContextManager _getNowPlayingMediaIsResumable:]
@@ -8850,8 +8903,9 @@ com.apple.NanoBooks
 -[ADContextManager getContextIncludingKeys:excludingMandatoryKeys:timeOut:completion:]_block_invoke
 -[ADContextManager getContextIncludingKeys:excludingMandatoryKeys:timeOut:completion:]_block_invoke_2
 -[ADContextManager getContextIncludingKeys:excludingMandatoryKeys:timeOut:completion:]_block_invoke_3
--[ADContextManager getDeviceContextsForKeys:includesNearbyDevices:completion:]
--[ADContextManager getDeviceContextsForKeys:includesNearbyDevices:completion:]_block_invoke_3
+-[ADContextManager getDeviceContextsForKeys:forForeignRequestID:includesNearbyDevices:completion:]
+v16@?0@"<AFServiceDeviceContextMutating>"8
+-[ADContextManager getDeviceContextsForKeys:forForeignRequestID:includesNearbyDevices:completion:]_block_invoke_3
 @16@?0@"AFDeviceContext"8
 v16@?0@"AFDeviceCapabilities"8
 -[ADContextManager _fetchContextSnapshotForCurrentRequest]
@@ -8860,7 +8914,6 @@ context_collector_available
 local_is_collector
 B16@?0@"AFDeviceContext"8
 B16@?0@"AFDeviceCapabilities"8
-timedOut
 duration_in_ms
 devices_count
 -[ADContextManager getContextSnapshotForCurrentRequestWithCompletion:]_block_invoke
@@ -8872,7 +8925,6 @@ devices_count
 -[ADContextManager _startPeriodicContextFetchFromNearbyDevices]_block_invoke_2
 -[ADContextManager _startPeriodicContextFetchFromNearbyDevices]_block_invoke
 -[ADContextManager _stopPeriodicContextFetchFromNearbyDevices]
-group
 -[ADContextManager _getBackgroundContext:]
 (cache read)
 (regenerating all values)
@@ -8890,8 +8942,6 @@ com.apple.assistant.music.fusetoken
 -[ADContextManager _updateMusicPersonalizationTokenWithContext:completion:]_block_invoke_2
 -[ADContextManager _updateMusicPersonalizationTokenWithContext:completion:]_block_invoke
 v24@?0@"NSMutableDictionary"8@"NSError"16
-v24@?0@"NSString"8@"NSError"16
-notification
 assistantd_current_home
 com.apple.homed.current-home.changed
 ADObserveCurrentHomeKitHomeChanges_block_invoke_2
@@ -8910,7 +8960,10 @@ PhoneCallState-notification
 Invalid context data type
 Nil Myriad advertisement context
 -[ADContextManager pushMyriadAdvertismentContextToContextCollector:completion:]_block_invoke_2
-queue
+-[ADContextManager _updateHomeAnnouncementWithContext:supplementalSnapshot:completion:]
+-[ADContextManager _updateHomeAnnouncementWithContext:supplementalSnapshot:completion:]_block_invoke
+-[ADContextManager _updateHomeAnnouncementWithContext:supplementalSnapshot:completion:]_block_invoke_2
+-[ADContextManager _handleHomeAnnouncementSnapshotUpdate:]
 localContextStore
 T@"ADLocalContextStore",R,N,V_localContextStore
 remoteContextStore
@@ -8925,8 +8978,6 @@ initICLibraryAuthServiceClientTokenProvider_block_invoke
 classICLibraryAuthServiceClientTokenProvider
 /System/Library/PrivateFrameworks/iTunesCloud.framework/iTunesCloud
 iTunesCloudLibrary
-HMClientConnection
-/System/Library/Frameworks/HomeKit.framework/HomeKit
 aceDictionary
 T@"NSDictionary",C,N,V_aceDictionary
 T@"NSString",C,N,V_oldId
@@ -9117,7 +9168,6 @@ UNKNOWN
 MALE
 FEMALE
 (unknown: %i)
-v16@?0@"NSObject<OS_xpc_object>"8
 -[ADExternalRequestListener listen]_block_invoke
 _ADHandleNewExternalRequestPeer_block_invoke
 _ADHandleExternalRequestLocalRequest_block_invoke
@@ -9336,7 +9386,6 @@ com.apple.siri.client-state-changed
 -[ADMediaPlaybackContextProvider nowPlayingObserverNowPlayingInfoDidChange:]
 -[ADMediaPlaybackContextProvider _handlePlaybackStateDidChangeToState:fromState:completion:]_block_invoke
 -[ADMediaPlaybackContextProvider _handlePlaybackStateDidChangeToState:fromState:completion:]_block_invoke_2
-v16@?0@"<AFContextDonation>"8
 v16@?0@"NSString"8
 -[ADMediaPlaybackContextProvider _updateProximityObservationsForPlayState:]
 ADSiriRequestSucceededResponseTransformer.m
@@ -9364,6 +9413,9 @@ T@"AFSpeechRequestOptions",R,C,N,V_speechRequestOptions
 completion
 T@?,R,C,N,V_completion
 ADExtensionServiceIdentifier
+-[ADExtensionService handleCommand:forDomain:executionContext:reply:]
+-[ADExtensionService handleCommand:forDomain:executionContext:reply:]_block_invoke_2
+-[ADExtensionService handleCommand:forDomain:executionContext:reply:]_block_invoke
 v32@?0@"NSString"8@"NSString"16@"NSUUID"24
 -[ADExtensionService resetExternalResources]
 -[ADExtensionService cancelOperationsForRequestID:]
@@ -9440,9 +9492,9 @@ v24@?0@"NSSet"8@"NSError"16
 -[ADPeerCloudService _notifyObserversOfSharedDataRequestFromPeer:completion:]
 -[ADPeerCloudService _startRemoteRequest:onPeers:completion:]
 -[ADPeerCloudService _startRemoteRequest:onPeers:completion:]_block_invoke_2
--[ADPeerCloudService startRemoteExecution:onPeer:allowsRelay:throughProxyDevice:completion:]
--[ADPeerCloudService startRemoteSerialzedCommandExecution:onPeer:completion:]
--[ADPeerCloudService startRemoteSerialzedCommandExecution:onPeer:completion:]_block_invoke_3
+-[ADPeerCloudService startRemoteExecution:onPeer:allowsRelay:throughProxyDevice:executionContext:completion:]
+-[ADPeerCloudService startRemoteSerialzedCommandExecution:onPeer:executionContext:completion:]
+-[ADPeerCloudService startRemoteSerialzedCommandExecution:onPeer:executionContext:completion:]_block_invoke_3
 -[ADPeerCloudService startListeningForRemote]
 v32@?0@"AFRequestInfo"8@"ADPeerInfo"16@?<v@?B>24
 -[ADPeerCloudService startListeningForRemote]_block_invoke
@@ -9598,7 +9650,7 @@ com.apple.music
 v16@?0@"SAMPQueueState"8
 Unsupported playback position request
 -[ADMediaRemoteService _buildCacheOfWhaServiceSupportedCommands]
--[ADMediaRemoteService handleCommand:forDomain:reply:]
+-[ADMediaRemoteService handleCommand:forDomain:executionContext:reply:]
 com.apple.ace.media.SetQueue
 metricsContext
 volumeTracker
@@ -9646,7 +9698,6 @@ ADProximityMapForProximitySignals
 ADDeviceProximityManager
 v20@?0@"NSArray"8B16
 com.apple.voicetrigger.KeywordSpoken
-com.apple.voicetrigger.EarlyDetect
 -[ADDeviceProximityManager performProximityScan]
 -[ADDeviceProximityManager _stopScanning]
 -[ADDeviceProximityManager getDeviceProximityRelativeToLocalDeviceWithDeviceContexts:completion:]_block_invoke
@@ -9693,9 +9744,11 @@ ADCommandCenterQueue
 -[ADCommandCenter init]
 -[ADCommandCenter _addOutstandingRequestId:forReason:]
 -[ADCommandCenter _removeOutstandingRequestId:forReason:]
+-[ADCommandCenter _createRootExecutionContextForRequestID:]
+-[ADCommandCenter _destroyRootExecutionContextForRequestID:]
+-[ADCommandCenter _beginRemoteExecutionContextForCommand:fromPeer:withRemoteExecutionInfo:]
+-[ADCommandCenter _endRemoteExecutionContext:]
 -[ADCommandCenter _addCompletion:forCommandId:]
--[ADCommandCenter _setPeer:forCommandId:]
--[ADCommandCenter _removePeerInfoForAceId:]
 -[ADCommandCenter _addHandledCommandId:forRequestId:]
 -[ADCommandCenter _handledCommandIdsForRequestId:]
 -[ADCommandCenter _addPostCommandHandlingBlock:forCommandId:requestId:]
@@ -9718,22 +9771,22 @@ v16@?0@"AFLocationSnapshot"8
 -[ADCommandCenter _sendRollbackCommandForCommand:]
 -[ADCommandCenter _reallyHandleNewStartRequest:]
 -[ADCommandCenter _reallyHandleNewStartLocalRequest:]
--[ADCommandCenter _handleNextCallbacksForReply:forCommand:forRequestId:]
--[ADCommandCenter _handleNextCallbacksForReply:forCommand:forRequestId:]_block_invoke
+-[ADCommandCenter _handleNextCallbacksForReply:forCommand:forRequestId:withExecutionContext:]
+-[ADCommandCenter _handleNextCallbacksForReply:forCommand:forRequestId:withExecutionContext:]_block_invoke
 -[ADCommandCenter _cancelCurrentRequest]
 -[ADCommandCenter _shutdownAfterDelay:]_block_invoke
 -[ADCommandCenter _shutdownAfterDelay:]
 -[ADCommandCenter _sendRestrictionsInPreparationForRequest]
--[ADCommandCenter _handleCommand:peer:completion:]
+-[ADCommandCenter _handleCommand:executionContext:completion:]
 T@"NSString",C,N
 appId
 callbacks
 T@"NSArray",C,N
--[ADCommandCenter _handleCommandResponse:error:forCommand:fromPeer:completion:]
+-[ADCommandCenter _handleCommandResponse:error:forCommand:executionContext:completion:]
 -[ADCommandCenter _preheatCallbacksForCommand:]
--[ADCommandCenter _performCallbacksForCommand:reply:error:]
--[ADCommandCenter _handleServiceCommand:afterMyriadDecision:completion:]
--[ADCommandCenter _handleServiceCommand:afterMyriadDecision:completion:]_block_invoke_2
+-[ADCommandCenter _performCallbacksForCommand:reply:executionContext:error:]
+-[ADCommandCenter _handleServiceCommand:afterMyriadDecision:executionContext:completion:]
+-[ADCommandCenter _handleServiceCommand:afterMyriadDecision:executionContext:completion:]_block_invoke_2
 resultCallbackCode
 -[ADCommandCenter _sendServiceCommand:completion:]_block_invoke
 -[ADCommandCenter _receivedLocation:locationStatus:]
@@ -9741,7 +9794,7 @@ com.apple.assistant.command-center.call
 -[ADCommandCenter adCallStateChangedCallInProcess:]_block_invoke
 -[ADCommandCenter adCallStateChangedCallIncoming:]_block_invoke
 -[ADCommandCenter _handleBareRequestCompleted:]
--[ADCommandCenter _saRequestCompleted:completion:]
+-[ADCommandCenter _saRequestCompleted:executionContext:completion:]
 -[ADCommandCenter _saCommandFailed:completion:]
 Speech not ready
 -[ADCommandCenter _saCommandIgnored:completion:]
@@ -9787,9 +9840,9 @@ v24@?0d8d16
 -[ADCommandCenter _endSpeechRequestForCommand:withError:suppressAlert:secureOfflineOnlyDictation:]
 -[ADCommandCenter _endSpeechRequestForCommand:withError:suppressAlert:secureOfflineOnlyDictation:]_block_invoke
 -[ADCommandCenter _saAcknowledgeAlert:completion:]
--[ADCommandCenter _saGetRequestOrigin:completion:]
+-[ADCommandCenter _saGetRequestOrigin:executionContext:completion:]
+-[ADCommandCenter _saGetRequestOrigin:executionContext:completion:]_block_invoke
 Failed getting request origin
--[ADCommandCenter _saGetRequestOrigin:completion:]_block_invoke
 Failed getting diagnostic report
 v16@?0@"SADIAGLatencyDiagnosticReport"8
 -[ADCommandCenter _saLogSignatureWithABC:completion:]
@@ -9809,7 +9862,7 @@ Server has disabled smart language selection
 -[ADCommandCenter _startLanguageDetectionWaitTimer]_block_invoke
 -[ADCommandCenter _stopLanguageDetectionWaitTimerIfNeeded]
 v32@?0@"NSTextCheckingResult"8Q16^B24
--[ADCommandCenter _handleCommandAndClientReply:]_block_invoke_2
+-[ADCommandCenter _handleCommandAndClientReply:executionContext:]_block_invoke_2
 local device
 v16@?0@"ADDeviceRouterResult"8
 %@.%@-%@
@@ -9859,7 +9912,8 @@ Perform two shot prompt.
 -[ADCommandCenter speechManager:performTwoShotPromptWithType:sessionUUID:completion:]_block_invoke_3
 %@ two shot prompt was rejected.
 %@ is incapable of performing fake two shot prompt.
--[ADCommandCenter _reallyDoQuickStopWithDeviceContexts:optionalRequestID:mediaRemoteOptions:completion:]_block_invoke
+-[ADCommandCenter _reallyDoQuickStopWithDeviceContexts:executionContext:optionalRequestID:mediaRemoteOptions:completion:]
+-[ADCommandCenter _reallyDoQuickStopWithDeviceContexts:executionContext:optionalRequestID:mediaRemoteOptions:completion:]_block_invoke
 roomName
 quickStop#AlarmConfirmation
 com.apple.siri.nl.Alarm
@@ -9875,13 +9929,13 @@ com.apple.siri.nl.TimerConfirmation.Value.YES
 com.apple.siri.nl.TimerConfirmation.Value.NO
 com.apple.siri.nl.TimerConfirmation.Value.CANCEL
 ^timerVerb^=^stop^ ^timerNoun^=^timer^
--[ADCommandCenter _reallyDoQuickStopWithDeviceContexts:optionalRequestID:mediaRemoteOptions:completion:]_block_invoke_3
--[ADCommandCenter _quickStopMediaForRequestID:completion:]
--[ADCommandCenter _quickStopMediaForRequestID:completion:]_block_invoke
+-[ADCommandCenter _reallyDoQuickStopWithDeviceContexts:executionContext:optionalRequestID:mediaRemoteOptions:completion:]_block_invoke_3
+-[ADCommandCenter _quickStopMediaForRequestID:executionContext:completion:]
+-[ADCommandCenter _quickStopMediaForRequestID:executionContext:completion:]_block_invoke
 JSON:%@
--[ADCommandCenter _saQuickStop:completion:]
+-[ADCommandCenter _saQuickStop:executionContext:completion:]
 Not supported on this platform
--[ADCommandCenter _saQuickStop:completion:]_block_invoke_2
+-[ADCommandCenter _saQuickStop:executionContext:completion:]_block_invoke_2
 v16@?0@"AFDeviceContext"8
 -[ADCommandCenter _presentDialogIdentifier:withCATParameters:listenAfterSpeaking:completion:]
 -[ADCommandCenter _presentDialogIdentifier:withCATParameters:listenAfterSpeaking:completion:]_block_invoke
@@ -9999,6 +10053,8 @@ ADCommandCenterClient failure
 -[ADCommandCenter sendMetricsToServerWithTimeout:requiresUnlimitedPower:requiresActiveSession:purgesOversizedStorage:ignoresMetricsSenderDisabledSetting:scheduledActivity:completion:]
 -[ADCommandCenter clientConnected:]_block_invoke
 -[ADCommandCenter clientDisconnected:]_block_invoke
+-[ADCommandCenter handleCommand:withExecutionContextMatchingInfo:completion:]
+-[ADCommandCenter handleCommand:withExecutionContextMatchingInfo:completion:]_block_invoke
 -[ADCommandCenter prepareForShutdown]_block_invoke
 -[ADCommandCenter beginUpdateOutputAudioPowerForClient:completion:]
 v16@?0@"AFXPCWrapper"8
@@ -10064,6 +10120,7 @@ _ADPreheatSpeechWithStyle
 _ADPreheatSpeechManagerInBackgroundWithRecordDeviceIdentifier_block_invoke
 _LogActivationDeltasForOptions
 -[ADAlarmContextProvider snapshotAvailable:forEvent:]
+v32@?0@"NSUUID"8@"AFClockAlarm"16^B24
 v16@?0@"<AFClockAlarmMutating>"8
 v16@?0@"<AFClockAlarmSnapshotMutating>"8
 ADShouldCensorSpeechDidChangeNotification
@@ -10089,6 +10146,7 @@ AppleICUForce12HourTime
 %@#%@
 AudioAccessory
 AppleTV
+ADShouldAllowSync
 com.apple.da
 ExperimentGroup
 walkabout
@@ -10323,6 +10381,7 @@ additionalMetrics
 -[ADSpeechRecorder _hardEndpointWasDetectedWithMetrics:atTime:]
 -[ADSpeechRecorder _performTwoShotPromptForType:atTime:]
 suppressedAlert
+timedOut
 -[ADSpeechRecorder _playPhaticWithCompletion:]
 -[ADSpeechRecorder _playPhaticWithCompletion:]_block_invoke
 delegate is nil
@@ -10469,6 +10528,7 @@ Siri diagnostics queue
 -[AFDiagnostics _submitMetricWithIdentifier:generation:]
 -[AFDiagnostics _submitMetricWithIdentifier:hotShipIdentifier:hotShipTimestamp:generation:]_block_invoke
 @8@?0
+queue
 T@"NSObject<OS_dispatch_queue>",R,N,G_queue,V_queue
 serverConnection
 T@"AWDServerConnection",R,N,G_serverConnection,V_serverConnection
@@ -10557,6 +10617,8 @@ AFSiriUserNotificationRequestCapabilityManager
 com.apple.bluetooth.GuestConnected
 +[AFSiriUserNotificationRequestCapabilityManager supportedByApplicationWithBundleID:]
 +[AFSiriUserNotificationRequestCapabilityManager applicationWithBundleID:canAnnounceNotificationWithIntentIdentifiers:]
+com.apple.Home
+com.apple.NanoHome
 -[AFSiriUserNotificationRequestCapabilityManager fetchEligibleSetupStateWithCompletion:]
 -[AFSiriUserNotificationRequestCapabilityManager fetchEligibleSetupStateWithCompletion:]_block_invoke
 -[AFSiriUserNotificationRequestCapabilityManager hasEligibleSetup]
@@ -10591,6 +10653,8 @@ classLSApplicationProxy
 /System/Library/Frameworks/CoreServices.framework/CoreServices
 INSearchForMessagesIntentIdentifier
 initINSearchForMessagesIntentIdentifier_block_invoke
+INReadAnnouncementIntentIdentifier
+initINReadAnnouncementIntentIdentifier_block_invoke
 INSendMessageIntentIdentifier
 initINSendMessageIntentIdentifier_block_invoke
 ADPeerLocationPolicy
@@ -10615,6 +10679,8 @@ allMusicPersonalizationTokens
 T@"NSDictionary",C,N,V_allMusicPersonalizationTokens
 playbackDeviceList
 T@"SARemotePlaybackDeviceList",&,N,V_playbackDeviceList
+homeAnnouncement
+T@"SAHomeCommunicationAnnouncement",&,N,V_homeAnnouncement
 -[ADAuthenticator deviceAuthSession]
 -[ADAuthenticator prepareWithCertificateData:completion:]
 -[ADAuthenticator setSessionInfo:duration:]
@@ -10635,7 +10701,7 @@ T@"NSArray",&,N,V_toAdd
 toRemove
 T@"NSArray",&,N,V_toRemove
 Local Phone Service Queue
--[ADLocalPhoneService handleCommand:forDomain:reply:]
+-[ADLocalPhoneService handleCommand:forDomain:executionContext:reply:]
 -[ADLocalPhoneService _hangUpCurrentCall]
 Command not supported
 -[ADSyncManager _finishSync]
@@ -10794,7 +10860,6 @@ shouldStopAddingSamples
 TB,V_shouldStopAddingSamples
 maxChunkSize
 Tq,N,V_maxChunkSize
-TB,N,VadSpeechSessionEnded
 ADSpeechSamplingDeleteOldData
 ADSpeechSamplingSendDictationAudioDataToServer
 _ADReadAudioMetadataPlist
@@ -10813,9 +10878,9 @@ Must have a path
 Must have a command
 class
 commandName
--[ADServiceConnection sendClientBoundCommand:domain:reply:]
--[ADServiceConnection sendClientBoundCommand:domain:reply:]_block_invoke
--[ADServiceConnection sendClientBoundCommand:domain:reply:]_block_invoke_2
+-[ADServiceConnection sendClientBoundCommand:domain:executionContext:reply:]
+-[ADServiceConnection sendClientBoundCommand:domain:executionContext:reply:]_block_invoke
+-[ADServiceConnection sendClientBoundCommand:domain:executionContext:reply:]_block_invoke_2
 v32@?0@"NSDictionary"8@"NSArray"16@"NSError"24
 -[ADServiceConnection sendBeginSyncWithInfo:chunkHandler:completion:]
 -[ADServiceConnection sendBeginSyncWithInfo:chunkHandler:completion:]_block_invoke
@@ -10825,7 +10890,6 @@ v32@?0@"NSDictionary"8@"NSArray"16@"NSError"24
 v16@?0@"AFSyncSnapshot"8
 -[ADServiceConnection _stopTimersWithContinuation]_block_invoke
 -[ADServiceConnection _stopTimersWithContinuation]_block_invoke_2
--[ADServiceConnection _getPeerInfoForCommandId:completion:]
 T@"NSString",R,N,V_identifier
 T@"<ADServiceConnectionDelegate>",W,N,V_delegate
 -[ADServiceConnectionProviderServiceDelegate syncChunksWithPreAnchor:postAnchor:updates:deletes:validity:forRequestUUID:reply:]_block_invoke
@@ -10917,13 +10981,13 @@ LocalMeCardStoreQueue
 com.apple.siri.TaskServiceErrorDomain
 SiriTaskService-%@
 SiriTaskService-
--[ADSiriTaskService handleCommand:forDomain:reply:]
--[ADSiriTaskService handleCommand:forDomain:reply:]_block_invoke_2
--[ADSiriTaskService handleCommand:forDomain:reply:]_block_invoke
+-[ADSiriTaskService handleCommand:forDomain:executionContext:reply:]
+-[ADSiriTaskService handleCommand:forDomain:executionContext:reply:]_block_invoke_2
+-[ADSiriTaskService handleCommand:forDomain:executionContext:reply:]_block_invoke
 v16@?0@"AFSiriRequest"8
 com.apple.siri.uiservice.%p
 v16@?0@"AceObject<SAAceCommand>"8
--[ADUIService handleCommand:forDomain:reply:]_block_invoke
+-[ADUIService handleCommand:forDomain:executionContext:reply:]_block_invoke
 -[SABaseCommand(ADUIService) handleWithCompletion:]
 -[SAUIPlayNotificationSound(ADUIService) handleWithCompletion:]
 -[SAUIPlayNotificationSound(ADUIService) handleWithCompletion:]_block_invoke
@@ -11248,11 +11312,22 @@ v24@?0@"<ADAudioPlaybackServiceListening>"8^B16
 -[ADAudioPlaybackService audioSessionController:didReceiveAudioSessionOwnerResetNotification:]
 com.apple.private.alloy.siri.location
 Faux UI Service Queue
--[ADFauxUIService handleCommand:forDomain:reply:]
+-[ADFauxUIService handleCommand:forDomain:executionContext:reply:]
 Command not supported 
 allGroups
 T@"NSArray",R,N
 com.apple.siri.SynapseSyncPlugin
+-[ADHomeAnnouncementContextAdaptor init]
+com.apple.assistant.home-announcement-adaptor
+-[ADHomeAnnouncementContextAdaptor registerSnapshotUpdater:]
+-[ADHomeAnnouncementContextAdaptor unregisterSnapshotUpdater]
+-[ADHomeAnnouncementContextAdaptor getSnapshotWithCompletion:]_block_invoke
+-[ADHomeAnnouncementContextAdaptor _invalidate]
+-[ADHomeAnnouncementContextAdaptor _processAndEvaluateSnapshot:]
+-[ADHomeAnnouncementContextAdaptor _processAndEvaluateSnapshot:]_block_invoke
+v16@?0@"<AFHomeAnnouncementSnapshotMutating>"8
+-[ADHomeAnnouncementContextAdaptor _setSnapshot:]
+ADHomeAnnouncementGetIsValid
 Myriad Service Queue
 -[ADMyriadService setMyriadDecisionResult:]
 -[ADMyriadService _setStereoPartnerIdentifier:]
@@ -11428,6 +11503,7 @@ v16@?0@"AFClockTimerSnapshot"8
 Delta pulling mode is not supported for type %@.
 -[ADDeviceSyncTimerProvider getSnapshotWithCompletion:]
 -[ADDeviceSyncTimerProvider getSnapshotWithCompletion:]_block_invoke
+v32@?0@"NSUUID"8@"AFClockTimer"16^B24
 v16@?0@"<ADDeviceSyncSnapshotMutating>"8
 com.apple.assistant.device-sync.messaging-channel.rapport
 -[ADSiriTetherListener listen]_block_invoke
@@ -11547,6 +11623,7 @@ initCalDateRange_block_invoke
 classCalDateRange
 +[ADAnnounceNotificationRequestBuilder announceNotificationRequestInfoFromNotification:appId:]
 SKIMessagesInvocation
+SKIPhoneInvocation
 com.apple.alarm.label
 com.apple.siri.corrections
 com.apple.homekit.name
@@ -11620,6 +11697,8 @@ sync_promise
 sync_timestamp
 ADHomeKitServiceTargetQueue
 v24@?0@"NSError"8@"NSDictionary"16
+HMClientConnection
+/System/Library/Frameworks/HomeKit.framework/HomeKit
 B24@?0@"ADDictationSession"8^B16
 v32@?0@"ADDictationSession"8Q16^B24
 transport type
@@ -11627,20 +11706,21 @@ Rapport
 Bluetooth
 Wifi
 Cloud
--[ADCommandCenter(RemoteExecute) executeCommandFromRemote:fromPeer:reply:]
--[ADCommandCenter(RemoteExecute) executeCommandFromRemote:fromPeer:reply:]_block_invoke
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:completion:]
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:onDeviceForAssistantId:completion:]
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:onPeer:allowsRelay:throughProxyDevice:completion:]
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:onPeer:allowsRelay:throughProxyDevice:completion:]_block_invoke
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onSpecifiedDeviceTypes:preferredMessagingOption:completion:]
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onSpecifiedDeviceTypes:preferredMessagingOption:completion:]_block_invoke
+-[ADCommandCenter(RemoteExecute) executeCommand:fromPeer:remoteExecutionInfo:reply:]
+-[ADCommandCenter(RemoteExecute) executeCommand:fromPeer:remoteExecutionInfo:reply:]_block_invoke_2
+-[ADCommandCenter(RemoteExecute) executeCommand:fromPeer:remoteExecutionInfo:reply:]_block_invoke
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:executionContext:completion:]
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:onDeviceForAssistantId:executionContext:completion:]
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:onPeer:allowsRelay:throughProxyDevice:executionContext:completion:]
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteCommand:onPeer:allowsRelay:throughProxyDevice:executionContext:completion:]_block_invoke
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onSpecifiedDeviceTypes:preferredMessagingOption:executionContext:completion:]
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onSpecifiedDeviceTypes:preferredMessagingOption:executionContext:completion:]_block_invoke
 v32@?0@"ADPeerInfo"8Q16^B24
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onDeviceForAssistantId:completion:]
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onDeviceForAssistantId:completion:]_block_invoke
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onPeer:completion:]
--[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onPeer:completion:]_block_invoke
--[ADCommandCenter(RemoteExecute) _saRemoteDeviceExecute:completion:]
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onDeviceForAssistantId:executionContext:completion:]
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onDeviceForAssistantId:executionContext:completion:]_block_invoke
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onPeer:executionContext:completion:]
+-[ADCommandCenter(RemoteExecute) _remoteExecute_remoteDeviceExecuteSerializedCommand:onPeer:executionContext:completion:]_block_invoke
+-[ADCommandCenter(RemoteExecute) _saExecuteOnRemoteRequest:executionContext:completion:]
 -[ADCommandCenter(RemoteExecute) _remoteExecute_shouldSendCommandToPrimaryUser:]
 B24@?0@"ADPeerInfo"8@"NSDictionary"16
 -[ADCommandCenter(RemoteExecute) _startRemoteRequest:onPeer:completion:]
@@ -11850,6 +11930,7 @@ Synapse.%@#%@
 -[ADIntentVocabularyUpdateConnection deleteEverything]_block_invoke
 RESET
 -[ADIntentVocabularyUpdateConnection requestSiriAuthorization:]
+com.apple.assistant.home-announcement-service
 com.apple.assistant.vibration-manager
 com.apple.springboard.ring-vibrate.changed
 com.apple.springboard.silent-vibrate.changed
@@ -11964,6 +12045,7 @@ SA%@
 -[ADClientConnection _fetchAppContextForApplicationInfo:reply:]_block_invoke
 -[ADClientConnection listener:shouldAcceptNewConnection:]
 -[ADClientConnection _continuePendingSpeechRequestFromTimestamp:]
+TB,N,VadSpeechSessionEnded
 -[AceObject(ADClientConnectionSupport) adClientConnection_enterRequestGroup:]
 -[AceObject(ADClientConnectionSupport) adClientConnection_enterRequestGroup:]_block_invoke
 -[SAStructuredDictationItem(StructuredDictation) ad_transcriptionResults]
@@ -12093,7 +12175,7 @@ unavailable
 -[ADSpeechManager localSpeechRecognizer:didRecognizeRawEagerRecognitionCandidate:]_block_invoke
 -[ADSpeechManager localSpeechRecognizer:didRecognizePackage:]_block_invoke
 -[ADSpeechManager localSpeechRecognizer:didCompletionRecognitionWithStatistics:error:]_block_invoke
-+[ADSpeechManager _detectOnDeviceDictationOrchestrationMismatchForLanguage:dictationTask:preferOnlineRecognition:modelType:onDeviceRequest:context:]
++[ADSpeechManager _detectOnDeviceDictationOrchestrationMismatchForLanguage:initialLanguage:eligibleForOnDeviceDictation:modelType:onDeviceRequest:context:]
 eventType
 offlineDictationStatusMismatch
 cachedOfflineDictationStatus
@@ -12101,7 +12183,7 @@ prefsOfflineDictationStatus
 installed
 highQuality
 localRecognitionStartedContext
-+[ADSpeechManager _detectOnDeviceDictationOrchestrationMismatchForLanguage:dictationTask:preferOnlineRecognition:modelType:onDeviceRequest:context:]_block_invoke
++[ADSpeechManager _detectOnDeviceDictationOrchestrationMismatchForLanguage:initialLanguage:eligibleForOnDeviceDictation:modelType:onDeviceRequest:context:]_block_invoke
 -[ADSpeechManager preheatWithOptions:]_block_invoke
 -[ADSpeechManager prepareAudioSystemWithOptions:setAudioSessionActiveOptions:setAudioSessionActiveReason:completion:]_block_invoke
 v16@?0@?<v@?>8
@@ -12133,6 +12215,8 @@ portrait_invalidated
 -[ADSpeechManager _fetchSmartSiriVolume:]
 -[ADSpeechManager _updateSiriOutputVolume:completion:]
 -[ADSpeechManager _updateSiriOutputVolume:completion:]_block_invoke
+initialDictationLanguage
+T@"NSString",C,N,V_initialDictationLanguage
 primaryDictationLanguage
 T@"NSString",C,N,V_primaryDictationLanguage
 dictationLanguages
@@ -12183,6 +12267,7 @@ v20@?0B8@"ADRequestDelayManager"12
 -[ADExternalNotificationRequestHandler audioPlaybackService:didStartRequest:]_block_invoke
 -[ADSettingsClient fetchSupportedLanguagesWithReply:]
 com.apple.assistant.siri_settings_did_change
+v24@?0@"NSString"8@"NSError"16
 -[ADSettingsClient setDictationEnabled:]_block_invoke
 -[ADSettingsClient setDictationEnabled:]
 -[ADSettingsClient setEnableAssistantLogging:]
@@ -12196,7 +12281,6 @@ v16@?0@"NSNotification"8
 -[ADSettingsClient _setSyncVerificationNeededAndFullReportNeeded:shouldPostNotification:completion:]_block_invoke
 -[ADSettingsClient disableAndDeleteCloudSyncWithCompletion:]
 v16@?0@"NSUUID"8
-language
 -[ADSettingsClient startMultiUserUIRequestWithText:expectedSpeakerSharedUserID:expectedSpeakerConfidenceScore:nonspeakerConfidenceScores:completion:]
 B32@?0@"ADAccount"8Q16^B24
 v16@?0@"ADAnalyticsStore"8
@@ -12231,6 +12315,7 @@ T@"NSString",&,N,V_key
 hasValue
 T@"NSString",&,N,V_value
 VoiceCommand
+Audio/Video
 -[ADVolumeService fetchSmartSiriVolume]
 -[ADVolumeService updateSiriOutputVolume:completion:]
 -[ADVolumeService waitUntilSiriOutputVolumeUpdatesAfterTimestamp:withTimeout:block:]
@@ -12239,7 +12324,7 @@ VoiceCommand
 -[ADVolumeService setSiriOutputVolume:forAudioRoute:operationType:completion:]
 -[ADVolumeService _fetchSystemVolumes]
 -[ADVolumeService systemVolumeChanged:]
--[ADVolumeService _handleSystemVolumeChangeForCategory:volume:reason:]
+-[ADVolumeService _handleSystemVolumeChangeForCategory:volume:audioCategory:reason:]
 -[ADVolumeService _fetchSmartSiriVolume]
 -[ADVolumeService _setNeedsUpdateSiriVolume]
 -[ADVolumeService _updateSiriVolumeIfNeeded]
@@ -12365,6 +12450,12 @@ lastWin
 ADDeviceSyncCommandPullGenerationsResponse::generationsByDataType
 com.apple.assistant.device-sync.data-type.alarm
 com.apple.assistant.device-sync.data-type.timer
+%@ (info = %@)
+info
+T@"AFCommandExecutionInfo",R,C,N,V_info
+isFromRemote
+originPeerInfo
+T@"ADPeerInfo",R,N
 Daemon
 ADRapportLinkTransportOptions
 NSCopying
@@ -12457,6 +12548,8 @@ ADDeviceSyncCommandPullDeltaResponseMutating
 ADDeviceSyncCommandPullDeltaResponseMutability
 ADSpeechCompressor
 ADSpeechCapturing
+ADHomeAnnouncementContextProvider
+AFContextSnapshotTransforming
 ADTimerContextProvider
 ADOpportuneSpeakingModuleEdgeDetector
 CSOpportuneSpeakListenerDelegate
@@ -12465,8 +12558,10 @@ AFSettingsService
 ADIntentPreferencesAndVocabularyUpdateService
 INVocabularyUpdateService
 AFManagedStorageService
+AFUserNotificationService
 AFUserNotificationServiceDelegate
 ADDaemon
+NSXPCListenerDelegate
 ADAudioPlaybackSession
 AVAudioPlayerDelegate
 ADSharedDataService
@@ -12545,7 +12640,6 @@ SiriCoreSQLiteRecordBuilder
 AFFlowService
 AFDeviceStateService
 ADFlowServiceListener
-NSXPCListenerDelegate
 ADGenericIntentRequestTransformer
 NanoServices
 ADSiriUserNotificationRequestCapabilityManager
@@ -12560,7 +12654,6 @@ Endpointer
 ADLocalRequestProvider
 ADMediaPlaybackContextProvider
 AFNowPlayingListening
-AFContextSnapshotTransforming
 ADSiriRequestSucceededResponseTransformer
 ADTimerIntentExtension
 INCLocalExtending
@@ -12580,7 +12673,6 @@ ADRemoteContextStore
 ADDeviceCountAndTimestamp
 ADDeviceCircleManager
 SiriHelper
-ADTimerRequestHandler
 ADCloudResponseHandler
 ADPeerResponse
 ADPeerCloudService
@@ -12763,6 +12855,7 @@ CBPeripheralDelegate
 ADBaseService
 _ADPBDeviceGetDataRequest
 ADRemoteRequestHelper
+ADTimerRequestHandler
 ADStopwatchRequestHandler
 ADMultiUserTestSupport
 ADAlarmRequestHandler
@@ -12774,6 +12867,8 @@ ADFauxUIService
 ADExtension
 ADSynapseService
 ADAceResponseAdditions
+ADHomeAnnouncementContextAdaptor
+AFHomeAnnouncementListening
 ADMyriadService
 ADAcePassthroughResponseTransformer
 ADSessionRemoteServer
@@ -12807,7 +12902,6 @@ AFAnalyticsObservationService
 AFAnalyticsService
 ADUserNotificationServiceProvider
 UNUserNotificationCenterDelegate
-AFUserNotificationService
 ADPushContextListener
 ADPushContextReceiver
 ADNotifyAndPushContextCollector
@@ -12832,6 +12926,7 @@ ADAudioStateAnnouncing
 _ADAudioStateListenerProxy
 ADSyncVerificationHelper
 ADIntentVocabularyUpdateConnection
+ADHomeAnnouncementService
 ADVibrationManager
 ADRetryManager
 ADMotionManager
@@ -12888,6 +12983,7 @@ ADDeviceSyncCommandPullGenerationsResponse
 _ADDeviceSyncCommandPullGenerationsResponseMutation
 ADDeviceSyncCommandPullGenerationsResponseMutating
 ADDeviceSyncCommandPullGenerationsResponseMutability
+ADCommandExecutionContext
 B16@0:8
 @24@0:8^{_NSZone=}16
 v24@0:8@16
@@ -13016,6 +13112,7 @@ v24@0:8@?16
 @36@0:8@16@24B32
 @"ADSharedPeerStreamConnection"
 @"<ADPeerStreamConnectionDelegate>"
+@40@0:8@16@24B32B36
 v36@0:8@16B24@?28
 v48@0:8@"AFClockItemStorage"16@"NSSet"24@"NSSet"32@"NSSet"40
 v32@0:8@"NSURL"16@?<v@?@"NSError">24
@@ -13029,13 +13126,14 @@ v24@0:8@"NSArray"16
 @"ADDeviceSyncSnapshot"
 {_mutationFlags="isDirty"b1"hasGeneration"b1"hasDate"b1"hasItems"b1}
 v20@0:8C16
-f16@0:8
 @"NSMutableArray"
 B32@0:8@16@24
+v48@0:8@16@24@32@?40
 ^{__CFDictionary=}
 @?16@0:8
 @"AFWatchdogTimer"
 @"NSUUID"
+f16@0:8
 v20@0:8f16
 @"<ADDisplayScaleContextCollectorDelegate>"
 {_keychainDataMutationFlags="assistantIdentifierIsDirty"b1"loggingAssistantIdentifierIsDirty"b1"speechIdentifierIsDirty"b1"peerAssistantIdentifierIsDirty"b1"peerLoggingAssistantIdentifierIsDirty"b1"peerSpeechIdentifierIsDirty"b1"peerUserAgentStringIsDirty"b1"peerLanguageCodeIsDirty"b1"peerSiriEnabledIsDirty"b1"gizmoDataIsDirty"b1}
@@ -13046,7 +13144,9 @@ v32@0:8@"SABaseCommand"16@?<v@?@"SABaseCommand"@"NSError">24
 v24@0:8@?<v@?B>16
 v24@0:8@?<v@?>16
 v36@0:8@"NSSet"16B24@?<v@?@"NSArray">28
-v32@0:8@"NSObject<OS_dispatch_queue>"16@?<v@?@"<SAAceCommand>"@"NSError">24
+@48@0:8@16@24@32@40
+@"AFCommandExecutionInfo"
+v40@0:8@"NSObject<OS_dispatch_queue>"16@"ADCommandExecutionContext"24@?<v@?@"<SAAceCommand>"@"NSError">32
 v40@0:8@"ADDeviceSyncMessage"16@"NSString"24@?<v@?@"ADDeviceSyncMessage"@"NSError">32
 @"<ADDeviceSyncMessagingServiceDelegate>"
 {_mutationFlags="isDirty"b1"hasDataTypes"b1}
@@ -13072,16 +13172,23 @@ v24@0:8d16
 @"<ADSpeechCapturingDelegate>"
 ^{OpaqueAudioConverter=}
 @"NSMutableData"
+v48@0:8@16@24q32@?40
+v48@0:8@"<AFContextSnapshot>"16@"AFDeviceContextMetadata"24q32@?<v@?@"<AFContextSnapshot>"@"AFDeviceContextMetadata">40
+v32@0:8@"<AFContextSnapshot>"16@?<v@?@"NSArray">24
+@"ADHomeAnnouncementContextAdaptor"
 v28@0:8@"CSOpportuneSpeakListener"16B24
 v52@0:8@16f24f28B32@?36@?44
 @"ADOpportuneSpeakingMovingAverageBuffer"
 @"CSOpportuneSpeakListener"
+Vv24@0:8@?16
+Vv48@0:8@16@24@32@?40
 Vv40@0:8@16@24@32
 Vv24@0:8@16
 Vv40@0:8@16@24B32B36
 Vv32@0:8@16@24
 Vv44@0:8@16B24@28@36
 Vv32@0:8q16@24
+Vv32@0:8@16@?24
 Vv40@0:8@16q24@32
 Vv48@0:8@16q24@32@40
 Vv24@0:8@?<v@?>16
@@ -13097,12 +13204,14 @@ Vv24@0:8@"NSString"16
 Vv24@0:8@"NSError"16
 Vv44@0:8@"NSURL"16B24@"NSString"28@"AFDictationOptions"36
 Vv32@0:8q16@"NSString"24
+Vv24@0:8@?<v@?@"NSArray">16
 Vv32@0:8@"NSString"16@?<v@?B@"NSError">24
 Vv40@0:8@"NSError"16q24@"NSDictionary"32
 Vv48@0:8@"NSError"16q24@"NSString"32@"NSDictionary"40
 Vv28@0:8@16B24
 Vv20@0:8B16
 Vv44@0:8@16B24@28@?36
+v32@0:8B16B20@?24
 Vv28@0:8B16@?20
 Vv40@0:8@16@24@?32
 Vv56@0:8@16@24Q32@40@?48
@@ -13177,15 +13286,21 @@ Vv32@0:8@"NSString"16@?<v@?@"NSURL"@"NSError">24
 Vv56@0:8@"NSString"16d24d32q40@?<v@?@"NSURL"@"NSError">48
 Vv32@0:8@"AFMyriadAdvertisementContext"16@?<v@?@"NSDictionary"@"NSError">24
 Vv40@0:8@"NSArray"16@"NSString"24@?<v@?B>32
+v24@0:8@?<v@?q>16
 v24@0:8@?<v@?@"NSString">16
 v32@0:8@"NSString"16@?<v@?B>24
 Vv32@0:8@"NSDictionary"16@"NSString"24
 Vv32@0:8@"NSString"16@?<v@?@"NSDictionary">24
 Vv48@0:8@"NSData"16@"NSString"24@"NSString"32@?<v@?>40
 Vv40@0:8@"NSString"16@"NSString"24@?<v@?@"NSData">32
+v32@0:8@"UNNotificationRequest"16@?<v@?@"NSError">24
 v24@0:8@"UNNotificationResponse"16
+B32@0:8@"NSXPCListener"16@"NSXPCConnection"24
 v36@0:8^@16^@24i32
+@"NSXPCListener"
+@"NSObject<OS_xpc_object>"
 @"ADExternalRequestListener"
+@"ADClientLiteListener"
 @"ADSiriTetherListener"
 @"ADSiriConnectionRemote"
 @"ADPeerLocationRemote"
@@ -13206,7 +13321,6 @@ B40@0:8Q16@24^@32
 @"AFAudioPlaybackRequest"
 v40@0:8@"ADPeerConnection"16@"PBCodable"24@?<v@?@"PBCodable"@"NSError">32
 v28@0:8@"ADPeerConnection"16B24
-v32@0:8B16B20@?24
 @"ADPeerConnection"
 @"ADSharedData"
 @"<ADSharedDataNotificationDelegate>"
@@ -13250,7 +13364,6 @@ v32@0:8q16@?24
 @"AFBluetoothDeviceInfo"16@0:8
 v24@0:8@?<v@?@"AFBluetoothDeviceInfo">16
 v24@0:8@?<v@?@"AFBluetoothHeadphoneInEarDetectionState">16
-v24@0:8@?<v@?q>16
 v32@0:8q16@?<v@?@"NSError">24
 v24@0:8@?<v@?B@"NSError">16
 v24@0:8@"<ADBluetoothDeviceObserver>"16
@@ -13320,7 +13433,6 @@ v40@0:8d16d24Q32
 @20@0:8i16
 i24@0:8@16
 {?="gender"b1}
-@"NSObject<OS_xpc_object>"
 v24@0:8@?<v@?@"STTimer"@"NSError">16
 v32@0:8@"STTimer"16@?<v@?@"NSError">24
 q24@0:8Q16
@@ -13342,7 +13454,6 @@ v40@0:8@"NSURLSession"16@"NSURLSessionDataTask"24@"NSURLSessionDownloadTask"32
 v40@0:8@"NSURLSession"16@"NSURLSessionDataTask"24@"NSURLSessionStreamTask"32
 v40@0:8@"NSURLSession"16@"NSURLSessionDataTask"24@"NSData"32
 v48@0:8@"NSURLSession"16@"NSURLSessionDataTask"24@"NSCachedURLResponse"32@?<v@?@"NSCachedURLResponse">40
-v48@0:8@16@24@32@?40
 v32@0:8@"<ADDeviceSyncMessagingService>"16@"NSString"24
 v48@0:8@"<ADDeviceSyncMessagingService>"16@"ADDeviceSyncMessage"24@"NSString"32@?<v@?@"ADDeviceSyncMessage"@"NSError">40
 v24@0:8@"<ADDeviceSyncDataProviding>"16
@@ -13359,7 +13470,6 @@ v32@0:8q16@"<AFOpportuneSpeakable>"24
 @"ADOpportuneSpeakingStateManager"
 Vv20@0:8i16
 Vv32@0:8@16i24i28
-Vv24@0:8@?16
 Vv32@0:8@"NSData"16i24i28
 Vv24@0:8@?<v@?@"NSData">16
 v24@0:8^{AudioStreamBasicDescription=dIIIIIIII}16
@@ -13378,11 +13488,7 @@ v32@0:8Q16@?24
 v32@0:8@"<SiriCoreSQLiteValue>"16@"NSString"24
 @"<SiriCoreSQLiteRecord>"16@0:8
 @"<SiriCoreSQLiteValue>"
-Vv32@0:8@16@?24
-Vv24@0:8@?<v@?@"NSArray">16
 Vv32@0:8@"NSString"16@?<v@?@"AFPersonalUserSettings"@"NSError">24
-B32@0:8@"NSXPCListener"16@"NSXPCConnection"24
-@"NSXPCListener"
 i24@0:8^{AudioQueueBuffer=I^vI^vI^{AudioStreamPacketDescription}I}16
 B28@0:8d16I24
 B28@0:8^{AudioStreamBasicDescription=dIIIIIIII}16I24
@@ -13392,9 +13498,6 @@ v56@0:8q16@24@32@40@?48
 @"NSBundle"
 v40@0:8@"AFNowPlayingObserver"16q24q32
 v24@0:8@"AFNowPlayingObserver"16
-v48@0:8@16@24q32@?40
-v48@0:8@"<AFContextSnapshot>"16@"AFDeviceContextMetadata"24q32@?<v@?@"<AFContextSnapshot>"@"AFDeviceContextMetadata">40
-v32@0:8@"<AFContextSnapshot>"16@?<v@?@"NSArray">24
 v40@0:8q16q24@?32
 @"AFMediaPlaybackStateSnapshot"
 @24@0:8@"INIntent"16
@@ -13407,12 +13510,12 @@ v24@0:8@"AceObject<SAAceCommand>"16
 v32@0:8@"AceObject<SAAceCommand>"16@?<v@?@"AceObject<SAAceCommand>"@"NSError">24
 v28@0:8B16@"NSError"20
 v24@0:8@"NSError"16
-@"ADClientLiteListener"
 @"<AFClientLiteClientCommandHandling>"
 @32@0:8@?16@?24
 @32@0:8@16@?24
 @"AFSpeechRequestOptions"
 v44@0:8@16q24@32B40
+v48@0:8@16q24@32@?40
 v28@0:8@"INSExtensionService"16B24
 v48@0:8@"INSExtensionService"16@"NSData"24q32@?<v@?@"NSData"@"NSError">40
 v40@0:8@"INSExtensionService"16@"NSData"24@?<v@?@"NSData"@"NSError">32
@@ -13431,13 +13534,14 @@ v32@0:8@"INSExtensionService"16@"INIntent"24
 v48@0:8@"INSExtensionService"16@"INIntentForwardingAction"24@"NSString"32@?<v@?@"INIntentForwardingActionResponse">40
 B40@0:8^@16@24^@32
 @"INSExtensionService"
+@"<ADCommandCenterClient>"
 S16@0:8
 v20@0:8S16
 @"ADPeerInfo"
 @"PBCodable"
-v52@0:8@16@24B32@36@?44
-v52@0:8@"<SAAceCommand>"16@"ADPeerInfo"24B32@"NSString"36@?<v@?@"NSDictionary"@"NSError">44
-v40@0:8@"NSData"16@"ADPeerInfo"24@?<v@?@"NSDictionary"@"NSError">32
+v60@0:8@16@24B32@36@44@?52
+v60@0:8@"<SAAceCommand>"16@"ADPeerInfo"24B32@"NSString"36@"ADCommandExecutionContext"44@?<v@?@"NSDictionary"@"NSError">52
+v48@0:8@"NSData"16@"ADPeerInfo"24@"ADCommandExecutionContext"32@?<v@?@"NSDictionary"@"NSError">40
 v40@0:8@"AFRequestInfo"16@"ADPeerInfo"24@?<v@?B>32
 v36@0:8@16S24@28
 v48@0:8@16S24@28S36@?40
@@ -13483,9 +13587,7 @@ v72@0:8@16@24@32@40@48@56@?64
 v36@0:8I16@20@?28
 v32@0:8@"ADMediaRemoteService"16@?<v@?@"<SAAceCommand>"@"NSError">24
 @"<ADVolumeTracking>"
-@48@0:8@16@24@32@40
 Vv40@0:8@16q24@?32
-Vv48@0:8@16@24@32@?40
 Vv40@0:8@"NSData"16q24@?<v@?@"NSData"@"NSError">32
 Vv40@0:8@"NSDictionary"16q24@?<v@?@"NSDictionary"@"NSDictionary">32
 Vv48@0:8@"NSData"16@"NSString"24@"NSString"32@?<v@?@"NSError">40
@@ -13533,7 +13635,6 @@ v32@0:8@16f24f28
 v56@0:8@16q24q32@40@48
 v52@0:8@16@24B32@36@44
 v40@0:8@16d24@32
-v48@0:8@16q24@32@?40
 v88@0:8@16@24Q32@40q48q56q64@72@80
 v40@0:8@"ADSpeechManager"16@"ADRecordingInfo"24@"ADSpeechCapturingContext"32
 v52@0:8@"ADSpeechManager"16d24B32@"AFXPCWrapper"36@"NSString"44
@@ -13566,18 +13667,18 @@ v40@0:8@16B24B28@?32
 v52@0:8@16@24@32B40@?44
 v24@0:8B16B20
 v36@0:8q16B24q28
+v44@0:8@16B24@28@?36
 v40@0:8@16@24B32B36
 v48@0:8Q16q24@32@?40
 v60@0:8@16@24@32@40B48@?52
-v44@0:8@16B24@28@?36
 v64@0:8@16@24@32@40@48@?56
 v60@0:8@16B24@28@36@44@52
 v48@0:8@16B24B28@32@?40
 v32@0:8q16@24
+v52@0:8@16@24B32@36@?44
 v80@0:8B16B20B24B28B32B36@40@48B56B60B64Q68B76
 v52@0:8d16B24B28B32B36B40@?44
 v56@0:8@16d24d32q40@?48
-@"<ADCommandCenterClient>"
 @"<ADCommandCenterRequestDelegate>"
 @"<ADCommandCenterSpeechDelegate>"
 @"AFSafetyBlock"
@@ -13630,6 +13731,7 @@ v40@0:8@16Q24Q32
 v28@0:8@"AFNotifyObserver"16i24
 v40@0:8@"AFNotifyObserver"16Q24Q32
 @"AFNotifyObserver"
+@40@0:8q16@24@32
 v28@0:8Q16B24
 q32@0:8@16@24
 q44@0:8@16@24B32q36
@@ -13725,6 +13827,7 @@ q24@0:8q16
 @"SAHACurrentHome"
 @"SAPhoneCallState"
 @"SARemotePlaybackDeviceList"
+@"SAHomeCommunicationAnnouncement"
 @"<ADDeviceAuthenticationSession>"
 v24@0:8@"ADService"16
 @"SASyncAnchor"
@@ -13750,12 +13853,10 @@ v32@0:8@"NSString"16@"<AFSyncChangeInfo>"24
 d24@0:8@16
 @"ADServiceStatistics"
 @"<ADServiceConnectionDelegate>"
-Vv36@0:8@16B24@?28
 Vv72@0:8@"NSString"16@"NSString"24@"NSArray"32@"NSArray"40@"NSString"48@"NSUUID"56@?<v@?B>64
 Vv32@0:8@"NSURL"16@?<v@?B>24
-Vv32@0:8@"SABaseCommand"16@?<v@?@"SABaseCommand"@"NSError">24
-Vv32@0:8@"NSString"16@?<v@?@"AFPeerInfo">24
-Vv36@0:8@"NSSet"16B24@?<v@?@"NSArray">28
+Vv40@0:8@"SABaseCommand"16@"AFCommandExecutionInfo"24@?<v@?@"SABaseCommand"@"NSError">32
+Vv44@0:8@"NSSet"16@"NSString"24B32@?<v@?@"NSArray">36
 @"ADServiceConnection"
 B24@0:8^f16
 @48@0:8Q16@24@32@40
@@ -13773,6 +13874,7 @@ v80@0:8@16@24Q32@40Q48d56@?64@?72
 v80@0:8B16B20B24B28B32B36@40B48B52B56Q60B68@?72
 v32@0:8@"ADDeviceSyncMessage"16@?<v@?@"ADDeviceSyncMessage"@"NSError">24
 @"<ADDeviceSyncMessagingService>"
+v36@0:8@16f24@28
 v36@0:8@"NSString"16f24@"<AFOpportuneSpeakable>"28
 @"<AFOpportuneSpeakable>"
 v24@0:8@"ADDeviceSyncSnapshot"16
@@ -13815,6 +13917,9 @@ v40@0:8@"AFAudioPlaybackRequest"16Q24@?<v@?@"NSError">32
 v28@0:8@"AFAudioPlaybackRequest"16B24
 v28@0:8B16@?<v@?>20
 v56@0:8@16Q24@?32@?40@?48
+v40@0:8@"AFHomeAnnouncementObserver"16Q24Q32
+v40@0:8@"AFHomeAnnouncementObserver"16@"AFHomeAnnouncementSnapshot"24@"AFHomeAnnouncementSnapshot"32
+@"AFHomeAnnouncementSnapshot"
 v24@0:8@"SiriCoreNetworkManager"16
 v56@0:8@16@24@32d40@48
 v32@0:8@"<SiriCoreSiriConnection>"16@"SiriCoreConnectionType"24
@@ -13863,11 +13968,12 @@ v28@0:8@"APSConnection"16B24
 v24@0:8@"APSConnection"16
 @"APSConnection"
 @"HMClientConnection"
+v56@0:8@16Q24Q32@40@?48
 @"NSObject<OS_dispatch_data>"24@0:8^@16
 @"NSArray"24@0:8@"NSString"16
 B32@0:8@"NSString"16@"NSString"24
 B24@0:8@"NSString"16
-v40@0:8@"SABaseClientBoundCommand"16@"NSString"24@?<v@?@"<SAAceCommand>"@"NSError">32
+v48@0:8@"SABaseClientBoundCommand"16@"NSString"24@"ADCommandExecutionContext"32@?<v@?@"<SAAceCommand>"@"NSError">40
 v40@0:8@"SABaseCommand"16@"SABaseClientBoundCommand"24@?<v@?>32
 v32@0:8@"AFSyncInfo"16@?<v@?@"ADSyncChunkInfo"@"NSError"@?<v@?B>>24
 v32@0:8@"AFSyncInfo"16@?<v@?@"AFSyncSnapshot">24
@@ -13885,7 +13991,6 @@ v28@0:8i16@20
 v40@0:8@"UNUserNotificationCenter"16@"UNNotification"24@?<v@?Q>32
 v40@0:8@"UNUserNotificationCenter"16@"UNNotificationResponse"24@?<v@?>32
 v32@0:8@"UNUserNotificationCenter"16@"UNNotification"24
-v32@0:8@"UNNotificationRequest"16@?<v@?@"NSError">24
 v40@0:8@16Q24@?32
 @"UNUserNotificationCenter"
 @"NSXPCConnection"
@@ -13951,6 +14056,7 @@ Vv32@0:8Q16@?24
 Vv24@0:8B16B20
 Vv40@0:8@16Q24@?32
 Vv32@0:8Q16d24
+Vv36@0:8@16B24@?28
 Vv32@0:8q16@"AFSpeechRequestOptions"24
 Vv48@0:8Q16q24@"AFSpeechRequestOptions"32@?<v@?I@"NSError">40
 Vv32@0:8Q16@?<v@?>24
@@ -13984,7 +14090,7 @@ v32@0:8@"SiriCoreLocalSpeechRecognizer"16@"AFSpeechPackage"24
 v40@0:8@"SiriCoreLocalSpeechRecognizer"16@"NSDictionary"24@"NSError"32
 Vv24@0:8d16
 @"<AFDictationServiceDelegate>"
-v52@0:8@16B24B28@32B40@44
+v56@0:8@16@24B32@36B44@48
 v40@0:8@16d24q32
 v48@0:8@16q24q32@40
 v80@0:8@16Q24@32q40q48q56@64@72
@@ -14010,7 +14116,6 @@ v24@0:8@?<v@?@"ADRecordingInfo">16
 v32@0:8@"AFAudioPowerUpdater"16f24f28
 v24@0:8f16f20
 v48@0:8@16Q24q32@?40
-@40@0:8q16@24@32
 v40@0:8q16@24@32
 v40@0:8@16B24B28@32
 @"<ADSpeechManagerDelegate>"
@@ -14036,7 +14141,7 @@ v24@0:8@"NSSet"16
 v24@0:8@"ADAVSystemControllerLifecycleManager"16
 v40@0:8Q16d24@?32
 v44@0:8f16@20q28@?36
-v36@0:8@16f24@28
+v44@0:8@16f24@28@36
 @"CSSpeechController"
 @"AFClientConfiguration"
 v32@0:8@"ADSessionLocalConnection"16@"SiriCoreConnectionType"24
@@ -14082,7 +14187,6 @@ v24@0:8@"<ADBluetoothWirelessSplitterSession>"16
 %s Could not commit to sync database for sync chunk  err: %@
 %s Could not rollback database after sync manager reset err: %@
 %s Nothing to sync
-%s Ignoring request to sync using unsupported language %@
 %s Not syncing %@ because there's no sync plugin for it
 %s SetBackgroundContext: %@
 %s Got restricted apps: %@
@@ -14165,6 +14269,7 @@ v24@0:8@"<ADBluetoothWirelessSplitterSession>"16
 %s #hal updating...
 %s #hal updated
 %s #hal %@
+%s #hal local device is a follower in a stereo pair
 %s #hal %@ local alarms: %@
 %s #hal %@ alarms: %@ on %@, proximity: %@
 %s #hal %@ local timers: %@
@@ -14259,6 +14364,7 @@ Bundle services cache written to: %{public}@
 %s [%02u of %02u] Opus packet with %u bytes
 %s AudioConverter is sad: 0x%{public}xd
 %s Sending %tu packets
+%s #hal snapshot = %@
 %s OPPSPK - TIMEOUT frame = %d
 %s shouldStopListeningOnDetection:%@
 %s startListenWithOption : %{public}d, %{public}@
@@ -14336,6 +14442,7 @@ Bundle services cache written to: %{public}@
 %s Unexpected message on sync connection %s
 %s Unexpected nameless message on sync connection
 %s Sync peer shutting down due to %s
+%s Ignoring unexpected type on sync connection
 %s Creating audio player...
 %s Failed to create audio player due to error %@.
 %s Created audio player %@ with audio session %@.
@@ -14584,6 +14691,7 @@ Bundle services cache written to: %{public}@
 %s Got NowPlaying ctxg=%p
 %s Got Simple Context ctxg=%p
 %s Got Music Personalization Token ctxg=%p
+%s Got HomeAnnouncement ctxg=%p
 %s Done ctxg=%p aceID=%@
 %s Could not register for %s notification
 %s observing notifications
@@ -14602,6 +14710,10 @@ Bundle services cache written to: %{public}@
 %s group=%p canceling _nowPlayingCoalescingTimer because we are starting an update now
 %s group=%p didChange=%d queueState ID=%@
 %s #hal Fetching context after %f seconds
+%s supplementalSnapshot = %@
+%s cachedHomeAnnouncement = %@, proposedHomeAnnouncement = %@
+%s didChange = %d
+%s fetchedSnapshot = %@
 %s Settings handler asked to handle request %@, but didn't know how
 %s Starting delay with type %@
 %s Can't start delaying because we are already delaying
@@ -14642,7 +14754,6 @@ Bundle services cache written to: %{public}@
 %s Ignoring unexpected event type on External Request Listener
 %s Unexpected external request message type %{public}lld
 %s External Request peer error: %s
-%s Ignoring unexpected type on sync connection
 %s startLocalRequest = %@
 %s Archiving error %@
 %s Dismissing %@
@@ -14740,6 +14851,10 @@ Bundle services cache written to: %{public}@
 %s command = %@, afterCurrent = %d, isOneWay = %d
 %s Timing out ClientLite command %@
 %s No client handler for command %@
+%s airPlayRouteIdentifiers = %@
+%s recordRoute = %@
+%s recordDeviceIdentifier = %@
+%s recordDeviceUID = %@
 %s requestID = %@
 %s Preparing INPerson in %@
 %s Finished
@@ -14891,8 +15006,9 @@ Bundle services cache written to: %{public}@
 %s assistantIsEnabled = %d
 %s dictationIsEnabled = %d
 %s requestId = %@, reason = %@
+%s context = %@
+%s command = %@, peer = %@, remoteExecutionInfo = %@
 %s Adding completion for %@
-%s (%@) (%@)
 %s Ignored command id %@ because request id %@ is unknown.
 %s Ignored because request id %@ is unknown.
 %s Ignored because commandId, requestId and block are all required.
@@ -14937,6 +15053,7 @@ Bundle services cache written to: %{public}@
 %s Still active. Ignoring session shutdown request
 %s _deviceIsLocked=%d AFHasUnlockedSinceBoot=%d ADVoiceDialingDisabledWhileLocked=%d _deviceIsShowingLockScreen=%d ADControlCenterDisabledWhileLocked=%d _isInStarkMode=%d _isInCarDNDMode=%d
 %s Stripping %@ Restriction for CarPlay
+%s %@ (executionContext = %@)
 type=%@
 HandleCommand
 %s Ignoring command with unknown refId %@ aceId %@
@@ -14959,7 +15076,7 @@ HandleCommand
 %s Got call state changed; call is incoming: %d
 %s requestCompleted = %@
 %s Failing speech request on request completed since we never got a speech recognized
-%s Request completed for id %@: %@
+%s Request completed for id %@: %@ %@
 %s CommandFailed for refId: %@ reason: %{public}@
 %s SpeechCommand failed
 %s CommandIgnored for refId %@
@@ -15019,7 +15136,7 @@ HandleCommand
 %s Recognition failed, but we're waiting to write an audio file. Don't cancel recording
 %s Clearing speech delegate in recording completion
 %s Fetching location for request on a different device
-%s Falling back to request local device location
+%s Unable to get location from context cache
 %s ttsGetSpeechSynthesisVolume = %@
 %s ttsSetSpeechSynthesisVolume = %@ (actionType = %@, volumeLevel = %@)
 %s extractSpeechData = %@ (speechRequestId = %@, audioOutputType = %@, startTime = %@, endTime = %@)
@@ -15071,17 +15188,19 @@ HandleCommand
 %s Local speech recognition failed, and so did the session: %{public}@
 %s Ignoring local speech recognition failure because the session is still active: %{public}@
 %s Myriad lost, twoshot prompt dropped.
+%s deviceContexts = %@
+%s executionContext = %@
 %s expectedCurrentRequestID = %@, currentRequestAceId = %@
-%s QuickStop [higher priority first]: hasFiringAlarms = %d, bargedInOverFiringAlarm = %d, hasFiringTimers = %d, bargedInOverFiringTimer = %d, bargedInOverSiriRequest = %d, bargedInOverSiriVoiceOutput = %d, bargedInOverMediaPlayback(advisory only) = %d
+%s QuickStop [higher priority first]: hasFiringAlarms = %d, bargedInOverFiringAlarm = %d, hasFiringTimers = %d, bargedInOverFiringTimer = %d, bargedInOverSiriRequest = %d, bargedInOverSiriVoiceOutput = %d, bargedInOverMediaPlayback(advisory only) = %d, bargedInOverHomeAnnouncementPlayback = %d
 %s QuickStop: Dismissed firing alarms.
 %s QuickStop: Dismissed firing timers.
 %s QuickStop: Dismissed Siri talking.
+%s QuickStop: Dismissed home announcement playback.
 %s QuickStop: Nothing to stop
 %s expectedCurrentRequestID %@ does not match currentRequestAceId %@, doing nothing
 %s Stopping media playback
 %s Stop media invocation completed with response: %@
 %s Stop media invocation failed attempting to stop media with error: %@
-%s  %@
 %s %@ is not supported on this platform
 %s Took action %@
 %s Handle QuickStop for current request
@@ -15153,7 +15272,6 @@ HandleCommand
 %s Error disabling fides: %{public}@
 %s Successfully disabled DES
 %s Ignoring reschedule refresh request because assistant isn't enabled
-%s context = %@
 %s result = %@
 %s Failed to handle remote request in %lfs
 %s Failed to handle remote speech request in %lfs
@@ -15171,9 +15289,10 @@ HandleCommand
 %s Found historical context %@ given context ID %@
 %s Skipped sending metrics to server because metrics sender is disabled.
 %s Skipped sending metrics to server because the device has not been unlocked since boot.
-%s %p
 %s Client disconnected, sanity checking
 %s Client disconnected and no phone call underway, syncing if needed
+%s command = %@, executionInfoToMatch = %@
+%s matchedExecutionContext = %@
 %s Canceling session for shutdown
 %s client = %@
 %s volumeService = %@
@@ -15205,6 +15324,8 @@ HandleCommand
 %s Audio route changed %@
 %s Audio owner lost %@
 %s Audio owner reset %@
+%s Sync disallowed because device has not unlocked.
+%s Sync disallowd because both Siri and Dictation are disabled.
 %s Failed getting kern.bootsessionuuid with sysctlbyname() %s
 %s kern.bootsessionuuid is %@
 %s Duet domain and command must be non-nil: %@, %@
@@ -15884,6 +16005,21 @@ SpeechRecorder
 %s Add successfully finalized session %@ to reusable session pool.
 %s Evict %tu sessions from reusable session pool because %@.
 %s Reusable session pool is already empty.
+%s %p
+%s Unable to get home announcement snapshot until a snapshot updater is registered.
+%s %p snapshot = %@
+%s lastPlayedAnnouncement %@ is valid with %f seconds until expiration.
+%s Ignored expiration timer based reevaluation because snapshot was changed. (current = %@, expected = %@)
+%s lastPlayedAnnouncement %@ is invalid.
+%s %p %@ -> %@
+%s announcement = %@, expirationDuration = %f
+%s announcement is nil
+%s announcement identifier is nil
+%s timeIntervalSinceAnnouncementFinishedDate = %f
+%s announcement finishedDate is nil
+%s timeIntervalSinceAnnouncementStartedDate = %f
+%s timeIntervalUntilExpiration = %f
+%s announcement startedDate is nil
 %s %d
 %s stereo partner changed to: %@
 %s lastWin changed to: %@
@@ -16034,6 +16170,7 @@ primary multiuser assistantID:%@
 %s Show next event handler asked to handle request %@, but didn't know how
 %s Creating SiriKit Native announce message request
 %s Creating client flow announce message request
+%s Creating Announce in Home request
 %s Unspecified announcement type unable to start a request.
 %s Skipping triggerless reply, so don't show UI. This should only be used for testing
 %s Ignoring App notification for placeholders
@@ -16041,7 +16178,8 @@ primary multiuser assistantID:%@
 %s Ignoring CK notification because there's no correction profile change
 %s User hasn't used Siri or dictation in the past %tu days, not syncing for %@
 %s Rejecting remote command because Siri is disabled
-%s error? %@;  reply: %@ -> %@
+%s peer = %@, command = %@, remoteExecutionInfo = %@
+%s response = %@
 %s Executing command on device for assistant id: %@
 %s preferred routing options: %@, allows relay: %d
 %s Malformed command dictionary: %@
@@ -16417,7 +16555,8 @@ unredacted:%@
 %s volume = %f, audioRoute = %@, operationType = %ld
 %s notification = %@
 %s Ignored because no audio category is specified in the notification %@.
-%s category = %@, volume = %f, reason = %@
+%s category = %@, volume = %f, audioCategory = %@, reason = %@
+%s Resetting device setup volume due to %@ audio category volume change for %@.
 %s Smart Siri volume is %f.
 %s needsUpdateSiriVolume = %d
 %s forceUpdate = %d
@@ -19370,6 +19509,10 @@ mcpl
 <true/>
 <key>com.apple.airplay.carplayavvc</key>
 <true/>
+<key>com.apple.announced.client</key>
+<true/>
+<key>com.apple.announced.clientid</key>
+<string>com.apple.assistant.assistantd</string>
 <key>com.apple.assistant.analytics-observation</key>
 <true/>
 <key>com.apple.assistant.cdm.client</key>
@@ -19661,6 +19804,8 @@ mcpl
 <string>com.apple.itunescloud.music-subscription-status-service</string>
 <string>com.apple.siri.siriaudio-helper</string>
 <string>com.apple.controlcenter.remoteservice</string>
+<string>com.apple.announced.server</string>
+<string>com.apple.announced.localplaybacksession</string>
 <string>com.apple.siri.morphunassetsupdaterd</string>
 </array>
 <key>com.apple.security.exception.shared-preference.read-only</key>
@@ -19760,6 +19905,8 @@ mcpl
 </array>
 </dict>
 </plist>
+zPLR
+zPLR
 zPLR
 zPLR
 zPLR

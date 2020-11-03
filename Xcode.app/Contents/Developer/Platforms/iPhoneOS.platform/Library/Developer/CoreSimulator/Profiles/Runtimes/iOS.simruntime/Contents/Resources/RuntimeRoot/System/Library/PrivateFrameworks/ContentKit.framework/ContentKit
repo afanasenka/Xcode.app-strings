@@ -119,6 +119,7 @@ debugDescription
 contentAttribution
 WFContentAttributionSet.m
 v32@?0@"WFContentAttribution"8Q16^B24
+supportsSecureCoding
 @24@?0@"WFContentAttribution"8@"WFContentAttribution"16
 B16@?0@"WFContentAttribution"8
 @"NSArray"16@?0@"WFContentAttributionSet"8
@@ -126,17 +127,22 @@ T@"NSString",R,C,N,V_bundleIdentifier
 accountIdentifier
 T@"NSString",R,C,N,V_accountIdentifier
 managedLevel
+%@:%@
 bundleIdentifier
 %d Media Collections
 Media Collections
 Media Collection
+MediaPlayer
 collection
 T@"MPMediaItemCollection",R,N
 MPMediaItemCollection
 Class getMPMediaItemCollectionClass(void)_block_invoke
 WFMediaCollectionContentItem.m
 hasSuggestedAutomationIdentifier
+suggestedAutomationIdentifier
+T@"NSString",&,N,V_suggestedAutomationIdentifier
 hasInteracted
+hasCompleted
 interacted
 SuggestAutomation
 bicycling
@@ -160,7 +166,6 @@ T^{CGPDFPage=},R,N,V_pageRef
 document
 T@"WFPDFDocument",R,W,N,V_document
 rotation
-dictionary
 contentStream
 T@"WFPDFContentStream",R,N,V_contentStream
 text
@@ -215,19 +220,19 @@ startaddress
 endcoord
 startcoord
 directions
-hasErrorDomain
+%f,%f
+T@"NSString",&,N,V_errorDomain
 hasErrorCode
-hasActionIdentifier
+T@"NSString",&,N,V_errorCode
 RunShortcutError
 wfFileType
 T@"WFFileType",R,N
-hasAddToSiriBundleIdentifier
-hasGalleryIdentifier
-hasShortcutSource
+actionCount
+%@ %@
 OpenShortcut
 CoreGlyphsPrivate.bundle
 WFImageGetCoreServicesPath
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ContentKit/ContentKit/WFImage+Symbols.m
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ContentKit/ContentKit/WFImage+Symbols.m
 [paths count] == 1
 WFImageGetCoreGlyphsCatalogNamed
 Assets
@@ -239,13 +244,14 @@ T@"NSString",C,N,V_errorDomain
 didRunRemotely
 hasIntentType
 hasVisible
+visible
 TB,N,V_visible
 TB,N,V_interacted
 hasAppBundleIdentifier
+hasActivityType
+activityType
 T@"NSString",&,N,V_activityType
-triggerType
 T@"NSString",&,N,V_triggerType
-appBundleIdentifier
 completed
 PersonalAutomationSuggestion
 Apps
@@ -255,7 +261,6 @@ Documents
 Finance
 Health
 Home
-Media
 Photos & Video
 Scripting
 Sharing
@@ -274,7 +279,6 @@ allItemClasses
 T@"NSMutableSet",R,N,V_allItemClasses
 discoveryLock
 T{os_unfair_lock_s=I},R,N,V_discoveryLock
-T@"NSSet",R,N
 allOwnedTypes
 B24@?0#8@"NSDictionary"16
 WFRegisterTypeForItemClass
@@ -283,11 +287,12 @@ preferredFileType
 T@"WFFileType",&,N,V_preferredFileType
 library
 Tq,N,V_library
+asset
 T@"PHAsset",R,N
-AVFoundation
 @24@?0@"PHAssetResource"8Q16
 PHAssetResource
 Class getPHAssetResourceClass(void)_block_invoke
+Unable to find class %s
 WFPhotoMediaContentItem.m
 q24@?0@"PHAssetResource"8@"PHAssetResource"16
 B16@?0@"PHAssetResource"8
@@ -327,6 +332,7 @@ Class getPHImageManagerClass(void)_block_invoke
 link.contentkit.phasset.representationtypes
 com.apple.mobileslideshow.asset.localidentifier
 Photos
+Photo
 Photo (singular)
 CoreLocation
 Photo media
@@ -335,6 +341,7 @@ Photo media (singular)
 v32@?0@"WFPhotoMediaContentItem"8@16@?<v@?@"WFFileSize">24
 v16@?0q8
 asset.modificationDate
+isFavorite
 isHidden
 v32@?0@"WFPhotoMediaContentItem"8@16@?<v@?@>24
 v24@?0@"NSDictionary"8@"NSError"16
@@ -345,6 +352,7 @@ duration
 asset.location
 Is Not a Screenshot
 photoTypes
+mediaType
 asset.creationDate
 @24@?0@"PHAssetCollection"8Q16
 +[WFPhotoMediaContentItem propertyBuilders]_block_invoke
@@ -367,6 +375,8 @@ Metadata Dictionary
 Is Hidden
 Is Favorite
 Image
+Video
+Audio
 Panorama
 Burst
 Live Photo
@@ -379,20 +389,20 @@ Up Mirrored
 Right
 Left
 Down
-object
 T@,R,N,V_object
 specifiedName
 wfName
+T@"NSString",R,N,V_wfName
 T@"WFObjectType",R,N
 WFObjectRepresentation.m
 size
-T{CGSize=dd},R,N
 image
 T@"WFImage",R,N
 imageIsAnimated
 TB,N,V_imageIsAnimated
 com.ilm.openexr-image
 Metadata
+CLLocation
 NSTextAttachment
 %d Images
 Images
@@ -406,7 +416,6 @@ WFImageContentItem.m
 Image (item name)
 dateTaken
 height
-hasSessionIdentifier
 hasGalleryCategoryIdentifier
 sessionIdentifier
 GallerySessionBrowseCategory
@@ -425,7 +434,7 @@ T^{CGContext=},R,N,V_CGContext
 B32@?0{CGBitmapContextContentInfo=IiIBB}8^{CGBitmapContextInfo=IQQQQiII^{CGColorSpace}BI}24
 WFBitmapContext.m
 CGContextRef  _Nullable soft_UIGraphicsGetCurrentContext(void)
-hasKey
+triggerType
 hasRequiredRuntimeConfirmation
 hasBatchCount
 batchCount
@@ -435,12 +444,17 @@ TI,N,V_batchDroppedCount
 requiredRuntimeConfirmation
 TriggeredAutomation
 TemporaryFileManager
--%lu
++[WFTemporaryFileManager createTemporaryFileWithFilename:inDirectory:]
+NSURL * _Nonnull WFFileURLByAppendingIterationCount(NSURL * _Nonnull __strong, NSString * _Nonnull __strong, BOOL, NSUInteger)
+directory
+filename
+WFTemporaryFileManager.m
+fileURL should not be nil
 +[WFTemporaryFileManager configureBackupFlagAtURL:]
+sharedTemporaryDirectoryURL should not be nil
 Temporary
 WFContainerManagerErrorDomain
 groupIdentifier.length
-WFTemporaryFileManager.m
 link.contentkit.remoteitem.preferredfiletype
 serializedItem
 T@"NSDictionary",C,N,V_serializedItem
@@ -448,22 +462,25 @@ installed
 TB,N,V_installed
 TB,N,V_sharingEnabled
 personalAutomationsEnabled
-TB,N,V_homeAutomationsEnabled
-shortcutComplicationSlotsUsed
+TB,N,V_personalAutomationsEnabled
+sleepEnabled
+TI,N,V_shortcutComplicationSlotsUsed
+appComplicationSlotsUsed
 TI,N,V_appComplicationSlotsUsed
-TI,N,V_averageShortcutCountPerFolder
+shortcutsCount
 TI,N,V_shortcutsCount
-uncategorizedShortcutCount
 TI,N,V_uncategorizedShortcutCount
-TI,N,V_watchShortcutCount
-folderCount
-TI,N,V_folderCount
-TI,N,V_numberOfPersonalAutomationsEnabled
-numberOfPersonalAutomationsFromSuggestionsEnabled
 TI,N,V_numberOfPersonalAutomationsFromSuggestionsEnabled
 TI,N,V_shortcutRunCount
-appSessionCount
-TI,N,V_appSessionCount
+TI,N,V_sleepShortcutsCount
+TI,N,V_numberOfSmallWidgets
+numberOfMediumWidgets
+TI,N,V_numberOfMediumWidgets
+TI,N,V_numberOfLargeWidgets
+TI,N,V_numberOfWidgetsOnHomeScreen
+TI,N,V_numberOfWidgetsOnLoL
+TI,N,V_numberOfSuggestedAutomationsGenerated
+TI,N,V_numberOfSuggestedAutomationsGeneratedUserAlreadyHas
 backingStore
 T@"NSString",C,N,V_backingStore
 localizedValue
@@ -473,13 +490,13 @@ link.contentkit.sourceapp
 T@"NSItemProvider",R,N
 minimalItemProvider
 minimalExtensionItem
-TB,R
 v32@?0@?<v@?@"<NSSecureCoding>"@"NSError">8#16@"NSDictionary"24
 calendarItem.calendar.title
 eventStore
 T@"EKEventStore",&,N,V_eventStore
 calendarItem
 T@"EKCalendarItem",R,N
+location
 WFCalendarItemContentItem.m
 @"WFParticipant"24@?0@"EKParticipant"8Q16
 %d Calendar items
@@ -489,12 +506,15 @@ v32@?0@"WFCalendarItemContentItem"8@16@?<v@?@>24
 calendarItem.creationDate
 calendarItem.lastModifiedDate
 calendarItem.notes
+Notes
 calendarItem.title
 Title
+string
 T@"NSMutableString",&,N,V_string
 transform
 T{CGAffineTransform=dddddd},N,V_transform
 T@"NSDictionary",R,N,V_dictionary
+dictionary
 WFCoercionOptions.m
 hasIcon
 icon
@@ -529,6 +549,7 @@ v32@?0@"WFCalendarEventContentItem"8@"<WFPropertyListObject>"16@?<v@?@>24
 Attendees
 Organizer
 v32@?0@"WFCalendarEventContentItem"8@16@?<v@?@>24
+Has No Alarms
 calendarItem.hasAlarms
 @"NSArray"8@?0
 @24@?0@"EKCalendar"8Q16
@@ -542,13 +563,13 @@ event.endDate
 End Date
 event.startDate
 Start Date
+event
 T@"EKEvent",R,N
 Show URL
 Show in Calendar
 x-apple-calevent://%@
 Event End Date
 Event Start Date
-T@"NSDictionary",R,N
 com.apple.plist
 %d Dictionaries
 Dictionaries
@@ -558,11 +579,11 @@ v32@?0@"WFDictionaryContentItem"8@16@?<v@?@>24
 Values
 Keys
 CLCircularRegion+WFSerialization.m
+longitude
 latitude
 radius
 NSDictionary * _Nonnull WFSerializedRegionFromCircularRegion(CLCircularRegion * _Nonnull __strong)
 circularRegion
-Invalid parameter not satisfying: %@
 WFCoercionOptionEKParticipantExcludeMeContact
 Accepted
 Completed
@@ -571,6 +592,7 @@ Delegated
 In Process
 Pending
 Tentative
+Unknown
 Required
 Optional
 Chair
@@ -585,6 +607,7 @@ Event attendees
 Event attendee
 Participant
 Is Not Me
+isCurrentUser
 Is Me
 Role
 Status
@@ -599,9 +622,9 @@ CellularData
 screenBounds
 T{CGRect={CGPoint=dd}{CGSize=dd}},R,N
 screenScale
+Td,R,N
 screenCornerRadius
 systemVersion
-name
 model
 localizedModel
 systemName
@@ -642,35 +665,43 @@ DateAndTime
 datePickerMode
 T@"NSString",C,N,V_datePickerMode
 T@"NSDate",&,N,V_defaultDate
+minimumDate
 T@"NSDate",&,N,V_minimumDate
 T@"NSDate",&,N,V_maximumDate
-minimumDate
 maximumDate
 defaultDate
 com.apple.ical.ics
-runSource
-T@"NSString",C,N,V_automationType
+T@"NSString",C,N,V_shortcutSource
+T@"NSString",C,N,V_runSource
+T@"NSString",C,N,V_galleryIdentifier
 T@"NSString",C,N,V_automationSuggestionsTrialIdentifier
 TI,N,V_numberOfDialogsPresented
+TB,N,V_isFromAutomationSuggestion
 T@"NSString",C,N,V_source
+destinationType
+T@"NSString",C,N,V_destinationType
 errorCode
 T@"NSString",C,N,V_errorCode
 attributedTitle
 T@"NSAttributedString",R,C,N,V_attributedTitle
 T@"NSString",R,C,N,V_label
 hw.machine
-shortcutSource
-galleryIdentifier
+TB,N
+hasAddToSiriBundleIdentifier
+hasGalleryIdentifier
+hasShortcutSource
+addToSiriBundleIdentifier
 AddShortcut
 content
 T@"NSString",R,C,N,V_content
 T@"NSString",R,C,N,V_conversationID
+recipientContactIDs
 T@"NSArray",R,C,N,V_recipientContactIDs
+recipients
 senderContactID
 T@"NSString",R,C,N,V_senderContactID
 senderHandles
 T@"NSArray",R,C,N,V_senderHandles
-recipientContactIDs
 conversationID
 MAGIC
 HOME
@@ -706,6 +737,7 @@ Ti,R,N,V_propertyID
 multivalueIndex
 Tq,R,N,V_multivalueIndex
 formattedName
+T@"NSString",R,N
 namePrefix
 firstName
 middleName
@@ -727,6 +759,7 @@ T@"NSArray",R,N
 phoneNumbers
 emailAddresses
 streetAddresses
+URLs
 socialProfiles
 T@"NSArray",R,N,V_socialProfiles
 instantMessageAddresses
@@ -734,18 +767,15 @@ fullDataVCardRepresentation
 T@"WFFileRepresentation",R,N,V_fullDataVCardRepresentation
 vCardRepresentation
 T@"WFFileRepresentation",R,N,V_vCardRepresentation
-TQ,R
-T#,R
 WFContactMultivalue
 WFContactProperty
 WFContactData
 multivalueId
 propertyId
 vCardFile
-supportsSecureCoding
+name
 contacts
 hasShortcutIdentifier
-shortcutIdentifier
 GallerySessionAddShortcut
 queryLocation
 T@"CLLocation",&,N,V_queryLocation
@@ -845,7 +875,7 @@ Time intervals
 Time interval
 timeInterval
 T@"WFTimeInterval",R,N
-TB,R,N
+hasSessionIdentifier
 GallerySessionSearch
 &diams;
 &hearts;
@@ -1120,15 +1150,15 @@ calendarItemIdentifier
 endDate
 startDate
 link.contentkit.ekcalendaritem
-Class getEKCalendarItemClass(void)_block_invoke
 EKCalendarItem
+Class getEKCalendarItemClass(void)_block_invoke
 link.contentkit.archivedmpmediaitem
 link.contentkit.location
-placemark
+phoneNumber
 isCurrentLocation
 link.contentkit.mkmapitem
-MKMapItem
 class
+object
 readableTypeIdentifiersForItemProvider
 T@"NSArray",R,C,N
 B24@?0#8^B16
@@ -1152,7 +1182,8 @@ CGImageDestinationFinalize
 _Bool soft_CGImageDestinationFinalize(CGImageDestinationRef _Nonnull)
 WFImage+Representations.m
 DCMapsLink+CLGeocoding.m
-T@"NSString",R,N,V_label
+Region
+value
 %@: label=%@, value=%@
 Class getCNLabeledValueClass(void)_block_invoke
 WFContactLabeledValue.m
@@ -1229,16 +1260,18 @@ NSString *getCNContactNameSuffixKey(void)
 NSString *getCNContactCreationDateKey(void)
 NSString *getCNContactModificationDateKey(void)
 WFAddressBookTypes.m
-suggestedAutomationIdentifier
-T@"NSString",&,N,V_suggestedAutomationIdentifier
 hasCurrentStep
+TB,N,V_completed
 SetupSuggestedAutomation
 %@=%@&
 -_.~
 Content-Type
-T@"NSString",&,N,V_key
+application/x-www-form-urlencoded
+T@"NSString",&,N,V_shortcutSource
 EditShortcut
+T@"NSURL",R,N,V_URL
 T@"NSString",R,C,N,V_name
+emailAddress
 T@"NSString",R,C,N,V_emailAddress
 status
 Tq,R,N,V_status
@@ -1246,7 +1279,6 @@ role
 Tq,R,N,V_role
 type
 Tq,R,N,V_type
-sourceIdentifier
 T@"NSString",R,C,N,V_sourceIdentifier
 managed
 TB,R,N,GisManaged,V_managed
@@ -1254,14 +1286,15 @@ currentUser
 TB,R,N,GisCurrentUser,V_currentUser
 contactPredicate
 T@"NSPredicate",R,N,V_contactPredicate
+hash
 link.contentkit.ekparticipant
+sourceIdentifier
 isManaged
-isCurrentUser
 participantType
 participantRole
 participantStatus
-emailAddress
 WFParticipant.m
+UIKit
 Watch
 AppKit
 Siri
@@ -1303,12 +1336,12 @@ WebMainResource
 @"NSDictionary"24@?0@"WFWebArchive"8Q16
 @"NSDictionary"24@?0@"WFWebResource"8Q16
 @24@?0@"NSDictionary"8Q16
-T@"NSString",C,N,V_addToSiriBundleIdentifier
 postalAddress
 T@"CNPostalAddress",R,N,V_postalAddress
 addressString
 T@"NSString",R,N,V_addressString
 shortAddressString
+placemark
 T@"CLPlacemark",R,N,V_placemark
 street
 T@"NSString",R,N,V_street
@@ -1326,7 +1359,8 @@ country
 T@"NSString",R,N,V_country
 isoCountryCode
 T@"NSString",R,N,V_isoCountryCode
-T@"NSString",R,C,N
+label
+T@"NSString",R,N,V_label
 link.contentkit.addresslabel
 link.contentkit.addressstring
 link.contentkit.addressplacemark
@@ -1351,7 +1385,6 @@ course
 verticalAccuracy
 horizontalAccuracy
 altitude
-longitude
 serializedLocation
 CLLocation+WFSerialization.m
 RemindersLibraryFiltering
@@ -1363,24 +1396,22 @@ Class getREMReminderPredicateDescriptorClass(void)_block_invoke
 REMReminderSortDescriptor
 Class getREMReminderSortDescriptorClass(void)_block_invoke
 v32@?0@"WFContentPredicate"8Q16@?<v@?@"NSArray"@"NSError">24
-T@"NSString",R,C
 link.contentkit.dcmapslink
-showsBicycling
-showsTraffic
-directionsMode
-startAddress
-searchNearQuery
-searchQuery
+streetViewLocation
+showsStreetView
+centerLocation
 wf_CGPointValue
 T{CGPoint=dd},R,N
 wf_CGSizeValue
+T{CGSize=dd},R,N
 wf_CGAffineTransformValue
 T{CGAffineTransform=dddddd},R,N
 {CGAffineTransform=dddddd}
 {CGPoint=dd}
-T@"NSString",&,N,V_sessionIdentifier
+TI,N,V_duration
 GallerySessionEnd
 Ti,N,V_source
+sharingDestinationBundleIdentifier
 T@"NSString",C,N,V_sharingDestinationBundleIdentifier
 %d Contacts
 Contacts (plural)
@@ -1394,8 +1425,6 @@ v32@?0@"WFContactContentItem"8@16@?<v@?@>24
 @24@?0@"WFContactGroup"8Q16
 contact.modificationDate
 contact.creationDate
-Creation Date
-Notes
 Department
 Job Title
 Company
@@ -1409,7 +1438,6 @@ Has No Photo
 Has Photo
 Contact Photo
 Birthday
-value
 Street Address
 Email Address
 Phone Number
@@ -1417,13 +1445,15 @@ Last Name
 Middle Name
 First Name
 v32@?0@"WFContactContentItem"8@"NSNumber"16@?<v@?@>24
+contact
 T@"WFContact",R,N
 @24@?0@"WFContactLabeledValue"8Q16
+TB,R,N
+shortcutIdentifier
 hasActionIndex
-actionIndex
 TI,N,V_actionIndex
-T@"NSString",&,N,V_actionIdentifier
 actionIdentifier
+actionIndex
 InternalAddAutomationAction
 v40@?0@8@16^@24^@32
 @24@?0@8Q16
@@ -1461,91 +1491,91 @@ article.title
 escapeButton
 T@"WFAlertButton",R,N
 link.contentkit.date
+sharedDirectory
 T@"NSURL",C,N,V_sharedDirectory
 sharedTemporaryDirectory
 T@"NSURL",C,N,V_sharedTemporaryDirectory
+deletionResponsibility
 Tq,N,V_deletionResponsibility
 targetPlatform
 Tq,N,V_targetPlatform
-sharedDirectory
-deletionResponsibility
 fileIsTemporary
 %d Phone numbers
-Phone numbers
 Phone number
-phoneNumber
 T@"WFPhoneNumber",R,N
 /.()- 
 Call %@
 tel:%@
-T@"NSString",&,N,V_source
+hasSource
+T@"NSString",&,N,V_actionIdentifier
 hasDestinationType
 T@"NSString",&,N,V_destinationType
 hasConnectionType
 connectionType
 T@"NSString",&,N,V_connectionType
-hasCompleted
-RemoteExecution
 hasDialogType
 T@"NSString",&,N,V_dialogType
 hasPresentationStyle
 T@"NSString",&,N,V_presentationStyle
+hasDismissalType
 T@"NSString",&,N,V_dismissalType
-hasAutomationType
+T@"NSString",&,N,V_automationType
 automationType
-presentationStyle
 ShowDialogEvent
-userInterfaceType
 T@"NSString",R,N,V_userInterfaceType
+userInterfaceStyle
 Directions from %@ to %@
 Unknown Maps Link
 hasInstalled
-TB,N
 hasSharingEnabled
-sharingEnabled
 hasPersonalAutomationsEnabled
-TB,N,V_personalAutomationsEnabled
 hasHomeAutomationsEnabled
-homeAutomationsEnabled
+TB,N,V_homeAutomationsEnabled
 hasShortcutComplicationSlotsUsed
-TI,N,V_shortcutComplicationSlotsUsed
 hasAppComplicationSlotsUsed
 hasSleepEnabled
-sleepEnabled
 TB,N,V_sleepEnabled
 hasShortcutsCount
 hasFolderCount
+folderCount
+TI,N,V_folderCount
 hasAverageShortcutCountPerFolder
+averageShortcutCountPerFolder
+TI,N,V_averageShortcutCountPerFolder
 hasUncategorizedShortcutCount
 hasShortcutRunCount
-hasAppSessionCount
-hasWatchShortcutCount
-watchShortcutCount
-hasSleepShortcutsCount
-sleepShortcutsCount
-TI,N,V_sleepShortcutsCount
-hasNumberOfSmallWidgets
-TI,N,V_numberOfSmallWidgets
-hasNumberOfMediumWidgets
-TI,N,V_numberOfMediumWidgets
-hasNumberOfLargeWidgets
-numberOfLargeWidgets
-TI,N,V_numberOfLargeWidgets
-hasNumberOfWidgetsOnHomeScreen
-numberOfWidgetsOnHomeScreen
-TI,N,V_numberOfWidgetsOnHomeScreen
-hasNumberOfWidgetsOnLoL
-TI,N,V_numberOfWidgetsOnLoL
-hasNumberOfPersonalAutomationsEnabled
-numberOfPersonalAutomationsEnabled
-hasNumberOfPersonalAutomationsFromSuggestionsEnabled
-numberOfWidgetsOnLoL
-numberOfMediumWidgets
-numberOfSmallWidgets
 shortcutRunCount
-averageShortcutCountPerFolder
-shortcutsCount
-appComplicationSlotsUsed
+hasAppSessionCount
+appSessionCount
+TI,N,V_appSessionCount
+hasWatchShortcutCount
+TI,N,V_watchShortcutCount
+hasSleepShortcutsCount
+hasNumberOfSmallWidgets
+numberOfSmallWidgets
+hasNumberOfMediumWidgets
+hasNumberOfLargeWidgets
+hasNumberOfWidgetsOnHomeScreen
+hasNumberOfWidgetsOnLoL
+numberOfWidgetsOnLoL
+hasNumberOfPersonalAutomationsEnabled
+TI,N,V_numberOfPersonalAutomationsEnabled
+hasNumberOfPersonalAutomationsFromSuggestionsEnabled
+hasNumberOfSuggestedAutomationsGenerated
+hasNumberOfSuggestedAutomationsGeneratedUserAlreadyHas
+hasAutomationSuggestionsTrialIdentifier
+numberOfSuggestedAutomationsGeneratedUserAlreadyHas
+numberOfSuggestedAutomationsGenerated
+numberOfPersonalAutomationsFromSuggestionsEnabled
+numberOfPersonalAutomationsEnabled
+numberOfWidgetsOnHomeScreen
+numberOfLargeWidgets
+sleepShortcutsCount
+watchShortcutCount
+uncategorizedShortcutCount
+shortcutComplicationSlotsUsed
+homeAutomationsEnabled
+sharingEnabled
 DailyStatus
 v40@?0@"NSTextAttachment"8{_NSRange=QQ}16^B32
 NSAttachmentAttributeName
@@ -1557,6 +1587,7 @@ NSAttributedStringKey getNSLinkAttributeName(void)
 v32@?0@"NSAttributedString"8@"NSString"16@"NSError"24
 UISimpleTextPrintFormatter
 v40@?0@"NSURL"8{_NSRange=QQ}16^B32
+UTF-8
 Rich text
 Rich text (plural)
 Rich text (singular)
@@ -1579,7 +1610,6 @@ NSAttributedStringDocumentType getNSRTFDTextDocumentType(void)
 NSAttributedStringDocumentType getNSHTMLTextDocumentType(void)
 NSWebArchive
 Short
-Medium
 Long
 RFC 2822
 ISO 8601
@@ -1595,10 +1625,11 @@ T@"NSMutableArray",&,N,V_mutableItems
 itemWriteLock
 T@"NSLock",&,N,V_itemWriteLock
 numberOfItems
+items
 defaultCoercionOptions
 T@"WFCoercionOptions",&,N,V_defaultCoercionOptions
+attributionSet
 T@"WFContentAttributionSet",R,N
-items
 B16@?0@"WFContentItem"8
 v32@?0@8@"NSString"16@"NSError"24
 v24@?0@"WFContentCollection"8@"NSError"16
@@ -1607,28 +1638,25 @@ v40@?0@8@"NSString"16@"WFContentAttributionSet"24@"NSError"32
 v40@?0@"WFContentItem"8Q16@?<v@?@"NSError">24^B32
 v40@?0@"WFFileRepresentation"8Q16@?<v@?@"NSError">24^B32
 v40@?0@8Q16@?<v@?@"NSError">24^B32
-attributionSet
 %@ (Content Property Name)
 %@ (Content Property Possible Value)
 FileRepresentation
 T@"NSString",&,N,V_filename
-T@"NSString",R,N,V_wfName
-wfType
 T@"WFFileType",R,N,V_wfType
+creationDate
 T@"NSDate",R,N,V_creationDate
-modificationDate
 T@"NSDate",R,N,V_modificationDate
-originalURL
 T@"NSURL",R,N,V_originalURL
+fileSize
 T@"NSData",R,N,V_data
-fileURL
 T@"NSURL",R,N,V_fileURL
-representationType
 deletesFileOnDeallocation
 TB,R,N,V_deletesFileOnDeallocation
 securityScopedResource
 TB,R,N,V_securityScopedResource
-creationDate
+modificationDate
+originalURL
+wfType
 -[WFFileRepresentation initWithCoder:]
 -[WFFileRepresentation mappedDataWithError:]
 -[WFFileRepresentation data]
@@ -1669,7 +1697,6 @@ MKDirections
 Class getMKDirectionsClass(void)_block_invoke
 MKDirectionsRequest
 Class getMKDirectionsRequestClass(void)_block_invoke
-galleryCategoryIdentifier
 webPage
 T@"WFSafariWebPage",R,N
 v24@?0@"WFArticle"8@"NSError"16
@@ -1725,6 +1752,7 @@ TRIGGER
 %ldH
 %ldD
 TRIGGER;VALUE=DATE-TIME:%@
+Reminder
 DISPLAY
 ACTION
 VALARM
@@ -1747,7 +1775,6 @@ VERSION
 VCALENDAR
 BEGIN
 v24@?0@"NSString"8@"NSString"16
-%@:%@
 wf_preferredFileType
 T@"WFFileType",&,N
 ApplicationContext
@@ -1771,7 +1798,6 @@ currentUserInterfaceType
 canLoadShortcutsDatabase
 TB,R,N,V_canLoadShortcutsDatabase
 shouldReverseLayoutDirection
-userInterfaceStyle
 applicationState
 idleTimerDisabled
 TB,N,GisIdleTimerDisabled
@@ -1782,19 +1808,16 @@ UIApplication
 extensionApplicationContextProviderDelegate must be set on the extension context.
 WFApplicationContext.m
 WFApplicationContext observer lock
-hash
-wfIdleTimerDisabled
+TQ,R
+T#,R
 -[WFEventTracker trackEvent:count:]
 Invalid event tracking attempted with eventClass: %@
-event
 WFEventTracker.m
-asset
 T@"AVAsset",R,N
 artwork
 Class getAVAssetClass(void)_block_invoke
 WFAVAssetContentItem.m
 -[WFAVAssetContentItem generateObjectRepresentationForClass:options:error:]
-AVAsset
 B32@?0@"WFFileType"8Q16^B24
 commonKey = %@
 AVAssetExportPresetPassthrough
@@ -1803,8 +1826,10 @@ AVFileTypeAppleM4A
 AVFileType getAVFileTypeAppleM4A(void)
 AVMediaTypeVideo
 AVMediaType getAVMediaTypeVideo(void)
+Media
 Media (plural)
 Media (singular)
+AVFoundation
 AVMetadataCommonKeyTitle
 AVMetadataKey getAVMetadataCommonKeyTitle(void)
 AVMetadataCommonKeyAlbumName
@@ -1814,9 +1839,8 @@ AVMetadataCommonKeyArtwork
 AVMetadataKey getAVMetadataCommonKeyArtwork(void)
 commonMetadata
 Artwork
-Artist
 frameRate
-subtitle
+Duration
 T@"NSString",R,C,N,V_subtitle
 T@"WFImage",R,C,N,V_image
 selected
@@ -1827,11 +1851,9 @@ v24@?0^{objc_method=}8:16
 %d File sizes
 File sizes
 File size
-fileSize
 T@"WFFileSize",R,N
 mediaItem
 T@"MPMediaItem",R,N
-T@"NSString",R,N
 artist
 albumTitle
 Release Date
@@ -1839,6 +1861,7 @@ AVURLAsset
 Class getAVURLAssetClass(void)_block_invoke
 WFMPMediaContentItem.m
 Item Not Downloaded
+AVAsset
 Item Has No Album Art
 MPMediaItemPropertyAlbumTitle
 NSString *getMPMediaItemPropertyAlbumTitle(void)
@@ -1856,18 +1879,17 @@ link.contentkit.mpmediaitem.album
 link.contentkit.mpmediaitem.artist
 MPMediaItemPropertyAssetURL
 NSString *getMPMediaItemPropertyAssetURL(void)
-Music
 Music (plural)
 Music (singular)
 iTunes media
 iTunes media (plural)
 iTunes media (singular)
-MediaPlayer
 +[WFMPMediaContentItem runQuery:withItems:completionHandler:]
 @24@?0@"MPMediaItem"8Q16
 B32@?0@"WFContentSortDescriptor"8Q16^B24
 MPMediaItemPropertyAlbumTrackNumber
 NSString *getMPMediaItemPropertyAlbumTrackNumber(void)
+userInfo
 MPMediaItemPropertyDiscNumber
 NSString *getMPMediaItemPropertyDiscNumber(void)
 MPMediaItemPropertyArtist
@@ -1901,7 +1923,6 @@ NSString *getMPMediaItemPropertyLastPlayedDate(void)
 MPMediaItemPropertyRating
 NSString *getMPMediaItemPropertyRating(void)
 v32@?0@"WFMPMediaContentItem"8@16@?<v@?@>24
-Last Modified Date
 v32@?0@"WFMPMediaContentItem"8@16@?<v@?@"WFFileSize">24
 Rating
 Last Played Date
@@ -1923,16 +1944,17 @@ Disc #
 Track Number
 Album Track #
 Play Count
-Duration
 Media Kind
 Date Added
 Composer
 Genre
 Album Artist
+Artist
 WFIsINPerson
+person
 T@"INPerson",&,N,V_person
 -[WFINPersonContact wfSerializedRepresentation]
-person
+Invalid parameter not satisfying: %@
 WFINPersonContact.m
 taskName
 T@"NSString",R,C,N,V_taskName
@@ -1956,6 +1978,8 @@ void *AssertionServicesLibrary(void)
 BKSProcessAssertion
 Class getBKSProcessAssertionClass(void)_block_invoke
 containedProperties
+T@"NSSet",R,N
+property
 T@"WFContentProperty",R,N,V_property
 T@"<NSCopying>",R,C,N,V_value
 valueBlock
@@ -1978,16 +2002,16 @@ BackgroundAssertion
 +[WFBackgroundAssertion backgroundAssertionWithName:expirationHandler:]
 +[WFBackgroundAssertion backgroundAssertionWithName:expirationHandler:]_block_invoke
 T@"NSURL",R,D,N
-htmlString
 T@"NSString",R,N,V_htmlString
 baseURL
 T@"NSURL",R,N,V_baseURL
-UTF-8
+htmlString
 file:///
-T@"WFFileRepresentation",R,N,V_file
 file
+T@"WFFileRepresentation",R,N,V_file
 T@"NSString",C,N,V_appBundleIdentifier
 T@"NSString",C,N,V_intentType
+sizeClass
 T@"NSString",C,N,V_sizeClass
 text/plain
  text$
@@ -2005,15 +2029,12 @@ assetCollection
 T@"PHAssetCollection",R,N,V_assetCollection
 @32@?0@8@"NSArray"16@"NSMutableDictionary"24
 -[WFPHAssetCollectionPredicate initForAssetsInCollection:]_block_invoke
-Unable to find class %s
 WFPhotoLibraryFiltering.m
 localIdentifier
 +[WFPhotoLibraryFiltering performCustomFilteringUsingContentPredicates:compoundPredicateType:forQuery:withInput:resultHandler:]
 B16@?0@"WFPHAssetCollectionPredicate"8
 B16@?0@"NSPredicate"8
 @24@?0@"WFPhotoMediaContentItem"8Q16
-mediaType
-isFavorite
 pixelHeight
 pixelWidth
 WFPHAssetPredicateFromContentComparisonPredicate
@@ -2028,7 +2049,6 @@ T@"NSPredicate",R,N
 valueItemClass
 fromVCard
 TB,R,N,V_fromVCard
-contact
 T@"CNContact",R,C,N,V_contact
 contactIdentifier
 CNAccount
@@ -2082,30 +2102,23 @@ CNContactCreationDateKey
 NSString * _Nonnull getCNContactCreationDateKey(void)
 cachedMembers
 T@"NSArray",&,N,V_cachedMembers
-group
 T@"CNGroup",R,N,V_group
+group
 @24@?0@"CNGroup"8Q16
-T@"NSString",&,N,V_runSource
-T@"NSString",&,N,V_automationType
-TB,N,V_didRunRemotely
-T@"NSString",&,N,V_galleryIdentifier
+hasRunSource
+hasAutomationType
+hasDidRunRemotely
 hasNumberOfDialogsPresented
+numberOfDialogsPresented
 hasDidPresentShareSheet
-didPresentShareSheet
 TB,N,V_didPresentShareSheet
 hasIsFromAutomationSuggestion
-TB,N,V_isFromAutomationSuggestion
-hasAutomationSuggestionsTrialIdentifier
-automationSuggestionsTrialIdentifier
 isFromAutomationSuggestion
-numberOfDialogsPresented
-unknown
+T@"NSString",&,N,V_automationSuggestionsTrialIdentifier
+didPresentShareSheet
 RunShortcut
-T@"NSString",C,N,V_shortcutSource
-T@"NSString",C,N,V_runSource
-TB,N,V_completed
+T@"NSString",C,N,V_automationType
 margin
-Td,R,N
 renderer
 T@"UIPrintPageRenderer",R,N,V_renderer
 inputSize
@@ -2133,8 +2146,6 @@ UIGraphicsBeginPDFContextToFile
 T@"NSString",C,N,V_sessionIdentifier
 handlerBlock
 T@?,C,N,V_handlerBlock
-T@"NSURL",R,N,V_URL
-MIMEType
 T@"NSString",R,N,V_MIMEType
 textEncodingName
 T@"NSString",R,N,V_textEncodingName
@@ -2147,18 +2158,20 @@ WebResourceURL
 WebResourceData
 +[WFWebResourceCapturer getPrintFormatterForWebResource:completionHandler:]
 v24@?0@"WKWebView"8@"NSError"16
+numbers
 selectAll
 copy
 UIPasteboard
 v16@?0@"NSData"8
 WFWebResourceCapturer.m
+userInterfaceType
 viewController
 T@"UIViewController",R,N
 view
 T@"UIView",R,N
 No valid UIKit user interface implementation found
 WFConcreteUIKitUserInterface
-T@"NSString",C,N,V_shortcutIdentifier
+T@"NSString",C,N,V_actionIdentifier
 WFUserInterfaceErrorDomain
 %s%s
 vasprintf failed
@@ -2177,24 +2190,25 @@ softmagic %d
 elf %d
 ascmagic %d
 ascmagic/enc %d
-data
 no magic files loaded
 regex error %d, (%s)
 T@"NSURL",R,N
-: %@
+data
+mailto
 v24@?0@"NSURLResponse"8@"NSError"16
 v32@?0@"NSURL"8@"NSURLResponse"16@"NSError"24
 text/html
+application/json
 application/xhtml+xml
 +json
 application/x-javascript
 v32@?0@"NSData"8@"NSURLResponse"16@"NSError"24
 HEAD
 %d URLs
-URLs
 URL (singular)
-UIKit
 B16@?0@"WFRepresentation"8
+shortcutSource
+galleryIdentifier
 ASCII
 us-ascii
 UTF-8 Unicode (with BOM)
@@ -2211,8 +2225,6 @@ unknown-8bit
 EBCDIC
 ebcdic
 International EBCDIC
-source
-TI,N,V_duration
 public.url-name
 com.apple.m4a-audio
 com.apple.uikit.image
@@ -2225,14 +2237,15 @@ TB,R,N,GisDeclared
 dynamic
 TB,R,N,GisDynamic
 typeDeclaration
+T@"NSDictionary",R,N
 typesConformedTo
 fileExtension
+MIMEType
 pboardType
 T@"NSString",R,N,V_pboardType
 OSType
 T@"NSString",R,N,V_OSType
 .%@.zip
-numbers
 WFFileType Cache
 T@"WFPDFDocument",R,N,V_document
 printFormatter
@@ -2248,14 +2261,21 @@ WFCoercionOptionItemClassPrioritizationType
 Caller
 SupportedTypes
 WFCoercionOptionPreferredTypes
+T@"WFType",R,N
+TB,R
 encodable
 TB,R,N,GisEncodable
 T@"NSString",C,N,V_triggerType
 T@"NSString",C,N,V_activityType
-hasRunSource
-hasDidRunRemotely
+automationSuggestionsTrialIdentifier
+T@"NSString",C,N,V_shortcutIdentifier
+runSource
+T@"NSString",&,N,V_runSource
+hasActionIdentifier
+TB,N,V_didRunRemotely
 RunAction
 isScreenshot
+T@"NSString",&,N,V_sessionIdentifier
 GallerySessionStart
 /System/Library/Frameworks/EventKit.framework/EventKit
 /System/Library/Frameworks/EventKit.framework/Contents/MacOS/EventKit
@@ -2264,12 +2284,12 @@ EKEventStore
 Class getEKEventStoreClass(void)_block_invoke
 WFEventKitUtilities.m
 v16@?0@"CLLocation"8
-%f,%f
 placemark || location || streetAddress
 DCMapsLink+WFLocationCoercions.m
 _MKLocationShifter
 Class get_MKLocationShifterClass(void)_block_invoke
 T@"NSObject<OS_dispatch_group>",&,N,V_group
+subtitle
 T@"NSString",C,N,V_subtitle
 contentItem
 T@"WFContentItem",R,N,V_contentItem
@@ -2278,6 +2298,8 @@ TB,R,N,V_hasContentSubtitle
 hideSubtitle
 TB,N,V_hideSubtitle
 v16@?0@"NSString"8
+superclass
+description
 link.contentkit.number
 LibArchive
 WFLibArchiveErrorDomain
@@ -2285,18 +2307,19 @@ entry
 T^{archive_entry=},R,N,V_entry
 dataProvider
 T@?,R,N,V_dataProvider
-filename
 WFLibArchive.m
+-%lu
 archive
 T^{archive=},R,N,V_archive
 -[WFArchiveWriter writeArchiveEntry:error:]
+fileURL
 -[WFArchiveReader extractArchiveToDestinationURL:error:]
 The item couldn't be extracted because the file path "%@" is invalid.
 .DS_Store
 __MACOSX
+T@"NSURL",R,C,N,V_URL
 pageTitle
 T@"NSString",R,C,N,V_pageTitle
-selectionText
 T@"NSString",R,C,N,V_selectionText
 selectionHTML
 T@"NSData",R,C,N,V_selectionHTML
@@ -2311,6 +2334,7 @@ link.contentkit.safariwebpage.selectiontext
 link.contentkit.safariwebpage.pagetitle
 link.contentkit.safariwebpage.url
 selection
+selectionText
 result
 WFSafariWebPage.m
 WFRecoveryAttempter
@@ -2322,9 +2346,6 @@ pageNavigation
 T@"WKNavigation",&,N,V_pageNavigation
 webResource
 T@"WFWebResource",&,N,V_webResource
-T@?,C,N,V_completionHandler
-superclass
-description
 -[WFWKWebViewCapturer loadWebResource:completionHandler:]
 WFWKWebViewCapturer.m
 WKWebViewConfiguration
@@ -2333,10 +2354,13 @@ Location Not Found
 MKErrorDomain
 NSString *getMKErrorDomain(void)
 WFDCMapsLinkContentItem.m
+MKMapItem
 Apple Maps URL
 %d Maps links
 Maps links
 Maps link
+galleryCategoryIdentifier
+T@"NSString",C,N,V_addToSiriBundleIdentifier
 presenter
 T@"<WFAlertPresenter>",W,N,V_presenter
 mutableButtons
@@ -2345,7 +2369,7 @@ mutableTextFieldConfigurationHandlers
 T@"NSMutableArray",&,N,V_mutableTextFieldConfigurationHandlers
 prefersItemPickerSheetPresentation
 TB,N,V_prefersItemPickerSheetPresentation
-message
+T@"NSString",C,N,V_title
 T@"NSString",C,N,V_message
 preferredStyle
 Tq,N,V_preferredStyle
@@ -2366,21 +2390,19 @@ WFPDFStreamData
 WFPDFStreamInfo
 Parent
 com.apple.property-list
-application/x-www-form-urlencoded
-application/json
 wf_combinations
 WFIsDebuggerAttached
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ContentKit/WFDebuggerUtilities.m
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ContentKit/WFDebuggerUtilities.m
 junk == 0
 CLPlacemark+WFSerialization.m
 addressDictionary
 region
-location
 CLCircularRegion
 Class getCLCircularRegionClass(void)_block_invoke
 google
 search
 place
+T@"NSURL",&,N,V_URL
 mapsURLComponents
 T@"NSArray",&,N,V_mapsURLComponents
 T@"NSString",&,N,V_location
@@ -2391,11 +2413,10 @@ Ti,R,N,V_linkType
 1m%d
 data=
 %@,%@
-hasSource
+T@"NSString",&,N,V_key
+T@"NSString",&,N,V_source
+hasErrorDomain
 errorDomain
-T@"NSString",&,N,V_errorDomain
-T@"NSString",&,N,V_errorCode
-%@ %@
 RemoteExecutionError
 REMStore
 Class getREMStoreClass(void)_block_invoke
@@ -2405,20 +2426,13 @@ host
 path
 query
 %@://%@%@%@%@
-hasDismissalType
-dismissalType
+presentationStyle
 SuspendShortcutEvent
 T@"NSString",C,N,V_presentationStyle
-actionCount
-T@"NSString",C,N,V_key
-T@"NSString",C,N,V_galleryIdentifier
+T@"NSString",C,N,V_dismissalType
 RoundingStyle
 richListTitle
 v24@?0@"WFImage"8@"NSError"16
-Unknown
-Audio
-Video
-Photo
 Photo (media type)
 %ld:%02ld
 %ld:%02ld:%02ld
@@ -2448,8 +2462,9 @@ AVMetadataKeySpace getAVMetadataKeySpaceCommon(void)
 void *AVFoundationLibrary(void)
 AVMetadataItem
 Class getAVMetadataItemClass(void)_block_invoke
+unknown
 init_file_tables
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ContentKit/External/MagicKit/libmagic/apprentice.c
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ContentKit/External/MagicKit/libmagic/apprentice.c
 p->type < FILE_NAMES_SIZE
 p - type_tbl == FILE_NAMES_SIZE
 file `%s' is too small
@@ -2554,6 +2569,7 @@ application/x-ftp-directory
 SetupGalleryShortcut
 T@"NSString",C,N,V_folderSource
 TI,N,V_icon
+T@"NSString",C,N,V_key
 CNPostalAddressStreetKey
 NSString * _Nonnull getCNPostalAddressStreetKey(void)
 CNPostalAddressSubLocalityKey
@@ -2593,20 +2609,18 @@ comgooglemaps
 citymapper
 waze
 baidumap
-searchLocation
+searchNearQuery
+startAddress
 destinationAddress
+directionsMode
 zoomLevel
-showsStreetView
-streetViewLocation
+showsTraffic
 %@: %@
 %@: Directions from %@ to %@
+hasKey
 T@"NSString",&,N,V_galleryCategoryIdentifier
 BrowseGalleryCategory
-T@"NSString",C,N,V_actionIdentifier
-destinationType
-T@"NSString",C,N,V_destinationType
 T@"NSString",C,N,V_connectionType
-T@"WFType",R,N
 possibleValues
 T@"NSArray",C,N,V_possibleValues
 possibleValuesGetter
@@ -2680,6 +2694,7 @@ T@"NSString",C,N,V_measurementUnitType
 T@"NSString",C,N,V_displayName
 B24@?0@8^B16
 typeDescription
+T@"NSString",R,C,N
 -[WFType string] must be overridden
 managedAppBundleIDs
 T@"NSSet",R,C,N,V_managedAppBundleIDs
@@ -2723,11 +2738,10 @@ dirflg
 cbll
 /maps
 maps
-T@"NSURL",&,N,V_URL
 queryDictionary
 T@"NSDictionary",C,N,V_queryDictionary
-visible
 T@"NSString",C,N,V_suggestedAutomationIdentifier
+source
 wf_sharedSession
 T@"NSURLSession",R
 wf_defaultSessionConfiguration
@@ -2755,6 +2769,8 @@ T@?,C,N,V_expectedByteCountHandler
 writtenByteCountHandler
 T@?,C,N,V_writtenByteCountHandler
 completionHandler
+T@?,C,N,V_completionHandler
+T@"NSString",R,C
 request
 WFDownloadURLTask.m
 tar.gz
@@ -2782,16 +2798,15 @@ address
 T@"NSString",R,N,V_address
 link.contentkit.emaillabel
 link.contentkit.emailaddress
-label
-mailto
 dialogType
 T@"NSString",C,N,V_dialogType
-T@"NSString",C,N,V_dismissalType
+dismissalType
+appBundleIdentifier
 T@"NSString",&,N,V_appBundleIdentifier
 T@"NSString",&,N,V_intentType
 hasSizeClass
 T@"NSString",&,N,V_sizeClass
-sizeClass
+intentType
 ShowWidgetConfigurationEvent
 centerCoordinate
 T{CLLocationCoordinate2D=dd},R,N
@@ -2865,11 +2880,14 @@ WFTripInfo.m
 v40@?0@"NSData"8@"WFFileType"16@"NSString"24@"NSError"32
 v32@?0@"UIViewPrintFormatter"8@"NSString"16@"NSError"24
 v32@?0@"WFGenericFileContentItem"8@16@?<v@?@>24
+Last Modified Date
 v32@?0@"WFGenericFileContentItem"8@16@?<v@?@"WFFileSize">24
 File Size
+message
 T@"WFMessage",R,N
 Email addresses
 @"WFEmailAddress"24@?0@"NSString"8Q16
+Phone numbers
 @"WFPhoneNumber"24@?0@"NSString"8Q16
 %d Messages
 Messages
@@ -2884,7 +2902,6 @@ sortDescriptors
 T@"NSArray",C,N,V_sortDescriptors
 slice
 T{_WFContentSlice=QQ},N,V_slice
-userInfo
 T@"NSDictionary",C,N,V_userInfo
 v32@?0@8Q16@?<v@?@@"NSError">24
 <%@: %p, predicate: %@, sortDescriptors: %@, slice: %@>
@@ -2994,7 +3011,6 @@ T@"NSString",C,N,V_autocapitalizationType
 autocorrectionType
 T@"NSString",C,N,V_autocorrectionType
 T@"NSString",C,N,V_returnKeyType
-textContentType
 T@"NSString",C,N,V_textContentType
 T@"NSString",C,N,V_textAlignment
 TB,N,V_focusImmediatelyWhenPresented
@@ -3012,12 +3028,13 @@ dateFormatStyle
 initialInsertionIndex
 focusImmediatelyWhenPresented
 textAlignment
+textContentType
 returnKeyType
 keyboardType
 prefix
 UITextContentTypeOneTimeCode
 initUITextContentTypeOneTimeCode
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ContentKit/ContentKit/WFTextFieldConfiguration.m
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ContentKit/ContentKit/WFTextFieldConfiguration.m
 UITextContentTypeNewPassword
 initUITextContentTypeNewPassword
 UITextContentTypePassword
@@ -3082,7 +3099,6 @@ Show URL (Reminder Content Item)
 Reminder Completion Date
 Reminder Due Date
 Reminder Start Date
-REMReminder
 Class getREMReminderClass(void)_block_invoke
 WFReminderContentItem.m
 /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
@@ -3093,7 +3109,6 @@ Class getREMExportingClass(void)_block_invoke
 -[WFReminderContentItem subtasks]
 %d Reminders
 Reminders
-Reminder
 Reminder (singular)
 +[WFReminderContentItem defaultList]
 +[WFReminderContentItem allLists]
@@ -3102,7 +3117,6 @@ v32@?0@"WFReminderContentItem"8@16@?<v@?@"CLLocation">24
 REMAlarmLocationTrigger
 Class getREMAlarmLocationTriggerClass(void)_block_invoke
 Reminder Location
-Has No Alarms
 hasAlarms
 Has Alarms
 parentReminder
@@ -3127,10 +3141,12 @@ Priority
 v32@?0@"WFReminderContentItem"8@16@?<v@?@>24
 Due Date
 reminder.creationDate
+Creation Date
 reminder.lastModifiedDate
 reminder.notes.string
 reminder.title.string
 High
+Medium
 v32@?0@"WFContentItem"8Q16@?<v@?@"NSDictionary"@"NSError">24
 @24@?0@"NSArray"8Q16
 com.microsoft.HTML
@@ -3275,7 +3291,6 @@ excerpt
 T@"NSString",R,C,N,V_excerpt
 numberOfWords
 TQ,R,N,V_numberOfWords
-T@"NSURL",R,C,N,V_URL
 T@"NSURL",R,C,N,V_mainImageURL
 link.contentkit.article
 mainImageURL
@@ -3320,7 +3335,6 @@ sender
 T@"WFEmailAddress",R,N,V_sender
 T@"NSArray",R,C,N,V_recipients
 T@"NSData",R,N,V_identifier
-recipients
 identifier
 Name of email
 -[WFEmail fetchContentRepresentationWithCompletionHandler:]
@@ -3352,6 +3366,7 @@ WFObjectNameProvider.m
 @"NSString"16@?0@"CLPlacemark"8
 @"NSString"16@?0@"MKMapItem"8
 @"NSString"16@?0@"REMReminder"8
+REMReminder
 @"NSString"16@?0@"EKCalendarItem"8
 @"NSString"16@?0@"PHAssetCollection"8
 Imported on %@
@@ -3385,6 +3400,7 @@ WorkflowMigration
 SpotlightSync
 Gallery
 EventTracker
+RemoteExecution
 BundledIntents
 Dialog
 Widget
@@ -3450,6 +3466,7 @@ internalRepresentation
 T@"WFRepresentation",R,N
 T@"WFContentAttributionSet",R,N,V_attributionSet
 v32@?0@"WFType"8@"NSArray"16^B24
+: %@
 @8@?0
 @"NSOrderedSet"8@?0
 All serialized item keys must have the prefix link.contentkit.
@@ -3514,13 +3531,14 @@ void *ContactsLibrary(void)
 wfFileCoder
 T@"WFFileCoder",&,N
 WFFileCoder
+searchQuery
 T@"NSString",C,N,V_searchQuery
 T@"NSString",C,N,V_searchNearQuery
+searchLocation
 T@"NSString",C,N,V_searchLocation
 T@"NSString",C,N,V_startAddress
 T@"NSString",C,N,V_destinationAddress
 TQ,N,V_directionsMode
-centerLocation
 T@"NSString",C,N,V_centerLocation
 Tq,N,V_zoomLevel
 mapType
@@ -3529,9 +3547,9 @@ TB,N,V_showsTraffic
 showsTransit
 TB,N,V_showsTransit
 TB,N,V_showsStreetView
+showsBicycling
 TB,N,V_showsBicycling
 T@"NSString",C,N,V_streetViewLocation
-property
 comparator
 T@?,R,C,N,V_comparator
 ascending
@@ -3832,7 +3850,6 @@ AElig
 /script>
   *[%@]: %@
  ("%@")
-title
    [%@]: %@
 count
 outcount
@@ -3844,7 +3861,7 @@ table
 ![%@]
 ][%@]
 ](%@)
-T@"NSString",C,N,V_title
+title
 abbreviation
 T@"NSString",C,N,V_abbreviation
 abbr
@@ -3870,7 +3887,6 @@ $1\\$2
 T@"NSBundle",R,N,V_bundle
 className
 T@"NSString",R,N,V_className
-string
 bundlePath
 Unable to load object class named %@ from bundle: %@
 Unable to load bundle %@: %@
@@ -3892,6 +3908,7 @@ Measurements
 Measurement
 measurement
 T@"NSMeasurement",R,N
+wfIdleTimerDisabled
 Tq,R,N
 extensionApplicationContextProviderDelegate
 T@"<WFExtensionApplicationContextProviderDelegate>",W,N
@@ -3902,7 +3919,6 @@ cannot open `%s' (%s)
 %ssetuid
 %ssetgid
 %ssticky
-directory
 %sdirectory
 chardevice
 %scharacter special
@@ -3932,19 +3948,15 @@ ustar
 ustar
 application/x-tar
 hasTriggerType
-intentType
+hasActionCount
+TI,N,V_actionCount
 T@"NSString",&,N,V_shortcutIdentifier
-hasActivityType
-activityType
-T@"NSString",&,N,V_automationSuggestionsTrialIdentifier
 AddAutomation
 %d Locations
 Type description; multiple locations (plural)
 Locations
 Type description; a location (singular)
 Location (singular)
-CLLocation
-CLPlacemark
 v32@?0@"WFLocationContentItem"8@16@?<v@?@>24
 Class getMKMapItemClass(void)_block_invoke
 WFLocationContentItem.m
@@ -3952,7 +3964,6 @@ WFLocationContentItem.m
 /System/Library/Frameworks/MapKit.framework/Contents/MacOS/MapKit
 void *MapKitLibrary(void)
 v32@?0@"MKMapItem"8@"NSString"16@"NSError"24
-Region
 Country
 ZIP Code
 State
@@ -3979,6 +3990,7 @@ MKPlacemark
 Class getMKPlacemarkClass(void)_block_invoke
 CLGeocoder
 Class getCLGeocoderClass(void)_block_invoke
+CLPlacemark
 Class getCLPlacemarkClass(void)_block_invoke
 v32@?0@"CLPlacemark"8@"NSString"16@"NSError"24
 MKCoordinateRegionMakeWithDistance
@@ -4059,9 +4071,9 @@ void *UIKitLibrary(void)
 currentStep
 TI,N,V_currentStep
 T@"NSString",&,N,V_addToSiriBundleIdentifier
+T@"NSString",&,N,V_galleryIdentifier
 hasSharingDestinationBundleIdentifier
 T@"NSString",&,N,V_sharingDestinationBundleIdentifier
-sharingDestinationBundleIdentifier
 ShortcutSourceUnknown
 ShortcutSourceOnDevice
 ShortcutSourceGallery
@@ -4173,10 +4185,6 @@ v32@?0@"NSString"8#16^B24
 Invalid unit type: %@
 WFMeasurementUnit.m
 q24@?0@"NSString"8@"NSString"16
-hasActionCount
-TI,N,V_actionCount
-addToSiriBundleIdentifier
-T@"NSString",&,N,V_shortcutSource
 DeleteShortcut
 MediaLibraryFiltering
 MPMediaItem
@@ -4198,6 +4206,7 @@ Movie
 iTunes U
 Audiobook
 Podcast
+Music
 v16@?0@"NSError"8
 v24@?0@"NSArray"8@"NSError"16
 v24@?0@8@"NSError"16
@@ -4252,6 +4261,7 @@ internalImageSource
 T^{CGImageSource=},R,N
 internalCGImage
 T^{CGImage=},R,N
+representationType
 Tq,R,N,V_representationType
 T@"NSData",R,C,N,V_data
 allowsAnimated
@@ -4312,6 +4322,7 @@ v12@?0B8
 %s Unable to get fetch options for library: %li, error: %@
 %s Unable to get fetch options for photo library: %@
 %s No PHAsset found for asset identifier: %@, library: %li
+%s Failed to create temporary file, errno=%{public}d
 %s Error checking backup flag at %@: %@
 %s Set backup flag at %@
 %s Error setting backup flag at %@: %@
@@ -4329,6 +4340,10 @@ v12@?0B8
 %s Failed to read file: %{error}@
 %s Failed to start accessing a security scoped resource.
 %s Cannot represent file URL, returning nil: %@
+%s Failed to create new file URL, adoptionBehavior = %{public}ld, isDirectory = %{public}d, filename = %@
+%s Failed to create temporary file URL, adoptionBehavior = %{public}ld, isDirectory = %{public}d, filename = %@
+%s Failed to copy file from %@ to %@: %{public}@
+%s Failed to replace file at %@ with %@: %{public}@
 %s Asked to open nil URL with nil bundle identifier
 %s Failed to create app launch request: %{public}@
 %s Error launching app: %{public}@
@@ -5359,7 +5374,6 @@ configureBackupFlagIfNecessary
 configureFileProtectionAtPath:
 configureBackupFlagAtURL:
 clearTemporaryFiles
-removeItemsInDirectory:
 proposedFileURLForFilename:inDirectory:isDirectory:
 proposedTemporaryFileURLForFilename:inDirectory:isDirectory:
 proposedTemporaryFileURLForFilename:isDirectory:
@@ -5396,6 +5410,7 @@ _installed
 _sharingEnabled
 _personalAutomationsEnabled
 _homeAutomationsEnabled
+_sleepEnabled
 _shortcutComplicationSlotsUsed
 _appComplicationSlotsUsed
 _averageShortcutCountPerFolder
@@ -5407,6 +5422,15 @@ _numberOfPersonalAutomationsEnabled
 _numberOfPersonalAutomationsFromSuggestionsEnabled
 _shortcutRunCount
 _appSessionCount
+_sleepShortcutsCount
+_numberOfSmallWidgets
+_numberOfMediumWidgets
+_numberOfLargeWidgets
+_numberOfWidgetsOnHomeScreen
+_numberOfWidgetsOnLoL
+_numberOfSuggestedAutomationsGenerated
+_numberOfSuggestedAutomationsGeneratedUserAlreadyHas
+_automationSuggestionsTrialIdentifier
 installed
 setInstalled:
 sharingEnabled
@@ -5415,6 +5439,8 @@ personalAutomationsEnabled
 setPersonalAutomationsEnabled:
 homeAutomationsEnabled
 setHomeAutomationsEnabled:
+sleepEnabled
+setSleepEnabled:
 shortcutComplicationSlotsUsed
 setShortcutComplicationSlotsUsed:
 appComplicationSlotsUsed
@@ -5437,6 +5463,24 @@ shortcutRunCount
 setShortcutRunCount:
 appSessionCount
 setAppSessionCount:
+sleepShortcutsCount
+setSleepShortcutsCount:
+numberOfSmallWidgets
+setNumberOfSmallWidgets:
+numberOfMediumWidgets
+setNumberOfMediumWidgets:
+numberOfLargeWidgets
+setNumberOfLargeWidgets:
+numberOfWidgetsOnHomeScreen
+setNumberOfWidgetsOnHomeScreen:
+numberOfWidgetsOnLoL
+setNumberOfWidgetsOnLoL:
+numberOfSuggestedAutomationsGenerated
+setNumberOfSuggestedAutomationsGenerated:
+numberOfSuggestedAutomationsGeneratedUserAlreadyHas
+setNumberOfSuggestedAutomationsGeneratedUserAlreadyHas:
+automationSuggestionsTrialIdentifier
+setAutomationSuggestionsTrialIdentifier:
 _localizedValue
 _backingStore
 initWithCharactersNoCopy:length:freeWhenDone:
@@ -5569,13 +5613,10 @@ _isFromAutomationSuggestion
 _numberOfDialogsPresented
 _runSource
 _automationType
-_automationSuggestionsTrialIdentifier
 runSource
 setRunSource:
 automationType
 setAutomationType:
-automationSuggestionsTrialIdentifier
-setAutomationSuggestionsTrialIdentifier:
 numberOfDialogsPresented
 setNumberOfDialogsPresented:
 isFromAutomationSuggestion
@@ -5760,8 +5801,12 @@ if_firstObjectWithIntValue:forKey:
 resizedImageWithSizeInPoints:scale:
 resizedImageWithSizeInPoints:
 timeInterval
-currentLocale
-descriptionWithLocale:
+setUsesSignificantDigits:
+setMaximumFractionDigits:
+autoupdatingCurrentLocale
+setLocale:
+setUsesGroupingSeparator:
+stringFromNumber:
 getCharacters:
 appendFormat:
 gtm_stringByEscapingHTMLUsingTable:ofSize:escapingUnicode:
@@ -6083,13 +6128,6 @@ applicationForWFApplicationContext:
 shouldReverseLayoutDirection
 initWithUserInterfaceType:
 userInterfaceType
-_numberOfLargeWidgets
-_numberOfMediumWidgets
-_numberOfSmallWidgets
-_numberOfWidgetsOnHomeScreen
-_numberOfWidgetsOnLoL
-_sleepShortcutsCount
-_sleepEnabled
 setHasInstalled:
 hasInstalled
 setHasSharingEnabled:
@@ -6102,7 +6140,6 @@ setHasShortcutComplicationSlotsUsed:
 hasShortcutComplicationSlotsUsed
 setHasAppComplicationSlotsUsed:
 hasAppComplicationSlotsUsed
-setSleepEnabled:
 setHasSleepEnabled:
 hasSleepEnabled
 setHasShortcutsCount:
@@ -6119,35 +6156,27 @@ setHasAppSessionCount:
 hasAppSessionCount
 setHasWatchShortcutCount:
 hasWatchShortcutCount
-setSleepShortcutsCount:
 setHasSleepShortcutsCount:
 hasSleepShortcutsCount
-setNumberOfSmallWidgets:
 setHasNumberOfSmallWidgets:
 hasNumberOfSmallWidgets
-setNumberOfMediumWidgets:
 setHasNumberOfMediumWidgets:
 hasNumberOfMediumWidgets
-setNumberOfLargeWidgets:
 setHasNumberOfLargeWidgets:
 hasNumberOfLargeWidgets
-setNumberOfWidgetsOnHomeScreen:
 setHasNumberOfWidgetsOnHomeScreen:
 hasNumberOfWidgetsOnHomeScreen
-setNumberOfWidgetsOnLoL:
 setHasNumberOfWidgetsOnLoL:
 hasNumberOfWidgetsOnLoL
 setHasNumberOfPersonalAutomationsEnabled:
 hasNumberOfPersonalAutomationsEnabled
 setHasNumberOfPersonalAutomationsFromSuggestionsEnabled:
 hasNumberOfPersonalAutomationsFromSuggestionsEnabled
-sleepEnabled
-sleepShortcutsCount
-numberOfSmallWidgets
-numberOfMediumWidgets
-numberOfLargeWidgets
-numberOfWidgetsOnHomeScreen
-numberOfWidgetsOnLoL
+setHasNumberOfSuggestedAutomationsGenerated:
+hasNumberOfSuggestedAutomationsGenerated
+setHasNumberOfSuggestedAutomationsGeneratedUserAlreadyHas:
+hasNumberOfSuggestedAutomationsGeneratedUserAlreadyHas
+hasAutomationSuggestionsTrialIdentifier
 generateRTFDRepresentation:fromAttributedString:forType:
 generateDataRepresentation:fromAttributedString:forType:
 generateAttributedString:fromFile:forClass:
@@ -6177,10 +6206,10 @@ rangeOfData:options:range:
 rangeOfString:
 dictionaryWithObjectsAndKeys:
 localizedStringForDate:relativeToDate:
+currentLocale
 localeIdentifier
 hasSuffix:
 localeWithLocaleIdentifier:
-setLocale:
 setDateStyle:
 setTimeStyle:
 wf_formattedStringWithDateStyle:timeStyle:relativeDateStyle:customDateFormat:includeTimeForISO8601:
@@ -6605,7 +6634,6 @@ setHasDidPresentShareSheet:
 hasDidPresentShareSheet
 setHasIsFromAutomationSuggestion:
 hasIsFromAutomationSuggestion
-hasAutomationSuggestionsTrialIdentifier
 didPresentShareSheet
 _matchInputSize
 _includeMargin
@@ -7110,7 +7138,6 @@ wf_defaultSessionConfiguration
 set_sourceApplicationBundleIdentifier:
 sessionWithConfiguration:
 currencyAmount
-stringFromNumber:
 amount
 setCurrencyCode:
 currencyCode
@@ -8473,7 +8500,7 @@ v36@0:8@16B24@28
 @"UIApplication"24@0:8@"WFApplicationContext"16
 q24@0:8@"WFApplicationContext"16
 @32@0:8q16@24
-{?="appComplicationSlotsUsed"b1"appSessionCount"b1"averageShortcutCountPerFolder"b1"folderCount"b1"numberOfLargeWidgets"b1"numberOfMediumWidgets"b1"numberOfPersonalAutomationsEnabled"b1"numberOfPersonalAutomationsFromSuggestionsEnabled"b1"numberOfSmallWidgets"b1"numberOfWidgetsOnHomeScreen"b1"numberOfWidgetsOnLoL"b1"shortcutComplicationSlotsUsed"b1"shortcutRunCount"b1"shortcutsCount"b1"sleepShortcutsCount"b1"uncategorizedShortcutCount"b1"watchShortcutCount"b1"homeAutomationsEnabled"b1"installed"b1"personalAutomationsEnabled"b1"sharingEnabled"b1"sleepEnabled"b1}
+{?="appComplicationSlotsUsed"b1"appSessionCount"b1"averageShortcutCountPerFolder"b1"folderCount"b1"numberOfLargeWidgets"b1"numberOfMediumWidgets"b1"numberOfPersonalAutomationsEnabled"b1"numberOfPersonalAutomationsFromSuggestionsEnabled"b1"numberOfSmallWidgets"b1"numberOfSuggestedAutomationsGenerated"b1"numberOfSuggestedAutomationsGeneratedUserAlreadyHas"b1"numberOfWidgetsOnHomeScreen"b1"numberOfWidgetsOnLoL"b1"shortcutComplicationSlotsUsed"b1"shortcutRunCount"b1"shortcutsCount"b1"sleepShortcutsCount"b1"uncategorizedShortcutCount"b1"watchShortcutCount"b1"homeAutomationsEnabled"b1"installed"b1"personalAutomationsEnabled"b1"sharingEnabled"b1"sleepEnabled"b1}
 @48@0:8@16@24^@32^@40
 @52@0:8@16@24@32@40B48
 @"NSMutableArray"

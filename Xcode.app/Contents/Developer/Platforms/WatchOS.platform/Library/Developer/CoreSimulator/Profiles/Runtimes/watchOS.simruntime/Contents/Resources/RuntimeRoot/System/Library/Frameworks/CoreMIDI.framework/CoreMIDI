@@ -79,7 +79,7 @@ supportsSecureCoding
 TB,R
 revision
 <MIDICIDeviceID(%p) manufacturer: %@, family: %@, model: %@, revision: %@>
-MIDI-CI Device Identification
+MIDI-CI Device Info
 <%p>
 SysexSender
 /Library/Audio
@@ -280,7 +280,7 @@ maximumSysExSize
 supports properties
 supports profiles & properties
 supports profiles
-MIDI-CI Reachable Node
+MIDI-CI Discovered Node
 responseBlock
 T@?,C,N,V_mResponseBlock
 Error: Unable to discover MIDI capabilities using client 0x%lx
@@ -741,9 +741,9 @@ UIApplicationResumedNotification
 %25s:%-5d      NOTICE: Delivering notifications to client 0x%x [Owner process: %p] (%d bytes)
 %25s:%-5d <== NOTICE: Manager is exiting discovery mode ==>
 %25s:%-5d      Discovery completed. Adding responder(s) to notification...
-%25s:%-5d driver:%p entity:%p plist:%@
-%25s:%-5d driver:%p entity:%p protocol:%d name:%@
-%25s:%-5d client:%p name:%@ protocol:%d readBlock:%p receiveBlock:%p
+%25s:%-5d [*] MIDIDestination(%p)::MIDIDestination() - driver:%p entity:%p plist:%@
+%25s:%-5d [*] MIDIDestination(%p)::MIDIDestination() - driver:%p entity:%p protocol:%d name:%@
+%25s:%-5d [*] MIDIDestination(%p)::MIDIDestination() - client:%p name:%@ protocol:%d readBlock:%p receiveBlock:%p
 %25s:%-5d MIDIClientCallbackSender_NotifyCI returned error %d
 %25s:%-5d [!] ClientProcess::DeliverCIData(ciData:%p, length:%lu)
 %25s:%-5d [+] ClientProcess::DeliverCIData(ciData:%p, length:%lu)

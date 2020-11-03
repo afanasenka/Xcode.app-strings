@@ -2068,8 +2068,8 @@ reg-update-limit
 reg-update-time-limit
 System is shutting down, not creating daemon
 identityservicesd launched (%@) user: %d
-Sep 19 2020
-23:14:19
+Oct  7 2020
+01:58:37
     (build time %s %s)
 IDSDaemon internal queue
 com.apple.homeKit-cloud-relay
@@ -17794,6 +17794,7 @@ setScoringNonce:
 setBAACert:
 setIntermediateRootCert:
 stateFlags
+_shouldUseAbsinthe
 isAbsintheV4Enabled
 _isBAAOptionEnabledByServerBag
 isBAACertDisabled
@@ -17808,6 +17809,7 @@ activateWithValidationData:serverKey:scoringNonce:
 deviceScoreWithCompletion:
 isUsingAbsintheV3
 _shouldUseAbsintheV4
+_shouldUseBAAOnly
 _shouldUseBAACertOption
 _shouldUseDebugPiscoLogging
 _deviceAbsintheUDID

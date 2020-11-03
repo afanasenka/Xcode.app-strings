@@ -513,6 +513,7 @@ SpeakerIDToGroupID
 createSpeaker
 RoomID
 OwnedGroupID
+HomeTheaterCluster
 <<<< APSyncSpeakerManager >>>> %s: [%p] metadata -> %s
 setSpeakerName: Deleted speaker ID: 
 setSpeakerName: Invalid speaker ID: 

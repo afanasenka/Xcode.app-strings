@@ -230,12 +230,13 @@ Stopwatch server changed state. Flagged app for needing a new snapshot.
 [Sound] set current wakeup alarm sound volume to %{public}f.
 [Sound] MTAlarm.sound.soundVolume is nil. use system volume instead.
 [Sound] regular alarm tone will be played.
-rendering alarm title: wake up date is %@
+rendering alarm title: today is %{public}@, wakeUp date is %{public}@ and is singleDayOverride? %{public}@
 wake up day of the week is %@
-rendering detailed alarm title: wake up date is %@ and time of the day enum is %lu
-failed to deep link to sleep app from %@.
+rendering detailed alarm title: today is %{public}@, wakeUp date is %{public}@ and time of the day enum is %{public}lu
+wake up day of the week is %{public}@
+failed to deep link to sleep app from %{public}@.
 failed to retrieve current sleep schedule with error: %{public}@
-sleep alarm status is set to %ld
+sleep alarm status is set to %{public}ld
 HKSPSleepScheduleOccurrence is not null but the associated wakeUpComponents is null.
 Using an alert power assertion timeout of %{public}d
 printing categoryID: %{public}@, allowSnooze: %{public}d

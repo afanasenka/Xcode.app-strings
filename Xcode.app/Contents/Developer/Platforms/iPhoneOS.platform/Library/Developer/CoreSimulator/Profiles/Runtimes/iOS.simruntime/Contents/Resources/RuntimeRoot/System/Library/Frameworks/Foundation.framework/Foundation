@@ -2021,6 +2021,7 @@ Key path: %@
 Observed object: %@
 Change: %@
 Context: %p
+Cannot remove an observer <%@ %p> for the key path "%@" from <%@ %p> because it is not registered as an observer.
 [<%@ %p> addObserver:<%@ %p> forKeyPath:@"%@" options:%lu context:%p] was sent to an object that is not KVC-compliant for the "%@" property.
 [<%@ %p> addObserver:forKeyPath:options:context:] is not supported. Key path: %@
 [<%@ %p> removeObserver:forKeyPath:context:] is not supported. Key path: %@
@@ -5857,7 +5858,6 @@ failure: %{public}@
 NSFileProviderMessenger's proxy factory returned an error: %{public}@
 Could not load lexicon at %@ (error: %@)
 KVO failed to allocate class pair for name %s, automatic key-value observing will not work for this class
-Cannot remove an observer <%{public}@ %p> for the key path "%{public}@" from <%{public}@ %p> because it is not registered as an observer.
 Class '%{public}@' unexpectedly found in possibly-altered archive. -[%{public}@ classForCoder] is inherited from a superclass and should likely have replaced this object at encode time. To be allowed in archives, it should override -classForCoder itself.
 Creating path from components (%{private}@, lengths: %@) resulted in an embedded NUL character
 Appending path component %{private}@ (length: %lu) to string %{private}@ (length: %lu) resulted in an embedded NUL character

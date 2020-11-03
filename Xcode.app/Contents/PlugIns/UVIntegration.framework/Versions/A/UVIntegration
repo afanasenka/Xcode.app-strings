@@ -1,5 +1,4 @@
-@(#)PROGRAM:UVIntegration  PROJECT:Ultraviolet-17517.1
-ffffF
+@(#)PROGRAM:UVIntegration  PROJECT:Ultraviolet-17521
 UVIntegration
 LocalMacPlatform
 CGImage
@@ -581,13 +580,22 @@ bundle identifier:
 " did not launch on "
 Failed to launch app "
 " in reasonable time
-/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17517.1/IDE/MacOSPreviewUpdatePreparer.swift
+/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17521/IDE/MacOSPreviewUpdatePreparer.swift
 prepareToLoad(products:)
  wasTransferred 
 makeProductsTransferrer()
 macOS agent %@ is NOT sandboxed, will not transfer thunks to data container
 macOS agent %@ is sandboxed, attempting to transfer thunks to data container
 v24@?0@"NSURL"8@"NSError"16
+com.apple.dt.UVInstallHelperContainer
+/usr/bin/codesign
+--entitlements=-
+host_process_code_signature.txt
+XPCServices/UVInstallHelper.xpc/Contents/MacOS/UVInstallHelper
+install_helper_code_signature.txt
+Install Helper Info
+Container Helper Path: 
+XPC Service Path: 
 Failed to get the location of the sandbox container for 
  is sandboxed but Xcode could not find the proper data container location
 /Developer/Library/PrivateFrameworks
@@ -733,13 +741,13 @@ To preview home screen extensions, run Xcode on a system with at least macOS 11.
 Home screen extensions cannot be previewed on 
 codesign_allocate
 my mac (mac catalyst)
-Swift/x86_64-apple-macos.swiftinterface
+Swift/NativeDictionary.swift
 Fatal error
 Duplicate values for key: '
 Could not get a toolchain registry
 Could not get an active toolchain
 Could not get any usable toolchains
-/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17517.1/IDE/SimDeviceSet+Additions.swift
+/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17521/IDE/SimDeviceSet+Additions.swift
 createDeviceAsync(with:runtime:name:completionQueue:)
 v24@?0@"NSError"8@"SimDevice"16
 Created a device but also got an error: %@
@@ -1074,6 +1082,9 @@ domain
 mainScreenSize
 environment
 framebufferMaskURL
+bundleWithIdentifier:
+arguments
+bundleURL
 userInfo
 initWithInt:
 copyItemAtURL:toURL:error:
@@ -1628,8 +1639,17 @@ _pGG
 _pGAC_pIegno_
 _pGG
 _pGGAE_pG
+ySS4udid_SS4typeSS5statetG
 SS4udid_SS4typeSS5statet
+ySS3key_So13SimDeviceTypeC5valuetG
 SS3key_So13SimDeviceTypeC5valuet
+_pGG
+7version_So6DVTSDKC3sdktG
+ySo9SimDeviceCG
+_pGGG
+ySo10SimRuntimeCG
+ySo13SimDeviceTypeCG
+yypG
 So12SimDeviceSetC
 So17SimServiceContextC
 $s13UVIntegration26AnySimulatorServiceContextP
@@ -1723,15 +1743,12 @@ _pAH_pGGAAy
 yALGADyALGGALGGGALG
 _pAC_pGG
 _pSgG
-ySS4udid_SS4typeSS5statetG
 ySnySiGG
 _pGG
 _pGG
 _pGG
 _pGG
 SaySS3key_So13SimDeviceTypeC5valuetG
-ySS3key_So13SimDeviceTypeC5valuetG
-_pGG
 _pGGIego_
 _pGG
 _pGG
@@ -1742,15 +1759,14 @@ _pGG
 ySo9SimDeviceC
 _pGGACy
 AF_pGG
-7version_So6DVTSDKC3sdktG
 ySo12SimDeviceSetCG
 ySo9SimDeviceC
 _pGGAGG
 ySo9SimDeviceC
 _pGG
-ySo9SimDeviceCG
 ySo10SimRuntimeCG
 ShySSG
+SaySo9SimDeviceCG
 ySo17SimServiceContextCG
 _pGGG
 yAAy
@@ -1762,10 +1778,6 @@ yAAyAAy
 ySay
 _pGGGAHG
 ySayAGGGGALGAEySayytGAF_pGGAGG
-_pGGG
-ySo10SimRuntimeCG
-ySo13SimDeviceTypeCG
-yypG
 _pGG
 _pGG
 _pGG

@@ -2366,8 +2366,8 @@ Unplugged!
 void CLLog::logHeader()
 CoreLocation-%s
 locationd was compiled on %s at %s
-Sep 20 2020
-23:54:28
+Oct  4 2020
+22:53:30
 %s @ system model %s / version %s
 /usr/libexec/locationd @ system model %s / version %s
 IOPlatformSerialNumber: %s

@@ -33,6 +33,7 @@ com.apple.FullKeyboardAccess
 com.apple.news
 com.apple.sidecar
 com.apple.HeadBoard
+com.apple.chronod
 com.apple.Preferences
 com.apple.PineBoard
 com.apple.nanobuddy
@@ -64,7 +65,7 @@ user with identifier '%lu'
 ProductVersion
 v32@?0@"NSString"8Q16^B24
 apple-internal-install
-/Library/Caches/com.apple.xbs/Sources/AccessibilityFrameworks_Sim/AccessibilityFrameworks-2883
+/Library/Caches/com.apple.xbs/Sources/AccessibilityFrameworks_Sim/AccessibilityFrameworks-2885.1
 AccessibilityFrameworks-
 1234567890.-
 Accessibility
@@ -1411,6 +1412,7 @@ targetClass
 T#,W,N,V_targetClass
 warnAboutUnknownSelectors
 TB,N,V_warnAboutUnknownSelectors
+activeInterfaceOrientation
 AXCarouselServerShowHearingControlsNotification
 v16@?0r^{CGPathElement=i^{CGPoint}}8
 v44@?0i8^{CGPoint=dd}12Q20Q28^B36
@@ -2079,6 +2081,7 @@ LocCaptionShowLocalizedString
 LaserZoomPanningStyle
 AssistiveTouchAlwaysShowMenu
 AssistiveTouchOpenMenuSwaggle
+AssistiveTouchMouseBehavesLikeFinger
 AssistiveTouchMouseKeys
 AssistiveTouchMouseKeysOptionToggle
 AssistiveTouchMouseKeysUseMainKeyboardKeys
@@ -2556,6 +2559,7 @@ assistiveTouchSavedGestures
 laserEnabled
 laserZoomPanningStyle
 TQ,N
+assistiveTouchMouseBehavesLikeFinger
 assistiveTouchMouseKeysEnabled
 assistiveTouchMouseKeysOptionToggleEnabled
 assistiveTouchMouseKeysUseMainKeyboardKeys
@@ -3798,6 +3802,8 @@ couldn't get async result for message %@: %@
 Timed out trying to %@ assertion with type: %@ identifier: error: %@. will retry.
 Couldn't %@ assertion with type: %@ identifier: %@ error: %@. Giving up!
 AX SystemApp: Error: %{public}@
+not connecting to server, no client yet
+not connecting to server, no client callback port yet
 failed to start ipc server due to: %@
 Registering FKA pid: %d
 Could not ask backboard server about GAX Availability: %{public}@
@@ -5356,6 +5362,7 @@ _commonInit
 compact
 allClients
 serverPort
+clientIdentifier
 _registerWithServer
 shouldRegisterCallbackSourceOnMainRunloop
 _sendRegistrationMessageWithRetries:
@@ -5387,12 +5394,12 @@ establishConnectionWithTimeout:completion:
 _descriptionForMachError:
 setServerPort:
 timeout
-clientIdentifier
 setUsesPerPidLookup:
 setPid:
 setPortDeathAccessQueue:
 _serverPortLock
 _assignedServerMachPort
+_clientIdentifierLock
 _portDeathHandler
 _timeout
 _clientIdentifier
@@ -6791,6 +6798,7 @@ _identifierOfCAContext
 laserZoomPanningStyle
 assistiveTouchAlwaysShowMenuEnabled
 assistiveTouchOpenMenuSwaggleEnabled
+assistiveTouchMouseBehavesLikeFinger
 assistiveTouchMouseKeysEnabled
 assistiveTouchMouseKeysOptionToggleEnabled
 assistiveTouchMouseKeysUseMainKeyboardKeys
@@ -7228,6 +7236,7 @@ setLaserZoomPanningStyle:
 setAssistiveTouchAlwaysShowMenuEnabled:
 setSupportsAdvancedDisplayFilters:
 setAssistiveTouchOpenMenuSwaggleEnabled:
+setAssistiveTouchMouseBehavesLikeFinger:
 setAssistiveTouchMouseKeysEnabled:
 setAssistiveTouchMouseKeysOptionToggleEnabled:
 setAssistiveTouchMouseKeysUseMainKeyboardKeys:
@@ -8309,11 +8318,14 @@ _mouseMatching
 mainRunLoop
 _handleMouseButtonEvent:
 mouseSettingsDidChange
+endFilteringButtonEvents
 mouseDevicesChanged:
 discoveredMouseDevices
 isEqualToDictionary:
 mouseCustomActionsDidChange:
+_finishHandlingMouseButtonEvent:buttonMask:creatorHIDServiceClient:
 mouseEventListener:customizableMouse:interceptedMouseButton:
+beginFilteringButtonEvents
 currentDevicesHaveAssistiveTouchCustomActions
 _deviceMonitor
 _eventProcessor
@@ -8541,10 +8553,10 @@ f16@0:8
 v20@0:8f16
 ^{__CFMachPort=}
 @"NSLock"
+{os_unfair_lock_s="_os_unfair_lock_opaque"I}
 v24@0:8^{__IOHIDDevice=}16
 @"NSRunLoop"
 ^{__IOHIDManager=}
-{os_unfair_lock_s="_os_unfair_lock_opaque"I}
 @"<AXDeviceMonitorDelegate>"
 @"AXMIDIDeviceEntity"
 v48@0:8@16@24d32@?40
@@ -8760,6 +8772,7 @@ Q40@0:8^{?=Q^@^Q[5Q]}16^@24Q32
 @48@0:8q16@24@32@40
 @"AXMIDIEvent"
 v24@0:8@"AXDeviceMonitor"16
+v40@0:8@16d24^{__IOHIDServiceClient=}32
 @"AXDeviceMonitor"
 @"AXEventProcessor"
 @24@0:8^v16

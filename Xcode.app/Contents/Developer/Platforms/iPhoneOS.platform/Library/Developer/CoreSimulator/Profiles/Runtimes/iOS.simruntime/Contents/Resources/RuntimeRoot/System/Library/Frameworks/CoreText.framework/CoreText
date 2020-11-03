@@ -2603,7 +2603,6 @@ NotoSansSharada-Regular
 NotoSansKhojki-Regular
 NotoSansMultani-Regular
 NotoSansKhudawadi-Regular
-NotoSansGrantha-Regular
 NotoSansNewa-Regular
 NotoSansTirhuta-Regular
 NotoSansSiddham-Regular
@@ -3648,9 +3647,9 @@ v24@0:8@"NSCoder"16
 @"NSMutableDictionary"
 333?
 333?
-<@xI
-<@XI
-<@xG
+<@hI
+<@HI
+<@hG
 zspo
 zspo
 zspo

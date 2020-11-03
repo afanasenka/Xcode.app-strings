@@ -38,7 +38,7 @@
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R569</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>
@@ -1438,6 +1438,7 @@ mainDisplayDigitizerService
 T@"BKIOHIDService",R,&
 mainDisplayPencilDigitizerService
 v16@?0@"BKDigitizerArbiterInfo"8
+EuwCLwMXh+X5LErHKwvuIw
 BKDigitizerInfoArbiterDispatchQueue
 scheduler
 T@"BKDigitizerEventSchedulerBase",&,N,V_scheduler

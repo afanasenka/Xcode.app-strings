@@ -1402,6 +1402,10 @@ B16@?0@"WKBackForwardListItem"8
 ___IndexedDB
 Cookies
 /Cookies.binarycookies
+NetworkCache
+OfflineWebApplicationCache
+MediaCache
+MediaKeys
 _UIViewServiceHostWillEnterForegroundNotification
 _UIViewServiceHostDidEnterBackgroundNotification
 Audio Recording
@@ -1553,9 +1557,6 @@ downloading
 TB,N,GisDownloading,V_downloading
 tappedDownloadBlock
 T@?,C,N,V_tappedDownloadBlock
-_SFDeveloperPreferencesDidChangeNotification
-com.apple.webinspectord
-RemoteAutomationEnabled
 allowsRemoteAutomation
 v48@?0{CGRect={CGPoint=dd}{CGSize=dd}}8@"UIView"40
 v16@?0@"UIBarButtonItem"8
@@ -2434,6 +2435,8 @@ ipodtouch
 ipad%@%@
 iphone.homebutton
 iphone
+textformat.size.larger
+textformat.size.smaller
 T@"WebBookmark",&,N,V_bookmark
 leadingImage
 T@"UIImage",&,N,V_leadingImage
@@ -5647,6 +5650,7 @@ setShouldAutoFillPasswordsFromKeychain:
 boolRestrictionForFeature:
 initWithRootViewController:
 indexPathsForSelectedRows
+isKeychainSyncEnabled
 _deletePasswordsAtIndexPaths:
 setEnabled:
 _updateDeleteButton
@@ -6801,6 +6805,7 @@ fontDescriptorWithSymbolicTraits:
 defaultParagraphStyle
 setLineSpacing:
 setLineBreakMode:
+_messageLabelFont
 initWithString:attributes:
 setAttributedText:
 systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:
@@ -6821,6 +6826,9 @@ setOpenButton:
 openActionHandler
 setOpenActionHandler:
 _separator
+_titleTopConstraint
+_messageTopConstraint
+_messageBottomConstraint
 _icon
 _messageLabel
 _openButton
@@ -7925,6 +7933,7 @@ webui_defaults
 webui_trackerProtectionEnabled
 _flushKnownTrackingThirdParties
 _updateKnownTrackingThirdPartiesWithCompletionHandler:
+distantFuture
 setByAddingObjectsFromArray:
 getKnownTrackingDomainsForWebView:after:before:completionHandler:
 _clearLoadedSubresourceDomainsFor:
@@ -9365,6 +9374,12 @@ setSourceApplicationBundleIdentifier:
 setStandaloneApplicationURL:
 _canonicalPageURL
 setAlternativeServicesStorageDirectory:
+_setCacheStorageDirectory:
+_setServiceWorkerRegistrationDirectory:
+setNetworkCacheDirectory:
+setApplicationCacheDirectory:
+setMediaCacheDirectory:
+setMediaKeysStorageDirectory:
 websiteDataStoreConfiguration
 safari_dataStoreWithConfiguration:
 webViewConfiguration
@@ -9648,8 +9663,6 @@ stringByResolvingSymlinksInPath
 systemDataContainerURLWithAppBundleID:
 _webDataStoreRootURLForHSTSStorage:
 _ensureWebsiteDataStoreURL:cookieStoreURL:
-_setCacheStorageDirectory:
-_setServiceWorkerRegistrationDirectory:
 checkInAppBundleIDIfNeeded:
 _isUsedForAuthentication
 findOnPageView
@@ -9869,8 +9882,6 @@ setTappedDownloadBlock:
 _downloading
 _downloadButton
 _tappedDownloadBlock
-initWithSuiteName:
-synchronize
 allowsRemoteAutomation
 setAllowsRemoteAutomation:
 setQuickLookDocumentViewDelegate:
@@ -10054,6 +10065,7 @@ _dialogController
 _UUID
 launchedToTest
 _initializeSettingsDictionaryIfNeeded
+synchronize
 _numberForKey:windowUUID:
 _stringForKey:windowUUID:
 setValue:forKey:
@@ -12266,7 +12278,6 @@ setHairlineTopSpacing:
 _updateTopConstraints
 titleLabelTopSpacing
 hairlineTopSpacing
-_titleTopConstraint
 _hairlineTopConstraint
 _bodyLabel
 _titleLabelTopSpacing
@@ -13605,7 +13616,6 @@ _extension
 _imageData
 currentRunLoop
 getCFRunLoop
-distantFuture
 runMode:beforeDate:
 _imageOnlyDocumentData
 _documentUTI

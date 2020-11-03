@@ -948,11 +948,15 @@ _localeMetricDidChange:
 removeObserver:forKeyPath:
 settingsWithSettings:
 _volumeFromDefaults
+voiceVolume
 setVoiceVolume:
 currentLocale
 _navigation_distanceUsesMetricSystem
+distanceUnits
 setDistanceUnits:
+pauseSpokenAudio
 setPauseSpokenAudio:
+beepBeforeInstruction
 setBeepBeforeInstruction:
 stringForKey:
 setVoiceLanguage:
@@ -964,7 +968,7 @@ setIsCarPlay:
 _isCarPlay
 _settings
 _userDefaults
-applicationProxyForIdentifier:
+initWithBundleIdentifier:allowPlaceholder:error:
 dataContainerURL
 setCurrentLocation:
 location
@@ -1360,7 +1364,6 @@ _bestModeForRequest:
 setUseSimulation:
 _clearState
 _teardownNavigationProvider
-_beginListeningForIncomingMessages
 hasFeedbackType
 _navigationService:willChangeFromState:toState:
 _updateCompanionNearbyStatus:
@@ -1704,7 +1707,6 @@ openForClient:
 setShouldUseGuidanceEventManager:
 changeSettings:
 closeForClient:
-voiceVolume
 volumeForTransportType:
 repeatCurrentGuidance:
 stopCurrentGuidancePrompt
@@ -2975,6 +2977,7 @@ GeneralMapsWidgetMaximumSuggestionsRoutingRequestsPerDay
 LagunaBeachShouldTreatEmptyLookupResponseAsDeleted
 __invalid__
 NavigationSettingsMonitorDidUpdateSettings
+@"MNMutableSettings"8@?0
 MNDefaultBeepBeforeInstruction
 VoiceGuidanceLanguage
 Off Volume

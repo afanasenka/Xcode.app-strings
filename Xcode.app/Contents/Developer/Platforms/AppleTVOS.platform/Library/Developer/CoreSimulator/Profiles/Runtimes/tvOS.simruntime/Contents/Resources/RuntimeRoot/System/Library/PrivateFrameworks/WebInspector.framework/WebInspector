@@ -777,7 +777,6 @@ class
 accessor
 normal
 internal
-_SFDeveloperPreferencesDidChangeNotification
 com.apple.webinspector
 com.apple.webinspectord.disabled
 com.apple.webinspectord.availability_check
@@ -786,7 +785,6 @@ RemoteInspectorEnabled
 WIRApplicationDictionaryKey
 WIRDriverDictionaryKey
 com.apple.webinspectord.automatic_inspection_enabled
-RemoteAutomationEnabled
 WIRApplicationGetListingMessage
 WIRIndicateMessage
 WIRIndicateEnabledKey
@@ -2043,13 +2041,10 @@ setCertificate:
 certificate
 _setAutomaticInspectionGlobalState:
 _handleApplicationListenConnectionEvent:
-_developerPreferencesChanged
-addObserver:selector:name:object:
 relayInitialize:
 standardUserDefaults
 _addPendingClientConnection:
 _applicationUpdated:
-_reportCurrentStateToAllClients
 allValues
 _reportCurrentStateToClient:
 _finalizePendingClientConnection:withIdentifier:
@@ -2099,6 +2094,7 @@ setup
 shutdownIfDisabled
 addPendingClientConnection:
 updateApplication:
+_reportCurrentStateToAllClients
 _rpc_debuggerWillSleep:
 _rpc_debuggerDidWake:
 applicationConnections

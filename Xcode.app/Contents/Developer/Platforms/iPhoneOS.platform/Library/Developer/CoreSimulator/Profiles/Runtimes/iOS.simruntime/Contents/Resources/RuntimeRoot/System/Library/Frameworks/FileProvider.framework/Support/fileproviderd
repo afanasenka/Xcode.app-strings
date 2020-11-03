@@ -6283,7 +6283,7 @@ Iterator
 <string>iPhoneSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>268.19</string>
+<string>268.21</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
@@ -6293,7 +6293,7 @@ Iterator
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B60x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

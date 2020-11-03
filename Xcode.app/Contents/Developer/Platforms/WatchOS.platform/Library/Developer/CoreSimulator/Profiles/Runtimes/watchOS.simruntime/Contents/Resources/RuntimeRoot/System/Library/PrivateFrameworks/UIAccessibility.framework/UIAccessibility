@@ -1459,12 +1459,11 @@ _image
 actionIndex
 setActionIndex:
 _actionIndex
+voiceOverOptionsIncludingElementsFromOpaqueProviders:honorsGroups:
 options
-_leafNodePredicateHonoringGroupsForContainer:
-setLeafNodePredicate:
-voiceOverOptionsIncludingElementsFromOpaqueProviders:
-leafNodePredicate
 isAccessibilityOpaqueElementProvider
+_accessibilityIsGroupedParent
+setLeafNodePredicate:
 setShouldReturnScannerGroups:
 setShouldOnlyIncludeElementsWithVisibleFrame:
 setShouldIncludeStatusBarWindow:
@@ -1480,15 +1479,12 @@ setSorted:
 direction
 shouldOnlyIncludeElementsWithVisibleFrame
 shouldReturnScannerGroups
+leafNodePredicate
 forSpeakScreen
 shouldUseAllSubviews
 description
 ax_filteredArrayUsingBlock:
-shouldGroupAccessibilityChildren
-_accessibilityOpaqueElementParent
-_accessibilityIsGroupedParent
-optionsHonoringGroupsForContainer:
-defaultVoiceOverOptionsHonoringGroupsForContainer:
+defaultMacCatalystPlatformOptions
 defaultSwitchControlOptions
 defaultSpeakScreenOptions
 shouldIncludeKeyboardObscuredElements
@@ -1920,6 +1916,7 @@ _accessibilityVisibleFrame:
 _accessibilityFindUnsortedSubviewDescendantsPassingTest:
 setAccessibilityContainer:
 setAccessibilityDelegate:
+shouldGroupAccessibilityChildren
 _accessibilityServesAsContainingParentForOrdering
 setNeedsFocusUpdate
 updateFocusIfNeeded
@@ -1933,6 +1930,7 @@ preferredFocusedView
 focusGroupIdentifier
 canBecomeFocused
 didHintFocusMovement:
+_accessibilityOpaqueElementParent
 _accessibilityMoveFocusToNextOpaqueElementForTechnology:direction:searchType:range:shouldScrollToVisible:honorsGroups:
 _accessibilityIsGuideElement
 accessibilityContainerElements
@@ -2822,6 +2820,7 @@ _accessibilityKeyCommandsShouldOverrideKeyCommands
 _accessibilityIsSupportedGestureRecognizer
 _accessibilitySortCollectionViewLogically
 _accessibilityShouldAvoidScrollingCollectionViewCells
+_accessibilityCollectionViewCellScrollShouldInformScrollDelegate
 _accessibilityDescendantElementAtIndexPathIsValid:
 _accessibilitySetUserDefinedScrollAcrossPageBoundaries:
 _accessibilityScrollAcrossPageBoundaries
@@ -3292,8 +3291,6 @@ activeKeyboardForScreen:
 inputAccessoryView
 filename
 pathExtension
-size
-CGImage
 setIsAccessibilityElement:
 windows
 longValue
@@ -3634,8 +3631,7 @@ v24@0:8Q16
 {CGPoint=dd}16@0:8
 v32@0:8{CGPoint=dd}16
 B24@0:8@16
-@20@0:8B16
-@?24@0:8@16
+@24@0:8B16B20
 q16@0:8
 v24@0:8q16
 @?16@0:8
@@ -3752,6 +3748,7 @@ B28@0:8q16B24
 :24@0:8q16
 I16@0:8
 v32@0:8Q16@?24
+@20@0:8B16
 B20@0:8i16
 Q24@0:8q16
 @24@0:8Q16
@@ -3779,7 +3776,6 @@ v28@0:8B16@20
 @48@0:8q16q24B32@36B44
 @36@0:8B16@20B28B32
 @76@0:8@16q24q32B40{_NSRange=QQ}44B60B64^@68
-@24@0:8B16B20
 @24@0:8#16
 @28@0:8@?16B24
 @32@0:8@?16@?24

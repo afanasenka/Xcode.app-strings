@@ -3730,6 +3730,7 @@ Failed to update AuthKit account! Error: %@
 We are running in recovery. Skip ACAccount update.
 This auth is ephemeral. Skip ACAccount update.
 This is a proxy auth. Skip ACAccount update.
+This is a child account creation flow. Skip ACAccount update.
 Starting to teardown follow ups
 This device cannot be an authorization endorser discovery.
 Authorization Endorser discovery deactivated.
@@ -4773,7 +4774,7 @@ softlink:o:fw:ApplePushService
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B60x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

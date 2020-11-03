@@ -520,10 +520,9 @@ armv7
 armv7s
 arm64
 arm64e
-((0 && "Invalid module arch")) != (0)
 allocate
 ERROR: %s failed to deallocate 0x%zx (%zd) bytes at address %p
-/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/clang_compiler_rt/clang-1200.0.32.6/compiler-rt/lib/sanitizer_common/sanitizer_posix.cpp
+/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/clang_compiler_rt/clang-1200.0.32.27/compiler-rt/lib/sanitizer_common/sanitizer_posix.cpp
 (("unable to unmap" && 0)) != (0)
 ((IsPowerOfTwo(size))) != (0)
 allocate noreserve
@@ -697,9 +696,10 @@ Unsupported specifier in stack frame format: %c (0x%zx)!
 x86_64
 armv7k
 arm64_32
-/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/clang_compiler_rt/clang-1200.0.32.6/compiler-rt/lib/sanitizer_common/sanitizer_symbolizer.cpp
+((0 && "Invalid module arch")) != (0)
+/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/clang_compiler_rt/clang-1200.0.32.27/compiler-rt/lib/sanitizer_common/sanitizer_symbolizer.cpp
 ((start_hook_ == 0 && end_hook_ == 0)) != (0)
-/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/clang_compiler_rt/clang-1200.0.32.6/compiler-rt/lib/sanitizer_common/sanitizer_symbolizer_libcdep.cpp
+/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/clang_compiler_rt/clang-1200.0.32.27/compiler-rt/lib/sanitizer_common/sanitizer_symbolizer_libcdep.cpp
 ((symbolizer_)) != (0)
 modules_.size() > 0
 ((function_name)) != (0)

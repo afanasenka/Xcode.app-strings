@@ -5314,7 +5314,6 @@ invalid wrapS value: %d
 invalid wrapT value: %d
 SKScene
 SKTexture
-GLKTextureInfo
 -[SCNMaterialProperty setContentsTransform:]
 <%@: %p | contents=%@>
 <data %p>
@@ -5508,8 +5507,8 @@ struct OsdInputVertexType {
     metal::packed_float2 texcoord
     metal::packed_float4 color; 
 #define OSD_USER_VARYING_DECLARE                             
-float2 texcoord
-float4 color; 
+half2 texcoord
+half4 color; 
 #define OSD_USER_VARYING_DECLARE_PACKED                             
 metal::packed_float2 texcoord
 metal::packed_float4 color; 
@@ -5526,6 +5525,7 @@ out.color = in.color;
 , UV.x), UV.y); 
 out.color = mix(mix(a.color, b.color, UV.x), mix(c.color, d.color, UV.x), UV.y); 
 #define OSD_USER_VARYING_DECLARE_ATTRIBUTE                   
+float2 texcoord
  [[attribute(
 )]]; 
 float4 color [[attribute(
@@ -20444,7 +20444,7 @@ Warning: C3DUnifyNormalsFromGeometry can only process triangles and polygons
 Warning: C3DUnifyNormalsFromGeometry empty indices
 Error: failed to load audio source at %@
 Error: can't archive audio data directly
-Welcome to SceneKit 556 (Sep 21 2020 04:33:53)
+Welcome to SceneKit 557.1 (Oct  2 2020 07:22:24)
 Error: can't share a SCNPhysicsField is already attached to a SCNNode
 Error: object %@ doesn't conform to the copying protocol
 Error: invalid ref count for entity %@
@@ -22770,6 +22770,7 @@ supportsMemorylessRenderTargets
 supportsProgrammableBlending
 supportsMSAAStencilResolve
 supportsTextureSampleCount:
+supportsDepthClipMode
 defaultUICatalogForBundle:
 namedTextureWithName:scaleFactor:
 size
@@ -25212,6 +25213,7 @@ grainTexture
 setGrainTexture:
 exposureOffset
 focalBlurRadius
+_checkSettingsConsistency
 focalLength
 setFocalLength:
 aperture
@@ -25278,7 +25280,6 @@ _whiteBalanceTint
 _screenSpaceAmbientOcclusion
 _grainTexture
 _grainSlice
-materialAttachmentWithGLKTextureInfo:
 glID
 setGlID:
 context

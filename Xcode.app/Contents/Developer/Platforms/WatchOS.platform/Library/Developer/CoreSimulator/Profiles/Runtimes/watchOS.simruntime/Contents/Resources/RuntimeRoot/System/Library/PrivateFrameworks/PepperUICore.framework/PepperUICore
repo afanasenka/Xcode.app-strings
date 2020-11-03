@@ -883,6 +883,8 @@ quickboardPresentingViewController
 T@"UIViewController",W,N,V_quickboardPresentingViewController
 shouldDismissOnTextValueChanged
 TB,N,V_shouldDismissOnTextValueChanged
+excludedFromScreenCapture
+TB,N,V_excludedFromScreenCapture
 v16@?0^v8
 applicationEnvironmentDiffInspector
 T@"PUICApplicationSceneSettingsDiffInspector",&,N,V_applicationEnvironmentDiffInspector
@@ -6557,6 +6559,7 @@ fullBleed
 TB,N,V_fullBleed
 platterEnabled
 TB,N,V_platterEnabled
+T@"NSString",N,V_identifier
 itemLabel
 T@"UILabel",R,N
 layoutDirection
@@ -10463,6 +10466,8 @@ quickboardPresentingViewController
 presentFromViewController:
 setQuickboardPresentingViewController:
 textInputContext
+excludedFromScreenCapture
+_setViewController:excludedFromScreenCapture:
 setQuickboardRemoteViewController:
 quickboardRemoteViewController
 buttonTapAssertion
@@ -10470,6 +10475,8 @@ quickboardViewControllerTextInputValueCancelled:
 initWithButtons:completion:
 setButtonTapAssertion:
 presentRemoteQuickboardViewControllerWithTextInputContext:connectionHandler:
+disableUpdateMask
+setDisableUpdateMask:
 disconnect
 deactivate
 _cleanupQuickboard
@@ -10506,9 +10513,11 @@ isSecureTextEntry
 passwordRules
 setPasswordRules:
 present
+setExcludedFromScreenCapture:
 setTextInputContext:
 setShouldDismissOnTextValueChanged:
 _shouldDismissOnTextValueChanged
+_excludedFromScreenCapture
 _textInputContext
 _quickboardPresentingViewController
 _quickboardRemoteViewController

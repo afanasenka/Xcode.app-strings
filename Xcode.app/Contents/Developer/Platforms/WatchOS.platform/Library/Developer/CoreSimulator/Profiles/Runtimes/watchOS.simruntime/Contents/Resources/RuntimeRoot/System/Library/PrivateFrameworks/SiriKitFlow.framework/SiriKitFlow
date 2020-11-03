@@ -400,6 +400,7 @@ SiriKitContinueInAppDialogFlow
 SiriKitContinueInAppHandoffToCompanionFlow
 SiriKitContinueInAppHandoffWithDialogFlow
 SiriKitContinueInAppAutoPunchOutFlow
+State
 FlowLocator
 RCHDelegateToRCHFlowStrategyAdapter
 AdapterError
@@ -486,7 +487,7 @@ NLContextOnlyToRequestTCCAcceptanceFlowStrategyAdapter
 SiriKitRequestTCCAcceptanceFlowNLOnlyStrategy
 ServerHandledTCCFlow
 ClientHandledTCCFlow
-StrategyToRequestDeviceUnlockStrategyAdapter
+StrategyToUnlockDeviceStrategyAdapter
 StrategyToHandoffSessionToCompanionStrategyAdapter
 StrategyToPromptForConfirmationStrategyAdapter
 State
@@ -514,10 +515,15 @@ SiriKitFixedAppResolutionFlow
 AppResolutionError
 State
 CustomDebugStringLiteConvertible
+Incomple
+UnlockDeviceFlowStrategy
+UnlockDeviceFlow
+SimpleUnlockDeviceFlowHelper
+SimpleUnlockDeviceFlowStrategy
+State
 SiriKitParameterMetadata
 DucTemplatingLocalContext
 ActionHandlingFlowFrame
-Incomple
 RequestDeviceUnlockFlowStrategy
 RequestDeviceUnlockFlow
 SimpleRequestDeviceUnlockFlowHelper
@@ -537,7 +543,7 @@ HandleIntentFlowStrategy
 IntentResponseType
 NoOutputHandleIntentFlowStrategy
 SiriKitHandleIntentFlow
-StrategyToRequestDeviceUnlockStrategyAdapter
+StrategyToUnlockDeviceStrategyAdapter
 StrategyToHandoffSessionToCompanionStrategyAdapter
 State
 HandleIntentFlowError
@@ -568,6 +574,7 @@ LogConst
 Category
 SiriKitExecutorSignpost
 AnalyticsEventConst
+DirectInvocationIdentifierConst
 TaskMetricsConst
 GradingEvent
 Timeouts
@@ -1734,14 +1741,13 @@ SiriKitNeedsDisambiguationFlow called in unexpected state %s. Transitioning to e
 SiriKitNeedsDisambiguationFlow is complete in an error state. Exiting
 SiriKitNeedsDisambiguationFlow is complete. Exiting
 SiriKitNeedsDisambiguationFlow handling disambiguation
-SiriKitNeedsDisambiguationFlow unlock request sent. Transitioning to ready and waiting for input
 SiriKitNeedsDisambiguationFlow building SiriKitDisambiguationList
 SiriKitNeedsDisambiguationFlow successfully build the disambiguation list. Transitioning to readyToDisambiguate
 SiriKitNeedsDisambiguationFlow encountered an error while building the disambiguation list: %s
 SiriKitNeedsDisambiguationFlow encountered an error while trying to generate output: %s
 SiriKitNeedsDisambiguationFlow encountered an error while trying to publish output: %s
 SiriKitNeedsDisambiguationFlow pushing a PromptForDisambiguationFlow to handle disambiguation.
-SiriKitNeedsDisambiguationFlow requrires that the device is unlocked to proceed. Pusing a RequestDeviceUnlockFlow. Transitioning to watingForUnlockRequest.
+SiriKitNeedsDisambiguationFlow requrires that the device is unlocked to proceed. Pusing an UnlockDeviceFlow. Transitioning to watingForUnlockRequest.
 HandleIntentFlow cannot reqeust device unlock. Initiating Handoff
 SiriKitNeedsDisambiguationFlow is in an unexpected state: %s
 SiriKitNeedsDisambiguationFlow handed session off to companion device.
@@ -1974,8 +1980,12 @@ yesGroup
 noGroup
 cancelGroup
 This should be overridden
-/Library/Caches/com.apple.xbs/Sources/SiriKitExecutor_Sim/SiriKitExecutor-67.24/SiriKitFlow/Flows/RCH/ContinueInAppFlow.swift
+/Library/Caches/com.apple.xbs/Sources/SiriKitExecutor_Sim/SiriKitExecutor-67.25.1/SiriKitFlow/Flows/RCH/ContinueInAppFlow.swift
 SiriKitContinueInAppAutoPunchOutFlow pushing unlock flow and staying resident to continue after unlock
+SiriKitContinueInAppAutoPunchOutFlow called in unexpected state.
+SiriKitContinueInAppAutoPunchOutFlow.processDeviceUnlockResult called in unexpected state.
+SiriKitContinueInAppAutoPunchOutFlow received success from device unlock flow. Continuing.
+SiriKitContinueInAppAutoPunchOutFlow received an unexpected error while trying to unlock the device: %s
 ContinueInApp output received error code 1305 on a CarPlay device
 Unable to produce auto punch out response. Cannot continue.
 SiriKitContinueInAppAutoPunchOutFlow strategy was unable to produce auto punch out response: %s
@@ -2262,9 +2272,8 @@ ServerHandledTCCFlow received input. Since rejections and cancellations are hand
 ServerHandledTCCFlow is in an unexpected state: %s
 ServerHandledTCCFlow completing in error state
 ServerHandledTCCFlow is complete
-ServerHandledTCCFlow unlock request sent. Transitioning to ready to prompt and waiting for input
 ServerHandledTCCFlow device is unlocked. Transitioning to ready to prompt
-ServerHandledTCCFlow require the device to be unlocked to proceed. Pushing an unlock frame.
+ServerHandledTCCFlow require the device to be unlocked to proceed. Pushing an unlock flow.
 ServerHandledTCCFlow cannot handle TCC on current device. Initiating Handoff
 ClientHandledTCCFlow is in an unexpected state: %s
 ClientHandledTCCFlow completing in error state
@@ -2272,9 +2281,8 @@ ClientHandledTCCFlow is complete
 ClientHandledTCCFlow couldn't get a bundle ID for the app. How did we get to TCC?
 ClientHandledTCCFlow is attempting to change tcc: %@
 ClientHandledTCCFlow beginning prompt with a prompt for confirmation flow
-ClientHandledTCCFlow unlock request sent. Transitioning to ready to prompt and waiting for input
 ClientHandledTCCFlow device is unlocked. Transitioning to ready to prompt
-ClientHandledTCCFlow require the device to be unlocked to proceed. Pushing an unlock frame.
+ClientHandledTCCFlow require the device to be unlocked to proceed. Pushing an unlock flow.
 ClientHandledTCCFlow cannot handle TCC on current device. Initiating Handoff
 nlContextUpdateProvider
 strategy
@@ -2290,7 +2298,7 @@ ClientHandledTCCFlow got error changing tcc: %s
 ClientHandledTCCFlow error creating custom error dialog, will skip: %s
 ServerHandledTCCFlow handed session off to companion device.
 ServerHandledTCCFlow received an unexpected error while trying to unlock the device: %s
-ServerHandledTCCFlow received success from device unlock flow. Transitioning back to start
+ServerHandledTCCFlow received success from device unlock flow. Transitioning to ready to prompt
 ServerHandledTCCFlow successfully published prompt for TCC acceptance. Waiting for response.
 _TtC11SiriKitFlow19DucTemplateExecutor
 ducTemplatingService
@@ -2383,6 +2391,16 @@ AppResolutionFlow sending prompt for disambiguation for apps %s
 AppResolutionFlow successfully sent prompt for disambiguation.
 AppResolutionFlow selected app %s
 AppResolutionFlow successfully sent app resolution success response.
+com.apple.siri.SiriKit.Flow.DeviceUnlockComplete
+UnlockDeviceFlow failed: %s
+UnlockDeviceFlow succeeded, continuing pre-unlock flow.
+UnlockDeviceFlow called in unexpected state: 
+/Library/Caches/com.apple.xbs/Sources/SiriKitExecutor_Sim/SiriKitExecutor-67.25.1/SiriKitFlow/Flows/Fundamental/UnlockDeviceFlow.swift
+_TtCO11SiriKitFlow28SimpleUnlockDeviceFlowHelper30SimpleUnlockDeviceFlowStrategy
+UnlockDeviceFlow sending request to unlock the device.
+Request to unlock device sent.
+Unexpected error while publishing output: %s
+Unable to generate default dialog due to error: 
 { parameterName: 
 , shouldResolve: 
 , confirmationStates: 
@@ -2395,10 +2413,7 @@ Finished running action: %@
 Encountered error in action: (%@) %@
 RequestDeviceUnlockFlow sending request to unlock the device.
 _TtCO11SiriKitFlow35SimpleRequestDeviceUnlockFlowHelper37SimpleRequestDeviceUnlockFlowStrategy
-/Library/Caches/com.apple.xbs/Sources/SiriKitExecutor_Sim/SiriKitExecutor-67.24/SiriKitFlow/Flows/Fundamental/RequestDeviceUnlockFlow.swift
-Request to unlock device sent.
-Unexpected error while publishing output: %s
-Unable to generate default dialog due to error: 
+/Library/Caches/com.apple.xbs/Sources/SiriKitExecutor_Sim/SiriKitExecutor-67.25.1/SiriKitFlow/Flows/Fundamental/RequestDeviceUnlockFlow.swift
 App displayAppName from SAAppInfoFactory is nil!
 App bundle ID from SAAppInfoFactory is nil!
 App version from SAAppInfoFactory is nil!
@@ -2415,18 +2430,15 @@ disambiguationList
 tipViews
 domainObjectPicker
 Raw items exceed the number of formatted items. All items should be formatted
-/Library/Caches/com.apple.xbs/Sources/SiriKitExecutor_Sim/SiriKitExecutor-67.24/SiriKitFlow/SiriKitDisambiguationList.swift
+/Library/Caches/com.apple.xbs/Sources/SiriKitExecutor_Sim/SiriKitExecutor-67.25.1/SiriKitFlow/SiriKitDisambiguationList.swift
 _TtC11SiriKitFlow25SiriKitDisambiguationList
 rawItems
 shouldReadItemsInVox
 requestUnlockForEmptyOrDuplicateItems
 Provide an item converter to replace this placeholder
-HandleIntentFlow received input but is not waiting for unlock...ignoring
-HandleIntentFlow received input and is waiting for unlock...transitioning to readyToExecute
 HandleIntentFlow called in an unexpected state: %s
 HandleIntentFlow is in an error state. Exiting as complete.
 HandleIntentFlow is complete. Exiting.
-HandleIntentFlow has sent a request to unlock the device and will wait for new input
 HandleIntentFlow presenting optional PreHandle views...
 Received Output, attempting to publish
 Output generation resulted in an error: %s
@@ -2580,6 +2592,7 @@ So8NSStringC
 ySSSaySo24INIntentResolutionResultCGG
 ySSSo8NSNumberCG
 ySSSuG
+_ypt
 So25INDeferredLocalizedStringCG
 ySSypG
 ySSypSgG
@@ -2837,9 +2850,9 @@ ySo10SAUIButtonCG
 ySo13SASTItemGroupCG
 SaySo26SAUIAssistantUtteranceViewCG
 ySo11SAUISnippetCG
+ySo20SAServerBoundCommand_pG
 ySo15SFFormattedTextCG
 SaySo9SAAceViewCG
-ySo20SAServerBoundCommand_pG
 SaySo13SABaseCommandCG
 ySDySSypGG
 ySo24INIntentResolutionResultCG
@@ -3172,6 +3185,7 @@ $s11SiriKitFlow08ScriptedC10ParametersP
 $s11SiriKitFlow019ContinueInAppDialogC8StrategyP
 $s11SiriKitFlow031ContinueInAppHandoffToCompanionC8StrategyP
 $s11SiriKitFlow025ContinueInAppAutoPunchOutC8StrategyP
+yx_G
 _So25INDeferredLocalizedStringCtG
 So14CNLabeledValueC
 _So25INDeferredLocalizedStringCt
@@ -3400,6 +3414,9 @@ Sg21previouslyResolvedAppt
 _p_10IntentType
 Sg21previouslyResolvedAppt
 $s11SiriKitFlow32CustomDebugStringLiteConvertibleP
+$s11SiriKitFlow012UnlockDeviceC8StrategyP
+yx_G
+_yptG
 $s11SiriKitFlow019RequestDeviceUnlockC8StrategyP
 $s11SiriKitFlow21AppInformationWrapperP
 So9SAAppInfoCSg
@@ -4066,7 +4083,6 @@ metricsState
 outputPublisher
 state
 started
-waitingForUnlockRequest
 unlockRequestSent
 readyToDisambiguate
 complete
@@ -4385,6 +4401,10 @@ metricsState
 outputPublisher
 intent
 intentResponse
+state
+started
+waitingForUnlock
+unlocked
 ExitValue
 adaptee
 renderer
@@ -4630,7 +4650,6 @@ unexpectedState
 handoffRequired
 started
 waitingForDeviceUnlock
-unlockSent
 readyToPrompt
 error
 complete
@@ -4759,6 +4778,17 @@ unsuccessful
 disambiguationWithNoApps
 ExitValue
 IntentType
+exitValue
+strategy
+deviceState
+metricsState
+outputPublisher
+state
+unlockRequestSent
+error
+initialized
+unlockSucceeded
+ExitValue
 confirmationStates
 shouldResolve
 parameterName
@@ -4816,7 +4846,6 @@ unsupportedIntentResponseType
 handoffRequired
 started
 unlockFlowInitiated
-waitingForUnlock
 readyToExecute
 complete
 initialized
@@ -5533,6 +5562,9 @@ setPronunciation:
 localizedNameWithPreferredLocalizations:useShortNameOnly:
 setDryRun:
 initWithSpokenPhrase:
+initWithIdentifier:
+setUserData:
+runSiriKitExecutorCommandWithContext:payload:
 bundleId
 version
 buildNumber

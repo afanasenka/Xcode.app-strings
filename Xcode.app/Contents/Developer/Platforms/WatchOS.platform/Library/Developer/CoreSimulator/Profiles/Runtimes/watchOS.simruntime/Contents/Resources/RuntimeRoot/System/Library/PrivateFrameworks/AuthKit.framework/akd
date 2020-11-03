@@ -3598,6 +3598,7 @@ Failed to update AuthKit account! Error: %@
 We are running in recovery. Skip ACAccount update.
 This auth is ephemeral. Skip ACAccount update.
 This is a proxy auth. Skip ACAccount update.
+This is a child account creation flow. Skip ACAccount update.
 Starting to teardown follow ups
 This device cannot be an authorization endorser discovery.
 Authorization Endorser discovery deactivated.
@@ -4605,7 +4606,7 @@ softlink:o:fw:ApplePushService
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R569</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>

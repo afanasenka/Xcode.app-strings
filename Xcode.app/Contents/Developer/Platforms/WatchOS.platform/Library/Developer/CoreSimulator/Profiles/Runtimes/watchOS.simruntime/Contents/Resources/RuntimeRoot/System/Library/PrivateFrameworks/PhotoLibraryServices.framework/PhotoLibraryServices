@@ -750,7 +750,7 @@ InternalResource
 -[PLModelMigrator(AssetAnalysis) reconsiderAllowedForAnalysisOnAssetsMarkedNotAllowedInStore:]
 %K.%K == NO
 asset IN %@ AND analysisState = %d
-%K == %d AND %K.%K != 0
+%K == %d AND %K != 0
 -[PLModelMigrator(AssetAnalysis) markUserConfirmedFacesAndCorrespondingFaceAnalysisStatesDirtyInStore:]
 self IN %@ AND analysisState = %d
 self IN %@ AND analysisState != %d
@@ -809,8 +809,8 @@ Title for the Portrait album.
 PORTRAIT_ALBUM_TITLE
 Title for the Bursts album.
 BURSTS
-Title for all photos
-ALL_PHOTOS
+Title for photos media type
+PHOTOS
 Title for Animated assets album
 ANIMATED
 Title for Long Exposure album
@@ -993,6 +993,7 @@ kPLImageWriterArchivedProgressStack
 SyncClientJobsData
 ClientInLimitedLibraryMode
 LimitedLibraryClientFetchFilterIdentifier
+LimitedLibraryClientAuthorization
 CrashRecoveryFilenamesKey
 CrashRecoveryJobCreationDateKey
 CrashRecoveryPhotoStreamFilenamesKey
@@ -1087,6 +1088,9 @@ PLVideoCameraPreview
 IMG_
 PLProgressStackMediaPath
 PLProgressStackTotalProgress
+plated food
+generic landscape
+sunrise/sunset
 _sandboxExtension
 PLLocationAssetURLKey
 PLLocationDeviceOrientationKey
@@ -1916,7 +1920,6 @@ kPLCreateThumbnailFromImageAlways
 Screenshot
 com.apple.ImageIO.imageSourceTypeIdentifier
 kCGImageSourceShouldUseRawDataForFullSize
-{CGSize=dd}8@?0
 T@"NSOrderedSet",&,D,N
 assetOrders
 userEditableAssets
@@ -2045,6 +2048,8 @@ faceAreaPoints
 faceAdjustmentVersion
 faceCrop
 T@"PLFaceCrop",&,D,N
+videoKeyFrameTimeScale
+videoKeyFrameValue
 isDeferredProcessingCandidate
 isCameraProcessingAdjustmentCandidate
 isColorAware
@@ -2188,6 +2193,7 @@ TRIM.MOV
 small.MP4
 small.MOV
 large.MOV
+medium-hdr.MOV
 medium.MP4
 medium.MOV
 large.JPG
@@ -2314,6 +2320,8 @@ savedAssetType == %d AND addedDate < %@
 videoCpVisibilityState == %i AND hasAdjustments == NO
 (videoCpVisibilityState & %i) != 0 AND (videoCpVisibilityState & %i) == 0 AND (videoCpVisibilityState & %i) == 0 AND (videoCpVisibilityState & %i) == 0
 (videoCpVisibilityState & %i) != 0 AND (videoCpVisibilityState & %i) == 0
+%K.%K != %d || (%K.%K == %d && %K.%K == %d)
+keyPathToAsset
 com.apple.assetsd.importalbumisolationqueue
 SUBQUERY(modernResources, $r, $r.uniformTypeIdentifier.conformsToRawImage == YES AND ($r.resourceType == %d OR $r.resourceType == %d)).@count > 0
 %K = %d
@@ -2388,6 +2396,7 @@ Reframe
 Capture pipeline (SOC only)
 Capture pipeline (Wide only)
 Repair adjustment failure
+Semantic enhance
 %d%*c%d%*c%d%*c%d%*c%d%*c%d
 0.%@
 cloudResource
@@ -2768,7 +2777,6 @@ ALL_IMPORTED
 Title for Last Import album
 LAST_IMPORT
 Title for the All Photos album
-PHOTOS
 Title for the Photo Library album
 PHOTO_LIBRARY
 Photo Stream album title
@@ -3043,6 +3051,9 @@ v32@?0@"NSNumber"8@"NSNumber"16^B24
 -[PLModelMigrator _regenerateReferenceKeyDataInStore:]
 -[PLModelMigrator _fixupResourceTypeUnknownInStore:]
 -[PLModelMigrator _renumberLocalAvailabilityAndLocalAvailabilityTargetsInStore:]
+-[PLModelMigrator _migrateVideoKeyFrameTimeValuesInStagedStore:]
+mediaAnalysisAttributes.bestKeyFrameTimeScale
+mediaAnalysisAttributes.bestKeyFrameValue
 -[PLModelMigrator _invalidateReverseGeocodingDataInStore:]
 -[PLModelMigrator _invalidateReverseGeocodingDataInStore:]_block_invoke_2
 -[PLModelMigrator _regenerateSharedStreamsDataStoreKeysDataInStore:]
@@ -3824,10 +3835,6 @@ manual == NO
 faceCrop == NULL
 rejectedPersonsNeedingFaceCrops.@count > 0
 confirmedFaceCropGenerationState == %d
-asset.mediaAnalysisAttributes.bestKeyFrameValue
-asset.mediaAnalysisAttributes
-asset.kind
-%K != %d || (%K == NULL || %K == %d)
 asset.thumbnailIndex
 asset != NULL
 asset.avalanchePickType
@@ -4728,6 +4735,8 @@ PLLimitedLibraryPickerClientApplicationIdentifier
 PLLimitedLibraryPickerModeEnabled
 dismissalBlock
 T@?,C,N,V_dismissalBlock
+assetsdClient
+T@"PLAssetsdClient",&,N,V_assetsdClient
 _UIImagePickerControllerHidesPlaceholderNavigationBar
 __UIImagePickerControllerDisableKeyboardAvoidance
 _UIImagePickerControllerViewImageBeforeSelecting
@@ -5051,6 +5060,7 @@ master.cloudLocalState != %d
 noindex:(%K) == %d
 master.cloudMasterGUID
 cloudLocalState == %d AND complete != 0 AND master != nil AND master.placeholderState != %d AND master.cloudMasterGUID != nil AND master.cloudMasterGUID != ''
+SUBQUERY(%K, $resource, $resource.%K == %d AND ($resource.%K IN %@) AND $resource.%K >= %d AND $resource.%K == %d).@count > 0
 noindex:(cloudLocalState) == %@ && noindex:(savedAssetType) IN %@ && trashedState != %d
 master.cloudLocalState != %d && master.cloudLocalState != %d && savedAssetType IN %@ && trashedState != %d
 noindex:(savedAssetType) == %d OR noindex:(savedAssetType) == %d OR noindex:(savedAssetType) == %d OR noindex:(savedAssetType) == %d OR noindex:(savedAssetType) == %d
@@ -5835,8 +5845,8 @@ PLCloudResourcePruneManager work queue
 PLLimitedLibraryFetchFiltersUpdatedNotification
 PLLimitedLibraryFetchFiltersUpdatedNotificationApplicationIdentifier
 applicationIdentifier
+designatedRequirement
 fetchFilterData
-lastKnownProcessIdentifier
 @24@?0^@8Q16
 @16@?0r*8
 NOT (%K IN %@)
@@ -5845,7 +5855,6 @@ asset.uuid
 *** attempt to create a temporary id buffer which is too large or with a negative count (%lu) -- possibly data is corrupt
 v32@?0@"NSData"8Q16^B24
 v32@?0@"PLLimitedLibraryFetchFilter"8Q16^B24
-applicationIdentifier LIKE %@
 applicationIdentifier == %@
 dateCreated <= %@ AND cloudLastOnDemandDownloadDate <= %@
 %K == %d AND %K in %@
@@ -5864,8 +5873,7 @@ version == %d
 dataStoreClassID == %d AND dataStoreSubtype == %d AND localAvailability <= %d AND remoteAvailability >= %d AND cloudPrefetchCount <= %d AND cloudLastPrefetchDate <= %@ AND fingerprint != NULL
 (SUBQUERY(modernResources, $r, $r.dataStoreClassID == %d AND ($r.dataStoreSubtype IN %@) AND $r.localAvailability <= %d AND ($r.version == %d OR $r.version == %d)).@count == 0)
 (SUBQUERY(modernResources, $r, $r.dataStoreClassID == %d AND ($r.dataStoreSubtype IN %@) AND $r.localAvailability <= %d AND $r.version == %d).@count == 0)
-unorientedWidth * unorientedHeight <= %d
-dataStoreClassID == %d AND dataStoreSubtype == %d AND localAvailability >= %d
+%K * %K <= %d
 dataStoreClassID == %d AND dataStoreSubtype == %d AND localAvailability <= %d
 @sum.dataLength
 dataStoreClassID == %d
@@ -6116,7 +6124,6 @@ xpcReply
 T@"NSObject<OS_xpc_object>",&,N
 clientConnection
 T@"NSXPCConnection",&,N,V_clientConnection
-assetsdClient
 T@"PLAssetsdClient",R,N,V_assetsdClient
 jobDescription
 %@[%ld:%@]
@@ -7087,12 +7094,7 @@ referenceMediaSize
 originalLibrarySize
 icplOpt-
 icplOrg-
-hasAdjustments == NO
-hasAdjustments == YES
-thumbnailIndex != -1
-(localResourcesState & %lu) == %lu
-(localResourcesState & %lu) == %lu AND cameraProcessingAdjustmentState == %d
-(localResourcesState != %lu)
+%K != -1
 %lld
 unitTest-
 v32@?0@"NSNumber"8@"NSDictionary"16^B24
@@ -8392,7 +8394,6 @@ Invalid imagewriter job
 Missing image write job type
 TB,N,V_enableSharing
 -[PLCloudSharingEnablingJob runDaemonSide]
-[PLCloudSharingEnablingJob]Doing a potentially orphaned album cleanup: we ask to keep all pending albums since those aren't really orphaned, they could be out of network phone invitations
  enableSharing %d
 enableSharing
 v32@?0@"PLCloudSharedAlbum"8Q16^B24
@@ -8492,6 +8493,7 @@ H264_Full
 HEVC_Large
 H264_Medium
 H264_Small
+HDR_Medium
 VidCmp H264_RenderedFull
 VidCmp H264_Medium
 VidCmp H264_Small
@@ -9622,12 +9624,17 @@ SerializedVideoComplementKey
 SerializedMediaTypeKey
 SerializedDataKey
 SerializedFileExtensionKey
+PLZeroPlayableVideosErrorKey
 T@"<PLVideoResourceContext>",R,N,V_context
 assetInformation
 T@"<PLVideoChoosingAssetInformation>",R,N,V_assetInformation
 T@"<PLVideoChoosingOptions>",R,N,V_options
 T{CGSize=dd},R,N,V_size
-B20@?0@"<PLVideoResource>"8I16
+chooser found zero valid videos
+zero playable videos found
+zero videos found matching resource versions: %@
+medium
+PLForceVideoQualityLevel
 <PLVideoResource> quality: %@, local: %@, generatable: %@, streamable: %@, downloadable: %@, playable: %@
 keyPath
 T@"NSString",C,N,V_keyPath
@@ -10015,8 +10022,6 @@ bestVideoRangeDurationTimeScale
 bestVideoRangeDurationValue
 bestVideoRangeStartTimeScale
 bestVideoRangeStartValue
-bestKeyFrameTimeScale
-bestKeyFrameValue
 packedBestPlaybackRect
 blurrinessScore
 exposureScore
@@ -10661,6 +10666,7 @@ Failed to delete %{public}@ with error: %{public}@
 ##### RECOVER: assigning SOC path %{public}@, based on %{public}@
 ##### RECOVER: missing base destination path for SOC %{public}@, will ingest as regular capture
 ##### RECOVER: assigning deferred path %{public}@
+##### RECOVER: assigning SemDev deferred path %{public}@
 ##### RECOVER: skipping %{public}@, missing destinationPath
 ##### RECOVER: source %{public}@ -> destination %{public}@
 ##### RECOVER: copied %{public}@ to %{public}@
@@ -10738,7 +10744,6 @@ _processDeletePhotoStreamAssetsWithUUIDs %@
 deleting asset with UUID %@
 skipping deleting of asset with UUID %@ because it wasn't found in the DB
 _processDeletePhotoStreamDataJob %@
-Creating limited library fetch filter for image writer asset %{public}@ bundle %@ since one does not exist
 Adding image writer asset %{public}@ to limited library fetch filter for %@
 Error adding asset to limited library due to nil uuid %{public}@ or clientBundleIdentifier %@
 Failed to delete unnecessary incoming spatial over capture content %@ : %@
@@ -11431,6 +11436,8 @@ Expect to have an IPAMetadata created from a URL
 pathToOriginalVideoFile %@
 cachedNonPersistedVideoPlaybackURLExpiration %@ %lf
 cachedNonPersistedVideoPlaybackURL expired on %@
+Pruning local video key frame due to media analsysis key frame time change change for asset: %{public}@
+Pruning and deleting local key frame resource due to media analysis key frame time invalidated for asset: %{public}@
 Pruning local video key frame due to media analysis attributes relationship change
 Recording widget timeline invalidation due to asset with featured suggestion being adjusted %{public}@
 Recording widget timeline invalidation due to key asset with featured memory being adjusted %{public}@
@@ -11479,6 +11486,7 @@ Failed to batch-invalidate behavioral score data for all assets: %@
 Location data invalidated for all assets
 Failed to batch-invalidate location data for all assets: %@
 Fetch for grouped assets failed with error %@
+Unable to check for presence of gain map percentage value: %@
 Unable to create directory '%@': %@
 Failed to generate large thumbnail for %{public}@ from image source %{public}@ with options %{public}@
 Failed to generate small thumbnail for %{public}@ from image source %{public}@ with options %{public}@
@@ -11723,6 +11731,7 @@ Batch update to remap localAvailabilityTarget to neutral/0 request failed, error
 Batch update to remap localAvailabilityTarget to neutral/0 request successful with result %@
 Migrating purgeable resources
 Skip migrating purgeable resources, not supported for library at %@
+Migrated %@ assets video key frame values from MediaAnalysisAttributes table to Asset table
 Failed to empty resource tables.
 Invalidated reverse geocoding data for %@ assets
 error deleting unused analysis state table entries: %@
@@ -11739,9 +11748,9 @@ Failed to migrate disable marker from %@ to %@: %@
 %s deleted %@ resource rows.
 Set savedAssetType to Camera for %@ imported CMM assets that are saved in DCIM folder with CloudPhotoLibrary savedAssetType
 Failed to fix imported CMM assets that are saved in DCIM folder with CloudPhotoLibrary savedAssetType with error with error %@
-Failed to fetch video assets with non-zero bestKeyFrame values with error %@
-Deleted thumbnails for %lu video assets with non-zero bestKeyFrame values and marked for rebuild
-Failed to enumerate thumbnails for video assets with non-zero bestKeyFrame values with error %@
+Failed to fetch video assets with non-zero videoKeyFrame values with error %@
+Deleted thumbnails for %lu video assets with non-zero videoKeyFrame values and marked for rebuild
+Failed to enumerate thumbnails for video assets with non-zero videoKeyFrame values with error %@
 Failed to delete sceneclassifications
 Failed to located scene thresholds file: %@. Deleting everying
 Failed to delete sceneclassifications with error: %@
@@ -12157,6 +12166,7 @@ Migrating keywords
 Migrating rejectedFacesGroup
 Migrating detecedFacesGroup
 Emptying resources tables
+Migrating video key frame values from MediaAnalysisTable to Asset table
 Successfully processed lightweight migration stage of photo database from version %d to %d.
 Failed to process lightweight migration stage of photo database from version %d to %d.  Requires full database rebuild.
 %@ for %@ %@ (%@)
@@ -12798,7 +12808,9 @@ Received unexpected root folder type in CPLAlbumChange: %@, with identifier: %@
 We are dropping record %@, not yet handling that type
 PSIQuery computeSuggestions called before processWordEmbeddings
 Search Query %p: Parse %d: %@
+Photos Search PSIQuery: Filter token: %@ submitted for query:%@
 Photos Search PSIQuery: Some tokens have no result for query: %@
+Photos Search PSIQuery: GroupIds not found for any filter tokens; there will be no result for query: %@
 Photos Search PSIQuery: Filter tokens submitted for query:%@
 Photos Search PSIQuery: Removing filter tokens for query:%@
 Photos Search PSIQuery: Applying filter tokens; merging assetIDs for query:%@
@@ -12807,7 +12819,6 @@ MergeFilterTokenAssetIDs
 Signpost interval end with ID: %llu
 Photos Search PSIQuery: Removing a subset of filter tokens for query:%@
 Photos Search PSIQuery: All filter tokens applied for query:%@
-Photos Search PSIQuery: Filter token: %@ submitted for query:%@
 PSIQuery processWordEmbeddings called before bootstrap
 PSIQuery processWordEmbeddings already called
 PSIQuery processDatedParses called before bootstrap
@@ -13579,6 +13590,7 @@ LimitedLibrary: no LimitedLibraryFetchFilters to delete
 LimitedLibrary: deleting LimitedLibraryFetchFilter for applicationIdentifier: %@
 LimitedLibrary: data does not contain current valid PLLimitedLibraryFetchFilterData
 LimitedLibrary: failed to fetch suggestions: %@
+Creating limited library fetch filter for %@ since one does not exist
 Unable to create directory for resource %@: %@.
 Resource %@ has no fingerprint
 Error fetching Cloud Resources for non-local original size estimate: %@
@@ -13972,7 +13984,7 @@ Error creating bookmark data for %@: %@
 PLXPC Service: setWidgetTimelineGeneratedForDisplaySize:completionHandler:
 PLXPC Service: resetLimitedLibraryAccessForApplication:completionHandler:
 Resetting system photo library limited access filter for %{public}@
-PLXPC Service: setFetchFilterWithAssets:forApplication:completionHandler:
+PLXPC Service: setFetchFilterWithAssets:forApplication:withAuditToken:completionHandler:
 PLXPC Service: invalidateBehavioralScoreOnAllAssetsWithReply:
 PLXPC Service: deleteiTunesSyncedContentWithCompletionHandler:
 PLXPC Service: backgroundJobServiceRemoveAllBundleRecordsFromProcessingSet
@@ -14165,13 +14177,13 @@ Persistent history statistics: %lld
 %@: Failed to enumerate assets for library summary logging: %@ %@
 %@: Failed to count assets for date median for library summary logging: %@ %@
 perform hyperion local resources logging ...
-performHyperionLocalResourcesLogging: failed to count CPL mediums with error %@ %@
 performHyperionLocalResourcesLogging: failed to count CPL small original with error %@ %@
 performHyperionLocalResourcesLogging: failed to count total assets with error %@ %@
 performHyperionLocalResourcesLogging: failed to count total assets (image) with error %@ %@
 performHyperionLocalResourcesLogging: failed to count total assets (video) with error %@ %@
 performHyperionLocalResourcesLogging: failed to count local original and fullsize assets with error %@ %@
 performHyperionLocalResourcesLogging: failed to count local thumb assets with error %@ %@
+performHyperionLocalResourcesLogging: failed to count CPL mediums with error %@ %@
 performHyperionLocalResourcesLogging: failed to count mediumOrOriginalPercent with error %@ %@
 performHyperionLocalResourcesLogging: failed to count mediumOrOriginalImagePercent with error %@ %@
 performHyperionLocalResourcesLogging: failed to count mediumOrOriginalVideoPercent with error %@ %@
@@ -14527,7 +14539,6 @@ End saveAssetWithDataAndPorts: success: %d, error: %@
 PLCloudSharingEnabledJob runDaemonSide %d
 ERROR: Unable to write personID %@ to file %@: %@
 will perform initial poll
-PLCloudSharingEnablingJob deleting orphaned shared albums and assets before enabling and doing initial poll
 PLCloudSharingEnablingJob will delete all %lu shared albums
 PLCloudSharingEnablingJob failed to delete shared albums: %@
 PLCloudSharingEnablingJob will delete all %lu orphaned shared assets
@@ -14962,6 +14973,7 @@ ExecuteLibraryBatchTransaction
 [MomentsGeneration] Moment generation pass completed in %.2f s
 Re-generating month highlight titles.
 Cleanup failed with error %@.
+Forcing video quality level to %@
 [RM]: Attempt to init PLSharedStreamsDataStoreKey with missing info. cloudGUID: %@, cloudPersonID: %@, filename: %@
 PLXPC Service: closeAndDeletePhotoLibraryAtURL:reply:
 PLXPC Service: getPhotoLibraryURLsWithReply:
@@ -15205,8 +15217,6 @@ found multiple entres of type %li for album: %@
 error fetching earliest date %@
 error fetching latest date %@
 error fetching relative to date %@ %i: %@
-Pruning local video key frame due to media analsysis key frame time change change for asset: %{public}@
-Pruning and deleting local key frame resource due to media analysis key frame time invalidated for asset: %{public}@
 CacheMetrics Aggregation done, current data is: [%ld, %ld, %ld, %ld]
 services:
 error fetching all entries: %@
@@ -15762,8 +15772,8 @@ PLAssetSearchResult
 PLURL
 PLFileSystemBookmark
 PLFileBackedThumbnailVirtualResource
-PLAssetsdLibraryInternalServiceProtocol
 PLAssetsdLibraryInternalService
+PLAssetsdLibraryInternalServiceProtocol
 PLPhotoDerivativeUtilities
 PLCloudSharedAlbumInvitationRecord
 PLCloudSharingInvitationChangeJob
@@ -16802,8 +16812,7 @@ unorientedHeight
 unorientedWidth
 resourcesSortedByQuality
 localVideoKeyFrameResource
-bestKeyFrameTime
-mediaAnalysisAttributes
+videoKeyFrameTime
 height
 width
 populateAdjustedRecipeIngredients:asset:version:
@@ -16854,6 +16863,7 @@ dataStoreSubtypeIsDownloadable:
 videoResource:matchesOrExceedsQualityLevel:
 canStreamResource:
 requestStreamingURLForResource:asset:intent:inContext:clientBundleID:completion:
+canMarkAsynchronousLocalRenderAsOptionalForProgress:
 markAsynchronousLocalRenderAsOptionalForProgress:
 _newProgressForTaskWithIdentifier:type:
 _taskIsPendingDownloadWithIdentifier:
@@ -16898,6 +16908,8 @@ fileSystemBookmark
 setSidecarIndex:
 sidecarIndex
 setCloudAttributesWithExternalResource:
+resetPrefetchState
+fingerprint
 setRemoteAvailability:
 remoteAvailability
 setUnorientedHeight:
@@ -17713,6 +17725,7 @@ setCloudDeleteState:
 cloudUUIDForDeletion
 markAsLocallyAvailableWithFilePath:
 validateForAssetID:resourceIdentity:
+isInCloud
 isDefaultOrientation
 isPlayableVideo
 scaleGivenAssetHasAdjustments:currentWidth:currentHeight:
@@ -17747,7 +17760,6 @@ cloudLastPrefetchDate
 cloudMasterDateCreated
 ptpTrashedState
 codec
-fingerprint
 appendName:integerValue:
 appendName:boolValue:
 fileID
@@ -18042,7 +18054,7 @@ _pathForFilteredPreviewWithBaseName:imageData:orImage:
 _linkDiagnosticFileWithSourcePath:forPhotoDestinationURL:
 _processImageJob:completion:
 _removeInProgressExtendedAttributesForFileAtURL:
-_processLimitedLibraryAdditionIfNeededWithAssetUUID:clientBundleIdentifier:library:
+_processLimitedLibraryAdditionIfNeededWithAssetUUID:clientBundleIdentifier:clientAuthorization:library:
 _processBatchImageJob:completion:
 _processAvalancheJob:completion:
 _processAvalanchesValidationJob:completion:
@@ -18158,6 +18170,9 @@ URLByAppendingPathExtension:
 URLByDeletingPathExtension
 localizedDescription
 persistUUIDString:forKey:fileURL:
+semanticEnhancePreviewDestinationURLForPrimaryAssetURL:
+semanticEnhanceSceneIsValid:
+getInt32:forKey:
 deferredPhotoPreviewDestinationURLForPrimaryAssetURL:
 deferredPhotoProcessingIdentifier
 isDeferredPhotoProxy
@@ -18227,8 +18242,8 @@ updatePropertiesForAssets:autoPicks:stackAsset:userFavorites:deleteNonPicks:setF
 orderedSetWithArray:
 assetsWithUUIDs:options:inLibrary:
 addAssetsWithUUIDs:
-insertIntoManagedObjectContext:forApplicationIdentifier:
-fetchLimitedLibraryFetchFilterWithClientBundleIdentifier:inManagedObjectContext:
+fetchOrCreateLimitedLibraryFetchFilterWithApplicationIdentifier:auditToken:inManagedObjectContext:
+clientAuditToken
 updateLocalResourcesStateForNonCPLAsset
 shouldHideAvalanchesFromPhotoStream
 avalanchePickTypeIsVisible
@@ -18257,14 +18272,16 @@ _requiresIndicatorFileForJobType:
 isSpatialOverCaptureURL:
 isDeferredPhotoPreviewURL:
 finalizedAssetURLForDeferredPhotoPreviewURL:extension:
+cameraMetadataURLForPrimaryAssetURL:photoLibrary:
 assetAdjustmentsFromCompositionController:exportProperties:
 assetAdjustmentsFromCameraFilters:portraitMetadata:exportProperties:cameraMetadata:
 _assetAdjustmentsFromCameraAdjustmentsFileAtPath:exportProperties:cameraMetadata:
+assetAdjustmentsFromCameraAdjustments:cameraMetadata:exportProperties:applySemanticEnhance:
 assetAdjustmentsFromCameraAdjustments:cameraMetadata:exportProperties:
-_assetAdjustmentsFromCameraAdjustments:cameraMetadata:exportProperties:assetType:
-assetAdjustmentsFromCameraAdjustmentData:cameraMetadata:exportProperties:
+_assetAdjustmentsFromCameraAdjustments:cameraMetadata:exportProperties:assetType:applySemanticEnhance:
+assetAdjustmentsFromCameraAdjustmentData:cameraMetadata:exportProperties:applySemanticEnhance:
 assetAdjustmentsFromCameraAdjustmentData:exportProperties:
-_assetAdjustmentsFromCameraAdjustmentData:cameraMetadata:exportProperties:assetType:
+_assetAdjustmentsFromCameraAdjustmentData:cameraMetadata:exportProperties:assetType:applySemanticEnhance:
 decorateThumbnailInRect:size:duration:inContext:format:
 setDefaultAdjustmentsIfNecessaryWithMainFileMetadata:
 setCurrentAdjustmentAsOriginalAdjustment
@@ -19997,6 +20014,9 @@ didTurnIntoFault
 placeAnnotationData
 setPlaceAnnotationData:
 importedBy
+setVideoKeyFrameTime:
+isVideoKeyFrameSet
+resetVideoKeyFrameTime
 isCameraProcessingAdjustmentCandidate
 isLocatedAtCoordinates:
 isPhotoIrisPlaceholder
@@ -20213,8 +20233,10 @@ pathForMediumVideoFile
 fileURLForNonAdjustedMediumThumbnailFile
 fileURLForAdjustedMediumThumbnailFile
 pathForNonAdjustedMediumVideoFile
+pathForNonAdjustedMediumHDRVideoFile
 pathForNonAdjustedLargeVideoFile
 pathForAdjustedMediumVideoFile
+pathForAdjustedMediumHDRVideoFile
 pathForAdjustedLargeVideoFile
 pathForNonAdjustedSmallVideoFile
 pathForAdjustedSmallVideoFile
@@ -20385,7 +20407,7 @@ dataWithLength:
 initWithPLImage:backingData:uniformTypeIdentifier:
 createTHMFileWithPreviewImage:thumbnailImage:fileURLForThumbnailFile:
 nextAvailableThumbnailIndexInLibrary:
-resetBestKeyFrameTimeAndDeleteKeyFrameResource
+resetVideoKeyFrameTimeAndDeleteKeyFrameResource
 customInfo
 setOriginatingAssetIdentifier:
 originatingAssetIdentifer
@@ -20393,6 +20415,7 @@ setOriginalHeight:
 setOriginalWidth:
 setMasterFingerPrint:
 filePath
+isHDR
 setMontage:
 montageString
 isTimelapse
@@ -20435,6 +20458,7 @@ setOriginalOrientation:
 setHdrGain:
 hdrGain
 numberWithFloat:
+imagePropertiesIndicatePresenceOfGainMap:
 setEmbeddedThumbnailHeight:
 setEmbeddedThumbnailWidth:
 setEmbeddedThumbnailLength:
@@ -20464,7 +20488,6 @@ setCloudAssetGUID:
 spatialOverCaptureGroupIdentifier
 secondsFromGMTForDate:
 setInt32:forKey:
-getInt32:forKey:
 localTimeZone
 accessibilityDescription
 setUInt64:forKey:
@@ -20497,6 +20520,7 @@ recordAssetForMomentUpdate:
 removeSceneClassifications
 recordAssetForDuetDelete:
 recordAssetForAlbumCountsAndDateRangeUpdate:
+onDemand_installLocalVideoKeyFrameForAsset:
 pushChangeScopesBatch
 transactionFromUserInfo:
 recordWidgetTimelineReloadNeeded
@@ -20506,6 +20530,7 @@ setOverallAestheticScore:
 overallAestheticScore
 setPackedAcceptableCropRect:
 setPackedPreferredCropRect:
+mediaAnalysisAttributes
 computedAttributes
 replaceKeyAsset:
 updateCachedCounts:
@@ -20542,6 +20567,10 @@ pl_locationHash
 setGpsHorizontalAccuracy:
 setLocationData:
 deferredProcessingCandidateOptions
+setVideoKeyFrameTimeScale:
+videoKeyFrameTimeScale
+setVideoKeyFrameValue:
+videoKeyFrameValue
 registerFilesystemDeletionInfo:
 deleteAllRemainingFilesAndThumbnailsWithPhotoLibrary:completionHandler:
 addFilesystemDeletionInfo:
@@ -20575,6 +20604,7 @@ invalidateReverseLocationDataOnAllAssetsInManagedObjectContext:error:
 invalidateBehavioralScoreOnAllAssetsInManagedObjectContext:error:
 _importAlbumIsolationQueue
 clearImportSessionObjectIDCacheOnManagedObjectContext:
+predicateToExcludeVideosWithVideoKeyFrameSetWithKeyPathToAsset:
 videoComplementVisibilityStatePlayablePredicate
 isVideoComplementVisibilityStatePlayable:hasAdjustments:
 deleteOldPlaceholderAssetsInManagedObjectContext:
@@ -21662,6 +21692,7 @@ _regenerateSharedStreamsDataStoreKeysDataInStore:
 _fixLocationValuesInStore:
 _invalidateReverseGeocodingDataInStore:
 _emptyResourceTablesInStagedStore:
+_migrateVideoKeyFrameTimeValuesInStagedStore:
 migratePurgeableResources
 _renumberLocalAvailabilityAndLocalAvailabilityTargetsInStore:
 _migrateVersionSpecific1kResourcesInStore:
@@ -21741,7 +21772,6 @@ cloudSharedCommentsWithCommentDate:inManagedObjectContext:
 setHavingPredicate:
 persistedResourcesWithRecipeID:andVersion:
 supportedAssetTypesForUpload
-onDemand_installLocalVideoKeyFrameForAsset:
 _rollbackSQLTransactionAndCloseDB:
 _commitSQLTransactionAndCloseDB:
 _openSQLTransactionWithDBPath:
@@ -22889,13 +22919,15 @@ initWithHandler:
 activate
 _timerFired
 startOrRestartTimer
+_lazyResourceDownloader
 requestVideoPlaybackURLForCloudSharedAsset:mediaAssetType:reply:
 cancelCPLDownloadTaskWithIdentifier:reply:
 downloadCloudPhotoLibraryAssetWithObjectURI:taskIdentifier:resourceType:HighPriority:trackCPLDownload:downloadIsTransient:reply:
 asynchronousStartPreheatingCPLDownloadForAssets:doneTokens:format:reply:
 asynchronousStopPreheatingCPLDownloadForAssetsWithTaskIdentifiers:reply:
 computeFingerPrintsOfAssetWithObjectURI:reply:
-initWithLibraryServicesManager:resourceDownloader:
+initWithLibraryServicesManager:lazyResourceDownloader:
+resourceDownloader
 masterFingerPrintCacheIfNecessaryAndAdjustedFingerPrint:error:
 cancelCPLDownloadTasks:completionHandler:
 cloudResourceTypeForAsset:format:filePath:imageType:
@@ -23352,8 +23384,8 @@ _indexesOfFilterTokensInSearchTokens:
 _shouldApplyFilterTokensForGroupArrays:searchTokens:filterGroupIds:
 groupArraysFromGroupIdSets:dateFilter:progressBlock:
 wordEmbeddingMatch
-isFilterTypeToken
 matchType
+isFilterTypeToken
 groupResultWithDateFilter:datedTokens:
 datedTokens
 pushGroup:
@@ -23969,6 +24001,7 @@ imagePickerController:didFinishPickingMultipleMediaWithInfo:
 imagePickerControllerDidCancel:
 dismissalBlock
 setDismissalBlock:
+setAssetsdClient:
 isMainThread
 dismissViewControllerAnimated:completion:
 presentLimitedLibraryPickerFromViewController:options:
@@ -24404,6 +24437,8 @@ markForNeedingFaceDetection
 setDetectedFaces:
 faceDetectionComplete
 dateForComparingAdjustmentVersions
+setMomentShare:
+setShareType:
 setShareOriginator:
 _applyPropertiesFromCloudMaster:
 rm_createMasterResourcesIn:inManagedObjectContext:
@@ -24445,18 +24480,19 @@ _pathForSidecarResource:
 adjustedPathForCPLResourceType:
 nonAdjustedPathForCPLResourceType:
 placeholder_shouldPerformServerCopy
+bestAvaliableAdjustedResource
 purgeableStateDescriptionForFile:
 predicateForUploadableAssetsWithMasterCloudLocalStateNotEqualTo:
 masterFingerPrint
 adjustedFingerPrint
 bestResourceTypeForAdjustedFingerPrint
-bestAvaliableAdjustedResource
 _scopeIdentifier
 targetSizeForInputSize:maxPixelSize:
 localResourcePathForMasterResource:
 _plAdjustmentBaseVersionFromCPLAdjustmentSourceType:
 descriptionForResources
 countOfAssetsWithRequiredResourcesNotLocallyAvailableInLibrary:outCount:photoCount:videoCount:
+predicateForLocallyAvailablePrimaryStoreResourcesWithCPLResourceTypes:version:
 totalSizeOfUnpushedOriginalsInPhotoLibrary:outMasterList:
 toUploadAssetsInLibrary:
 failedToPushAssetInLibrary:
@@ -24524,6 +24560,7 @@ setVideoComplementDurationTimescale:
 setVideoComplementImageDisplayValue:
 setVideoComplementImageDisplayTimescale:
 setVideoComplementVisibilityState:
+currentDeviceIsEligibleForHDRPlayback
 predicateForAllOriginalResourcesLocallyAvailable
 predicateForAllFullSizeResourcesLocallyAvailable
 _createJPEGResourcesFromFullSizePath:withScopedIdentifier:forMaster:
@@ -24567,8 +24604,6 @@ setBurstIdentifier:
 setAssetSubtype:
 setContainerIdentifier:
 setPosition:
-setMomentShare:
-setShareType:
 _isCurated
 _kind
 _startTimeZoneOffset
@@ -24863,12 +24898,10 @@ _handleKeyFrameGeneratedWithSuccess:error:asset:destinationURL:completion:
 _generateAndStoreForAsset:networkAccessAllowed:progress:completion:
 _runJob:
 _generateKeyFrameFromVideoURL:destinationURL:time:completion:
-bestKeyFrameTimeScale
-bestKeyFrameValue
 markPurgeableForFileAtURL:withUrgency:outInode:
 isStreamable
 backingResourceForVideoResource:
-chooseResourceDownloadRequired:
+chooseResourceDownloadRequired:error:
 initWithContext:assetInformation:options:size:
 initWithManagedObjectContext:asset:
 generateCGImagesAsynchronouslyForTimes:completionHandler:
@@ -25290,7 +25323,6 @@ simpleAdjustmentData
 adjustmentCreatorCode
 adjustmentCompoundVersion
 adjustmentType
-clientAuditToken
 connectionAuthorization
 fetchResourcesForAssetWithObjectID:inContext:versions:includeVirtualResources:allowDerivatives:additionalPredicate:relationshipKeyPathsForPrefetching:error:
 containsAssetWithUUID:
@@ -25360,8 +25392,14 @@ photoLibraryPathManager
 databaseFileURL
 _videoResources
 _playableVideos
+_masterVideoIsPresent
+_masterVideoIsPlayable
 initWithVideoResources:
 preferredVideoResources
+isHDROrSDRDependingOnMasterVideo
+isSDRFallback
+isHDRDerivative
+deviceSupportsHDR
 hasAssociatedMediaMetadata
 _stopped
 _totalPurgeableAmountForUrgency:
@@ -25388,7 +25426,7 @@ removeAllAssets
 assetUUIDStrings
 predicateForEntityName:
 _loadAssetUUIDs
-lastKnownProcessIdentifier
+designatedRequirement
 applicationIdentifier
 _assetUUIDStringsFromFetchFilterData:
 fetchFilterData
@@ -25399,6 +25437,7 @@ initWithUUIDBytes:
 initWithUUIDString:
 setFetchFilterData:
 appendBytes:length:
+insertIntoManagedObjectContext:forApplicationIdentifier:
 _fetchFiltersMatchingPredicate:sortDescriptors:limit:inManagedObjectContext:
 entityNameToPredicateMapFromFetchFilterData:
 deleteLimitedLibraryFetchFilterWithApplicationIdentifier:inManagedObjectContext:
@@ -25414,6 +25453,8 @@ setCloudSourceType:
 enumerateResourceTypesWithBlock:
 cplExpungedStateForTrashedState:
 setTransientCloudMaster:
+cloudPrefetchCount
+cloudPrunedAt
 _countOfLocallyAvailableCloudResourcesOfType:inManagedObjectContext:forMediumSized:localCount:unavailableCount:error:
 managedObjectOriginal_setDataLength:
 managedObjectOriginal_setCloudLocalState:
@@ -25520,8 +25561,6 @@ _lastOnDemandDownloadDate
 _lastPrefetchDate
 _prunedAt
 cloudSourceType
-cloudPrunedAt
-cloudPrefetchCount
 sourceType
 _bundle
 _priority
@@ -26467,7 +26506,7 @@ getBackgroundJobServiceBundlesInQueueDictionaryWithReply:
 backgroundJobServiceRemoveAllBundleRecordsFromProcessingSet
 deleteiTunesSyncedContentWithCompletionHandler:
 invalidateBehavioralScoreOnAllAssetsWithReply:
-setFetchFilterWithAssets:forApplication:completionHandler:
+setFetchFilterWithAssets:forApplication:withAuditToken:completionHandler:
 resetLimitedLibraryAccessForApplication:completionHandler:
 setWidgetTimelineGeneratedForDisplaySize:completionHandler:
 requestLimitedLibraryPromptForApplicationIdentifier:
@@ -27172,7 +27211,6 @@ getDiagnosticsServiceWithReply:
 getDebugServiceWithReply:
 initWithConnection:libraryBundleController:
 isPhotosClient
-resourceDownloader
 logStatus
 handleInterruption
 handleInvalidation
@@ -27241,6 +27279,7 @@ cacheMetricsShellObject
 libraryBecameUnavailable:reason:
 recoveredEventsWithPathManager:
 URLIsInTrash:
+setClientMainBundleSandboxedURL:
 setClientLimitedLibraryCapable:
 URLFromClientLibraryURL:sandboxExtension:error:
 sharedBookmarkManager
@@ -27682,6 +27721,7 @@ _libraryUpgradeAuthorized
 _directDatabaseAccessAuthorized
 _directDatabaseWriteAuthorized
 _fetchFilterIdentifier
+_clientMainBundleSandboxedURL
 _photoKitEntitled
 _cloudInternalEntitled
 _analyticsCacheReadEntitled
@@ -28992,7 +29032,8 @@ propertyListRepresentation
 _assetInformation
 _acceptableResourceVersions
 _videoQualityLevelForRequest
-_chooseResourceDownloadRequired:
+_ensureOriginalsAreHighestQuality:
+_chooseResourceDownloadRequired:error:
 assetInformation
 _keyPath
 _expectedValue
@@ -29384,8 +29425,6 @@ masterThumbnailResource
 predicateFilteringForNonDerivativeRecipeIDs
 _persistedResourceForResourceIdentity:error:
 persistedAdjustedResources
-setBestKeyFrameValue:
-setBestKeyFrameTimeScale:
 _anyOriginalNonDerivativeAlternateImageResource
 mediaMetadataVirtualResources
 resourcesWithVersion:
@@ -29472,7 +29511,6 @@ setEntryInvitationRecordGUID:
 inviteeSubscriptionDate
 setEntryComments:
 entriesSortDescriptorsAscending:
-setBestKeyFrameTime:
 setBestVideoTimeRange:
 bestVideoTimeRange
 bestVideoRangeDurationTimeScale
@@ -29718,10 +29756,11 @@ B24@0:8@"PLValidatedExternalResource"16
 @"<PLUniformTypeIdentifierIdentity>"36@0:8@"PLValidatedExternalResource"16s24@"NSManagedObjectContext"28
 B64@0:8@"PLValidatedExternalResource"16@"PLManagedAsset"24@"NSManagedObjectContext"32@"PLResourceDataStoreOptions"40^@48^@56
 @"NSProgress"44@0:8s16@"PLInternalResource"20@"PLResourceLocalAvailabilityRequestOptions"28@?<v@?@"NSError"q@"NSURL">36
-B24@0:8Q16
+B24@0:8q16
 B28@0:8@"<PLResource>"16I24
 B24@0:8@"<PLResource>"16
 v64@0:8@"<PLResource>"16@"PLManagedAsset"24Q32@"NSManagedObjectContext"40@"NSString"48@?<v@?@"NSError"@"NSURL"@"NSDate">56
+B24@0:8@"NSProgress"16
 v24@0:8@"NSProgress"16
 @"PLPhotoLibraryPathManager"16@0:8
 S20@0:8C16
@@ -29756,6 +29795,7 @@ i20@0:8s16
 Q24@0:8I16I20
 Q32@0:8I16I20@24
 I32@0:8Q16s24B28
+B24@0:8Q16
 v40@0:8Q16B24s28^I32
 I28@0:8Q16s24
 v32@0:8@16I24I28
@@ -29874,7 +29914,8 @@ B48@0:8@16@24^B32^@40
 v48@0:8@16@24@32@?40
 v20@0:8f16
 f20@0:8f16
-@44@0:8@16@24@32s40
+@44@0:8@16@24@32B40
+@48@0:8@16@24@32s40B44
 B84@0:8@16@24@32@40@48@56{CGSize=dd}64B80
 B36@0:8s16@20@28
 v88@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16{CGSize=dd}48@64^{CGContext=}72@80
@@ -30079,9 +30120,9 @@ v24@0:8@"<PLMomentData>"16
 v24@0:8@"NSData"16
 @"PLRevGeoPlaceAnnotation"16@0:8
 @"PLRevGeoLocationInfo"16@0:8
-B32@0:8{CLLocationCoordinate2D=dd}16
-{?=qiIq}16@0:8
 v40@0:8{?=qiIq}16
+{?=qiIq}16@0:8
+B32@0:8{CLLocationCoordinate2D=dd}16
 v72@0:8@16{?=qiIq}24{?=qiIq}48
 B96@0:8@16@24@32{?=qiIq}40{?=qiIq}64Q88
 B104@0:8@16@24@32@40{?=qiIq}48{?=qiIq}72Q96
@@ -30096,7 +30137,6 @@ v80@0:8d16d24d32d40^d48^d56^d64^d72
 B64@0:8@16@24s32B36@40^^{CGImageSource}48^@56
 S28@0:8@16B24
 B20@0:8S16
-@44@0:8@16@24@32B40
 v52@0:8@16@24^{CGImageSource=}32@40B48
 v64@0:8@16@24^{CGImageSource=}32@40@48B56B60
 v24@0:8^{CGImageMetadata=}16
@@ -30533,7 +30573,6 @@ v32@0:8{?=qq}16
 @"<PLJournalEntryPayload>"24@0:8@"NSSet"16
 @"<PLJournalEntryPayloadID>"24@0:8@"NSDictionary"16
 B24@0:8@"NSSet"16
-B24@0:8q16
 B64@0:8^{CGImage=}16{?=ii}24@32@40^{CGRect={CGPoint=dd}{CGSize=dd}}48^i56
 B56@0:8^{CGImage=}16@24^@32^{CGRect={CGPoint=dd}{CGSize=dd}}40^i48
 B40@0:8^{CGImage=}16@24^@32
@@ -30726,6 +30765,7 @@ q32@0:8q16@24
 ^{__CFDictionary=}28@0:8i16^{__CFDictionary=}20
 v40@0:8q16q24@?32
 q40@0:8q16q24@?32
+@64@0:8@16{?=[8I]}24@56
 @40@0:8@16@?24@?32
 v44@0:8I16Q20@28@36
 @44@0:8Q16B24Q28@36
@@ -30856,9 +30896,10 @@ v32@0:8@"NSDictionary"16@?<v@?>24
 v40@0:8@"NSDictionary"16@"NSData"24@?<v@?B@"NSError">32
 v40@0:8@"NSSet"16@"NSString"24@?<v@?B>32
 v24@0:8@?<v@?@"NSDictionary">16
-v40@0:8@"NSArray"16@"NSString"24@?<v@?B@"NSError">32
+v72@0:8@"NSArray"16@"NSString"24{?=[8I]}32@?<v@?B@"NSError">64
 v32@0:8@16@?<v@?B@"NSError">24
 v40@0:8{CGSize=dd}16@?<v@?B@"NSError">32
+v72@0:8@16@24{?=[8I]}32@?64
 v40@0:8{CGSize=dd}16@?32
 @44@0:8@16i24@28@36
 @72@0:8@16@24@32@40@48@56@64
@@ -30961,6 +31002,7 @@ q32@0:8@16^@24
 @"<PLBackgroundJobWorkerCoordinatorDelegate>"
 v36@0:8@16Q24B32
 Q32@0:8@16@?24
+@44@0:8@16@24@32s40
 q24@0:8s16S20
 s24@0:8q16
 {PLPrimaryDataStore_UniformFileStrategy_KeyStruct_V1="strategy"b8"version"b2"resourceVersion"b2"resourceType"b5"recipeClass"b4"recipeVariationID"b15"isDerivative"b1"extensionCasing"b2"fileType"b8}
@@ -31035,6 +31077,7 @@ v28@0:8q16B24
 @40@0:8q16@24Q32
 @76@0:8@16Q24B32B36B40B44B48@52@60^@68
 {?="val"[8I]}
+@"PLSandboxedURL"
 {?=[8I]}16@0:8
 @"PLPTPAssetHandle"
 @48@0:8@16@24o^@32@?40
@@ -31186,12 +31229,12 @@ v104@0:8@16@24@32@40@48@56@64@72@80@88@?96
 @"PLPersistentHistoryChangeDistributor"
 @"PLMomentGenerationThrottle"
 v72@0:8@16@24@32@40@48@56^@64
-@"PLSandboxedURL"
 @"PFVideoComplement"
 @"<PLVideoResourceContext>"
 @"<PLVideoChoosingAssetInformation>"
 @"<PLVideoChoosingOptions>"
 @56@0:8@16@24@32{CGSize=dd}40
+@32@0:8^B16^@24
 @"<NSObject>"
 Q20@0:8C16
 v44@0:8@"NSURL"16@"NSData"24S32@?<v@?@"NSError">36

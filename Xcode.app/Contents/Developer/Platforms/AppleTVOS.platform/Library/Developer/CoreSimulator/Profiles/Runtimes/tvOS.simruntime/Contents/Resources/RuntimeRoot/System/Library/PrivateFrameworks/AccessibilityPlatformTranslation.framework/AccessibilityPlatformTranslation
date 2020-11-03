@@ -5,6 +5,7 @@ T{?=QQ},N,V_uid
 Ti,N,V_pid
 v8@?0
 com.apple.axptranslator.cache.queue
+UIAccessibilityToken
 v48@?0@"NSMutableAttributedString"8@"NSDictionary"16@"NSDictionary"24{_NSRange=QQ}32
 @32@?0{?=QQ}8q24
 @40@?0{?=QQ}8q24@32
@@ -121,7 +122,14 @@ kAXLinkedElementAttribute
 kAXIsVisibleAttribute
 kAXHeaderElementsAttribute
 {CGPoint=dd}
+com.apple.findmy
+com.apple.Home
+com.apple.MobileSMS
+com.apple.news
 com.apple.PlaygroundsMac
+com.apple.podcasts
+com.apple.VoiceMemos
+com.apple.WebKit.WebContent
 fakeElementCache
 T@"NSMutableDictionary",&,N,V_fakeElementCache
 supportsDelegateTokens
@@ -271,6 +279,7 @@ AXPAttributeSelectedText
 AXPAttributeUserInputLabels
 AXPAttributeAttributedUserInputLabels
 AXPAttributeDebugiOSAttribute
+AXPAttributeVisibleTextRange
 isApplicationElement
 didPopuldateAppInfo
 objectID
@@ -359,6 +368,16 @@ boolValue
 removeAttribute:range:
 addAttribute:value:range:
 translationObjectFromPlatformElement:
+setObject:forKeyedSubscript:
+punctuationCharacterSet
+componentsSeparatedByCharactersInSet:
+componentsJoinedByString:
+whitespaceCharacterSet
+stringByTrimmingCharactersInSet:
+count
+keyEnumerator
+allObjects
+hasPrefix:
 systemWideElement
 uiElementWithAXElement:cache:
 setSystemWideElement:
@@ -393,11 +412,9 @@ parameters
 integerValue
 attributeFromRequest:
 _processAttributeSpecialCases:uiElement:error:
-setObject:forKeyedSubscript:
 numberWithLong:
 addObject:
 setError:
-count
 objectAtIndexedSubscript:
 intValue
 _postProcessAttributeRequest:iosAttribute:axpAttribute:result:
@@ -428,7 +445,6 @@ stringWithAXAttribute:
 length
 _processParameterizedAttributeRequest:attribute:parameter:error:
 _processDirectAttributeRequest:iosAttribute:axpAttribute:parameter:error:
-_iosParameterFromPlatformParameter:
 _processLineRangeAttributeRequest:parameter:error:
 numberWithUnsignedLong:
 valueWithRange:
@@ -457,7 +473,9 @@ _processAuditIssuesAttributeRequest:parameter:error:
 _processClassNameAttributeRequest:error:
 _processCustomActionsAttributeRequest:error:
 _processBoundsForRangeAttributeRequest:parameter:error:
+_processVisisbleTextRangeAttributeRequest:error:
 _processFocusedElementAttributeRequest:parameter:error:
+_processElementHelpAttributeResquest:error:
 _processIsEnabledAttributeRequest:error:
 _processIsFocusedAttributeRequest:parameter:error:
 _processIsRemoteElementAttributeRequest:error:
@@ -566,9 +584,10 @@ valueWithSize:
 caseInsensitiveCompare:
 rowRange
 elementParent
+setWithObjects:
 mainBundle
 bundleIdentifier
-hasPrefix:
+containsObject:
 hasSuffix:
 setFakeElementCache:
 _translationApplicationObjectForPidNumber:
@@ -637,7 +656,6 @@ unlock
 allocWithZone:
 isApplicationElement
 setRawElementData:
-setWithObjects:
 encodeInteger:forKey:
 encodeBool:forKey:
 encodeObject:forKey:

@@ -87,6 +87,7 @@ DisabledArcadeSubscriptionManager
 ASDPurchaseHistory
 CodablePreferenceKey
 JSArcadeObject
+HardwarePlatform
 PurchaseHistoryAppStateDataSource
 Installed
 ArcadeIntroOfferState
@@ -119,6 +120,7 @@ StatefulOfferActionImplementation
 XPCConnectionOwnerDelegate
 XPCConnectionOwner
 ActiveConnection
+JSAppleSiliconObject
 JSASKGlobalObject
 SubscriptionEntitlements
 Unknown
@@ -139,6 +141,7 @@ Purchased
 PresentErrorAction
 ServiceBrokerClient
 OfferService
+AsyncExpensive
 AppPurchaseType
 AppState
 AppStateMetricsFieldsProvider
@@ -149,6 +152,7 @@ AccountState
 CodingKeys
 ASCSignpostGroupLottery
 Installing
+Platform
 JSPersonalizationStoreObject
 CancelInstallActionImplementation
 WaitingAppStateDataSource
@@ -269,6 +273,8 @@ mainScreenCornerRadius
 isPad
 isStandaloneWatch
 activePairedSystemVersion
+isAppleSiliconMac
+isAppleSiliconDTK
 hasCapabilities:
 offer:didChangeState:withMetadata:flags:
 offer:didChangeStatusText:
@@ -465,7 +471,6 @@ overlaysLoadTimeout
 setOverlaysLoadTimeout:
 enableWebInspector
 setEnableWebInspector:
-_enableWebInspector
 stringValue
 initWithStringValue:
 initWithInt64:
@@ -627,7 +632,6 @@ auditToken
 appQuery:resultsDidChange:
 setObserver:
 cleanedRedownloadParams
-supportsCurrentPlatform
 redownloadParams
 orderedVisibleIAPs:::::
 visibilityForIAPs::
@@ -746,6 +750,8 @@ invalidate
 setExportedInterface:
 setExportedObject:
 setInvalidationHandler:
+isSupportEnabled
+isRosettaAvailable
 client
 storeMetrics
 props
@@ -753,6 +759,7 @@ user
 clientOrdering
 personalizationStore
 arcade
+appleSilicon
 sharedConnection
 sharedManager
 sharedInstance
@@ -871,6 +878,8 @@ mainScreenCornerRadius
 isPad
 isStandaloneWatch
 activePairedSystemVersion
+isAppleSiliconMac
+isAppleSiliconDTK
 NOTIFY_STATUS_OK
 NOTIFY_STATUS_INVALID_NAME
 NOTIFY_STATUS_INVALID_TOKEN
@@ -1004,6 +1013,7 @@ ASCDisableShutdownTimer
 ASCPreferenceKeyOverlaysRateLimitRequestsPerSecond
 ASCPreferenceKeyOverlaysRateLimitTimeWindow
 ASCPreferenceKeyOverlaysLoadTimeout
+ASCEnableWebInspector
 daemonDefaults
 T@"ASCDefaults",R
 storefrontLocaleID
@@ -1012,7 +1022,6 @@ forceRightToLeftLayout
 TB,N
 disableShutdownTimer
 enableWebInspector
-TB,N,V_enableWebInspector
 overlaysRateLimitRequestsPerSecond
 T@"NSNumber",C,N
 overlaysRateLimitTimeWindow
@@ -1088,6 +1097,7 @@ ASCOfferIsPreorder
 ASCOfferIsDisabled
 ASCOfferForceWatchInstall
 ASCOfferIsDeletableSystemApp
+ASCOfferIsIOSAppOnMacOS
 standard
 open
 trial
@@ -1223,6 +1233,7 @@ NSCopying
 @24@0:8^{_NSZone=}16
 NSSecureCoding
 supportsSecureCoding
+TB,N,R
 NSCoding
 v24@0:8@"NSCoder"16
 @24@0:8@"NSCoder"16
@@ -1263,7 +1274,6 @@ Unknown - failedToFetchState:
 Subscribed: true
 Subscribed: false, introOffer: 
 _TtCV19appstorecomponentsd19ASDDeviceAppFetcherP33_602223BA61A39827BF84AE6E0E050E1316QueryObservation
-v16@0:8
 appQuery
 taskScheduler
 observer
@@ -1274,8 +1284,6 @@ ASDAppQueryResultsObserver
 v32@0:8@"ASDAppQuery"16@"NSArray"24
 appstorecomponentsd
 cleanedRedownloadParams
-supportsCurrentPlatform
-TB,N,R
 _TtC19appstorecomponentsd22JSClientOrderingObject
 v56@0:8@16@24@32@40@48
 visibilityForIAPs is not available
@@ -1384,7 +1392,9 @@ _TtC19appstorecomponentsd14JSArcadeObject
 Could not resolve taste profile
 _TtP19appstorecomponentsdP33_D9588DFF1C77403079F1C05130255B9121JSArcadeObjectExports_
 @"JSValue"24@0:8@"NSNumber"16
-JSExport
+enableMacOSCompatibleIOSApps
+enableMacOSCompatibleIOSAppsForDTK
+enableMacOSCompatibleIOSAppsForCarry
 _TtC19appstorecomponentsd33PurchaseHistoryAppStateDataSource
 accounts
 purchaseHistory
@@ -1550,6 +1560,14 @@ activeConnections
 delegateUnlocked
 Accepting new connection 
 Connection was invalidated 
+_TtC19appstorecomponentsd20JSAppleSiliconObject
+v16@0:8
+platform
+isSupportEnabled
+isRosettaAvailable
+appstorecomponentsd.JSAppleSiliconObject
+_TtP19appstorecomponentsdP33_767EEB8086250627F0BC468E7A3FC3FB27JSAppleSiliconObjectExports_
+JSExport
 _TtC19appstorecomponentsd17JSASKGlobalObject
 client
 storeMetrics
@@ -1558,6 +1576,7 @@ user
 clientOrdering
 personalizationStore
 arcade
+appleSilicon
 T@"ASCJSClientObject",N,R,Vclient
 T@"_TtC19appstorecomponentsd11JSLocObject",N,R,Vloc
 T@"_TtC19appstorecomponentsd20JSStoreMetricsObject",N,R,VstoreMetrics
@@ -1565,6 +1584,7 @@ T@"_TtC19appstorecomponentsd12JSUserObject",N,R,Vuser
 T@"_TtC19appstorecomponentsd22JSClientOrderingObject",N,R,VclientOrdering
 T@"_TtC19appstorecomponentsd28JSPersonalizationStoreObject",N,R,VpersonalizationStore
 T@"_TtC19appstorecomponentsd14JSArcadeObject",N,R,Varcade
+T@"_TtC19appstorecomponentsd20JSAppleSiliconObject",N,R,VappleSilicon
 appstorecomponentsd.JSASKGlobalObject
 _TtP19appstorecomponentsdP33_A10F27D32A47776B15A77D0B2E4439C624JSASKGlobalObjectExports_
 T@"ASCJSClientObject",N,R
@@ -1574,6 +1594,7 @@ T@"_TtC19appstorecomponentsd12JSUserObject",N,R
 T@"_TtC19appstorecomponentsd22JSClientOrderingObject",N,R
 T@"_TtC19appstorecomponentsd28JSPersonalizationStoreObject",N,R
 T@"_TtC19appstorecomponentsd14JSArcadeObject",N,R
+T@"_TtC19appstorecomponentsd20JSAppleSiliconObject",N,R
 @"ASCJSClientObject"16@0:8
 @"_TtC19appstorecomponentsd11JSLocObject"16@0:8
 @"_TtC19appstorecomponentsd20JSStoreMetricsObject"16@0:8
@@ -1581,6 +1602,7 @@ T@"_TtC19appstorecomponentsd14JSArcadeObject",N,R
 @"_TtC19appstorecomponentsd22JSClientOrderingObject"16@0:8
 @"_TtC19appstorecomponentsd28JSPersonalizationStoreObject"16@0:8
 @"_TtC19appstorecomponentsd14JSArcadeObject"16@0:8
+@"_TtC19appstorecomponentsd20JSAppleSiliconObject"16@0:8
 notSubscribedOffer
 overlays-rate-limit-requests-per-second
 overlays-rate-limit-time-window
@@ -1648,6 +1670,8 @@ v24@0:8@?<v@?@"NSError">16
 v24@0:8@?<v@?@"<ASCLockupFetcherService>"@"NSError">16
 v24@0:8@?<v@?@"<ASCMetricsService>"@"NSError">16
 v32@0:8@"<ASCAppOfferStateDelegate>"16@?<v@?@"<ASCAppOfferStateService>"@"NSError">24
+accessQueue
+value
 ASCOffer
 @24@0:8:16
 AppStoreComponents.appID
@@ -1681,7 +1705,6 @@ because no install is pending.
 because query returned no apps.
  because query returned no apps.
 _TtC19appstorecomponentsd25WaitingAppStateDataSource
-accessQueue
 WaitingAppStateDataSource.accessQueue
 invocationPoints
 _TtC19appstorecomponentsd28ASDArcadeSubscriptionManager
@@ -2089,6 +2112,7 @@ ySS_SStG
 SS_SSt
 $s19appstorecomponentsd21JSArcadeObjectExports33_D9588DFF1C77403079F1C05130255B91LLP
 SayypG
+ySbG
 SgXw
 SgXwz_Xx
 _pSgIegg_
@@ -2171,11 +2195,16 @@ _pSgXw
 SgXw
 SgXwz_Xx
 ytIegr_
+$s19appstorecomponentsd27JSAppleSiliconObjectExports33_767EEB8086250627F0BC468E7A3FC3FBLLP
 $s19appstorecomponentsd24JSASKGlobalObjectExports33_A10F27D32A47776B15A77D0B2E4439C6LLP
 So17ASCJSClientObjectC
 $s19appstorecomponentsd24SubscriptionEntitlementsP
 So23ASCLockupFetcherService_p
 So17ASCMetricsService_p
+SbIegd_
+ySbGSgXw
+yxGSgXwz_Sb_lXX
+SbIegr_
 ySo8NSBundleCG
 So9ASCAdamIDC2id_t
 SS8bundleID_t
@@ -2220,6 +2249,7 @@ Sd8progress_t
 2in_
 7versiont
 $s19appstorecomponentsd7SessionP
+$s19appstorecomponentsd8PlatformP
 SDySSSbG
 $s19appstorecomponentsd35JSPersonalizationStoreObjectExports33_CD5BDFC1E7CCFAFB836DD6F0A700EFB3LLP
 SaySo6ASDAppCGSo10NSProgressC
@@ -2352,7 +2382,10 @@ ObjectGraph
 onSubscriptionStateChange
 lookupName
 Value
+isRosettaAvailableFlag
+isAppleSiliconSupportEnabled
 accounts
+platform
 purchaseHistory
 purchaseHistoryContext
 workQueue
@@ -2427,6 +2460,7 @@ activeConnections
 delegateUnlocked
 connection
 exportedObject
+platform
 client
 storeMetrics
 props
@@ -2434,6 +2468,7 @@ user
 clientOrdering
 personalizationStore
 arcade
+appleSilicon
 launchCorrelationKey
 actionMetrics
 item
@@ -2450,6 +2485,8 @@ localeWithCalendarWithBagFixUp
 actionMetrics
 error
 session
+accessQueue
+value
 standard
 preorder
 waiting
@@ -2522,13 +2559,13 @@ actionMetrics
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18K5035x</string>
+<string>12A8179f</string>
 <key>DTPlatformName</key>
 <string>appletvsimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18K5035x</string>
+<string>18K5047c</string>
 <key>DTSDKName</key>
 <string>appletvsimulator14.2.internal</string>
 <key>DTXcode</key>

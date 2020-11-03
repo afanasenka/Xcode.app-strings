@@ -1193,6 +1193,9 @@ mediaPlaybackProviderWarm
 mediaPlaybackProviderHasItems
 mediaPlaybackProviderHasSongs
 mediaPlaybackProviderInterruptIfCarPlay
+mediaPlaybackProviderStatusPlay
+mediaPlaybackProviderStatusSendQueue
+mediaPlaybackProviderStatusPrepareForSetQueue
 recordStoreMakeRecord
 recordStoreArchiveData
 _TtC16SiriAudioSupport24LocalSongPlaybackHandler
@@ -1380,6 +1383,9 @@ MediaPlaybackProvider#send
 MRMediaRemoteCommandSendQueue
 %{public}s %{public}s completed in %{public}f seconds (logging at error for timing visibility)
 %{public}s %{public}s completed in %{public}f seconds
+status=%{signpost.telemetry:number1,public}d enableTelemetry=YES 
+%s using error base: %ld to represent MPCAssistantErrorDomain
+%s using error base: %ld to represent kMRMediaRemoteFrameworkErrorDomain
 MediaPlaybackProvider#readStatus %{public}s MPCAssistantCommand status for: '%{public}s' - Non-success status for setQueue
 MediaPlaybackProvider#readStatus %{public}s MPCAssistantCommand status for: '%{public}s' - completed successfully
 MRMediaRemoteCommandChangeRepeatMode
@@ -1770,6 +1776,7 @@ SvSg
 SgIegyg_
 So36MPCAssistantRemoteControlDestinationCSbIeggy_
 So43MPCAssistantMutableRemoteControlDestinationC
+SaySo8NSNumberCG
 3key_yp5valuet
 3key_yp5valuetSg
 _yptSg

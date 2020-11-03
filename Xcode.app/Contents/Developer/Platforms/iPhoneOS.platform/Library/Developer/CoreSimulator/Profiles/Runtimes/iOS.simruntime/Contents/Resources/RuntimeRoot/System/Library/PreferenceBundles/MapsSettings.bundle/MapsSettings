@@ -1117,6 +1117,9 @@ setBackgroundInsets:
 _setBackgroundViewConfigurationProvider:
 _maps_setCollectionViewCellBackgroundConfiguration
 _maps_setTableViewCellBackgroundConfiguration
+remembersLastFocusedIndexPath
+setRemembersLastFocusedIndexPath:
+_maps_reloadDataWithoutFocus
 timing
 preferences
 isEqualToTransitRouteOptions:
@@ -1297,6 +1300,7 @@ _enableShareETA:
 lazyLoadBundle:
 setControllerLoadAction:
 path
+initWithBundleIdentifier:allowPlaceholder:error:
 dataContainerURL
 aa_primaryAppleAccount
 aa_primaryEmail
@@ -2624,6 +2628,7 @@ MapsSimpleAlertPresenter
 SimpleAlertPresenter
 OutlineViewExtras
 MapsSelectionStyle
+MapsFocusDodging
 TransitRouteOptions
 NonVisualEffectView
 MapsSettingsExtensionBaseController

@@ -1,5 +1,4 @@
-@(#)PROGRAM:SpotlightServices  PROJECT:SpotlightServices-2146.1
-33333
+@(#)PROGRAM:SpotlightServices  PROJECT:SpotlightServices-2148
 hS(knN
 MbP?
 com.apple.application
@@ -127,7 +126,7 @@ Td,R,N
 suggestionsRenderTimeout
 supportedServices
 T@"NSArray",R,N,V_supportedServices
-appBlacklist
+appBlocklist
 T@"NSSet",R,N
 cepDictionary
 T@"SSPlistDataReader",R,N
@@ -521,7 +520,7 @@ v40@?0r*8Q16{?=*{?=IC}}24
 TQ,R,N
 allKeys
 T@"NSMutableArray",R,C,N
-blacklist
+blocklist
 /com.apple.spotlight/
 mapPredictionEnginesToClasses
 T@"NSMutableDictionary",&,V_mapPredictionEnginesToClasses
@@ -2411,7 +2410,7 @@ Td,V_searchRenderTimeout
 Td,V_suggestionsRenderTimeout
 cep_server_values
 T@"SSPlistDataReader",&,V_cep_server_values
-T@"NSSet",&,N,V_appBlacklist
+T@"NSSet",&,N,V_appBlocklist
 enabledDomains
 T@"NSArray",&,N,V_enabledDomains
 TB,N,V_disableAsTypedSuggestion
@@ -2458,8 +2457,8 @@ queryIndependentCategoryProbabilities
 T@"SSPlistDataReader",&,N,V_queryIndependentCategoryProbabilities
 localResultQualityThreshold
 T@"NSNumber",&,N,V_localResultQualityThreshold
-cepBlacklistSet
-T@"NSMutableOrderedSet",&,N,V_cepBlacklistSet
+cepBlocklistSet
+T@"NSMutableOrderedSet",&,N,V_cepBlocklistSet
 shortcutSectionBundleID
 T@"NSString",&,N,V_shortcutSectionBundleID
 allow_coreduet_influence
@@ -2747,7 +2746,7 @@ aapl
 (InRange(kMDItemContentCreationDate_Ranking,$time.today(-15d),$time.now(+1d)) || InRange(kMDItemDateAdded_Ranking,$time.today(-15d),$time.now(+1d)) || InRange(kMDItemInterestingDate_Ranking,$time.today(-15d),$time.now(+1d)))
 _kMDItemAutocompleteTriggers
 (%@) && (%@)
-((%@) || (%@)) && (_kMDItemShortcutLastUsedDate>$time.now(-150d) || _kMDItemShortcutLastUsedDate!=*)
+((%@) || (%@)) && (_kMDItemShortcutLastUsedDate>$time.now(-%dd) || _kMDItemShortcutLastUsedDate!=*)
 (%@ || (((%@ || %@) || (%@ && %@)) && %@) || (%@)) && (%@)
 ((%@) || ((%@ || %@) && %@) || (%@)) && (%@)
 ((%@) || (((%@ || %@) || (%@ && %@)) && %@) || (%@)) && (%@)
@@ -2967,8 +2966,9 @@ com_apple_mobilesms_chatStyle!=*
 (%@="%@" || (kMDItemDisplayName="%@" && _kMDItemBundleID="com.apple.application")) && (%@) && (%@) && (%@)&& (%@))
 (%@="%@") && (%@) && (%@)
 T@"NSString",&,V_appName
+kMDItemAppStoreHasMetadataPlist
 SSCompactRankingAttrsDealloc
-/Library/Caches/com.apple.xbs/Sources/Spotlight_frameworks_Sim/Spotlight-2146.1/spotlight/spot/parsec/SpotlightServices/CompactedAttributes/SSCompactRankingAttrsData.m
+/Library/Caches/com.apple.xbs/Sources/Spotlight_frameworks_Sim/Spotlight-2148/spotlight/spot/parsec/SpotlightServices/CompactedAttributes/SSCompactRankingAttrsData.m
 attributeIndex >= 0
 SSCompactRankingAttrsCopy
 SSCompactRankingAttrsAddFloat
@@ -3052,7 +3052,7 @@ failed fetch resource:%@ err:%@
 [Trial] Spotlight has an active rollout: %@ for namespace: %@
 [Trial] Spotlight has an active experiment: %@ for namespace: %@
 [Spotlight Trial] Invalid factor name input: %@
-query %@: blacklist %@, result app bundleid %@
+query %@: blocklist %@, result app bundleid %@
 query %@: Top Hit score for result %@ %f
 Inspecting top result %@
 Inspecting %@
@@ -3381,7 +3381,7 @@ setDouble:forKey:
 getFTEStringsWithReply:
 searchRenderTimeout
 suggestionsRenderTimeout
-appBlacklist
+appBlocklist
 cep_server_values
 currentLocale
 objectForKey:
@@ -3795,7 +3795,7 @@ lastPathComponent
 stringByDeletingPathExtension
 rangeOfString:
 dateFromString:
-whitelistedBundles
+allowlistedBundles
 setSubmissionEnabled:
 setUserDefaults:
 setIsInternalDevice:
@@ -4004,8 +4004,8 @@ _score
 arrayWithCapacity:
 doubleValueForKey:
 initWithPlistContainer:
-blacklist
-doesBundleExistInAppWhiteList:
+blocklist
+doesBundleExistInAppAllowList:
 doubleValueForBundle:
 container
 _container
@@ -4332,7 +4332,11 @@ initWithFeatureOrder:withInflation:withInflatedIndexToSize:
 getL2FeatureSet
 _dictionaryRepresentationWithoutDefaultValues:
 numberWithInt:
-restoreFromJazzkonHacks:
+swapAllLastUsedDateFeatures:
+swapFeature:withSubstitute:scores:
+swapAllContentCreationDateFeatures:
+swapAllRecenyFeatures:
+restoreFromJazzkonPlusHacks:
 initWithCache:featureData:featureDataSize:flags:values:
 setOriginalL2Score:
 experimentalScore
@@ -4609,7 +4613,7 @@ removeTask:
 refreshGUID
 client
 setClient:
-setAppBlacklist:
+setAppBlocklist:
 collectAnonymousData
 lookupFirstUseDescription1
 lookupFirstUseDescription2
@@ -4631,7 +4635,7 @@ _status
 _searchRenderTimeout
 _suggestionsRenderTimeout
 _cep_server_values
-_appBlacklist
+_appBlocklist
 _enabledDomains
 _anonymousMetadataUndesiredBundleIDs
 _fteLocString
@@ -4648,7 +4652,7 @@ _resourceFetchQueue
 initWithBytesNoCopy:length:deallocator:
 readDataToEndOfFile
 setQueryDependentCategoryProbabilities:
-setCepBlacklistSet:
+setCepBlocklistSet:
 integerForKey:
 setAllow_coreduet_influence:
 setNumAppsDeduped:
@@ -4658,10 +4662,10 @@ sqfData
 updateWithSQFData:
 queryIndependentCategoryProbabilities
 setQueryIndependentCategoryProbabilities:
-appendToExistingCEPBlacklist:
+appendToExistingCEPBlocklist:
 numAppsDeduped
-updateQueryDependentProbabilityAndBlacklistSetWith:
-cepBlacklistSet
+updateQueryDependentProbabilityAndBlocklistSetWith:
+cepBlocklistSet
 queryDependentCategoryProbabilities
 queryDependentProbabilityForCategory:
 mergeWith:
@@ -4683,7 +4687,7 @@ _categoryEngagements
 _queryDependentCategoryProbabilities
 _queryIndependentCategoryProbabilities
 _localResultQualityThreshold
-_cepBlacklistSet
+_cepBlocklistSet
 _shortcutSectionBundleID
 modelAssetWithURL:error:
 initWithDictionary:error:
@@ -4764,7 +4768,7 @@ insertString:atIndex:
 removeResultsAtIndex:
 applyTopHitRankingPolicyToSection:topResultSection:maxTopHitCount:isShortcut:
 timeIntervalSinceNow
-removeBlackListedSectionsForMapping:withRankingConfiguration:
+removeBlockListedSectionsForMapping:withRankingConfiguration:
 roundedValueForScore:
 sortUsingComparator:
 setPlacement:
@@ -4812,7 +4816,7 @@ relativeRankWithAbsRank:numberValues:
 sectionContainsOnlyStaleApps:
 sectionsContainsOnlyOneAppSection:
 makeTopHitSectionUsingSections:withItemRanker:sectionHeader:shortcutResult:isBullseyeNonCommittedSearch:isBullseyeCommittedSearch:parsecEnabled:maxNumAppsInTopHitSection:
-removeBlackListedSectionsForMapping:
+removeBlockListedSectionsForMapping:
 initWithQuery:
 compareDate:withDate:
 rankSectionsUsingBundleIDToSectionMapping:withRanker:preferredBundleIds:isPeopleSearch:isScopedAppSearch:queryId:isCJK:isBullseyeNonCommittedSearch:isBullseyeCommittedSearch:
@@ -5348,6 +5352,7 @@ f20@0:8S16
 v40@0:8^f16^S24Q32
 @20@0:8B16
 v24@0:8^f16
+v32@0:8S16S20^f24
 B32@0:8^v16q24
 {PRSL2FeatureScoreSmallCache="features"[32S]"scores"[32f]"count"S}
 ^S16@0:8

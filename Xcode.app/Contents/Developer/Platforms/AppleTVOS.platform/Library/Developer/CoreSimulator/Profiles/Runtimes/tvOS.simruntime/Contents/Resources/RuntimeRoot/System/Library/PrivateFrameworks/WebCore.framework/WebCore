@@ -12500,6 +12500,7 @@ com.ea.ios.fifaultimate
 com.mtvn.noggin
 com.okcupid.app
 org.jw.jwlibrary
+io.voodoo.paperio
 searches
 searchString
 ./platform/cocoa/SharedBufferCocoa.mm
@@ -16388,6 +16389,7 @@ data
 .eot
 local(
 url(
+CSSFontSelector
 -webkit-repeating-linear-gradient(
 -webkit-linear-gradient(
 repeating-linear-gradient(
@@ -17706,7 +17708,7 @@ webkit-3d
 bitmaprenderer
 data:,
 Canvas area exceeds the maximum limit (width * height > 
-static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1776> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1776> > >]
+static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1784> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1784> > >]
 summarySlot
 true
 false
@@ -17978,7 +17980,7 @@ deny
 webkitExitFullscreen
 HTMLMediaElement
 static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<192> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<192> > >]
-static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1816> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1816> > >]
+static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1824> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1824> > >]
 _charset_
 Cannot create ImageBitmap with a width or height of 0
 Cannot create ImageBitmap that is not completely available
@@ -19464,8 +19466,8 @@ icon
 xmlhttprequest
 applewebdata
 data
-image/png,image/svg+xml,image/*;q=0.8,video/*;q=0.8,*/*;q=0.5
-image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
+image/webp,image/png,image/svg+xml,image/*;q=0.8,video/*;q=0.8,*/*;q=0.5
+image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5
 ./loader/cache/CachedResourceClientWalker.h
 T *WebCore::CachedResourceClientWalker<WebCore::CachedImageClient>::next() [T = WebCore::CachedImageClient]
 T *WebCore::CachedResourceClientWalker<WebCore::CachedRawResourceClient>::next() [T = WebCore::CachedRawResourceClient]
@@ -20332,6 +20334,7 @@ image/apng
 image/bmp
 image/x-icon
 image/pjpeg
+image/webp
 image/jpg
 image/jp_
 image/jpe_
@@ -20975,7 +20978,6 @@ FrameInfo
 tempImage
 page-count
 crop-box
-com.compuserve.gif
 monaco
 menlo
 courier
@@ -20994,6 +20996,9 @@ com.microsoft.ico
 public.tiff
 public.jpeg-2000
 public.mpo-image
+public.webp
+com.google.webp
+org.webmproject.webp
 Arabic
 Pashto
 Urdu
@@ -27355,7 +27360,7 @@ IsAndroid() || isNvidia
 isAMD || isIntel
 IsNexus5X(vendor, device)
 IsAndroid() || (IsWindows() && isIntel)
-(IsWindows() && (isIntel || isAMD)) || (IsLinux() && isNvidia)
+(IsWindows() && (isIntel || isAMD)) || (IsLinux() && isNvidia) || IsIOS()
 IsAndroid() || limitMaxTextureSize
 IsAndroid() || (IsApple() && (isIntel || isAMD || isNvidia))
 limitMaxTextureSize
@@ -31353,6 +31358,7 @@ outputDevices
 outputDevice
 deviceFeatures
 deviceName
+componentsJoinedByString:
 allKeys
 lastModifiedDateOfEntryForKey:
 removeEntryForKey:
@@ -31485,7 +31491,6 @@ finishLoadingWithError:
 sharedAudioPresentationOutputContext
 name
 copy
-componentsJoinedByString:
 initWithCapacity:
 initWithArray:
 minusSet:

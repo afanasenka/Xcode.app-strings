@@ -747,6 +747,7 @@ ForceShowAirQuality
 A successful todayRequestHandler callback should always have valid location and conditions set
 @16@?0@"WFWeatherConditions"8
 v32@?0@"WFAggregateCommonForecast"8@"NSData"16@"NSError"24
+com.apple.weather.widget
 mobile
 currentWeatherConditions
 T@"WFWeatherConditions",&,N,V_currentWeatherConditions
@@ -1403,6 +1404,7 @@ Executing Geocode for reason: %@
 Location data missing for location %@ / city %@
 Refreshed WFLocation; proceeding with forecast operation.
 Unable to refresh WFLocation; proceeding anyway w/ forecast.
+Change in Conditions included
 [WeatherKVS] CloudPreferences setting syncDelegate to %@
 [WeatherKVS] City list exceeds size limit after sync, dropping %@
 [WeatherKVS] Cloud and local cities arrays are different lengths.
@@ -2618,6 +2620,7 @@ executeSynchronously
 _failWithError:
 setCalendar:
 calendar
+shouldRequestChangeInConditions
 shouldQueryForAirQualityData
 units
 trackingParameter

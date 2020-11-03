@@ -19,17 +19,17 @@
 <string>WatchSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>1092.2.0.1</string>
+<string>1092.4</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18R5561c</string>
+<string>18R5569x</string>
 <key>DTPlatformName</key>
 <string>watchsimulator</string>
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R5561c</string>
+<string>18R5569x</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>
@@ -145,6 +145,13 @@
 <true/>
 <key>com.apple.private.corespotlight.internal</key>
 <true/>
+<key>com.apple.private.healthkit</key>
+<true/>
+<key>com.apple.private.healthkit.feature-availability.read</key>
+<array>
+<string>SleepActions</string>
+<string>SleepCoaching</string>
+</array>
 <key>com.apple.private.ids.messaging</key>
 <array>
 <string>com.apple.private.alloy.shortcuts</string>
@@ -154,6 +161,8 @@
 <array>
 <string>com.apple.private.alloy.shortcuts</string>
 </array>
+<key>com.apple.private.sleepd</key>
+<true/>
 <key>com.apple.private.tcc.allow</key>
 <array>
 <string>kTCCServiceAddressBook</string>
@@ -190,6 +199,7 @@
 <key>com.apple.security.exception.files.home-relative-path.read-only</key>
 <array>
 <string>/Containers/Data/Application/</string>
+<string>/Library/CoreBehavior/</string>
 <string>/Library/UserConfigurationProfiles/</string>
 </array>
 <key>com.apple.security.exception.files.home-relative-path.read-write</key>
@@ -215,6 +225,7 @@
 <string>com.apple.controlcenter.remoteservice</string>
 <string>com.apple.coreduetd.context</string>
 <string>com.apple.coreduetd.knowledge</string>
+<string>com.apple.frontboard.systemappservices</string>
 <string>com.apple.iconservices</string>
 <string>com.apple.identityservicesd.embedded.auth</string>
 <string>com.apple.itunescloudd.xpc</string>
@@ -222,6 +233,7 @@
 <string>com.apple.photos.service</string>
 <string>com.apple.securityd</string>
 <string>com.apple.siri.client_lite</string>
+<string>com.apple.sleepd.sleepserver</string>
 <string>com.apple.usernotifications.usernotificationservice</string>
 </array>
 <key>com.apple.security.exception.shared-preference.read-only</key>

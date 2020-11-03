@@ -2967,6 +2967,7 @@ initWithIdentifier:uiActionProviderIdentifier:fileProviderIdentifier:displayName
 initWithUIActionDescriptor:
 actionControllerForActionIdentifier:actionTitle:items:providerIdentifier:domainIdentifier:
 performActionWithCompletionHandler:
+legibilityWeight
 setTitleLabel:
 descriptionLabel
 setDescriptionLabel:

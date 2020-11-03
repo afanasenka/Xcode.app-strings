@@ -186,6 +186,7 @@ currentVoicesExist
 _areMobileAssetsPresent
 dataMigratorRequestedVoiceCacheRefresh
 setDataMigratorRequestedVoiceCacheRefresh:
+_platformSupportsMobileAssetVoices
 _monitorForNetworkChanges
 extantVoices
 countByEnumeratingWithState:objects:count:

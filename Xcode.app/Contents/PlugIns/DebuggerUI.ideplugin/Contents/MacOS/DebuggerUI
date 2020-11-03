@@ -1,4 +1,5 @@
-@(#)PROGRAM:DebuggerUI  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:DebuggerUI  PROJECT:IDEPlugIns-17510.1
+ffff
 @ffffff
 b@333333
 ?333333
@@ -11587,7 +11588,6 @@ So13IDEBreakpointC
 SaySo13IDEBreakpointCG_Say
 Sb_SaySo13IDEBreakpointCGt
 ySo28DVTFilterButtonSpecificationCG
-ySo19DVTFilterExpressionCG
 ySo19IDEBreakpointBucketCSo17DVTObservingTokenCG
 SayABGG
 $sSY
@@ -11601,6 +11601,7 @@ SDySo19IDEBreakpointBucketCSo17DVTObservingTokenCG
 So16DVTFilterSession_pSg
 SayypG
 yypG
+ySo19DVTFilterExpressionCG
 SaySSG
 SgXw
 yS2SG

@@ -201,6 +201,8 @@ Translation input was empty
 v32@?0@"_LTTranslationParagraph"8Q16^B24
 ttsCache
 T@"_LTTextToSpeechCache",&,N,V_ttsCache
+serverQueue
+T@"NSObject<OS_dispatch_queue>",&,N,V_serverQueue
 default
 InstalledLocales
 LastOfflineAssetCatalogUpdate
@@ -1433,9 +1435,11 @@ Publishing BatchTranslationEvent to FLLogger
 Unrecognized message type from server recieved!
 Failed to get siri data sharing opt in status: %@
 Creating service with URL: %@, bundleID: %@
+startServerTimeoutTimer 
+updateServerTimeout %.2fs 
 cancelServerTimeout: %@
 batch timeout triggered
-serverTimeoutFired %.2fs 
+ serverTimeoutFired Sending batch request after %.2fs 
 Found cached TTS data
 Start TTS request: %@ / %@
 TTS response (%d): %@
@@ -1446,7 +1450,7 @@ TranslateString
 Online: Finished translating
 Error translating request: %@, error: %@
 Finished translating request: %@
-Sending batch request: bufferSizeExceeded %@ maxParagraphsExceeded %@ taskChanged %@ 
+Sending batch request: bufferSizeExceeded %@ maxParagraphsExceeded %@ taskChanged %@ after %.2fs
 Translating: %{private}@ request_id %@
 Spans: %@
 Online: Translating paragraph: %@
@@ -2666,8 +2670,10 @@ set_sourceApplicationBundleIdentifier:
 blazarServiceWithBundleID:
 _webTaskService
 _blazarService
+date
 updateServerTimeout
 serverTimeoutFired
+timeIntervalSinceDate:
 sendBatchTranslationRequestWithDelegate:
 tokenize:forLocale:
 ttsCache
@@ -2761,6 +2767,8 @@ startSpeechTranslationWithContext:delegate:
 cancelSpeechTranslation
 speak:withContext:completion:
 startTextToSpeechTranslationWithContext:text:delegate:
+serverQueue
+setServerQueue:
 _sendQueue
 _translationQueue
 _speechSession
@@ -2769,6 +2777,7 @@ _timerQueue
 _serverTimer
 _assistantSettingsConnection
 _ttsCache
+_serverQueue
 boolForKey:
 dictionaryForKey:
 setObject:forKey:
@@ -3145,8 +3154,6 @@ _ltSentencesForLocale:
 clear
 _cacheQueue
 _cache
-date
-timeIntervalSinceDate:
 startCatalogDownload:options:then:
 compareAssetVersionReversed:
 isInstalled

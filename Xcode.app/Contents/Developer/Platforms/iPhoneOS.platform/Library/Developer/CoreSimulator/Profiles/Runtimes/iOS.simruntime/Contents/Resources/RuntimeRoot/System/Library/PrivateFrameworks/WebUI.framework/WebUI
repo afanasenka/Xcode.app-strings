@@ -50,6 +50,8 @@ privateBrowsingAvailable
 TB,R,N,GisPrivateBrowsingAvailable
 inMemoryBookmarkChangeTrackingAvailable
 TB,R,N,GisInMemoryBookmarkChangeTrackingAvailable,V_inMemoryBookmarkChangeTrackingAvailable
+keychainSyncEnabled
+TB,R,N,GisKeychainSyncEnabled
 userRemotelyManagedAndLocallyRestricted
 TB,R,N,GisUserRemotelyManagedAndLocallyRestricted
 airDropPasswordsAvailable
@@ -100,6 +102,7 @@ com.apple.mobilesafari
 AutoFill
 CookiePolicy
 CrowdsourcedAutoFill
+Keychain
 ScreenTime
 v32@?0@"NSString"8Q16^B24
 v16@?0@"NSNotification"8
@@ -171,6 +174,7 @@ Profile connection had no effective value for safariAcceptCookies setting; using
 Determined user is not restricted because there is not a Screen Time passcode set
 Determined user is %{public}@ an iCloud managed child
 Encountered error when determining can evaluate policy: %{public}@
+Failed to read keychain sync status with error: %{public}@
 Failed to find saved password. Skipping weak password warning.
 Failed to find persistent identifier for credential. Skipping weak password warning.
 WebView disappeared before presenting weak password warning.
@@ -395,6 +399,7 @@ _accountStoreDidChange:
 addObserver:selector:name:object:
 _setupAccountStore
 aa_primaryAppleAccount
+_updateKeychainSyncingStatus
 isCloudTabsAvailable
 isCloudKitBookmarksAvailable
 array
@@ -415,12 +420,18 @@ aa_isUsingiCloud
 isPasswordSharingAllowed
 canEvaluatePolicy:error:
 safari_privacyPreservingDescription
+fetchUserControllableViewsSyncingEnabled:
+setContext:
+aa_altDSID
+setAltDSID:
+initWithContextData:
 webui_sharedFeatureManager
 isCreditCardStorageAvailable
 isCloudHistorySyncAvailable
 isPrivateBrowsingAvailable
 determineIfPrivateBrowsingIsAvailableWithCompletionHandler:
 isAirDropPasswordsAvailable
+isKeychainSyncEnabled
 isAutoFillAvailable
 isBookmarksAvailable
 isReadingListAvailable
@@ -431,6 +442,7 @@ _accountStore
 _account
 _cachedShouldRequestMoreTime
 _managementState
+_keychainClique
 _autoFillAvailable
 _bookmarksAvailable
 _readingListAvailable
@@ -462,7 +474,6 @@ setActionHandler:
 type
 setHideAction:
 context
-setContext:
 _otherAction
 _indexOfSelectedIdentity
 _type
@@ -873,6 +884,7 @@ v24@0:8@?16
 @"ACAccount"
 @"NSNumber"
 @"STManagementState"
+@"OTClique"
 B32@0:8^{__SecTrust=}16@24
 @48@0:8i16@20@28i36i40i44
 @40@0:8i16@20i28i32i36

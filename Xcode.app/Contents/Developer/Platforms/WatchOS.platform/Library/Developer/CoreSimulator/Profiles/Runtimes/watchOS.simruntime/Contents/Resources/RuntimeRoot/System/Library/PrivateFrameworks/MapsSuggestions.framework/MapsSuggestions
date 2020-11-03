@@ -715,8 +715,9 @@ MapsSuggestionsManagerExpiredEntryInvalidator
 MapsSuggestionsManagerETAWiper
 MapsSuggestionsManagerDeferredUpdater
 -[MapsSuggestionsManager _updateSource:forType:repeat:handler:]_block_invoke
--[MapsSuggestionsManager _updateAllSourcesOnceWithHandler:]_block_invoke
+-[MapsSuggestionsManager _updateAllSourcesOnceWithHandler:]_block_invoke_2
 _updateAllSourcesOnce
+-[MapsSuggestionsManager _updateAllSourcesOnceWithHandler:]_block_invoke
 Start Sources
 Stop Sources
 -[MapsSuggestionsManager _sendInvalidateToAllSinks]_block_invoke
@@ -1735,17 +1736,21 @@ Was not called back from MapsSuggestionsEventKit
 -[MapsSuggestionsCalendarSource eventKitDidChange:]_block_invoke
 com.apple.maps.destinationd.sources
 MapsSuggestionsRemoteSource
-/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.12/iOS/Suggestions/MapsSuggestionsRemoteSource.m
--[MapsSuggestionsRemoteSource _openConnectionIfNecessary]_block_invoke
--[MapsSuggestionsRemoteSource _closeConnection]_block_invoke
+openingConnection
+/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.20/iOS/Suggestions/MapsSuggestionsRemoteSource.m
+-[MapsSuggestionsRemoteSource _q_openConnectionIfNecessary]_block_invoke
+_q_closeConnection
 -[MapsSuggestionsRemoteSource initFromResourceDepot:name:]
 MapsSuggestionsXPCSourceQueue
-start QoS
+start
 -[MapsSuggestionsRemoteSource start]_block_invoke
+-[MapsSuggestionsRemoteSource start]_block_invoke_2
+stop
+-[MapsSuggestionsRemoteSource stop]_block_invoke
 updateSuggestionEntriesOfType:
 -[MapsSuggestionsRemoteSource updateSuggestionEntriesOfType:handler:]_block_invoke
 -[MapsSuggestionsRemoteSource canProduceEntriesOfType:]
-removeEntry:behavior:handler
+removeEntry:behavior:
 -[MapsSuggestionsRemoteSource removeEntry:behavior:handler:]_block_invoke
 feedbackForEntryData
 -[MapsSuggestionsRemoteSource feedbackForEntry:action:]_block_invoke
@@ -2014,6 +2019,7 @@ c8@?0
 -[MapsSuggestionsCompositeSource feedbackForContact:action:]_block_invoke
 -[MapsSuggestionsCompositeSource addOrUpdateSuggestionEntries:source:]
 -[MapsSuggestionsCompositeSource addChildSource:]
+-[MapsSuggestionsCompositeSource addChildSource:]_block_invoke
 -[MapsSuggestionsCompositeSource removeChildSource:]
 @8@?0
 -[MapsSuggestionsCompositeSource test_dateUntilSuppressedEntry:]
@@ -2516,18 +2522,19 @@ T@"MapsSuggestionsManager",W,N,V_manager
 MapsSuggestionsCompanionSourceReceivedBlobNotification
 com.apple.nanomapsgd.xpc.MapsSuggestions
 MapsSuggestionsCompanionSource
-/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.12/iOS/Suggestions/MapsSuggestionsCompanionSource.m
+/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.20/iOS/Suggestions/MapsSuggestionsCompanionSource.m
 -[MapsSuggestionsCompanionSource initFromResourceDepot:name:]
 MapsSuggestionsCompanionSourceQueue
 -[MapsSuggestionsCompanionSource updateSuggestionEntriesWithHandler:]_block_invoke
 v32@?0@8Q16^B24
 -[MapsSuggestionsCompanionSource receiveDataFromCompanion:]_block_invoke
 v32@?0@8@16^B24
+-[MapsSuggestionsCompanionSource _openConnectionIfNecessary]_block_invoke
 MapsSuggestionsRatingRequestSourceQueue
 Short
 Long
 MapsSuggestionsRatingRequestSource
-/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.12/iOS/Suggestions/MapsSuggestionsRatingRequestSource.mm
+/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.20/iOS/Suggestions/MapsSuggestionsRatingRequestSource.mm
 -[MapsSuggestionsRatingRequestSource initFromResourceDepot:name:]
 -[MapsSuggestionsRatingRequestSource updateSuggestionEntriesWithHandler:]_block_invoke
 -[MapsSuggestionsRatingRequestSource _q_updateHistoryEntriesWithHandler:]_block_invoke
@@ -3003,18 +3010,17 @@ T@"NSString",C,N,V_longTrafficString
 T@"NSString",C,N,V_writtenRouteName
 T@"NSString",C,N,V_spokenRouteName
 MapsSuggestionsBlockDeduper
-/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.12/iOS/Suggestions/MapsSuggestionsBlockDeduper.m
+/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.20/iOS/Suggestions/MapsSuggestionsBlockDeduper.m
 -[MapsSuggestionsBlockDeduper dedupeByEnrichingEntry:withEntry:]
 Requires an original entry
 MapsSuggestionsJSON
-start
 v32@?0@"NSString"8@"<MapsSuggestionsAnyJSON>"16^B24
 v32@?0@"<MapsSuggestionsAnyJSON>"8Q16^B24
 MapsSuggestionsTooEarlyFilter
-/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.12/iOS/Suggestions/MapsSuggestionsTooEarlyFilter.m
+/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.20/iOS/Suggestions/MapsSuggestionsTooEarlyFilter.m
 -[MapsSuggestionsTooEarlyFilter shouldKeepEntry:]
 MapsSuggestionsTransportMode
-/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.12/iOS/Suggestions/MapsSuggestionsTransportMode.mm
+/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.20/iOS/Suggestions/MapsSuggestionsTransportMode.mm
 MapsSuggestionsTransportMode MapsSuggestionsTransportModeForOriginAndDestinationMapItem(CLLocationCoordinate2D, MapsSuggestionsMapItem *__strong _Nonnull)
 Need a non-nil MapItem for the destination
 MapsSuggestionsTransportMode MapsSuggestionsTransportModeForOriginAndDestination(CLLocationCoordinate2D, CLLocationCoordinate2D)
@@ -3299,6 +3305,7 @@ MapsSuggestionsReservationImproverEnabledKey
 MapsSuggestionsReservationsExpirationOverflowInSecondsKey
 MapsSuggestionsReservationsInitialWeightFarKey
 MapsSuggestionsReservationsInitialWeightNowKey
+MapsSuggestionsReservationsMapItemCacheCountKey
 MapsSuggestionsReservationsSinkRankFarKey
 MapsSuggestionsReservationsSinkRankNowKey
 MapsSuggestionsReservationsSourceEnabledKey
@@ -3686,10 +3693,10 @@ v16@?0@"MapsSuggestionsPortraitRelevanceScoreProvider"8
 void MSg::Queue::async(S *, void (^__strong)(S *)) const [S = MapsSuggestionsPortraitRelevanceScoreProvider]
 firesInSec
 MapsSuggestionsEngineBuilder
-Sep 21 2020
-05:28:06
+Oct  5 2020
+01:33:50
 EngineBuilderResourceDepot
-/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.12/iOS/Suggestions/MapsSuggestionsEngineBuilder.mm
+/Library/Caches/com.apple.xbs/Sources/Maps_Sim/Maps-2608.41.8.24.20/iOS/Suggestions/MapsSuggestionsEngineBuilder.mm
 -[MapsSuggestionsEngineBuilder withTitleFormatter:forType:]
 ! [titleFormatter conformsToProtocol:@protocol(MapsSuggestionsETATitleFormatter)] && ! [titleFormatter conformsToProtocol:@protocol(MapsSuggestionsDistanceTitleFormatter)]
 Requires an ETA and/or Distance title formatter
@@ -3990,7 +3997,6 @@ Will store Shortcut: %@
 Already had Shortcut (by ID): %@
 Shortcut had no MapItem: %@
 Already had Shortcut (by address): %@
-start
 updateSuggestionEntries
 removeEntry
 Deleted with error: %@
@@ -4144,22 +4150,32 @@ Current Location: %@
 No current location to work with.
 Error while creating Entries: %@
 Reloading because of detected change
-start QoS
-Error from XPC: %@
-XPC connection {%@} had an error: %@
+openingConnection
+_q_closeConnection
+start
+start failed with error: %@
+%{public}s:%{public}dstrongSelfErrorHandler went away in %{public}s
 WARNING: already started. Doing it again from the same XPC peer might confuse the daemon.
 stop
+WARNING: already stopped.
+stop failed with error: %@
 updateSuggestionEntriesOfType:
 Cannot update if we haven't been started.
-removeEntry:behavior:handler
+updateSuggestionEntriesOfType: failed with error: %@
+removeEntry:behavior:
 Cannot removeEntry if we haven't been started. Still continuing.
+removeEntry:behavior: failed with error: %@
 feedbackForEntryData
 We haven't been started, but processing feedbackForEntry
+feedbackForEntryData failed with error: %@
 feedbackForMapItem
 We haven't been started, but processing feedbackForMapItem
+feedbackForMapItem failed with error: %@
 feedbackForContact
 We haven't been started, but processing feedbackForContact
+feedbackForContact failed with error: %@
 Debug_updateGraph
+Debug_updateGraph failed with error: %@
 Failed unarchiving for %s.
 Error archiving entry %@
 Error decoding MapsSuggestionsEntry - %@
@@ -6215,10 +6231,8 @@ updateGraphWithHandler:
 setClasses:forSelector:argumentIndex:ofReply:
 addOrUpdateSuggestionEntriesData:sourceNameData:handler:
 setExportedInterface:
-suspend
 Debug_updateGraph
 _started
-_oneShotCallback
 archivedDataWithRootObject:requiringSecureCoding:error:
 unarchivedObjectOfClass:fromData:error:
 decodeBoolForKey:
@@ -6590,6 +6604,7 @@ _previousResults
 helloNanomapsgd
 enumerateKeysAndObjectsUsingBlock:
 receiveDataFromCompanion:
+_oneShotCallback
 initWithMapsSync:routine:delegate:name:
 _budget
 systemTimeZone

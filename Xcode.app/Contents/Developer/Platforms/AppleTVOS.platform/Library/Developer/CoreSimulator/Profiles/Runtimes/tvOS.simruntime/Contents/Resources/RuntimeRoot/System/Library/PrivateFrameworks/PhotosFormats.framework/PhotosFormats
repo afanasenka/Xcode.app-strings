@@ -238,14 +238,15 @@ com.apple.photos.variation-identifier
 com.apple.photos.live-photo.minimum-client-version
 com.apple.photos.render.originating.signature
 v28@?0r^{opaqueCMFormatDescription=}8I16^B20
+dvvC
 video
 com.apple.PhotosFormatsMediaMetadataErrorDomain
 Specified type (%d) is invalid for the media type %s
 convertTypeToKey
-/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.1.190/Projects/PhotosFormats/PhotosFormats/PFMediaMetadata.m
+/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.2.160/Projects/PhotosFormats/PhotosFormats/PFMediaMetadata.m
 Unable to access input media through URL %@
 LOOP
-%@ %@transfer=%@ color=%@
+%@ %@%@ transfer=%@ color=%@ dv84=%@ (current device eligible for HDR: %@)
 %@bit 
 BitsPerComponent
 v32@?0^{CGImageSource=}8Q16^B24
@@ -1656,6 +1657,8 @@ capabilitiesForCurrentDeviceWithOptions:
 legacyCapabilities
 capabilitiesInformationForCurrentDeviceWithOptions:
 currentDeviceHEVCCapabilities
+currentDeviceIsEligibleForHDRPlayback
+eligibleForHDRPlayback
 testCapabilitiesNotSupportingHEVC
 testCapabilitiesNotSupportingHEIF
 setRecordSlomoConfiguration:
@@ -1675,6 +1678,9 @@ metadataItemsWithMetadataType:value:error:
 arrayByRemovingMetadataItemOfType:fromArray:error:
 videoAssetIsDecodable:
 videoAssetIsPlayable:
+videoAssetIsHighDynamicRange:
+videoTrackFormatDescriptionHasDolby8_4Metadata:
+videoTrackFormatDescriptionIsHighDynamicRange:
 enumerateVideoTrackFormatDescriptionsInAsset:withBlock:
 videoCodecFourCharCodeNumberForAVAsset:
 isPlayable
@@ -1731,6 +1737,7 @@ isValidImageFileForURL:
 isValidAVFileForURL:
 UTIRequiresRasterizationDPI:
 defaultRasterizationDPI
+embeddedJPEGSuitableForDerivatives:imageProperties:
 imagePropertiesFromImageSource:
 imagePropertiesFromImageSource:atIndex:
 isAudioUTI:
@@ -2822,6 +2829,7 @@ B32@0:8q16q24
 @40@0:8@16@24@32
 B44@0:8C16@20^@28^@36
 @36@0:8C16@20^@28
+B24@0:8^{opaqueCMFormatDescription=}16
 I24@0:8@16
 @40@0:8@16r^v24r^v32
 B56@0:8@16r^v24r^v32^@40^@48

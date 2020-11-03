@@ -591,6 +591,7 @@ GCControllerDidConnectNotification
 GCControllerDidDisconnectNotification
 GCControllerDidBecomeCurrentNotification
 GCControllerDidStopBeingCurrentNotification
+detailedProductCategory
 attachedToDevice
 T@"NSNumber",R,C,GisAttachedToDevice
 light
@@ -745,6 +746,9 @@ Expected NSDictionary when deserializing GCHapticCapabilityGraphNode
 All leaf nodes should have exactly 1 actuator
 <%@ - %lu nodes, %lu capabilities (%lu exposed), %lu leaf capabilities (%lu exposed)>
 Xbox One
+Xbox Elite
+Xbox Adaptive
+Xbox Series X
 v16@?0C8B12
 Low Band
 High Band
@@ -890,6 +894,7 @@ DualShock 4
 v20@?0f8f12f16
 DualShockHapticCapabilityGraph
 T@"NSString",C,N,V_productCategory
+T@"NSString",C,N,V_detailedProductCategory
 T@"NSString",C,N,V_vendorName
 T@"NSNumber",C,N,GisAttachedToDevice,V_attachedToDevice
 CoreController.server-connection-workloop
@@ -1284,6 +1289,7 @@ videoStartRecordID
 com.apple.GameControllerNotifications
 v20@?0B8@"NSError"12
 %02x%@
+GCPartnersEnable
 AppleABL.%x.%x
 HapticParamCurveSegment = {
 channel = %d,
@@ -1863,6 +1869,7 @@ Attempting to set dictionary representation element settings with key %@ to repr
 %@ adding connection: %@
 %@ changed: %@
 set %@ StateFromKeyboardInput %@: %@
+Partners mode enabled? %d
 App state changed %@
 Application backgrounded, muting %@
 Application foregrounded, unmuting %@
@@ -2009,6 +2016,7 @@ Sending new player index to remote endpoint: %@
 (Player Indicator XPC Proxy Server Endpoint) New Player Index
 (Player Indicator XPC Proxy Server Endpoint) Fetch Player Index
 (Player Indicator XPC Proxy Server Endpoint) Invalidate Connection
+Device has both keyboard and mouse profiles at the same time: %@
 Removing: %@
 Removing keyboard: %@
 Removing mouse: %@
@@ -2600,7 +2608,7 @@ current
 setProxyController:
 proxyController
 _proxyController
-initWithServiceRef:
+initWithProfileClass:serviceRef:
 setIsProxyController:
 encodeObject:forKey:
 decodeObjectOfClass:forKey:
@@ -2638,6 +2646,7 @@ _legacy_playerIndex
 _legacy_setPlayerIndex:
 _legacy_physicalInputProfileName
 _legacy_physicalInputProfile
+initWithServiceRef:
 _legacy_isAttachedToDevice
 configurationsIN
 allObjects
@@ -2751,6 +2760,7 @@ extendedGamepad
 gamepad
 microGamepad
 getAndResetTimesPressed
+detailedProductCategory
 physicalInputProfileName
 isAttachedToDevice
 isAnalog
@@ -3502,14 +3512,15 @@ _mouseEventObserver
 _frontMostClient
 _pid
 _frontmostApplicationObserver
+serviceInfo
 initWithIdentifier:info:
 logicalDevice:determinePhysicalInputType:
-serviceInfo
 batteryServiceServer
 readBatteryWithReply:
 initWithLabel:type:index:
 arrayWithObjects:count:
 logicalDeviceControllerProductCategory:
+logicalDeviceControllerDetailedProductCategory:
 logicalDevice:makeControllerPhysicalInputProfileWithIdentifier:
 physicalDevice:getBatteryWithReply:
 physicalDeviceGetHapticCapabilities:
@@ -3613,6 +3624,7 @@ _manager
 _configuration
 logicalDevice:makeControllerForClient:
 setProductCategory:
+setDetailedProductCategory:
 setAttachedToDevice:
 setRegistryID:
 gamepadEventSource
@@ -3712,6 +3724,7 @@ blue
 updateLightWithRed:green:blue:
 physicalDevice:getSensorsEnabledWithReply:
 _productCategory
+_detailedProductCategory
 _attachedToDevice
 serviceName
 _registryID
@@ -4960,6 +4973,7 @@ B32@0:8q16Q24
 @"_GCGamepadEventFusionConfig"
 @"_GCGamepadEventFusion"
 @32@0:8#16@24
+@32@0:8#16^{__IOHIDServiceClient=}24
 v20@0:8I16
 @"GCColor"
 v32@0:8Q16f24f28

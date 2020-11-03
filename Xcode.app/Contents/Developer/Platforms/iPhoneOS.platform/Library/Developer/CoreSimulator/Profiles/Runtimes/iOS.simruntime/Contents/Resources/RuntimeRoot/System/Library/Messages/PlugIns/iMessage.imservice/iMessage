@@ -3025,7 +3025,6 @@ _requestGroupPhotoUpdate:fromIdentifier:toIdentifier:session:
 removeAllObjects
 isNewerThan:
 updateGroupIDForChat:newGroupID:
-_shouldBlackholeGroupChatWithParticipants:fromIdentifier:toIdentifier:account:
 isGroupInBlacklist:
 _checkForParticipantLeaveOnENGroup:groupMessagePayload:toIdentifier:fromIdentifier:service:
 _checkAndPerformLegacyAddRemove:participantsToAdd:participantsToRemove:service:fromIdentifier:

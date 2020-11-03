@@ -4365,6 +4365,7 @@ Multiple(
 ) expired session reports found with same sessionID(
  Succeeded
 v24@?0@"NSData"8@"NSError"16
+exception thrown from -makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler: 
 outputObscuredDueToInsufficientExternalProtectionChanged
 keyRequestHasInsufficientProtectionForDisplayID
 request has insufficient status 
@@ -13496,6 +13497,7 @@ com.ea.ios.fifaultimate
 com.mtvn.noggin
 com.okcupid.app
 org.jw.jwlibrary
+io.voodoo.paperio
 searches
 searchString
 ./platform/cocoa/SharedBufferCocoa.mm
@@ -17893,6 +17895,7 @@ data
 .eot
 local(
 url(
+CSSFontSelector
 -webkit-repeating-linear-gradient(
 -webkit-linear-gradient(
 repeating-linear-gradient(
@@ -19223,7 +19226,7 @@ data:,
 Canvas is tainted
 frameRequestRate is negative
 Canvas area exceeds the maximum limit (width * height > 
-static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1816> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1816> > >]
+static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1824> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1824> > >]
 summarySlot
 true
 false
@@ -19503,7 +19506,7 @@ changed from
 , to 
 HTMLMediaElement
 static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<192> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<192> > >]
-static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1864> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1864> > >]
+static void bmalloc::PerProcess<bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1872> > > >::coalesce() [T = bmalloc::IsoTLSEntryHolder<bmalloc::IsoTLSDeallocatorEntry<bmalloc::IsoConfig<1872> > >]
 _charset_
 Cannot create ImageBitmap with a width or height of 0
 Cannot create ImageBitmap that is not completely available
@@ -22537,7 +22540,6 @@ FrameInfo
 tempImage
 page-count
 crop-box
-com.compuserve.gif
 monaco
 menlo
 courier
@@ -24869,6 +24871,7 @@ EGL_EXT_image_dma_buf_import_modifiers
 EGL_NOK_texture_from_pixmap
 EGL_ANGLE_device_d3d
 EGL_ANGLE_device_cgl
+EGL_ANGLE_device_eagl
 EGL_EXT_client_extensions
 EGL_EXT_platform_base
 EGL_EXT_platform_device
@@ -24882,6 +24885,8 @@ EGL_ANGLE_platform_angle_null
 EGL_ANGLE_platform_angle_vulkan
 EGL_ANGLE_platform_angle_metal
 EGL_ANGLE_platform_angle_context_virtualization
+EGL_ANGLE_platform_device_context_volatile_eagl
+EGL_ANGLE_platform_device_context_volatile_cgl
 EGL_ANGLE_device_creation
 EGL_ANGLE_device_creation_d3d11
 EGL_ANGLE_x11_visual
@@ -26581,14 +26586,27 @@ http://crbug.com/398694
 ANGLE_DEFAULT_PLATFORM
 GPU.ANGLE.DisplayInitializeMS
 Could not create the EAGL context.
+Could set the EAGL context current.
 Could not open the OpenGLES Framework.
 OpenGL ES 2.0 is not supportable.
+Could not make device EAGL context current.
+Could not release device EAGL context.
 makeCurrent
 Unable to make gl context current.
 /System/Library/Frameworks/OpenGLES.framework/OpenGLES
 DisplayImpl::validateClientBuffer unimplemented.
 DisplayImpl::validateImageClientBuffer unimplemented.
 DisplayImpl::valdiatePixmap unimplemented.
+OpenGLESLibrary_block_invoke
+! Assert failed in 
+/Library/Caches/com.apple.xbs/Sources/ANGLE_Sim/ANGLE-7610.2.8.0.2/src/libANGLE/renderer/gl/eagl/EAGLFunctions.mm
+frameworkLibrary
+! Message: 
+Unable to load OpenGLES.framework
+EAGLContext
+initEAGLContext_block_invoke
+classEAGLContext
+objc_getClass failed for EAGLContext
 gl_FragData
 angle_compound_
 _frm
@@ -26712,6 +26730,7 @@ eglGetSyncAttrib
 eglCreateImage
 eglDestroyImage
 eglGetPlatformDisplay
+eglPlatformCreateWindowSurface
 eglCreatePlatformPixmapSurface
 eglWaitSync
 eglQuerySurfacePointerANGLE
@@ -27835,15 +27854,10 @@ yyset_lineno called with no buffer
 out of dynamic memory in yyensure_buffer_stack()
 ANGLEResetDisplayPlatform
 eglBindAPI
-eglBindTexImage
 eglChooseConfig
 eglClientWaitSyncKHR
-eglCreateContext
-eglCreatePbufferFromClientBuffer
 eglCreatePlatformWindowSurface
 eglCreateSyncKHR
-eglDestroyContext
-eglDestroySurface
 eglDestroySyncKHR
 eglGetCompositorTimingANDROID
 eglGetCompositorTimingSupportedANDROID
@@ -27852,12 +27866,11 @@ eglGetCurrentDisplay
 eglGetDisplay
 eglGetError
 eglGetFrameTimestampSupportedANDROID
+eglGetPlatformDisplayEXT
 eglGetProcAddress
 eglGetSyncAttribKHR
 eglInitialize
-eglMakeCurrent
 eglQueryAPI
-eglReleaseTexImage
 eglSwapBuffersWithDamageKHR
 eglWaitSyncKHR
 glActiveShaderProgramContextANGLE
@@ -29130,7 +29143,7 @@ IsAndroid() || isNvidia
 isAMD || isIntel
 IsNexus5X(vendor, device)
 IsAndroid() || (IsWindows() && isIntel)
-(IsWindows() && (isIntel || isAMD)) || (IsLinux() && isNvidia)
+(IsWindows() && (isIntel || isAMD)) || (IsLinux() && isNvidia) || IsIOS()
 IsAndroid() || limitMaxTextureSize
 IsAndroid() || (IsApple() && (isIntel || isAMD || isNvidia))
 limitMaxTextureSize
@@ -31879,6 +31892,8 @@ EGL_ANGLE_platform_angle extension not active
 EGL_PLATFORM_ANGLE_DEBUG_LAYERS_ENABLED_ANGLE must be EGL_TRUE, EGL_FALSE, or EGL_DONT_CARE.
 EGL_ANGLE_platform_angle_context_virtualization extension not active
 Invalid value for EGL_PLATFORM_ANGLE_CONTEXT_VIRTUALIZATION_ANGLE attrib
+Invalid value for EGL_PLATFORM_ANGLE_DEVICE_CONTEXT_VOLATILE_EAGL_ANGLE attrib
+Invalid value for EGL_PLATFORM_ANGLE_DEVICE_CONTEXT_VOLATILE_CGL_ANGLE attrib
 Must specify major version if you specify a minor version.
 EGL_PLATFORM_ANGLE_DEVICE_TYPE_WARP_ANGLE requires a device type of EGL_PLATFORM_ANGLE_TYPE_D3D11_ANGLE.
 EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE requires a device type of EGL_PLATFORM_ANGLE_TYPE_D3D11_ANGLE.
@@ -32910,9 +32925,8 @@ SWServerRegistration::softUpdateIfNeeded
 SWServer::createContextConnection should now have created a connection
 Request to terminate a worker %llu whose context connection does not exist
 %p - WebKitNamespace::Ignoring messageHandlers() request for non app-bound domain
-p*
-X Y
-`Z
+B0C
+pD
 WebInterruptionObserverHelper
 WebAVAudioSessionAvailableInputsListener
 WebCoreAVCaptureDeviceManagerObserver
@@ -33024,7 +33038,7 @@ WebScriptObject
 WebKitCocoaBindings
 WebUndefined
 WebVideoFullscreenController
-WebSwapLayer
+WebSwapLayerEAGL
 init
 defaultCenter
 interruption:
@@ -33433,6 +33447,7 @@ outputDevices
 outputDevice
 deviceFeatures
 deviceName
+componentsJoinedByString:
 allKeys
 lastModifiedDateOfEntryForKey:
 removeEntryForKey:
@@ -33556,7 +33571,6 @@ canonicalRequestForRequest:
 finishLoadingWithError:
 sharedAudioPresentationOutputContext
 copy
-componentsJoinedByString:
 initWithArray:
 minusSet:
 sizeValue

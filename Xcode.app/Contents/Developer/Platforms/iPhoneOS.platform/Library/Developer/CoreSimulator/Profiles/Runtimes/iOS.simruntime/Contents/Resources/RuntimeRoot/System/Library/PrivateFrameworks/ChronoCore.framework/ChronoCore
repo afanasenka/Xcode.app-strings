@@ -89,6 +89,7 @@ ProcessMonitoring
 PlaceholderServicing
 MobilePlaceholderService
 Task
+TaskSessionDelegate
 TaskSession
 Identifier
 Cost
@@ -99,7 +100,6 @@ SchedulingConfiguration
 WidgetSceneViewController
 SignificantTimeChangeNotification
 Times
-NotificationAction
 LocationGraceRegistry
 LocationGraceRegistryStore
 LocationGraceRegistrySharedMemoryStore
@@ -239,11 +239,13 @@ Couldn't access old chrono path: (%{public}s: %{public}ld): %{public}s
 com.apple.chronod
 ChronoCore/FilesystemAccess.swift
 Fatal error
-unable to open the widget database store: %s; removing the existing database and re-creating
 unable to open the widget database store: 
 ; attempt to recreate to recover also failed
+unable to open the widget database store: %s; removing the existing database and re-creating
 Couldn't access chrono path: %{public}s
 Couldn't access chrono path: (%{public}s: %{public}ld): %{public}s
+Unable to clean up %s: %s
+Removing %s
 @16@0:8
 v16@0:8
 contextProvider
@@ -260,13 +262,13 @@ powerlogReportingQueue
 [%{public}s]: cancelling %{public}@
 [%{public}s]: %{public}@ overridden for budget exempt execution
 [%{public}s]: %{public}@ debugging; overridden for immediate execution
-[%{public}s]: performing task %{public}@
 [%{public}s]: no available queue, pend task; pendingTasks.count = %{public}ld
 [%{public}s]: task session creation failed; task not found
-[%{public}s]: task session complete
+[%{public}s]: task session completed.
 [%{public}s]: starting pended task %{public}@; pendingTasks.count = %{public}ld
 task not viable; popping next pending task
 no tasks pending
+[%{public}s]: task session started.
 ChronoCore.TaskService
 <TaskService.TaskCancellable: TaskID: 
 _TtC10ChronoCore21DataProtectionMonitor
@@ -561,6 +563,7 @@ ChronoCore.Connection
 [%{public}s] open application from tap requested: %{public}s
 [%{public}s] open application from openURL requested: %{public}s
 [%{public}s] widget tapped: %{public}s
+userTappedFailedWidget
 [%{public}s] widget timeline was failed and user interacted - attempted to reload content.
 [%{public}s] Content reload detected - evaluating staleness.
 [%{public}s] host view size requested: %s
@@ -614,6 +617,7 @@ Received descriptor change
 Reloading previously failed placeholders for %s
 Ending periodic check of failed placeholders
 Beginning periodic check of failed placeholders
+descriptorsChanged
 v16@?0q8
 Creating entry for %s
 Updating placeholders
@@ -631,9 +635,10 @@ completion
 error
 task
 scheduled
+taskQueue
 bundleIdentifier
 suspensionObserver
-taskQueue
+delegate
 [%{public}s]: %{public}s with task %{public}@
 ChronoCore.Task
 _TtC10ChronoCore19ApplicationDelegate
@@ -740,22 +745,15 @@ ChronoCore/WidgetSceneViewController.swift
 init(coder:) has not been implemented
 init(widget:metrics:widgetAssertion:liveView:areAnimationsDisabled:) has not been implemented
 No configuration found for configured widget identifier: %{public}s
-v24@?0@"NSString"8@16
-DisplayBrightness
 v12@?0i8
 %{public}s: %u
 _TtC10ChronoCore33SignificantTimeChangeNotification
 subject
 previousTimes
-brightnessClient
 screenOn
-notifyWhenScreenOn
 significantTimeChangeSubscription
 SignificantTimeChangeNotification: ignoring
-SignificantTimeChangeNotification: delaying
 SignificantTimeChangeNotification: notifying
-SignificantTimeChangeNotification: notifying due to screen on
-SignificantTimeChangeNotification: screen on: %s
 _TtC10ChronoCore21LocationGraceRegistry
 @24@0:8@?16
 B24@0:8@?16
@@ -814,6 +812,7 @@ ChronoCore.AuthorizationMonitor
 [mon:%{private}s] auth initialized to %{public}s
 [mon:%{private}s] auth changed from %{public}s to %{public}s
 [mon:%{private}s] auth reported to change when it actually didn't : %{public}s
+already reloading for authorization change
 [ext:%{private}s] started tracking
 [ext:%{private}s] new assertion marking visible with grace policy %s
 [service] cancelling timeout
@@ -990,9 +989,12 @@ yxGG
 yxGSgXw
 yxGSgXwz_x_
 RzlXX
-G0R2_
-G0R0_
 ySo17OS_dispatch_queueCG
+yqd__G
+G0R0_
+qd__
+G0R2_
+G0R1_
 ySSSay
 _pGG
 yS2SG
@@ -1062,6 +1064,7 @@ So14NSUserDefaultsC
 Ieg_Sg
 So18CHSURLSessionTokenC
 _pSg
+Sb8inserted_So19BSServiceConnectionC17memberAfterInsertt
 SgXw
 So37CHSChronoWidgetServiceClientInterface_p
 ySDySSSaySo20CHSAvocadoDescriptorCGG
@@ -1088,8 +1091,9 @@ _p7elementtSg
 ypIegr_
 So29CHSConfiguredWidgetDescriptorC
 $s10ChronoCore26WidgetConfiguratonManaging33_F261EBE401C010448B75B31F0D56C1D4LLP
-ySaySSG
-ySaySSG
+ySaySSG_
+ySaySSG_
+SaySSG_
 ySS_SStG
 SS_SSt
 ySSypG
@@ -1155,11 +1159,12 @@ _pSgypSgcSg
 yypSg_y
 _pSgctcSg
 _pSgcSg
+$s10ChronoCore19TaskSessionDelegateP
 _pSg
 _pSg
 7Context
 QzSg
-yycSg
+_pSgXw
 _AAt
 yxGSgXw
 yxGSgXwz_x_
@@ -1175,16 +1180,17 @@ ySay
 ySay
 GGSo17OS_dispatch_queueCG
 SgXw
-ySaySSG
+ySaySSG_
 So38BSServiceConnectionListenerConfiguring_pIgg_
 ySo19BSServiceConnectionCG
 SgXw
-SaySSGIegg_
+SaySSG
+Ieggn_
 GSo17OS_dispatch_queueCG
 SgXw
 ACIegngnr_
 SSIegg_
-ySaySSG
+ySaySSG_
 SgXw
 SgXw
 GABySbADGG
@@ -1203,8 +1209,6 @@ _pSg
 SgXw
 SgXwz_Xx
 SgXw
-So22BrightnessSystemClientC
-SDySSSdG
 GSpySo8NSObjectCGSgSpyypGSgytIeglllr_
 SDySS
 $s10ChronoCore26LocationGraceRegistryStoreP
@@ -1246,7 +1250,6 @@ SaySo29CHSConfiguredWidgetDescriptorCG
 $s7Combine16ObservableObjectP
 6Output
 7Failure
-qd__
 7Failure
 Qyd__
 5Input
@@ -1499,10 +1502,11 @@ error
 task
 contextProvider
 scheduled
+taskQueue
 bundleIdentifier
 suspensionObserver
 context
-taskQueue
+delegate
 immediate
 rawValue
 local
@@ -1555,16 +1559,11 @@ duetWidgetIdentity
 visiblySettled
 subject
 previousTimes
-brightnessClient
 screenOn
-notifyWhenScreenOn
 lock
 significantTimeChangeSubscription
 world
 system
-notify
-delay
-ignore
 timeoutByIdentifier
 store
 identifier
@@ -1748,12 +1747,13 @@ defaultCenter
 aa_primaryAppleAccount
 identifier
 ams_activeiTunesAccount
+removeItemAtURL:error:
 URLForDirectory:inDomain:appropriateForURL:create:error:
 domain
 code
 localizedDescription
 createDirectoryAtURL:withIntermediateDirectories:attributes:error:
-removeItemAtURL:error:
+contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:
 widgets
 extensionBundleIdentifier
 predicateMatchingBundleIdentifier:
@@ -2005,10 +2005,6 @@ application:didDiscardSceneSessions:
 location
 isInStack
 page
-registerNotificationBlock:forProperties:
-initWithCalendarIdentifier:
-localTimeZone
-startOfDayForDate:
 deserializeFromReader:
 serializedDataLength
 serializeToWriter:

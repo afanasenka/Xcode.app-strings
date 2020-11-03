@@ -46,6 +46,7 @@ _castedResult
 /usr/bin/codesign
 --force
 --sign
+--preserve-metadata=entitlements
 codesign_allocate
 CODESIGN_ALLOCATE
 -[IDESimulatorPlaygroundAppBundle initWithAppBundlePath:executableSubpath:bundleIdentifier:resourcesDirectoryPath:]

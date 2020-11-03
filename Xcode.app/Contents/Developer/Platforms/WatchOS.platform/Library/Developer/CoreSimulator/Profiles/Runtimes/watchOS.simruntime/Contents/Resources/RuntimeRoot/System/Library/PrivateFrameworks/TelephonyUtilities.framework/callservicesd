@@ -1353,6 +1353,7 @@ handleCallStartedConnectingNotification:
 handleCallConnectedNotification:
 handleCallMayRequireBreakBeforeMakeChangedNotification:
 handleCallWantsHoldMusicChangedNotification:
+callIsOnHoldChangedNotification:
 breakBeforeMakeTimeout
 invalidate
 _handleCallHasStartedOutgoingChanged:
@@ -1377,6 +1378,8 @@ _pushCallToAlternateDestinationIfNecessary:
 _notifyCLTMOfIncomingCall
 unsuppressRingtoneIfNecessary
 setHeySiriEnabled:
+name
+disconnectActiveCallsBasedOnCallStatusForCall:
 enableEmergencyModeIfNecessaryForCall:
 _setUpBreakBeforeMakeTimeoutIfNecessaryForCall:
 sharedMonitor
@@ -1411,7 +1414,6 @@ _audioMutedForHoldMusic
 _requestCLTMThrottleUncapToken
 _callDurationLimitTimer
 _setUpBreakBeforeMakeTimeout
-name
 setName:
 modelIdentifier
 setModelIdentifier:
@@ -3757,6 +3759,8 @@ joinConversationWithConversationRequest:
 faceTimeLaunchForIncomingCallURL
 currentProxyCalls
 proxyCallWithCall:
+wantsCallNotificationsDisabledWhileSuspended
+isProcessSuspended
 eligibleCallsByFilteringCalls:forClient:
 isCallEligible:forClient:
 handleCurrentCallsChanged:callDisconnected:
@@ -8297,6 +8301,8 @@ processBundleIdentifier
 remote
 TB,R,N,GisRemote
 T@"TUCallServicesClientCapabilities",&,N,V_capabilities
+processSuspended
+TB,R,N,GisProcessSuspended
 tuSenderIdentity
 T@"TUSenderIdentity",R,N
 com.apple.telephonyutilities.callservicesd.conversationmanagerxpcserver
@@ -8516,6 +8522,9 @@ iPadPro
 PowerbeatsPro
 BeatsSoloPro
 Powerbeats4
+BeatsX2
+HomePodMini
+HomePodMiniStereoPair
 v16@?0B8B12
 dtmfSoundPlayer
 T@"TUDTMFSoundPlayer",R,N,V_dtmfSoundPlayer
@@ -8772,6 +8781,7 @@ AllocatorBadSignature
 AllocatorUnknownError
 InitialMkMDistributionFailure
 JoinNotificationDistributionFailure
+QRAllocateRequestTimeout
 AbortedByCaller
 AbortedByReceiver
 ReceiverOffline
@@ -9335,6 +9345,7 @@ PowerAssertionManager: Call relayed to HomePod, call=%@
 releasing PowerAssertion %@
 acquired PowerAssertion %@
 _TtC13callservicesd32AudioInterruptionProviderFactory
+AudioAccessory5,1
 callservicesd
 silenceUnknownCallersEnabled
 maxJunkLevel
@@ -9562,7 +9573,6 @@ endInterruptionDelay
 mediaServicesWereResetObserver
 audioSessionInterruptionObserver
 audioController
-com.apple.telephonyutilities.callservicesd.audiointerruptionproviderpool
 com.apple.telephonyutilities.callservicesd.audiocontroller
 v16@?0@"NSNotification"8
 notification: %@
@@ -9575,10 +9585,10 @@ Ending interruption immediately since there is no longer a resolved descriptor
 An end interruption was deferred but we were asked to update to a new descriptor, so canceling the deferred end
 Deferring end interruption by %.2f sec, since descriptor has an interruption deferred end descriptor and there is no pending expedited end interruption
 Ending interruption immediately, since descriptor has an interruption deferred end descriptor and there is a pending expedite for UUID %@
+Decreasing priority of other AVAudioSession interruption provider %@ to Default
 No provider returned for descriptor %@
 No existing proxy AVAudioSession interruption provider for ID %u, creating a new one
 Created AVAudioSession interruption provider %@
-Decreasing priority of other AVAudioSession interruption provider %@ to Default
 callUUID: %@
 Attempted to expedite deferred end interruption block prematurely, so pending the UUID %@
 Expediting deferred end interruption work item
@@ -10253,8 +10263,10 @@ Disconnecting video call because another call started outgoing: %@
 Disconnecting call using the baseband because a video call started outgoing and wantsBreakBeforeMake=YES: %@
 All calls ended. Setting uplink and downlink muted to NO
 Call started connecting: %@
+%@ is handling %@
 Video call connected: %@
 Disconnecting current call because another video call connected: %@
+Ending current active call %@ because call %@ is going to go active
 Reporting emergency call to screen time
 There was an error enabling emergency mode. Enabled successfully (%d) Error: %@
 Posting CLTM notification %@ and setting state to %llu
@@ -10929,10 +10941,10 @@ Encountered error while opening URL: %@ for call: %@
 Disconnecting call because there wont be a UI to host the call: %@
 Disconnecting proxy call because a video call started connecting: %@
 Updating clients with call: %@
+Ignoring call update for client %@ because it's suspended
 Updating client %@ with disconnected call: %@ calls: %@
 Updating client %@ with calls: %@
 notification: %@
-%@ is handling %@
 Pushing all calls to device with destination %@ because no preferred route is active and we found a call hosted here with its expected endpoint on another device: %@
 Pulling all calls from relay client device because a preferred route is active and we found a call with an endpoint elsewhere: %@
 Non-ringing call found on device: %@. All calls: %@
@@ -10965,8 +10977,9 @@ Aborting hold active calls and answer ringing call; ringing call %@ is not the s
 Aborting hold active calls and answer ringing call; ringing call %@ does not contain a data source.
 Changed sourceIdentifier of answerRequest to %@
    ... sending calls were found so adding them to list of calls to disconnect: %@
-   ... no sending calls were found so adding all active calls to list of calls to disconnect: %@
    ... and adding held calls to the list of calls to unhold: %@
+   ... and not unholding held calls because there are active calls %@ or ringing calls %@
+   ... no sending calls were found so adding all active calls to list of calls to disconnect: %@
    ... no sending or active calls were found so adding all held calls to list of calls to disconnect: %@
    ... and moving call %@ from call to unhold to call to disconnect because a disconnected call from the same provider doesn't support unambiguous multi-party state: %@
 Handoff context did not include any handoff payload. Assuming this is for a relay call
@@ -11535,6 +11548,7 @@ Error setting activity state to XPC_ACTIVITY_STATE_DONE
 Error synchronizing call directory extensions: %@
 Successfully synchronized call directory extensions
 Extensions changed for Call Directory NSExtensionManager %@, but we do not have a CXCallDirectoryManager (perhaps because device is not yet unlocked) so cannot synchronize
+?__C
 CHRecentCallMediaType
 TUMomentsAvailability
 Triggers
@@ -12192,7 +12206,6 @@ factory
 localAVAudioSessionInterruptionProvider
 proxyAVAudioSessionInterruptionProvidersByAudioSessionID
 avAudioClientInterruptionProvider
-queue
 availability
 photoRequestSuccessCount
 photoRequestFailureCount
@@ -12450,13 +12463,13 @@ session
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>12A8179f</string>
+<string>18R5569x</string>
 <key>DTPlatformName</key>
 <string>watchsimulator</string>
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R5569x</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>
@@ -12552,6 +12565,10 @@ session
 <true/>
 <key>com.apple.private.aps-connection-initiate</key>
 <true/>
+<key>com.apple.private.assets.accessible-asset-types</key>
+<array>
+<string>com.apple.MobileAsset.phoneNumberResolver</string>
+</array>
 <key>com.apple.private.attentionawareness</key>
 <true/>
 <key>com.apple.private.attentionawareness.poll</key>

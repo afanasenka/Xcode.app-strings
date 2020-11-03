@@ -319,9 +319,10 @@ Failed to convert app identifier EA data (%@) to string from "%s"
 com.apple.installd.appclip
 com.apple.installd.validatedByFreeProfile
 com.apple.installd.installType
--[MIFileManager setInstallType:onBundle:error:]
+-[MIFileManager setInstallType:inExtendedAttributeOnBundle:error:]
 Couldn't set installType EA on "%s": %s
--[MIFileManager installTypeForBundle:error:]
+-[MIFileManager installTypeFromExtendedAttributeOnBundle:error:]
+Install type extended attribute not found on %@
 Couldn't get installType EA from "%s": %s
 getxattr for installType EA on %s returned %zd (expected %zu)
 -[MIFileManager _setData:forExtendedAttributeNamed:onURL:orFD:error:]
@@ -537,8 +538,8 @@ setAppClipAppIdentifier:insecurelyCachedOnBundle:error:
 insecureCachedAppIdentifierIfAppClipForBundle:error:
 setValidatedByFreeProfileAppIdentifier:insecurelyCachedOnBundle:error:
 insecureCachedAppIdentifierIfValidatedByFreeProfileForBundle:error:
-setInstallType:onBundle:error:
-installTypeForBundle:error:
+setInstallType:inExtendedAttributeOnBundle:error:
+installTypeFromExtendedAttributeOnBundle:error:
 setData:forExtendedAttributeNamed:onURL:error:
 setData:forExtendedAttributeNamed:onFD:fdLocation:error:
 dataForExtendedAttributeNamed:length:fromURL:error:

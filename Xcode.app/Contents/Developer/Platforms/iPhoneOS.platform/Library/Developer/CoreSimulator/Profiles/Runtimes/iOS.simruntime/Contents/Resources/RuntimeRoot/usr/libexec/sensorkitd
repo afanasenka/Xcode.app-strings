@@ -23,7 +23,7 @@
 <string>iPhoneSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>411.0.7.0.2</string>
+<string>411.0.7.0.3</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
@@ -33,7 +33,7 @@
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B60x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

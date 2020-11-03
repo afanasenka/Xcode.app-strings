@@ -4454,6 +4454,7 @@ contentStackView
 <string>com.apple.coreduetd.knowledge</string>
 <string>com.apple.email.maild</string>
 <string>com.apple.frontboard.systemappservices</string>
+<string>com.apple.frontboard.systemappservices</string>
 <string>com.apple.identityservicesd.embedded.auth</string>
 <string>com.apple.nfcd.hwmanager</string>
 <string>com.apple.proactive.ActionPrediction.predictions</string>

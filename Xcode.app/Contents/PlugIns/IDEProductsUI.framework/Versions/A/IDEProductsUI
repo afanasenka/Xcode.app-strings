@@ -983,10 +983,12 @@ setCollapsed:
 _resetDefaultUtilitiesSplitPosition
 sourcesToErrorsMap
 objectForKey:
+setIsChangingSplitPositions:
 setPosition:ofDividerAtIndex:
 isCollapsed
 _restoreSourceListSplitPosition
 appStoreProductSource
+isChangingSplitPositions
 floatForKey:
 viewController
 setFloat:forKey:
@@ -998,7 +1000,6 @@ setBusyObserver:
 currentSectionViewControllerObserver
 isBusyObserver
 busyReasonObserver
-isProgrammaticallyManipulatingProductsSourceListSplitPosition
 _saveSourceListSplitPosition
 initialize
 keyPathsForValuesAffectingIsBusy
@@ -1013,10 +1014,9 @@ supportsInvalidationPrevention
 didSetWithSelected:
 didCompleteInitialLoading
 errorsFromProductSource:
-setProgrammaticallyManipulatingProductsSourceListSplitPosition:
 hasDisplayedLogInErrors
 setDisplayedLogInErrors:
-_programmaticallyManipulatingProductsSourceListSplitPosition
+_isChangingSplitPositions
 _displayedLogInErrors
 _productSelection
 _currentSectionViewController
@@ -1791,8 +1791,8 @@ T@"IDEProductsUtilityViewController",&,V_utilityViewController
 T@"IDEProductSectionViewController",&,V_currentSectionViewController
 sourcesToErrorsMap
 T@"NSMutableDictionary",&,V_sourcesToErrorsMap
-programmaticallyManipulatingProductsSourceListSplitPosition
-Tc,N,GisProgrammaticallyManipulatingProductsSourceListSplitPosition,V_programmaticallyManipulatingProductsSourceListSplitPosition
+isChangingSplitPositions
+Tc,N,V_isChangingSplitPositions
 displayedLogInErrors
 Tc,N,GhasDisplayedLogInErrors,V_displayedLogInErrors
 showProductAfterInitialLoading
@@ -2430,8 +2430,6 @@ $s13IDEProductsUI30ProductSectionProviderProtocolP
 So8NSObjectC
 GGSg
 SDySS
-ySo18NSLayoutConstraintCG
-yypG
 ySnySiGG
 So13NSToolbarItemC
 So16NSViewControllerC
@@ -2444,11 +2442,13 @@ SgXw
 SgXw
 So13NSLayoutGuideCSg
 SgXw
+ySo18NSLayoutConstraintCG
 So20IDESelectableProduct_p
 So13NSPopUpButtonCSgXw
 _yptG
 _So6NSFontCtG
 _So6NSFontCt
+yypG
 So18DVTReplacementViewCSg
 So17DVTViewControllerC
 So18DVTReplacementViewCSgXw
@@ -2459,7 +2459,6 @@ So12DVTLogAspectC
 So8NSBundleCSg
 So7NSImageCSg
 So8NSBundleC
-ySo18IDEProductCategoryC
 So31IDEProductSectionViewControllerCm
 $s13IDEProductsUI0A28WindowToolbarManagerProtocolP
 So13NSToolbarItemCG
@@ -2467,6 +2466,7 @@ So36IDEProductsWindowToolbarItemProvider_p
 So9NSToolbarC
 SaySo13NSToolbarItemCG
 ySS_SbtG
+ySo18IDEProductCategoryC
 titleField
 _rawValue
 RawValue

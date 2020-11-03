@@ -48,7 +48,7 @@ ArtworkModelProtocol
 ManagedArtworkModelProtocol
 PageGrid
 ColumnSizeCategory
-AccessPointHostingViewController
+:@AccessPointHostingViewController
 AccessPointRootViewController
 AccessPointWindow
 LayoutView
@@ -264,7 +264,7 @@ Alignment
 TitledParagraphData
 RecentlyPlayedWithFriendsListProfileSection
 LoadingIndicatorAccessoryView
-GameLayerMetadataLayoutBuilder
+GameLayerHighlightsLayoutBuilder
 AchievementsLinkProfileSection
 TitledParagraphView
 GKMultiplayerStepperController
@@ -281,6 +281,9 @@ DetailLayout
 ContextMenu
 Item
 GameCenterUIBootstrap
+AlignmentLayout
+Alignment
+Storage
 LargePlayerLockupCollectionViewCell
 SignInProfileSection
 Metrics
@@ -3378,11 +3381,12 @@ v56@?0@"NSString"8@"NSString"16@"NSString"24@"NSData"32@"NSDictionary"40@"NSErro
 (friendBiDirectional = 1)
 Unable to fetch friends for localPlayer
 log(contentsOf:withLevel:)
-/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.8/GameCenterUI/Jet Common/Logging/GKLog+LogMessages.swift
+/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.13/GameCenterUI/Jet Common/Logging/GKLog+LogMessages.swift
 (friendPlayedWith = 1)
 _TtC12GameCenterUI9Animation
 _TtC12GameCenterUI36ChallengePlayersActionImplementation
-/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.8/GameCenterUI/iOS/Framework/API/GKAccessPoint.swift
+/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.13/GameCenterUI/iOS/Framework/API/GKAccessPoint.swift
+GameCenterUI
 v32@0:8q16@?24
 window does not have a root view controller
 failed to access hosting view
@@ -3431,7 +3435,6 @@ T@"NSDate",N,R
 accessibilityBadge
 T@"_TtC12GameCenterUI16AchievementBadge",N,R
 GameCenterUI/AchievementCard_UIKit.swift
-GameCenterUI
 appTint
 T@"UIColor",N,R
 defaultBackground
@@ -3522,12 +3525,14 @@ _TtC12GameCenterUI32AppStoreLockupCollectionViewCell
 highlighted
 Contradictory frame constraints specified.
 backtrace(frame:_:_:_:_:)
-/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.8/GameCenterUI/Swift-Infrastructure/Utilities/GKLog.swift
+/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.13/GameCenterUI/Swift-Infrastructure/Utilities/GKLog.swift
 ****** %@
 _TtC12GameCenterUI11BundleImage
 _TtC12GameCenterUI11SystemImage
 _TtC12GameCenterUI10LocalImage
 BundleImage.load failed from missing asset with name:
+v16@?0@"<UIViewControllerTransitionCoordinatorContext>"8
+v40@0:8{CGSize=dd}16@32
 bootstrapPresenter
 content
 statePresenter
@@ -3787,6 +3792,7 @@ GameCenterUI/AchievementBadge_UIKit.swift
 v16@?0@"UIImage"8
 _TtC12GameCenterUI38AchievementHighlightCollectionViewCell
 decorationView
+wantsVerticalLayout
 GameCenterUI/AchievementHighlightCollectionViewCell.swift
 _TtC12GameCenterUI23PlayerProfileHeaderView
 subtitleLabel
@@ -3909,10 +3915,8 @@ T@"<NSCollectionLayoutContainer>",N,R
 T@"UITraitCollection",N,R
 @"<NSCollectionLayoutContainer>"16@0:8
 @"UITraitCollection"16@0:8
-v16@?0@"<UIViewControllerTransitionCoordinatorContext>"8
 GameCenterUI.BaseCollectionViewController
 _TtC12GameCenterUI28BaseCollectionViewController
-v40@0:8{CGSize=dd}16@32
 wantsHiddenNavigationBar
 manualScrollEdgeAppearanceProgress
 scrollObserver
@@ -4667,10 +4671,10 @@ _p6actionSb9isEnabledt
 So7UIColorC
 GABy
 _pGG
+G0R1_
 So16UICollectionViewC
 SaySo24UICollectionReusableViewCG
 yxGXDXMT
-G0R1_
 So26UICollectionViewControllerC
 4Item
 7Section
@@ -5521,6 +5525,7 @@ progressLabel
 decorationView
 title
 subtitle
+wantsVerticalLayout
 Component
 State
 squareTrailingEdge
@@ -5767,6 +5772,13 @@ viewController
 navigationProxy
 didFailBlock
 didFinishBootstrappingBlock
+storage
+leading
+center
+trailing
+view
+horizontal
+vertical
 Component
 State
 fontSize
@@ -7486,6 +7498,7 @@ friendSortFilterScope
 setFriendSortFilterScope:
 reloadSections:
 multiplayerPicker:didPickPlayers:
+handleSearchTextFieldReturn:
 resignFirstResponder
 playerForIndexPath:
 deselectItemAtIndexPath:animated:
@@ -7527,7 +7540,6 @@ _contactPicker
 _searchBackgroundView
 _searchTextField
 _showContactPickerButton
-userInterfaceLayoutDirection
 notificationBadgesEnabled
 notificationSoundsEnabled
 notificationAlertsEnabled
@@ -10161,6 +10173,7 @@ _maxLineCount
 _actionWhenTouched
 valueLabel
 stringByTrimmingCharactersInSet:
+userInterfaceLayoutDirection
 setValueLabel:
 _valueLabel
 layoutAttributesForDecorationViewOfKind:withIndexPath:
@@ -11503,9 +11516,10 @@ soundIdentifierForFocusUpdateInContext:
 preferredFocusedView
 focusGroupIdentifier
 runActionForKey:object:arguments:
+initWithSize:traitCollection:
 columnCount
 centeringInsets
-initWithSize:traitCollection:
+initWithContainerSize:traitCollection:
 initWithWidth:columnSizeCategory:maxColumns:
 hitTest:withEvent:
 initWithWindowScene:

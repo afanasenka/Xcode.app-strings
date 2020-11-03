@@ -73,13 +73,13 @@ com.apple.AppPredictionUIWidget.application-shortcut-item.never-show-suggestion
 -[APUIAppIconGridView bundleIdAtLocation:]
 -[APUIAppIconGridView setBundleIds:]
 -[APUIAppIconGridView setMode:]
+v32@?0@"SBIconView"8Q16^B24
 -[APUIAppIconGridView layoutSubviews]
 hand.raised
 hand.thumbsdown
 Suggest Shortcut Less
 +[APUIAppIconGridView createDismissSuggestionApplicationShortcutItemWithType:localizedName:]
 -[APUIAppIconGridView highlightIconForBundleId:]
-v32@?0@"SBIconView"8Q16^B24
 T@"<APUIAppIconGridViewDelegate>",W,N,V_delegate
 bundleIds
 T@"NSArray",C,N,V_bundleIds
@@ -178,10 +178,14 @@ SuggestionsWidget: %{public}s bundleIds=%@
 APUIAppPredictionViewController _updateInstallingBundleIdsWithApplicationProxies: %@ ; reloading apps
 APUIAppPredictionViewController _updateInstallingBundleIdsWithApplicationProxies: %@ ; not reloading apps
 e:%ld * SuggestionsWidget: No suggestions provided to ActionSuggestionView
-SuggestionsWidget: image with intent: %@
-SuggestionsWidget: image with intent InImage: %@
+SuggestionsWidget: image with intent: %@ inImage = intent.keyImage = %@
+SuggestionsWidget: image with intent: INRemoteImageProxy image using connection %@
+e:%ld * SuggestionsWidget: Error with connection %@ loadImageDataAndSizeForImage %@: %@
+SuggestionsWidget: image with intent:connection %@ reply loadedImage=%@
+SuggestionsWidget: image with intent: using fetchUIImageWithCompletion %@
 e:%ld * SuggestionsWidget: error: suggestion is not an action
 SuggestionsWidget: image with intent %s:  image: %@
+SuggestionsWidget: image with intent %s:  bundleId: %@
 e:%ld * SuggestionsWidget: tried to tap a suggestion before the last execution ended
 e:fault SuggestionsWidget: tried to handle unknown action type in widget: %ld
 SuggestionsWidget: invoking ShortcutsRuntime for action execution
@@ -504,6 +508,7 @@ bundleId
 intent
 keyImage
 sharedConnection
+localizedDescription
 _imageData
 imageWithData:
 _setAppImageViewWithImage:
@@ -568,11 +573,18 @@ isViewRecycled:
 setIcon:
 setLabelStyle:
 setLabelAccessoryHidden:
+_configureAliasingForIconView:
+setAllowsEdgeAntialiasing:
+setShouldRasterize:
+mainScreen
+scale
+setRasterizationScale:
 isEqualToArray:
 removeAllIcons
 addIcon:
 initWithLeafIdentifier:applicationBundleID:
 addIconDataSource:
+enumerateIconViewsUsingBlock:
 setIconsNeedLayout
 layoutIconsIfNeeded:
 layoutSubviews
@@ -580,7 +592,6 @@ initWithSystemImageName:
 setLocalizedTitle:
 setType:
 setAlpha:
-enumerateIconViewsUsingBlock:
 setIconLabelAlpha:
 iconViewForIcon:
 dequeueReusableIconViewOfClass:
@@ -597,7 +608,6 @@ icon:canReceiveGrabbedIcon:
 iconShouldAllowCloseBoxTap:
 iconViewDisplaysBadges:
 iconViewDisplaysCloseBox:
-scale
 iconView:editingModeGestureRecognizerDidFire:
 customImageViewControllerForIconView:
 parallaxSettingsForComponentsOfIconView:
@@ -810,7 +820,6 @@ _reasonLabel
 _labels
 webClipWithIdentifier:
 iconImage
-mainScreen
 imageDescriptorNamed:
 setShape:
 lowercaseString

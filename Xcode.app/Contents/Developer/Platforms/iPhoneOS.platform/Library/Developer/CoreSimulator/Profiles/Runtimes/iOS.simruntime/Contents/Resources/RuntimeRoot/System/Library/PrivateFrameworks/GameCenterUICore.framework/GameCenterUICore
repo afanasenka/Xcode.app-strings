@@ -2,6 +2,7 @@
 ?RRRRRR
 ?333333
 ?ffffff
+?333333
 9@3333330@
 >@333?
 softlink:r:path:/System/Library/PrivateFrameworks/UIKitMacHelper.framework/UIKitMacHelper
@@ -1169,6 +1170,8 @@ setSize:
 _scale
 _CGContext
 _size
+objectAtIndexedSubscript:
+userInterfaceLayoutDirection
 initWithRootViewController:
 sharedTheme
 formSheetSize

@@ -1812,7 +1812,7 @@ useRemoteBuiltInMic
 -[CSAudioRecorder voiceControllerDidSetAudioSessionActive:isActivated:]
 -[CSAudioRecorder voiceControllerMediaServicesWereLost:]
 -[CSAudioRecorder voiceControllerMediaServicesWereReset:]
--[CSAudioRecorder _deinterleaveBufferIfNeeded:]
+-[CSAudioRecorder _deinterleaveBufferIfNeeded:force:]
 -[CSAudioRecorder _createDeInterleaverIfNeeded]
 -[CSAudioRecorder _getRecordSettingsWithRequest:]
 voiceControllerCreationQueue
@@ -2875,6 +2875,7 @@ SpeechLogs
 -[CSPreferences assistantAudioFileLogDirectory]
 siriBC
 Second Pass Audio Logging Enabled
+Speaker Recognition Audio Logging Enabled
 Jarvis Audio Logging Enabled
 Jarvis Trigger Mode
 Enable SoS Audio Logging
@@ -4680,7 +4681,7 @@ setNumChannels:
 streamDescription
 setAudioFormat:
 setStreamHandleID:
-_deinterleaveBufferIfNeeded:
+_deinterleaveBufferIfNeeded:force:
 _compensateChannelDataIfNeeded:receivedNumChannels:
 timeStamp
 _processAudioChain:audioStreamHandleId:remoteVAD:atTime:
@@ -5934,6 +5935,7 @@ getSSVLogFilePathWithSessionIdentifier:
 trialBaseAssetDirectory
 getCatAdBlockerAssetUpdateDirectory
 secondPassAudioLoggingEnabled
+speakerRecognitionAudioLoggingEnabled
 jarvisAudioLoggingEnabled
 setJarvisTriggerMode:
 getJarvisTriggerMode
@@ -6007,6 +6009,7 @@ _maxFingerprintBufferSize
 _shouldResetAdsDictionary
 _payloadData
 _startAudioFeedingTimer
+_deinterleaveBufferIfNeeded:
 setFileOption:
 _defaultOutASBD
 fileOption
@@ -6614,13 +6617,13 @@ softlink:r:path:/System/Library/PrivateFrameworks/CarouselServices.framework/Car
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>12A8179f</string>
+<string>18R5569x</string>
 <key>DTPlatformName</key>
 <string>watchsimulator</string>
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R560x</string>
+<string>18R5569x</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>

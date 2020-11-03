@@ -227,6 +227,10 @@ VTHDRMetadataInsertionMode should be a string.
 vtCompressionSessionValidateHDRMetadata
 Invalid VTHDRMetadataInsertionMode setting
 VTHDRMetadataInsertionMode is only valid for HEVC or ProRes codec types
+not CFData
+vtCompressionSessionUpdateAmbientViewingEnvironment
+ave was wrong size
+vtExtractValuesFromAmbientViewingEnvironmentData
 vtCompressionSessionEnsurePixelBufferPoolsAreUpToDate
 encode
 failed to build pixel buffer pools
@@ -242,10 +246,12 @@ vtCompressionSessionIsIPT
 vtCompressionSessionCompressionWork
 imageBuffer is NULL
 frame is NULL
+vtCompressionSessionIsHLG
 vtCompressionSessionCreateHDRMetadata
 kVTSessionMalfunctionErr
 No HDR metadata generated - unexpected HDR format
 vtCompressionSessionSetHDRFormat
+vtCompressionSessionInitializeDolbyHDRSessions
 vtCompressionSessionIsPQ
 create mutable failed
 createStatisticsDictionaryFromAttachments
@@ -276,6 +282,7 @@ we expect to use the semaphore for back pressure
 vtCompressionSessionPipelineContextPerformNextWork
 vtCompressionSessionColorSyncWork
 colorSyncPixelTransferSession is NULL
+DolbyVisionRPUData
 context allocation failed
 vtCompressionSessionPipelineCreateContext
 context is NULL
@@ -284,7 +291,19 @@ vtcs_trace
 VTVideoEncoder
 [VTVideoEncoder]
 vtCompressionSessionCopyFallbackVideoFormatDescriptionExtensions
+mutableExtensionsDict was NULL
+vtCompressionSessionAddDolbyVisionVideoFormatDescriptionExtensions
+vtCompressionSessionCreateDolbyAtom
+dvcC
+dvvC
+vtCompressionSessionComputeDolbyVisionLevel
+hvcC
+kFigFormatDescriptionError_InvalidParameter
+no hvcC found
+vtCompressionSessionAddAmbientViewingEnvironmentToHVCC
 vtCreateVideoFomatDescriptionFromHEVCParameterSets
+parameter set pointers alloc failure
+parameter set sizes alloc failure
 vtCompressionSessionTrackFrameGetInfo
 vtCompressionSessionOutputFrame
 vtCompressionSessionTrackFrameExitedEncoder
@@ -350,11 +369,13 @@ TransferFunction
 YCbCrMatrix
 ICCProfile
 PlaybackSessionID
+PropagatePerFrameHDRDisplayMetadata
 FrameDecodeCompleted
 SharePixelBufferPool
 AllowClientProcessDecode
 ClientPID
 InhibitPixelFormatConversion
+InhibitCompressedBufferUse
 ScalingMode
 Normal
 CropSourceToCleanAperture
@@ -706,6 +727,7 @@ PerformanceRating
 QualityRating
 InstanceLimit
 IsHardwareAccelerated
+SupportsFrameReordering
 Hide
 RevealHardwareAcceleratedEncoders
 RevealHiddenEncoders
@@ -1717,7 +1739,6 @@ HEVCProfileSupportList must be non-NULL
 formatDescription must be video type
 formatDescription must be HEVC or DolbyVision
 no sampleDescriptionExtensions
-hvcC
 no 'hvcC' data
 couldn't create profileNumber
 vtAddProfileToDict
@@ -1778,6 +1799,7 @@ destMultiPassStorage was invalidated
 <<<< VT-CS >>>> %s: video toolbox handled SetProperty for %@
 <<<< VT-CS >>>> %s: [%p] kVTCompressionPropertyKey_HDRMetadataInsertionMode %@
 <<<< VT-CS >>>> %s: [%p] kVTCompressionPropertyKey_PreserveDynamicHDRMetadata %@
+<<<< VT-CS >>>> %s: video encoder handled kVTCompressionPropertyKey_AmbientViewingEnvironment %@ (err %d)
 <<<< VT-CS >>>> %s: video encoder handled SetProperty for %@ (err %d)
 <<<< VT-CS >>>> %s: video encoder handled SetProperty synthesized for FigThreadPriority for RealTime (err %d)
 <<<< VT-CS >>>> %s: [%p] %@ %@
@@ -1798,6 +1820,7 @@ destMultiPassStorage was invalidated
 <<<< VT-CS >>>> %s: Discarding unsupported property key %@
 <<<< VT-CS >>>> %s: session[%p, colorPrimaries %@ transferFunction %@ ycbcrMatrix %@]
 <<<< VT-CS >>>> %s: [%p] Calling video encoder for imageBuffer: %p context: %p (%lld/%d)
+<<<< VT-CS >>>> %s: new AmbientViewingEnvironment %@ (err %d)
 <<<< VT-CS >>>> %s: vtCompressionSessionEncodeWork %d
 <<<< VT-CS >>>> %s: using duration of %f
 <<<< VT-CS >>>> %s: current pts %f - previous %f = %f
@@ -1808,11 +1831,19 @@ destMultiPassStorage was invalidated
 <<<< VT-CS >>>> %s: [%p] [hdrStats %@][dynamicHDRData %@]
 <<<< VT-CS >>>> %s: [%p] [dynamicHDRData %@] Using fake data
 <<<< VT-CS >>>> %s: [%p][hdrFormat %d]
+<<<< VT-CS >>>> %s: [%p] video encoder says it supports kVTCompressionPropertyKey_InsertTrailingBytes
+<<<< VT-CS >>>> %s: [%p] video encoder returned (err %d) kVTCompressionPropertyKey_InsertTrailingBytes
+<<<< VT-CS >>>> %s: [%p] retaining hdrPaddingNALU
+<<<< VT-CS >>>> %s: [%p] video encoder says it doesn't support kVTCompressionPropertyKey_InsertTrailingBytes
+<<<< VT-CS >>>> %s: setting generateAmbientViewingEnvironment to true
 <<<< VT-CS >>>> %s: kCVImageBufferHDRImageStatisticsInfoFilteredKey %@
 <<<< VT-CS >>>> %s: kVTHDRImageStatisticsInfo_Filtered %@
 <<<< VT-CS >>>> %s: kCVImageBufferHDRImageStatisticsInfoRawKey %@
 <<<< VT-CS >>>> %s: PIPELINED: Pixel Transfer Session
 <<<< VT-CS >>>> %s: PIPELINED: Color Sync
+<<<< VT-CS >>>> %s: creating ambient viewing environment default
+<<<< VT-CS >>>> %s: [%p] video encoder says it supports kVTCompressionPropertyKey_AmbientViewingEnvironment
+<<<< VT-CS >>>> %s: [%p] video encoder returned (err %d) kVTCompressionPropertyKey_AmbientViewingEnvironment
 <<<< VT-CS >>>> %s: [%p] sourceFrameRefCon: %p frame: %p imageBuffer: %p context: %p
 <<<< VT-CS >>>> %s: copied pixelAspectRatio from video encoder
 <<<< VT-CS >>>> %s: copied cleanAperture from video encoder
@@ -1854,6 +1885,12 @@ destMultiPassStorage was invalidated
 <<<< VT-CS >>>> %s: [%p] video encoder provided contentLightLevelInfo for format description
 <<<< VT-CS >>>> %s: [%p] video toolbox providing auxiliaryTypeInfo for format description
 <<<< VT-CS >>>> %s: [%p] video encoder provided auxiliaryTypeInfo for format description
+<<<< VT-CS >>>> %s: [%p] Unsupported DolbyVision profile %d
+<<<< VT-CS >>>> %s: [%p] Unsupported DolbyVision Profile %d
+<<<< VT-CS >>>> %s: session->codecProfileLevel [%@]
+<<<< VT-CS >>>> %s: Configuration exceeds all Dolby levels - default to highest level
+<<<< VT-CS >>>> %s: levelIdx %ld
+<<<< VT-CS >>>> %s: Undefined codecProfileLevel - default to highest level
 <<<< VT-CS >>>> %s: %p
 <<<< VT-CS >>>> %s: neither outputCallback nor outputHandler!
 <<<< VTTemporalFilterSelection >>>> %s: filter class in matchInfo is not a string
@@ -1939,6 +1976,12 @@ destMultiPassStorage was invalidated
 <<<< VTPools >>>> %s: second attributes: %@
 <<<< VTPools >>>> %s: Unsupported CFType for poolSharingOption
 <<<< VTPools >>>> %s: pixel buffer attributes reconciled: creating common pixel buffer pool %@, format: %@
+<<<< VTPools >>>> %s: [REORDER] first attributes: %@
+<<<< VTPools >>>> %s: [REORDER] second attributes (before): %@
+<<<< VTPools >>>> %s: [REORDER] second attributes (after): %@
+<<<< VTPools >>>> %s: [REORDER] second attributes: %@
+<<<< VTPools >>>> %s: [REORDER] first attributes (before): %@
+<<<< VTPools >>>> %s: [REORDER] first attributes (after): %@
 <<<< VTPools >>>> %s: Pixel buffer attributes failed to reconcile. Creating separate pixel buffer pools for codec and client.  codec pool %@, format: %@
 <<<< VTPools >>>> %s: client format: %@
 <<<< VTPools >>>> %s: Shared pool cleanup. Removing pool for sharingID %lld

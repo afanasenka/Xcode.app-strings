@@ -933,7 +933,7 @@ autofill_tld_whitelist_url
 autofill_corrections_url
 WBSParsecDSessionDidLoadBag
 Safari/%s
-610.2.6.0.1
+610.2.8.0.2
 Safari
 com.apple.SafariShared.WBSParsecDSession.requestProcessingQueue
 v32@?0@"PARTask"8@"PARResponse"16@"NSError"24

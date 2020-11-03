@@ -1732,7 +1732,7 @@ allSlottedAssetsOfClass:withName:
 catalogForAbsolutePath:
 collectionWithCatalogPaths:results:
 catalogCollectionByAddingCatalogsAtPaths:results:
-slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:slottedAssetFilter:
+slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:hostOSAvailabilityProcessor:slottedAssetFilter:
 findEmptyPlaceholderForSlottedAssetOfPossibleClasses:withName:error:
 catalogPathsToIdentifierPathsForItems:
 itemsFromCatalogPathsToIdentifierPaths:
@@ -3727,7 +3727,7 @@ c24@0:8@"IBICAbstractCatalogItem"16
 v32@0:8Q16@"IBICAbstractCatalogItem"24
 c32@0:8@"IBICAbstractCatalogItem"16@"IBICSlot"24
 @"IBICAbstractCatalogItem"32@0:8@"IBICSlot"16@"NSSet"24
-@56@0:8#16@24@32@40@?48
+@64@0:8#16@24@32@40@?48@?56
 @40@0:8@16@24^@32
 @"NSMutableSet"
 @"IBICDeviceThinningTraits"
@@ -4941,11 +4941,11 @@ v20@?0c8@"NSError"12
 v28@?0c8@"NSArray"12@"NSError"20
 @16@?0@"IBICLocale"8
 +[IBAbstractSourceCodeSymbolFormatter formattedClassSymbolWithName:namespaceProvider:]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17505/Foundation/Parsing/IBAbstractSourceCodeSymbolFormatter.m
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17506/Foundation/Parsing/IBAbstractSourceCodeSymbolFormatter.m
 +[IBAbstractSourceCodeSymbolFormatter nameOfFormattedClassSymbol:]
 q24@?0@"IBICAbstractCatalog"8@"IBICAbstractCatalog"16
--[IBICCatalogCollection slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:slottedAssetFilter:]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Model/CatalogItems/Catalog/IBICCatalogCollection.m
+-[IBICCatalogCollection slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:hostOSAvailabilityProcessor:slottedAssetFilter:]
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Model/CatalogItems/Catalog/IBICCatalogCollection.m
 slottedAssetRepFilter
 [(Class)slottedAssetClass conformsToProtocol:@protocol(IBICAssetWithSlottedChildren)]
 %@ is a subclass for IBICSlottedAsset
@@ -4966,7 +4966,7 @@ T@"NSArray",R,V_catalogsOrderedByPath
 catalogs
 T@"NSSet",R,V_catalogs
 @16@?0@"NSArray"8
-c16@?0@"IBICSlottedAssetRep"8
+c32@?0@"IBICAbstractCatalogItem"8@"IBICSlot"16@"NSMutableArray"24
 Messages Icon
 v24@?0@"IBICStickersIconSetRepSlot"8^c16
 stickersiconset
@@ -6116,15 +6116,16 @@ It's not an add if the item isn't already in a parent.
 Move item
 localizable
 +[IBICSlottedAsset defaultName]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Model/CatalogItems/SlottedAssets/SlottedAsset/IBICSlottedAsset.m
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Model/CatalogItems/SlottedAssets/SlottedAsset/IBICSlottedAsset.m
 +[IBICSlottedAsset catalogItemFileExtension]
 +[IBICSlottedAsset assetRepClass]
+c16@?0@"IBICSlottedAssetRep"8
 The %@ "%@" has an unassigned child.
 The %@ "%@" has %ld unassigned children.
 Tc,N,GisLocalizable,V_localizable
 0123456789ABCDEFabcdef
 +[IBICColor colorWithWhite:alpha:colorSpaceID:]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17505/Foundation/ImageCatalog/Model/CatalogItems/SlottedAssets/Colors/IBICColor.m
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilder/IDEInterfaceBuilder-17506/Foundation/ImageCatalog/Model/CatalogItems/SlottedAssets/Colors/IBICColor.m
 IBICColorSpaceModelFromColorSpaceID(colorSpaceID) == kCGColorSpaceModelMonochrome
 +[IBICColor colorWithRed:green:blue:alpha:colorSpaceID:]
 IBICColorSpaceModelFromColorSpaceID(colorSpaceID) == kCGColorSpaceModelRGB

@@ -2179,6 +2179,7 @@ _srcAddressToExtraAutoreleaseCountDict
 _cfPasteboardReservedBase
 numberWithLong:
 mapAddress:size:returnedAddress:returnedSize:
+taskIsTranslated
 usesSwiftRefcounting
 pointerSize
 nativeWeakReferencePointerMask
@@ -2748,6 +2749,7 @@ readPointerAt:value:
 copyRange:to:
 _memoryRegions
 _taskIs64Bit
+_taskIsTranslated
 _stopped
 _intRegion
 _stringRegion

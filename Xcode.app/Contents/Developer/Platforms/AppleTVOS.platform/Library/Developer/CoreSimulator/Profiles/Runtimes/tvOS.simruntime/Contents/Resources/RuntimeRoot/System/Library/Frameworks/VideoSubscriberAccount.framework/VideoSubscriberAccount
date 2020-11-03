@@ -90,9 +90,10 @@ label
 The error parameter must not be nil.
 The result parameter must not be nil.
 Unexpected operation queue for updating cached account.
+v16@?0@"NSString"8
+v16@?0@"NSArray"8
 v16@?0@"VSDeveloperSettings"8
 v16@?0@"VSAccount"8
-v16@?0@"NSArray"8
 The completionHandler parameter must not be nil.
 v16@?0@"VSKeychainGenericPassword"8
 The accounts parameter must not be nil.
@@ -689,7 +690,6 @@ VSOptionalObject
 <%@ object=%@>
 NSVideoSubscriberAccountUsageDescription
 VSPrivacyFacade
-v16@?0@"NSString"8
 PRIVACY_TITLE_FORMAT
 PRIVACY_TITLE_FORMAT_GENERIC
 Unexpectedly, usageValue was %@, instead of NSString.
@@ -1310,6 +1310,7 @@ The attempt to serialize an object has failed.
 The attempt to deserialize an object has failed.
 The account access has been restricted.
 Encountered unexpected data.
+The expiration date provided was invalid.
 SIGN_OUT_BUTTON_TITLE
 ERROR_DISMISS_BUTTON_TITLE
 UIApplicationDidEnterBackgroundNotification
@@ -1484,6 +1485,7 @@ Did send local account store change notificaiton.
 Will send remote account store change notificaiton.
 Did send remote account store change notificaiton.
 Error fetching keychain items: %@
+Error fetch existing providers: %@
 Error fetching developer settings, assuming no token expiration simulation.
 Failed to update cached account: %@
 Unable to fetch accounts: %@
@@ -2239,6 +2241,7 @@ service
 setOptionalIdentityProviderDisplayName:
 generic
 setIdentityProviderID:
+containsObject:
 typeCode
 data
 initWithSerializedData:
@@ -2262,11 +2265,12 @@ signal
 setCompletionBlock:
 start
 wait
-simulateExpiredToken
-unwrapObject:error:
-_keychainItemsWithLimit:
-_accountForKeychainItem:simulateExpiredToken:
+providerID
 conditionallyUnwrapObject:
+unwrapObject:error:
+simulateExpiredToken
+_keychainItemsWithLimit:
+_accountForKeychainItem:simulateExpiredToken:developerProviderIDs:
 cachedFirstAccount
 setCachedFirstAccount:
 fetchAccountsWithCompletionHandler:
@@ -2400,7 +2404,6 @@ setBillingIdentifier:
 awakeFromFetch
 _updateDerivedSubscriptionInfo
 keyPathsForValuesAffectingDerivedSubscriptionInfo
-containsObject:
 _validateNullableValue:forKey:error:
 vs_currentDate
 initWithArray:
@@ -2794,7 +2797,6 @@ flushUnreportedEvents
 addFinishBlock:
 addSuccessBlock:
 stbProfile
-providerID
 enter
 metricsDataWithPageId:pageType:pageContext:eventData:
 exit
@@ -3973,7 +3975,7 @@ B24@0:8@"Protocol"16
 @"NSString"16@0:8
 v32@0:8@16@24
 v32@0:8@"VSRemoteNotifier"16@"NSDictionary"24
-@28@0:8@16B24
+@36@0:8@16B24@28
 @24@0:8Q16
 v24@0:8@?16
 v32@0:8@16@?24
@@ -4154,6 +4156,7 @@ v40@0:8@16@24@?32
 v32@0:8@"NSURLSession"16@"NSError"24
 v40@0:8@"NSURLSession"16@"NSURLAuthenticationChallenge"24@?<v@?q@"NSURLCredential">32
 v24@0:8@"NSURLSession"16
+@28@0:8@16B24
 B24@0:8^{__SecTrust=}16
 @"VSFailable"
 v24@0:8@"VSServiceConnectionHandler"16

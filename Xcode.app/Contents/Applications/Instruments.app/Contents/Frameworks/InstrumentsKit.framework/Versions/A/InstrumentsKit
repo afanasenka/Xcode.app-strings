@@ -3778,7 +3778,6 @@ _createTrackForItem:
 brushNamesForTrackItem:
 formatter
 createTrackInGraph:multipleBrushes:forEmbedding:expanded:inToolbar:accessoryImage:accessoryImageLabel:trace:runNumber:formatter:resolution:engTypeTrackConfigurator:
-orderedBrushNames
 setSelectedBrushName:type:
 parentItem
 childItems

@@ -3565,7 +3565,6 @@ headerView
 reload
 automaticallyCollapseQuotedContent
 setAutomaticallyCollapseQuotedContent:reloadIfNeeded:
-_updateWebViewPaddingConstants
 _revealActionsButtonTapped
 _seeMoreButtonTapped
 numberWithInt:
@@ -3578,6 +3577,7 @@ minimumFontSize
 setMinimumFontSize:
 safeAreaInsets
 readableContentMarginsForWidth:minMargins:safeAreaInsets:
+_updateWebViewPaddingConstants
 performSelectorOnMainThread:withObject:waitUntilDone:
 _viewportWidth
 _scaledValueForValue:

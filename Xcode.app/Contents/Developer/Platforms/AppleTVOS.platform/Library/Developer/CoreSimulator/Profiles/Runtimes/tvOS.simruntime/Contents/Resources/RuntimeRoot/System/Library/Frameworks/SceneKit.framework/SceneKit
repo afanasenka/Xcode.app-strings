@@ -2965,8 +2965,8 @@ struct OsdInputVertexType {
     metal::packed_float2 texcoord
     metal::packed_float4 color; 
 #define OSD_USER_VARYING_DECLARE                             
-half2 texcoord
-half4 color; 
+float2 texcoord
+float4 color; 
 #define OSD_USER_VARYING_DECLARE_PACKED                             
 metal::packed_float2 texcoord
 metal::packed_float4 color; 
@@ -2983,7 +2983,6 @@ out.color = in.color;
 , UV.x), UV.y); 
 out.color = mix(mix(a.color, b.color, UV.x), mix(c.color, d.color, UV.x), UV.y); 
 #define OSD_USER_VARYING_DECLARE_ATTRIBUTE                   
-float2 texcoord
  [[attribute(
 )]]; 
 float4 color [[attribute(
@@ -4036,7 +4035,7 @@ IncrementalAverage_vert
 IncrementalAverage_frag
 C3D-IncrementalAverage
 C3DBufferObject
-<C3DBufferObject vbo:%ld  addr:0x%x lockCount:%d target:%d retainCount:%d>
+<C3DBufferObject vbo:%ld addr:%p lockCount:%d target:%d retainCount:%d>
 overrides
 ide_
 ske_
@@ -20948,7 +20947,7 @@ Error: OSD_MAX_VALENCE is set to %d and current mesh has a max valence of %d
 Error: SCNTextureCoreAnimationSource::textureProxy -> no layer
 Error: inconsistency in lru list
 Error: inconsistency in lru list (2)
-Welcome to SceneKit 556 (Sep 21 2020 00:02:45)
+Welcome to SceneKit 557.1 (Oct  7 2020 02:26:12)
 Warning: Mesh malformed : missing semantic "%@" in morph target "%@" of "%@"
 Assertion failed [sparseVertexCount == tgt->vectorCount] target buffer is incorrectly sized
 Error: Skinned mesh has vertex count == 0
@@ -23534,6 +23533,7 @@ supportsMemorylessRenderTargets
 supportsProgrammableBlending
 supportsMSAAStencilResolve
 supportsTextureSampleCount:
+supportsDepthClipMode
 defaultUICatalogForBundle:
 namedTextureWithName:scaleFactor:
 characterAtIndex:
@@ -26131,6 +26131,7 @@ setGrainSlice:
 grainTexture
 setGrainTexture:
 exposureOffset
+_checkSettingsConsistency
 aperture
 setAperture:
 fieldOfViewOrientation

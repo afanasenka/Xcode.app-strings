@@ -254,6 +254,7 @@ RTTDecreasingThreshold
 -[AVCRateController applyServerBagNoRampUpGroupConfig:]
 noRampUp-source
 rateLimitedPercentage
+blockedTimeout
 noRampUp-delay
 OWRD
 NOWRD
@@ -1117,6 +1118,8 @@ gk-p2p-bitrate-max-2g
 gk-p2p-bitrate-max-3g
 gk-p2p-bitrate-max-lte
 gk-p2p-bitrate-max-lte-v2
+gk-p2p-bitrate-max-5g
+gk-min-jitter-queue-size-5g
 gk-p2p-bitrate-max-wifi
 rtc-ss-bitrate-max-2g
 rtc-ss-bitrate-max-3g
@@ -1166,6 +1169,7 @@ vc-always-on-audio-redundancy-enable-threshold
 vc-high-fec-enable-threshold
 vc-low-fps-video-enable-threshold
 vc-vplr-fec-enable-threshold
+vc-video-redundancy-percentage-max
 vc-ramp-down-bw-drop-enable-threshold
 vc-fast-media-duplication-enable-threshold
 vc-iRAT-rtp-enable-threshold
@@ -1187,8 +1191,10 @@ vc-wifi-assist-budget-status-enable-threshold
 vc-wifi-assist-status-bar-enable-threshold
 vc-low-network-mode-enable-threshold
 vc-duplication-enhancement-enable-threshold
-vc-video-jb-enable-threshold
+vc-video-jb-enable-threshold-v2
 vc-iRAT-duplication-enable-threshold
+vc-wrm-rssi-threshold-enable-threshold
+vc-wrm-rssi-threshold-distribution
 vc-ab-test-master-local-switches
 vc-ab-test-audio-enhancement-feature-combinations
 vc-ab-test-video-enhancement-feature-combinations
@@ -1211,6 +1217,7 @@ vc-new-session-joining-interval
 GKSConnSettingsUpdate
 vc-remote-media-stall-timeout
 vc-no-remote-duplication-threshold-fast
+vc-wrm-pending-bitrate-cap-delta
 vc-fec-vectorization-enabled
 vc-fec-generator-enabled
 vc-fec-feedback-version
@@ -1255,6 +1262,8 @@ useAdaptiveLearningForFaceTime
 +[GKSConnectivitySettings getAdjustmentFactorC]
 +[GKSConnectivitySettings getShortTermValueWeightC]
 +[GKSConnectivitySettings getLongTermValueWeightC]
++[GKSConnectivitySettings getWRMRSSIThresholdValue:]
+-80,-80,-80,-80,-80,-80,-80,-83,-85,-87
 preferRelayOverP2PThreshold
 alwaysOnAudioRedundancyEnableThreshold
 highFecEnableThreshold
@@ -1283,6 +1292,7 @@ lowNetworkModeEnableThreshold
 duplicationEnhancementEnableThreshold
 videoJBEnableThreshold
 iRATDuplicationEnableThreshold
+wrmRSSIThresholdEnableThreshold
 +[GKSConnectivitySettings getThresholdForSwitch:]
 +[GKSConnectivitySettings getAbTestMasterLocalSwitches]
 +[GKSConnectivitySettings getAbTestingState]
@@ -1394,6 +1404,7 @@ mode_Screen_2G
 mode_Default_2G
 mode_iPadCompanion_AWDL
 mode_iPadCompanion_USB
+mode_FaceTime_5G
 mode_SUPPORTED
 (unknown: %i)
 result
@@ -2704,6 +2715,8 @@ isLocalOnWiFi
 isRemoteOnWiFi
 isLocalOnCellular
 isRemoteOnCellular
+isLocalOn5G
+isRemoteOn5G
 isLocalExpensive
 isRemoteExpensive
 isLocalConstrained
@@ -2736,6 +2749,8 @@ relayChannelNumber
 TS,R
 isUpgraded
 isReplaceOnly
+TB,R,VisLocalOn5G
+TB,R,VisRemoteOn5G
 TB,R,VisLocalExpensive
 TB,R,VisRemoteExpensive
 TB,R,VisLocalConstrained
@@ -3547,6 +3562,7 @@ onStart failed
 -[VCTransportSessionIDS handleLinkConnectedWithInfo:]
 -[VCTransportSessionIDS handleLinkDisconnectedWithInfo:]
 -[VCTransportSessionIDS handleDefaultLinkUpdatedWithInfo:]
+-[VCTransportSessionIDS handleRATChanged:]
 -[VCTransportSessionIDS handleIDSEncryptionInfoEvent:]
 -[VCTransportSessionIDS handleIDSMembershipChangeInfoEvent:]
 -[VCTransportSessionIDS handleProbingResponse:]
@@ -4120,6 +4136,7 @@ Td,R
 +[VCVTPWrapper startVTP]
 +[VCVTPWrapper stopVTP]
 TI,R,V_targetBitrateCap
+wrmPendingBitrateCapDelta
 -[VCNetworkFeedbackController requestWRMNotification]
 -[VCNetworkFeedbackController setWRMNotification:]
 -[VCNetworkFeedbackController setWRMCoexMetrics:]
@@ -4127,11 +4144,17 @@ TI,R,V_targetBitrateCap
 -[VCNetworkFeedbackController wcmGetCallConfig:targetBitrate:]
 -[VCNetworkFeedbackController setupWRMClient]
 -[VCNetworkFeedbackController cleanupWRMClient]
+-[VCNetworkFeedbackController setDownlinkTargetBitrate:]
+-[VCNetworkFeedbackController setDownlinkTargetCellBitrateCap:]
 recommendedTargetBitrateCap
 clientTargetBitrate
 TI,V_clientTargetBitrate
 clientTargetBitrateCap
 TI,V_clientTargetBitrateCap
+downlinkTargetBitrate
+TI,N,V_downlinkTargetBitrate
+downlinkTargetCellBitrateCap
+TI,N,V_downlinkTargetCellBitrateCap
 -[VCAudioClient startWithError:]
 Session parameters have not been set
 Timeout while starting the client
@@ -4253,7 +4276,7 @@ basebandQueueDepth
 TI,R,N,V_basebandQueueDepth
 basebandExpectedQueuingDelay
 Td,R,N,V_basebandExpectedQueuingDelay
-{ %@: %@ type=%d maxNetworkBitrate=%u qualityIndex=%u videoQuality=%u visibilityIndex=%u prominenceIndex=%u streamID=%u repairStreamID=%u repairNetworkBitrate=%u actualNetworkBitrate=%u isLowestQualityAudio=%d }
+{ %@: %@ type=%d maxNetworkBitrate=%u qualityIndex=%u videoQuality=%u visibilityIndex=%u prominenceIndex=%u streamID=%u repairStreamID=%u repairNetworkBitrate=%u actualNetworkBitrate=%u isLowestQualityAudio=%d isLowestQualityVideo=%d }
 -[VCSessionBandwidthAllocationTableEntry compare:]
 +[VCSessionBandwidthAllocationTableEntry compareAudioEntry:audioEntry:]
 +[VCSessionBandwidthAllocationTableEntry compareVideoEntry:videoEntry:]
@@ -4265,6 +4288,8 @@ TI,R,V_maxMediaBitrate
 TI,R,V_qualityIndex
 isLowestQualityAudio
 TB,V_isLowestQualityAudio
+isLowestQualityVideo
+TB,V_isLowestQualityVideo
 TC,R,V_type
 TI,R,V_streamID
 actualNetworkBitrate
@@ -4388,6 +4413,7 @@ com.apple.avconference.vccallsession.timestamp
 -[VCCallSession gatherRealtimeStats:]
 bandwidthUpstream
 packetLateAndMissingRatio
+-[VCCallSession interfaceFromConnection:]
 -[VCCallSession setOperatingMode:]_block_invoke
 -[VCCallSession updateVideoQualityStatus:bitrate:time:isRemote:]_block_invoke
 enableBBNote
@@ -4453,6 +4479,7 @@ A/B testing: %s
 -[VCCallSession setupWRMClient]
 -[VCCallSession cleanupWRMClient]
 -[VCCallSession setWRMNotification:]
+WRMCoexIsLocal
 -[VCCallSession setWRMCoexMetrics:]
 VCWRMCoexMetricsMessage
 VCWRMAlertStateEnabled
@@ -4467,7 +4494,7 @@ Mode
 Watch
 -[VCCallSession inviteDataForParticipantID:callID:remoteInviteData:nonCellularCandidateTimeout:error:]
 Failed to generate the media blob
-1780.7
+1780.10
 -[VCCallSession addLocalCallInfoToInviteDictionary:]
 -[VCCallSession setRemoteCallInfoFromInviteDictionary:]
 VCAudioPaused
@@ -5675,6 +5702,7 @@ lowQualityVideoOnDemand
 -[VCSessionParticipantLocal newMediaNegotiatorAudioConfiguration]
 -[VCSessionParticipantLocal updatePayloadTypesWithConfigProvider:]
 -[VCSessionParticipantLocal setupOneToOneVideoRedundancyController]
+videoRedundancyPercentageMax
 -[VCSessionParticipantLocal setupOneToOneRedundancyControllers]
 -[VCSessionParticipantLocal negotiateOneToOne:]
 -[VCSessionParticipantLocal configureWithOneToOneParticipantConfig:]_block_invoke
@@ -5784,6 +5812,7 @@ VCAudioIO
 -[VCAudioIO reconfigureWithOperatingMode:deviceRole:direction:allowAudioRecording:]
 -[VCAudioIO forceCleanup]
 -[VCAudioIO setFarEndVersionInfo:]
+-[VCAudioIO setMuted:]
 -[VCAudioIO setDirection:]
 -[VCAudioIO createConverterForSource:error:]
 source
@@ -6413,7 +6442,7 @@ enableDiscreteSwitchSettingsForTesting
 -[VCSwitchManager setupLocalRateControlTestGroupSwitches]
 -[VCSwitchManager setupLocalDuplicationTestGroupSwitches]
 -[VCSwitchManager updateDuplicationEnhancementSwitches]
-%@[%p] LocalSwitches[%08X] RemoteSwitches[%08X] NegotiatedSwitches[%08X] preferRelayOverP2P[%d] alwaysOnAudioRedundancyEnabled[%d] highFecEnabled[%d] lowFpsVideoEnabled[%d] vplrFecEnabled[%d] rampDownBWDropEnabled[%d] fastMediaDuplicationEnabled[%d] iRATRtpEnabled[%d] preWarmCellEnabled[%d] duplicateImportantPktsEnabled[%d] allowBurstyLossRampDownEnabled[%d] hevcWifiTiersEnabled[%d] viewpointCorrectionEnabled[%d] heifHevcLivePhotosEnabled[%d] wifiLowTierRedundancyEnabled[%d] cellularLowTierRedundancyEnabled[%d] iRATMetricsEnabled[%d] fecHeaderV1Enabled[%d] updatedAFRCHeaderEnabled[%d] secureMessagingEnabled[%d] disableSIPEnabled[%d] wifiAssistDuplicationEnabled[%d] wifiAssistBudgetStatusEnabled[%d] wifiAssistStatusBarEnabled[%d] lowNetworkModeEnabled[%d] duplicationEnhancementEnabled[%d] videoJBEnabled[%d] iRATDuplicationEnabled[%d]
+%@[%p] LocalSwitches[%08X] RemoteSwitches[%08X] NegotiatedSwitches[%08X] preferRelayOverP2P[%d] alwaysOnAudioRedundancyEnabled[%d] highFecEnabled[%d] lowFpsVideoEnabled[%d] vplrFecEnabled[%d] rampDownBWDropEnabled[%d] fastMediaDuplicationEnabled[%d] iRATRtpEnabled[%d] preWarmCellEnabled[%d] duplicateImportantPktsEnabled[%d] allowBurstyLossRampDownEnabled[%d] hevcWifiTiersEnabled[%d] viewpointCorrectionEnabled[%d] heifHevcLivePhotosEnabled[%d] wifiLowTierRedundancyEnabled[%d] cellularLowTierRedundancyEnabled[%d] iRATMetricsEnabled[%d] fecHeaderV1Enabled[%d] updatedAFRCHeaderEnabled[%d] secureMessagingEnabled[%d] disableSIPEnabled[%d] wifiAssistDuplicationEnabled[%d] wifiAssistBudgetStatusEnabled[%d] wifiAssistStatusBarEnabled[%d] lowNetworkModeEnabled[%d] duplicationEnhancementEnabled[%d] videoJBEnabled[%d] iRATDuplicationEnabled[%d], wrmRSSIThresholdEnabled[%d]
 localSwitches
 TI,V_localSwitches
 remoteSwitches
@@ -9648,6 +9677,8 @@ VCJitterBuffer_SetNetworkType
 VCJitterBuffer_AudioPacketAlloc
 VCJitterBuffer_AudioFrameAlloc
 VCJitterBuffer_AudioPacketFree
+VCJitterBuffer_GetMinJitterBufferQueueSize5G
+kVCDefaultJitterBufferMinQueueSize5G
 _VCJitterBuffer_DequeuePacketsFromPreloadQueue
 SpkrProc: PreloadQueue_Dequeue and AddPacket
 SpkrProc: PreloadQueueDequeue
@@ -9693,13 +9724,12 @@ T@?,N
  [%s] %s:%d %@(%p) Removing dead client (%p)!
  [%s] %s:%d Selected audio unit properties: UnitType:%d, format:{%f, %s, %x, %d, %d, %d, %d, %d} samplesPerFrame=%d VPOperatingMode:%d
  [%s] %s:%d AUIO already exists
- [%s] %s:%d operatingMode[%d] deviceRole[%d] remoteCodecType[%s] remoteCodecRate[%f]
- [%s] %s:%d Starting AUIO
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/VCAudioManager.m:%d: Failed to create the audio limiter
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/VCAudioManager.m:%d: Failed to start the audio limiter
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/VCAudioManager.m:%d: AUIOCreateHandle failed(%X)
+ [%s] %s:%d Starting AUIO operatingMode[%d] deviceRole[%d] remoteCodecType[%s] remoteCodecRate[%f] isMicrophoneMuted[%d]
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/VCAudioManager.m:%d: Failed to create the audio limiter
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/VCAudioManager.m:%d: Failed to start the audio limiter
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/VCAudioManager.m:%d: AUIOCreateHandle failed(%X)
  [%s] %s:%d AUIOSetupFormats() failed. hResult=0x%08X
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/VCAudioManager.m:%d: AUIOStart failed(%08lX)
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/VCAudioManager.m:%d: AUIOStart failed(%08lX)
  [%s] %s:%d startAudioIO is completed
  [%s] %s:%d Recording changed: %d->%d
  [%s] %s:%d Sample rate changed: %d->%d
@@ -9759,7 +9789,7 @@ AVCRC [%s] %s:%d AVCRateController bandwidth estimation cap %d -> %d
 AVCRC [%s] %s:%d AdaptiveLearning(AVCRateController): Setting up initial bitrate for segment %@ - learnt target bitrate %d, selected tier %d, default bitrate %d
 AVCRC [%s] %s:%d AdaptiveLearning(AVCRateController): Initial bitrate defaulted to %d
 AVCRC [%s] %s:%d %s config serverBagContainsGroup=%d blockRampUpInSaturatedNetworkEnabled=%d networkSaturatedRTTToMinRTTRatio=%f networkSaturatedOWRDToMinRTTRatio=%f networkSaturatedPersistFeedbackNumber=%d networkSaturatedRTTDecreasingThreshold=%f
-AVCRC [%s] %s:%d %s config serverBagContainsGroup=%d rateLimitedPercentage=%f
+AVCRC [%s] %s:%d %s config serverBagContainsGroup=%d rateLimitedPercentage=%f blockedTimeout=%f
 AVCRC [%s] %s:%d %s config serverBagContainsGroup=%d rampUpOWRDThreshold=%f rampUpNOWRDThreshold=%f
 AVCRC [%s] %s:%d %s config serverBagContainsGroup=%d rampUpOverBandwidthCalmDuration=%f rampUpOverBandwidthTierNumber=%d
 AVCRC [%s] %s:%d %s config serverBagContainsGroup=%d rampDownNOWRDThreshold=%f rampDownNOWRDAccThreshold=%f rampDownAggressiveNOWRDThreshold=%f rampDownAggressiveNOWRDAccThreshold=%f rampDownConstantOWRDDuration=%f
@@ -10027,6 +10057,8 @@ VCRC [%s] %s:%d update video loss: %d
  [%s] %s:%d %s: storebag does not have %@, using defaul value %d
  [%s] %s:%d %s: found storebag value '%@'=%f
  [%s] %s:%d %s: storebag does not have %@, using defaul value %f
+ [%s] %s:%d Found storebag value '%@'=%@, using threshold value %d
+ [%s] %s:%d Storebag does not have %@, using threshold value %d from default distribution %@
  [%s] %s:%d Found storebag value '%@'=%f, using %f
  [%s] %s:%d Storebag does not have %@, using default value %f
  [%s] %s:%d Found storebag value '%@'=%@
@@ -11405,6 +11437,7 @@ SIP [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConferen
  [%s] %s:%d Caching piggyback blob %p
  [%s] %s:%d Set piggyback blob %p on datagram channel %d
  [%s] %s:%d HandoverReport: default link updated to %d
+ [%s] %s:%d Got 5G iRAT notification
  [%s] %s:%d [(VCTransportSession*)%p %s]:%d IDS channel encryption info
  [%s] %s:%d [(VCTransportSession*)%p %s]:%d IDS channel membership change info
  [%s] %s:%d Callee's accept delay %d milliseconds
@@ -11619,12 +11652,16 @@ SIP [%s] %s:%d TANonInviteServerProc Thread end(%X)...
  [%s] %s:%d Update WifiAssist Available = %s
  [%s] %s:%d VTP refCount=%d
  [%s] %s:%d Request for the latest iRAT notification by resubscribing again
+ [%s] %s:%d HandoverReport: Ignoring iRAT notification because the reason for recommendation is WiFi link going down
+ [%s] %s:%d HandoverReport: Pending iRAT notification due to high current target bitrate - currentTargetBitrate: %d cellBitrateCap: %d bitrateCapDelta: %d
  [%s] %s:%d Get iRAT notification for %u, %u, 0x%llx, %s, (%llu, %llu)
  [%s] %s:%d WRM: Get iRAT Coex Metrics %s
  [%s] %s:%d wcmSetCallConfig callback.
  [%s] %s:%d wcmGetCallConfig callback.
  [%s] %s:%d WRMClient setup start.
  [%s] %s:%d WRMClient cleanup start.
+ [%s] %s:%d HandoverReport: Processing iRAT notification due to low current target bitrate - currentTargetBitrate: %d cellBitrateCap: %d bitrateCapDelta: %d
+ [%s] %s:%d HandoverReport: Update cellBitrateCap for pending iRAT notification purpose: %d
  [%s] %s:%d Audio client is trying to start but session parameters have not been set! (client PID=%d)
  [%s] %s:%d Timeout occured while waiting for audio IO start!
  [%s] %s:%d %@(%p) Timeout occured while waiting for audio IO start!
@@ -11838,61 +11875,62 @@ AVCRC [%s] %s:%d Releasing baseband congestion detector:%p
  [%s] %s:%d TCPTUNNEL: socket is successfully connected %d.
  [%s] %s:%d TCPTUNNEL: We got a TCP connection!
  [%s] %s:%d TCPTUNNEL: Start SSL handshake
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Socket error, tear down the connection.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Socket error, tear down the connection.
  [%s] %s:%d TCPTUNNEL: reset write buffer
  [%s] %s:%d TCPTUNNEL: wcb suspend
  [%s] %s:%d Data length is too large: %lu
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Error parsing TURN message (%08X)
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Error parsing TURN message (%08X)
  [%s] %s:%d TCPTUNNEL: %d, Received TURN message: %x, %x
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: ProcessAllocateResponse failed
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: ProcessAllocateResponse failed
  [%s] %s:%d TCPTUNNEL: send saved ChannelBinding request now.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Got error response for Allocate request.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Got error response for Allocate request.
  [%s] %s:%d TCPTUNNEL: refreshing now.
  [%s] %s:%d TCPTUNNEL: refreshing after %5.2f seconds
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Got error response for ChannelBinding request.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Got error response for ChannelBinding request.
  [%s] %s:%d TCPTUNNEL: Got TURN terminating response.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Got error response for Refresh request.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: throw away TURN Message(%x).
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: TCP/SSL socket is closed while accepting packets
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Got error response for Refresh request.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: throw away TURN Message(%x).
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: TCP/SSL socket is closed while accepting packets
  [%s] %s:%d TCPTUNNEL: SSL enabled channel has set up.
  [%s] %s:%d TCPTUNNEL: send Allocate request in queue now.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: handshake error: %d, %d
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: handshake error: %d, %d
  [%s] %s:%d TCPTUNNEL: STARTING! %s
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Only Carrier interface available.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: Only Carrier interface available.
  [%s] %s:%d TCPTUNNEL: interface %s is behind NAT64 with prefix %s
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't create socket
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: no port to bind to.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't create socket
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: no port to bind to.
  [%s] %s:%d TCPTUNNEL: local IP %s, local port: %d
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't reserver buffer pool
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't reserver buffer pool
  [%s] %s:%d TCPTUNNEL: attempt a TCP connection to %s
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't create write source.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't create write source.
  [%s] %s:%d TCPTUNNEL: connect is done immediately %d.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: We can't connect: %d, %d
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't create read source.
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: We can't connect: %d, %d
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: can't create read source.
  [%s] %s:%d TCPTUNNEL: TCP tunnel released.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendAllocateMsg: MakeAllocateRequest error: %x
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendAllocateMsg: STUNEncodeMessage error: %x
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendAllocateMsg: MakeAllocateRequest error: %x
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendAllocateMsg: STUNEncodeMessage error: %x
  [%s] %s:%d sendAllocateMsg: save the message for set-up in progress.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendChannelBindingMsg: MakeChannelBindRequest error: %x
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendChannelBindingMsg: STUNEncodeMessage error: %x
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendChannelBindingMsg: MakeChannelBindRequest error: %x
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendChannelBindingMsg: STUNEncodeMessage error: %x
  [%s] %s:%d sendChannelBindingMsgWithDict: save message for set-up in progress.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendRefreshMsg: STUNEncodeMessage error: %x
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: sendRefreshMsg: STUNEncodeMessage error: %x
  [%s] %s:%d TCPTUNNEL: TCP channel is unbound.
  [%s] %s:%d TCPTUNNEL: closeTunnelSocket %d
  [%s] %s:%d TCPTUNNEL: Canceling the writeSource.
  [%s] %s:%d TCPTUNNEL: Canceling the readSource.
  [%s] %s:%d TCPTUNNEL: buffer pool limit reached.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: malloc error for a new node
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: malloc error for buffer %d
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: malloc error for a new node
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: malloc error for buffer %d
  [%s] %s:%d TCPTUNNEL: add new buffer to the pool %d
  [%s] %s:%d TCPTUNNEL: replace %d with %d.
- [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.7/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: not found in buffer pool %p
+ [%s] %s:%d /Library/Caches/com.apple.xbs/Sources/AVConference_Sim/AVConference-1780.10/AVConference.subproj/Sources/TCPTunnelClient.m:%d: TCPTUNNEL: not found in buffer pool %p
  [%s] %s:%d TCPTUNNEL: %s
 VCCallSession [%s] %s:%d deviceRole = %d, transportType = %d, isGKVoiceChat = %d
 VCCallSession [%s] %s:%d %@(%p) deviceRole = %d, transportType = %d, isGKVoiceChat = %d
 VCCallSession [%s] %s:%d RTCReporting: can't configure the reporting agent.
 VCCallSession [%s] %s:%d Load switch wifiAssistStatusBarEnabled %d
 VCCallSession [%s] %s:%d RTCReporting: reporting dictionary %s
+VCCallSession [%s] %s:%d [Local] Expensive %d, constraint %d, 5G %d. [Remote] Expensive %d, constraint %d, 5G %d
 VCCallSession [%s] %s:%d setOperatingMode - startVideo failed with error %s
 VCCallSession [%s] %s:%d setOperatingMode - stop failed with error %s
 VCCallSession [%s] %s:%d framerate = %f, bitrate = %f, packetLossRate = %f
@@ -11951,7 +11989,9 @@ VCCallSession [%s] %s:%d WRM: vcWRMClient setup start.
 VCCallSession [%s] %s:%d Load switch iRATMetricsEnabled %d
 VCCallSession [%s] %s:%d Load switch iRATRtpEnabled %d
 VCCallSession [%s] %s:%d Load switch preWarmCellEnabled %d
+VCCallSession [%s] %s:%d Load switch wrmRSSIThresholdEnabled %d
 VCCallSession [%s] %s:%d WRM: vcWRMClient cleanup start.
+VCCallSession [%s] %s:%d HandoverReport: Ignoring iRAT notification because the reason for recommendation is WiFi link going down
 VCCallSession [%s] %s:%d HandoverReport: Pending iRAT notification until video quality degrade
 VCCallSession [%s] %s:%d WRM: Get iRAT notification for %u, %u, 0x%llx, %s, (%llu, %llu)
 VCCallSession [%s] %s:%d WRM: Get iRAT Coex Metrics %s
@@ -12797,6 +12837,8 @@ VCTextTransmitter [%s] %s:%d %@(%p) Failed to create polling
  [%s] %s:%d Health Monitor for Local Participant Audio StreamID[%u] Audio[%ukbps]
  [%s] %s:%d %@(%p) Health Monitor for Local Participant Audio StreamID[%u] Audio[%ukbps]
  [%s] %s:%d Updating local media settings with config :%@
+ [%s] %s:%d configured audioIO=%p operatingMode=%d deviceRole=%d direction=%d isMuted=%d
+ [%s] %s:%d %@(%p) configured audioIO=%p operatingMode=%d deviceRole=%d direction=%d isMuted=%d
  [%s] %s:%d Failed to set up audio stream %d
  [%s] %s:%d %@(%p) Failed to set up audio stream %d
  [%s] %s:%d Failed to setup stream
@@ -12808,6 +12850,8 @@ VCTextTransmitter [%s] %s:%d %@(%p) Failed to create polling
  [%s] %s:%d video payload types: %@, audio payload types: %@
  [%s] %s:%d Load switch vplrFecEnabled %d
  [%s] %s:%d Load switch highFecEnabled %d
+ [%s] %s:%d currentRedundancyPercentage before abTestSwitch %d
+ [%s] %s:%d maxAllowedRedundancyPercentage after abTestSwitch %d
  [%s] %s:%d Stats collector has not yet been initialized
  [%s] %s:%d Failed to copy the local configuration
  [%s] %s:%d %@(%p) Failed to copy the local configuration
@@ -12951,6 +12995,7 @@ VCTextTransmitter [%s] %s:%d %@(%p) Failed to create polling
  [%s] %s:%d Operation not allowed while the audio IO is running
  [%s] %s:%d VCAudioIO(%p) is being released but it is not in the right state: %d
  [%s] %s:%d VCAudioIO(%p) now in the right state to be released: %d
+ [%s] %s:%d VCAudioIO(%p) isMuted=%d
  [%s] %s:%d Set direction from %d to %d. Current state:%d
  [%s] %s:%d The controller audio format is invalid!
  [%s] %s:%d Failed to create %s converter for audioIO:%p! Err:%d
@@ -14743,7 +14788,7 @@ VCVideoStream [%s] %s:%d VTP callback error: unknown notificaiton %d.
  [%s] %s:%d VCBitrateArbiter: received connectionType %d
  [%s] %s:%d Bitrate = %d. received connection for %s, connectionType = %d, constraint %d, expensive %d, videoFullHD %d
  [%s] %s:%d Received connection type %d
- [%s] %s:%d _maxAllowedBitrate2G = %d,  _maxAllowedBitrate3G = %d, _maxAllowedBitrateLTE = %d, _maxAllowedBitrateWifi = %d
+ [%s] %s:%d _maxAllowedBitrate2G = %d,  _maxAllowedBitrate3G = %d, _maxAllowedBitrateLTE = %d, _maxAllowedBitrateHighRat = %d, _maxAllowedBitrateWifi = %d
  [%s] %s:%d fileDescriptor=%d, connection=%@
  [%s] %s:%d AVCPacketRelayDriver: invalid file descriptor to drive
  [%s] %s:%d fileDescriptor=%d
@@ -15439,7 +15484,7 @@ AVCVideoStream [%s] %s:%d stream=%@, uplinkQualityInfo=%@
  [%s] %s:%d iceRemoveIPPortBlock didn't exist
  [%s] %s:%d Failed to allocate the JitterBuffer memory
  [%s] %s:%d Failed to initialize the lag processor
- [%s] %s:%d Jitter buffer configured with minQ size %f maxQ size %f highStartQ size %f highstart %d targetPercentileToCover %f shortTermWindowSize %f longTermWindowSize %f filterDRXBundleEnabled %d
+ [%s] %s:%d Jitter buffer configured with minQ size %f maxQ size %f highStartQ size %f highstart %d targetPercentileToCover %f shortTermWindowSize %f longTermWindowSize %f filterDRXBundleEnabled %d minQ Size 5G %f
  [%s] %s:%d Failed to initialize the target estimator
  [%s] %s:%d Failed to allocate the JitterBuffer
  [%s] %s:%d Invalid JitterBuffer handle (nil)
@@ -15458,6 +15503,7 @@ AVCVideoStream [%s] %s:%d stream=%@, uplinkQualityInfo=%@
  [%s] %s:%d [%p] VRDB RED Playback Metrics: totalFrameErasureRate[%f] redErasureCompensationRate[%f] redAudioFramesPlayed[%d] redAudioBytesPlayed[%d] totalFramesPlayed[%d] totalSpeechErasureRate[%f]
  [%s] %s:%d jitterBufferMode[%d]
  [%s] %s:%d isCellular[%d] localCellTech[%d] remoteCellTech[%d]
+ [%s] %s:%d JB Min Queue Size for 5G is overriden with server bag value %f
  [%s] %s:%d [%p] Dequeue packet, is audio packet null:%d, state %d
  [%s] %s:%d [%p] JBState[%d] packetDequeue[%d]
  [%s] %s:%d Red frame inserted, updating time red frame was used. lastRedAudioArrivalTime=%f
@@ -15494,7 +15540,6 @@ AVCAudioClient [%s] %s:%d @:@ AVAudioClient-init (%p)
 AVCAudioClient [%s] %s:%d @:@ AVAudioClient-dealloc (%p)
 @:@ AVAudioClient-setChangeListener
 AVCAudioClient [%s] %s:%d @:@ AVAudioClient-setChangeListener (%p)
-a8sG
 VCMediaNegotiationBlobMultiwayVideoStream
 NSCopying
 VCAudioManager
@@ -17283,6 +17328,7 @@ postNotificationName:object:
 addEntriesFromDictionary:
 getKeepAliveTimeoutFromCarrierBundle
 getAllSettings
+componentsSeparatedByString:
 remoteMediaStallTimeout
 numberWithDouble:
 integerValueForKey:defaultValue:
@@ -17311,6 +17357,7 @@ getLongTermValueWeightB
 getAdjustmentFactorC
 getShortTermValueWeightC
 getLongTermValueWeightC
+getWRMRSSIThresholdValue:
 getThresholdForSwitch:
 getAbTestMasterLocalSwitches
 getAbTestingState
@@ -17410,7 +17457,6 @@ _notificationMutex
 _interfaceListenerDelegate
 _notifyToken
 _monitoringAvailable
-componentsSeparatedByString:
 configurationAsString:
 StringAsConfiguration:
 configurationExtension
@@ -17583,6 +17629,7 @@ rampDownTierDueToBaseband
 shouldRampUpDueToBaseband
 updateBasebandSuggestionWithStatistics:
 recentlyGoAboveRampUpBandwidth
+shouldUnblockRampUpAfterTimeOut
 keepOvershootingRampDownBandwidth
 updateLastEmergencyBasebandRampDownTimeWithTierIndex:
 updateRecentTierWindow
@@ -17606,6 +17653,7 @@ _isOWRDConstant
 _lastOWRDChangeTime
 _lastCongestionTime
 _lastRampUpTime
+_lastAllowRampUpTime
 _isCongested
 _isFirstTimestampArrived
 _isNewRateSentOut
@@ -18539,6 +18587,8 @@ isOnSameInterfacesWithConnection:
 getSourceDestinationInfo:
 matchesSourceDestinationInfo:
 compare:isPrimary:selectionPolicy:
+isLocalOn5G
+isRemoteOn5G
 isLocalExpensive
 isRemoteExpensive
 isLocalConstrained
@@ -19517,7 +19567,9 @@ setupAudioStreamConfiguration:audioRules:
 completeStreamSetup:
 initWithClient:type:networkBitrate:mediaBitrate:qualityIndex:streamID:
 setIsLowestQualityAudio:
+setIsLowestQualityVideo:
 isLowestQualityAudio
+isLowestQualityVideo
 subStreamConfigs
 negotiatedMultiwayAudioStreams
 newAudioStreamConfigurationWithMultiwayAudioNegotiationResult:maxIDSStreamIDCount:
@@ -19994,8 +20046,12 @@ initWithDelegate:connectionManager:
 recommendedTargetBitrateCap
 sendFeedbackControllerReport:
 sendStatusUpdate:
+setDownlinkTargetBitrate:
+setDownlinkTargetCellBitrateCap:
 setClientTargetBitrate:
 setClientTargetBitrateCap:
+downlinkTargetBitrate
+downlinkTargetCellBitrateCap
 _weakDelegate
 _WCMClient
 _WRMClient
@@ -20004,6 +20060,11 @@ _recommendedSettings
 _clientTargetBitrate
 _clientTargetBitrateCap
 _wrmReportingInterval
+_downlinkTargetBitrate
+_downlinkTargetCellBitrateCap
+_wrmPendingBitrateCapDelta
+_isWRMNotificationPending
+_savedWRMNotification
 startAudioIOWithCompletionHandler:
 startAudioSessionWithError:
 stopAudioIOWithCompletionHandler:
@@ -20076,6 +20137,7 @@ client
 isStartOnDemand
 _client
 _isLowestQualityAudio
+_isLowestQualityVideo
 _actualNetworkBitrate
 _hasRepairStreamID
 _repairStreamID
@@ -20264,6 +20326,7 @@ handleKeyExchangeCompleted
 setRemoteSwitches:
 negotiateSwitches
 isSwitchEnabled:
+setRSSIThresholdEnabled:
 reportImmediateMetric:value:
 disconnectInternal:disconnectError:didRemoteCancel:
 initWithAllowAudioSwitching:allowAudioRecording:useSBR:ssrc:audioUnitNumber:audioRuleCollection:
@@ -20603,8 +20666,6 @@ _cleanupDone
 _isLocalCellular_LowestConnectionQuality
 _isRemoteCellular_LowestConnectionQuality
 _isConnectedOnIPv6_LowestConnectionQuality
-_isWRMNotificationPending
-_savedWRMNotification
 processCaptionsData:
 session:didReceiveData:messageType:withCallID:
 vcSecureDataChannel:messageType:receivedData:
@@ -21358,6 +21419,7 @@ getClientSpecificUserInfo
 reportingSessionParticipantEvent:withParticipant:
 registerReportingTask
 hasVideoStreams
+maxBitrateExpensiveDownlink
 forceDisableMediaPriority
 cleanupOneToOne
 destroySessionMessaging
@@ -21550,7 +21612,6 @@ _useReducedSizeRTCP
 _uplinkRateController
 _downlinkRateController
 _uplinkTargetBitrate
-_downlinkTargetBitrate
 _uplinkMediaController
 _basebandFlushTransactionID
 _downlinkBandwidthAllocator
@@ -21560,6 +21621,7 @@ _mediaQueue
 _forceDisableMediaPriority
 _stopError
 _oneToOneSettings
+_bitrateArbiter
 initWithAudioFormat:remoteCodecInfo:
 audioFormat
 _audioFormat
@@ -21643,8 +21705,10 @@ setBitrateUnstable
 updateInternalStatistics:
 runRateControlStateTransition
 updateVCRateControlHistory
+shouldEnableBasebandAdaptationWithCurrentBasebandRAT:previousBasebandRAT:
 rampDownTierDueToBaseband:
 basebandAdditionalTiersForRampUp
+isBasebandRATGreaterOrSameAsLTE:
 isBitrateOscillatingWithCurrentTierIndex:
 shouldFastRampUp
 calculateRoundTripTimeWithSample:
@@ -21676,6 +21740,8 @@ _outAudioBitrate
 _consecutiveRampDown
 _lastTimeStartRampingDown
 _rampUpSettleDuration
+_basebandLTEOrGreaterRATSwitchTime
+_basebandRadioTechnology
 _packetReceivedVideo
 _packetBurstLoss
 _roundTripTimeMinEnvelope
@@ -21870,7 +21936,6 @@ maxBitrate2GDownlink
 maxBitrate3GDownlink
 maxBitrateWiFiDownlink
 maxBitrateExpensiveUplink
-maxBitrateExpensiveDownlink
 maxBitrateNonExpensiveDownlink
 _maxBitrate2GUplink
 _maxBitrate2GDownlink
@@ -22390,6 +22455,7 @@ processNotificationList:
 _connectionQueue
 _wrmClientDelegate
 _metricsConfig
+_rssiThreshold
 tilesPerVideoFrame:
 initWithText:confidence:spaceAfter:
 stringByReplacingMatchesInString:options:range:withTemplate:
@@ -22459,7 +22525,6 @@ _sentPacketCount
 _sentByteCount
 _receivedPacketCount
 _receivedByteCount
-_bitrateArbiter
 _connectionSelector
 localAudioRecordingDataPath
 initWithKeyFrameInterval:framerate:weightFactor:
@@ -24936,8 +25001,8 @@ I24@0:8i16B20
 @20@0:8I16
 B20@0:8I16
 i28@0:8I16I20i24
-v24@0:8^{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiidddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddiddddddddddddBdiiBi}16
-v512@0:8{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiidddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddiddddddddddddBdiiBi}16
+v24@0:8^{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiiddddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddidddddddddddddBdiiBi}16
+v528@0:8{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiiddddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddidddddddddddddBdiiBi}16
 v176@0:8{?=idBBB(?={?=IIIIIdddd[64c]i}{?=IIIIIIIIIIIddIIdIB{?=iIIIdddII}}{?=dddIIIIIQI}{?=IBBBIIdIB{?=iIIIdddII}}{?=CIIIIIIIIIdddIII}{?=IIId}{?=iIIIdddII}{?=IIII}{?=IIIIIII}{?=IIIIBIII}{?=CCQQQIIIQiI})}16
 v24@0:8d16
 v24@0:8I16I20
@@ -25115,6 +25180,7 @@ v24@0:8^{tagIPPORT=i[16c](?=I[16C])S}16
 r^{?=i[12C]}16@0:8
 ^{?=i[12C]}
 ^{tagIPPORT=i[16c](?=I[16C])S}24@0:8@16
+i20@0:8i16
 d20@0:8I16
 @20@0:8C16
 @44@0:8@16^{__CFString=}24@32B40
@@ -25137,11 +25203,11 @@ v32@0:8^B16^B24
 [500I]
 i24@0:8@16
 {?="configurationExtension"b1}
-B540@0:8^{?=[100d][100d]iiIdddB}16d24d32{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiidddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddiddddddddddddBdiiBi}40B536
-B536@0:8^{?=[100d][100d]iiIdddB}16d24d32{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiidddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddiddddddddddddBdiiBi}40
-v524@0:8^{?=[100d][100d]iiIdddB}16{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiidddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddiddddddddddddBdiiBi}24B520
+B556@0:8^{?=[100d][100d]iiIdddB}16d24d32{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiiddddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddidddddddddddddBdiiBi}40B552
+B552@0:8^{?=[100d][100d]iiIdddB}16d24d32{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiiddddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddidddddddddddddBdiiBi}40
+v540@0:8^{?=[100d][100d]iiIdddB}16{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiiddddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddidddddddddddddBdiiBi}24B536
 d52@0:8d16^{?=[100d][100d]iiIdddB}24I32I36d40B48
-v520@0:8^{?=[100d][100d]iiIdddB}16{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiidddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddiddddddddddddBdiiBi}24
+v536@0:8^{?=[100d][100d]iiIdddB}16{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiiddddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddidddddddddddddBdiiBi}24
 @24@0:8^{tagCONNRESULT=IiiIiiSS{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}IiiiiSiii^{tagCONNRESULT}}16
 v24@0:8^{tagCONNRESULT=IiiIiiSS{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}IiiiiSiii^{tagCONNRESULT}}16
 ^{tagCONNRESULT=IiiIiiSS{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}{tagIPPORT=i[16c](?=I[16C])S}IiiiiSiii^{tagCONNRESULT}}16@0:8
@@ -25178,13 +25244,13 @@ v32@0:8d16@24
 v24@0:8@"VCEmulatedPacket"16
 v32@0:8d16@"NSDictionary"24
 {?="multiwayCapabilities"b1"supportedImageTypes"b1"supportedVideoCodecs"b1}
-v516@0:8{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiidddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddiddddddddddddBdiiBi}16B512
+v532@0:8{VCRateControlAlgorithmConfig=I^IiiiiiiiiiiiiiiddddddddddddddiiddddddddIIIIIBBBBBBBBididddidiiddidddddddddddddBdiiBi}16B528
 B176@0:8{?=idBBB(?={?=IIIIIdddd[64c]i}{?=IIIIIIIIIIIddIIdIB{?=iIIIdddII}}{?=dddIIIIIQI}{?=IBBBIIdIB{?=iIIIdddII}}{?=CIIIIIIIIIdddIII}{?=IIId}{?=iIIIdddII}{?=IIII}{?=IIIIIII}{?=IIIIBIII}{?=CCQQQIIIQiI})}16
 v28@0:8^v16B24
 @"VCRateControlMediaController"16@0:8
 v24@0:8@"VCRateControlMediaController"16
 d28@0:8I16I20I24
-{VCRateControlAlgorithmConfig="serverBagProfileNumber"I"tierBitrates"^I"initialTierIndex"i"maxTierIndex"i"minTierIndex"i"lowestNonEmergencyTierIndex"i"lowestNonEmergencyTierIndexWiFi"i"lowestEffectiveBWETierIndex"i"lowestTierIndexReactToNoServerActivity"i"rampUpTierNumber"i"rampDownTierNumber"i"rampUpAdditionalTierAtInitial"i"rampDownAdditionalTierAtInitial"i"rampDownBurstyLossThreshold"i"lowestTierForBurstyLossRampDown"i"lowestTierToDisableRateLimited"i"rampDownNOWRDThreshold"d"rampDownNOWRDAccThreshold"d"rampDownAggressiveNOWRDThreshold"d"rampDownAggressiveNOWRDAccThreshold"d"rampDownConstantOWRDDuration"d"rampDownOvershootDuration"d"rampDownOvershootNextTierRatio"d"rampUpFrozenDuration"d"rampUpSettleDuration"d"rampUpOWRDThreshold"d"rampUpNOWRDThreshold"d"rampUpNOWRDAccThreshold"d"rampUpOverBandwidthCalmDuration"d"rampUpOverBandwidthTierNumber"i"rampDownLossEventThreshold"i"rampUpFrozenPLRThreshold"d"rampUpRateLimitedRatio"d"unstableRateLimitedDuration"d"congestionWaitDuration"d"owrdWindowDuration"d"owrdShortWindowDuration"d"minimumNOWRDTimeDifference"d"owrdInitialRampUpReadyDuration"d"owrdHistorySize"I"owrdMininumHistorySize"I"fastRampDownBitrateRange"I"fastRampUpBitrateRange"I"consecutiveRampDownThresholdForCongestion"I"receivedBandwidthEstimationEnabled"B"basebandAdaptationEnabled"B"rateLimitedEnabled"B"randomRampUpFrozenDurationEnabled"B"oscillationAvoidanceEnabled"B"fastRampUpEnabled"B"blockRampUpInSaturatedNetworkEnabled"B"wifiEmergencyTiersEnabled"B"fastRampUpHighestTier"i"fastRampUpRTTRatio"d"fastRampUpTierGap"i"fastRampUpNetworkStableDuration"d"networkSaturatedRTTToMinRTTRatio"d"networkSaturatedOWRDToMinRTTRatio"d"networkSaturatedPersistFeedbackNumber"i"networkSaturatedRTTDecreasingThreshold"d"oscillationAvoidanceTierChangeThreshold"i"oscillationAvoidanceTiersHitThreshold"i"oscillationAvoidanceDurationRatio"d"oscillationAvoidanceDurationRatioAggressive"d"stabilizationScheme"i"rampDownNBDCDThreshold"d"rampDownAggressiveNBDCDThreshold"d"rampDownNormalizedQueuingDelayThreshold"d"rampDownMediumQueuingDelayThreshold"d"rampDownHighQueuingDelayThreshold"d"rampDownEmergencyTierCoolDownTime"d"rampDownWiFiEmergencyTierCoolDownTime"d"rampUpNBDCDThreshold"d"rampUpQueuingDelayThreshold"d"rampUpNBDCDCoolDownTime"d"rampUpAudioFractionCoolDownTime"d"autoResumeDurationAfterPaused"d"oscillationDetectionEnabled"B"oscillationCoolDownTime"d"oscillationDeviationTierNumber"i"oscillationDeviationCountThreshold"i"preventBasebandRampDownCloseToKeyFrame"B"basebandRampDownSlowDownFactor"i}
+{VCRateControlAlgorithmConfig="serverBagProfileNumber"I"tierBitrates"^I"initialTierIndex"i"maxTierIndex"i"minTierIndex"i"lowestNonEmergencyTierIndex"i"lowestNonEmergencyTierIndexWiFi"i"lowestEffectiveBWETierIndex"i"lowestTierIndexReactToNoServerActivity"i"rampUpTierNumber"i"rampDownTierNumber"i"rampUpAdditionalTierAtInitial"i"rampDownAdditionalTierAtInitial"i"rampDownBurstyLossThreshold"i"lowestTierForBurstyLossRampDown"i"lowestTierToDisableRateLimited"i"rampDownNOWRDThreshold"d"rampDownNOWRDAccThreshold"d"rampDownAggressiveNOWRDThreshold"d"rampDownAggressiveNOWRDAccThreshold"d"rampDownConstantOWRDDuration"d"rampDownOvershootDuration"d"rampDownOvershootNextTierRatio"d"rampUpFrozenDuration"d"rampUpSettleDuration"d"rampUpOWRDThreshold"d"rampUpNOWRDThreshold"d"rampUpNOWRDAccThreshold"d"rampUpOverBandwidthCalmDuration"d"rampUpBlockedTimeout"d"rampUpOverBandwidthTierNumber"i"rampDownLossEventThreshold"i"rampUpFrozenPLRThreshold"d"rampUpRateLimitedRatio"d"unstableRateLimitedDuration"d"congestionWaitDuration"d"owrdWindowDuration"d"owrdShortWindowDuration"d"minimumNOWRDTimeDifference"d"owrdInitialRampUpReadyDuration"d"owrdHistorySize"I"owrdMininumHistorySize"I"fastRampDownBitrateRange"I"fastRampUpBitrateRange"I"consecutiveRampDownThresholdForCongestion"I"receivedBandwidthEstimationEnabled"B"basebandAdaptationEnabled"B"rateLimitedEnabled"B"randomRampUpFrozenDurationEnabled"B"oscillationAvoidanceEnabled"B"fastRampUpEnabled"B"blockRampUpInSaturatedNetworkEnabled"B"wifiEmergencyTiersEnabled"B"fastRampUpHighestTier"i"fastRampUpRTTRatio"d"fastRampUpTierGap"i"fastRampUpNetworkStableDuration"d"networkSaturatedRTTToMinRTTRatio"d"networkSaturatedOWRDToMinRTTRatio"d"networkSaturatedPersistFeedbackNumber"i"networkSaturatedRTTDecreasingThreshold"d"oscillationAvoidanceTierChangeThreshold"i"oscillationAvoidanceTiersHitThreshold"i"oscillationAvoidanceDurationRatio"d"oscillationAvoidanceDurationRatioAggressive"d"stabilizationScheme"i"rampDownNBDCDThreshold"d"rampDownAggressiveNBDCDThreshold"d"rampDownNormalizedQueuingDelayThreshold"d"rampDownMediumQueuingDelayThreshold"d"rampDownHighQueuingDelayThreshold"d"rampDownEmergencyTierCoolDownTime"d"rampDownWiFiEmergencyTierCoolDownTime"d"rampUpNBDCDThreshold"d"rampUpQueuingDelayThreshold"d"rampUpNBDCDCoolDownTime"d"rampUpAudioFractionCoolDownTime"d"basebandRATSwitchCoolDownTime"d"autoResumeDurationAfterPaused"d"oscillationDetectionEnabled"B"oscillationCoolDownTime"d"oscillationDeviationTierNumber"i"oscillationDeviationCountThreshold"i"preventBasebandRampDownCloseToKeyFrame"B"basebandRampDownSlowDownFactor"i}
 {?="time"[100d]"owrd"[100d]"frontIndex"i"rearIndex"i"size"I"nowrd"d"nowrdShort"d"nowrdAcc"d"isOWRDListTooShortDuringInitialRampUp"B}
 [5B]
 [256i]
@@ -25400,7 +25466,6 @@ B28@0:8^i16i24
 B32@0:8^@16^@24
 v36@0:8i16i20^{imageTag=iiiiiiifi}24i32
 v52@0:8i16i20@24i32^{imageTag=iiiiiiifi}36B44B48
-i20@0:8i16
 v36@0:8i16^i20^i28
 v28@0:8B16i20i24
 B36@0:8^B16^i24i32
@@ -25585,6 +25650,7 @@ v24@0:8r^{?=iiiI}16
 @"VCWCMClient"
 @"VCConnectionManager"
 @"VCRecommendedNetworkSettings"
+{?="applicationType"i"linkTypeSuggestion"i"linkTypeChangeReasonCode"Q"linkTypeChangeReasonString"[128c]"linkBandwidthMin"Q"linkBandwidthMax"Q}
 {VCAudioClientSettings="isValid"B"enableAudioPreWarming"B"operatingMode"i"deviceRole"i}
 @40@0:8^{__CVBuffer=}16i24@28C36
 {CGSize=dd}24@0:8q16
@@ -25670,7 +25736,6 @@ v52@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16I48
 @"VCSecureDataChannel"
 ^{tagWRMMetricsInfo=B^{tagHANDLE}IIIIIIIIIIIIQQQi^?{?=^v^?^?}{_opaque_pthread_mutex_t=q[56c]}IIIIIIIIIIIIIII}
 @"VCTransportSession"
-{?="applicationType"i"linkTypeSuggestion"i"linkTypeChangeReasonCode"Q"linkTypeChangeReasonString"[128c]"linkBandwidthMin"Q"linkBandwidthMax"Q}
 v36@0:8@"VCSecureDataChannel"16I24@"NSData"28
 v24@0:8@"VCCaptionsTranscription"16
 i56@0:8i16I20r*24*32^v40^i48
@@ -25917,6 +25982,7 @@ v24@0:8^{tagVCMediaQueue=}16
 ^{tagVCMediaQueue=}
 @"NSError"
 {_VCSessionOneToOneSettings="rateController"@"AVCRateController""mediaController"@"VCRateControlMediaController""audioMediaControlInfoGenerator"^v"videoMediaControlInfoGenerator"^v"mediaQueue"^{tagHANDLE}"negotiatedVideoEnabled"B}
+@"VCSessionBitrateArbiter"
 @32@0:8r^{AudioStreamBasicDescription=dIIIIIIII}16r^{_VCRemoteCodecInfo=Id}24
 r^{AudioStreamBasicDescription=dIIIIIIII}16@0:8
 @24@0:8@?16
@@ -26047,7 +26113,6 @@ v23@0:8i16{?=BBB}20
 B36@0:8@16d24B32
 @"NSLocale"
 [256I]
-@"VCSessionBitrateArbiter"
 @"VCConnectionSelector"
 @28@0:8I16I20I24
 v32@0:8*16@24

@@ -625,6 +625,7 @@ appleMusicDeviceOfferDeepLink
 iCloudDeviceOfferDeepLink
 deviceOffers
 deviceOffersByCreationDate
+language-tag
 marketing-item-media-api-realm
 marketing-item-media-api-realm-mappings
 marketing-item-media-api-path
@@ -879,8 +880,8 @@ PKInAppPaymentService
 PKPaymentService
 PKPassLibrary
 cardType
-Apple_Pay_Alipay
-Apple_Pay_Broadway
+APPLE_PAY_AQUAMAN
+APPLE_PAY_BROADWAY
 Feature Not Enabled
 No active iTunes account
 No active iCloud account
@@ -2770,6 +2771,7 @@ TB,R,N,V_cancelled
 com.apple.AppleMediaServices.meta
 clientGeneratedId
 com.apple.AMSMetricsIdentifier
+T@"NSString",&,N,V_domain
 Td,N,V_duration
 xp_amp_clientperf
 appleTimingApp
@@ -3283,6 +3285,7 @@ T@"NSURL",&,N,V_paymentServicesURL
 T@"AMSPurchase",R,N,V_purchase
 appStoreEntitlements
 newsEntitlements
+activityEntitlements
 musicEntitlements
 tvEntitlements
 iCloudEntitlements
@@ -3863,6 +3866,7 @@ v16@?0@"NSURLRequest"8
 . Error: %@
 Failed to create data task with invalid request
 Request finished without a result.
+AMSErrorDomainWasNil
 Redirecting
 Retrying
 Reached max retry count
@@ -3989,7 +3993,6 @@ tapUrl
 _logKey
 _url
 ams_
-@"NSDictionary"20@?0@"AMSUserNotificationAction"8B16
 User Notification Cancelled
 Cancel action selected
 User Notification Failure
@@ -3998,7 +4001,10 @@ Unable to parse the notification response
 v16@?0@"UNNotificationSettings"8
 AMSUserNotifications
 UserNotificationImageCache
+@"NSDictionary"20@?0@"AMSUserNotificationAction"8B16
 yyyy-MM-dd'T'HH:mm:ssZ
+anonymizeMetrics
+TB,N,V_anonymizeMetrics
 intent
 Tq,N,V_intent
 categoryIdentifier
@@ -4856,6 +4862,7 @@ placement: %{public}@
 context: %{public}@
 %{public}@: [%{public}@] Using local stubs
 %{public}@: [%{public}@] Error generating media request: %{public}@
+%{public}@: [%{public}@] Retrieving language tag from bag failed, using fallback: %{public}@
 %{public}@: [%{public}@] Error retrieving realm mappings.
 %{public}@: [%{public}@] %{public}@
 %{public}@: [%{public}@] We weren't provided a media token. Error code: %ld.
@@ -5170,8 +5177,8 @@ AMSPurchaseQueue: [%{public}@] Successfully generated a fraud score. fraudScore 
 %{public}@: Truncating database after corruption: %{public}@
 %{public}@: Reopening database after IO error: %{public}@
 %{public}@: [%{public}@] Failed to fetch ASD segment for mediaType: %ld. %{public}@
-%{public}@: [%{public}@] Caching ASD entitlement data
-%{public}@: [%{public}@] Reloading entitlement data
+%{public}@: [%{public}@] Caching ASD entitlement data for mediaType: %ld
+%{public}@: [%{public}@] Reloading entitlement data for mediaType: %ld
 %{public}@: [%{public}@] Successfully fetched subscriptions
 %{public}@: [%{public}@] Fetching Music subscription entitlements
 %{public}@: [%{public}@] Lookup failed. %{public}@
@@ -7271,6 +7278,7 @@ setEnableFullDeviceOffersRetrieval:
 setEnablePurchaseQueue:
 setEnableRemoteSecuritySigning:
 setForceLoadUrlMetrics:
+setForceEngagementPurchaseSuccess:
 setIgnoreServerTrustEvaluation:
 setIncludeFullRequestInHARLogging:
 setIncludeFullResponseInHARLogging:
@@ -7880,7 +7888,7 @@ _presentAuthRequest:taskInfo:
 _handleDialogFromAuthError:taskInfo:
 _updateTaskWithAuthedAccount:taskInfo:
 _updateTaskWithLastCredentialSource:taskInfo:
-ams_commerceUIURL
+ams_URLType
 handleDialogResult:taskInfo:
 setDialogResult:
 setAuthenticateResult:
@@ -7898,6 +7906,7 @@ ams_buttonDictionary
 ams_setButtonDictionary:
 ams_setActionType:
 ams_buyParams
+ams_commerceUIURL
 ams_resolvedInterruption
 ams_setBuyParams:
 ams_setCommerceUIURL:
@@ -7905,7 +7914,6 @@ ams_setResolvedInterruption:
 ams_setSubtarget:
 ams_setRawURL:
 ams_setURLType:
-ams_URLType
 _createDialogRequest
 _credentialSource:satisfiesAuthenticationType:
 isVerifyPurchasePayload:
@@ -8533,6 +8541,7 @@ _placement
 _realmOverridesFromBag:
 _realmFromBag:
 _formattedURLPathWithBag:
+_languageTagFromBag:fallback:
 queryItemsFromDictionary:
 _additionalQueryItems
 setHost:
@@ -10485,19 +10494,11 @@ ams_nonEmptyComponentsJoinedByString:
 _sharedComponentParentheticalWithFairPlayDeviceType:productType:
 _bundleInfo
 ams_ensureDirectoryExists:
-centerBundleIdentifier
-artworkUrl
-videoUrl
-shouldSuppressDefaultAction
-categoryIdentifier
-explicitContent
-subsections
-threadIdentifier
-scheduledTime
 _serverFriendlyFormatter
 dateFromString:
 _identifierFromPayload:
 eventFromMetricsDictionary:centerBundleId:
+anonymizeMetrics
 setDisplayScheduledTime:
 setPostedSuccessfully:
 setAllHTTPHeaderFields:
@@ -10506,13 +10507,18 @@ _canParseNotificationWithIdentifier:userInfo:
 attachments
 un_ActionOptions
 actionWithIdentifier:title:options:
+categoryIdentifier
+threadIdentifier
 setThreadIdentifier:
 setSubtitle:
 _generatePayload
+shouldSuppressDefaultAction
 setShouldSuppressDefaultAction:
 setShouldBackgroundDefaultAction:
 setShouldAuthenticateDefaultAction:
+subsections
 setTopicIdentifiers:
+scheduledTime
 currentCalendar
 components:fromDate:
 triggerWithDateMatchingComponents:repeats:
@@ -10524,7 +10530,10 @@ determineSelectedActionFromResponse:error:
 openAppUsingBundleIdentifier:
 handleSelectedButton:bag:
 intent
+centerBundleIdentifier
 explicitEnabledForCenterBundleID:
+explicitContent
+artworkUrl
 _downloadAssetAtUrl:withIdentifier:logKey:bag:
 attachmentWithIdentifier:URL:options:error:
 setAttachments:
@@ -10532,8 +10541,9 @@ setFrontBoardOptions:
 openApplicationWithBundleIdentifier:configuration:completionHandler:
 eventForSettingsChangedWithSettings:bundleID:
 getNotificationSettingsWithCompletionHandler:
-_cachedImagePathForIdentifier:assetURL:
 pathExtension
+_cachedImagePathForIdentifier:assetURL:
+videoUrl
 initWithLocaleIdentifier:
 timeZoneForSecondsFromGMT:
 handleNotificationResponse:bag:
@@ -10550,8 +10560,10 @@ setVideoUrl:
 setExplicitContent:
 setScheduledTime:
 setSubsections:
+setAnonymizeMetrics:
 setIntent:
 _explicitContent
+_anonymizeMetrics
 _shouldSuppressDefaultAction
 _artworkUrl
 _videoUrl

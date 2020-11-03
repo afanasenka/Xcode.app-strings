@@ -868,7 +868,7 @@ PKContactlessInterfaceSessionDidAuthorize
 PKContactlessInterfaceSessionDidDeauthorize
 PKContactlessInterfaceSessionDidFinishTransaction
 PKPaymentDidReceiveSuccessfulTransactionsNotification
-PKPaymentDidReceiveSuccessfulTransactionMaintainedAuthorizationKey
+PKPaymentDidReceiveSuccessfulTransactionPersistUI
 NearbyInfo
 com.apple.backboardd.backlight.changed
 com.apple.springboard.lockstate
@@ -1080,6 +1080,7 @@ credit
 billPayment
 balance
 statement
+summary
 html
 discovery
 transactionIdentifier
@@ -1176,7 +1177,6 @@ ShareableCredential_Localizable
 Discovery_Localizable
 Credential_Localizable
 Beekman_Localizable
-D79_Localizable
 _JANUARY
 _FEBRUARY
 _MARCH
@@ -4355,7 +4355,6 @@ Failed to track the credential
 contactEmail
 contactWebsite
 contactName
-cardholderFullName
 cardholderOrganizationName
 termsAndConditionsURL
 privacyPolicyURL
@@ -7277,6 +7276,7 @@ Analytics
 Credential
 Transactions
 Database
+Accessories
 ShareableCredentials
 AuxiliaryCapability
 mobile
@@ -7774,6 +7774,10 @@ resetPaymentPINOpenButton
 resetPaymentPINViewInAppStoreButton
 barcodePaymentTransactionApproved
 barcodePaymentTransactionDeclined
+barcodePaymentTransactionUserConfirmationRequested
+barcodePaymentTransactionSixDigitsPaymentPINRequested
+barcodePaymentTransactionComplexPaymentPINRequested
+barcodePaymentTransactionApplicationRedirectRequested
 transactionAwardsDisplayed
 transactionAwardsButtonTag
 No errors
@@ -7988,6 +7992,8 @@ sharingInstanceIdentifiers
 provisioningSharingStatus
 sharingIdentifier
 T@"NSString",C,N,V_sharingIdentifier
+cardConfigurationIdentifer
+T@"NSString",C,N,V_cardConfigurationIdentifer
 T@"PKEncryptedPushProvisioningTarget",&,N,V_encryptedProvisioningTarget
 pushProvisioningTarget
 T@"PKEncryptedPushProvisioningTarget",C,N,V_encryptedPushProvisioningTarget
@@ -8018,6 +8024,7 @@ T@"NSString",C,N,V_domainName
 seId
 touchIDToPay
 payMerchant
+doublePressToPay
 imageSegments
 preferredLanguages
 prepareTransactionDetails
@@ -8473,9 +8480,11 @@ general
 RTCSecureHierarchyToken
 fieldDetect
 contactless
+inAppProvisioning
 appleCardEngagement
 appleCashEngagement
 secureUIService
+bridge
 notificationReceived
 errorDomain
 errorCode
@@ -8562,6 +8571,20 @@ everyone
 passbook
 organizer
 parent
+addDifferentCard
+plusButton
+continue
+back
+next
+addCardType
+addCardChooseDevice
+provisioningStatus
+cardProvisioned
+setDefault
+provisioningSuccess
+provisioningFailure
+defaultSet
+defaultNotNow
 paymentTransaction
 T@"PKPaymentTransaction",&,N,V_paymentTransaction
 T@"NSString",&,N,V_transactionSourceIdentifier
@@ -8781,7 +8804,6 @@ hasDeviceModel
 T@"NSString",&,N,V_deviceModel
 totalProduct
 totalInterest
-summary
 periodType
 userViewedIntroduction
 transactionReferenceIdentifier
@@ -9532,23 +9554,24 @@ hasDateCreated
 Td,N,V_dateCreated
 v2/%@/token/
 v2/%@/token/%@/
-pass.%@
-T^{CGImage=},R,N,V_image
-T@"NSString",R,N,V_backgroundColor
-footerColor
-T@"NSString",R,N,V_footerColor
+T@"NSString",C,N,V_backgroundColor
 primaryText
-T@"NSString",R,N,V_primaryText
+T@"NSString",C,N,V_primaryText
 primaryColor
-T@"NSString",R,N,V_primaryColor
+T@"NSString",C,N,V_primaryColor
 secondaryText
-T@"NSString",R,N,V_secondaryText
+T@"NSString",C,N,V_secondaryText
 secondaryColor
-T@"NSString",R,N,V_secondaryColor
+T@"NSString",C,N,V_secondaryColor
 tertiaryText
-T@"NSString",R,N,V_tertiaryText
+T@"NSString",C,N,V_tertiaryText
 tertiaryColor
-T@"NSString",R,N,V_tertiaryColor
+T@"NSString",C,N,V_tertiaryColor
+T^{CGImage=},R,N,V_image
+pass.%@
+B8@?0
+BOARDING_PASS_PRIMARY_FIELD_JOINER
+B32@?0@"PKPassField"8Q16^B24
 T@"NSNumber",R,C,N,V_errorCode
 serverDebugDescription
 T@"NSString",R,C,N,V_serverDebugDescription
@@ -11928,8 +11951,8 @@ Processing History Record: {sequence number: %@, type: %hhu, sector combination:
 Processed record has balance change.
 PKZipArchiver: unable to open non-file URL %@.
 Failed to unmap file - %{public}s! Leaking mapping...
-PKZipArchiver: unable to mmap file descriptor %{public}d for %@ (leaking) - %{public}s.
-PKZipArchiver: unable to close file fstat %{public}d for %@ (leaking) - %{public}s.
+PKZipArchiver: unable to mmap file descriptor %{public}d for %@ - %{public}s.
+PKZipArchiver: unable to fstat %{public}d for %@ - %{public}s.
 PKZipArchiver: unable to close file descriptor %{public}d for %@ (leaking) - %{public}s.
 PKZipArchiver: unable to create output file %@ - %{public}s.
 PKZipArchiver: unable to close read disk archive - %{public}s.
@@ -13673,6 +13696,7 @@ Xniu
 1@333333
 K@ffffff
 ?333333
+======
 " " " " 
 PKApplyWebServiceRequest
 PKApplyWebServiceApplicationsRequest
@@ -19154,7 +19178,7 @@ isInitializationTimeOutError
 isUnknownItemError
 allZoneIDs
 initWithMerchantIdentifier:merchantSessionIdentifier:nonce:epochTimestamp:domain:displayName:signature:
-initWithMerchantIdentifier:merchantSessionIdentifier:nonce:epochTimestamp:expiresAt:domain:displayName:signature:
+initWithMerchantIdentifier:merchantSessionIdentifier:nonce:epochTimestamp:expiresAt:domain:displayName:operationalAnalyticsIdentifier:signature:
 initWithMerchantIdentifier:merchantSessionIdentifier:nonce:epochTimestamp:expiresAt:displayName:initiativeContext:initiative:ampEnrollmentPinning:operationalAnalyticsIdentifier:signedFields:signature:
 pk_decodeHexadecimal
 _isModern
@@ -20446,6 +20470,7 @@ setCobrandName:
 setIssuerCountryCode:
 setHasAssociatedPeerPaymentAccount:
 setAssociatedAccountServiceAccountIdentifier:
+setTransactionSourceIdentifier:
 setDevicePaymentApplications:
 setDeviceInAppPaymentApplications:
 setDevicePrimaryPaymentApplication:
@@ -20526,7 +20551,6 @@ issuerCountryCode
 isPaymentOptionSelectable
 topLeftBackgroundTitle
 topRightBackgroundTitle
-setTransactionSourceIdentifier:
 setTransactionServiceURL:
 setTransactionServiceRegistrationURL:
 setTransactionPushTopic:
@@ -20812,9 +20836,9 @@ hasRetryNonce
 setSessionIdentifier:
 setEpochTimestamp:
 setExpiresAt:
+setOperationalAnalyticsIdentifier:
 setInitiative:
 setInitiativeContext:
-setOperationalAnalyticsIdentifier:
 setDomain:
 passID
 setPassIdentifier:
@@ -24190,12 +24214,15 @@ requestBodyWithAttesationRequest:
 subCASEResidencyAttestation
 sharingTokenHash
 _requestBody
-initWithProvisioningSharingIdentifier:
+initWithProvisioningSharingIdentifier:cardCardConfigurationIdentifer:
 initWithEncryptedProvisioningTarget:
 sharingIdentifier
 setSharingIdentifier:
+cardConfigurationIdentifer
+setCardConfigurationIdentifer:
 setEncryptedProvisioningTarget:
 _sharingIdentifier
+_cardConfigurationIdentifer
 initWithEncryptedPushProvisioningTarget:sharingInstanceIdentifier:
 initWithNonceType:
 nonceType
@@ -25704,20 +25731,26 @@ hasContainerIdentifier
 hasZoneName
 setHasDateCreated:
 hasDateCreated
-footerColor
+_initWithBackgroundColor:primaryColor:secondaryColor:tertiaryColor:
 primaryText
+setPrimaryText:
 primaryColor
+setPrimaryColor:
 secondaryText
+setSecondaryText:
 secondaryColor
+setSecondaryColor:
 tertiaryText
+setTertiaryText:
 tertiaryColor
-_footerColor
+setTertiaryColor:
 _primaryText
 _primaryColor
 _secondaryText
 _secondaryColor
 _tertiaryText
 _tertiaryColor
+initWithContentsOfURL:options:error:
 serverDebugDescription
 _errorCode
 _serverDebugDescription
@@ -27227,7 +27260,7 @@ _featureApplications
 _onboardingItems
 _paymentOptions
 _requestedProvisioningMethods
-_initWithDisplayName:partnerDictionary:productIdentifier:paymentOptions:termsURL:provisioningMethods:readerModeMetadata:requiredFields:imageAssets:minimumOSVersion:region:hsa2Requirement:suppressPendingPurchases:supportedTransitNetworkIdentifiers:onboardingItems:actionBaseURL:productState:minimumProductAge:maximumProductAge:associatedStoreIdentifiers:appLaunchURL:regionIdentifier:
+_initWithDisplayName:partnerDictionary:productIdentifier:paymentOptions:termsURL:provisioningMethods:readerModeMetadata:requiredFields:imageAssets:minimumOSVersion:region:hsa2Requirement:suppressPendingPurchases:supportedTransitNetworkIdentifiers:onboardingItems:actionBaseURL:productState:minimumProductAge:maximumProductAge:associatedStoreIdentifiers:appLaunchURL:regionIdentifier:type:localizedNotificationTitle:localizedNotificationMessage:
 _updateProduct:withDebugConfigurationForState:
 partnerProductsFromArrayOfPartners:andProducts:
 _displayNameForCardType:
@@ -28091,7 +28124,7 @@ i16@0:8
 @40@0:8@16q24@32
 @24@0:8#16
 @72@0:8@16@24@32Q40@48@56@64
-@80@0:8@16@24@32Q40Q48@56@64@72
+@88@0:8@16@24@32Q40Q48@56@64@72@80
 @96@0:8@16@24@32Q40Q48@56@64@72@80@88
 @112@0:8@16@24@32Q40Q48@56@64@72@80@88@96@104
 @"PKDiscoveryEngagementMessageAction"
@@ -28804,7 +28837,7 @@ d32@0:8{CGSize=dd}16
 @"PKPaymentSetupProductConfiguration"
 @"PKPaymentSetupProductImageAssetURLs"
 @"PKPaymentSetupProductImageAssets"
-@192@0:8@16@24@32@40@48@56@64@72@80@88@96@104@112@120@128@136@144@152@160@168@176@184
+@216@0:8@16@24@32@40@48@56@64@72@80@88@96@104@112@120@128@136@144@152@160@168@176@184@192@200@208
 @24@0:8^{objc_property=}16
 v68@0:8@16Q24B32@36Q44q52@?60
 v60@0:8@16Q24B32@36q44@?52

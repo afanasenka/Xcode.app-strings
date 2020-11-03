@@ -1583,6 +1583,9 @@ _TtC24MenstrualCyclesAppPlugin37MenstrualCyclesRoomDataSourceProvider
 cycleLoggingSectionsProvider
 relevantStartDate
 HIGHLIGHTS_SECTION_TITLE
+Onboarding Not Available
+Full Onboarding Completed
+Onboarding Available
 [%{public}@] is deallocated
 [%{public}@]: didUpdate: %@
 [%{public}@] Unregistered observer: [%{public}@]
@@ -1600,10 +1603,7 @@ MenstrualCyclesAppPlugin/MenstrualCyclesAvailabilityProvider.swift
 MenstrualCyclesAvailabilityProvider is already running.
 [%{public}@] Stopping
 [%{public}@] Updated availability to: %{public}@
-Onboarding Not Available
 [%{public}@] Updated availability to: %@
-Full Onboarding Completed
-Onboarding Available
 _TtC24MenstrualCyclesAppPlugin13FavoritesCell
 favoriteIndicator
 accessibilityIsFavorited

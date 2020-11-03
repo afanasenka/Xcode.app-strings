@@ -1,4 +1,5 @@
-@(#)PROGRAM:IBCocoaTouchToolFoundation  PROJECT:IDEInterfaceBuilderCocoaTouch-17502
+@(#)PROGRAM:IBCocoaTouchToolFoundation  PROJECT:IDEInterfaceBuilderCocoaTouch-17504.1
+ffff
 init
 allowsKeyedCoding
 decodeDoubleForKey:

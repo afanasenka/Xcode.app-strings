@@ -1108,7 +1108,6 @@ INGetCurrentRestaurantQueueingTicketsIntent
 INGetRestaurantQueueingTableAvailabilityDateIntent
 INRequestRestaurantQueueingTicketIntent
 MKWebContentViewControllerDidFinishLoadingNotification
-MKWebContentDefaultHeight
 placeCardNativeController
 placeCardWebController
 setHeight
@@ -2095,6 +2094,8 @@ TB,R,N,G_balloonCalloutShouldShowArrow
 balloonCalloutShouldCenterWhenOffscreen
 TB,R,N,G_balloonCalloutShouldCenterWhenOffscreen
 A custom transform was applied to '%@' and is not supported with MKUserTrackingModeFollowWithHeading.
+wantsViewBasedPositioning
+TB,R,G_wantsViewBasedPositioning
 _calloutView
 T@"MKCalloutView",&,N,G_calloutView,S_setCalloutView:,V_calloutView
 pendingSelectionAnimated
@@ -4893,6 +4894,8 @@ Debug_AllowOverridingPhotoSlideshowCounts
 Debug_PhotoSlideshowOverrideCount
 MKCollectionCoverPhotoCacheMemoryCapacity
 MKCollectionCoverPhotoCacheDiskCapacity
+MKWebContentDefaultHeight
+MKWebContentMaxHeight
 __invalid__
 transform.scale.xy
 doubleBounds
@@ -9879,8 +9882,6 @@ analyticsDelegate
 collectionsCarouselDidRouteToCollectionId:atIndex:isSaved:
 collectionIdentifier
 isCollectionSavedAtIndex:
-dataSource
-didEndDisplayingCellAtIndexpath:usingSnapShot:
 willDisplayCellAtIndexpath:
 scrollViewDelegate
 scrollViewDidScroll:
@@ -10168,7 +10169,6 @@ sharedNetworkObserver
 isNetworkReachable
 sharedWebViewFactory
 requeueItem:
-floatForKey:
 initWithNativeControllerName:webControllerName:bridgeVersion:
 dequeueItemWithBridgeConfiguration:
 webView
@@ -10221,7 +10221,6 @@ sessionRelativeTimestampForEventTime:
 relativeString
 URLWithString:relativeToURL:
 absoluteURL
-initialize
 webView:decidePolicyForNavigationAction:decisionHandler:
 webView:decidePolicyForNavigationAction:preferences:decisionHandler:
 webView:decidePolicyForNavigationResponse:decisionHandler:
@@ -11949,6 +11948,7 @@ automaticallyNotifiesObserversForKey:
 _mapkit_instanceImplementationOfSelector:isFromSubclassOfClass:
 _defaultZPriority
 _defaultSelectedZPriority
+_wantsViewBasedPositioning
 removeObserverForObject:forKeyPath:context:
 setAnnotationView:
 _removePopover
@@ -12305,6 +12305,7 @@ setHost:
 setAllowTransitLineSelection:
 setLimitInteraction:
 setSupportSystemSectionCollapsing:
+dataSource
 reloadSections
 viewWillDisappear:
 willTransitionToSize:
@@ -16448,7 +16449,6 @@ initializeFormatter
 buildCuratedCollectionsFrom:shouldCancelImageDownloads:
 setCollections:
 createBatchControllerIfNeededUsingIdentifiers:andPlaceCollections:usingCollectionFetcher:usingGuideConsumer:usingBatchSize:
-endDisplayingCellAtIndexPath:
 batchController
 itemIdentifiersInSectionWithIdentifier:
 deleteItemsWithIdentifiers:
@@ -16475,6 +16475,7 @@ updateCollectionsWithoutPreparingSnapshot:usingBatchedIdentifiers:usingCollectio
 identifierForCollectionAtIndex:
 initWithPlaceCollections:usingSyncCoordinator:inContext:
 clearSnapshotData
+endDisplayingCellAtIndexPath:
 _collections
 _geoCollections
 _batchController
@@ -16581,6 +16582,7 @@ _cancelReferenceDateUpdate
 nextDateAfterDate:matchingUnit:value:options:
 _referenceDateUpdateTimerFired
 _scheduleReferenceDateUpdate
+initialize
 correctedAddress
 hasFullThoroughfare
 correctedAddressSecondaryStreetLine

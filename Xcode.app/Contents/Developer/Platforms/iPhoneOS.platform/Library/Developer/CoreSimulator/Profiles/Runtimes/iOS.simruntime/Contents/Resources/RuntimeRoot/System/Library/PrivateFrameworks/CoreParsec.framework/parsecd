@@ -540,7 +540,6 @@ defaultConfiguration
 sharedConfiguration
 bundleURL
 authorizationStatusForBundle:
-reverseGeocodeLocation:completionHandler:
 coordinate
 horizontalAccuracy
 locationServicesEnabled
@@ -1592,7 +1591,6 @@ geoPlacemark
 lastLocationUpdateRequestDate
 v28@0:8@16i24
 authorizedAlways
-LocationManager failed to reverse geocode location
 nil GEOUserSessionEntity received from GEOMapsSessionEntityCallback
 Requesting new Location
 error initializing location bundle
@@ -2706,7 +2704,6 @@ Sg_ABt
 Sg_ABt
 Sg_ABt
 Sg_ABt
-So11CLPlacemarkC
 $s7parsecd23DownloadManagerProtocolP
 $s7parsecd14GUIDControllerP
 $s7parsecd20ABTestSeedControllerP

@@ -135,6 +135,7 @@ future
 lock
 eventMap
 throttleInterval
+dateProvider
 _TtC8SPShared13DispatchTimer
 nanosecondsPerSecond
 queue
@@ -151,9 +152,9 @@ _os_activity_current
 com.apple.notifyd.matching
 v16@?0@"<OS_xpc_object>"8
 _TtC8SPShared25DarwinNotificationManager
-helpers
+publisher
+notificationPublisher
 On xpc event stream, com.apple.notifyd.matching, notification %@
-Invoking callback, notification, %@
 Error from validateUser: %@
 Running as root. Dropping privileges to mobile
 XCODE_BUILT_PRODUCTS
@@ -191,9 +192,12 @@ com.apple.icloud.spshared
 _TtC8SPShared4Lock
 osLock
 Remove darwin callback handler for %@
+Invoking callback, notification, %@
 _TtC8SPShared24DarwinNotificationHelper
 notificationHandlers
-darwinCenter not available
+subscription
+SPShared/DarwinNotificationHelper.swift
+DarwinNotificationHelper failed init. darwinCenter not available
 Setup darwin callback handlers
 Setting up darwin callback handler for %@
 Observer for darwin callback handler not found
@@ -244,6 +248,8 @@ _A7At
 _A13At
 yyycG
 ySsG
+_yptG
+_ypt
 $sSY
 $ss21_ObjectiveCBridgeableP
 $ss25ExpressibleByArrayLiteralP
@@ -277,6 +283,7 @@ SayyxSg_
 _pSgtcG
 So17OS_dispatch_queueC
 SDyx
+ycSg
 So24OS_dispatch_source_timer_p
 SgXw
 5start_AA3endtSg
@@ -317,6 +324,8 @@ So7NSTimerCSgXw
 ytIegr_
 yycG
 yycG
+SgXw
+SSIegg_
 $s8SPShared11EntitlementP
 8RawValueSYQz
 So13NSXPCListenerC
@@ -363,6 +372,7 @@ ResultType
 lock
 eventMap
 throttleInterval
+dateProvider
 nanosecondsPerSecond
 queue
 deadline
@@ -373,7 +383,8 @@ block
 data
 storage
 encoder
-helpers
+publisher
+notificationPublisher
 rightRelative
 leftRelative
 absolute
@@ -451,6 +462,7 @@ success
 failure
 osLock
 notificationHandlers
+subscription
 flag
 start
 duration

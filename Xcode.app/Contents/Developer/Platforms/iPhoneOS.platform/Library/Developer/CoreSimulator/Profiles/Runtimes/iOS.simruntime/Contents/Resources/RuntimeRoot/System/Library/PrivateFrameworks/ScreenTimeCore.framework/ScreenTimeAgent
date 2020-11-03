@@ -753,18 +753,8 @@ map:
 initWithFamilySettingsManager:requestManager:persistentContainer:
 _familySettingsManager
 _requestManager
-initPendingOnQueue:
-setPendingPasscodePromise:
-remoteViewService
-activate
-passcodeProviderService
-pendingPasscodePromise
-providePasscode:completionHandler:
-providePasscodeOnQueue:
-initWithPrimitiveRemoteViewService:
-_remoteViewService
-_pendingPasscodePromise
 _identifierForType:
+initPendingOnQueue:
 numberWithLongLong:
 activityQueue
 _configuredSchedulerWithIdentifier:specifiedInterval:existingInterval:type:workBlock:
@@ -812,9 +802,11 @@ setXpcEndpoint:
 newHandleWithDefinition:configurationContext:
 activateWithContext:
 setRemoteAlertHandle:
+remoteViewService
 remoteAlertHandleDidActivate:
 remoteAlertHandleDidDeactivate:
 remoteAlertHandle:didInvalidateWithError:
+activate
 initWithServiceDescription:listenerEndpoint:
 remoteAlertHandle
 _serviceDescription
@@ -825,7 +817,7 @@ scheduleMessageRetryActivity:
 scheduleStoreCleanupActivity:
 currentConfigurationForUser:completionHandler:
 applyUpdatedConfiguration:completionHandler:
-collectPasscodeFromUserWithCompletionHandler:
+promptForPasscodeFromUserWithEndpoint:completionHandler:
 _supportedMachServices
 initWithMachServiceName:
 setupServiceDescription
@@ -834,17 +826,13 @@ machXpcListenersByServiceName
 xpcServiceProvider
 machDescriptionWithServiceName:serviceEntitlement:exportedProtocol:
 providedServicesByServiceName
-initWithFormat:
-anonymousDescriptionWithServiceName:serviceEntitlement:exportedProtocol:
 sharedDescriptionWithServiceName:viewControllerClassName:configurationContextUserInfo:
-anonymousListener
-endpoint
 anonymousXpcListenersByServiceName
 serviceDescriptionsByServiceName
 serviceEntitlement
 exportedInterface
 provideSetupService
-providePasscodeProviderService
+providePasscodePromptServiceWithClientListenerEndpoint:
 provideReactorToolService
 _machXpcListenersByServiceName
 _anonymousXpcListenersByServiceName
@@ -1022,10 +1010,14 @@ setMergePolicy:
 persistence
 _didAddPersistentStoreDescription:error:completionHandler:
 addPersistentStoreWithDescription:completionHandler:
-domain
+_shouldDestroyStoreGivenError:
 _destroyAndReloadAfterFailureWithStoreDescription:error:completionHandler:
 persistentStoreForURL:
 setResourceValue:forKey:error:
+_isFatalMigrationError:
+_isFatalSQLiteError:
+domain
+numberWithInt:
 URLByDeletingLastPathComponent
 URLByAppendingPathComponent:isDirectory:
 replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:
@@ -2118,7 +2110,6 @@ userValueForUnionSetting:
 userValueForIntersectionSetting:
 userValueForSetting:
 userBoolValueForSetting:
-numberWithInt:
 defaultValuesForUnionSetting:
 defaultValuesForIntersectionSetting:
 defaultValueForSetting:
@@ -2488,7 +2479,6 @@ _initWithType:returnDestination:
 _returnDestination
 initWithPayload:state:
 _updatePayloadState
-pendingPayloads
 payloadState
 setState:
 sourceOrganizationPending
@@ -2602,6 +2592,7 @@ eventObserversByIdentifier
 _stream
 _eventObserversByIdentifier
 _initWithServiceName:serviceEntitlement:exportedProtocol:type:
+anonymousDescriptionWithServiceName:serviceEntitlement:exportedProtocol:
 _serviceEntitlement
 _exportedInterface
 entitlements
@@ -2839,10 +2830,6 @@ T@"STFamilySettingsManager",R,V_familySettingsManager
 requestManager
 T@"STRequestManager",R,V_requestManager
 Invalid
-remoteViewService
-T@"<STPrimitiveRemoteViewService>",R,V_remoteViewService
-pendingPasscodePromise
-T@"STPromise",&,V_pendingPasscodePromise
 com.apple.ScreenTimeAgent.activity.retry-failed-messages
 com.apple.ScreenTimeAgent.activity.clean-up-expired-store-items
 type
@@ -2879,11 +2866,9 @@ T@"<STReactorToolServiceDelegate>",W
 T@"<STReactorToolServiceDelegate>",W,Vdelegate
 T@"<STSetupServiceDelegate>",W
 T@"<STSetupServiceDelegate>",W,Vdelegate
-com.apple.ScreenTimeAgent.anonymous.passcode
 com.apple.ScreenTimeUnlock
 STRemoteServiceViewController
 v32@?0@"NSString"8@"NSXPCListener"16^B24
-%@.%@
 machXpcListenersByServiceName
 T@"NSMutableDictionary",R,V_machXpcListenersByServiceName
 anonymousXpcListenersByServiceName
@@ -3560,7 +3545,6 @@ com.apple.ScreenTimeAgent.observe-device-state-change
 Unable to get the current setup configuration for user
 v16@?0@"STSetupConfiguration"8
 Unable to apply setup configuration
-@16@?0@"STOpaquePasscode"8
 transportEnvoy
 T@"<STTransportEnvoy>",R,V_transportEnvoy
 configurationStore
@@ -3667,6 +3651,7 @@ SBParentalControlsMCContentRestrictions
 countryCode
 MCBookmarks
 %@_personal
+%@.%@
 start
 STRestrictionsMigrator.m
 features
@@ -4135,12 +4120,7 @@ Synchronous request manager persist blueprints timed out
 Family settings handled successfully
 Family settings could not be applied: Out of date
 Failed to handle family settings: %{public}@
-Activated remote view service for passcode collection
-No pending promise to resolve with passcode
-Resolving pending promise with passcode
-Resolving pending promise with error
 Background activity will begin: %{public}@
-GOING AWAY
 Checked in for activity not previously scheduled: %{public}@ - Nothing to do.
 Scheduled background activity: %{public}@ to run in %.01f seconds
 Background activity: %{public}@ will end with result: %{public}@ 
@@ -4156,7 +4136,7 @@ New connection request on service: %{public}@
 Rejecting connection: Unable to find matching service description.
 Rejecting connection: Unable to find matching provided service.
 Rejecting connection: Missing entitlement: %{public}@.
-Accepted connection.
+Accepted connection
 %@ : Resumed
 %@ : Invalidating
 Invalidated: %@
@@ -4599,9 +4579,7 @@ Returning requested setup configuration for user: %{public}@
 Apply configuration requested: %{public}@
 Failed to apply setup configuration: %{public}@
 Applied setup configuration successfully
-User collected passcode requested
-Collected user passcode
-Failed to collect user passcode: %{public}@
+Prompting user for passcode
 [TOOL] Reactor shutdown requested
 [TOOL] Schedule message retry requested
 [TOOL] Schedule store cleanup requested
@@ -4842,6 +4820,7 @@ Created request %{public}@
 Unable to create request for underlying payload: %{public}@
 Failed to update: %{public}@ for address: %{public}@
 STUpdateQueuedPayloadStateOperation start
+Failed to fetch pending payloads for UUID: %{public}@ - %{public}@
 Payload state invalid for payload: %@
 Deleting best-effort message (%@ : %@) because it is in sending state.
 Failed to save payload state: %{public}@
@@ -4945,9 +4924,6 @@ IDSServiceDelegate
 STIDSTransportPrimitives
 STConcreteOrganizationControllerConfigurationAdapter
 STOrganizationControllerConfigurationAdapter
-STConcretePasscodeProviderService
-STPasscodeReceiverInterface
-STPasscodeProviderService
 STConcretePrimitiveBackgroundActivity
 STPrimitiveBackgroundActivity
 STConcretePrimitiveBackgroundActivityScheduler
@@ -5327,10 +5303,6 @@ v40@0:8@16@?24@?32
 @32@0:8@16Q24
 @"STFamilySettingsManager"
 @"STRequestManager"
-v32@0:8@"STOpaquePasscode"16@?<v@?@"NSError">24
-@"STPromise"24@0:8@"NSObject<OS_dispatch_queue>"16
-@"<STPrimitiveRemoteViewService>"
-@"STPromise"
 @56@0:8@16@24@32q40@?48
 @24@0:8q16
 q24@0:8q16
@@ -5357,12 +5329,12 @@ v24@0:8@"<STReactorToolServiceDelegate>"16
 @"<STReactorToolServiceDelegate>"
 v32@0:8@"STUserID"16@?<v@?@"STSetupConfiguration"@"NSError">24
 v32@0:8@"STSetupConfiguration"16@?<v@?@"NSError">24
-v24@0:8@?<v@?@"STOpaquePasscode"@"NSError">16
+v32@0:8@"NSXPCListenerEndpoint"16@?<v@?>24
 @"<STSetupServiceDelegate>"16@0:8
 v24@0:8@"<STSetupServiceDelegate>"16
 @"<STSetupServiceDelegate>"
 @"<STSetupService>"16@0:8
-@"<STPasscodeProviderService>"16@0:8
+@"<STPrimitiveRemoteViewService>"24@0:8@"NSXPCListenerEndpoint"16
 @"<STReactorToolService>"16@0:8
 v32@0:8@"STTransportPayloadManager"16@"STUnifiedTransportPayload"24
 v24@0:8@"STTransportPayloadManager"16
@@ -5680,17 +5652,17 @@ v32@0:8@"NSError"16@"NSXPCStoreServerConnectionContext"24
 <string>iPhoneSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>492</string>
+<string>493</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18B5060x</string>
+<string>12A8179f</string>
 <key>DTPlatformName</key>
 <string>iphonesimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B5060x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

@@ -3126,6 +3126,12 @@ AddCreator
 RemoveCreator
 Accept
 Decline
+com.apple.GameKit.AccessPoint
+HighlightedAccessPointTapped
+AccessPointButtonTapped
+AccessPointEnabled
+AccessPointDisabled
+HighlightedAccessPointDisplayed
 GKReporter: report domain: %@, payload: %@
 authenticateResponseTimestamp
 Td,N,V_authenticateResponseTimestamp

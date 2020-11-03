@@ -1,130 +1,110 @@
-%H
-% H
-%"H
-%$H
-%&H
-%(H
-%*H
-%,H
-%.H
-%0H
-%2H
-%4H
-%6H
-%8H
-%:H
-%<H
-%>H
-%@H
-%BH
-%DH
-%FH
-%HH
-%JH
-%LH
-%NH
-%PH
-%RH
-%TH
-%VH
-%XH
-%ZH
-%\H
-%^H
-%`H
-%bH
-%dH
-%fH
-%hH
-%jH
-%lH
-%nH
-%pH
-%rH
-%tH
-%vH
-%xH
-%zH
-%|H
-%~H
-%I
-% I
-%"I
-%$I
-%&I
-%(I
-%*I
-%,I
-%.I
-%0I
-%2I
-%4I
-%6I
-%8I
-%:I
-%<I
-%>I
-%@I
-%BI
-%DI
-%FI
-%HI
-%JI
-%LI
-%NI
-%PI
-%RI
-%TI
-%VI
-%XI
-%ZI
-%\I
-%^I
-%`I
-%bI
-%dI
-%fI
-%hI
-%jI
-%lI
-%nI
-%pI
-%rI
-%tI
-%vI
-%xI
-%zI
-%|I
-%~I
-%J
-% J
-%"J
-%$J
-%&J
-%(J
-%*J
-%,J
-%.J
-%0J
-%2J
-%4J
-%6J
-%8J
-%:J
-%<J
-%>J
-%@J
-%BJ
-%DJ
-%FJ
-%HJ
-%JJ
-%LJ
-%NJ
-%PJ
-%RJ
-%TJ
-@(#)PROGRAM:CloudKit  PROJECT:CloudKit-960
+%K
+% K
+%"K
+%$K
+%&K
+%(K
+%*K
+%,K
+%.K
+%0K
+%2K
+%4K
+%6K
+%8K
+%:K
+%<K
+%>K
+%@K
+%BK
+%DK
+%FK
+%HK
+%JK
+%LK
+%NK
+%PK
+%RK
+%TK
+%VK
+%XK
+%ZK
+%\K
+%^K
+%`K
+%bK
+%dK
+%fK
+%hK
+%jK
+%lK
+%nK
+%pK
+%rK
+%tK
+%vK
+%xK
+%zK
+%|K
+%~K
+%L
+% L
+%"L
+%$L
+%&L
+%(L
+%*L
+%,L
+%.L
+%0L
+%2L
+%4L
+%6L
+%8L
+%:L
+%<L
+%>L
+%@L
+%BL
+%DL
+%FL
+%HL
+%JL
+%LL
+%NL
+%PL
+%RL
+%TL
+%VL
+%XL
+%ZL
+%\L
+%^L
+%`L
+%bL
+%dL
+%fL
+%hL
+%jL
+%lL
+%nL
+%pL
+%rL
+%tL
+%vL
+%xL
+%zL
+%|L
+%~L
+%M
+% M
+%"M
+%$M
+%&M
+%(M
+%*M
+%,M
+@(#)PROGRAM:CloudKit  PROJECT:CloudKit-961
 0123456789abcdef
  (%0.2f seconds until unlimited)
 %@budget=%0.2f/%ld, regen=%0.2f/s%@, maxThrottleTime=%0.0f lastRegeneration=%@, average=%0.2f
@@ -987,6 +967,7 @@ v16@?0@"NSObject<OS_xpc_object>"8
 ck_submitted_time
 Must register a handler for activity identifier "%@" before submitting it
 ckActivityIdentifier
+Illegal attempt to register a second handler for activity identifier %@
 v16@?0q8
 ck_scheduler_priority
 ck_scheduler_activity_identifier
@@ -997,6 +978,8 @@ ck_device_count_string
 ck_additional_xpc_activity_criteria
 %@.%@
 B24@?0r*8@"NSObject<OS_xpc_object>"16
+<redacted>
+ThirdPartyContainer
 single
 multiple
 xpcActivitiesByCKActivityIdentifier
@@ -5021,7 +5004,8 @@ Submitting activity %@
 Not modifying criteria of identical existing XPC activity for %@
 Modifying criteria of existing XPC activity for %@
 client/scheduler-register
-Registering CK activity %@
+Registering CK activity %{public}@
+BUG IN CLIENT OF CLOUDKIT: Registering a handler for a CKScheduler activity identifier that has already been registered (%@).
 client/scheduler-unregister
 Unregistering CK activity %@
 Registering for activity identifier %@ with XPC activity identifier %@
@@ -5168,6 +5152,7 @@ Engine deallocated while saving subscription
 Error saving subscriptions: %@
 Saved subscriptions: %@
 Scheduling fetch changes after saving subscription
+CKSyncEngine failed to register it's activities with the scheduler. This is likely because there are multiple instances of CKSyncEngine in this process attempting to sync the same data using these identifiers: %@, %@, %@: %@
 engine/sync-activity
 Performing sync activity
 Finished fetching changes, but we have disappeared into the abyss
@@ -7474,6 +7459,7 @@ setAdditionalXPCActivityCriteria:
 nullableContainer
 isUnitTestingAccount
 isTestContainer
+isAppleInternal
 fakeDeviceCount
 xpcActivityForActivityWithIdentifier:
 sharedScheduler
@@ -7599,7 +7585,6 @@ setSpecialContainerType:
 setIsTestContainer:
 setIsAppleInternal:
 representativeDataclass
-isAppleInternal
 _isTestContainer
 _isAppleInternal
 _containerIdentifier
@@ -8071,6 +8056,7 @@ syncActivityIdentifier
 performSyncActivity:completionHandler:
 saveSubscriptionActivityIdentifier
 performSaveSubscriptionActivity:completionHandler:
+userRequestedBackupActivityIdentifier
 syncActivityIdentifierInDatabase:ignoringSystemConditions:
 saveSubscriptionActivityIdentifierInDatabase:ignoringSystemConditions:
 userRequestedBackupActivityIdentifierInDatabase:ignoringSystemConditions:
@@ -8098,7 +8084,6 @@ updateAccountInfoWithCompletionHandler:
 setFastErrorRetry:
 initWithDatabase:dataSource:metadata:
 initWithDatabase:dataSource:metadata:useUniqueActivityIdentifiers:automaticSyncingEnabled:
-userRequestedBackupActivityIdentifier
 setAutomaticSyncingEnabled:
 setUseOpportunisticPushTopic:
 useOpportunisticPushTopic

@@ -790,6 +790,7 @@ _travelDirection
 _roadDirection
 _intersectingRoads
 _consolidatedAndOrderedFeatures
+location
 featureIds
 isEqualToArray:
 _radius
@@ -800,7 +801,6 @@ initWithName:point:inView:
 setLocation:
 _accessibilitySupportsActivateAction
 accessibilityDragSourceDescriptors
-location
 setFeatureIds:
 _featureIds
 _location

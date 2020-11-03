@@ -1,4 +1,5 @@
-@(#)PROGRAM:oainject  PROJECT:DVTInstrumentsFrameworks-64541.3
+@(#)PROGRAM:oainject  PROJECT:DVTInstrumentsFrameworks-64541.6
+3333
 sandbox-exec
 OAFixupStacktraces
 OAAllocationStatisticsOutputMask
@@ -55,6 +56,10 @@ HeapArray
 UnknownObjectType
 /usr/lib/libobjc.A.dylib
 _objc_addWillInitializeClassFunc
+_manipulateOtherThreadStates_block_invoke
+/Library/Caches/com.apple.xbs/Sources/DVTInstrumentsFrameworks_Sim/DVTInstrumentsFrameworks-64541.6/oainject.c
+successfullyManipulated <= threadCount
+threadManipulationFunction == thread_suspend
 Inconsistent writer offset in shared memory! MT transmission suspected...
 Unable to attach to shared memory - process %d already attached.
 <?xml version="1.0" encoding="UTF-8"?>

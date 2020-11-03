@@ -637,6 +637,7 @@ Content-Language:
 begin 
 ^begin +[0-9]+ +(.+)$
 x-apple-content-length
+Found conflicting X-Apple-Content-Length headers
 unknown
 PreserveHeaders
 boundary
@@ -792,6 +793,7 @@ Unable to parse date (%@)
 #Warning Never heard of a "%@" type encoding--treating as unencoded
 #Warning was unable to convert decoded data to a string: %@
 Error during base64 encoding: chunkLength=%ld maxInputBytesPerChunk=%lu encoding=%d str=%@
+Setting range %{public}@ for part %@
 *** Failed to decode %@ data, treating as binary
 ---filename=%@
 #Warning Could not generate regex: %@
@@ -802,6 +804,8 @@ Got back unrecognized class %@
 Failed to parse mime body!  bodyData: %lu
 headerData: %lu
 ---self=%p nil data!
+Found conflicting X-Apple-Content-Length headers (%{public}@ and %{public}@) for part %@
+Updating range to %{public}@ for part %@
 Missing multipart boundary parameter; using "%@"
 subRange.location={%lu} matchRange={%lu,%lu}
 *** part=%p result=%@

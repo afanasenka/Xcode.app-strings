@@ -1,8 +1,9 @@
-@(#)PROGRAM:IDEInterfaceBuilderiOSMacIntegration  PROJECT:IDEInterfaceBuilderCocoaTouch-17502
+@(#)PROGRAM:IDEInterfaceBuilderiOSMacIntegration  PROJECT:IDEInterfaceBuilderCocoaTouch-17504.1
+ffff
 IBAgent-macOS-UIKit
 v8@?0
 -[IBiOSMacToolManager contextForLaunchingToolWithDescription:error:]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderCocoaTouch/IDEInterfaceBuilderCocoaTouch-17502/InterfaceBuilder/Documents/iOSMac/IBiOSMacToolManager.m
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderCocoaTouch/IDEInterfaceBuilderCocoaTouch-17504.1/InterfaceBuilder/Documents/iOSMac/IBiOSMacToolManager.m
 %s should be an instance inheriting from %@, but it is nil
 castedInstance
 [castedInstance isKindOfClass:[IBCocoaTouchPlatformToolDescription class]]

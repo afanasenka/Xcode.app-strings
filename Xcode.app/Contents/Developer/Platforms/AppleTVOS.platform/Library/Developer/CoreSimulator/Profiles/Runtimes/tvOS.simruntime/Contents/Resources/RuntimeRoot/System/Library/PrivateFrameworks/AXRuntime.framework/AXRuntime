@@ -1321,6 +1321,7 @@ setElementCommunity:
 pruneRootGroup:
 containsObject:
 isEqualToString:
+isEqualToArray:
 systemWideElement
 convertRect:fromContextId:
 dictionaryWithCapacity:
@@ -1908,7 +1909,6 @@ _fetchUnprocessedElements
 _sendFakeScreenChangeIfNecessaryForGroups:orElements:appsDidChange:
 postFetchFilters
 _filterElements:withFilter:
-isEqualToArray:
 setElementCache:
 setRootGroupCache:
 setKeyboardGroupCache:

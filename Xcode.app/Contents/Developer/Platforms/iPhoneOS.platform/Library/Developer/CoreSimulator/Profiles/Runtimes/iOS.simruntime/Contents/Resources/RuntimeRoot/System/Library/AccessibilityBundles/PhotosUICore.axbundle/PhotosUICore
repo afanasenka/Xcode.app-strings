@@ -1074,6 +1074,7 @@ setIsAccessibilityElement:
 initWithStyle:allowBackdropStatisticsSupression:
 isAccessibilityUserDefinedElement
 boolValue
+_accessibilitySetUserDefinedMediaAnalysisOptions:
 center
 _setAccessibilityActivationPointBlock:
 trimStartTime

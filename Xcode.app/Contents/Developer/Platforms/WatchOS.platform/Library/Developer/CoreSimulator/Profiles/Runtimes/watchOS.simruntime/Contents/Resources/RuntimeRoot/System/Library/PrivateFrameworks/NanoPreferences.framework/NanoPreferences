@@ -47,7 +47,7 @@ T@"PUICActivityIndicatorView",&,N,V_activityIndicatorView
 NPRFInstalledAppsChangedNotificationName
 com.apple.NanoSettings
 com.apple.NanoSettings.internal
-hideInternalUISetting
+kHideInternalUISettingForFugu
 _WLAN
 _WIFI
 com.apple.nanonews

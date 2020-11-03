@@ -40,7 +40,7 @@ MbP?
 ?333333
 ?333333
 ?333333
-4@X9
+8@X9
 ?777777
 ?[[[[[[
 333333
@@ -183,6 +183,7 @@ T@"NSString",C,N,V_bodyAddition
 CardStack_Illustration
 PearlIDIcon
 TouchIDIcon
+%@Barcode
 Education_Power_Button
 Education_Power_Arrow
 position.x
@@ -190,10 +191,10 @@ double-tap
 transform.scale.x
 opacity
 power-indicator
-BarcodePaymentIntro
 BARCODE_PAYMENT_INTRO_TITLE
 BARCODE_PAYMENT_INTRO_BODY_FACEID
 BARCODE_PAYMENT_INTRO_BODY_TOUCHID
+BarcodePaymentEducation
 BARCODE_PAYMENT_INTRO_PRIVACY_TEXT
 BARCODE_PAYMENT_INTRO_BUTTON_TITLE
 OPEN_BARCODE_PAYMENT_PRIVACY_TEXT
@@ -392,8 +393,6 @@ showsLiveRendering
 TB,N
 liveMotionEnabled
 TB,N,V_liveMotionEnabled
-reduceMotionEnabled
-TB,N,GisReduceMotionEnabled,V_reduceMotionEnabled
 rendererState
 T@"PKPassFaceViewRendererState",R,N
 viewExpanded
@@ -1333,6 +1332,8 @@ T@"PKTableHeaderView",R,N
 Tq,R,N,V_setupContext
 hideSetupLaterButton
 TB,N,V_hideSetupLaterButton
+barcode
+other
 SETUP_PURCHASE_TRANSFER_BALANCE_MESSAGE
 v32@?0@"NSDecimalNumber"8Q16^B24
 SETUP_PURCHASE_ENTERED_VALUE_MAXIMUM_AMOUNT_FORMAT
@@ -1523,6 +1524,7 @@ Td,N,V_currentAngle
 radius
 bounds
 DELETE_CARD_SHEET_TITLE
+DELETE_PASS_SHEET_MESSAGE
 DELETE_CARD_SHEET_MESSAGE
 REMOVE_SHEET_TITLE
 DELETE_CARD_SHEET_CANCEL
@@ -1569,7 +1571,6 @@ TB,N,GisModallyPresented,V_modallyPresented
 modalShadowVisibility
 Td,N,V_modalShadowVisibility
 frontFaceBodyContentCreated
-TB,N,GisReduceMotionEnabled
 isFrontFaceExpanded
 com.apple.passkit.passview
 SELECT_CARD
@@ -1809,6 +1810,10 @@ desiredBarcodeSize
 T{CGSize=dd},N,V_desiredBarcodeSize
 shouldMatteCode
 TB,N,V_shouldMatteCode
+altTextFont
+T@"UIFont",N
+altTextInset
+Td,N,V_altTextInset
 HSA_ENROLLMENT_FAILED_TITLE
 HSA_ENROLLMENT_FAILED_MESSAGE
 HSA_ENROLLMENT_NOT_ELIGIBLE_MESSAGE
@@ -2295,6 +2300,13 @@ inputMessage
 inputOptions
 inputQuietSpace
 outputImage
+INSTALL_WATCH_EXTENSION_TITLE
+INSTALL_WATCH_EXTENSION_DESCRIPTION
+INSTALL_WATCH_EXTENSION_INSTALL_LATER
+paymentPass
+T@"PKPaymentPass",&,N,V_paymentPass
+webservice
+T@"PKPaymentWebService",&,N,V_webservice
 hasDarkAppearance
 TB,N,V_hasDarkAppearance
 backgroundColor
@@ -2640,7 +2652,6 @@ v32@?0@"NSSet"8@"PKAccount"16@"NSError"24
 ACCOUNT_SERVICE_PHYSICAL_CARD_ACTION_NOT_COMPLETED
 ACCOUNT_SERVICE_PHYSICAL_CARD_ACTION_AUTHORIZING
 ACCOUNT_SERVICE_PHYSICAL_CARD_REQUEST_SUMMARY_ITEM
-paymentPass
 T@"PKPaymentPass",R,N,V_paymentPass
 nameOnCard
 T@"NSString",C,N,V_nameOnCard
@@ -2717,7 +2728,6 @@ EMAIL
 SafariWidgetIcon
 WEBSITE
 B16@?0@"PKPaymentPassActionWidgetButton"8
-T@"PKPaymentPass",&,N,V_paymentPass
 T@"<PKPaymentPassActionWidgetViewDelegate>",W,N,V_delegate
 currentUser
 T@"PKFamilyMember",&,N,V_currentUser
@@ -3239,6 +3249,7 @@ dimmingLayerFadeInFadeOut
 transactionEffectAnimation
 automaticallyLoadContent
 TB,N,V_automaticallyLoadContent
+TB,N,GisMotionEnabled,V_motionEnabled
 loaded
 TB,R,N,GisLoaded
 summaryItemsView
@@ -3414,7 +3425,6 @@ frontmostPassView
 T@"PKPassView",&,N,V_frontmostPassView
 loaned
 TB,N,GisLoaned,V_loaned
-TB,N,GisReducedMotionEnabled,V_reduceMotionEnabled
 T@"PKGroup",R,N,V_group
 passViewQueue
 T@"PKReusablePassViewQueue",W,N,V_passViewQueue
@@ -4009,6 +4019,7 @@ PAYMENT_APP_SUSPENDED_LOST_MODE_DETAIL
 PAYMENT_APP_SUSPENDED_LOST_MODE_ACTION
 PAYMENT_APP_ERROR_TITLE
 PAYMENT_APP_REMOVED_BY_ISSUER
+DELETE_PASS
 DELETE_CARD
 PAYMENT_APP_VERIFICATION_TERMINATED
 PAYMENT_APP_SUSPENDED_BY_ISSUER
@@ -4456,8 +4467,6 @@ disbursementApplicationInformation
 unknown
 appleCard
 appleCash
-barcode
-other
 v32@?0@"PKPaymentPreference"8Q16^B24
 AKModalSignInViewController
 /System/Library/PrivateFrameworks/AuthKitUI.framework/AuthKitUI
@@ -4968,10 +4977,13 @@ session did terminate
 v16@?0@"NSURL"8
 prefs:root=Pearl
 prefs:root=TOUCHID_PASSCODE&path=TOUCHID_PASSCODE
+/offers/%@
+/offers
 PAYMENT_ERROR_BARCODE_PAYMENT_NETWORK_ERROR
 PAYMENT_ERROR_BARCODE_PAYMENT_AUTHORIZATION_ERROR
 v32@?0@"NSString"8@"NSData"16@"NSError"24
-TRANSACTION_AWARD_DETAIL
+REDEEM_TRANSACTION_AWARD
+VIEW_TRANSACTION_AWARD
 AppleOffer
 B32@?0@"PKPass"8Q16^B24
 TERMINAL_RESPONSE_TIMED_OUT_TITLE
@@ -5976,8 +5988,6 @@ TRANSACTION_DETAIL_ACTION_ACCEPT_PENDING
 TRANSACTION_DETAIL_ACTION_CANCEL_PENDING
 TRANSACTION_DETAIL_ACTION_REJECT_PENDING
 TRANSACTION_DETAILS_CONTACT_SUPPORT_TITLE
-/offers/%@
-/offers
 TRANSACTION_DISPUTE_IN_REVIEW
 TRANSACTION_DISPUTE_RESOLVED
 TRANSACTION_DETAIL_STATUS_VALUE_COMPLETED
@@ -6448,6 +6458,7 @@ No more setup controllers to present
 Creating controller for the next credential %@ remaining to show %lu
 Failed to get next credential controller checking next steps
 Showing make default for payment pass: %@
+Showing watch extension installation for payment pass: %@
 Showing optional express mode setup for payment pass: %@
 Showing AMP Enrollment controller
 Showing Apple Pay education controller
@@ -6523,6 +6534,7 @@ Sharing is not supported to remote device
 Remote device cannot accept invite: %@
 Unable to check if remote device can accept invite
 Unable to find pass matching an unspecified paired terminal identifier.
+(watch-extension-install) Failed to find application record for pass: %@
 Skipping adding mediaFileURL to template layout for rdar://problem/32523250
 Using MSMessageLiveLayout
 PKPassPaymentCardFrontFaceView setting viewExpanded: %ld
@@ -6693,7 +6705,7 @@ Editor inputted address: %@
 AMP offer should be presented:%d (%@)
 AMP enrollment completed:%d (%@)
 Error in physical card activation reader session. Dismissing...
-Using static fallback asset for dynamic pass. Client supported dynamic layer configuration version: %lu pass's version: %lu reduce motion enabled:%@
+Using static fallback asset for dynamic pass. Client supported dynamic layer configuration version: %lu pass's version: %lu
 Boop Effect unsupported. Client supported dynamic layer configuration version: %lu pass's version: %lu
 Failed to preflight: %@
 Attempting to update UI with no group
@@ -7546,6 +7558,7 @@ UICollectionViewDelegate
 PKSpendingSummaryFooterViewDelegate
 PKSpendingSummaryResponder
 PKUIAdditions
+PKWatchExtensionInstallViewController
 PKAppearanceSpecifier
 PKAppearanceAdditions
 PKPeerPaymentActionTransferToBankCell
@@ -8529,16 +8542,16 @@ _offerAddToWatch
 _continueHandler
 _titleOverride
 _bodyAddition
+initWithFrame:displayOptions:
 systemBlueColor
 layer
 setBorderWidth:
-_setHemeButtonOutlineColor
+_setHomeButtonOutlineColor
 URLForResource:withExtension:
 imageWithRenderingMode:
 setAnchorPoint:
 _deviceIconsPadding
 deviceCornerRadius
-cardAspectRatio
 setCornerRadius:
 traitCollectionDidChange:
 _startPowerIndicatorAnimation
@@ -8609,6 +8622,7 @@ textView:shouldInteractWithTextAttachment:inRange:
 initWithPaymentSetupProduct:context:setupDelegate:
 _setupDelegate
 _paymentSetupProduct
+_educationPhone
 paymentSetupContext
 featureIdentifier
 shippingAddress
@@ -9168,7 +9182,6 @@ _setShowsHeaderViews:
 _setShowsBodyViews:
 _setShowsBackgroundView:
 _loadFaceImageIfNecessary
-setReduceMotionEnabled:
 initWithType:
 setName:
 setValue:forKey:
@@ -9270,7 +9283,6 @@ allowBackgroundPlaceholders
 clippedContentHeight
 setClippedContentHeight:
 liveMotionEnabled
-isReduceMotionEnabled
 viewExpanded
 setViewExpanded:
 dynamicBarcodeData
@@ -9309,7 +9321,6 @@ _paused
 _clipsContent
 _allowBackgroundPlaceholders
 _liveMotionEnabled
-_reduceMotionEnabled
 _viewExpanded
 _backgroundMode
 _visibleRegions
@@ -9614,6 +9625,7 @@ initWitImages:
 _createSubviews
 imageSize
 _isSmallPhone
+cardAspectRatio
 _phoneTopPadding
 _phoneCardHeightInset
 _watchCardViewFrameForBounds:
@@ -10199,7 +10211,6 @@ _labelScaleFactor
 _lastLayedOutBoundsSize
 _initWithPaymentPass:paymentSetupProduct:linkedApplication:displayContext:paymentSetupContext:
 _partnerName
-_closeButtonPressed:
 manualEntryButton
 _openAppButtonPressed:
 _updateOpenApplicationButtonVisibility
@@ -10207,6 +10218,7 @@ _dismiss
 isInstalled
 openApplication:
 initWithPaymentPass:linkedApplication:displayContext:paymentSetupContext:
+_closeButtonPressed:
 _displayContext
 effectiveTransactionSource
 reportFraud:
@@ -10305,11 +10317,13 @@ _isPaymentAccount
 setNotificationTextInFooterView:
 hideSetupLaterButton
 suppressFooterViewSetupLaterButton
-subject:sendEvent:
+subjects:sendEvent:
 setCurrentCredential:
 updateFieldsModelWithPaymentCredential:
 _updatePassSnapshotHeader
 triggerNextActionLoop
+isBeingDismissed
+isMovingFromParentViewController
 reset
 manualEntryPaymentSetupViewControllerForProduct:allowsSelectingBank:
 viewControllers
@@ -11093,6 +11107,7 @@ cachedDataForURL:
 downloadFromUrl:completionHandler:
 showKeyboard
 subjectToReportDashboardAnalyticsForPass:
+subject:sendEvent:
 billPaymentRingView:selectedSuggestedAmount:selectedSuggestedAmountIsTarget:userInitiatedChange:
 accountBillPaymentController:hasChangedState:error:updatedAccount:
 billPaymentRingView:topCurvedTextForSuggestedAmount:
@@ -12827,11 +12842,14 @@ initWithPaymentProvisioningController:context:setupDelegate:navigationController
 setUpgradeRequiredToAddNewPass:
 showPasscodeUpgradeFlow
 _offerOptionalExpressModeSetup
+_watchExtensionInstallationViewController
 _nextPaymentCredentialControllerWithSetupProduct:allowsManualEntry:
 _offerMakeDefaultViewController
 _offerAMPEnrollmentViewController
 _educationViewControllerShouldShow
 nextCredentialToProvision
+shouldShowWatchExtensionInstallViewControllerForPaymentPass:webService:
+initWithPaymentPass:provisioningController:webService:context:setupDelegate:
 isExpressModeSetupOptional
 isAMPEnrollmentAvailable
 initWithParentFlowController:setupDelegate:context:provisioningController:paymentSetupProduct:currentPage:
@@ -13004,17 +13022,22 @@ _resizedBarcode:desiredSize:
 _quietZoneForBarcode:
 _updateDrawBarcode
 _generateMatteRect:barcodeRect:altTextRect:boundingSize:
+setAltTextFont:
+altTextFont
+setAltTextInset:
 setDesiredBarcodeSize:
 validity
 desiredBarcodeSize
 shouldMatteCode
 setShouldMatteCode:
+altTextInset
 _barcode
 _barcodeImage
 _matteView
 _stickerConstraints
 _matteConstraints
 _altTextLabel
+_altTextInset
 _barcodeViewInvalidated
 _drawBarcode
 _shouldMatteCode
@@ -13166,7 +13189,6 @@ isCancelled
 _ensureCardPresence
 _updatePausedState
 _startReportingSessionForPassIfNecessary
-isBeingDismissed
 _endReportingSessionForPassIfNecessary
 _updateSnapshotView
 navigationController:willShowViewController:animated:
@@ -14445,6 +14467,15 @@ createCGImage:fromRect:
 _imageFromBarcodeMessage
 initWithObjectsAndKeys:
 contextWithOptions:
+unsignedLongLongValue
+initWithStoreItemIdentifier:error:
+_proceedToNextScreen
+_installNowPressed
+setPaymentPass:
+webservice
+setWebservice:
+_deviceImageView
+_webservice
 setForegroundColor:
 setTableViewSeparatorColor:
 setTableViewCellHighlightColor:
@@ -14620,6 +14651,7 @@ initWithLocaleIdentifier:
 minimalFormattedStringValueInLocale:
 setFormat:
 setMessageData:
+setAccessibilityElementsHidden:
 setShouldRemoveQuietZone:
 _barcodeSize
 showsShare
@@ -15030,7 +15062,6 @@ groupCount
 tilePassesEagerly:
 setModalGroupIndex:
 _applyPresentationState
-subjects:sendEvent:
 setTopContentSeparatorHeight:
 decodeRestorableStateWithCoder:
 decodeObjectOfClass:forKey:
@@ -15594,7 +15625,6 @@ numberOfWidgetsPerRowWithSize:
 numberOfRowsWithWidgetsPerRow:
 _determineWidgetContentWithAvailableWidgets
 targetWidgetWidthForRowWithNumberOfWidgets:rowSize:
-setPaymentPass:
 setCurrentUser:
 currentUser
 _displayableWidgets
@@ -15650,7 +15680,6 @@ _setContentInsetAdjustmentBehavior:
 initWithCount:
 _updateBackdropViewFilters
 backdropStartBackgroundColor
-_updatePassViewMotionState
 _handleScrollViewPanGesture:
 _paymentDidReceiveSuccessfulTransactionNotification:
 _cancelTransition
@@ -16616,15 +16645,14 @@ _deviceSupportsReaderMode
 _sessionHandle
 _readerSession
 transactionEffect
+_updateVisibility
+version
 _configureViews
 parallaxEnabled
 configureTransactionEffectEmitterLayer:withBounds:
-_updateDynamicElements
 frontFaceImageSet
-version
 dynamicLayerStaticFallbackImage
 _configureDynamicViewsWithImageSet:
-_updateVisibility
 backgroundParallaxEmitter
 neutralEmitter
 foregroundParallaxEmitter
@@ -16661,7 +16689,9 @@ _transactionEffectEmitterImage
 _transactionEffectShapeData
 _transactionEffectLayer
 _dimmingLayer
+_effectiveMotionEnabled
 _automaticallyLoadContent
+_motionEnabled
 initWithLayout:
 removeLabelsAndValues
 initWithLayout:reuseIdentifier:
@@ -16969,7 +16999,6 @@ _handlePress:
 _isOurGestureRecognizer:
 _updateFrontmostPassViewIfNecessary
 dismissBackOfPassIfNecessaryForUniqueID:
-isReducedMotionEnabled
 passViewQueue
 setPassViewQueue:
 _pageControlAnimationCounter
@@ -19669,6 +19698,8 @@ getPassesWithUniqueIdentifiers:handler:
 _promoteToAuthorizedStateIfPossible
 _showTerminalIsRequestingPaymentError
 _beginTerminalResponseTimeout
+_postDidAuthorizeNotification
+_postDidDeauthorizeNotification
 resetPersistentCardEmulation
 passFooterContentViewDidAuthorizeTransaction:
 _updateAuthenticatorState
@@ -19696,6 +19727,8 @@ _activateForPaymentWithApplication:
 supportsContactlessPayment
 defaultPaymentApplicationForPassUniqueIdentifier:
 _activatePaymentApplication:forPaymentPass:withCompletion:
+awards
+transactionsAppLaunchTokenForPassWithUniqueIdentifier:
 activatePaymentApplication:forPaymentPass:
 retrieveDecryptedBarcodeCredentialForPassUniqueIdentifier:authorization:withCompletion:
 activateValueAddedServicePasses:
@@ -19708,6 +19741,9 @@ _insertPaymentTransactionForActiveBarcode
 stopCardEmulation
 passFooterContentViewDidInvalidateAuthorizedBarcode:
 _transactionAwardsViewTapped:
+claimExpiryDate
+redeemExpiryDate
+earlierDate:
 subtype
 _isDeactivated
 _applyLatestContentToViews
@@ -19722,7 +19758,7 @@ hasContactlessDevicePaymentApplicationsAvailable
 _paymentApplicationForAutomaticAuthorization
 enabledValueAddedServicePassesWithCompletion:
 _applyPayState:withTextOverride:completionHandler:
-_maintainAuthorizationAfterTransaction
+_actionAfterTransaction
 transitAppletState
 resetExpressState
 _updateApplicationsView
@@ -19764,7 +19800,6 @@ didSucceed
 insertOrUpdateValueAddedServiceTransaction:forPassUniqueIdentifier:paymentTransaction:completion:
 merchantURL
 barcodeIdentifier
-awards
 _performAuthenticationForTransactionIfNecessary:
 authenticationContext
 requestedAuthenticationMechanisms
@@ -19775,7 +19810,6 @@ archivedSessionTokenForSubject:
 _setTransactionAuthenticationInProgress:
 _setTransactionAuthenticationUIActive:
 _cancelTransactionAuthentication
-transactionsAppLaunchTokenForPassWithUniqueIdentifier:
 submitUserConfirmation:forTransactionIdentifier:completion:
 _dismissTransactionAuthenticationPasscodeViewController:withCompletion:
 authenticationFailure
@@ -19870,7 +19904,7 @@ _transactionAuthenticationInProgress
 _transactionAuthenticationUIActive
 _activeTransactionAuthenticationViewController
 _transactionAwardsView
-_transactionAwards
+_transactionForDisplayedBarcode
 _bottomTextView
 _bottomTextViewAnimating
 _bottomTextViewNeedsUpdate
@@ -20170,13 +20204,12 @@ _appIconView
 _bottomRule
 initWithData:encoding:
 setAltText:
-updateViewConstraints
-centerXAnchor
-firstBaselineAnchor
+monospacedSystemFontOfSize:weight:
 barcodeData
 _disclaimerText
 _closeButton
 _barcodeGuide
+_viewSizeInfo
 _barcodeData
 initWithPlaceholderItem:
 sharingText
@@ -20280,6 +20313,8 @@ replaceCharactersInRange:withAttributedString:
 _createValueView
 colorForValueType:
 _applyStylingToValueString:defaultColor:
+centerXAnchor
+firstBaselineAnchor
 lastBaselineAnchor
 constraintEqualToAnchor:multiplier:
 constraintLessThanOrEqualToConstant:
@@ -21503,11 +21538,8 @@ _actionRowIsEnabled:
 _tableView:actionButtonCellForSection:
 _awardCellForTableView:
 awardDescription
-claimExpiryDate
-redeemExpiryDate
 claimExpired
 redeemExpired
-earlierDate:
 setClaimExpired:
 setRedeemExpired:
 _openTransactionInIssuerApp
@@ -21872,6 +21904,7 @@ B32@0:8@16Q24
 v24@0:8@?16
 @"PKPaymentHeroImageController"
 @"PKEducationPhone"
+@56@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16Q48
 {CGSize="width"d"height"d}
 @"PKPhoneHeroView"
 @"PKPaymentSetupInitialCardEducationIconsView"
@@ -22750,6 +22783,7 @@ v32@0:8@16B24B28
 @"PKSpendingSummaryLayout"
 @"<PKSpendingSingleSummaryViewControllerDelegate>"
 @"UIGestureRecognizer"
+@"PKWatchDeviceAppCarouselView"
 v24@0:8@"PKAppearanceSpecifier"16
 @"NSArray"16@0:8
 @"PKPhysicalCard"
@@ -23382,8 +23416,10 @@ B48@0:8Q16@24^Q32^@40
 @"PKPeerPaymentTermsController"
 @"<PKPeerPaymentActionControllerDelegate>"
 @"<PKPassFooterContentViewDelegate>"
+{?=ddddd}16@0:8
 @"PKRightAngleRotatingView"
 @"UILayoutGuide"
+{?="barcodeTopPadding"d"disclaimerToBarcodePadding"d"disclaimerSidePadding"d"bankToDisclaimerPadding"d"altTextInset"d}
 @48@0:8@16@24{CGSize=dd}32
 @72@0:8@16@24@32@40@48@56Q64
 v40@0:8@16^@24^@32

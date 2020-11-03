@@ -2274,6 +2274,7 @@ C18sig_extractor_pipeI15spectral_peak_tE
 14sigx_pipe_base
 CFBundleShortVersionString
 hw.machine
+kern.osversion
 ProductName
 ProductVersion
 You must override %@ in a subclass
@@ -2796,6 +2797,7 @@ MRESignature
 init
 bundleForClass:
 objectForInfoDictionaryKey:
+systemInfoByName:
 stringWithUTF8String:
 stringWithFormat:
 exceptionWithName:reason:userInfo:
@@ -2804,8 +2806,9 @@ minimumSignatureLength
 maximumSignatureLength
 frameworkShortVersion
 deviceModel
+deviceOSVersion
 deviceSystemName
-deviceSystemVersion
+deviceProductVersion
 preload
 createMatcher
 initWithSignature:representingMediaItems:
@@ -3362,6 +3365,7 @@ _trackID
 _signatureData
 @16@0:8
 d16@0:8
+@24@0:8*16
 v16@0:8
 @32@0:8@16@24
 @"NSArray"

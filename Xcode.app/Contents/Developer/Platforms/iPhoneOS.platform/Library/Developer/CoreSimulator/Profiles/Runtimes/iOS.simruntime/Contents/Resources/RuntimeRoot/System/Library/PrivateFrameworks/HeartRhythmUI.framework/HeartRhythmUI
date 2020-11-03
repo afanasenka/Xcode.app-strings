@@ -333,6 +333,7 @@ REGULATORY_PANEL_INSTRUCTION_TITLE
 string
 T@"NSString",C,N,V_string
 HROnboardingAtrialFibrillationCountryCodeKey
+HROnboardingAtrialFibrillationEnableNotificationsKey
 onboardingManager
 T@"HROnboardingManager",R,N,V_onboardingManager
 nanoPreferenceSyncManager
@@ -1600,6 +1601,7 @@ sequencePage
 objectForKeyedSubscript:
 setAtrialFibrillationDetectionOnboardingCompletedForCountryCode:
 didDismissOnboarding
+boolValue
 _wrapUpOnboardingWithAtrialFibrillationDetectionEnabled:
 didCompleteOnboarding
 initWithSuiteName:
@@ -1730,7 +1732,6 @@ setEnabled:
 ageWithDate:
 ageLimit
 compare:
-boolValue
 components:fromDateComponents:toDateComponents:options:
 year
 numberWithInteger:

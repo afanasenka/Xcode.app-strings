@@ -1604,8 +1604,8 @@ Failed to find specialized function in pipeline library
 -[MTLCompiler initWithTargetData:cacheUUID:pluginPath:device:compilerFlags:]
 pluginPath must not be nil.
 pluginPath is not a NSString.
-Sep 20 2020
-05:19:59
+Oct  2 2020
+05:56:36
 compiler queue
 Failed to find precompiled data in pipeline library
 v16@?0r^{MTLCompiledRequestReply=Q@^{?}@}8
@@ -1644,7 +1644,7 @@ TQ,R,V_compilerFlags
 %d_%d
 libmetal_timestamp.dylib
 getMetalTimeStamp
-Sep 20 2020 05:19:59
+Oct  2 2020 05:56:36
 %s, %s
 /System/Library/PrivateFrameworks/GPUCompiler.framework/Libraries/
 libraryCache

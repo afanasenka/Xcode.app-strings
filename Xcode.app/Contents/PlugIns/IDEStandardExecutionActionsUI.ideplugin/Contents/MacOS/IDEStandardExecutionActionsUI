@@ -1,4 +1,5 @@
-@(#)PROGRAM:IDEStandardExecutionActionsUI  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:IDEStandardExecutionActionsUI  PROJECT:IDEPlugIns-17510.1
+ffff
 IDEStandardExecutionActionsUI
 IDEPegasusShellScriptExecutionActionSourceEditorView
 IDEPegasusShellScriptExecutionActionViewController
@@ -137,6 +138,7 @@ So11NSTextFieldCSg
 So13NSPopUpButtonCSg
 ypSg
 ySo27IDESchemeBuildableReferenceCG
+SaySo27IDESchemeBuildableReferenceCG
 ySnySiGG
 _yptG
 _ypt

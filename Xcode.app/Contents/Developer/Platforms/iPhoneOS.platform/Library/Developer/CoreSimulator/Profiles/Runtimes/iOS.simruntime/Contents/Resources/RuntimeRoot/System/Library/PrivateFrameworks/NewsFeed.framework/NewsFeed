@@ -6,9 +6,9 @@ FCOfflineReason
 UIEdgeInsets
 CGAffineTransform
 FCFetchOperationStatus
+FCFeedFilterOptions
 WFConditionCode
 CACornerMask
-FCFeedFilterOptions
 UIUserInterfaceSizeClass
 UIUserInterfaceStyle
 UIAccessibilityContrast
@@ -83,8 +83,6 @@ CodingType
 FormatBlendMode
 FormatServiceType
 FormatService
-Options
-CachePolicy
 FormatAndExpression
 CodingKeys
 IssueCoverViewLayoutAttributes
@@ -163,6 +161,7 @@ Bound
 Attributes
 Layout
 CodingKeys
+FormatServiceCachePolicy
 FeedPoolCachePolicy
 FeedPoolServiceType
 FeedServiceConfig
@@ -264,6 +263,8 @@ CodingKeys
 FormatTypeProviderType
 FeedRefreshState
 FeedRefreshEvent
+FeedCursorManifest
+FeedCursorManifestGroupEntry
 FormatImageAdjustment
 CodingType
 GapFontBook
@@ -326,6 +327,10 @@ Bound
 Attributes
 Layout
 CodingKeys
+FeedGroupEntity
+CodingKeys
+FeedDatabaseGroupProcessorType
+FeedGroup
 A8_V2
 Bound
 Attributes
@@ -371,6 +376,8 @@ FormatOperator
 CodingKeys
 FormatFrameExpressionLogic
 CodingType
+FeedManagerType
+FeedManager
 A8_V9
 Bound
 Attributes
@@ -380,6 +387,8 @@ FormatFontTrait
 FormatButtonNodeState
 FormatStateMachineOutput
 FormatNotificationCenterObserver
+FeedGroupItemEntity
+CodingKeys
 FormatFrameNode
 CodingKeys
 FormatItemKind
@@ -391,6 +400,8 @@ CodingType
 FormatPatternAnchor
 FormatViewNodeRendererType
 FormatViewNodeRenderer
+GeoLocation
+CodingKeys
 FormatURLBinding
 CodingType
 FeedDataPrewarmerResult
@@ -409,6 +420,7 @@ FeedGroupEmitterCustomRule
 FormatAudioTrack
 Overrides
 CodingKeys
+FeedWeatherReferenceService
 FormatURL
 CodingType
 FeedLayoutContextFactoryType
@@ -443,6 +455,9 @@ DebugInspectionData
 DebugInspectionDataSection
 DebugInspectionDataSource
 DebugInspectionDataItem
+FeedWeatherServiceType
+FeedWeatherService
+FeedWeatherServiceError
 LayeredMediaVariantFactoryType
 LayeredMediaVariantFactory
 FormatCustomFont
@@ -486,6 +501,7 @@ CodingKeys
 FeedItemSorter
 FeedJournalEntry
 DebugInspectViewSection
+Descriptor
 FormatEquationOperandType
 Value
 MoreActions
@@ -564,6 +580,7 @@ FeedNativeAdManagerType
 FeedNativeAdInsertion
 FeedNativeAdManager
 DisposableObserver
+State
 Errors
 FeedJournalConfig
 FeedJournalConfigProviding
@@ -640,6 +657,7 @@ Content
 Layout
 Badging
 Weather
+Database
 Debug
 Format
 Card
@@ -738,6 +756,7 @@ FeedGroupSlots
 FeedTopicClusteringRequest
 FeedCustomItem
 DebugJournalGroupItem
+FeedDatabaseError
 FormatImage
 FormatAssetHandleProvider
 FormatMediaTimingData
@@ -837,6 +856,7 @@ Attributes
 Layout
 CodingKeys
 DebugInspectViewItem
+LoadingItemType
 GroupLayoutFactoryMatch
 RequirementMatch
 E18_V3
@@ -897,6 +917,7 @@ PaidBundleConfigManager
 Errors
 DebugInspectionWebEmbed
 CodingKeys
+FormatServiceOptions
 ResourceServiceType
 ResourceService
 Errors
@@ -942,6 +963,9 @@ GradientData
 CodingType
 CodingKeys
 DebugFormatBezelView
+FeedDatabaseType
+FeedServiceConfig
+FeedDatabase
 FormatCommandState
 CodingType
 FormatStringListSelector
@@ -1034,6 +1058,8 @@ FormatOption
 FormatOptionType
 CodingKeys
 DebugCommandHandler
+DebugInspectHeadlineServiceType
+DebugInspectHeadlineService
 DebugGroupLayoutView
 FailureReason
 FormatBindResult
@@ -1042,6 +1068,8 @@ ArticleThumbnailViewLayoutOptions
 SizeConstraint
 FormatItemCompilerScope
 DebugFormatHistory
+FeedGroupTrackerEntity
+CodingKeys
 C12_V11
 Bound
 Attributes
@@ -1143,6 +1171,8 @@ InternalErrorViewRendererType
 InternalErrorViewRenderer
 FormatStateViewNodeRendererType
 FormatStateViewNodeRenderer
+FeedCursorEntity
+CodingKeys
 AudioTrackViewLayout
 Attributes
 Context
@@ -1264,6 +1294,8 @@ HiddenContentPlacardViewLayoutAttributesFactory
 ?ffffff
 ?ffffff
 ?333333
+FeedDateRange
+CodingKeys
 AudioCountdownFormatter
 DebugFormatInspectorSplitView
 OrderedHeadlineColorPalette
@@ -1467,6 +1499,7 @@ SubtitleTableViewCell
 RequirementTableViewCell
 FeedItemTableViewCell
 LayoutTableViewCell
+LoadingTableViewCell
 FormatColorAndExpression
 CodingKeys
 FormatGroupCollection
@@ -1494,6 +1527,8 @@ CodingType
 CodingKeys
 FormatMicaNodeContent
 CodingType
+FormatPercentage
+CodingKeys
 FormatPrefetchContext
 FormatOptionsNodeStatement
 CodingKeys
@@ -1524,6 +1559,7 @@ DebugInspectionAggregate
 CodingKeys
 HeadlineViewRendererType
 HeadlineViewRenderer
+FeedDatabaseGroupEmitter
 F6_V2
 Bound
 Attributes
@@ -1560,6 +1596,7 @@ Layout
 CodingKeys
 FeedGroupEmitterType
 FeedServiceConfig
+FeedGroupEmitterPriority
 FeedGroupEmitter
 LayeredMedia
 VideoResource
@@ -1693,6 +1730,8 @@ LayeredMediaEffects
 CodingKeys
 Motion
 Parallax
+FeedItemPrefetcherType
+FeedItemPrefetcher
 B12_V5
 Bound
 Attributes
@@ -1789,7 +1828,6 @@ ArticleThumbnailViewStyler
 FormatLayoutValue
 CodingType
 DebugJournalViewController
-DebugJournalTableViewCell
 DebugFormatCodeYAMLLoader
 DebugInspector
 FeedCatalogTraits
@@ -1910,8 +1948,10 @@ OfflineManager
 State
 FormatBorderRendererType
 FormatBorderLayer
+FeedDatabaseStore
 FormatOptionsNodeStatementValue
 CodingType
+DebugJournalSectionState
 Images
 E12_V3
 Bound
@@ -1936,8 +1976,8 @@ Image
 Mica
 NewsFeed
 AdsAssembly
-FormatPrefetchableResource
 FormatResource
+FormatFontResource
 URLScheme
 WebEmbedConfigurationProviderType
 WebEmbedConfigurationProvider
@@ -1955,11 +1995,14 @@ Kind
 FormatMicaNodeLayoutAttributes
 CodingKeys
 CoverViewActionButton
+FeedDatabaseContext
 FormatCornerRadius
 Value
 FormatCorner
 CodingKeys
 CodingType
+DebugJournalSectionStateManager
+FeedDatabaseCursor
 FormatDecoration
 CodingKeys
 AudioColorPalette
@@ -2007,7 +2050,6 @@ FormatImageProcessor
 OrderedHeadlineView
 NotificationCommandHandler
 FormatPrefetchResources
-FormatPrefetchable
 IssueViewRendererType
 IssueViewRenderer
 B12_V9
@@ -2034,6 +2076,7 @@ CodingKeys
 FeaturedIssueSupplementViewRendererType
 FeaturedIssueSupplementViewRenderer
 FeedPartOfDay
+CloudContextReferenceService
 H12_V1
 Bound
 Attributes
@@ -2274,7 +2317,6 @@ Layout
 CodingKeys
 identifier
 Resolved
-VeryTempError
 CodingType
 FeedNativeAdIntegrating
 FormatAdMetricsNodeRendererType
@@ -2304,6 +2346,9 @@ FeedAdGroupDataProvider
 FormatOptionBinding
 CodingKeys
 FeedCursor
+FeedNextCursor
+FeedAsyncCursor
+Container
 NewsFeed
 LayoutAssembly
 WebEmbedViewRendererType
@@ -2342,6 +2387,7 @@ Layout
 CodingKeys
 FeedCursorTracker
 FeedCursorTrackerSnapshot
+FeedCursorTrackerGroup
 FormatInspectionFrame
 FormatSupplementaryNodeDataLayoutAttributes
 EmptyView
@@ -2438,6 +2484,7 @@ FormatStateMachineInlineOutput
 Scope
 FeedTopicClusteringService
 Errors
+FormatPrefetchableResource
 FormatMicaNode
 CodingKeys
 DebugFormatCodeLoaderType
@@ -2570,6 +2617,7 @@ Context
 HiddenContentPlacardViewLayout
 FormatInspectionCode
 AudioDurationFormatter
+FeedDatabaseGroup
 E12_V2
 Bound
 Attributes
@@ -2673,6 +2721,7 @@ Resolved
 Background
 CodingKeys
 CodingType
+AnyFeedManager
 FormatLayoutError
 FeedPoolType
 FeedGroup
@@ -2712,6 +2761,7 @@ Attributes
 Layout
 CodingKeys
 DebugJournalSection
+DebugJournalSectionDescriptor
 FormatButtonNodeStateMask
 FormatButtonNodeStateMaskLayoutAttributes
 FormatButtonNodeStateMaskDataLayoutAttributes
@@ -2801,6 +2851,7 @@ FeedCursorFactoryType
 FeedServiceConfig
 FeedCursorFactory
 FeaturedIssueSupplementView
+DebugJournalHeaderView
 F12_V2
 Bound
 Attributes
@@ -2818,6 +2869,7 @@ Bound
 Attributes
 Layout
 CodingKeys
+FormatPrefetchable
 LikingCommandHandler
 FormatCompilerScope
 FormatCompilerScopeType
@@ -2855,7 +2907,10 @@ Bound
 Attributes
 Layout
 CodingKeys
+DebugJournalTableViewCell
 StubImageProcessor
+connection
+T@"WFServiceConnection",R,N,V_connection
 Failed to load layered media with error %{public}@
 system
 bundle
@@ -3015,6 +3070,11 @@ friday
 saturday
 weekdays
 weekends
+candidateScoredItems
+items
+layoutInventory
+result
+requirements
 contains
 hasPrefix
 hasSuffix
@@ -3091,13 +3151,162 @@ full
 noBundleAccess
 noAlaCarteAccess
 gradient
-boolean
-string
-image
+timeAgoMedium
+timeAgoLong
+short
+long
+dynamic
+standalone
+listItem
+beginningOfSentence
+middleOfSentence
+ceiling
+floor
+down
+halfEven
+halfDown
+halfUp
+decimal
+percent
+scientific
+spellOut
+ordinal
+currency
+currencyAccounting
+currencyISOCode
+currencyPlural
+test
+devel
+sandbox
+demo1
+demo2
+active
+seen
+frozen
+endOfFeed
+cached
+repooled
+idealLayout
+underlyingModel
+duration
+disallow
+kind
+repool
+publishDate
+force
+chronological
+initial
+playing
+paused
+completed
+enabled
+unpaid
+neither
+next
+last
+dropped
+night
+solid
+shine
+hBox
+vBox
+hOverlay
+vOverlay
+view
 item
-webEmbed
+image
+space
+snippet
 supplementary
+slot
+accessibility
+button
+webEmbed
+stateView
+print
+adMetrics
 mica
+dimension
+columnPercentage
+columnRowSpan
+vSpacing
+hSpacing
+scaledHeight
+scaledWidth
+ratio
+zero
+flexible
+flexiblePercentage
+flexibleMaxHeight
+flexibleMaxWidth
+flexibleMaxSize
+adPrivacyMarker
+userInterface
+processed
+grayscale
+rgba
+aspect
+cardShine
+titleShine
+premiumBadgeShine
+cardPremiumBadgeShine
+leading
+trailing
+center
+hcenter
+vcenter
+scaleRange
+scaleTranslate
+translate
+translateRange
+translateWithScale
+float
+integer
+colorSpace
+mimeType
+video/x-m4v
+video/mp4
+video/quicktime
+video
+overrides
+alternate
+topStory
+breaking
+developing
+updated
+butt
+round
+square
+topic
+luminance
+content
+package
+packageList
+decoration
+localization
+flexibleText
+other
+singleLine
+altText
+altFlexibleText
+placeholderText
+placeholderFlexibleText
+liveUpdating
+offline
+featured
+cover
+portrait
+landscape
+portraitThumbnail
+landscapeThumbnail
+squareThumbnail
+unknown
+font
+bind
+selector
+bool
+contentSizeCategory
+groupBind
 blue
 brown
 cyan
@@ -3110,32 +3319,44 @@ orange
 purple
 white
 yellow
-content
-package
-packageList
-snippet
-decoration
-localization
-brightness
-alpha
-leading
-trailing
-center
-hcenter
-vcenter
-component
+boolean
 date
 enum
-float
-integer
-scaleRange
-scaleTranslate
-translate
-translateRange
-translateWithScale
-font
-textStyle
-weight
+string
+isChannel
+isTopic
+isLocal
+compactName
+sourceType
+follow
+block
+ignore
+moreActions
+navigate
+iPhoneSE
+iPhone8
+iPhone8Plus
+iPhoneXr
+iPhone11
+iPhone11Pro
+iPhone11ProMax
+iPadPro_9_7
+iPadPro_10_5
+iPadPro_11
+iPadPro_12_9
+inferred
+notScaled
+scaled
+crop
+hidden
+once
+oncePerRefresh
+onceOnScreen
+oncePerRefreshOnScreen
+always
+library
+small
+large
 clear
 pink
 teal
@@ -3150,7 +3371,6 @@ secondaryLabel
 tertiaryLabel
 quaternaryLabel
 link
-placeholderText
 separator
 opaqueSeparator
 background
@@ -3162,38 +3382,65 @@ groupedTertiaryBackground
 secondaryFill
 tertiaryFill
 quaternaryFill
-initial
-playing
-paused
-completed
-centerCapHeight
-overrides
-alternate
-topStory
-breaking
-developing
-updated
+formatted
+attachment
+localized
+number
+value
+rounded
+visibility
+textStyle
+weight
+help
+hint
+trait
+dimContent
 high
 ludicrous
-forwards
-backwards
-removed
-visibility
-compactName
-sourceType
-follow
-block
-ignore
-moreActions
-navigate
-isChannel
-isTopic
-isLocal
-solid
-shine
-small
-large
-explicit
+command
+justified
+natural
+blocked
+notBlocked
+brightness
+alpha
+behavior
+expression
+visible
+oncePerSession
+options@bind
+options@layout
+template
+context
+stateMachine
+customItem
+subscriptionController
+appConfig
+paidBundleConfig
+component
+article
+archive
+hasArticle
+openURL
+route
+stateMachineEvent
+menu
+passthrough
+body
+callout
+caption1
+caption2
+footnote
+subheadline
+largeTitle
+title1
+title2
+title3
+section2
+empty
+featureName
+play
+playback
 pattern
 wordWrapping
 characterWrapping
@@ -3201,90 +3448,33 @@ clip
 truncateHead
 truncateTail
 truncateMiddle
-short
-long
-dynamic
-standalone
-listItem
-beginningOfSentence
-middleOfSentence
-timeAgoMedium
-timeAgoLong
-archive
-userInterface
-crop
-video
-colorSpace
-video/x-m4v
-video/mp4
-video/quicktime
-mimeType
-seconds
-stateMachine
-customItem
-topic
-repool
-force
-chronological
-enabled
-noAX
-onlyAX
-disallow
-kind
-aspect
-once
-oncePerRefresh
-always
-justified
-natural
-idealLayout
-underlyingModel
-containerView
-button
-hidden
-stateView
-adMetrics
-flexibleText
-other
-singleLine
-altText
-altFlexibleText
-placeholderFlexibleText
-hasArticle
-value
-rounded
 uppercase
 lowercase
 capitalize
-blocked
-notBlocked
-processed
-grayscale
-rgba
-night
-next
-last
-unfrozen
-iPhoneSE
-iPhone8
-iPhone8Plus
-iPhoneXr
-iPhone11
-iPhone11Pro
-iPhone11ProMax
-iPadPro_9_7
-iPadPro_10_5
-iPadPro_11
-iPadPro_12_9
-inferred
-ceiling
-floor
-down
-halfEven
-halfDown
-halfUp
-command
-unknown
+searchField
+playsSound
+keyboardKey
+staticText
+summaryElement
+notEnabled
+updatesFrequently
+startsMediaSession
+adjustable
+allowsDirectInteraction
+causesPageTurn
+tabBar
+original
+automatic
+noAX
+onlyAX
+linear
+radial
+forwards
+backwards
+removed
+explicit
+count
+seconds
 tornado
 tropicalStorm
 hurricane
@@ -3324,130 +3514,12 @@ scatteredSnowShowers
 heavySnow
 blizzard
 isolatedThundershowers
-unpaid
-neither
-linear
-radial
-formatted
-attachment
-localized
-number
-play
-playback
-featureName
-duration
-hBox
-vBox
-hOverlay
-vOverlay
-space
-slot
-accessibility
-print
-options@bind
-options@layout
-cursor
-template
-context
-article
-empty
-notScaled
-scaled
-body
-callout
-caption1
-caption2
-footnote
-subheadline
-largeTitle
-title1
-title2
-title3
-section2
-offline
-featured
-cover
-portrait
-landscape
-square
-portraitThumbnail
-landscapeThumbnail
-squareThumbnail
-original
-automatic
-oncePerSession
-visible
-behavior
-expression
-luminance
-liveUpdating
-butt
-round
-cardShine
-titleShine
-premiumBadgeShine
-cardPremiumBadgeShine
-bool
-openURL
-route
-stateMachineEvent
-menu
-passthrough
-searchField
-playsSound
-keyboardKey
-staticText
-summaryElement
-notEnabled
-updatesFrequently
-startsMediaSession
-adjustable
-allowsDirectInteraction
-causesPageTurn
-tabBar
-dimContent
-flexible
-bind
-selector
-contentSizeCategory
-groupBind
-dimension
-columnPercentage
-columnRowSpan
-vSpacing
-hSpacing
-scaledHeight
-scaledWidth
-percent
-ratio
-zero
-flexiblePercentage
-flexibleMaxHeight
-flexibleMaxWidth
-flexibleMaxSize
-adPrivacyMarker
 dataTable
 list
 landmark
 semanticGroup
-count
-library
-decimal
-scientific
-spellOut
-ordinal
-currency
-currencyAccounting
-currencyISOCode
-currencyPlural
-test
-devel
-sandbox
-demo1
-demo2
-help
-hint
-trait
+containerView
+centerCapHeight
 _TtC8NewsFeed18LayeredMediaParser
 json
 FCHeadlineProviding
@@ -3723,7 +3795,6 @@ singleChannelFeedMinFeedItemsPerRequest
 maxRetriesForDroppedFeeds
 delayBeforeRetryingDroppedFeeds
 channelUpsellConfigsByChannelID
-paidBundleConfig
 T@"FCPaidBundleConfiguration",N,R
 magazinesConfigRecordID
 entitlementsCacheRecoveryAttemptDurationInSeconds
@@ -3778,6 +3849,7 @@ FCTranslationProvider
 @"NSString"24@0:8@"NSString"16
 TSImageCacheType
 v36@0:8@16B24@?28
+v16@0:8
 v32@0:8@"<TSProcessedImageRequestType>"16@?<v@?@"UIImage"@"NSError">24
 v36@0:8@"<TSProcessedImageRequestType>"16B24@?<v@?@"UIImage"@"NSError">28
 @"UIImage"24@0:8@"<TSProcessedImageRequestType>"16
@@ -3960,6 +4032,99 @@ d32@0:8@"<FCPersonalizationAggregate>"16d24
 d40@0:8@"<FCPersonalizationAggregate>"16d24d32
 d48@0:8@"<FCPersonalizationAggregate>"16@"<FCPersonalizationAggregate>"24d32d40
 UIAppearanceContainer
+FCNewsAppConfiguration
+I16@0:8
+onboardingFeedIDs
+autoScrollToTopFeedTimeout
+interstitialAdLoadDelay
+prerollLoadingTimeout
+tileProminenceScoreBalanceValue
+iAdConfig
+T@"FCIAdConfiguration",N,R
+prefetchConfig
+T@"FCPrefetchConfiguration",N,R
+newFavoriteNotificationAlertsFrequency
+notificationArticleCacheTimeout
+notificationArticleWithRapidUpdatesCacheTimeout
+embedConfigurationAssetID
+universalLinksEnabled
+parsecPopulationFloor
+parsecPopulationCeiling
+widgetConfigID
+widgetMinimumArticleExposureDurationToBePreseenInMilliseconds
+widgetMinimumNumberOfTimesPreseenToBeSeen
+TI,N,R
+articleDiversificationSimilarityExpectationStart
+articleDiversificationSimilarityExpectationEnd
+articleDiversificationUniquePublisherExpectationSlope
+articleDiversificationUniquePublisherExpectationYIntercept
+analyticsEndpointMaxPayloadSize
+personalizationBundleIdMappingResourceId
+personalizationUrlMappingResourceId
+personalizationWhitelistResourceId
+personalizationFavorabilityResourceId
+corryBarMaxArticleCountForArticleList
+corryBarMaxArticleCountForSingleArticle
+corryBarHideDiscoverMoreInterstitialForNonOnboardedUsers
+exploreArticleID
+externalAnalyticsConfigurations
+mediaSharingBlacklistedChannelIDs
+stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
+autoRefreshMinimumInterval
+terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
+topStoriesPublishDates
+trendingStyle
+shareDiscoverMoreVideosInfo
+T@"NTPBDiscoverMoreVideosInfo",N,R
+articleRecirculationComponentPlacementConfigJSON
+subscriptionsPlacardPublisherFrequencyInSeconds
+subscriptionsPlacardGlobalMaximumPerDay
+subscriptionsGracePeriodForTokenVerificationSeconds
+isExpired
+articleRecirculationPopularFeedQueryTimeRange
+disableThumbnailsForArticleRecirculation
+feedNavigationConfigJSON
+webEmbedContentBlockers
+webEmbedContentBlockerOverrides
+anfRenderingConfiguration
+enableBadgeInSpotlightTabBar
+translationMapResourceID
+issueArticleRecirculationConfigJSON
+articleToolbarCompressionEnabled
+lowStorageThreshold
+criticalStorageThreshold
+feedContentExposureTestMaximumInterval
+maximumTrendingGroupSizeiPad
+maximumTrendingGroupSizeiPhone
+likeDislikeBehavior
+bestOfBundleFeedGroupKind
+emailSignupRequiredAppLaunchCount
+newsletterSubscriptionStatusCacheTimeout
+newsletterSubscriptionType
+enableLocationBasedAutofavorites
+localAreasMappingResourceId
+tagFeedLayoutConfigurationResourceId
+userVectorWhitelistResourceId
+userVectorModelResourceId
+articleReadCountThreshold
+forYouGroupShouldPromoteAccessibleHeadline
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
+widgetContentPrefetchEnabled
+notificationEnableAssetPrefetching
+notificationAssetPrefetchingRequiresWatch
+userSegmentationInWidgetAllowed
+useNewSearchEndpoint
+searchConfigurationProfiles
+@"FCIAdConfiguration"16@0:8
+@"FCPrefetchConfiguration"16@0:8
+@"NTPBDiscoverMoreVideosInfo"16@0:8
 FCClassifiable
 TSSharedImageCacheType
 @"UIImage"24@0:8@"NSString"16
@@ -4023,8 +4188,6 @@ refreshStateMachine
 barCompressionManager
 v12@?0B8
 NERendererAssembly
-audioTrackThumbnailFallback
-NFAssembly
 Q16@0:8
 _TtC8NewsFeed22FormatStateMachineData
 definition
@@ -4051,19 +4214,18 @@ Minimum viewport height of
 Content size category (
 Video layouts not supported
 _TtC8NewsFeed13FormatService
-headlineService
 tagService
 fontManager
 resourceService
 webArchiveService
-subscriptionController
 $__lazy_storage_$_ignoreCache
 $__lazy_storage_$_loadPackagesFromDebugServerDropbox
 fileCache
 FormatService filtered out %{public}@
 package parentInventories groups items snippets styles supplementaries types decorations localizations 
-http://google.com/?q=ERROR:+Missing+URL+Option+Value
-@24@0:8q16
+v16@?0@8
+@16@0:8
+B24@0:8@16
 primaryAudience
 theme
 @"NSDate"16@0:8
@@ -4083,6 +4245,7 @@ emitterCursor
 slots
 gapPromise
 _state
+priority
 Tried to start an emit task more than once!
 Emit task is starting to emit from %{public}@ emitter, identifier=%{public}@
 Emit task skipping %{public}@ emitter, identifier=%{public}@, result=skip, reason=%{public}@
@@ -4112,6 +4275,7 @@ _TtC8NewsFeed22FormatMicaNodeRenderer
 micaRenderer
 seenOnce
 seenOnceSinceRefresh
+seenOnceOnScreen
 T@"NSDate",N,R
 iAdSectionIDs
 coverArt
@@ -4171,6 +4335,7 @@ audioMultiplierForTrialUsers
 audioMultiplierForPaidUsers
 headlineSeenPenalty
 articleReadPenalty
+sparseTagsPenalty
 conversionCoefficientForFreeUsers
 conversionCoefficientForTrialUsers
 conversionCoefficientForPaidUsers
@@ -4314,7 +4479,6 @@ v24@0:8@"UITableView"16
 @"UITargetedPreview"32@0:8@"UITableView"16@"UIContextMenuConfiguration"24
 v40@0:8@"UITableView"16@"UIContextMenuConfiguration"24@"<UIContextMenuInteractionCommitAnimating>"32
 v40@0:8@"UITableView"16@"UIContextMenuConfiguration"24@"<UIContextMenuInteractionAnimating>"32
-B24@0:8@16
 UIScrollViewDelegate
 v48@0:8@16{CGPoint=dd}24N^{CGPoint=dd}40
 v40@0:8@16@24d32
@@ -4357,6 +4521,7 @@ Bundle Free Multiplier
 Bundle Paid Multiplier
 Evergreen Multiplier
 Featured Multiplier
+Sparse Tags Penalty
 subscribedChannelCtr
 subscribedTopicsCtr
 autoSubscribeCtr
@@ -4384,7 +4549,7 @@ NewsFeed/B12_V4.swift
 @32@0:8q16@24
 NewsFeed/DebugFormatInspectorAccessoryCell.swift
  then else 
-@16@0:8
+http://google.com/?q=ERROR:+Missing+URL+Option+Value
 isRawFileConsumable
 TB,N,R
 TSAssetDataProviderType
@@ -4452,7 +4617,7 @@ artworkCache
 logoCache
 traitCollection
 layoutAttributes
-thumbnailFallbackAssetHandle
+$__lazy_storage_$_thumbnailFallbackAssetHandle
 accessibility label component for audio track view
 Attempting to get audio artwork and not provided, error=%{public}@
 NewsFeed/A18_V15.swift
@@ -4489,11 +4654,25 @@ superGroupTypeId
 NewsFeed/GapOfflineView.swift
 _TtC8NewsFeed14GapOfflineView
 offlineLabel
+Feed manager time since prepared read %fms
+database
+service
+serviceConfigFetcher
+preparedReadAndFetchTime
+_preparedReadAndFetchPromise
+Feed manager read and fetch time, %fms
+Feed manager starting preparing read
+Feed manager preparing read from the network; database returned with error=%{public}@
+Feed manager prepared read from the database, time=%fms
+Feed manager failed to read root tracker from the database, error=%{public}@
 NewsFeed/A8_V9.swift
 _TtC8NewsFeedP33_F6DADBE3BFDB6CE7780A22E69487CC0F32FormatNotificationCenterObserver
 observer
 com.apple.newsfeed.format.state_machine.event
 v16@?0@"NSNotification"8
+B16@0:8
+globalCohorts
+bodyTextLength
 width height 
 moreActionsButtonFrame
 No mapping for value = 
@@ -4562,6 +4741,9 @@ Feature Available
 lower upper 
 User does not belong to any allowed user segments 
 User belongs to blocked user segments 
+v16@?0@"FCBundleSubscription"8
+_TtC8NewsFeed27FeedWeatherReferenceService
+weatherService
 _TtC8NewsFeed24FeedLayoutContextFactory
 colorPaletteProvider
 fontBookFactory
@@ -4576,6 +4758,11 @@ NewsFeed/A12_V17.swift
 layoutIdentifier
 contextLayoutOptions
 NewsFeed/I12_V1.swift
+_TtC8NewsFeed18FeedWeatherService
+$__lazy_storage_$_serviceConnection
+_requestTimeout
+v24@?0@"WFWeatherConditions"8@"NSError"16
+v24@?0@"WFLocation"8@"NSError"16
 _TtC8NewsFeed26LayeredMediaVariantFactory
 assetHandleFactory
 No image variants found for %@
@@ -4654,16 +4841,20 @@ Use the actions menu to cancel downloading.
 Accessibility hint for currently downloading cover issue view on mac
 sorters
 group score reason 
+Group was dedupped, 
+Group was filtered due to feed context isSubscribed=
 Group was unfrozen, 
 newsfeed.more_actions.tag
 v40@?0d8d16d24d32
+ tracker 
 cursor serviceConfig strategy trigger 
 personalizationService
 parentCursors
-Service converted end of feed to next groups for chained cursor with emitted groups
-Service converted end of feed to process the next chained cursor
+Service attempting to emit group with a consumed identifier=%{public}@
 Service converted last group to next group for chained cursor
 Inserting ad after group=%{public}@
+Service converted end of feed to next groups for chained cursor with emitted groups
+Service converted end of feed to process the next chained cursor
 Service attempting to create group from open emitters, slot=%ld, available=%{public}@
 Service attempting to create group from slotted emitter, slot=%ld, available=%{public}@
 Service skipped group from slotted emitters, increment to next slot, reason=%{public}@
@@ -4677,6 +4868,7 @@ values errors
 Gap was already on screen during feed emitting, so timeouts will start immediately
 Service had some emitters fail to create groups, errors=%{public}@
 Service got %ld scored results: %{public}@
+Service skipped %d low-priority tasks that were too slow
 Service had no emitters in the fast group that emitted a group. Falling back to the slow group.
 Gap has appeared on screen during feed emitting; timeouts will start now
 Service has no active or slotted emitters remaining, will end the feed
@@ -4720,7 +4912,6 @@ _TtC8NewsFeed19FeedNativeAdManager
 nativeAdService
 observers
 fetchingSectionIdentifiers
-isFetching
 _TtC8NewsFeedP33_85F08FEC80A4D50656F2CD70106F42C918DisposableObserver
 keepAliveObject
 Made multiple native ad requests for the same section
@@ -4808,6 +4999,9 @@ newsfeed.debug.layout.show_cell_bounds
 newsfeed.debug.layout.show_bounds
 newsfeed.debug.layout.show_layout_margins
 newsfeed.debug.layout.show_columns
+newsfeed.database.enabled
+newsfeed.database.clear_on_next_launch
+newsfeed.database.clear_on_launch
 newsfeed.weather.request_timout
 newsfeed.badging.force_premium_badging
 newsfeed.layout.enable_log_debugging
@@ -4858,8 +5052,11 @@ visibleItemIdentifiers
 feedItemImages
 layoutImages
 featureAvailability
+headlineService
 bindings error 
 bindings layoutAttributes 
+Candidate headlines
+The feed items that were considered when creating the feed group
 NewsFeed/DebugInspectViewDataSource.swift
 Unmatched layout option requirements: 
 Unmatched binding requirements: 
@@ -4876,6 +5073,8 @@ Minimum viewport height requirement
 Content size category requirement
 v16@?0@"UIGraphicsImageRendererContext"8
 Failed to layout thumbnail! Error: %{public}@
+Failed to fetch headlines for scored feed items, error=@{public}@
+Candidate headlines (
 stateMaskLayoutAttributes
 NewsFeed/C6_V1.swift
 chinRoundedCorners
@@ -4903,6 +5102,7 @@ Item that will follow a given channel or topic
 Item that will unfollow a given channel or topic
 newsfeed.following.notification
 newsfeed.following.follow
+@24@0:8q16
 _TtC8NewsFeed20ArticleThumbnailView
 staticContentView
 dynamicContentView
@@ -4917,7 +5117,6 @@ selections
 lines
 fill
 _TtCC8NewsFeed29DebugFormatRulerIndicatorViewP33_205CD4915512C8964E202ADB13D001EA9Component
-view
 NewsFeed.DebugFormatRulerIndicatorView
 NewsFeed/DebugFormatRulerIndicatorView.swift
 _TtC8NewsFeed26LayeredMediaLayerProcessor
@@ -4987,10 +5186,12 @@ NewsFeed/A18_V2.swift
 NEPremiumBadgeMaskGenerator
 The name of the app
 The suffix to the Apple News name that denotes the premium service
-The format to creae the 
+The format to create the 
 News+ logo where the vargs are in the following order: 
 , News, +
 NewsFeed/FeedItem.swift
+News+
+Audio
 The text to badge a headline cell as audio for unsubscribed users
 The text to badge a headline cell as audio for subscribed users
 The text to badge a headline cell as free
@@ -4998,9 +5199,38 @@ The text to badge a headline cell as premium
 _TtC8NewsFeed20DebugFormatBezelView
 bezelLayer
 NewsFeed/DebugFormatBezelView.swift
+Feed database reading root tracker from database
+Feed database reading top of feed cursor from database
+feedCursorFactory
+feedGroupProcessor
+referenceService
+$__lazy_storage_$_lazyStore
+_lastSnapshot
+Feed database will update group tracker state for %ld entities
+Feed database failed to write group to cache, kind=%{public}@ identifier=%{public}@, error=%{public}@
+Feed database total read time=%fms
+Feed database rebuilding %{public}@ cursor %{public}@ with context=%{public}@
+Feed database rebuilt %{public}@ cursor %{public}@, total time=%fms
+Feed database finished creating %{public}@ cursor %{public}@, time=%fms
+Feed database creating %{public}@ cursor %{public}@ with new context=%{public}@
+Feed database chaining %{public}@ cursor to next cursor empty
+Feed database async chaining %{public}@ cursor to next cursor %{public}@
+Feed database reading cursor %{public}@
+Feed database creating %{public}@ cursor with %ld groups
+Feed database creating %{public}@ cursor with %ld groups; found %ld seen items to ignore in repooled pool
+Feed database creating %{public}@ cursor that has reached the end, chain next
+Feed database creating %{public}@ cursor found %ld items to ignore in next pool
+Feed database finished decoding %{public}@ cursor %{public}@, time=%fms
+Feed database decoding %{public}@ cursor %{public}@
+Feed database decoding %{public}@ cursor %{public}@ read %ld groups and filtered to %ld groups
+Failed to create database group for identifier=%{public}@, error=%{public}@
+Feed database root tracker read %ld groups, time=%fms
+Feed database store failed to initialize the tables, error=%{error}@, time=%fms
+Feed database store initialized, time=%fms
 NewsFeed/J8_V1.swift
 _TtC8NewsFeed19FormatAdMetricsView
 metricsView
+privacyMarker
 _TtC8NewsFeed26FormatAdMetricsContentView
 NewsFeed/FormatAdMetricsView.swift
 NewsFeed/A6_V2.swift
@@ -5036,7 +5266,6 @@ callbackBlock
 NewsFeed.DebugFormatEditorBarButtonItem
 NewsFeed/DebugFormatEditorBarButtonItem.swift
 _TtC8NewsFeed31FormatMicaSectionDecorationView
-v16@0:8
 micaView
 token
 model
@@ -5062,6 +5291,7 @@ resolver
 Failed to bind layout! Error: %{public}@
 Personalization: 
 inspection-group-data
+_TtC8NewsFeed27DebugInspectHeadlineService
 _TtC8NewsFeed20DebugGroupLayoutView
 contentView
 columnDebugView
@@ -5075,6 +5305,7 @@ You cannot create create a slot when in item scope
 You can only push items in slot scope, but this compiler was created in 
 NewsFeed/C12_V11.swift
 _TtC8NewsFeed19TagReferenceService
+v24@0:8@16
 _TtC8NewsFeed25LayeredMediaLayerRenderer
 conditionValidator
 imageVariantSelector
@@ -5105,7 +5336,6 @@ rightBorderButton
 topBorderButton
 bottomBorderButton
 NewsFeed/DebugFormatInspectorFrameCell.swift
-fontAssetHandles
 _equivalentTopics
 _TtC8NewsFeed24LayeredMediaViewProvider
 layerRenderableProvider
@@ -5125,6 +5355,9 @@ NewsFeed/VideoView.swift
 _TtC8NewsFeed25InternalErrorViewRenderer
 _TtC8NewsFeed27FormatStateViewNodeRenderer
 Failed to fire format state machine event, event=%@, error=%{}@
+serviceConfigData
+serviceConfigPoolData
+skippedSlotCount
 mediaViewRoundedCorners
 mediaViewRoundedCornerRadius
 accessoryViewFrame
@@ -5133,7 +5366,6 @@ _TtC8NewsFeed15ScalingFontBook
 _TtC8NewsFeed19FeatureAvailability
 _TtC8NewsFeed30DebugFormatGroupViewController
 layout
-result
 _TtC8NewsFeedP33_2FB8A530414BB0820D2722FB0DC9856832DebugFormatSubtitleTableViewCell
 _TtC8NewsFeedP33_2FB8A530414BB0820D2722FB0DC9856830DebugFormatValue1TableViewCell
 NewsFeed/DebugFormatGroupViewController.swift
@@ -5378,7 +5610,6 @@ $__lazy_storage_$_uploadBarButtonItem
 $__lazy_storage_$_updatedLabel
 NewsFeed2
 NewsFeed3
-v24@0:8@16
 _TtC8NewsFeedP33_F97674A1287538FB91D03700109A441833DebugFormatInventoryTableViewCell
 NewsFeed/DebugFormatInventoryViewController.swift
 NewsFeed/DebugFormatPackageCollection.swift
@@ -5433,6 +5664,8 @@ blueprintProvider
 policyValidator
 layoutCollectionProvider
 journal
+dedupForQueue
+updateQueue
 NewsFeed.FeedBannerAdIntegrator
 UICollectionViewDelegate
 {CGPoint=dd}40@0:8@16{CGPoint=dd}24
@@ -5484,13 +5717,13 @@ feedElementType
 _TtC8NewsFeed26DebugInspectViewController
 factory
 dataSource
-q32@0:8@16q24
-@32@0:8@16q24
+headineService
 _TtC8NewsFeed21KeyValueTableViewCell
 _TtC8NewsFeed21SubtitleTableViewCell
 _TtC8NewsFeed24RequirementTableViewCell
 _TtC8NewsFeed21FeedItemTableViewCell
 _TtC8NewsFeed19LayoutTableViewCell
+_TtC8NewsFeed20LoadingTableViewCell
 NewsFeed/DebugInspectViewController.swift
 v32@?0@"UIContextualAction"8@"UIView"16@?<v@?B>24
  value 
@@ -5506,6 +5739,8 @@ NewsFeed/A12_V15.swift
 _TtC8NewsFeed20HeadlineViewRenderer
 presentationDelegateProvider
 rendererTool
+Failed to load group from the database, error=%{public}@
+Failed to load group from database, error=
 NewsFeed/F6_V2.swift
 NewsFeed/B8_V1.swift
 NewsFeed/D12_V1.swift
@@ -5531,6 +5766,8 @@ identifierBlock
 shortDescriptionBlock
 groupConfigBlock
 fastTimeoutBlock
+priorityBlock
+repoolingBlock
 nameBlock
 initialCursorBlock
 emitRulesBlock
@@ -5549,6 +5786,7 @@ layersCache
 Aborting native ad insertion, group doesn't support native ads, placement=%{public}@
 Aborting native ad insertion, section is empty, placement=%{public}@
 Failed to update native ad in feed, placement=%{public}@, error=%{public}@
+blueprint bookmark 
 Placing native ad in feed, placement=%{public}@
 Failed to find layout for placement=%{public}@
 _TtC8NewsFeed18FeedContextFactory
@@ -5572,6 +5810,8 @@ viewController
 $__lazy_storage_$_delegate
 _TtC8NewsFeed22AdPresentationDelegate
 APPCMetricsInteractionPresentationDelegate
+_TtC8NewsFeed18FeedItemPrefetcher
+bannerAdViewManager
 NewsFeed/B12_V5.swift
 equivalentTopicIDs
 _TtC8NewsFeed23FormatImageNodeRenderer
@@ -5595,6 +5835,8 @@ _TtC8NewsFeed29DebugInspectionViewController
 inspector
 feedItem
 tableView
+q32@0:8@16q24
+@32@0:8@16q24
 inspection-item-data
 NewsFeed.DebugInspectionViewController
 NewsFeed/DebugInspectionViewController.swift
@@ -5612,14 +5854,19 @@ Disallow, rehydrate=
 _TtC8NewsFeed35LayeredMediaLayerRenderableProvider
 _TtC8NewsFeed26ArticleThumbnailViewStyler
 issueCoverColorPalette
+cursor
 snapshot
 journalSections
+unfilteredJournalSections
 userEnteredIdentifier
-_TtC8NewsFeed25DebugJournalTableViewCell
-stripView
-NewsFeed/DebugJournalViewController.swift
+stateManager
+toolbarLabel
 NewsFeed.DebugJournalViewController
+Clear on Next Launch
  selectors 
+Failed to load the async cursor, error=%{public}@
+Async cursors are loaded as they are expanded
+NewsFeed/DebugJournalViewController.swift
 _TtC8NewsFeed25DebugFormatCodeYAMLLoader
 _TtC8NewsFeed14DebugInspector
 $__lazy_storage_$_inspection
@@ -5660,9 +5907,6 @@ observingMotion
 NewsFeed/IssueCoverView.swift
 d16@0:8
 v24@0:8@?16
-publishDate
-globalCohorts
-bodyTextLength
 language
 videoURL
 hiddenFromFeeds
@@ -5677,6 +5921,8 @@ Td,N
 NewsFeed/DebugFormatContentView.swift
 v16@?0@"CALayer"8
 _TtC8NewsFeed14FormatMicaView
+mediaTiming
+onScreenClosure
 packageLayer
 packageSize
 _TtC8NewsFeed18AssetHandleFactory
@@ -5717,6 +5963,8 @@ NewsFeed.OfflineManager
 FCNetworkReachabilityObserving
 v24@0:8@"FCNetworkReachability"16
 _TtC8NewsFeedP33_777F7CE0D0BB06B491F265B7F8694DA417FormatBorderLayer
+groupTracker
+groupItem
 NEImages
 headphones
 stopSuggesting
@@ -5746,13 +5994,7 @@ audio-track-thumbnail-fallback
 NewsFeed/E12_V3.swift
 _TtC8NewsFeed18DebugFormatManager
 cache
-service
 $__lazy_storage_$_environment
-https://devel.asset-server.news.apple.com
-https://test.asset-server.news.apple.com
-https://qa.asset-server.news.apple.com
-https://staging.asset-server.news.apple.com
-https://news-assets.apple.com
 NEAdsAssembly
 news-web-archive
 _TtC8NewsFeed29WebEmbedConfigurationProvider
@@ -5765,13 +6007,20 @@ shineView
 shadowView
 backgroundColor
 T@"UIColor",N,&
-B16@0:8
 _TtC8NewsFeed21CoverViewActionButton
 touchInsets
 tintColorForNormalState
 highlighted
 TB,N
 NewsFeed/CoverViewActionButton.swift
+manifest
+slotOffset
+seenContentOnly
+seenGroupIdentifiers
+groupProcessor
+Context(seenContentOnly=
+, seenGroupCount=
+_TtC8NewsFeed31DebugJournalSectionStateManager
 Source Feed Identifier
 Conversion Cohorts
 sourceFeedIdentifier
@@ -5793,7 +6042,7 @@ Fetching native ad headline failed, error=%{public}, placementID=%{public}@@
 Unable to convert downloaded headline into a native ad.
 Fetched native ad headline, articleID=%{public}@, placementID=%{public}@
 Unknown enum case encountered. Please update to handle the new case.
-Attempting to fetch native ad headline, articleID=%{public}, placementID=%{public}@@
+Attempting to fetch native ad headline, articleID=%{public}, placementID=%{public}@
 Fetching native ad headline failed, error=%{public}@, placementID=%{public}@
 Fetching native ad headline failed, native ad info has empty article identifier, placementID=%{public}@
 NewsFeed/C8_V5.swift
@@ -5831,6 +6080,7 @@ NewsFeed/B12_V9.swift
 NewsFeed/B8_V3.swift
 NewsFeed/I8_V2.swift
 _TtC8NewsFeed35FeaturedIssueSupplementViewRenderer
+_TtC8NewsFeed28CloudContextReferenceService
 NewsFeed/H12_V1.swift
 _TtC8NewsFeed15FeedFontManager
 resourceManager
@@ -5856,11 +6106,11 @@ postBaselineCurvature
 session
 loadedOffline
 $__lazy_storage_$_name
-serviceConfigFetcher
 offlineManager
 qualityOfService
 deferredPromise
 startDate
+serviceConfig
 prewarmerResult
 %{public}@ prewarmer will start new session
 %{public}@ prewarmer refreshing before feed was requested due to app foreground or offline mode toggle; creating new session
@@ -5923,7 +6173,6 @@ init(feed:service:)
 _TtC8NewsFeed22FormatPackageInventory
 comment
 groups
-items
 snippets
 supplementaries
 styles
@@ -5992,7 +6241,6 @@ q24@0:8@16
 NewsFeed/DebugFormatErrorViewController.swift
 _TtC8NewsFeed15FontBookFactory
 _TtC8NewsFeed24HeadlineReferenceService
-v16@?0@8
 Fetching headlines for tag identifier: %@
 _TtC8NewsFeed15HeadlineService
 coreConfigurationManager
@@ -6070,24 +6318,26 @@ _TtC8NewsFeed16LayeredMediaView
 layerRenderables
 containerLayer
 NewsFeed/LayeredMediaView.swift
-adjacencyFactor
+adjacentDistance
 Skipping request for placement because group does not allow adjacent ads, kind=%{public}@
 emittedGroupsCount
+createdDate
 totalGroupCount
 openEmitters
 slottedEmitters
 emittedGroups
-skippedSlotCount
+slotAdjustment
 emitterCursors
 feedPool
-feedGroupKnobs
 feedContext
 feedJournal
 cachePolicy
-serviceConfig
 nextCursor
+tracker
 parentCursor
+lazyCursor
 NELayoutAssembly
+NFAssembly
 _TtC8NewsFeed20WebEmbedViewRenderer
 reuseProtector
 Failed to resolve web embed URLs, error=%{public}@
@@ -6098,13 +6348,14 @@ UICTFontTextStyleSection2
 NewsFeed/A8_V4.swift
 NewsFeed/A18_V13.swift
 seenIdentifiers
-seenDates
+seenGroups
 gapOnScreen
 _TtC8NewsFeed9EmptyView
 NewsFeed/E6_V1.swift
 NewsFeed/E12_V4.swift
 _TtC8NewsFeed33FeedItemRendererPipelineProcessor
 formatImageCache
+lastRendererOptions
 _TtCC8NewsFeed33FeedItemRendererPipelineProcessorP33_D1D725D6BA23D5C832E553645D2883FA7Context
 imageRequestOptions
 prewarmedRequestCount
@@ -6142,6 +6393,7 @@ group-tag-subscription-origin-
 group-tag-subscription-type-
 group-tag-subscription-notifications-
 auto-favorite-tag
+group-tag-hide-accessory-text
 group-tag-type-local
 group-tag-type-channel
 group-tag-type-topic
@@ -6188,7 +6440,6 @@ formatLayoutViewRenderer
 webEmbedViewRenderer
 audioTrackViewRenderer
 audioDailyBriefingViewRenderer
-bannerAdViewManager
 hiddenContentPlacardViewRenderer
 formatRegistrationIdentifiers
 _TtC8NewsFeed26FeedTopicClusteringService
@@ -6233,6 +6484,7 @@ integrator
 bannerRequestManager
 nativeAdManager
 layoutEnvironmentProvider
+screenfulsToPrefetch
 _TtC8NewsFeed32FormatBehaviorVisibilityRenderer
 sessionEvaluatedExpressions
 zipArchiveResourceID
@@ -6250,6 +6502,10 @@ NewsFeed/H18_V1.swift
 _TtC8NewsFeed31DebugFormatDeviceViewController
 _TtC8NewsFeed22AudioDurationFormatter
 Label for time left label on an audio track cell
+groupEntity
+groupPromise
+groupConfig
+com.apple.news.feed-database-group-queue
 NewsFeed/E12_V2.swift
 _TtC8NewsFeed37IssueCoverViewLayoutAttributesFactory
 NEFactoryAssembly
@@ -6282,6 +6538,10 @@ init(editor:groups:title:)
 NewsFeed/DebugFormatBindingViewController.swift
 _TtC8NewsFeed35AdPolicyViewportEnvironmentProvider
 NewsFeed/A18_V4.swift
+prepareBlock
+readAndFetchBlock
+saveBlock
+fetchNextGroupBlock
 NewsFeed/FeedLayoutSolver.swift
 untracked error 
 layoutCache
@@ -6303,7 +6563,6 @@ _TtC8NewsFeed20FeedItemRendererTool
 debugEnabled
 debugColors
 shineImageFactory
-tracker
 _TtC8NewsFeed25LayeredMediaLayerProvider
 traits
 Failed to create base layer for type
@@ -6362,6 +6621,9 @@ _TtC8NewsFeed27FeaturedIssueSupplementView
 headlinesHeader
 excerptLabel
 NewsFeed/FeaturedIssueSupplementView.swift
+_TtC8NewsFeed22DebugJournalHeaderView
+showHideLabel
+NewsFeed/DebugJournalHeaderView.swift
 NewsFeed/F12_V2.swift
 headlinesHeaderFrame
  text 
@@ -6372,6 +6634,11 @@ _TtC8NewsFeed20LikingCommandHandler
 readingHistory
 alertPresenter
 NewsFeed/LikingCommandHandler.swift
+https://devel.asset-server.news.apple.com
+https://test.asset-server.news.apple.com
+https://qa.asset-server.news.apple.com
+https://staging.asset-server.news.apple.com
+https://news-assets.apple.com
 content_environment
 Devel (iCloud 2)
 NewsFeed/GapView.swift
@@ -6386,10 +6653,13 @@ NewsFeed/C18_V9.swift
 _TtC8NewsFeed31FeedSuggestionClusteringService
 Suggestion headlines found %ld auto favorite tags
 Suggestion headlines filtered %ld tags
-Suggestion headlines filtered and ranked %ld tags
+Suggestion headlines filtered and sorted ranked %ld tags
 The title to stop suggesting a tag to be followed
 newsfeed.suggestions.ignore
 NewsFeed/A8_V13.swift
+_TtC8NewsFeed25DebugJournalTableViewCell
+stripView
+NewsFeed/DebugJournalTableViewCell.swift
 _TtC8NewsFeed18StubImageProcessor
 $s8NewsFeed22LayeredMediaParserTypeP
 So8NSStringC
@@ -6399,7 +6669,6 @@ $ss9OptionSetP
 $ss21_ObjectiveCBridgeableP
 ytIegn_
 Ieg_
-_pIegg_
 SayytG
 _pIeggzo_
 yxGSgXw
@@ -6424,26 +6693,23 @@ _p11groupLayout_
 19contentSizeCategoryt
 14viewportHeight_AA08requiredB0t
 $ss12CaseIterableP
+_pIeggrzo_
+GSay
+_pIegggrzo_
 $s8NewsFeed17FormatServiceTypeP
 So14FCAssetManagerC
 So14FCCloudContextC
 So24FCSubscriptionControllerC
 SbSg
-ShySSG
-SDySSSo14FCTagProviding_pG
-yAB_SaySo13FCAssetHandleCGtG
-_pIeggozo_
 SDySS
 SgGG
 SDySS
 SgGG
-GABSaySo19FCHeadlineProviding_pGSDySSSo05FCTagB0_pGSaySo13FCAssetHandleCG
-_pIegggggggrzo_
+GABSaySo19FCHeadlineProviding_pGSDySSSo05FCTagB0_pG
+_pIeggggggrzo_
 Gz_Xx
 SaySo19FCHeadlineProviding_pG
 SaySo19FCHeadlineProviding_pGAB
-_pIeggozo_
-yAAG
 _pIeggozo_
 ySay
 _pIeggozo_
@@ -6490,6 +6756,10 @@ $s8NewsFeed24GroupLayoutInventoryTypeP
 SgXw
 SgXwz_Xx
 $s8NewsFeed26FormatMicaNodeRendererTypeP
+SgXw
+SgXw
+SgXwz_Xx
+SgXwz_Xx
 Iegy_
 _pSg5valuet
 yXlSg
@@ -6543,6 +6813,10 @@ $s8NewsFeed22GroupLayoutFactoryTypeP
 $s8NewsFeed27BoundGroupLayoutFactoryTypeP
 $s8NewsFeed018FormatTypeProviderD0P
 $s13TeaFoundation17StateMachineEventP
+yxGG
+8FeedPool
+_0A5Group
+4Kind
 So15UITableViewCellC
 yytG
 SSIegn_
@@ -6552,8 +6826,7 @@ yx_GG
 yx_G
 yxGx_
 y8FeedPool
-_0A5Group
-yAdEQzSgGAMXEtc
+QzSgGAJXEtc
 SDySSSo17TSAssetHandleType_pG
 yytG
 So6UIViewCSgXw
@@ -6571,6 +6844,11 @@ SgXwz_Xx
 SgXw
 SgXwz_Xx
 Iegy_Sg
+ySSG
+SgGG
+ySSSgG
+$s8NewsFeed0B26DatabaseGroupProcessorTypeP
+9FeedGroup
 _pIegygozo_
 $s8NewsFeed20FollowingManagerTypeP
 So25TSNotificationManagerType_pSg
@@ -6593,6 +6871,39 @@ Si10statusCode_SSSg7message
 SiSg
 SaySSGSg
 SDyS2SGSg
+yxq_q0_G
+G1R0_
+G2R0_
+y17FeedServiceConfig
+yxq_q0_GAE
+_pIegggozo_
+G1R1_
+G2R1_
+17FeedServiceConfig
+$s8NewsFeed0B11ManagerTypeP
+17FeedServiceConfig
+17FeedServiceConfig
+_0a7ContentC0
+0aC0
+0aB7Context
+18FeedServiceContext
+17FeedServiceConfig
+Qy0_
+y17FeedServiceConfig
+QzGGSgG
+yxq_q0_G
+y17FeedServiceConfig
+QzGAA_pIegggozo_
+y17FeedServiceConfig
+yxq_q0_G
+yADGG
+_pIegggozo_
+y17FeedServiceConfig
+yxq_q0_G
+yADGG
+_pIegggozo_
+y17FeedServiceConfig
+$s8NewsFeed0B11ServiceTypeP
 So8NSObject_p
 Iegn_
 $s8NewsFeed26FormatViewNodeRendererTypeP
@@ -6617,6 +6928,10 @@ _0A5Group
 ShySiG
 SS10identifier_t
 yxG_
+So20FCBundleSubscriptionCIegn_
+So20FCBundleSubscriptionCIegg_
+So20FCBundleSubscriptionC
+SaySsG
 $s8NewsFeed0B24LayoutContextFactoryTypeP
 $s8NewsFeed24AudioTrackViewStylerTypeP
 So18NSAttributedStringC
@@ -6626,6 +6941,26 @@ So18NSAttributedStringCIegr_
 ySSG
 So13WFTemperatureC
 $s8NewsFeed19DebugInspectionDataP
+So10WFLocationC
+_pIegnggozo_
+$s8NewsFeed0B18WeatherServiceTypeP
+So26NEWeatherServiceConnectionCSg
+ySdG
+_So10WFLocationCt
+So19WFWeatherConditionsC
+_pIegggrzo_
+So19WFWeatherConditionsCIegn_
+So19WFWeatherConditionsCIegg_
+So19WFWeatherConditionsCSg
+_pSgIegng_
+So10WFLocationC
+_ABtG
+_pIeggozo_
+So10WFLocationCIegn_
+So10WFLocationCIegg_
+So10WFLocationCSg
+_pSgIegng_
+SS_SSt
 $s8NewsFeed30LayeredMediaVariantFactoryTypeP
 ySdGSg
 ySiGSg
@@ -6671,7 +7006,6 @@ yxGG
 So7FCIssueC
 y17FeedServiceConfig
 17FeedServiceConfig
-$s8NewsFeed0B11ServiceTypeP
 17FeedServiceConfig
 y17FeedServiceConfig
 QzGG
@@ -6682,6 +7016,10 @@ _0A4Pool
 QZG_
 yAaBQzGt
 y17FeedServiceConfig
+G0R2_
+y17FeedServiceConfig
+yADGG
+_pIegggozo_
 17FeedServiceConfig
 _0A4Pool
 0A5Group
@@ -6697,7 +7035,6 @@ Qz_GGSay
 yADGGAG_pIegggozo_
 y17FeedServiceConfig
 Qz_GGG
-G0R2_
 y17FeedServiceConfig
 Qz_GGSay
 yAF6values_AH6errorstGAG_pIeggggozo_
@@ -6706,6 +7043,7 @@ yxGG
 _So6UIViewCXcSg
 SaySfG
 yxGG
+yxG7trackert
 yxG6cursor_x13serviceConfig
 8strategy
 7triggert
@@ -6717,7 +7055,6 @@ SDySSSay
 _pSiAA_pSbIegynynd_
 ySo18NSAttributedStringCG
 5width_AA6heightt
-So20FCBundleSubscriptionC
 $s8NewsFeed0B19NativeAdManagerTypeP
 yXlSgXw
 SgXw
@@ -6771,6 +7108,8 @@ So6UIViewCm
 SSGG
 ShySiG11itemIndexes_t
 So30UIGraphicsImageRendererContextCIgg_
+GIegg_
+_pIegggzo_
 SaySiG
 So19FCCoreConfiguration_p
 SDySSSo8NSNumberCG
@@ -6802,6 +7141,7 @@ SDySS
 5matcht
 5matcht
 Sg5valuet
+4type_t
 SS11description_t
 _p5error_t
 So15UIBarButtonItemCSg
@@ -6842,6 +7182,76 @@ SDySSSo10FCResourceCGIegg_
 $s8NewsFeed14FormatBindableP
 $s8NewsFeed23FormatLayoutContextTypeP
 $s8NewsFeed0B8ItemTypeP
+y17FeedServiceConfig
+yxq_G
+yADG
+_pIegggozo_
+17FeedServiceConfig
+_0a7ContentC0
+0aC0
+0aB7Context
+y17FeedServiceConfig
+y17FeedServiceConfig
+yxq_G
+yADGG
+_pIegggozo_
+y17FeedServiceConfig
+y17FeedServiceConfig
+yxq_G
+yytG
+_pIegggozo_
+yxq_G
+y17FeedServiceConfig
+y17FeedServiceConfig
+yxq_G
+_pIegggzo_
+$s8NewsFeed0B12DatabaseTypeP
+17FeedServiceConfig
+17FeedServiceConfig
+_0A4Pool
+0A5Group
+9FeedGroup
+y17FeedServiceConfig
+QzGGSg
+y17FeedServiceConfig
+QzGSgG
+y17FeedServiceConfig
+yxq_G
+yxq_GSgXw
+yxq_GSgXwz_x_q_
+R_Se17FeedServiceConfig
+RpzSEAHRQSe0A5Group
+Rp_SEAKRQAfG_0A4Pool
+QZAKRSr0_lXX
+G1R3_
+y17FeedServiceConfig
+QzGAE
+_pIeggozo_
+y17FeedServiceConfig
+G1R2_
+y17FeedServiceConfig
+yADG
+_pIegnozo_
+y17FeedServiceConfig
+yxq_G
+yAEG
+_pIegggozo_
+y17FeedServiceConfig
+yAEG
+_pIeggozo_
+G0R4_
+G1R4_
+17FeedServiceConfig
+_pIeggrzo_
+y17FeedServiceConfig
+QzGG
+9FeedGroup
+_pIeggrzo_
+y17FeedServiceConfig
+_pIeggozo_
+y17FeedServiceConfig
+yxq_GAE
+_pIegggozo_
 $sST
 $sSl
 $s8NewsFeed19FormatNodeStyleTypeP
@@ -6874,8 +7284,6 @@ $s8NewsFeed0B18GroupRepresentableP
 $s8NewsFeed23FormatImageRendererTypeP
 SgXw
 SgXw
-SgXw
-SgXwz_Xx
 SgXwz_Xx
 SgXwz_Xx
 Iegn_
@@ -6890,8 +7298,14 @@ ySSG
 ySbG
 z_Xx
 _pIegngzo_
+_pIegggozo_
 ytSg
 _pIegngdzo_
+$s8NewsFeed31DebugInspectHeadlineServiceTypeP
+SDySSSo34FCFeedPersonalizedItemScoreProfileCG
+SaySo19FCHeadlineProviding_pG
+ySay
+_pIeggozo_
 So12UIScrollViewC
 6actual_Shy
 G8expectedt
@@ -6900,6 +7314,9 @@ SS4type_t
 Si6actual_Si8expectedSSSg4slott
 SaySo7UIColorCG
 So15FCTagControllerC
+ShySSG
+_pIegg_
+SaySo14FCTagProviding_pGIegg_
 So12SVImageLayerC
 So13SVPlayerLayerC
 _pIeggzo_
@@ -6915,13 +7332,12 @@ SDySS
 ySbG
 ySiG
 ySSG
-So13FCAssetHandleC
 7ElementSTQz
 SaySSG
-ySaySo13FCAssetHandleCGG
 ySo14FCTagProviding_pGSg
 ySo14FCSubscriptionCGSg
 ySaySo14FCTagProviding_pGG
+So14FCSubscriptionC
 GSay
 _pIeggozo_
 _pIeggozo_
@@ -6937,11 +7353,11 @@ $s8NewsFeed29InternalErrorViewRendererTypeP
 $s8NewsFeed31FormatStateViewNodeRendererTypeP
 SgXw
 SSIeggg_
+ySiG
+ySbG
 $s8NewsFeed17FontBookProvidingP
 $s8NewsFeed23FeatureAvailabilityTypeP
 $s8NewsFeed22FormatMicaRendererTypeP
-SgXw
-SgXwz_Xx
 Iegg_
 $s8NewsFeed0B30ItemLayoutAttributesDebuggableP
 So9UIControlC
@@ -7016,7 +7432,6 @@ _0A4Pool
 yx_G17FeedServiceConfig
 _0A4Pool
 yx_G
-G0R4_
 $s8NewsFeed51HiddenContentPlacardViewLayoutAttributesFactoryTypeP
 yxGGSgG
 yxGG
@@ -7025,7 +7440,6 @@ yx_GSg
 yx_G
 xIegn_
 yAB_GIegnr_
-G1R1_
 yxq_G
 _pIegngzo_
 yxGG
@@ -7066,6 +7480,10 @@ Iegy_
 So21UISplitViewControllerC
 SgXw
 So14FCSubscriptionCSg
+yxGAA_pIeggozo_
+_pIegggrzo_
+yABG
+_pIegggozo_
 yxGG
 yxGG
 $s8NewsFeed24CoverIssueViewStylerTypeP
@@ -7077,7 +7495,6 @@ ySSG
 ySay
 ySbG
 ySaySSGG
-SaySsG
 Iegn_
 5light_AA4darkt
 $s8NewsFeed32FeaturedHeadlineViewRendererTypeP
@@ -7098,6 +7515,12 @@ $s8NewsFeed0B18NativeAdInsertableP
 5Model
 5Model
 yxq_G
+yxq_GSgXw
+yxq_GSgXwz_x_q_
+R_10Descriptor
+Qy_AF
+5ModelAIRpz
+AMRQAlGQy_AMRSr0_lXX
 So13FCReadingListC
 So31FCBundleSubscriptionManagerType_p
 So23FCPaidAccessCheckerType_p
@@ -7129,11 +7552,11 @@ RbzlXX
 GSgXw
 yxGSgXwz_
 _ADRbzlXX
+$s8NewsFeed0B16GroupEmitterTypeP
 $s8NewsFeed0B15GroupDebuggableP
 $s8NewsFeed17FormatBindingTypeP
 SgXw
 So7UIColorC15backgroundColor_t
-$s8NewsFeed0B16GroupEmitterTypeP
 17FeedServiceConfig
 _pyc
 17FeedContentConfig
@@ -7141,6 +7564,7 @@ _0aC0
 0a5GroupC0
 QZyc
 SdSgyc
+Sgyc
 yypSgGAAy8FeedPool
 QzSgG_
 yxGG
@@ -7193,6 +7617,7 @@ SaySdGSg
 SaySo12NTPBFeedItemCG
 So10NSMapTableCySo12NTPBFeedItemCSo018FCFeedPersonalizedD12ScoreProfileCG
 SDySSSo13FCFeedContextCG
+SaySSGAAc
 yxq_G
 yq_G
 yxq_G
@@ -7207,6 +7632,7 @@ _Sd23totalTimeInMillisecondst
 SDySS
 $s8NewsFeed19IssueViewStylerTypeP
 SgSg
+$s8NewsFeed0B18ItemPrefetcherTypeP
 $s8NewsFeed0B15GroupDescribingP
 $s8NewsFeed27FormatImageNodeRendererTypeP
 $s8NewsFeed35FeaturedIssueHeadlineViewStylerTypeP
@@ -7225,9 +7651,14 @@ SiAASbIegynynd_
 SiAASbIegynynd_
 12cornerRadius_
 14roundedCornerst
+10percentage_t
 So25FCHeadlineClusteringRulesC
 $s8NewsFeed30ArticleThumbnailViewStylerTypeP
 yxGG
+_pIegggzo_
+yxGSgXw
+yxGSgXwz_x_
+RzlXX
 GSay
 AC_pIegggrzo_
 SgAD
@@ -7258,6 +7689,8 @@ yx_GSg
 SayxG
 Sbq__q_tc
 So7CALayerCSg
+ytIegnr_
+Iegy_
 So18NSAttributedStringCSg_Say
 G4altst
 yx_G
@@ -7294,7 +7727,7 @@ Iegn_
 SS_SS12expectedTypet
 SS4file_
 _p5errort
-$s8NewsFeed26FormatPrefetchableResourceP
+Iegno_
 $s8NewsFeed33WebEmbedConfigurationProviderTypeP
 _pSg
 SDySSSo19FCHeadlineProviding_pG
@@ -7303,6 +7736,11 @@ SDySSSo14FCTagProviding_pG
 SDySS
 $s8NewsFeed0B9GroupTypeP
 4Kind
+4Kind
+_8RawValueSYQZ
+y17FeedServiceConfig
+SDySS
+yxGG
 So25NSMutableAttributedStringC
 ypSg
 GIgnyy_
@@ -7317,7 +7755,6 @@ _pIegggozo_
 $s8NewsFeed24GapOfflineViewStylerTypeP
 SDySS
 SSIegyo_
-$s8NewsFeed18FormatPrefetchableP
 $s8NewsFeed21IssueViewRendererTypeP
 SgXw
 SgXwz_Xx
@@ -7364,6 +7801,8 @@ y17FeedServiceConfig
 QzGAD
 yxq__G
 _pIeggngzo_
+yxq__G
+y17FeedServiceConfig
 y17FeedServiceConfig
 yxq__G
 _pIegggzo_
@@ -7389,6 +7828,7 @@ Say8FeedPool
 _0A5Group
 QZG_
 yxGt
+ySaySo13FCAssetHandleCGG
 So13NSURLResponseCSg
 $s8NewsFeed14FormatNodeTypeP
 So27TSProcessedImageRequestType_p
@@ -7425,8 +7865,7 @@ ySo18NSAttributedStringCG_
 G19auxViewRequirementst
 $s8NewsFeed19FontBookFactoryTypeP
 _pIegozo_
-GIegn_
-GIegg_
+SaySo19FCHeadlineProviding_pGIegg_
 So19FCCoreConfiguration_p
 ySDySo13FCArticleListCSaySo19FCHeadlineProviding_pGGG
 _pIegggozo_
@@ -7439,7 +7878,6 @@ ySaySo12NTPBFeedItemCGG
 _pIegggozo_
 $s8NewsFeed19HeadlineServiceTypeP
 So26FCCoreConfigurationManager_p
-SaySo19FCHeadlineProviding_pGIegg_
 SaySo12NTPBFeedItemCGIegn_
 SaySo12NTPBFeedItemCGIegg_
 SaySo13FCFeedRequestCG
@@ -7469,13 +7907,22 @@ SDySS
 yypSgGG
 y8FeedPool
 QzSgG
-17FeedContentConfig
-_0a5KnobsC0
-0a5GroupD0
 yxGSg
-y8FeedPool
-_0A5Group
 yxGSgXw
+yx_xG
+yxGGG
+yxGGSSKc
+yqd__G
+yqd__G
+yxGSg
+G0G0R0__
+yxGGIegg_
+_pIeggzo_
+yxGG
+_pIeggozo_
+yxGGIego_
+yxGAB
+_pIeggozo_
 $s8NewsFeed24WebEmbedViewRendererTypeP
 Sg_ADtG
 SgAC
@@ -7485,8 +7932,8 @@ $s8NewsFeed14TagServiceTypeP
 So16FCSubscribedTagsCIegn_
 So16FCSubscribedTagsCIegg_
 SaySo14FCTagProviding_pGIegn_
-SaySo14FCTagProviding_pGIegg_
 SDySS
+yxGG
 ySbG
 $s8NewsFeed47ArticleThumbnailViewLayoutAttributesFactoryTypeP
 $s11TeaTemplate16EmbedFactoryTypeP
@@ -7495,8 +7942,6 @@ ySo12SVImageLayerCG_AC05imageB0
 ySo13SVPlayerLayerCG_AC06playerB0
 5modelt
 $s8NewsFeed0B24ServiceConfigFetcherTypeP
-17FeedServiceConfig
-18FeedServiceContext
 SSSgyc
 yq_Gxc
 $s8NewsFeed34PublisherLogoImageRequestProvidingP
@@ -7540,6 +7985,7 @@ _pIeggooozo_
 So20FCClusteredHeadlinesCIegn_
 So21FCTranslationProvider_pSgIegn_
 So21FCTranslationProvider_pSgIegg_
+$s8NewsFeed26FormatPrefetchableResourceP
 $s8NewsFeed25DebugFormatCodeLoaderTypeP
 $s8NewsFeed24NotificationPrompterTypeP
 Iegn_
@@ -7571,13 +8017,11 @@ $s8NewsFeed0B17ItemRepresentableP
 $s8NewsFeed0B10ConfigTypeP
 15FeedGroupConfig
 18FeedServiceContext
-So14FCSubscriptionC
 $s8NewsFeed17GapViewStylerTypeP
 $s8NewsFeed27FormatImageRequestProvidingP
 $s8NewsFeed0B14ItemDebuggableP
 yxq_q0_q1_G
 yxq_q0_q1_G
-G2R1_
 G3R1_
 _pSgXw
 $s8NewsFeed17FormatVersionableP
@@ -7588,6 +8032,7 @@ yxG_SaySSG9selectorst
 Si4slot_Say
 yxGG8emitterst
 _p5valuet
+yxG_Si5indexSi14positionOffsett
 $s8NewsFeed0B26GroupNativeAdTransformableP
 SaySo8UIActionCGycSg
 SaySo8UIActionCGIegr_
@@ -7595,6 +8040,11 @@ SaySo8UIActionCGIego_
 SaySo8UIActionCG
 So8UIActionC
 _pSo18NSAttributedStringCIegno_
+y8FeedPool
+_0A5Group
+y8FeedPool
+_0A5Group
+_pIegozo_
 $s8NewsFeed41IssueCoverViewLayoutAttributesFactoryTypeP
 $s8NewsFeed0B23GroupEmitterFactoryTypeP
 17FeedServiceConfig
@@ -7604,6 +8054,15 @@ So18UIVisualEffectViewC
 Iegn_
 ySo13FCAssetHandleCGSg
 SDySS
+y17FeedContentConfig
+_0aC0
+0A14ServiceContext
+yxGG17FeedContentConfig
+_0aC0
+0A14ServiceContext
+yxGc
+yxGG
+yxGc
 8itemNode_t
 11snippetNode_t
 SS10identifier_SS4typet
@@ -7652,6 +8111,7 @@ yx__G
 14offsetLocation_Si0A0t
 _p6layout_
 _p5errortG
+So13FCAssetHandleC
 $sSY
 $s8NewsFeed21ColorPaletteProvidingP
 SgXw
@@ -7683,7 +8143,15 @@ yxGGyc
 yxGGSgyc
 Si11requirement_Si5countt
 $s8NewsFeed28PremiumBadgeRequestProvidingP
+y17FeedServiceConfig
+So20FCBundleSubscriptionC
+yxq_G
+y17FeedServiceConfig
+QzGG
+_pIegggozo_
 $s8NewsFeed0B17CursorFactoryTypeP
+So023UITableViewHeaderFooterB0C
+$s8NewsFeed18FormatPrefetchableP
 So16FCReadingHistoryC
 $s8NewsFeed23FormatCompilerScopeTypeP
 $s8NewsFeed23FormatShineRendererTypeP
@@ -7811,12 +8279,6 @@ subscriptionController
 $__lazy_storage_$_ignoreCache
 $__lazy_storage_$_loadPackagesFromDebugServerDropbox
 fileCache
-cachePolicy
-filterOptions
-otherArticleIDs
-softMaxAge
-default
-cachedOnly
 lhsExpression
 rhsExpression
 frame
@@ -7830,6 +8292,7 @@ emitterCursor
 slots
 gapPromise
 _state
+priority
 output
 ruleOutputs
 durationInMilliseconds
@@ -7866,6 +8329,7 @@ featureAvailability
 micaRenderer
 seenOnce
 seenOnceSinceRefresh
+seenOnceOnScreen
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -7926,6 +8390,7 @@ audioMultiplierForTrialUsers
 audioMultiplierForPaidUsers
 headlineSeenPenalty
 articleReadPenalty
+sparseTagsPenalty
 conversionCoefficientForFreeUsers
 conversionCoefficientForTrialUsers
 conversionCoefficientForPaidUsers
@@ -8034,6 +8499,9 @@ context
 feedIssues
 frame
 coverIssueLayoutAttributes
+softMaxAge
+default
+cachedOnly
 default
 cachedOnly
 preferCached
@@ -8191,6 +8659,7 @@ evergreenMultiplier
 featuredMultiplier
 seenPenalty
 readPenalty
+sparseTagsPenalty
 filename
 data
 contentType
@@ -8259,6 +8728,12 @@ refresh
 autoRefresh
 reset
 State
+publishDate
+groupEntries
+identifier
+cursorIdentifier
+kind
+repooling
 mask
 blend
 filter
@@ -8415,7 +8890,7 @@ logoCache
 rendererTool
 traitCollection
 layoutAttributes
-thumbnailFallbackAssetHandle
+$__lazy_storage_$_thumbnailFallbackAssetHandle
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -8424,6 +8899,24 @@ context
 feedHeadlines
 frame
 headlineLayoutAttributes
+_createdDate
+_publishDate
+_cursorId
+_groupData
+_poolData
+_configData
+_kind
+_repooling
+_tagID
+createdDate
+publishDate
+cursorId
+groupData
+poolData
+configData
+kind
+repooling
+tagID
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -8522,6 +9015,13 @@ width
 height
 textLines
 RawValue
+feed
+database
+service
+serviceConfigFetcher
+preparedReadAndFetchTime
+_preparedReadAndFetchPromise
+FeedServiceConfig
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -8559,6 +9059,12 @@ RawValue
 command
 inline
 observer
+_groupId
+_cursorId
+_createdDate
+groupId
+cursorId
+createdDate
 identifier
 size
 adjustments
@@ -8583,6 +9089,8 @@ bottomRight
 RawValue
 imageRenderer
 micaRenderer
+latitude
+longitude
 option
 RawValue
 fetchResults
@@ -8639,6 +9147,7 @@ article
 overrides
 title
 featureName
+weatherService
 absolute
 asset
 binding
@@ -8687,6 +9196,7 @@ context
 feedHeadlines
 frame
 headlineLayoutAttributes
+location
 conditionCode
 partOfDay
 temperature
@@ -8704,6 +9214,14 @@ RawValue
 title
 items
 sections
+$__lazy_storage_$_serviceConnection
+_requestTimeout
+missingComponent
+mismatchedComponentType
+requestTimedOut
+missingOrInvalidConditionCode
+invalidRequest
+unknown
 assetHandleFactory
 name
 size
@@ -8830,6 +9348,14 @@ durationInMilliseconds
 title
 footer
 items
+descriptor
+candidateScoredItems
+group
+layout
+layoutInventory
+result
+requirements
+RawValue
 actions
 title
 follow
@@ -8884,6 +9410,7 @@ selector
 manual
 auto
 topOfFeed
+cached
 cursor
 refresh
 expand
@@ -9008,9 +9535,12 @@ nativeAdService
 observers
 lock
 fetchingSectionIdentifiers
-isFetching
+state
 observer
 keepAliveObject
+ready
+fetching
+finished
 duplicateRequests
 entries
 unspecifed
@@ -9341,6 +9871,7 @@ sections
 feedItemImages
 layoutImages
 featureAvailability
+headlineService
 layoutAttributes
 stateMaskLayoutAttributes
 zIndex
@@ -9373,6 +9904,15 @@ rule
 json
 feedItem
 selector
+unknownCursorKind
+cursorShouldNotBeCached
+noCursor
+noGroups
+noCursorGroup
+groupIgnoreCaching
+databaseAbandoned
+databaseDisabled
+contextDisallowedReadingRootCursor
 image
 assetHandleProvider
 command
@@ -9506,6 +10046,7 @@ minNewsVersion
 maxNewsVersion
 allowedSegmentSetIds
 blockedSegmentSetIds
+priority
 data
 RawValue
 identifier
@@ -9632,9 +10173,11 @@ requirement
 feedItem
 layoutFactory
 json
+loadingItem
 valid
 invalid
 unsupported
+candidateScoredItem
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -9747,6 +10290,9 @@ identifier
 indexFileURL
 dataURL
 headline
+cachePolicy
+filterOptions
+otherArticleIDs
 cloudContext
 missingResource
 fetchFailed
@@ -9814,6 +10360,14 @@ gradient
 blendMode
 RawValue
 bezelLayer
+feed
+feedCursorFactory
+feedGroupProcessor
+database
+referenceService
+$__lazy_storage_$_lazyStore
+_lastSnapshot
+FeedServiceConfig
 string
 boolean
 AllCases
@@ -9836,6 +10390,7 @@ frame
 coverIssueLayoutAttributes
 contentView
 metricsView
+privacyMarker
 privacyMarkerPosition
 view
 text
@@ -10072,6 +10627,7 @@ cloudContext
 sceneProvider
 featureAvailability
 CommandContext
+headlineService
 contentView
 columnDebugView
 notBound
@@ -10098,6 +10654,12 @@ inventory
 device
 measurements
 colors
+_seenDate
+_kind
+_tagID
+seenDate
+kind
+tagID
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -10226,7 +10788,6 @@ iAdKeywords
 themes
 subgroups
 options
-fontAssetHandles
 _tag
 _subscription
 _equivalentTopics
@@ -10342,6 +10903,28 @@ videoVariants
 stillImageVariants
 rendererTool
 commandCenter
+_createdDate
+_publishDate
+_parentCursorId
+_nextCursorId
+_rootCursorId
+_serviceConfigData
+_serviceConfigPoolData
+_skippedSlotCount
+_slotAdjustment
+_reachedEnd
+_kind
+createdDate
+publishDate
+parentCursorId
+nextCursorId
+rootCursorId
+serviceConfigData
+serviceConfigPoolData
+skippedSlotCount
+slotAdjustment
+reachedEnd
+kind
 frame
 mediaViewFrame
 mediaViewRoundedCorners
@@ -10594,6 +11177,8 @@ fetchDeduper
 cachePolicy
 identifier
 FeedServiceConfig
+startDate
+endDate
 left
 right
 backgroundColor
@@ -10735,7 +11320,7 @@ output
 durationInMilliseconds
 next
 last
-unfrozen
+dropped
 skip
 none
 groupLayoutPriority
@@ -11024,6 +11609,8 @@ blueprintProvider
 policyValidator
 layoutCollectionProvider
 journal
+dedupForQueue
+updateQueue
 readingList
 bundleSubscriptionManager
 paidAccessChecker
@@ -11097,6 +11684,8 @@ inspector
 commandCenter
 featureAvailability
 tableView
+headineService
+activityIndicatorView
 lhsExpression
 rhsExpression
 groups
@@ -11151,6 +11740,7 @@ RawValue
 archive
 userInterface
 RawValue
+percentage
 inventory
 config
 lazyContextLayoutOptions
@@ -11205,6 +11795,9 @@ presentationDelegateProvider
 thumbnailImageCache
 publisherLogoImageCache
 rendererTool
+feed
+group
+FeedServiceConfig
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -11278,15 +11871,19 @@ featuredCoverIssueLayoutAttributes
 featuredSupplementaryDetailLayoutAttributes
 headlineLayoutAttributes
 separatorFrames
+normal
 identifierBlock
 shortDescriptionBlock
 groupConfigBlock
 fastTimeoutBlock
+priorityBlock
+repoolingBlock
 nameBlock
 initialCursorBlock
 emitRulesBlock
 shouldPrewarmBlock
 emitNextGroupBlock
+RawValue
 FeedServiceConfig
 base
 layers
@@ -11419,6 +12016,8 @@ feedItems
 feedItemScoreProfiles
 feedContextByFeedID
 ignoreTagIDs
+tagIDSorter
+nativeAdManager
 nativeAdInsertion
 feedContext
 policyValidator
@@ -11574,6 +12173,7 @@ parallax
 motion
 continuous
 amplitude
+bannerAdViewManager
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -11736,6 +12336,8 @@ aspect
 type
 data
 RawValue
+onceOnScreen
+oncePerRefreshOnScreen
 once
 oncePerRefresh
 always
@@ -11778,11 +12380,13 @@ RawValue
 cursor
 snapshot
 journalSections
+unfilteredJournalSections
 tableView
 userEnteredIdentifier
 cloudContext
 commandCenter
-stripView
+stateManager
+toolbarLabel
 data
 $__lazy_storage_$_inspection
 cloudContext
@@ -11846,7 +12450,6 @@ origin
 boundingSize
 viewportSize
 contentSizeCategory
-userInterfaceStyle
 cases
 default
 values
@@ -11889,6 +12492,8 @@ contentOptions
 contentGroupOptions
 contentFrame
 bezelView
+mediaTiming
+onScreenClosure
 packageLayer
 packageSize
 expression
@@ -12037,9 +12642,15 @@ onStateChangeBlock
 offlineProvider
 offline
 online
+cursor
+group
+groupTracker
+groupItem
 integer
 float
 RawValue
+collapsed
+expanded
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -12081,6 +12692,8 @@ mica
 layoutAttributes
 asset
 mediaTiming
+remote
+binding
 font
 image
 rawValue
@@ -12133,6 +12746,15 @@ accessibilityRole
 onTap
 touchInsets
 tintColorForNormalState
+feed
+tracker
+manifest
+slotOffset
+referenceService
+cursorFactory
+seenContentOnly
+seenGroupIdentifiers
+groupProcessor
 value
 rounded
 radius
@@ -12143,6 +12765,10 @@ topRight
 bottomLeft
 bottomRight
 RawValue
+state
+serviceConfig
+cursorEntity
+groups
 identifier
 name
 description
@@ -12203,6 +12829,9 @@ active
 seen
 frozen
 endOfFeed
+cached
+repooled
+RawValue
 onTap
 titleLabel
 dismissalButton
@@ -12324,6 +12953,7 @@ publisherLogoImageCache
 rendererTool
 night
 RawValue
+cloudContext
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -12347,7 +12977,7 @@ value
 selectors
 next
 last
-unfrozen
+dropped
 skip
 none
 RawValue
@@ -12936,7 +13566,6 @@ article
 webEmbed
 audioTrack
 custom
-notImplemented
 RawValue
 presentingViewController
 presentationDelegateProvider
@@ -12991,20 +13620,22 @@ data
 blueprint
 layoutBlueprint
 layoutCollection
-adjacencyFactor
+adjacentDistance
 identifier
 modifiers
 identifier
 kind
 publishDate
+createdDate
 totalGroupCount
 openEmitters
 slottedEmitters
 emittedGroups
 skippedSlotCount
+slotOffset
+slotAdjustment
 emitterCursors
 feedPool
-feedGroupKnobs
 feedContext
 feedJournal
 cachePolicy
@@ -13012,6 +13643,12 @@ serviceConfig
 nextCursor
 tracker
 parentCursor
+container
+manifest
+lazyCursor
+block
+cursor
+asyncCursor
 rendererTool
 reuseProtector
 binding
@@ -13085,8 +13722,13 @@ feedHeadlines
 frame
 headlineLayoutAttributes
 seenIdentifiers
-seenDates
+seenGroups
 gapOnScreen
+lock
+identifier
+kind
+seenDate
+tagIdentifier
 frame
 zIndex
 borders
@@ -13136,6 +13778,7 @@ thumbnailImageCache
 publisherLogoImageCache
 formatImageCache
 rendererEnvironment
+lastRendererOptions
 imageRequestOptions
 prewarmedRequestCount
 isLiveResizing
@@ -13490,6 +14133,8 @@ integrator
 bannerRequestManager
 nativeAdManager
 layoutEnvironmentProvider
+rendererEnvironment
+screenfulsToPrefetch
 identifier
 value
 sessionEvaluatedExpressions
@@ -13504,6 +14149,7 @@ context
 cachePolicy
 kind
 currentDate
+tracker
 actionUrl
 article
 webArchiveResourceID
@@ -13518,6 +14164,9 @@ ArrayLiteralElement
 group
 slotEmitters
 openEmitters
+cursor
+asyncCursor
+loading
 minNewsVersion
 maxNewsVersion
 formatVersion
@@ -13557,6 +14206,9 @@ styler
 cachedTitleText
 cachedDismissalText
 block
+groupEntity
+groupPromise
+groupConfig
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -13791,6 +14443,11 @@ color
 edgeInsets
 cornerRadius
 RawValue
+prepareBlock
+readAndFetchBlock
+saveBlock
+fetchNextGroupBlock
+FeedServiceConfig
 missingItem
 missingSnippet
 missingVariable
@@ -13925,6 +14582,12 @@ title
 items
 color
 position
+descriptor
+cursor
+cursorDetails
+entry
+asyncCursor
+loading
 states
 layoutAttributes
 contextLayoutOptions
@@ -14144,6 +14807,7 @@ publisherLabel
 dateLabel
 premiumBadgeView
 debugButton
+showHideLabel
 groupLayoutPriority
 groupLayoutContentSizeCategory
 groupLayoutKey
@@ -14266,7 +14930,18 @@ context
 feedHeadlines
 frame
 headlineLayoutAttributes
+stripView
+activityIndicatorView
+@"
+NEWeatherServiceConnection
 NewsFeed
+init
+initWithStore:
+addClient:
+connection
+enqueueRequest:
+.cxx_destruct
+_connection
 isNaturallyRTL
 ne_isNaturallyRTL
 sendAction:
@@ -14574,6 +15249,7 @@ fetchImageForRequest:completion:
 fetchImageForRequest:expires:completion:
 fetchImageForRequest:
 setImage:forRequest:
+cancelAllRunningOperations
 whitelist
 sortItems:
 sortItems:options:
@@ -14705,6 +15381,90 @@ personalizationValueWithBaseline:decayRate:baselineClicksMultiplier:
 personalizationValueWithCorrelatedAggregate:baseline:decayRate:baselineClicksMultiplier:
 powerWithDecayFactor:
 relativePersonalizationValueWithCorrelatedAggregate:baseline:decayFactor:baselineClicksMultiplier:
+onboardingFeedIDs
+autoScrollToTopFeedTimeout
+interstitialAdLoadDelay
+prerollLoadingTimeout
+tileProminenceScoreBalanceValue
+iAdConfig
+prefetchConfig
+newFavoriteNotificationAlertsFrequency
+notificationArticleCacheTimeout
+notificationArticleWithRapidUpdatesCacheTimeout
+embedConfigurationAssetID
+universalLinksEnabled
+parsecPopulationFloor
+parsecPopulationCeiling
+widgetConfigID
+widgetMinimumArticleExposureDurationToBePreseenInMilliseconds
+widgetMinimumNumberOfTimesPreseenToBeSeen
+articleDiversificationSimilarityExpectationStart
+articleDiversificationSimilarityExpectationEnd
+articleDiversificationUniquePublisherExpectationSlope
+articleDiversificationUniquePublisherExpectationYIntercept
+analyticsEndpointMaxPayloadSize
+personalizationBundleIdMappingResourceId
+personalizationUrlMappingResourceId
+personalizationWhitelistResourceId
+personalizationFavorabilityResourceId
+corryBarMaxArticleCountForArticleList
+corryBarMaxArticleCountForSingleArticle
+corryBarHideDiscoverMoreInterstitialForNonOnboardedUsers
+exploreArticleID
+externalAnalyticsConfigurations
+mediaSharingBlacklistedChannelIDs
+stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
+autoRefreshMinimumInterval
+terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
+topStoriesPublishDates
+trendingStyle
+shareDiscoverMoreVideosInfo
+articleRecirculationComponentPlacementConfigJSON
+subscriptionsPlacardPublisherFrequencyInSeconds
+subscriptionsPlacardGlobalMaximumPerDay
+subscriptionsGracePeriodForTokenVerificationSeconds
+isExpired
+articleRecirculationPopularFeedQueryTimeRange
+disableThumbnailsForArticleRecirculation
+feedNavigationConfigJSON
+webEmbedContentBlockers
+webEmbedContentBlockerOverrides
+anfRenderingConfiguration
+enableBadgeInSpotlightTabBar
+translationMapResourceID
+issueArticleRecirculationConfigJSON
+isArticleToolbarCompressionEnabled
+lowStorageThreshold
+criticalStorageThreshold
+feedContentExposureTestMaximumInterval
+maximumTrendingGroupSizeiPad
+maximumTrendingGroupSizeiPhone
+likeDislikeBehavior
+bestOfBundleFeedGroupKind
+emailSignupRequiredAppLaunchCount
+newsletterSubscriptionStatusCacheTimeout
+newsletterSubscriptionType
+enableLocationBasedAutofavorites
+localAreasMappingResourceId
+tagFeedLayoutConfigurationResourceId
+userVectorWhitelistResourceId
+userVectorModelResourceId
+articleReadCountThreshold
+forYouGroupShouldPromoteAccessibleHeadline
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
+widgetContentPrefetchEnabled
+notificationEnableAssetPrefetching
+notificationAssetPrefetchingRequiresWatch
+userSegmentationInWidgetAllowed
+useNewSearchEndpoint
+searchConfigurationProfiles
 pruneImagesOlderThan:
 fetchImageForKey:
 cache:forKey:
@@ -14775,7 +15535,6 @@ insertSubview:belowSubview:
 contentOffset
 setClipsToBounds:
 dealloc
-init
 setDelegate:
 defaultCenter
 debugClearBehaviorVisibilityCache
@@ -14807,13 +15566,11 @@ assetHandle
 bannerImageForMask
 subscriptionForTagID:
 resourceID
-loadableFonts
 defaultCachePolicy
 cachePolicyWithSoftMaxAge:
 cachedOnlyCachePolicy
 transformationWithFilterOptions:configuration:context:otherArticleIDs:
 transformHeadlines:
-loadableFontWithName:url:
 assetHandleForURL:lifetimeHint:
 remoteURL
 initWithAssetHandle:
@@ -14827,7 +15584,6 @@ fetchedObject
 dataProvider
 data
 initWithCoder:
-.cxx_destruct
 setText:
 initForTextStyle:
 systemFontOfSize:
@@ -14899,6 +15655,7 @@ audioMultiplierForTrialUsers
 audioMultiplierForPaidUsers
 headlineSeenPenalty
 articleReadPenalty
+sparseTagsPenalty
 conversionCoefficientForFreeUsers
 conversionCoefficientForTrialUsers
 conversionCoefficientForPaidUsers
@@ -14914,6 +15671,7 @@ userCohort
 domain
 code
 localizedDescription
+valueForComponent:
 viewDidLoad
 initWithNavigationBarClass:toolbarClass:
 initWithRootViewController:
@@ -15139,6 +15897,7 @@ setCornerRadius:
 maskedCorners
 setMaskedCorners:
 setMasksToBounds:
+coordinate
 image
 stringFromDate:
 initWithString:attributes:
@@ -15156,6 +15915,10 @@ string
 celsius
 fahrenheit
 kelvin
+location
+isDay
+forecastRequestForLocation:completionHandler:
+initWithCoordinate:resultHandler:
 blackColor
 setShadowColor:
 setShadowOffset:
@@ -15284,6 +16047,7 @@ imageWithActions:
 drawInRect:withAttributes:
 setFill
 fillRect:
+reloadData
 _actionWithTitle:image:style:handler:shouldDismissHandler:
 subviews
 didMoveToSuperview
@@ -15301,7 +16065,6 @@ selectRowAtIndexPath:animated:scrollPosition:
 setModalPresentationStyle:
 setAllowsMultipleSelectionDuringEditing:
 setLeftBarButtonItems:
-reloadData
 representedElementKind
 indexPath
 sizeThatFits:
@@ -15351,10 +16114,14 @@ gutterView
 isHighlighted
 setHighlighted:
 clipsToBounds
+mapTableWithKeyOptions:valueOptions:
 setShowsVerticalScrollIndicator:
 setShowsHorizontalScrollIndicator:
 sublayers
-slowCachedTagsForIDs:
+fetchOperationForTagsWithIDs:
+setRelativePriority:
+setMaximumCachedAge:
+start
 setContentsGravity:
 setContentsScale:
 stillImageLayer
@@ -15457,6 +16224,7 @@ addMutedSubscriptionForTagID:eventInitiationLevel:
 removeSubscriptionForTagID:type:eventInitiationLevel:
 subscriptionController:didFindTagsWithNotificationSupport:
 subscriptionControllerDidResetToEmpty:
+initWithStartDate:endDate:
 setAllowedUnits:
 stringFromTimeInterval:
 setUnitsStyle:
@@ -15522,6 +16290,7 @@ setSearchResultsUpdater:
 setObscuresBackgroundDuringPresentation:
 setSearchController:
 updateSearchResultsForSearchController:selectingSearchSuggestion:
+loadableFonts
 collectionView:didEndDisplayingCell:forItemAtIndexPath:
 indexPathsForVisibleItems
 collectionView:shouldHighlightItemAtIndexPath:
@@ -15566,6 +16335,7 @@ removeArticleFromReadingList:
 doTapToRadar
 contextualActionWithStyle:title:handler:
 configurationWithActions:
+setColor:
 redColor
 setTableHeaderView:
 contentInset
@@ -15596,6 +16366,7 @@ coverImageAspectRatio
 layeredCoverAspectRatio
 coverImagePrimaryColor
 doScrollToUserEnteredSection
+doSettingsWithSender:
 scrollToRowAtIndexPath:atScrollPosition:animated:
 showViewController:sender:
 sharedSession
@@ -15633,6 +16404,7 @@ setRepeatDuration:
 setRepeatCount:
 setDuration:
 setFillMode:
+convertRect:fromCoordinateSpace:
 attributesAtIndex:effectiveRange:
 assetHandleForResourceID:contentContext:
 setSourceRect:
@@ -15663,8 +16435,8 @@ actionSheetUnfollow
 ts_handThumbsDownFillForHUD
 ts_handThumbsUpFillForHUD
 dataTaskWithURL:completionHandler:
-iAdConfig
 feedNumberofViewportsBetweenAds
+loadableFontWithName:url:
 initWithStoreFront:locale:contentSizeCategory:canvasSize:contentFrame:dataSources:location:sourceURL:
 insertSublayer:atIndex:
 setParagraphStyle:
@@ -15726,9 +16498,6 @@ copyItemAtURL:toURL:error:
 unarchive:toLocation:
 setAllowsSelection:
 initWithContext:articleIDs:ignoreCacheForArticleIDs:
-setRelativePriority:
-setArticleCachePolicy:
-setTagCachePolicy:
 setContext:
 setPersonalizer:
 setFeedContextByFeedID:
@@ -15752,6 +16521,7 @@ ignoreCacheCachePolicy
 setCachePolicyForArticleLists:
 cachePolicy
 setOverrideArticleCachePolicy:
+setArticleCachePolicy:
 maximumCachedAge
 setArticleMaximumCachedAge:
 fc_isUnknownItemError
@@ -15801,8 +16571,9 @@ maxUnpaidArticlesIPad
 maxPublisherOccurrencesIPad
 translationManager
 fetchTranslationProvider:
+maxClusterSizeIPad
 isRunningPPT
-rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:minClusterSizeiPhone:maxClusterSizeiPhone:minClusterSizeiPad:maxClusterSizeiPad:
+rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:minClusterSizeiPhone:maxClusterSizeiPhone:minClusterSizeiPad:maxClusterSizeiPad:todayFeedEnabled:
 supportsNotifications
 offlineReason
 setMaskView:
@@ -15813,13 +16584,11 @@ layoutAttributesForDecorationViewOfKind:withIndexPath:
 contentMode
 textAlignment
 subscriptions
-setColor:
 isSelected
 setSelected:
 isEnabled
 contextMenuInteraction:configurationForMenuAtLocation:
 configurationWithIdentifier:previewProvider:actionProvider:
-initWithStartDate:endDate:
 CGImage
 setContents:
 premiumBadgeMask
@@ -15837,9 +16606,11 @@ bannerImageForThemeBackground
 initWithName:actionHandler:
 currentItem
 asset
+initWithReuseIdentifier:
+prepareForReuse
 publicationDate
 likingStatusForArticleID:
-rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:
+rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:todayFeedEnabled:
 minIdealClusterSizeAutoFavorite
 maxIdealClusterSizeAutoFavorite
 maxPublisherOccurrences
@@ -15850,9 +16621,11 @@ formGroup:withMinClusterSize:maxClusterSize:maxPublisherOccurrences:maxUnpaidArt
 initWithID:publisherID:score:accessible:evergreen:
 subscriptionList
 autoFavoriteTagIDs
-B16@0:8
-v24@0:8@16
 @16@0:8
+v24@0:8@16
+v16@0:8
+@"WFServiceConnection"
+B16@0:8
 v48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16
 identifier
 itemId

@@ -9,6 +9,7 @@ Section
 ENDiagnosisReportType
 ENRegionConsent
 ENStatus
+ENConfigFetchReason
 CFBundle
 NCFBundleRef
 CFString
@@ -57,6 +58,7 @@ AuthorizationFooterView
 OnboardingRegionChangeSummaryViewController
 StandardOnboardingFlow
 AddRegionOnboardingFlow
+AnalyticsConsentOnboardingFlow
 SymptomOnset
 VerificationOnboardingFlow
 IconTextViewDelegate
@@ -65,7 +67,6 @@ IconTextView
 HealthExposureNotificationUI
 OnboardingInfoViewController
 OnboardingWelcomeViewController
-8@!`
 SelectionType
 RegionSelectionHeaderView
 OnboardingRegionSelectionViewController
@@ -280,8 +281,8 @@ v24@0:8@"UITableView"16
 v40@0:8@"UITableView"16@"UIContextMenuConfiguration"24@"<UIContextMenuInteractionCommitAnimating>"32
 v40@0:8@"UITableView"16@"UIContextMenuConfiguration"24@"<UIContextMenuInteractionAnimating>"32
 _TtP28HealthExposureNotificationUI17ExposureNotifying_
-v24@0:8q16
 v32@0:8@16@?24
+v44@0:8B16@20@28@?36
 v36@0:8B16@20@?28
 v56@0:8q16@24@32@40@?48
 v32@0:8@16q24
@@ -293,6 +294,7 @@ v28@0:8B16@?<v@?B>20
 v32@0:8@"ENRegion"16@?<v@?@"NSError">24
 v24@0:8@?<v@?@"ENExposureNotification">16
 v24@0:8@?<v@?@"NSArray">16
+v44@0:8B16@"ENRegion"20@"NSString"28@?<v@?@"NSError">36
 v32@0:8@"ENRegion"16@?<v@?B@"NSError">24
 v36@0:8B16@"ENRegion"20@?<v@?@"NSError">28
 v28@0:8B16@?<v@?@"NSError">20
@@ -346,6 +348,7 @@ init(title:detailText:icon:contentLayout:)
 _TtC28HealthExposureNotificationUI31OnboardingSummaryViewController
 @48@0:8@16@24@32q40
 CONTACT_TRACING_ONBOARDING_SUMMARY_PRIMARY_BUTTON_TITLE
+CONTACT_TRACING_ONBOARDING_SUMMARY_PRIMARY_BUTTON_TITLE_NEXT
 CONTACT_TRACING_ONBOARDING_SUMMARY_TITLE
 CONTACT_TRACING_ONBOARDING_SUMMARY_BODY
 app-exposure-notification
@@ -384,7 +387,8 @@ availableRegions
 dummyRegionCountryCode
 allRegions
 T@"NSArray",N,R
-@124@0:8@16@24@32@40@48@56@64B72q76@84@92@100@108@116
+v24@0:8q16
+@144@0:8@16@24@32@40@48@56@64@72B80q84@92B100q104@112@120@128@136
 region
 name
 appBundleId
@@ -392,9 +396,12 @@ introductoryText
 header
 legalese
 consentStatus
+consentVersion
 isAuthorized
 regionVersion
 regionWebsiteURL
+wantsAnalytics
+analyticsConsentStatus
 verificationIntroductoryText
 verificationCodeHelpURL
 verificationSymptomOnsetText
@@ -405,6 +412,8 @@ T@"_TtC28HealthExposureNotificationUI29ENUIPublicHealthLegalDocument",N,R,Vlegal
 T@"_TtC28HealthExposureNotificationUI21ENUIUserConsentStatus",N,R,VconsentStatus
 TB,N,R,VisAuthorized
 Tq,N,R,VregionVersion
+TB,N,R,VwantsAnalytics
+Tq,N,VanalyticsConsentStatus
 isSymptomOnsetNeeded
 TB,N,R
 isTravelStatusNeeded
@@ -432,15 +441,17 @@ checkmark.circle.fill
 CONTACT_TRACING_ONBOARDING_CANCEL_SETUP_TITLE
 CONTACT_TRACING_ONBOARDING_CANCEL_SETUP_INITIAL_BODY
 CONTACT_TRACING_ONBOARDING_CANCEL_SETUP_CONFIRM
+HealthExposureNotificationUI/ViewControllerFlows.swift
 _TtC28HealthExposureNotificationUI22StandardOnboardingFlow
 completionHandler
 currentSelectedRegion
 exposureManager
 isFromAvailabilityAlert
 _TtC28HealthExposureNotificationUI23AddRegionOnboardingFlow
+_TtC28HealthExposureNotificationUI30AnalyticsConsentOnboardingFlow
+nonNilAgencyModel
 _TtC28HealthExposureNotificationUI26VerificationOnboardingFlow
 sessionIdentifier
-nonNilAgencyModel
 symptomOnset
 v16@?0@"UIAlertAction"8
 CONTACT_TRACING_ONBOARDING_CANCEL_SETUP_CANCEL
@@ -458,13 +469,13 @@ CONTACT_TRACING_ONBOARDING_OPEN_APP_STORE_DETAIL_%@
 appstore.circle.fill
 CONTACT_TRACING_ONBOARDING_REGION_NA_TITLE
 CONTACT_TRACING_ONBOARDING_REGION_NA_DETAIL
-HealthExposureNotificationUI/ViewControllerFlows.swift
 Cannot fetch test metadata without a session identifier
 Fetch Test Metadata for session %@
 Unsupported report type
 ONBOARDING_CANCEL_VERIFICATION_TITLE
 ONBOARDING_CANCEL_VERIFICATION_MESSAGE
 ONBOARDING_CANCEL_VERIFICATION_CONFIRMATION_BUTTON_TITLE
+CONTACT_TRACING_ONBOARDING_ANALYTICS_TITLE
 CONTACT_TRACING_ONBOARDING_WELCOME_REGION_CHANGE_TITLE
 CONTACT_TRACING_ONBOARDING_WELCOME_REGION_CHANGE_SUBTITLE
 _TtC28HealthExposureNotificationUI16NumberedTextView
@@ -603,6 +614,7 @@ B16@0:8
 v20@0:8B16
 @?16@0:8
 v28@0:8B16@?20
+v36@0:8@16I24@?28
 isAvailabilityAlertsSwitchEnabled
 statusChangeHandler
 manager
@@ -724,6 +736,16 @@ HealthExposureNotificationUI/PublicHealthLogging.swift
 How do we not have a log category for 
 com.apple.HealthExposureNotificationUI
 District of Columbia
+Northern Ireland
+Andaman and Nicobar Islands
+Arunachal Pradesh
+Dadra and Nagar Haveli
+Himachal Pradesh
+Jammu and Kashmir
+Baja California Sur
+Ciudad de M
+xico
+San Luis Potos
 HealthExposureNotificationUI.VerificationTravelStatusViewController
 _TtC28HealthExposureNotificationUI38VerificationTravelStatusViewController
 hasTraveled
@@ -744,8 +766,8 @@ ENUIViewControllerFactory
 sharedInstance
 T@"ENUIViewControllerFactory",N,R
 @44@0:8@16@24B32@?36
-@48@0:8@16@24@32@?40
 @40@0:8@16@24@?32
+@48@0:8@16@24@32@?40
 inflightOnboardingStack
 inflightVerificationStack
 T@"UIViewController",N,W,VinflightOnboardingStack
@@ -785,10 +807,10 @@ CONTACT_TRACING_ONBOARDING_WELCOME_REGION_CHANGE_PRIMARY_BUTTON_TITLE
 CONTACT_TRACING_ONBOARDING_WELCOME_REGION_CHANGE_SECONDARY_BUTTON_TITLE
 HealthExposureNotificationUI.OnboardingAnalyticsViewController
 _TtC28HealthExposureNotificationUI33OnboardingAnalyticsViewController
+Failed to set share analytics: %@
 CONTACT_TRACING_ONBOARDING_ANALYTICS_PRIMARY_BUTTON_TITLE
 CONTACT_TRACING_ONBOARDING_ANALYTICS_SECONDARY_BUTTON_TITLE
-CONTACT_TRACING_ONBOARDING_ANALYTICS_BODY_%@
-CONTACT_TRACING_ONBOARDING_ANALYTICS_TITLE
+CONTACT_TRACING_ONBOARDING_ANALYTICS_FOOTER_TEXT
 _TtC28HealthExposureNotificationUI15MultilineButton
 HealthExposureNotificationUI/MultilineButton.swift
 _TtC28HealthExposureNotificationUI43OnboardingRegionAlreadyExistsViewController
@@ -1021,9 +1043,12 @@ introductoryText
 header
 legalese
 consentStatus
+consentVersion
 isAuthorized
 regionVersion
 regionWebsiteURL
+wantsAnalytics
+analyticsConsentStatus
 verificationIntroductoryText
 verificationCodeHelpURL
 verificationSymptomOnsetText
@@ -1041,10 +1066,10 @@ healthAgencyModel
 currentSelectedRegion
 exposureManager
 isFromAvailabilityAlert
+nonNilAgencyModel
 date
 noSymptoms
 sessionIdentifier
-nonNilAgencyModel
 symptomOnset
 hasTraveled
 number
@@ -1584,8 +1609,7 @@ setExposureNotificationEnabled:completion:
 setActiveRegion:completion:
 latestExposureNotification:
 allRegionConfigurations:
-isShareStatisticsEnabledForRegion:completion:
-setShareStatisticsEnabled:region:completion:
+setShareAnalyticsEnabled:region:version:completion:
 isTravelStatusEnabledForRegion:completion:
 setTravelStatusEnabled:region:completion:
 isPreReleaseAuthorizedForRegion:completion:
@@ -1666,16 +1690,20 @@ introductoryText
 header
 legalese
 consentStatus
+consentVersion
 isAuthorized
 regionVersion
 regionWebsiteURL
+wantsAnalytics
+analyticsConsentStatus
+setAnalyticsConsentStatus:
 verificationIntroductoryText
 verificationCodeHelpURL
 verificationSymptomOnsetText
 verificationTravelStatusText
 isSymptomOnsetNeeded
 isTravelStatusNeeded
-initWithRegion:name:appBundleId:introductoryText:header:legalese:consentStatus:isAuthorized:regionVersion:regionWebsiteURL:verificationIntroductoryText:verificationCodeHelpURL:verificationSymptomOnsetText:verificationTravelStatusText:
+initWithRegion:name:appBundleId:introductoryText:header:legalese:consentStatus:consentVersion:isAuthorized:regionVersion:regionWebsiteURL:wantsAnalytics:analyticsConsentStatus:verificationIntroductoryText:verificationCodeHelpURL:verificationSymptomOnsetText:verificationTravelStatusText:
 isAppInstalled
 isRegionUsingApp
 installedAppName
@@ -1695,10 +1723,12 @@ systemGray2Color
 agencyHeaderTextColor
 agencyImageURL
 legalConsentText
+userConsent
+telemetryAuthorization
+differentialPrivacyConsent
 agencyDisplayName
 appBundleID
 agencyMessage
-userConsent
 enVersion
 agencyWebsiteURL
 testVerificationIntroMessage
@@ -1709,7 +1739,6 @@ legalConsentVersion
 consentText
 consent
 consentTimestamp
-consentVersion
 bundleIdentifier
 effectWithStyle:
 setEffect:
@@ -1865,7 +1894,7 @@ statusChangeHandler
 setStatusChangeHandler:
 manager
 setActivePhaseOneAppWithBundleIdentifier:completion:
-fetchAgencyModelForRegionCode:completion:
+fetchAgencyModelForRegionCode:reason:completion:
 fetchAllEntities:
 getAgencyModelForBundleID:completion:
 getAgencyModelForRegionCode:completion:
@@ -1888,6 +1917,7 @@ preAuthorizeDiagnosisKeysWithCompletionHandler:
 getPreAuthorizeDiagnosisKeysEnabledForRegion:completionHandler:
 setTravelStatusEnabled:region:completionHandler:
 getTravelStatusEnabledForRegion:completionHandler:
+setDifferentialPrivacyConsent:
 allRegionConfigurationsWithCompletion:
 getLastExposureNotificationWithCompletion:
 setActiveEntityWithAppBundleID:completion:
@@ -1895,7 +1925,7 @@ setActiveEntityWithRegion:completion:
 onboardingDidStartForRegion:withSource:completion:
 getInfoForKey:completion:
 getRegionMonitorEnabledWithCompletionHandler:
-fetchConfigurationsForRegion:forceServerFetch:completion:
+fetchConfigurationsForRegion:fetchReason:completion:
 getAllEntitiesWithCompletion:
 allRegionServerConfigurationsWithCompletion:
 allAgencyConfigurationsForLocale:withCompletion:
@@ -1963,6 +1993,7 @@ setInflightOnboardingStack:
 inflightVerificationStack
 setInflightVerificationStack:
 createOnboardingStackForAgencyModel:exposureManager:fromAvailabilityAlert:completion:
+createAnalyticsConsentStackForAgencyModel:exposureManager:completion:
 createVerificationStackForAgencyModel:exposureManager:sessionIdentifier:completion:
 createKeyReleaseDialogueWithBundleIdentifier:region:completion:
 createPreApprovalDialogueWithBundleIdentifier:region:completion:

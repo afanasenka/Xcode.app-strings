@@ -104,6 +104,7 @@ setFont:
 whiteColor
 setTextColor:
 setNumberOfLines:
+_preferredFontForTextStyle:variant:
 colorWithWhite:alpha:
 widthAnchor
 heightAnchor
@@ -147,7 +148,6 @@ snapshotAgeBadgeTrailingConstraint
 snapshotAgeBadgeHeightConstraint
 deactivateConstraints:
 _updateAudioStream:
-preferredFontForTextStyle:
 cameraStream
 size
 requestedStopStream
@@ -180,7 +180,7 @@ isReachable
 cachedStreamError
 hf_thermalShutdownModeActive
 updateAudioStreamSetting:completionHandler:
-_preferredFontForTextStyle:variant:
+preferredFontForTextStyle:
 systemImageNamed:
 _symbolFontForCurrentSize
 configurationWithFont:scale:
@@ -745,14 +745,16 @@ initWithMass:stiffness:damping:initialVelocity:
 containerView
 viewForKey:
 viewControllerForKey:
+labelTransformsWithRegularLabelFrame:fullScreenLabelFrame:
+setTransform:
 settlingDuration
+layoutIfNeeded
 addCompletion:
 functionWithControlPoints::::
 initWithCustomCurve:
 addAnimations:delayFactor:
 removeFromSuperview
 completeTransition:
-setTransform:
 transitionDuration:
 animateTransition:
 interruptibleAnimatorForTransition:
@@ -834,7 +836,6 @@ v24@0:8Q16
 @"TVSMHomeCameraBadgeView"
 @"UILabel"
 @"UIImageView"
-@"UIVectorLabel"
 @"HMCameraSnapshotControl"
 @"HMCameraStreamControl"
 @"NADecayingTimer"
@@ -961,6 +962,7 @@ d24@0:8@16
 d24@0:8@"<UIViewControllerContextTransitioning>"16
 v24@0:8@"<UIViewControllerContextTransitioning>"16
 @"<UIViewImplicitlyAnimating>"24@0:8@"<UIViewControllerContextTransitioning>"16
+{?={CGAffineTransform=dddddd}{CGAffineTransform=dddddd}}80@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16{CGRect={CGPoint=dd}{CGSize=dd}}48
 @"UIViewPropertyAnimator"
 lockupContainingViewController
 T@"UIViewController",&,N,V_lockupContainingViewController
@@ -1060,9 +1062,9 @@ T@"UILabel",&,N,V_cameraNameLabel
 cameraSymbolImageView
 T@"UIImageView",&,N,V_cameraSymbolImageView
 fullScreenCameraNameLabel
-T@"UIVectorLabel",&,N,V_fullScreenCameraNameLabel
+T@"UILabel",&,N,V_fullScreenCameraNameLabel
 fullScreenCameraDescriptionLabel
-T@"UIVectorLabel",&,N,V_fullScreenCameraDescriptionLabel
+T@"UILabel",&,N,V_fullScreenCameraDescriptionLabel
 size
 TQ,N,V_size
 latestResults

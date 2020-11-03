@@ -192,6 +192,10 @@ dealloc
 backgroundColor
 presentedViewController
 noteNavigationUserInterfaceDidDisappear
+beginSubjectReporting:
+endSubjectReporting:
+viewDidDisappear:
+viewWillAppear:
 length
 style
 caseInsensitiveCompare:
@@ -428,6 +432,7 @@ v24@0:8@"PKExplanationView"16
 v32@0:8@"PKAddPaymentPassDevicePickerViewController"16@"PKPaymentWebService"24
 v28@0:8@"UIViewController"16B24
 v32@0:8@"PKAddPaymentPassRequestConfiguration"16@?<v@?>24
+v20@0:8B16
 B24@0:8q16
 @24@0:8@16
 @"PKAddPaymentPassRequestConfiguration"
@@ -604,6 +609,8 @@ Provisioning did finish with pass %@ and error %@ (original error: %@)
 <string>UniqueChipID</string>
 <string>SerialNumber</string>
 </array>
+<key>com.apple.private.accessories.showallconnections</key>
+<true/>
 <key>com.apple.private.accounts.allaccounts</key>
 <true/>
 <key>com.apple.private.appleaccount.app-hidden-from-icloud-settings</key>
@@ -695,6 +702,7 @@ Provisioning did finish with pass %@ and error %@ (original error: %@)
 <string>com.apple.coreduetd.knowledge</string>
 <string>com.apple.appconduitd.device-connection</string>
 <string>com.apple.appstorecomponentsd.xpc</string>
+<string>com.apple.accessories.connection-info-server</string>
 </array>
 <key>com.apple.security.exception.shared-preference.read-only</key>
 <array>

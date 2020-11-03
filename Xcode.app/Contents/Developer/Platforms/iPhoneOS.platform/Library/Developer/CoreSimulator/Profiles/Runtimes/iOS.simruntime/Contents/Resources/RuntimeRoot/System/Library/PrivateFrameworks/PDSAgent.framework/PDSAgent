@@ -329,7 +329,8 @@ FTResponseActionRefreshCredentials
 FTResponseActionRetryWithDelay
 Unhandled response status: %ld
 processEntryStore: shouldRegister %@ shouldHeartbeat %@
-Not registering
+No heartbeat currently needed
+No pending entries: not registering
 PDS Bag isn't loaded yet! Aborting.
 System is before first unlock. Aborting.
 PDS-SANITY-CHECK: DUPLICATE REQUEST DETECTED
@@ -558,6 +559,8 @@ _ttlFromBag
 hasPendingEntries
 hasActiveEntries
 _needsToHeartbeat
+_nextCheckpointTime
+_scheduleHeartbeatWithCheckpointTime:
 serverBag
 isLoaded
 isLoading
@@ -572,7 +575,6 @@ setTokenChanged:
 initWithRegistrationReason:
 initWithEntries:requestInfo:
 _requestMatchesPreviousRequest:
-_nextCheckpointTime
 _ttlWindowFromBag
 numberWithLong:
 _markLastRequest:

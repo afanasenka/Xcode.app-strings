@@ -1,4 +1,5 @@
-@(#)PROGRAM:IBCocoaTouchImageCatalogTool  PROJECT:IDEInterfaceBuilderCocoaTouch-17502
+@(#)PROGRAM:IBCocoaTouchImageCatalogTool  PROJECT:IDEInterfaceBuilderCocoaTouch-17504.1
+ffff
 initializeWithArguments:
 objectForKey:
 setContextDataFromCallingHost:
@@ -52,7 +53,7 @@ length
 substringFromIndex:
 setValue:forKeyPath:
 ib_uniqueObjects
-slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:slottedAssetFilter:
+slottedAssetRepsForCompilingSlottedAssetsOfClass:options:ignoringItems:populatingIssues:hostOSAvailabilityProcessor:slottedAssetFilter:
 parent
 setByAddingObjectsFromSet:
 catalogPathsToIdentifierPathsForItems:
@@ -568,25 +569,25 @@ B24@0:8@"NSString"16
 <string>WatchSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>17502</string>
+<string>17504.1</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18R356a</string>
+<string>18R558</string>
 <key>DTPlatformName</key>
 <string>watchsimulator</string>
 <key>DTPlatformVersion</key>
-<string>7.0</string>
+<string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R356a</string>
+<string>18R558</string>
 <key>DTSDKName</key>
-<string>watchsimulator7.0.internal</string>
+<string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>
 <string>1220</string>
 <key>DTXcodeBuild</key>
-<string>12B5025b</string>
+<string>12B5035e</string>
 <key>MinimumOSVersion</key>
-<string>7.0</string>
+<string>7.1</string>
 <key>UIDeviceFamily</key>
 <array>
 <integer>4</integer>

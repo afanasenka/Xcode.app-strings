@@ -226,7 +226,7 @@ unregister token: %llx pid: %d
 <string>AppleTVSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>1770.102</string>
+<string>1770.105</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
@@ -236,7 +236,7 @@ unregister token: %llx pid: %d
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18K35x</string>
+<string>18K5047c</string>
 <key>DTSDKName</key>
 <string>appletvsimulator14.2.internal</string>
 <key>DTXcode</key>

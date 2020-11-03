@@ -234,7 +234,7 @@ excludingSourceBundleIds:%@
 excludingSourceBundleIds.count:%tu
 matchingSourceBundleIds.count:%tu
 scoringDate:'%@'
-toDate:'%@'
+fromDate:'%@'
 <PPLocationQuery l:%tu d:%@-%@ sd:%@ mid:%@ eid:%@ df:%@ fms:%tu c:%@ ma:%@ ea:%@ ens:%@> cons:%@ mch:%@
 cons
 devf
@@ -414,7 +414,6 @@ documentID
 T@"NSString",C,N,V_documentID
 addressComponents
 T@"NSDictionary",C,N,V_addressComponents
-source
 T@"NSString",C,N,V_source
 trigger
 T@"NSString",C,N,V_trigger
@@ -443,10 +442,7 @@ orderByIdentifier
 TB,N,V_orderByIdentifier
 TB,N,V_removeNearDuplicates
 limit
-TQ,N,V_limit
 T@"NSDate",&,N,V_fromDate
-toDate
-T@"NSSet",&,N,V_matchingSourceBundleIds
 matchingGroupIds
 T@"NSSet",&,N,V_matchingGroupIds
 matchingDocumentIds
@@ -475,7 +471,7 @@ matchingDocumentIds:%@
 matchingDocumentIds.count:%tu
 matchingGroupIds:%@
 matchingGroupIds.count:%tu
-fromDate:'%@'
+toDate:'%@'
 <PPTopicQuery l:%tu, d:%@-%@ sd:%@ mid:%@ eid:%@ gid:%@ mdid:%@ df:%@ sb:%@ mti:%tu tri:%@ sc:%@ mcc:%tu ma:%@ ea:%@ ssf:%@ ews:%@ obi:%@ mch:%@>
 exnonsnt
 scali
@@ -1098,6 +1094,7 @@ T@"NSArray",R,N,V_socialProfiles
 postalAddresses
 T@"NSArray",R,N,V_postalAddresses
 <PPContact %@: '%@' src:%d>
+source
 attempt to get CN identifier for non-CN contact: src:%d id:%@
 contact
 PPContact.m
@@ -1223,7 +1220,10 @@ TB,N,V_orderByName
 removeNearDuplicates
 isForRecordMonitoring
 TB,N,V_isForRecordMonitoring
+TQ,N,V_limit
+toDate
 matchingSourceBundleIds
+T@"NSSet",&,N,V_matchingSourceBundleIds
 excludingSourceBundleIds
 matchingSourceGroupIds
 T@"NSSet",&,N,V_matchingSourceGroupIds

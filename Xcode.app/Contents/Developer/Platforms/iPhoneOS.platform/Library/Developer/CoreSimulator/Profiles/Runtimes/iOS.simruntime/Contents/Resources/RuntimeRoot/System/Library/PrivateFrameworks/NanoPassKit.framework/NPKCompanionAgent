@@ -98,6 +98,7 @@ com.apple.passkit.paymentoptionsdefaultschanged
 v32@?0@"NRDevice"8Q16^B24
 SETUP_REMINDER_MESSAGE_ACCESS_SPECIFIC
 NanoPassKit
+SETUP_REMINDER_MESSAGE_ACCOUNT_SPECIFIC
 SETUP_REMINDER_MESSAGE_SPECIFIC
 APPLE_WATCH
 VERIFY_REMINDER_MESSAGE_SPECIFIC
@@ -235,9 +236,13 @@ v32@?0@?<v@?B@"NSError">8Q16^B24
 v32@?0Q8Q16@"NSError"24
 v16@?0@"PKPaymentPass"8
 Pairing ID doesn't match
+REMOTE_DELETE_FAILED_TITLE_FOR_ACCOUNT
 REMOTE_DELETE_FAILED_TITLE
+REMOTE_DELETE_FAILED_TITLE_NO_CARD_NAME_FOR_ACCOUNT
 REMOTE_DELETE_FAILED_TITLE_NO_CARD_NAME
+REMOTE_DELETE_FAILED_TITLE_NOT_NEARBY_FOR_ACCOUNT
 REMOTE_DELETE_FAILED_TITLE_NOT_NEARBY
+REMOTE_DELETE_FAILED_MESSAGE_FOR_ACCOUNT
 REMOTE_DELETE_FAILED_MESSAGE
 v24@?0B8@"NSError"12B20
 v24@?0@"PKPaymentPass"8@?<v@?B@"NSError">16
@@ -313,10 +318,17 @@ Barcode event metadata request
 v16@?0@"PKBarcodeEventMetadataResponse"8
 v24@?0@"NSExtensionContext"8@"NSError"16
 Extension %@ timed out
+bridge:root=com.apple.NanoPassbookBridgeSettings&path=HANDLE_PENDING_TRANSACTION&passTypeIdentifier=%@&passSerialNumber=%@
+com.apple.NanoPassKit
+APP_REDIRECT_AUTHENTICATION_NOTIFICATION_MESSAGE
+v32@?0@"NSString"8@"NPKProtoBarcodeApplicationRedirectRequest"16^B24
+Archive pending transaction
 idsService
 T@"IDSService",&,N,V_idsService
 idsServiceQueue
 T@"NSObject<OS_dispatch_queue>",&,N,V_idsServiceQueue
+pendingAppRedirectRequests
+T@"NSMutableDictionary",&,N,V_pendingAppRedirectRequests
 T@"NPDBulletinManager",W,N,V_bulletinManager
 application-identifier
 com.apple.NanoPassKit.NPDPassLibrary
@@ -912,6 +924,9 @@ setSettings:
 deviceTransactionSourceIdentifiers
 removeTransactionsForTransactionSource:
 notifySettingsChangedForPassWithUniqueID:previousSettings:newSettings:
+maintenanceService
+fetchPendingTransactionForPassWithUniqueID:completion:
+markPendingTransactionAsProcessedForPassWithUniqueID:
 numberWithUnsignedInteger:
 _handlePotentialTransactionServiceEnabledChangeWithPreviousSettings:newSettings:uniqueID:
 _handlePotentialMessageServiceEnabledChangeWithPreviousSettings:newSettings:uniqueID:
@@ -961,7 +976,6 @@ device:propertyDidChange:fromValue:
 watchOfferProvisioningCompletionHandlers
 gizmoScreenScale
 _handleFirstDeviceUnlock
-maintenanceService
 _passLibrary
 _shouldDropIDSMessages
 _wasLimitPush
@@ -1270,6 +1284,13 @@ _verificationForegroundObservers
 _accountProvisioningController
 _accountPassProvisionCompletion
 _handleBarcodeEventMetadataRequest:
+_handleBarcodeEventApplicationRedirectRequest:
+_fetchArchivedPendingTransactions
+pendingAppRedirectRequests
+transactionData
+appLaunchToken
+setObject:forKeyedSubscript:
+_archivePendingTransactions:
 idsServiceQueue
 requestData
 setResponseData:
@@ -1284,14 +1305,27 @@ newAssertionForBundleIdentifier:withReason:
 completeLocalExtensionServiceWithCompletion:
 handleInformationRequest:completion:
 beginLocalExtensionServiceWithUserInteraction:completion:timeout:timeoutHandler:
-extensionsWithContainingAppBundleIdentifiers:completion:
+extensionsWithContainingApplicationIdentifiers:completion:
 type
 idsService
 outgoingResponseIdentifier
+URLQueryAllowedCharacterSet
+stringByAddingPercentEncodingWithAllowedCharacters:
+transactionDate
+dateByAddingTimeInterval:
+bundleWithIdentifier:
+currencyAmount
+formattedStringValue
+merchant
+displayName
+insertBridgeBulletinWithTitle:message:actionURL:forPass:playSound:expirationDate:
+timeIntervalSinceDate:
 setIdsService:
 setIdsServiceQueue:
+setPendingAppRedirectRequests:
 _idsService
 _idsServiceQueue
+_pendingAppRedirectRequests
 setConnection:
 setFilter:
 setServiceActive:
@@ -1391,7 +1425,7 @@ _addCompanionPaymentPass:
 setDatabase:
 _database
 initWithBundleIdentifier:
-_userNotificationWithTitle:message:actionURL:forPass:
+_userNotificationWithTitle:message:actionURL:forPass:playSound:expirationDate:
 addNotificationRequest:withCompletionHandler:
 _notficationIdentifierWithTitle:message:actionURL:forPass:
 _persistDelayedNotificationRequest:
@@ -1402,13 +1436,15 @@ getDeliveredNotificationsWithCompletionHandler:
 _removeDelayedNotificationRequestWithIdentifier:
 _delayedUserNotificationWithIdentifier:
 _archivedDelayedNotifications
-setObject:forKeyedSubscript:
 _persistArchivedNotifications:
 watchProvisioningURL
 setTitle:
 setBody:
 setDefaultActionURL:
 setUserInfo:
+setExpirationDate:
+defaultSound
+setSound:
 requestWithIdentifier:content:trigger:
 npkSafelyAddObject:
 notificationCenter
@@ -1807,6 +1843,8 @@ Notice: (account-pass-provisioning) calling provisionAccountPassToLocalDevice fo
 Notice: (account-pass-provisioning) calling makeAccountPassDefaultOnLocalDevice for account %@
 Notice: (account-pass-provisioning) accountProvisioningControllerUpdatedState %lu
 Notice: (account-pass-provisioning) accountProvisioningController: %lu displayableError %@
+Notice: [BarcodeEvent] Pass %@ doesn't have cached pending app redirect transactions.
+Notice: [BarcodeEvent] Marking pending transactions as processed for pass %@.
 Notice: [BarcodeEvent] Received metadataRequest %@
 Notice: [BarcodeEvent] Sending metadataResponse %@
 Error: [BarcodeEvent] Failed to retrieve extension point due with error %@
@@ -1816,6 +1854,15 @@ Notice: [BarcodeEvent] Successfully got metadataResponse %@
 Error: [BarcodeEvent] Failed to retrieve extension context with error %@
 Error: [BarcodeEvent] Extension request timed out.
 Error: [BarcodeEvent] Failed to send message with identifier %@ due to %@
+Notice: [BarcodeEvent] Received applicationRedirectRequest %@
+Error: [BarcodeEvent] Inserting Bridge bulletin for applicationRedirect %@ with expiration date %@.
+Error: [BarcodeEvent] Skipped applicationRedirect %@ without valid passUniqueID.
+Notice: [BarcodeEvent] Unable to read pending transactions. This is expected in the case of a fresh device install.
+Error: %@
+Notice: [BarcodeEvent] Archived transaction has expired: %@.
+Notice: [BarcodeEvent] Archiving pending transactions %@
+Error: [BarcodeEvent] Unable to archive pending transactions to disk
+Error: %@
 Notice: NPDCompanionMaintenanceService IDS service accounts changed: %@
 Notice: NPDCompanionMaintenanceService IDS service devices changed: %@
 Error: NPDCompanionMaintenanceService IDS service incoming unhandled protobuf: %@ %@ %@ %@ %@
@@ -1997,6 +2044,7 @@ Q32@0:8@16@24
 Q32@0:8@"NPDCompanionPassSyncService"16@"NSString"24
 v40@0:8@"NRDevice"16@"NSString"24@32
 v32@0:8Q16@"NSString"24
+v32@0:8@"NSString"16@?<v@?@"PKPaymentPass"@"PKPaymentTransaction"@"NSString">24
 @"NPDCardSetupReminderNotificationScheduler"16@0:8
 @"NPKRemoteAdminConnectionServiceAgent"16@0:8
 @"NPDCompanionPaymentPassDatabase"16@0:8
@@ -2152,7 +2200,9 @@ v32@0:8@"PKAddSecureElementPassConfiguration"16@?<v@?B>24
 v40@0:8@"NSData"16@"NSString"24@?<v@?@"NSData"@"NSData"@"NSError">32
 @40@0:8@16@24@32
 @"<NPDCompanionPassLibraryDataSource>"
+v60@0:8@16@24@32@40B48@52
 v48@0:8@16@24@32d40
+@60@0:8@16@24@32@40B48@52
 @48@0:8@16@24@32@40
 @"UNUserNotificationCenter"
 <?xml version="1.0" encoding="UTF-8"?>

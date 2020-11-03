@@ -4,7 +4,8 @@ A333333
 ?333333
 ?ffffff
 ?ffffff
-`@@(#)PROGRAM:PhotoAnalysis  PROJECT:PhotoAnalysis-310.1.190
+`@@(#)PROGRAM:PhotoAnalysis  PROJECT:PhotoAnalysis-310.2.160
+33333cs@
 18-25
 26-35
 36-45
@@ -2235,13 +2236,13 @@ Cache CPAnalytics properties job %{public}@ completed, success: %d, error: %{pub
 Media sample reporting job %{public}@ completed, success: %d, error: %{public}@
 Features usage reporting job %{public}@ completed, success: %d, error: %{public}@
 Update featured suggestions - found 0 suggestions
-Update featured suggestions - add: %lu, remove: %lu
+Update featured suggestions - add: %zd, remove: %zd
 Suggestions to add featured state: %@
 Suggestions to remove featured state: %@
 Update featured suggestions - failed: %@
 Update featured suggestions - up to date
 Update featured memories - found 0 memories
-Update featured memories - add: %lu, remove: %lu
+Update featured memories - add: %zd, remove: %zd
 Memories to add featured state: %@
 Memories to remove featured state: %@
 Update featured memories - failed: %@

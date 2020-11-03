@@ -14674,7 +14674,7 @@ invalid symbol redefinition
 Cannot find option named '
 file number already allocated
 inconsistent use of embedded source
-llvm-mc (based on LLVM 31001.41)
+llvm-mc (based on LLVM 31001.43)
 SmallVector capacity overflow during allocation
 <<invalid>>
 <<none>>
@@ -16153,7 +16153,7 @@ OPTIONS:
 LLVM (http://llvm.org/):
 LLVM
  version 
-31001.41
+31001.43
 Optimized build
 generic
 (unknown)
@@ -27718,4 +27718,4 @@ Generate Dependency Graph
 failed to create memory entry error 0x%x (%s)
 failed to map memory error 0x%x (%s)
 failed to mark memory(GRAPHICS) error 0x%x (%s)
-31001.41
+31001.43

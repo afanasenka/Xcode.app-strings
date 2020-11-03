@@ -625,6 +625,7 @@ relay candidate pair %@ is accepted, transport: %s.
 relay candidate pair %@ is not accepted, added to remove list.
 new relay candidate pair %@ is accepted, transport: %s.
 found saved SKE data %p, send it immediately.
+setPacketNotificationFilter: overriding source interface [%@] with [%@]
 stop heart beat for linkIDs:%@
 currentCellularSignalStrength failed due to invalid parameter.
 startLinkProbing: all links activeProbingLinkIDs: %@
@@ -639,6 +640,8 @@ queryLinkProbingStatus: differenceInMS: %u is out of scope
 queryLinkProbingStatus: remainingTimeStamp count: %lu
 flushLinkProbingStatus: linkIDs: %@, activeProbingLinkIDs: %@
 setRemoteDeviceVersion: version: %u
+setRemoteDeviceVersion: update local %@ local RAT from NR to LTE
+setRemoteDeviceVersion: update candidate pair %@ local RAT from NR to LTE
 request participants info using link %d for group %@, session %@.
 %@ is in [%s] state, skip sending info request for group %@, session %@.
 trying cached response for group %@, session %@.
@@ -3345,6 +3348,7 @@ relay candidate pair %@ is accepted, transport: %s.
 relay candidate pair %@ is not accepted, added to remove list.
 new relay candidate pair %@ is accepted, transport: %s.
 found saved SKE data %p, send it immediately.
+setPacketNotificationFilter: overriding source interface [%@] with [%@]
 stop heart beat for linkIDs:%@
 currentCellularSignalStrength failed due to invalid parameter.
 linkStatus
@@ -5882,6 +5886,8 @@ com.apple.private.alloy.idstool.testservice.classD
 IDS Transfers
 com.apple.private.alloy.idstransfers
 com.apple.idstransfers.idslaunchnotification
+Intercom
+com.apple.private.alloy.intercom
 iOS Diagnostics
 com.apple.private.alloy.iosdiagnostics
 iosdiagnosticsicloud
@@ -7796,6 +7802,7 @@ _getPacketBufferSendInfo:channelNumber:transport:
 recvSKEData
 setIsAcceptedRelaySession:
 _requestNonUDPRelayAllocation:relaySessionID:
+delegatedIndex
 isRelayStunCandidate
 startLinkProbingTimer:
 stopLinkProbingTimer
@@ -7915,6 +7922,7 @@ _hasPendingAllocation
 _targetedAllocations
 _useSecureControlMessage
 _controlMessageKey
+_basebandPacketLinkID
 _basebandPacketChannelNumber
 _qraBlocks
 _allocateTimeReportBlocks
@@ -9617,7 +9625,6 @@ interfaceAddressWithTransmittedBytes:length:withLocalInterfaceName:
 interfaceAddress:eflags:v6flags:iftype:
 getTransmittableBytes:withPrefixByte:
 netmask
-delegatedIndex
 isAWDL
 bssid
 isTemporaryIPv6
@@ -10356,7 +10363,7 @@ d24@0:8@16
 v24@0:8d16
 @"NSMutableDictionary"
 B20@0:8B16
-B40@0:8^{sockaddr=CC[14c]}16^{sockaddr=CC[14c]}24I32C36
+B40@0:8r^{sockaddr=CC[14c]}16r^{sockaddr=CC[14c]}24I32C36
 B48@0:8@16^{sockaddr=CC[14c]}24^{sockaddr=CC[14c]}32B40C44
 v28@0:8B16^{sockaddr=CC[14c]}20
 @"NSHashTable"

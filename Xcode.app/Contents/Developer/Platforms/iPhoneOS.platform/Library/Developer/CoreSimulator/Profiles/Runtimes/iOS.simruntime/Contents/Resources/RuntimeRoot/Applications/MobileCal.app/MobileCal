@@ -3429,6 +3429,7 @@ _initializeHeaderView
 _initializeMonthViews
 eligibleToShowYearNumber
 _heightForViewWithVisibleHeader:windowSize:heightSizeClass:orientation:
+containsLastMonthOfYear
 _leftMarginWithOriginalValue:
 _rightMarginWithOriginalValue:
 _yearLayoutMargins
@@ -3448,7 +3449,6 @@ initWithCalendarDate:calendar:
 heightForViewWithCalendarDate:windowSize:heightSizeClass:orientation:
 initCalendarDate:calendar:maximumNumberOfMonths:
 didMoveToWindow
-containsLastMonthOfYear
 startOfMonthForPoint:
 hideYearNumberAnimated:
 showYearNumberAnimated:

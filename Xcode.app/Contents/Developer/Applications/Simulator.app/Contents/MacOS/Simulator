@@ -3546,7 +3546,6 @@ yXlSg
 SgXw
 So7NSColorC
 yypG
-So7NSImageCG
 So10NSImageRepCSg
 So18NSWindowControllerC
 So17DeviceCoordinatorCSgXw
@@ -3628,12 +3627,16 @@ So6NSPipeC
 So11NSExceptionCIgg_
 SDySS
 ySSypG
+ySSypG
 ySSSaySSGG
+ySSSaySSGG
+So7NSImageCG
+So7NSImageCG
+ySSytG
 $s9Simulator32SimplePropertyValueTransformableP
 So17DeviceCoordinatorCSg
 So9NSControlC
 So11NSTextFieldC
-ySSSaySSGG
 SS3key_yp5valuet
 ySo9PKPackageCG
 ySo8NSNumberCG

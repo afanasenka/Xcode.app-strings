@@ -63,11 +63,16 @@ isHidden
 isInScrollView
 B24@?0@"UIView"8^B16
 Cannot end view render without a model
-actionType
-retry
+eventType
 page
 Error
-eventType
+pageType
+AppStoreError
+pageId
+pageContext
+errorDescription
+actionType
+retry
 click
 targetType
 button
@@ -100,6 +105,7 @@ enabled
 TB,N,GisEnabled,V_enabled
 model
 T@"<ASCViewModel>",C,N,V_model
+ASCLockupPresenterDidChangeNotification
 ASCLockupPresenterRetryGroupNotification
 ASCLockupPresenter
 v16@?0@"ASCLockup"8
@@ -478,6 +484,7 @@ ASCOfferIsPreorder
 ASCOfferIsDisabled
 ASCOfferForceWatchInstall
 ASCOfferIsDeletableSystemApp
+ASCOfferIsIOSAppOnMacOS
 confirmation
 discountOwnedParent
 discountUnownedParent
@@ -531,6 +538,7 @@ ASCDisableShutdownTimer
 ASCPreferenceKeyOverlaysRateLimitRequestsPerSecond
 ASCPreferenceKeyOverlaysRateLimitTimeWindow
 ASCPreferenceKeyOverlaysLoadTimeout
+ASCEnableWebInspector
 daemonDefaults
 T@"ASCDefaults",R
 storefrontLocaleID
@@ -539,7 +547,6 @@ forceRightToLeftLayout
 TB,N
 disableShutdownTimer
 enableWebInspector
-TB,N,V_enableWebInspector
 overlaysRateLimitRequestsPerSecond
 overlaysRateLimitTimeWindow
 supplementaryTags
@@ -816,6 +823,7 @@ _TtCV18AppStoreComponents15OfferIconLayoutP33_B1BC02F59159A9D44304BD3398B514787S
 imageView
 subtitleView
 %{public}@ did action
+%{public}@ not generating page event for %@
 %{public}@ did retry failed request
 %{public}@ did appear
 %{public}@ did disappear
@@ -1226,6 +1234,12 @@ initWithName:reason:userInfo:
 hasModelRendered:
 modelDidRender:
 processViewRenderWithPredicate:
+domain
+isEqualToString:
+code
+stringValue
+context
+localizedDescription
 initWithTopic:shouldFlush:fields:includingFields:excludingFields:
 processMetricsData:withActivity:
 isEnabled
@@ -1259,6 +1273,7 @@ viewDidMoveToWindow
 viewDidSetHidden
 viewDidAction
 viewDidEndRenderWithPredicate:
+viewDidFailRequest:withError:
 viewDidRetryFailedRequest
 setActivity:
 setEnabled:
@@ -1289,18 +1304,17 @@ setSubtitle:
 prefersRightToLeftViewLayout
 setPrefersRightToLeftLayout:
 setIconImage:withDecoration:
+postNotificationName:object:
 removeObserver:name:object:
 retryGroup:
 request
 performLockupFetch
 pendingRequestedLockup
 group
-postNotificationName:object:
 cancel
 setPendingRequestedLockup:
 setLoading:
 requestWillFetchLockup:
-context
 lockupFetcher
 request:didCompleteWithLockup:
 addSuccessBlock:
@@ -1310,7 +1324,6 @@ lockup
 icon
 endViewRender
 decoration
-isEqualToString:
 pendingViewRender
 primaryTag
 resourceRequestDidBeginWithTag:
@@ -1329,8 +1342,6 @@ rootViewModelPresentWithTag:
 setLockup:
 lockupPresenterDidFinishRequest
 performFollowUpWork:
-domain
-code
 setPendingViewRender:
 lockupPresenterDidFailRequestWithError:
 resourceRequestDidEndWithTag:
@@ -1600,7 +1611,6 @@ automaticallyPresentsProductDetails
 isAccessibilityElement
 accessibilityLabel
 accessibilityActivate
-stringValue
 initWithStringValue:
 initWithInt64:
 longLongValue
@@ -1979,7 +1989,6 @@ disableShutdownTimer
 setDisableShutdownTimer:
 enableWebInspector
 setEnableWebInspector:
-_enableWebInspector
 decodeInt64ForKey:
 encodeInt64:forKey:
 startDate
@@ -2341,6 +2350,7 @@ Vv16@0:8
 B24@0:8@"Protocol"16
 @"NSString"16@0:8
 v24@0:8@"UIScrollView"16
+v32@0:8@16@24
 v20@0:8B16
 @"UIView"
 @"ASCMetricsActivity"
@@ -2349,7 +2359,6 @@ v20@0:8B16
 @"ASCMetricsScrollObserver"
 @40@0:8@16@24@32
 v24@0:8@?16
-v32@0:8@16@24
 @?16@0:8
 @"<ASCLockupPresenterObserver>"
 @"ASCLockup"

@@ -184,7 +184,7 @@ hash overflow
 user
 Restart Scheduled! Reason: %s
 Zend OPcache
-7.3.18-(to be removed in future macOS)
+7.3.22-(to be removed in future macOS)
 Zend Technologies
 http://www.zend.com/
 Copyright (c) 1999-2018
@@ -234,7 +234,7 @@ Cannot kill process %d: %s!
 KLockers:  %s (%d)
 RestartC(+1):  %s (%d)
 RestartC(-1):  %s (%d)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/ZendAccelerator.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -1380,7 +1380,7 @@ Loading blacklist file:  '%s'
 malloc() failed
 Too long blacklist entry
 Blacklist compilation failed (offset: %d), %s
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_accelerator_blacklist.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -1951,7 +1951,7 @@ Warning
 Message 
 Debug 
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_accelerator_debug.c
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_accelerator_debug.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -2046,7 +2046,7 @@ zend_accelerator_debug.c
 stdarg.h
 _time_t.h
 Insufficient shared memory!
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_accelerator_hash.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -2161,7 +2161,7 @@ OOM restarts
 Hash keys restarts
 Manual restarts
 Zend OPcache
-7.3.18-(to be removed in future macOS)
+7.3.22-(to be removed in future macOS)
 API20180731,NTS
 opcache_reset
 opcache_invalidate
@@ -2262,7 +2262,7 @@ Zend OPcache will use the maximal configuration.
 opcache.max_wasted_percentage must be set between 1 and 50.
 Zend OPcache will use 5%%.
 opcache.file_cache must be a full path of accessible directory.
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_accelerator_module.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -2992,7 +2992,7 @@ _blksize_t.h
 unistd.h
 setjmp.h
 __COMPILER_HALT_OFFSET__
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_persist.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -3571,7 +3571,7 @@ php/Zend/zend_gc.h
 php/ext/opcache/Optimizer/zend_optimizer.h
 php/ext/opcache/ZendAccelerator.h
 _time_t.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_persist_calc.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -4120,7 +4120,7 @@ corrupted file '%s' excepted checksum: 0x%08x actual checksum: 0x%08x
 No more entries in hash table!
 File cached script loaded into memory '%s'
 .bin
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_file_cache.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -4859,7 +4859,7 @@ mmap
 posix
 Unable to allocate shared memory segment of %zu bytes: %s: %s (%d)
 unknown
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_shared_alloc.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -5347,7 +5347,7 @@ __COMPILER_HALT_OFFSET__
 Cannot declare %s %s, because the name is already in use
 Cannot redeclare %s() (previously declared in %s:%d)
 Cannot redeclare %s()
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/zend_accelerator_util_funcs.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -5858,7 +5858,7 @@ HSAH
 HSAH
 calloc
 mmap
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/shared_alloc_mmap.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -5906,7 +5906,7 @@ calloc
 shm_open
 ftruncate
 mmap
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/shared_alloc_posix.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -5985,7 +5985,7 @@ after pass 5
 after pass 6
 after pass 9
 after pass 10
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_optimizer.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -6600,14 +6600,13 @@ vT8%
 vT8%
 vT8%
 vT8%
-v@O%
-vH,/
-vH\-
-v@E.
+v@o%
+vHL/
+vH|-
+v@e.
 ~ !h'
 "#,q
 %$&-
-"#,t
 "#,t)
 %$Y-
 %$Y-
@@ -6675,7 +6674,7 @@ is_callable
 extension_loaded
 constant
 dirname
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/pass1_5.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -7235,7 +7234,7 @@ php/Zend/zend_arena.h
 php/ext/opcache/Optimizer/zend_optimizer.h
 php/Zend/zend_constants.h
 php/Zend/zend_alloc.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/pass2.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -7623,7 +7622,7 @@ php/Zend/zend_API.h
 php/Zend/zend_iterators.h
 php/Zend/zend_object_handlers.h
 _uint16_t.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/pass3.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -8026,7 +8025,7 @@ php/Zend/zend_arena.h
 php/ext/opcache/Optimizer/zend_optimizer_internal.h
 php/ext/opcache/Optimizer/zend_optimizer.h
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/optimize_func_calls.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -8462,7 +8461,7 @@ after block pass
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
 NON-LOCAL-VARS: %d
 , %d
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/block_pass.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -9014,7 +9013,7 @@ php/ext/opcache/Optimizer/zend_optimizer.h
 php/ext/opcache/Optimizer/zend_dump.h
 php/Zend/zend_string.h
 php/Zend/zend_constants.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/optimize_temp_vars_5.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -9424,7 +9423,7 @@ php/ext/opcache/Optimizer/optimize_temp_vars_5.c
 php/Zend/zend_alloc.h
 php/ext/opcache/Optimizer/zend_optimizer_internal.h
 php/ext/opcache/Optimizer/zend_optimizer.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/nop_removal.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -9824,7 +9823,7 @@ php/Zend/zend_iterators.h
 php/Zend/zend_arena.h
 php/ext/opcache/Optimizer/zend_optimizer.h
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/compact_literals.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -10279,7 +10278,7 @@ php/Zend/zend_alloc.h
 php/ext/opcache/Optimizer/zend_optimizer_internal.h
 php/ext/opcache/Optimizer/zend_optimizer.h
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_cfg.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -10753,7 +10752,7 @@ php/ext/opcache/Optimizer/zend_optimizer_internal.h
 php/Zend/zend_alloc.h
 php/ext/opcache/Optimizer/zend_worklist.h
 php/Zend/zend_sort.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_dfg.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -11180,7 +11179,7 @@ before dfa pass
 after sccp pass
 after dce pass
 after dfa pass
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/dfa_pass.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -11810,7 +11809,7 @@ http_response_he
 php_errormsg
 http_response_header
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_ssa.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -12443,7 +12442,7 @@ php/ext/opcache/Optimizer/zend_dump.h
 php/ext/opcache/Optimizer/zend_optimizer_internal.h
 Narrowing occurred during type inference of %s. Please file a bug report on bugs.php.net
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_inference.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -14530,7 +14529,7 @@ imageaffinematrixget
 imageaffinematrixconcat
 imagesetinterpolation
 imageresolution
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_func_info.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -15106,7 +15105,7 @@ php/Zend/zend_extensions.h
 _malloc.h
 php/ext/opcache/Optimizer/zend_inference.h
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_call_graph.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -15693,7 +15692,7 @@ substr
  bot
  %s[
 partial 
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/sccp.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -16437,7 +16436,7 @@ php/Zend/zend_multiply.h
 math.h
 php/ext/opcache/Optimizer/zend_inference.h
 Possible integer overflow in zend_arena_calloc() (%zu * %zu)
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/scdf.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -16963,7 +16962,7 @@ _uint16_t.h
 php/Zend/zend_iterators.h
 php/ext/opcache/Optimizer/zend_optimizer_internal.h
 php/ext/opcache/Optimizer/zend_optimizer.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/dce.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -17485,7 +17484,7 @@ php/Zend/zend_bitset.h
 php/ext/opcache/Optimizer/zend_inference.h
 php/ext/opcache/Optimizer/zend_cfg.h
 php/Zend/zend_alloc.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/escape_analysis.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -18000,7 +17999,7 @@ php/ext/opcache/Optimizer/zend_inference.h
 php/ext/opcache/Optimizer/zend_cfg.h
 php/ext/opcache/Optimizer/zend_optimizer.h
 php/Zend/zend_alloc.h
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/compact_vars.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk
@@ -18538,7 +18537,7 @@ BB%d:
     ; loop_header=%d
     ; children=(BB%d
     ; %s = {
-Apple clang version 12.0.0 (clang-1200.0.30.3) [+internal-os, ptrauth-isa=sign+strip]
+Apple clang version 12.0.0 (clang-1200.0.30.4) [+internal-os, ptrauth-isa=sign+strip]
 /Library/Caches/com.apple.xbs/Binaries/apache_mod_php/install/TempContent/Objects/php/ext/opcache/Optimizer/zend_dump.c
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.Internal.sdk
 MacOSX11.0.Internal.sdk

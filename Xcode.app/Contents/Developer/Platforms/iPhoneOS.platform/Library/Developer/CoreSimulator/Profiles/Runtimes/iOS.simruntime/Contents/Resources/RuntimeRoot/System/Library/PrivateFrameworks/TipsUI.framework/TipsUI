@@ -238,9 +238,9 @@ lastPathComponent
 componentsSeparatedByString:
 setStatus:
 dataCacheForIdentifier:
+currentDisplayIdentifier
 imageURLSessionItem
 isCancelled
-currentDisplayIdentifier
 delegate
 animateImageView:
 setCurrentDisplayIdentifier:

@@ -4075,7 +4075,8 @@ Streaming CRABS
 Streaming HLS
 Downloading CRABS
 Downloading HLS
-Downloaded (type unknown)
+Downloaded CRABS
+Downloaded HLS
 purchaseHistory
 sinfsDict
 T@"NSDictionary",&,N,V_sinfsDict
@@ -4098,6 +4099,8 @@ parentReportingToken
 T@"NSObject",&,N,V_parentReportingToken
 fpsKeyError
 T@"NSError",&,N,V_fpsKeyError
+needsRentalCheckoutPriorToPlayback
+TB,N,V_needsRentalCheckoutPriorToPlayback
 T@"NSNumber",N,V_startTime
 T@"NSURL",C,N,V_fpsCertificateURL
 T@"NSURL",C,N,V_fpsKeyServerURL
@@ -6565,9 +6568,6 @@ VUIStoreMediaItemErrorDomain
 com.apple.videos.movies.rental.cloud
 com.apple.videos.movies.purchase.cloud
 com.apple.videos.tvshows.purchase.cloud
-com.apple.videos.movies.rental
-com.apple.videos.movies.purchase
-com.apple.videos.tvshows.purchase
 @"NSObject<NSCopying>"16@?0@"VUIMediaEntityType"8
 T@"VUIMediaItemEntityTypesFetchControllerResult",&,N,V_result
 currentFetchResponse
@@ -9625,6 +9625,7 @@ Force streaming is set; configuring for streaming
 Found local file path for this media item: %@
 Found download for this media item: %@
 No local file path or download exists for this media item; configuring for streaming
+Downloaded rental is not authorized for playback even though it hasn't expired.  Will retry playback and perform rental checkout
 AirPlay of streaming CRABS rental failed because device does not support playback.  Video must be downloaded in order to AirPlay
 AirPlay of downloading CRABS rental failed because device does not support playback.  Video must be fully downloaded in order to AirPlay
 rentalInformation: %@ error: %@
@@ -10475,7 +10476,6 @@ CollectionDecorationType
 SupplementaryViewUpdating
 SupplementaryViewAnimating
 CollectionHeaderView
-,@!u
 VerticalStackLayout
 StackType
 VerticalStackLayoutKeys
@@ -10508,6 +10508,7 @@ SiriSearchCollectionViewModel
 ProgressLayout
 VideosUI
 CanonicalTemplateController
+k@)`
 InAppBannerLockupCell
 InAppBannerLockupCellLayoutMetrics
 CanonicalFooterViewCell
@@ -22404,6 +22405,8 @@ _downloadForThisMediaItemReturningDownloadManager:
 _configureForPlaybackFromExistingDownload:downloadManager:completion:
 setNeedsRentalCheckin:
 _checkoutRentalWithCheckoutType:startPlaybackClock:completion:
+needsRentalCheckoutPriorToPlayback
+setNeedsRentalCheckoutPriorToPlayback:
 fpsKeyError
 needsRentalCheckin
 _checkInRental
@@ -22471,6 +22474,7 @@ downloadMonitor
 parentReportingToken
 _isBingeWatched
 _needsRentalCheckin
+_needsRentalCheckoutPriorToPlayback
 _fpsCertificateURL
 _fpsKeyServerURL
 _fpsAdditionalServerParams

@@ -2340,6 +2340,8 @@ SendDataDescriptionText
 DeviceDiagnosticID
 diagnosticIdentifierVisible
 TB,N,V_diagnosticIdentifierVisible
+runningSysdiagnose
+TB,N,V_runningSysdiagnose
 T@"UIActivityIndicatorView",&,N,V_spinnerView
 animating
 TB,R,N,GisAnimating,V_animating
@@ -2596,14 +2598,21 @@ BackgroundAppRefreshDescription
 @"TSKSettingItem"24@?0@"TSKListSettingGroup"8@"TVSettingsBackgroundAppRefreshSettings"16
 T@"NSArray",C,N,V_previouslyUsedEmails
 TVSettingsHDMIEnforcerErrorDomain
+IsLocalDevice
 v32@?0@"AVOutputDevice"8Q16^B24
 B32@?0@"AVOutputDevice"8Q16^B24
+succeeded
+failed
 discoverySession
 T@"AVOutputDeviceDiscoverySession",&,N,V_discoverySession
 preferredOutputDevices
 T@"NSArray",C,N,V_preferredOutputDevices
 availablePreferredOutputDevices
 T@"NSMutableArray",C,N,V_availablePreferredOutputDevices
+preferredMediaDestination
+T@"<HMMediaDestination>",&,N,V_preferredMediaDestination
+mediaDestinationDeviceID
+T@"NSString",&,N,V_mediaDestinationDeviceID
 waitForHDMI
 T@"NSObject<OS_dispatch_semaphore>",&,N,V_waitForHDMI
 didDiscoverHDMI
@@ -3126,6 +3135,8 @@ DiagnosticLogExport
 logfile
 General
 SWITCHUSER
+DefaultAudioOutput
+AVAudioRouteTitle
 activate
 false
 originalURL
@@ -6647,13 +6658,17 @@ toggleShowDiagnosticIdentifier:
 setRightButtonAction:
 _updateSendDataItem:value:
 showAppAnalyticsDialog:
+runningSysdiagnose
+_generateSysdiagnose:
 loadViewController
 inverseUniqueID
 substringToIndex:
 substringFromIndex:
 diagnosticIdentifierVisible
 setDiagnosticIdentifierVisible:
+setRunningSysdiagnose:
 _diagnosticIdentifierVisible
+_runningSysdiagnose
 setSpinnerView:
 _videoResolutionSelected:
 _showPrivacy:
@@ -6999,22 +7014,31 @@ _previouslyUsedEmails
 enforceHDMIOutput
 sharedAudioPresentationOutputContext
 outputDevices
+preferredMediaDestination
 currentOutputDevices
 deviceType
 deviceSubType
 isCurrentOutputDeviceHDMI
 completeWithError:
 setPreferredOutputDevices:
+hmAccessory
+audioDestinationController
+destination
+setPreferredMediaDestination:
+airPlayProperties
+deviceID
+setMediaDestinationDeviceID:
 discoverySessionDidChangeAvailableOutputDevices
 outputDevicesDidChange
 initWithDeviceFeatures:
 setDiscoverySession:
 discoverySession
 startWaitingForHDMI
+updateLocalAccessoryAudioDestination:forceUpdateWithUnavailableDestination:completionHandler:
 enforcementTimeout
 availableOutputDevices
 setOutputDevices:
-deviceID
+mediaDestinationDeviceID
 initWithCompletion:
 relinquishHDMIEnforcement
 preferredOutputDevices
@@ -7033,6 +7057,8 @@ _setHDMICancelled
 _discoverySession
 _preferredOutputDevices
 _availablePreferredOutputDevices
+_preferredMediaDestination
+_mediaDestinationDeviceID
 _waitForHDMI
 _completion
 transport
@@ -8620,6 +8646,7 @@ v32@0:8@"HMHome"16@"HMHomePersonManagerSettings"24
 @"TVPAudioRoute"
 @24@0:8@?16
 @"AVOutputDeviceDiscoverySession"
+@"<HMMediaDestination>"
 @"NSObject<OS_dispatch_semaphore>"
 v24@0:8@"PBSExternalControlSystem"16
 v32@0:8@"PBSExternalControlSystem"16q24
@@ -8945,7 +8972,10 @@ TTSU did finish setup. {tapToSetupManager_ptr=%p}
 TTSU failed. {tapToSetupManager_ptr=%p, errorDomain=%{public}@, errorCode=%ld, error=%@}
 #Alert #SYSTEM Failed to add manifest request %@ : %{public}@
 #Alert #SYSTEM App OTA rejected for invalid URL (%@)
+Found doorbell services %@ in home %@
 HDMI is already the selected output device. No need to enforce.
+Temporarily disabled Odeon
+Failed to disable Odeon
 Setting HDMI has been cancelled...
 Available Output Devices Did Change: %{public}@
 Local Device Found: %{public}@
@@ -8954,6 +8984,7 @@ Matched Preferred Output Device: %{public}@
 Output Devices Did Change: %{public}@
 Relinquishing HDMI Enforcement...
 Restoring Available Output Devices: %{public}@
+Re-enable Odeon %@
 Dequeue of TVSettingsBluetoothCell returned nil. Path: %{public}@.
 Super dequeue failed. Path: %{public}@.
 %s Configuration state changed to %@ (%lu)
@@ -9289,6 +9320,8 @@ a@ffffff
 <key>com.apple.private.subscriptionservice.internal</key>
 <true/>
 <key>com.apple.private.swc.system-app</key>
+<true/>
+<key>com.apple.private.sysdiagnose</key>
 <true/>
 <key>com.apple.private.system-keychain</key>
 <true/>

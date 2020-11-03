@@ -2236,7 +2236,11 @@ SgXw
 SgXw
 SgXwz_Xx
 ypSg
+ySo6NSViewCGG
 ySo6NSViewCG
+ySo6NSViewCG
+ySo5NSBoxCG
+ySo24SimDeviceIOPortInterface_p_So0A22DisplayDescriptorState_ptG
 So24SimDeviceIOPortInterface_p_So0A22DisplayDescriptorState_pt
 So13NSPDFImageRepCSg
 So7NSColorC
@@ -2248,17 +2252,12 @@ SDySSypG
 So8NSObjectC
 SS_SDySSypGt
 ySS_yptG
-So18SimAudioHostDevice_p
 ySo18SimAudioHostDevice_pG
-So24SimDeviceIOPortInterface_p
+So18SimAudioHostDevice_p
 ySo24SimDeviceIOPortInterface_pG
-ySnySiGG
-ySo6NSViewCGG
+So24SimDeviceIOPortInterface_p
 ySo7NSImageCG
-ySo6NSViewCG
-ySo5NSBoxCG
 ySo8NSNumberCG
-ySo24SimDeviceIOPortInterface_p_So0A22DisplayDescriptorState_ptG
 SS3key_yp5valuet
 3key_yp5valuetSg
 _yptSg
@@ -2349,7 +2348,6 @@ So9SimScreen_pSg
 Iegn_
 Iegg_
 SgXw
-So9SimScreen_pG
 $s12SimulatorKit28SimDisplayChromeViewDelegateP
 $s12SimulatorKit33SimDisplayChromeViewInputDelegateP
 $s12SimulatorKit020SimDisplayChromeViewE8DelegateP
@@ -2362,6 +2360,8 @@ So7NSColorCz_Xx
 _yptG
 SDySS
 So17OS_dispatch_groupCG
+So17OS_dispatch_groupCG
+ySSypG
 ySSypG
 So21AXPTranslatorResponseCSg
 So21AXPTranslatorResponseCSgz_Xx
@@ -2385,6 +2385,7 @@ So7NSEventCSg
 GGSg
 So7NSEventC
 $s12SimulatorKit28_ExposeHitTestContentsAlpha2P
+ySnySiGG
 SgXw
 SgIego_
 Iegg_
@@ -2418,6 +2419,7 @@ So18SimAudioHostDevice_pSg
 So25SimDeviceIOClientProtocol_p
 So20SimAudioHostRoutable_p
 So17OS_dispatch_groupCG
+So9SimScreen_pG
 So8NSButtonC
 So7NSTimerCSg
 So11NSAnimationC

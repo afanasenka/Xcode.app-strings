@@ -1,4 +1,5 @@
-@(#)PROGRAM:DVTUserInterfaceKit  PROJECT:DVTFrameworks-17511
+@(#)PROGRAM:DVTUserInterfaceKit  PROJECT:DVTFrameworks-17515.1
+ffff
 ?333333
 ?333333
 ?333333
@@ -87,7 +88,7 @@ R?o*R
 ?MJA
 9#J{
 ?T5A
-?DVTUserInterfaceKit
+DVTUserInterfaceKit
 DVTIssueIconInnerShape
 PendingShape
 StepAnalyzeShape
@@ -294,9 +295,14 @@ isMissing
 Tc,N,V_isMissing
 DVTIconCreatorCacheIcons
 DVTFileIconCreatorUseIconServicesDirectly
+xcodeproj
+xcworkspace
+swift
+plist
+framework
 selector:%@, baseIcon:%p, badgeIcon:%p, isDirty:%@, isMissing:%@
 +[DVTFileIconCreator _iconWithBaseIcon:badgeIcon:isDirty:isMissing:]
-/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17511/DVTUserInterfaceKit/Icons/FileIcons/DVTFileIconCreator.m
+/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17515.1/DVTUserInterfaceKit/Icons/FileIcons/DVTFileIconCreator.m
 ((result)) != nil
 %@ should not be nil.
 (result)
@@ -331,6 +337,7 @@ Failed to generate icon for type: %@
 fileType
 CFGetTypeID((CFStringRef)fileType) == CFStringGetTypeID()
 %@ should be a string, but it is %@
+sample
 +[DVTFileIconCreator iconForDVTFilePath:fileDataTypeHint:isDirty:isMissing:]
 ((fileDataTypeFromContent)) != nil
 (fileDataTypeFromContent)
@@ -2543,20 +2550,19 @@ T@"DVTFindPatternComponents",C
 searchesImmediatelyAfterInsertingPattern
 c16@?0@8
 -[DVTFindPatternComboBox _selectedFindPattern:]
-/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17511/DVTUserInterfaceKit/Find/DVTFindPatternFieldHelper.m
+/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17515.1/DVTUserInterfaceKit/Find/DVTFindPatternFieldHelper.m
 [(id)(_castedResult) isKindOfClass:[DVTFindPatternAttachmentCell class]]
 T@"<DVTFindPatternManager>",VfindPatternManager
 -[DVTFindPatternTextField _selectedFindPattern:]
 -[DVTFindPatternSearchField _selectedFindPattern:]
 NSRect _rectOfFindPatternAttachmentInTextView(NSTextAttachment *__strong, NSTextView *__strong)
-/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17511/DVTUserInterfaceKit/Find/DVTFindPatternField.m
+/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17515.1/DVTUserInterfaceKit/Find/DVTFindPatternField.m
 [textView textContainer]
 Exception while trying to find index of attachement : %@
 DVTCharacterPatterns
 DVTBasicPatterns
 DVTAdvancedPatterns
 v16@?0@"NSArray"8
-plist
 regularExpression
 allowsBackreferences
 isNegation
@@ -5263,15 +5269,16 @@ q32@0:8@16q24
 DVTUserInterfaceKit3
 {CGSize=dd}40@0:8@16@24q32
 _imageView(for:previewSize:)
-/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17511/DVTUserInterfaceKit/Icons/Preview/DVTIconPreview.swift
+/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17515.1/DVTUserInterfaceKit/Icons/Preview/DVTIconPreview.swift
 _performExport(to:)
 DVTIconPreviewExport
 DVTIconPreviewWindowSelectedAppearance
 DVTIconPreviewWindowTokenFilter
 DVTIconPreviewWindowSelectedPreviewSizes
-Swift/x86_64-apple-macos.swiftinterface
 @"NSString"24@?0@8^@16
 DVTUserInterfaceKit/DVTIconPreview.swift
+Swift/Dictionary.swift
+Swift/NativeDictionary.swift
 Duplicate values for key: '
 DVTIconPreviewWindowFrame
 NSCollectionViewDataSource
@@ -5798,6 +5805,7 @@ registerDefaults:
 boolForKey:
 behaviourRevision
 valueForKey:
+_iconForFileTypeIdentifierOrFileExtension:isDirty:isMissing:
 initWithSize:
 representations
 addRepresentation:
@@ -5812,18 +5820,14 @@ fileDataTypeWithIdentifier:
 setObject:forKeyedSubscript:
 dictionaryWithDictionary:
 _xcodeBundleFileDataTypesToIconNames
-initWithSize:scale:
-prepareImagesForImageDescriptors:
-CGImageForDescriptor:
-initWithCGImage:
-addRepresentations:
+initWithISIcon:
 dvt_supportsGoldenAppearance
 imageNamed:
 _xcodeBundleExtensionsToIconNames
 lookupIconsDirectlyWithIconServices
-initWithBundleURL:fileExtension:
 bundleURL
-imageFromISIcon:name:
+initWithBundleURL:fileExtension:
+imageFromISIcon:
 _xcodeBundleIconForName:
 initWithBundleURL:type:
 defaultPlugInManager
@@ -5842,7 +5846,9 @@ iconForFileType:
 _dataTypesAndFileExtensionsToIconsCache
 objectForKey:
 _baseIconForFileTypeIdentifierOrFileExtension:
-_iconForFileTypeIdentifierOrFileExtension:isDirty:isMissing:
+stringByAppendingPathExtension:
+fileDataTypeForFilename:error:
+isDeclaredType
 iconForDVTFilePath:fileDataTypeHint:decorated:
 allKeys
 conformsToType:
@@ -5891,6 +5897,12 @@ description
 debugDescription
 dvt_navFrameworkIcon
 dvt_navXCFrameworkIcon
+placeholderImage
+setPlaceholderImage:
+dvt_configureForAsynchronousIconDrawing
+bezierPathWithRoundedRect:xRadius:yRadius:
+stroke
+imageWithSize:flipped:drawingHandler:
 initializeDVTKitFonts
 systemPinkColor
 propertyValuePairsForThemeAtPath:
@@ -6020,7 +6032,6 @@ contentDividerColor
 initWithName:resolver:
 quickLookTemplateImage
 drawInRect:
-imageWithSize:flipped:drawingHandler:
 statusYellow
 statusGreen
 statusPurple
@@ -6792,10 +6803,8 @@ closePath
 curveToPoint:controlPoint1:controlPoint2:
 isDrawingToScreen
 CGContext
-bezierPathWithRoundedRect:xRadius:yRadius:
 saveGraphicsState
 setLineWidth:
-stroke
 restoreGraphicsState
 purpleColor
 setObject:atIndexedSubscript:
@@ -9804,7 +9813,6 @@ upgradablePreferenceSetsFileExtensions
 preferenceSetsFileExtension
 initWithCustomDataSpecifier:basePreferenceSet:
 stringByDeletingPathExtension
-stringByAppendingPathExtension:
 customDataSpecifierWithName:groupingName:ownership:
 enumerateObjectsWithOptions:usingBlock:
 _addObserversForPreferenceSet:
@@ -12400,8 +12408,8 @@ dvt_setMinimumSizeAutolayoutConstraints:
 bestRepresentationForRect:context:hints:
 CGImageForProposedRect:context:hints:
 setImageInterpolation:
-matchesObject:
 matcherForFilterExpression:
+matchesObject:
 TIFFRepresentation
 representationUsingType:properties:
 temporaryDirectory
@@ -13642,6 +13650,7 @@ So6NSViewC
 So7NSColorCSg
 ySSG
 ySo6NSViewCG
+SaySo6NSViewCG
 ypSg
 SaySo10NSMenuItemCG
 So7NSImageCSg
@@ -13654,10 +13663,15 @@ SSSg
 So6NSFontCSg
 So20DVTNotificationTokenCSg
 ySo9NSControlCSgG
+So9NSControlCSg
 $s19DVTUserInterfaceKit34DVTEmptyContentPlaceholderDelegateP
 19DVTUserInterfaceKit34DVTEmptyContentPlaceholderDelegate_pSgXw
 So11NSTextFieldCSg
 So8NSButtonCSg
+ySSG
+ySo18NSLayoutConstraintCG
+ySo8NSButtonCG
+ySo9NSControlCG
 SgXw
 ySay
 SiSg
@@ -13669,16 +13683,11 @@ So12NSScrollViewC
 So16NSPasteboardItemC
 ySay
 So11NSHashTableCySo6NSViewCG
-ySnySiGG
-ySSG
-ySo18NSLayoutConstraintCG
-ySo8NSButtonCG
 ySS_yptG
 SS_ypt
 ySo14NSDraggingItemCG
 ySo19NSPasteboardWriting_pG
 So19NSPasteboardWriting_p
-ySo9NSControlCG
 So32DVTTableCellViewStatusControllerCIgo_
 So18NSWindowControllerC
 So13NSPopUpButtonCSg
@@ -13711,13 +13720,14 @@ So16DVTFilterSession_pSg
 So11NSImageViewCSgXw
 So11NSImageViewCSgXwz_Xx
 So7NSImageCz_Xx
+ySnySiGG
 _pSg
 ySSG
 ySS_So12NSAppearanceCtG
 ySay
 SgGG
-ySSSo12NSAppearanceCG
 ySSSo8NSButtonCG
+ySSSo12NSAppearanceCG
 So7NSImageCG
 So15DVTBorderedViewC
 So15NSTableCellViewC

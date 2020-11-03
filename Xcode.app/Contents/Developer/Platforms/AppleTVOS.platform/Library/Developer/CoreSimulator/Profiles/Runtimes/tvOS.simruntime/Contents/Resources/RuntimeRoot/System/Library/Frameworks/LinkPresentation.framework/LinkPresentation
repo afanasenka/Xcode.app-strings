@@ -100,6 +100,7 @@ T@"NSURL",R,&,N,V_URL
 com.apple.LinkPresentation.AsyncImageLoadingRequest
 com.apple.LinkPresentation.AsyncImageLoading
 com.cnn.iphone
+com.apple.mobilesms
 com.apple.mobilesms.compose
 com.apple.reminders
 com.apple.mobilenotes
@@ -1851,8 +1852,10 @@ _platformImage
 __alternateHTMLImageGenerator
 initWithScale:URL:
 _scale
-isCNNMobile
+isMessages
 isMessagesViewService
+isCNNMobile
+isMessagesOrMessagesViewService
 isMobileReminders
 isMobileNotes
 mainBundle

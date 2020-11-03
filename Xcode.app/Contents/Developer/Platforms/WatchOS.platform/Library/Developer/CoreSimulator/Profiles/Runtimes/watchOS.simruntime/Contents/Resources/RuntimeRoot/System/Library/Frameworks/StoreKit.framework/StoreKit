@@ -381,6 +381,10 @@ integerValue
 setProductIdentifier:
 setQuantity:
 setRequestData:
+applicationUsername
+setApplicationUsername:
+paymentDiscount
+setPaymentDiscount:
 count
 arrayWithCapacity:
 _setDownloadID:
@@ -388,16 +392,13 @@ _setContentIdentifier:
 _setContentLength:
 _setVersion:
 setRequestParameters:
-setApplicationUsername:
 setPartnerIdentifier:
 setPartnerTransactionIdentifier:
 setSimulatesAskToBuyInSandbox:
 setIsStoreOriginated:
 getPaymentDiscountFromTransactionXPCEncoding:
-setPaymentDiscount:
 initWithUUIDString:
 initWithIdentifier:keyIdentifier:nonce:signature:timestamp:
-applicationUsername
 transactionDate
 transactionIdentifier
 partnerIdentifier
@@ -407,7 +408,6 @@ requestData
 requestParameters
 simulatesAskToBuyInSandbox
 isStoreOriginated
-paymentDiscount
 identifier
 keyIdentifier
 nonce

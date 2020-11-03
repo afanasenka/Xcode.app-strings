@@ -318,14 +318,21 @@ workflowFilesForIdentifiers
 T@"NSMutableDictionary",R,N,V_workflowFilesForIdentifiers
 -[VCCKShortcutSyncService syncEngine:didReceiveDatabaseNotification:]
 -[VCCKShortcutSyncService syncEngine:didUpdateMetadata:]
+VCCKShortcutSyncService.didUpdateMetadata
 v16@?0@"WFCloudKitSyncToken"8
--[VCCKShortcutSyncService syncEngine:recordWithIDWasDeleted:recordType:]
--[VCCKShortcutSyncService syncEngine:didFetchRecord:]
+VCCKShortcutSyncService.recordWithIDWasDeleted
+-[VCCKShortcutSyncService syncEngine:recordWithIDWasDeleted:recordType:]_block_invoke
+VCCKShortcutSyncService.didFetchRecord
+-[VCCKShortcutSyncService syncEngine:didFetchRecord:]_block_invoke
 -[VCCKShortcutSyncService syncEngine:failedToDeleteRecordWithID:error:]
--[VCCKShortcutSyncService syncEngine:didDeleteRecordWithID:]
--[VCCKShortcutSyncService syncEngine:failedToSaveRecord:error:]
--[VCCKShortcutSyncService syncEngine:didSaveRecord:]
--[VCCKShortcutSyncService syncEngine:recordToSaveForRecordID:]
+VCCKShortcutSyncService.didDeleteRecordWithID
+-[VCCKShortcutSyncService syncEngine:didDeleteRecordWithID:]_block_invoke
+VCCKShortcutSyncService.failedToSaveRecord
+-[VCCKShortcutSyncService syncEngine:failedToSaveRecord:error:]_block_invoke
+VCCKShortcutSyncService.didSaveRecord
+-[VCCKShortcutSyncService syncEngine:didSaveRecord:]_block_invoke
+VCCKShortcutSyncService.recordToSaveForRecordID
+-[VCCKShortcutSyncService syncEngine:recordToSaveForRecordID:]_block_invoke
 -[VCCKShortcutSyncService syncEngine:zoneWithIDWasPurged:]
 -[VCCKShortcutSyncService syncEngine:zoneWithIDWasDeleted:]
 -[VCCKShortcutSyncService syncEngine:zoneWithIDChanged:]
@@ -334,10 +341,10 @@ v16@?0@"WFCloudKitSyncToken"8
 -[VCCKShortcutSyncService syncEngine:didDeleteRecordZoneWithID:]
 -[VCCKShortcutSyncService syncEngine:didSaveRecordZone:]
 -[VCCKShortcutSyncService databaseDidChange:modified:inserted:removed:]
+VCCKShortcutSyncService.databaseResultChange
 deleted
 lastSyncedHash
 hiddenFromLibraryAndSync
-VCCKShortcutSyncService.databaseResultChange
 -[VCCKShortcutSyncService observeValueForKeyPath:ofObject:change:context:]
 -[VCCKShortcutSyncService handleUnknownItemErrorForRecord:]
 -[VCCKShortcutSyncService handleServerRecordChangedError:]
@@ -353,6 +360,7 @@ VCCKCheckRemoteModificationDateNewerThanLocal
 B16@?0^@8
 -[VCCKShortcutSyncService handleFetchedFolderRecord:]_block_invoke
 -[VCCKShortcutSyncService handleFetchedWorkflowRecord:]
+v16@?0@"WFWorkflowReference"8
 -[VCCKShortcutSyncService handleFetchedWorkflowRecord:]_block_invoke_2
 -[VCCKShortcutSyncService handleFetchedWorkflowRecord:]_block_invoke
 v12@?0B8
@@ -391,6 +399,7 @@ v32@?0@"WFDatabaseObjectDescriptor"8@"WFWorkflowCollectionRecord"16^B24
 VCCKShortcutSyncService.modifyPendingChangesInShortcutsZoneWithCompletion
 -[VCCKShortcutSyncService fetchChangesInShortcutsZoneWithCompletion:]
 -[VCCKShortcutSyncService fetchChangesInShortcutsZoneWithCompletion:]_block_invoke
+B16@?0@"NSError"8
 VCCKShortcutSyncService.fetchChangesInShortcutsZoneWithCompletion
 -[VCCKShortcutSyncService dealloc]
 -[VCCKShortcutSyncService initWithContainer:database:applicationObserver:]
@@ -416,6 +425,8 @@ ApplicationStateChanged
 kAFPreferencesDidChangeDarwinNotification
 com.apple.nanoregistry.paireddevicedidchangeversion
 com.apple.mobile.keybagd.first_unlock
+com.apple.system.timezone
+com.apple.system.clock_set
 State
 T@"NSMapTable",R,N,V_observers
 streams
@@ -884,17 +895,6 @@ Access was denied (no read access to podcasts database)
 -[VCVoiceShortcutManagerAccessWrapper getResultsForWorkflowQuery:resultClassName:completion:]
 Cannot build access wrapper exported object when connection is not allowed
 com.apple.VoiceShortcuts.library.indexed
-WFScreenOnObserver
-token
-Ti,N,V_token
-T@"NSObject<OS_dispatch_queue>",&,N,V_queue
-screenOn
-TB,R,N,V_screenOn
-T@"<WFScreenOnObserverDelegate>",W,N,V_delegate
--[WFScreenOnObserver stateChanged:]
-com.apple.springboard.hasBlankedScreen
-v12@?0i8
-com.apple.shortcuts.WFScreenOnObserver
 syncOperation
 T@"VCSpotlightSyncOperation",&,N,V_syncOperation
 workflows
@@ -1258,6 +1258,7 @@ PopulateWorkflows
 %s Sync engine failed to delete CKRecord: error domain = %{public}@, code = %{public}ld, error = %{public}@, recordID = %{public}@
 %s Sync engine deleted CKRecord with CKRecordID %{public}@
 %s Sync engine failed to save CKRecord: error domain = %{public}@, code = %{public}ld, error = %{public}@, record = %@
+%s Zone not found error encountered, asking sync engine to create the Shortcuts zone, and re-saving record with identifier %{public}@
 %s Sync engine saved CKRecord with CKRecordID %{public}@, record = %@
 %s Saved record of unexpected type: %{public}@
 %s Sync engine is asking for CKRecord with ID %{public}@
@@ -1324,7 +1325,7 @@ PopulateWorkflows
 %s Local WFWorkflowRecord with identifier %{public}@ is equivalent to fetched record, proceeding to save fetched record as-is.
 %s Found conflict for workflow with identifier %{public}@: fetched WFRecord = %@, local WFRecord = %@
 %s Sync hash mismatch, but cannot create conflicts on watch. Proceeding to overwrite local workflow with fetched workflow
-%s Failed to save fetched WFWorkflowRecord for WFWorkflowReference: %{public}@, localWorkflowReference = %@
+%s Failed to save fetched WFWorkflowRecord for WFWorkflowReference: %{public}@, reference = %@
 %s Failed to save fetched new WFWorkflowRecord with identifier %@: %{public}@
 %s Failed to save workflow record with updated lastSyncedHash: %{public}@
 %s Merging received shortcut %{public}@ into collection %{public}@
@@ -1400,6 +1401,7 @@ PopulateWorkflows
 %s Finished modifying changes in the Shortcuts zone
 %s Fetching changes in Shortcuts zone
 %s Error fetching changes in the Shortcuts zone: %{public}@
+%s Zone not found error encountered, asking sync engine to create the Shortcuts zone
 %s Finished fetching changes in the Shortcuts zone
 %s VCCKShortcutSyncService dealloc
 %s Loaded sync engine metadata, length = %lu
@@ -1615,8 +1617,6 @@ PopulateWorkflows
 %s %@
 %s Denying access to trigger writes for accessSpecifier (%@)
 %s Running query: %@ for client: %@
-%s previous state (%i) and new state (%i) match, not notifying
-%s screen on state transitioned from %i to %i
 %s Sync operation finished with changes: (%@)
 %s Starting a spotlight index sync
 %s Sync in progress, dropping request.
@@ -1773,7 +1773,6 @@ VCDaemonDatabaseProvider
 VCVoiceShortcutManagerAccessWrapper
 VCVoiceShortcutManagerXPCInterface
 CSSearchableItem
-WFScreenOnObserver
 VCSpotlightSyncService
 VCSpotlightSyncOperationDelegate
 VCPBCodable
@@ -2244,6 +2243,8 @@ _eventQueue
 _registrations
 initWithDatabaseProvider:eventHandler:runCoordinator:
 deviceDidUnlockForFirstTime
+timezoneChangeDidOccur
+timeChangeDidOccur
 removeStalePendingNotifications
 databaseWithError:
 queue_registerAllTriggers:
@@ -2421,6 +2422,7 @@ setLastSyncedHash:
 setIcon:
 backgroundColorValue
 icon
+arrayByAddingObject:
 setWithObject:
 createWorkflowWithIdentifier:record:error:
 lastOrdering
@@ -2482,6 +2484,7 @@ initWithCheckIn:event:databaseProvider:
 perform
 isAppInstalled
 isSharingEnabled
+isSleepEnabled
 personalAutomationsPresent:
 homeAutomationsPresent:
 averageShortcutCountPerFolder:
@@ -2490,10 +2493,13 @@ uncategorizedShortcutCount:
 watchShortcutCount:
 folderCount:
 numberOfPersonalAutomationsEnabled:
-numberOfPersonalAutomationsFromSuggestionsEnabled:
+addAutomationSuggestionMetricsToEvent:database:error:
 numberOfShortcutRuns:
 numberOfAppSessions:
+sleepShortcutCount:
+addWidgetMetricsToEvent:error:
 checkIn
+sortedVisibleWorkflowsWithType:
 unsignedIntValue
 vc_voiceShortcutErrorWithCode:underlyingError:
 executeQuery:error:
@@ -2510,17 +2516,19 @@ sortedRunEventsWithSource:startDate:endDate:
 initWithWorkflowType:
 countOfAllVisibleWorkflows
 countOfWorkflowsInAFolder
+sleepOnboardingStatus
+initWithSleepFeature:
 sharingEnabled
 isInstalled
 applicationState
 initWithBundleIdentifier:allowPlaceholder:error:
+setSleepShortcutsCount:
 setAppSessionCount:
 setShortcutRunCount:
 setShortcutComplicationSlotsUsed:
 shortcutComplicationSlotsUsed
 setAppComplicationSlotsUsed:
 appComplicationSlotsUsed
-setNumberOfPersonalAutomationsFromSuggestionsEnabled:
 setNumberOfPersonalAutomationsEnabled:
 setFolderCount:
 setWatchShortcutCount:
@@ -2528,6 +2536,7 @@ setUncategorizedShortcutCount:
 setShortcutsCount:
 setAverageShortcutCountPerFolder:
 setHomeAutomationsEnabled:
+setSleepEnabled:
 setPersonalAutomationsEnabled:
 setSharingEnabled:
 setInstalled:
@@ -2619,6 +2628,7 @@ setDialogType:
 automationType
 initWithResponseCode:
 isShortcutsApp
+screenOn
 alertIsActive
 dismissPersistentChromeWithSuccess:completionHandler:
 activateAlert
@@ -2642,6 +2652,7 @@ attribution
 setFocusImmediatelyWhenPresented:
 textFieldConfiguration
 remoteObjectProxy
+stop
 anonymousListener
 isEqualToDate:
 initWithStartDate:endDate:
@@ -3078,7 +3089,6 @@ setWorkflowIdentifier:forToken:
 initWithIdentifier:name:glyphCharacter:
 intersectsSet:
 effectiveInputClassesFromInputClasses:workflowTypes:
-sortedVisibleWorkflowsWithType:
 contentItemClassesForShareSheetWithExtensionMatchingDictionaries:hostBundleIdentifier:
 sharedUserDefaults
 codableObjectOfClass:forKey:
@@ -3248,14 +3258,6 @@ setRelatedAppBundleIdentifier:
 setDomainIdentifier:
 searchableItemRepresentationWithIconDrawerContext:
 combineInteger:
-_screenOn
-_token
-stop
-stateChanged:
-screenOn
-token
-setToken:
-setQueue:
 _isFetchingClientState
 _hasAddedXPCEventHandlerObserver
 _workflows
@@ -3429,7 +3431,6 @@ inputStream
 representationType
 bytes
 dataUsingEncoding:
-arrayByAddingObject:
 lastPathComponent
 fileWithURL:options:
 sortUsingDescriptors:
@@ -3796,7 +3797,6 @@ v32@0:8Q16@?24
 v48@0:8q16@24@32@?40
 v36@0:8@16B24@?28
 @64@0:8@16@24@32@40@48@56
-@"<WFScreenOnObserverDelegate>"
 @"WFDatabaseResult"
 @"VCSpotlightSyncOperation"
 @"VCXPCServer"

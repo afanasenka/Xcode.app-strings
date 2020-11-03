@@ -12,6 +12,8 @@ __SBHLibraryPodFolderViewAccessibility_super
 SBHLibraryPodFolderViewAccessibility
 __SBHSearchTextFieldAccessibility_super
 SBHSearchTextFieldAccessibility
+__SBHIconTableViewCellAccessibility_super
+SBHIconTableViewCellAccessibility
 __SBHAddWidgetDetailSheetViewControllerAccessibility_super
 SBHAddWidgetDetailSheetViewControllerAccessibility
 __SBHWidgetStackViewControllerAccessibility_super
@@ -159,6 +161,7 @@ UIActionAccessibility__SpringBoardHome__UIKit
 SBHLibraryPodCategoryIconAccessibility
 SBHSearchTextFieldAccessibility
 SBRootFolderViewPageManagementLayoutManagerAccessibility
+SBHIconTableViewCellAccessibility
 SBRootFolderViewPageManagementLayoutManager
 transitionToActive:usingAnimator:
 SBHLibraryPodCategoryIcon
@@ -193,6 +196,8 @@ icon
 SBIcon
 _axIconView
 SBHSearchTextField
+SBHIconTableViewCell
+iconView
 SBHAddWidgetDetailSheetViewController
 avocadosStackView
 scrollView
@@ -699,6 +704,7 @@ countByEnumeratingWithState:objects:count:
 objectEnumerator
 isEqual:
 addObject:
+accessibilityDragSourceDescriptors
 _createViews
 _accessibilitySetPagingEnabled:
 _addPage:
@@ -1018,7 +1024,6 @@ _accessibilityOverridesInvisibility
 _accessibilityRetainsCustomRotorActionSetting
 _accessibilitySupportsActivateAction
 _accessibilitySupportGesturesAttributes
-accessibilityDragSourceDescriptors
 _accessibilityPreferredScrollActions
 _accessibilityUpdatesSwitchMenu
 _insertionIndexOfFocusLayerInView

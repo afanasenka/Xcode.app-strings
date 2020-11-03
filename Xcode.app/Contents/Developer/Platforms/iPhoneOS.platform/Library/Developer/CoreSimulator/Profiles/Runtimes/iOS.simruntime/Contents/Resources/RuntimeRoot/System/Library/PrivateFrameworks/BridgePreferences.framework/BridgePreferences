@@ -294,10 +294,8 @@ Phone App
 ComponentName
 ComponentVersion
 ComponentID
-AutoDiagnostics
-phone,watch
 DeviceClasses
-iPhone,Watch
+Watch
 Keywords
 1210568
 Title
@@ -550,7 +548,6 @@ RG_NAME
 IM_NAME
 VP_NAME
 AL_NAME
-Watch
 listControllerDelegate
 T@"PSListController",W,N,V_listControllerDelegate
 requiredWatchCapabilities

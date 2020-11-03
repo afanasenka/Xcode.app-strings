@@ -681,6 +681,7 @@ T@"NSArray",C,N
 subtitleVariants
 @"UITableViewCell"32@?0@"<CPListTemplateItem>"8@"NSIndexPath"16@"UITableView"24
 v32@?0@8@"<CPListTemplateItem>"16@"NSIndexPath"24
+v32@?0@"<CPListTemplateItem>"8Q16^B24
 dataSource
 T@"CPSSectionedDataSource",&,N,V_dataSource
 currentSpinningIdentifier
@@ -860,7 +861,6 @@ nextButton
 T@"UIButton",&,N,V_nextButton
 pagingDelegate
 T@"<CPSPageControlling>",W,N,V_pagingDelegate
-v32@?0@"<CPListTemplateItem>"8Q16^B24
 v32@?0@"CPListSection"8Q16^B24
 B32@?0@"CPListSection"8Q16^B24
 sections
@@ -1246,6 +1246,9 @@ Received a now playing update for the current app: %@
 No artwork catalog available for snapshot %@
 %@: entity button selected with UUID: %@
 %@: POI button selected with UUID: %@
+Received update for list template %@
+Received items to reload %@ for list template %@
+Unable to match an index path for item %@
 Unable to locate an application-identifier for the client app.
 can't extract application ID from '%@'
 team prefix must only contain characters in [0-9,A-Z] (%@)
@@ -1294,7 +1297,7 @@ Error attempting to revoke presentable for #banner item: %{public}@
 Flushing banner queue
 Flushed #banner source
 Error flushing #banner source: %{public}@
-Q@A
+Q@Q
 CPSGridButton
 CPSButton
 CPSControl
@@ -2159,7 +2162,6 @@ applicationDidBecomeNowPlayingApp:
 initWithProtocol:
 sharedManager
 addNowPlayingObserver:
-setNeedsReload
 bundleIdentifier
 applicationProxyForIdentifier:
 bundleType
@@ -3567,6 +3569,8 @@ section
 numberOfRowsInSection:
 scrollToRowAtIndexPath:atScrollPosition:animated:
 _updateFocusForReload
+indexPathForItem:
+replaceItemAtIndex:withItem:
 reloadItems:
 accessoryViewAtEdge:
 layoutMargins
@@ -3586,6 +3590,7 @@ conversationIdentifier
 messageReadDirectActionWithAppBundleId:conversationGUID:
 messageReplyDirectActionWithAppBundleId:conversationGUID:
 indexPathForCell:
+reloadTemplate:
 setButton:enabled:
 setButton:hidden:
 _scrollViewAccessoryInsetsDidChange:
@@ -3875,7 +3880,6 @@ indexSetWithIndex:
 insertSectionsAtIndexes:
 removeObjectAtIndex:
 deleteSectionsAtIndexes:
-replaceItemAtIndex:withItem:
 sessionConfiguration
 limitedUserInterfaces
 sessionConfiguration:limitedUserInterfacesChanged:
@@ -4897,12 +4901,12 @@ v32@0:8@"CPTemplate<CPEntityProviding>"16@"<CPEntityClientTemplateDelegate>"24
 @"NSMapTable"
 @32@0:8q16@24
 v24@0:8B16B20
+v24@0:8@"CPListTemplate"16
 @"CPSSectionedDataSource"
 @"CPSTableView"
 @"CPSEmptyView"
 @"NSUUID"16@0:8
 @"CPListTemplate"16@0:8
-v24@0:8@"CPListTemplate"16
 @64@0:8{?={CLLocationCoordinate2D=dd}{?=dd}}16{CGSize=dd}48
 @72@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48@56@64
 @"CPSNavigationAlertButtonView"

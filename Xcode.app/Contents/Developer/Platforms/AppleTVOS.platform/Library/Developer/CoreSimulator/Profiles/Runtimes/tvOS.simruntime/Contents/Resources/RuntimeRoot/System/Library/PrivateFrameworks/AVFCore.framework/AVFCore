@@ -522,6 +522,7 @@
 <<<< AVOutputContext >>>> %s: Posting %{public}@ with initiator %{public}@
 <<<< AVOutputContext >>>> %s: Posting %{public}@)
 <<<< AVOutputContext >>>> %s: outputDevices = %@
+<<<< AVOutputContext >>>> %s: Posting %{public}@ with initiator %{public}@, reason %{public}@, deviceID %{private}@, and previousDeviceIDs %{private}@
 <<<< AVOutputContext >>>> %s: called (devices=%{private}@)
 <<<< AVOutputContext >>>> %s: called (devices=%{private}@, initiator=%{public}@)
 <<<< AVOutputContext >>>> %s: called (device=%{private}@, authToken? %d, cancelIfAuthRequired=%{public}@, initiator=%{public}@)
@@ -2031,6 +2032,7 @@ kbps
 Mbps
 %0.2f%@
 HDR10
+DolbyVision 8.4
 DolbyVision 5
 Unknown
 average bitrate 
@@ -3631,7 +3633,7 @@ Content-Length
 source = %@
 timeMapping
 T{?={?={?=qiIq}{?=qiIq}}{?={?=qiIq}{?=qiIq}}},R,N,V_timeMapping
-description=EmbeddedAVFoundation_AVFCore_Sim-1995.24.2
+description=EmbeddedAVFoundation_AVFCore_Sim-1995.34.2
 <%@: %p, input parameters = %@>
 inputParameters
 <%@: %p, track ID = %d, volume mix: %@>
@@ -3661,6 +3663,10 @@ AVOutputContextAddOutputDeviceCancelIfAuthRequiredKey
 AVOutputContextAddOutputDeviceOptionInitiator
 AVOutputContextRemoveOutputDeviceOptionInitiator
 AVOutputContextRemoveOutputDeviceOptionContinuePlayingAfterLastDeviceRemoved
+AVOutputContextDestinationChangeReasonKey
+AVOutputContextDestinationChangeDeviceIDKey
+AVOutputContextDestinationChangePreviousDeviceIDsKey
+AVOutputContextDestinationChangeReasonIdleDisconnect
 AVOutputContextManagerOutputContextDidFailToConnectToOutputDeviceNotification
 AVOutputContextManagerOutputDeviceKey
 AVOutputContextManagerFailureReasonKey
@@ -3706,7 +3712,7 @@ AVOutputContextSerializationKeyContextType
 -[AVOutputContext outputContextImpl:didChangeOutputDeviceWithInitiator:]
 -[AVOutputContext outputContextImplDidChangeGlobalOutputDeviceConfiguration:]
 -[AVOutputContext outputDevices]
--[AVOutputContext outputContextImpl:didChangeOutputDevicesWithInitiator:]
+-[AVOutputContext outputContextImpl:didChangeOutputDevicesWithInitiator:reason:deviceID:previousDeviceIDs:]
 -[AVOutputContext setOutputDevices:]
 -[AVOutputContext setOutputDevices:options:completionHandler:]
 -[AVOutputContext setOutputDevices:options:completionHandler:]_block_invoke
@@ -4363,6 +4369,7 @@ AVVideoFrameRateConversionAlgorithm must be either AVVideoFrameRateConversionAlg
 String for AVVideoFrameRateConversionAlgorithm must be an NSString
 kVTDecompressionPropertyKey_FieldMode must be one of: kVTDecompressionProperty_FieldMode_BothFields, kVTDecompressionProperty_FieldMode_TopFieldOnly, kVTDecompressionProperty_FieldMode_BottomFieldOnly, kVTDecompressionProperty_FieldMode_SingleField, or kVTDecompressionProperty_FieldMode_DeinterlaceFields
 String for kVTDecompressionPropertyKey_FieldMode must be an NSString
+Value for kVTDecompressionPropertyKey_PropagatePerFrameHDRDisplayMetadata must be an NSNumber
 AVVideoEmitSequencesAtSyncFramesOnly must be greater than zero
 AVVideoEmitSequencesAtSyncFramesOnly must be an NSNumber
 AVVideoPixelAspectRatioKey can only be specified at the top level of the dictionary or in the AVVideoCompressionPropertiesKey sub-dictionary, not both
@@ -7613,6 +7620,8 @@ imageQueueInterpolationCurve
 imageQueueInterpolationCurveWasSet
 blendsVideoFrames
 blendsVideoFramesWasSet
+appliesPerFrameHDRDisplayMetadata
+appliesPerFrameHDRDisplayMetadataWasSet
 videoApertureMode
 usesMinimalLatencyForVideoCompositionRendering
 initialAlwaysMonitorsPlayability
@@ -7696,6 +7705,7 @@ setAutomaticallyPreservesTimeOffsetFromLive:
 setConfiguredTimeOffsetFromLive:
 setImageQueueInterpolationCurve:
 setBlendsVideoFrames:
+setAppliesPerFrameHDRDisplayMetadata:
 setPrefersSDRVideo:
 setReversesMoreVideoFramesInMemory:
 setAggressivelyCachesVideoFrames:
@@ -7731,6 +7741,7 @@ _updateReversePlaybackEndTimeOnFigPlaybackItem
 _updateAdvanceTimeForOverlappedPlaybackOnFigPlaybackItem
 _updateImageQueueInterpolationCurveOnFigPlaybackItem
 _updateBlendsVideoFramesOnFigPlaybackItem
+_updateAppliesPerFrameHDRDisplayMetadataOnFigPlaybackItem
 _updatePrefersSDRVideoOnFigPlaybackItem
 _updateReversesMoreVideoFramesInMemoryOnFigPlaybackItem
 _updateAggressivelyCachesVideoFramesOnFigPlaybackItem
@@ -9139,8 +9150,7 @@ openCommunicationChannelWithOptions:error:
 outputContextOutgoingCommunicationChannelDidBecomeAvailable:
 outputContext:didReceiveData:fromCommunicationChannel:
 outputContext:didCloseCommunicationChannel:
-outputContextImpl:didChangeOutputDeviceWithInitiator:
-outputContextImpl:didChangeOutputDevicesWithInitiator:
+outputContextImpl:didChangeOutputDevicesWithInitiator:reason:deviceID:previousDeviceIDs:
 outputContextImplDidChangeGlobalOutputDeviceConfiguration:
 defaultSharedOutputContext
 outputContextForControllingOutputDeviceGroupWithID:
@@ -9149,6 +9159,7 @@ setApplicationProcessID:
 setOutputDevice:forFeatures:
 setOutputDevice:options:
 outputContextImpl:didInitiateDestinationChange:
+outputContextImpl:didChangeOutputDeviceWithInitiator:
 setOutputDevices:
 addOutputDevice:
 removeOutputDevice:
@@ -11072,6 +11083,7 @@ B72@0:8{?=qiIq}16^f40^f48^{?={?=qiIq}{?=qiIq}}56^q64
 @"<AVOutputContextCommunicationChannelDelegate>"
 B24@0:8^i16
 B32@0:8@16Q24
+v56@0:8@16@24@32@40@48
 @"AVOutputContextInternal"
 @"<AVOutputContextCommunicationChannelImpl>"
 @"AVOutputContextCommunicationChannelInternal"

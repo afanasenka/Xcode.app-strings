@@ -1,8 +1,8 @@
 $@333333
 UUUUUU
 T@-C
+G333333
 MbP?
-@333333
 ?ffffff
 v@333333
 p?UUUUUU
@@ -32,8 +32,11 @@ hS333333
 >;<_<
 ?ff&
 ?ffffff
+zCff
+@@33
 Cfff?
-@(#)PROGRAM:PhotosUICore  PROJECT:PhotosUICore-310.1.190
+hS@(#)PROGRAM:PhotosUICore  PROJECT:PhotosUICore-310.2.160
+33333cs@
 |?5^
 |?5^
 ?ffffff
@@ -1401,6 +1404,18 @@ filterType
 Tq,N,V_filterType
 HDRConsideration
 Tq,N,V_HDRConsideration
+gainMapEnabled
+TB,N,V_gainMapEnabled
+showGainMapBorder
+TB,N,V_showGainMapBorder
+animateGainMapAppearance
+TB,N,V_animateGainMapAppearance
+gainMapAnimationDuration
+Td,N,V_gainMapAnimationDuration
+gainMapAnimationTimingFunction
+T@"NSString",C,N,V_gainMapAnimationTimingFunction
+gainMapAnimationActivationThreshold
+Td,N,V_gainMapAnimationActivationThreshold
 HDRModulationIntensity
 Td,N,V_HDRModulationIntensity
 SDRModulationIntensity
@@ -1409,6 +1424,8 @@ videoComplementModulationIntensity
 Td,N,V_videoComplementModulationIntensity
 EDRHeadroomRequestScheme
 Tq,N,V_EDRHeadroomRequestScheme
+useThresholdForVideos
+TB,N,V_useThresholdForVideos
 EDRHeadroomUsageScheme
 Tq,N,V_EDRHeadroomUsageScheme
 manualEDRHeadroomRequestStops
@@ -1425,6 +1442,22 @@ deviceMaximumEDRHeadroomStops
 Td,N,V_deviceMaximumEDRHeadroomStops
 forceCurrentScreenSupportsHDR
 TB,N,V_forceCurrentScreenSupportsHDR
+gainMapFaceMaxStops
+Tf,N,V_gainMapFaceMaxStops
+gainMapFaceKneeStops
+Tf,N,V_gainMapFaceKneeStops
+gainMapFaceKnee
+Tf,N,V_gainMapFaceKnee
+gainMapFaceMinStops
+Tf,N,V_gainMapFaceMinStops
+gainMapMaxStops
+Tf,N,V_gainMapMaxStops
+gainMapKneeStops
+Tf,N,V_gainMapKneeStops
+gainMapKnee
+Tf,N,V_gainMapKnee
+gainMapMinStops
+Tf,N,V_gainMapMinStops
 noqTy5fUbyK03UHxWigBBQ
 Sharing Settings
 Restore Defaults
@@ -4899,8 +4932,8 @@ T@"NSObject<OS_dispatch_queue>",&,N,V_workQueue
 T@"NSDictionary",C,N,V_sceneAncestryInformation
 requestSceneAncestryInformation
 TB,R,N,V_requestSceneAncestryInformation
-Title for all photos
-ALL_PHOTOS
+Title for photos media type
+PHOTOS
 PXSearchQueryExecutor.m
 topCollectionResults
 collectionResults
@@ -5668,6 +5701,8 @@ kPXFeedbackImageQualityMuteLivePhotoKey
 kPXFeedbackImageQualityBadReframeKey
 kPXFeedbackImageQualityExpectedReframeKey
 kPXFeedbackImageQualityExpectedReframeSysdiagnoseKey
+kPXFeedbackImageQualitySemanticDevelopmentBadEffectKey
+kPXFeedbackImageQualitySemanticDevelopmentNoEffectKey
 feedbackItemsDict
 T@"NSMutableDictionary",&,N,V_feedbackItemsDict
 generalFeedback
@@ -7140,6 +7175,7 @@ Scroll Position Saved
 tableViewController
 T@"UITableViewController",&,N,V_tableViewController
 SwitchCell
+PXFeedbackCollectionSemanticDevelopment
 PXFeedbackCollectionCTM
 OpenFeedbackCell
 Unsupported PXFeedbackFormSection Value
@@ -7193,15 +7229,18 @@ imageQualityDiagnosticFileURLs
 T@"NSArray",&,N,V_imageQualityDiagnosticFileURLs
 T@"<PXFeedbackImageQualityUIViewControllerDelegate>",R,W,N,V_delegate
 Failed to create temporary directory for TTR Image Quality Feedback
+1220014
 1187089
 Camera Image Feedback
 Camera Image Quality
 CoreMedia Capture
 Photos Imaging
+Semantic Developing
 852230
 863870
 423945
 819310
+1080636
 it wasn't what I expected
 %@, 
 IQF: I took a photo and 
@@ -8559,6 +8598,7 @@ Digital Flash
 Deep Fusion
 Processing
 %@ (%d)
+SemDev
 Proxy
 DF Final Image
 Non-Deferred
@@ -8569,6 +8609,7 @@ Adjustment
 Derivatives
 Reframe
 Repair Adjustment
+Semantic Enhance
     
 PL - 
 TE - 
@@ -9214,6 +9255,7 @@ imageRepresentation
 T^{CGImage=},R,N
 pixelSize
 isOpaque
+needsHDRToSDRConversion
 sourceColorSpace
 T^{CGColorSpace=},R,N,V_sourceColorSpace
 destinationColorSpace
@@ -9229,12 +9271,31 @@ TRCLUTs
 T@"<MTLTexture>",R,N,V_TRCLUTs
 colorCube
 T@"<MTLTexture>",R,N,V_colorCube
+<%@ source:%@ destination:%@ TRCLUTs:%@ colorCube:%@ opaque:%@ stages:
+  %ld: %@
+c = hlg_luma_scaling(c, %.5f, %.5f, colorp4(%.5f, %.5f, %.5f, %.5f));
+    c.rgb = colorp3(color_cube.sample(lut_sampler, float3(c.rgb)).rgb);
+    c.rgb = c.rgb * %.5f + %.5f;
+    c.rgb = colorp3(color_cube.sample(lut_sampler, float3(c.r, 0.5, 0.5)).rgb);
+    c.r = c.r * %.5f + %.5f;
+    %d: c[i] = colorp(color_trc.sample(lut_sampler, float2(c[i] * %.5f, %.5f)).r)
+    %d: t[i] = t[i] < %.5f ? %.5f * t[i] + %.5f : powr(%.5f * t[i] + %.5f, %.5f) + %.5f;
+    %d: t[i] = t[i] < %.5f ? %.5f * t[i] : powr(%.5f * t[i] + %.5f,%.5f);
+    %d: t[i] = t[i] < -%.5f / %.5f ? %.5f : powr(%.5f * t[i] + %.5f, %.5f) + %.5f;
+    %d: t[i] = t[i] < -%.5f / %.5f ? 0 : powr(%.5f * t[i] + %.5f, %.5f);
+for each color component:
+c = sign(c) * powr(t, %.5f); // Y = X^g
+c = (c.r * (%.5f,%.5f,%.5f) + c.g * (%.5f,%.5f,%.5f) + c.b * (%.5f,%.5f,%.5f) + (%.5f,%.5f,%.5f), c.a)
+%@: 
 B104@?0{CGColorConversionIteratorData=Iqqqqqq^^{CGColorTRCData}^^{CGColorMatrixData}^^{CGColorNxMTransformData}}8q88q96
 B112@?0{CGColorConversionIteratorData=Iqqqqqq^^{CGColorTRCData}^^{CGColorMatrixData}^^{CGColorNxMTransformData}}8q88q96^q104
 lut_index_from_trc_index
-/Library/Caches/com.apple.xbs/Sources/Photos_UI_Sim/Photos-310.1.190/workspaces/photosshared/PhotosUICore/PhotosUICore/GridKit/PXGColorProgram.m
+/Library/Caches/com.apple.xbs/Sources/Photos_UI_Sim/Photos-310.2.160/workspaces/photosshared/PhotosUICore/PhotosUICore/GridKit/PXGColorProgram.m
 lut_index >= 0
 B96@?0{CGColorConversionIteratorData=Iqqqqqq^^{CGColorTRCData}^^{CGColorMatrixData}^^{CGColorNxMTransformData}}8^{__CFDictionary=}88
+kCGApplyToneMappingForBT2100
+kCGHLGSceneMapping3DLut
+kCGPQEETF3DLut
 -[PXGColorProgram init]
 PXGColorProgram.m
 destinationColorSpace != nil
@@ -9258,6 +9319,8 @@ enableViewRenderer
 TB,N,V_enableViewRenderer
 lowLatency
 TB,N,V_lowLatency
+inLowMemoryModePreferMasterThumb
+TB,N,V_inLowMemoryModePreferMasterThumb
 inactivityTimeout
 Td,N,V_inactivityTimeout
 enableRoundedCorners
@@ -9918,7 +9981,14 @@ videoModulator
 T@"PXImageLayerModulator",R,N,V_videoModulator
 livePhotoView
 T@"ISLivePhotoUIView",R,N,V_livePhotoView
+gainMapImage
+T^{CGImage=},R,N,V_gainMapImage
+gainMapValue
+Tf,R,N,V_gainMapValue
+revealsGainMapImage
+TB,R,N,V_revealsGainMapImage
 T@"ISLivePhotoUIView",&,N
+T^{CGImage=},&,N
 v16@?0@"<PXMutableImageLayerModulator>"8
 neither insider -performChanges: block, nor performing updates
 PXLivePhotoViewModulator.m
@@ -12799,6 +12869,7 @@ Disable Low Res Thumbnails
 Request Master Thumbs Only
 Request Thumbnails Only
 Inactivity Timeout
+In LowMem Prefer Master Thumb
 Force Low Memory Mode
 Pause when Idle
 Layouts Local Sprites in Debug Hierarchy
@@ -14417,11 +14488,33 @@ High Value (Stops)
 Low Value (Stops)
 Sustain Duration
 HDR Threshold
-EDRHeadroomRequestScheme == %@
 Headroom (Stops)
+EDRHeadroomRequestScheme == %@
+Use Threshold For Videos
 Intensity Threshold
 Manual
 Headroom Request
+Gain Map Value
+No Face - Min Stops
+No Face - Knee
+No Face - Knee Stops
+No Face - Max Stops
+Face - Min Stops
+Face - Knee
+Face - Knee Stops
+Face - Max Stops
+Gain Map Settings
+Activation Threshold
+Ease In Out
+Ease Out
+Ease In
+Animation Timing Function
+gainMapEnabled != 0 && animateGainMapAppearance != 0
+Animation Duration
+Animate Gain Map Appearance
+gainMapEnabled != 0
+Show Gain Map Border
+Use Gain Map
 enabled != 0
 Filtering
 Video Complement Modulation Intensity
@@ -15317,6 +15410,13 @@ Tq,R,N,V_questionType
 targetPerson
 T@"PHPerson",R,N,V_targetPerson
 T@"NSString",R,N,V_possibleName
+filterStartTime
+Td,N,V_filterStartTime
+TB,N,V_enabled
+activationThreshold
+Td,N,V_activationThreshold
+gainMapImageAvailable
+TB,N,V_gainMapImageAvailable
 T@"UIVisualEffectView",R,N,V_effectView
 messageLabel
 T@"UILabel",R,N,V_messageLabel
@@ -16155,6 +16255,10 @@ layerFilterIntensityKeyPath
 T@"NSString",&,N,V_layerFilterIntensityKeyPath
 filteredLayer
 T@"CALayer",&,N,V_filteredLayer
+gainMapLayer
+T@"CALayer",&,N,V_gainMapLayer
+gainMapAnimationDurationFilter
+T@"PXGainMapAnimationDurationFilter",&,N,V_gainMapAnimationDurationFilter
 intensityAnimationDuration
 Td,N,V_intensityAnimationDuration
 intensity
@@ -16163,6 +16267,7 @@ layer
 T@"CALayer",R,N,V_layer
 TB,R,N,GisDisplayingVideoComplement,V_displayingVideoComplement
 T@"CALayer",&,N
+imageLayerContents
 imageLayerModulatorIntensity
 filters.%@.%@
 PXImageLayerModulatorFilter-%p
@@ -16170,6 +16275,8 @@ inputBias
 inputAmount
 PXImageLayerModulator.m
 B32@?0@"CAFilter"8Q16^B24
+positionAnimation
+Animation
 -[PXImageLayerModulator init]
 cachedProviders
 T@"NSArray",C,N,V_cachedProviders
@@ -16794,7 +16901,6 @@ debugDecorationSource
 T@"<PXGDebugDecorationSource>",R,W,N,V_debugDecorationSource
 debugDecorationIndex
 T@"PXGLayout",&,N,V_decoratedLayout
-TB,N,V_enabled
 decorationSource
 T@"<PXGLayoutContentSource>",W,N,V_decorationSource
 decoratedLayout != nil
@@ -16955,6 +17061,7 @@ PXForYouSuggestionDisplayAsset.m
 Long Exposure Suggestions require a renderer
 Loop Suggestions require a renderer
 v16@?0@"PIPortraitAdjustmentController"8
+spillMatteAllowed
 capturedPortraitMajorVersion
 portraitInfo
 PHPhotosGraphOptionReferenceOptions
@@ -17197,7 +17304,6 @@ isInitialLoad
 TB,N,V_isInitialLoad
 coalescingAXResponder
 T@"PXGAXCoalescingResponder",R,N,V_coalescingAXResponder
-presentedSpriteCount
 scrollViewSpeedometer
 T@"PXScrollViewSpeedometer",&,N,V_scrollViewSpeedometer
 textureManager
@@ -17394,7 +17500,6 @@ Enable Shadows
 All Photos Aspect Fit Padding
 Months Padding
 Years Padding
-Animation Duration
 T@"NSOrderedSet",C,N,V_sectionInfos
 T@"NSString",R,N,V_transientIdentifier
 containersCount
@@ -20228,11 +20333,11 @@ Layout Hierarchy: {
 objectReference2
 objectReference1
 PXGView.m
-v44@?0I8r^{?={?=ddf}}12r^{?=f{?=(?={?=ffff}[4f])}fSSC}20r^{?=iifqSC}28^B36
 @16@?0@"PXTaggedRect"8
 B32@?0@"PXTaggedRect"8Q16^B24
 q24@?0@"PXTaggedRect"8@"PXTaggedRect"16
 @"NSMutableArray"40@?0{CGRect={CGPoint=dd}{CGSize=dd}}8
+v44@?0I8r^{?={?=ddf}}12r^{?=f{?=(?={?=ffff}[4f])}fSSC}20r^{?=iifqSC}28^B36
 can't do hit testing without a layout
 B24@?0@"PXGHitTestResult"8@"NSDictionary"16
 self.scrollViewController
@@ -21101,12 +21206,12 @@ didLoopVideoBeforeSeek
 TB,N,V_didLoopVideoBeforeSeek
 pipelineFiltersBeforeSeek
 T@"NSArray",C,N,V_pipelineFiltersBeforeSeek
-showsUntrimmed
-TB,N,V_showsUntrimmed
 playerItemSource
 T@"<PXTrimToolPlayerWrapperNUMediaViewPlayerItemSource>",W,N,V_playerItemSource
 fullVideoPipelineFilters
 T@"NSArray",C,N,V_fullVideoPipelineFilters
+showsUntrimmed
+TB,N,V_showsUntrimmed
 T@"AVPlayerLayer",R,N
 v40@?0@"<NUMediaPlayer>"8{?=qiIq}16
 v24@?0@"<NUMediaPlayer>"8q16
@@ -23142,6 +23247,23 @@ mediaTargetSize=%@,
 mediaKind=%@, 
 presentationType=%@, 
 {contentsOrigin:%@, contentsSize:%@, textureSize:%@}
+PXGColorOpcodeNil
+PXGColorOpcodeMatrix
+PXGColorOpcodeCurve0
+PXGColorOpcodeCurve1
+PXGColorOpcodeCurve2
+PXGColorOpcodeCurve3
+PXGColorOpcodeCurve4
+PXGColorOpcodeCurveLUT
+PXGColorOpcode1DLUT
+PXGColorOpcode3DLUT
+PXGColorOpcode4DLUT
+PXGColorOpcodeCurveHLGdegamma
+PXGColorOpcodeCurveHLGengamma
+PXGColorOpcodeHLGLuminanceScaling
+PXGColorOpcodeCurvePQdegamma
+PXGColorOpcodeCurvePQengamma
+PXGColorOpcodeCount
 v32@?0@"NSNumber"8@16^B24
 DebugColorTransform
 DebugResolution
@@ -23153,7 +23275,21 @@ SpriteOpaque
 TextureOpaque
 EdgeStretchEffect
 @"NSString"12@?0i8
+PXGYCbCr_Bit_Depth_Nil
+PXGYCbCr_Bit_Depth_8
+PXGYCbCr_Bit_Depth_10
+PXGYCbCr_Bit_Depth_Count
 PXGYCbCr_Bit_Depth_Unknown(%d)
+PXGYCbCr_Nil
+PXGYCbCr_ITU_R_601_4
+PXGYCbCr_ITU_R_601_4_full
+PXGYCbCr_ITU_R_709_2
+PXGYCbCr_ITU_R_709_2_full
+PXGYCbCr_ITU_R_2020
+PXGYCbCr_ITU_R_2020_full
+PXGYCbCr_SMPTE_240M_1995
+PXGYCbCr_SMPTE_240M_1995_full
+PXGYCbCr_Count
 PXGYCbCrMatrix_Unknown(%d)
 RGtoGrayA
 RtoGray
@@ -23523,15 +23659,19 @@ Fetch & Gate - SuggestionKeyAssets
 Memory is filtered from widget timeline: %{public}@
 NotSafeForDisplay - Memories:%lu
 Fetch & Gate - MemoryKeyAssets
+Setting featureState on suggestions - failed: %@
+Using fallback: %d suggestions
+No fallback suggestions
+Fetch - FallbackSuggestionsAndSetFeatured
 Setting featureState on memories - failed: %@
-No featured memories or suggestions. Using fallback %d memories
+Using fallback: %d memories
 No fallback memories
-Fetch - fetchFallbackMemoriesAndSetFeatured
-Fetch - CurrentlyFeaturedSuggestions
+Fetch - FallbackMemoriesAndSetFeatured
+Fetch - SuggestionsWithFeaturedState
 Fetch - MemoriesWithFeaturedState
+Candidate For Scheduling - Memories:%lu, Suggestions:%lu
 Prepare TimelineDataSource for WidgetSize:{%.2f, %.2f}:
 %lu memories and %lu suggestions are featured
-Candidate For Scheduling - Memories:%lu, Suggestions:%lu
 Used For Scheduling - Memories:%lu, Suggestions:%lu
 Initialize - TimelineDataSource
 ERROR: Looks like email is not setup on this system.
@@ -23664,7 +23804,7 @@ Search UI: Failed to find highlight range (%@) in substring (%@)
 Initialized PXInvitationRecipient emails %@ and phones %@. selectedPhoneString %@ selectedEmailString %@ _invalidAddressString %@
 %s Unexpected value for firstUngroupedMemoryIndex: %lu, memoriesFetchResult.count: %lu
 Error while updating memory notification state: %@
-%@ memories fetch result contains %lu memories.
+Set new memories fetchResult, contains %lu memories.
 Generating feed entries from %lu entries...
 Generated %lu feed entries:
 Generated feed entry: %@
@@ -24510,6 +24650,9 @@ PXSmartAlbums: iso value set to: %@
 PXSmartAlbums: lens model set to: "%@"
 PXSmartAlbums: second shutter speed value set to: %@
 PXSmartAlbums: shutter speed value set to: %@
+Sharing warning required for: %@
+Failed to read image metadata for asset with UUID: %@. Error: %@
+Failed to read image metadata for asset with UUID: %@
 Failed to find search result for asset: %@, inSection: %ld
 Failed to find Section Provider containing search result: %@
 Failed to find section containing search result: %@
@@ -26534,6 +26677,7 @@ PXDiagnosticsHighlightCurationSettingsViewController
 _PXForYouPeopleQuestion
 _PXForYouPeopleAutonamingQuestion
 _PXForYouPeopleMergeCandidateQuestion
+PXGainMapAnimationDurationFilter
 PXConfidentialityWarningViewController
 PXMessagesCMMSuggestionsGadgetProvider
 PXMessagesCMMSuggestionGadgetActionDelegate
@@ -26627,6 +26771,8 @@ PXCMMCloudView
 PXImageLayerModulator
 PXMutableImageLayerModulator_Private
 PXMutableImageLayerModulator
+PXImageLayerGainMapOrderInAction
+CAAction
 PXGadgetDataSourceManager
 PXFeatureSpecManager
 PXOneUpSettings
@@ -27912,12 +28058,14 @@ _updateLayer
 _updateImageRequester
 _updateVideoSession
 _reloadVideoSessionIfNecessary
+_updateDesiredDynamicRange
 setVideoSession:
 videoSession
 desiredContentsRect
 setDesiredContentsRect:
 contentSize
 setContentSize:
+setDesiredDynamicRange:
 setCornerCurve:
 setAutoresizingMask:
 greenColor
@@ -29709,9 +29857,24 @@ emptyDataSourceManager
 _dataSourceManagerWithPredicate:
 initWithObjects:photoLibrary:fetchType:fetchPropertySets:identifier:registerIfNeeded:
 _enabled
+_gainMapEnabled
+_showGainMapBorder
+_animateGainMapAppearance
+_useThresholdForVideos
 _forceCurrentScreenSupportsHDR
+_gainMapFaceMaxStops
+_gainMapFaceKneeStops
+_gainMapFaceKnee
+_gainMapFaceMinStops
+_gainMapMaxStops
+_gainMapKneeStops
+_gainMapKnee
+_gainMapMinStops
 _filterType
 _HDRConsideration
+_gainMapAnimationDuration
+_gainMapAnimationTimingFunction
+_gainMapAnimationActivationThreshold
 _HDRModulationIntensity
 _SDRModulationIntensity
 _videoComplementModulationIntensity
@@ -29729,6 +29892,18 @@ filterType
 setFilterType:
 HDRConsideration
 setHDRConsideration:
+gainMapEnabled
+setGainMapEnabled:
+showGainMapBorder
+setShowGainMapBorder:
+animateGainMapAppearance
+setAnimateGainMapAppearance:
+gainMapAnimationDuration
+setGainMapAnimationDuration:
+gainMapAnimationTimingFunction
+setGainMapAnimationTimingFunction:
+gainMapAnimationActivationThreshold
+setGainMapAnimationActivationThreshold:
 HDRModulationIntensity
 setHDRModulationIntensity:
 SDRModulationIntensity
@@ -29737,6 +29912,8 @@ videoComplementModulationIntensity
 setVideoComplementModulationIntensity:
 EDRHeadroomRequestScheme
 setEDRHeadroomRequestScheme:
+useThresholdForVideos
+setUseThresholdForVideos:
 EDRHeadroomUsageScheme
 setEDRHeadroomUsageScheme:
 manualEDRHeadroomRequestStops
@@ -29753,6 +29930,22 @@ deviceMaximumEDRHeadroomStops
 setDeviceMaximumEDRHeadroomStops:
 forceCurrentScreenSupportsHDR
 setForceCurrentScreenSupportsHDR:
+gainMapFaceMaxStops
+setGainMapFaceMaxStops:
+gainMapFaceKneeStops
+setGainMapFaceKneeStops:
+gainMapFaceKnee
+setGainMapFaceKnee:
+gainMapFaceMinStops
+setGainMapFaceMinStops:
+gainMapMaxStops
+setGainMapMaxStops:
+gainMapKneeStops
+setGainMapKneeStops:
+gainMapKnee
+setGainMapKnee:
+gainMapMinStops
+setGainMapMinStops:
 actionWithSettingsKeyPath:
 sectionWithRows:
 _alwaysTrySiriSearch
@@ -33894,10 +34087,12 @@ _widgetSize
 initWithPhotoLibrary:forWidgetSize:
 memories
 featuredPhotos
+_initializeFeaturedCandidatesWithMemoryResult:suggestionResult:
 _defaultSortDescriptors
 _fetchMemoriesWithFeaturedState:
-_fetchCurrentlyFeaturedSuggestions
+_fetchSuggestionsWithFeaturedState:
 _fetchFallbackMemoriesAndSetFeatured
+_fetchFallbackSuggestionsAndSetFeatured
 _keyAssetFetchOptions
 _gatedKeyAssetByMemoryLocalIdentifierWithMemories:
 _gatedKeyAssetBySuggestionLocalIdentifierWithSuggestions:
@@ -40134,6 +40329,7 @@ _flags
 _TRCLUTs
 _colorCube
 initWithDevice:sourceColorSpace:destinationColorSpace:flags:
+needsHDRToSDRConversion
 _generateProgram
 _compactProgramWithConversionInfo:cubeSize:cubeOnly:
 sourceColorSpace
@@ -40156,6 +40352,7 @@ _simulateMissingMetalDevice
 _enableMetalRenderer
 _enableViewRenderer
 _lowLatency
+_inLowMemoryModePreferMasterThumb
 _enableRoundedCorners
 _enableColorMatching
 _debugExtendedColorRange
@@ -40222,6 +40419,8 @@ enableViewRenderer
 setEnableViewRenderer:
 lowLatency
 setLowLatency:
+inLowMemoryModePreferMasterThumb
+setInLowMemoryModePreferMasterThumb:
 inactivityTimeout
 setInactivityTimeout:
 enableRoundedCorners
@@ -41111,17 +41310,29 @@ _relatedEntryAtIndexPath:
 indexPathForRelatedEntry:
 isTransient
 relatedEntries
+_revealsGainMapImage
 _displayingVideoComplement
+_gainMapValue
+_gainMapImage
 _imageModulator
 _videoModulator
 basePlayerUIView:didChange:withAnimationDuration:
+setGainMapImage:animated:
 livePhotoView
 setLivePhotoView:
+gainMapImage
+setGainMapImage:
+gainMapValue
+setGainMapValue:
+revealsGainMapImage
+setRevealsGainMapImage:
 initWithImageModulator:videoModulator:
 performChanges_Private:
 setDisplayingVideoComplement:
 _invalidateInput
 _updateInput
+_invalidateGainMapImage
+_updateGainMapImage
 displayingVideoComplement
 imageModulator
 videoModulator
@@ -44732,7 +44943,6 @@ currentScreenSupportsHDR
 HDRFocus
 imageModulationIntensity
 requestedEDRHeadroomFactor
-setDesiredDynamicRange:
 px_effectiveImageModulationIntensity
 px_effectiveHDRFocus
 bucketNameForDouble:bucketLimits:numberFormatter:
@@ -47297,6 +47507,16 @@ initWithQuestionType:targetPerson:
 questionType
 targetPerson
 initWithQuestionType:targetPerson:possibleName:
+_gainMapImageAvailable
+_filterStartTime
+_activationThreshold
+setGainMapImageAvailable:
+gainMapImageAvailable
+filterStartTime
+setFilterStartTime:
+enabled
+activationThreshold
+setActivationThreshold:
 _cancellationHandler
 presentAsOverlayInWindowScene:
 cancellationHandler
@@ -48131,6 +48351,8 @@ _layer
 _filter
 _layerFilterIntensityKeyPath
 _filteredLayer
+_gainMapLayer
+_gainMapAnimationDurationFilter
 _intensityAnimationDuration
 _intensity
 intensity
@@ -48143,6 +48365,7 @@ setHdrGain:
 setFilteredLayer:
 _addFilterToLayer:
 _removeFilterFromLayer:
+setGainMapLayer:
 _invalidateFilterInput
 _updateFilterInput
 _invalidateFilter
@@ -48151,14 +48374,31 @@ _invalidateFilteredLayer
 _updateFilteredLayerIfNeeded
 _invalidateFilterIntensity
 _updateFilterIntensityIfNeeded
+_invalidateGainMapAppearance
+_updateGainMapAppearance
+_invalidateGainMapVisibility
+_updateGainMapVisibility
 isDisplayingVideoComplement
 filter
 layerFilterIntensityKeyPath
 setLayerFilterIntensityKeyPath:
 filteredLayer
+gainMapLayer
+gainMapAnimationDurationFilter
+setGainMapAnimationDurationFilter:
 intensityAnimationDuration
 setIntensityAnimationDuration:
+setCompositingFilter:
 setValue:forKeyPath:
+runActionForKey:object:arguments:
+setSourcePoints:
+setAppliesRotation:
+setAppliesScale:
+setUsesNormalizedCoordinates:
+setKeyPath:
+setSourceLayer:
+animation
+_gainMapPlaceholderImage
 _lookupQueue
 _lookupQueue_loadedProviders
 _deferredGadgetLoadingGroup
@@ -49040,7 +49280,6 @@ _layeredImageContainer
 _setOverlayLayer:
 setAnimationsEnabled:
 setAllowsGroupBlending:
-setCompositingFilter:
 _isUpdatingDecoratedLayout
 _invalidatedDecoratedSpriteIndexes
 _wantsCaptionDecorations
@@ -49068,7 +49307,6 @@ _invalidateDecorationForSpriteRange:inLayout:
 decorationSpriteInfoForDecoratedSpriteIndex:decorationIndex:assetBadgeInfo:isItemSelected:isItemHighlighted:isItemDragged:
 debugDecorationIndex
 spriteIndexForDecorationIndex:decoratingSpriteIndex:
-enabled
 decorationSource
 numberOfDecoratingSpritesPerDecoratedSprite
 assetBadgeDecorationSource
@@ -49220,6 +49458,7 @@ shouldInvert
 submit:
 result:
 validatedCompositionCopyFor:
+setSpillMatteAllowed:
 setPortraitInfo:
 latestVersion
 setKind:
@@ -49516,7 +49755,7 @@ renderer:viewportSizeWillChange:
 rendererNeedsUpdate:
 rendererPerformRender:
 initWithAnimator:textureManager:metalRenderer:viewRenderer:displayLinkClass:
-presentedSpriteCount
+copyPresentedSpriteFor:geometry:style:info:
 handleScreensDidWakeNotification:
 _extensionHostDidEnterBackground:
 _extensionHostWillEnterForeground:
@@ -51090,6 +51329,7 @@ mappedSpriteCount
 animationIndexBySpriteIndex
 mappedAnimationCount
 groupIndexByAnimationIndex
+imageProperties
 px_isSupportedApp:
 _rootSettings
 initWithRootSettings:
@@ -54203,6 +54443,8 @@ newIdentityCompositionController
 depthAdjustmentController
 depthInfo
 setDepthInfo:
+glassesMatteAllowed
+setGlassesMatteAllowed:
 capturedAperture
 setAperture:
 videoReframeAdjustmentController
@@ -54591,9 +54833,9 @@ setTrimmedTimeRange:
 trimTimeRange
 playerWrapper:timeChanged:
 _trimRange
+_showsUntrimmed
 _didPlayBeforeSeek
 _didLoopVideoBeforeSeek
-_showsUntrimmed
 _playerItemSource
 _fullVideoPipelineFilters
 _mediaPlayer
@@ -54617,6 +54859,7 @@ playerItemSource
 setPlayerItemSource:
 fullVideoPipelineFilters
 setFullVideoPipelineFilters:
+showsUntrimmed
 mediaPlayer
 setMediaPlayer:
 mediaViewObservers
@@ -54629,7 +54872,6 @@ didLoopVideoBeforeSeek
 setDidLoopVideoBeforeSeek:
 pipelineFiltersBeforeSeek
 setPipelineFiltersBeforeSeek:
-showsUntrimmed
 setPipelineFilters:
 pipelineFilters
 installRenderingCompletionBlock:
@@ -59335,10 +59577,11 @@ v24@0:8@"PXCMMInvitationView"16
 {PXSimpleIndexPath=Qqqq}64@0:8{PXSimpleIndexPath=Qqqq}16Q48@56
 {PXSimpleIndexPath=Qqqq}32@0:8Q16@24
 @32@0:8@16B24B28
-{?="input"B}
+{?="input"B"gainMapImage"B}
 @"PXImageLayerModulator"
 v40@0:8@"ISBasePlayerUIView"16Q24d32
 v40@0:8@16Q24d32
+v28@0:8^{CGImage=}16B24
 @"ISLivePhotoUIView"16@0:8
 v24@0:8@"ISLivePhotoUIView"16
 @60@0:8@16@24{CGSize=dd}32B48^@52
@@ -60133,13 +60376,15 @@ B28@0:8@16I24
 q40@0:8q16Q24Q32
 {?="learnMoreTapped"B"dismissTapped"B"sizeThatFitsDidChange"B}
 @"<PXCMMCloudViewViewDelegate>"
-{?="filterInput"B"filter"B"filteredLayer"B"displayingVideoComplement"B"filterIntensity"B}
+{?="filterInput"B"filter"B"filteredLayer"B"displayingVideoComplement"B"filterIntensity"B"gainMapVisibility"B"gainMapAppearance"B}
 @"CAFilter"
+@"PXGainMapAnimationDurationFilter"
 {?="contentFormat"q"filterType"q"hdrGain"f"fallbackFilterType"q"fallbackHdrGain"f}
 v24@0:8@"CALayer"16
 @"CALayer"16@0:8
 @56@0:8{?=qqfqf}16
 {?=qqfqf}16@0:8
+v40@0:8@"NSString"16@24@"NSDictionary"32
 @"PXFeatureSpec"
 B48@0:8{CGSize=dd}16{CGSize=dd}32
 d48@0:8{CGSize=dd}16{CGSize=dd}32
@@ -60268,6 +60513,7 @@ v24@0:8@"PXGLayout"16
 v24@0:8@"<PXGRenderer>"16
 v40@0:8@"<PXGRenderer>"16{CGSize=dd}24
 @56@0:8@16@24@32@40#48
+B48@0:8@16^{?={?=ddf}}24^{?=f{?=(?={?=ffff}[4f])}fSSC}32^{?=iifqSC}40
 {_PXGEngineScrollState={CGSize=dd}{UIEdgeInsets=dddd}{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}q}16@0:8
 ^{?=[6d][6d][6q][6d][6d]}16@0:8
 @"NSOrderedSet"
@@ -60982,6 +61228,7 @@ v24@0:8@"<PXProtoFeature>"16
 v192@0:8@16{CGPoint=dd}24{CGRect={CGPoint=dd}{CGSize=dd}}40{CGAffineTransform=dddddd}72d120d128d136{PXDisplayVelocity=dddd}144Q176@?184
 v176@0:8@16{CGPoint=dd}24{CGRect={CGPoint=dd}{CGSize=dd}}40{CGAffineTransform=dddddd}72d120{PXDisplayVelocity=dddd}128Q160@?168
 v168@0:8@16{CGPoint=dd}24{CGRect={CGPoint=dd}{CGSize=dd}}40{CGAffineTransform=dddddd}72{PXDisplayVelocity=dddd}120@?152@?160
+N@`_
 UUUUUU
 333333
 333333

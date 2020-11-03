@@ -491,6 +491,7 @@ Couldn't make replayer for action %@
 @"NSString"12@?0I8
 temp-%lu
 multipart
+Download fetched 0 bytes
 X-GM-MSGID
 Junk
 $Junk
@@ -608,6 +609,7 @@ UID %u
 X-GM-MSGID %llu
 FLAGS (%@%@%@)
 MODSEQ %d
+MFIMAPMessageDownload
 boundary
 q16@?0@"NSData"8
 \Seen
@@ -920,6 +922,7 @@ canceling fetch because mailbox could not be selected
 %{public}@: fetchNumMessages finished with result %ld
 IMAP Account %{public}@ deleting messages from store: %@ older than %d days using connection: %@
 -[MFLibraryIMAPStore _dataForMessage:] bad message data
+Download fetched 0 bytes for UID %u
 failed to download data, message.remoteID may be null
 performOperationRequiringConnection: mailbox='%{public}@' connection=%p cached=%@ options=%d
 %{public}@: Received UIDNEXT = %u

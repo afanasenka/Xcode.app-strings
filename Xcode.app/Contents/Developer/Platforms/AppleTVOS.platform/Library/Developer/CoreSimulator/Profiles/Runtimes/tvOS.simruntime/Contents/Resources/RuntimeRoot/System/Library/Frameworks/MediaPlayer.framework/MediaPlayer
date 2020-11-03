@@ -136,6 +136,8 @@ albums
 artists
 OnboardingRequired
 account
+autos
+omit[resource]
 listen-now
 iphone
 v16@?0@"MPModelForYouRecommendationGroup"8
@@ -726,6 +728,7 @@ socialProfile
 uploadedAudio
 uploadedVideo
 tvtrailer
+username
 shortUrl
 socialProfileId
 isPrivate
@@ -754,6 +757,7 @@ compilation
 TB,R,N,GisCompilation
 composerName
 curatorName
+curatorHandle
 curatorID
 descriptionText
 editorNotes
@@ -866,6 +870,7 @@ childrenIds
 artworkTrackIds
 artistId
 durationInMillis
+curatorSocialHandle
 playlistId
 sagaId
 libraryAlbumId
@@ -2030,7 +2035,6 @@ does NOT represent NowPlaying App
 <%@ %p "%@" dataSource=%@>
 T@"MPAVRoutingController",R,W,N,V_routingController
 TB,R,N,V_hasPendingPickedRoutes
-Set commands only support a single route
 Route in progress was interrupted by a new selection for the same route.
 Enqueued route was cancelled because a new selection for the same route was enqueued.
 Selection was cancelled due to removePendingRoute.
@@ -2055,13 +2059,16 @@ iPad
 iPhone
 Active route must be of type MPAVEndpointRoute.
 person.2.fill
-homePod-pair
+odeon
 speaker.wave.3.fill
+homePod-pair
+b520-pair
 headphones
 tv-stick
 tv-settopbox
 hearingaid.ear
 carplay
+beats-b372
 beats-b364
 beats-b419
 beats-powerbeats-pro
@@ -2074,6 +2081,7 @@ genericTV
 speaker.bluetooth.fill
 car.fill
 homePod
+b520
 airpods
 airpods-pro
 com.apple.MediaPlayer.MPAVRoutingController/sharedSerialQueue
@@ -3797,6 +3805,12 @@ b419Route
 TB,R,N,GisB419Route
 b364Route
 TB,R,N,GisB364Route
+b372Route
+TB,R,N,GisB372Route
+b520Route
+TB,R,N,GisB520Route,V_b520Route
+homeTheaterRoute
+TB,R,N,GisHomeTheaterRoute,V_homeTheaterRoute
 lowLatencyRoute
 TB,R,N,GisLowLatencyRoute
 clusterRoute
@@ -3808,6 +3822,7 @@ B24@?0@"MPAVOutputDeviceDescription"8@"NSDictionary"16
 76,8205
 76,8204
 76,8203
+76,8208
 76,8206
 76,8207
 76,8194
@@ -4125,7 +4140,6 @@ attributes.streamingRadioSubType
 attributes.stationGlyph
 attributes.stationProviderName
 attributes.isLive
-curatorSocialHandle
 attributes.url
 attributes.isChart
 attributes.playlistType
@@ -4934,8 +4948,8 @@ setPlaybackSessionCommand
 T@"MPSetPlaybackSessionCommand",R,N,V_setPlaybackSessionCommand
 preloadPlaybackSessionCommand
 T@"MPPreloadPlaybackSessionCommand",R,N,V_preloadPlaybackSessionCommand
-commitPlaybackSessionCommand
-T@"MPCommitPlaybackSessionCommand",R,N,V_commitPlaybackSessionCommand
+setPriorityForPlaybackSessionCommand
+T@"MPSetPriorityForPlaybackSessionCommand",R,N,V_setPriorityForPlaybackSessionCommand
 discardPlaybackSessionCommand
 T@"MPRemoteCommand",R,N,V_discardPlaybackSessionCommand
 reshuffleCommand
@@ -5425,6 +5439,7 @@ T^v,R,N,V_logicalLeaderOutputDevice
 groupLeader
 TB,R,N,GisGroupLeader
 B16@?0^v8
+AudioAccessory5
 AudioAccessory
 MRAVOutputDevice
 MPAVOutputDeviceRoute.m
@@ -7490,6 +7505,7 @@ RCS _processSelection:completion: routing controller missing
 RCS cannot add local speaker route. Picked route: %{public}@
 RCS cannot add route to routing controller that does not support multiple selection routingController: %{public}@
 RCS treating Add as a Set
+Set command invoked with >1 route. (localSpeakerRoute=%{BOOL}U|toNonGroupableOutputContext=%{BOOL}U|nonGroupableRoute=%{BOOL}U: %{public}@
 RCS set picked route %{public}@
 RCS add routes %{public}@
 RCS remove routes %{public}@
@@ -8774,7 +8790,7 @@ MPAdvanceShuffleModeCommand
 MPAdvanceRepeatModeCommand
 MPSetPlaybackSessionCommand
 MPPreloadPlaybackSessionCommand
-MPCommitPlaybackSessionCommand
+MPSetPriorityForPlaybackSessionCommand
 MPChangeQueueEndActionCommand
 MPModelForYouRecommendationGroup
 MPModelForYouRecommendationGroupKind
@@ -9870,6 +9886,7 @@ collectionName
 collectionStoreID
 composerName
 curatorName
+curatorHandle
 curatorID
 descriptionText
 editorNotes
@@ -12438,6 +12455,7 @@ MPIsEmpty
 removeItemAtIndex:
 moveItemFromIndex:toIndex:
 _requestedPlaylistProperties
+setHandle:
 setTiledArtworkRequest:
 setShareShortURL:
 setShareURL:
@@ -14176,6 +14194,7 @@ _sendVolumeButtonEventWithUsagePage:usage:down:
 _updateVolumeControlCapabilities:
 _routeVolumeDidChangeNotification:
 _routeVolumeControlCapabilitiesDidChangeNotification:
+containsUID:
 _chapterType
 _indexInChaptersWithAnyType
 _indexInChaptersWithSameType
@@ -14385,6 +14404,8 @@ _playingOnPairedDevice
 _requiresPassword
 _carplayRoute
 _homePodRoute
+_b520Route
+_homeTheaterRoute
 _clusterRoute
 _routeUID
 _productIdentifier
@@ -14424,6 +14445,7 @@ isShareableRoute
 isHeadphonesRoute
 isAirpodsRoute
 isB298Route
+isB372Route
 isPowerbeatsRoute
 isBeatsSoloRoute
 isBeatsStudioRoute
@@ -14462,6 +14484,8 @@ isPlayingOnPairedDevice
 requiresPassword
 isCarplayRoute
 isHomePodRoute
+isB520Route
+isHomeTheaterRoute
 isClusterRoute
 originalRouteSubtype
 filteredArrayUsingPredicate:
@@ -15663,7 +15687,7 @@ _addNowPlayingItemToLibraryCommand
 _addItemToLibraryCommand
 _setPlaybackSessionCommand
 _preloadPlaybackSessionCommand
-_commitPlaybackSessionCommand
+_setPriorityForPlaybackSessionCommand
 _discardPlaybackSessionCommand
 _reshuffleCommand
 _changeQueueEndActionCommand
@@ -15707,7 +15731,7 @@ addNowPlayingItemToLibraryCommand
 addItemToLibraryCommand
 setPlaybackSessionCommand
 preloadPlaybackSessionCommand
-commitPlaybackSessionCommand
+setPriorityForPlaybackSessionCommand
 discardPlaybackSessionCommand
 reshuffleCommand
 changeQueueEndActionCommand
@@ -16425,6 +16449,7 @@ _anyOutputDevicePassesMRFunction:
 _anyOutputDevicePassesTest:
 outputDevices
 logicalLeaderOutputDevice
+clusterType
 pickableRouteTypeForOutputDevice:
 logicalLeaderFromOutputDevices:
 localDeviceUID
@@ -17609,6 +17634,7 @@ designatedGroupLeader
 canRelayCommunicationChannel
 isRemoteControllable
 isLocalEndpoint
+modelID
 getActiveEndpointRouteWithCompletion:
 _reportConcernBagDictionary
 submitReport:completion:
@@ -18267,7 +18293,6 @@ MPSD_isDownloadInProgress
 _requestedSocialPersonProperties
 setVerified:
 setPrivatePerson:
-setHandle:
 setUncensoredName:
 songPopularityBlock
 kindWithSongKind:
@@ -18740,7 +18765,7 @@ r^q16@0:8
 @36@0:8r^q16Q24B32
 v32@0:8Q16Q24
 @"MPModelLibraryImportChangeRequest"
-{?="initialized"b1"name"b1"trackCount"b1"editorNotes"b1"shortEditorNotes"b1"releaseDate"b1"lastModifiedDate"b1"artwork"b1"editorialArtwork"b1"tracksTiledArtwork"b1"hasCleanContent"b1"hasExplicitContent"b1"type"b1"libraryAdded"b1"keepLocalEnableState"b1"keepLocalManagedStatus"b1"curatorPlaylist"b1"owner"b1"publicPlaylist"b1"visiblePlaylist"b1"subscribed"b1"userEditableComponents"b1"shareURL"b1"shareShortURL"b1"descriptionText"b1"cloudVersionHash"b1"curator"{?="identifiers"b1"name"b1}}
+{?="initialized"b1"name"b1"trackCount"b1"editorNotes"b1"shortEditorNotes"b1"releaseDate"b1"lastModifiedDate"b1"artwork"b1"editorialArtwork"b1"tracksTiledArtwork"b1"hasCleanContent"b1"hasExplicitContent"b1"type"b1"libraryAdded"b1"keepLocalEnableState"b1"keepLocalManagedStatus"b1"curatorPlaylist"b1"owner"b1"publicPlaylist"b1"visiblePlaylist"b1"subscribed"b1"userEditableComponents"b1"shareURL"b1"shareShortURL"b1"descriptionText"b1"cloudVersionHash"b1"curator"{?="identifiers"b1"name"b1"handle"b1}}
 @"MPMusicPlayerControllerNowPlaying"
 @"MPMusicPlayerControllerNowPlayingTimeSnapshot"
 v24@0:8@"MPMusicPlayerQueueDescriptor"16
@@ -19155,7 +19180,7 @@ v24@0:8@"SSRequest"16
 @"MPReorderQueueCommand"
 @"MPSetPlaybackSessionCommand"
 @"MPPreloadPlaybackSessionCommand"
-@"MPCommitPlaybackSessionCommand"
+@"MPSetPriorityForPlaybackSessionCommand"
 @"MPChangeQueueEndActionCommand"
 v24@0:8@"MPRemoteCommand"16
 v36@0:8I16^{__CFDictionary=}20@?28

@@ -92,11 +92,14 @@ CodingKeys
 AudioFeedServiceConfig
 AudioFeedServiceContext
 SearchResultsGroup
+NewsUI2
+TagFeedBlueprintCellPrefetcher
 MagazineFeedPaywallViewLayoutAttributes
 AudioPlaybackControllable
 MagazineFeedRouterType
 MagazineFeedRouter
 LatestStoriesTodayFeedGroup
+CodingKeys
 PaywallImageRetrievalResult
 MagazineFeedPaywallDataManagerType
 MagazineFeedPaywallDataManager
@@ -107,7 +110,6 @@ AudioDailyBriefingStore
 MagazineGridBlueprintViewCellProviderDelegate
 MagazineGridBlueprintViewCellProvider
 FCSubscriptionList
-NewsUI2
 OfflineIssueBackgroundDownloader
 HistoryFeedInteractorType
 HistoryFeedInteractorTypeDelegate
@@ -120,6 +122,7 @@ NewsUI2
 BridgedNewsActivityData
 Errors
 TodayFeedGroup
+CodingKeys
 SeenContentMarkTodayFeedGroupConfigData
 CodingKeys
 DislikeButtonRendererType
@@ -176,6 +179,7 @@ Transition
 Bridged
 Personalization
 TagViewLayoutAttributes
+IssueModelReferenceService
 AudioDailyBriefingFeedGroupConfig
 CodingKeys
 NewsUI2
@@ -198,11 +202,12 @@ FollowingTodayMagazineDisplay
 FollowingPrewarmModifier
 LegacySearchResults
 NewFollowTodayFeedGroup
+CodingKeys
 SearchServiceError
-MagazineFeedGroupTag
-Keys
+ManageSubscriptionsCommandHandler
 WebEmbedViewStylerType
 WebEmbedViewStyler
+DiscoverChannelTopicCommandHandler
 TagImageApplier
 TodayFeedPool
 SearchMoreTagsExpandModifier
@@ -426,6 +431,8 @@ LatestStoriesTodayFeedGroupKnobs
 CodingKeys
 FollowingSettingsButtonViewStylerType
 FollowingSettingsButtonViewStyler
+AudioIntentHandlerType
+AudioIntentHandler
 ChannelIssuesModuleType
 ChannelIssuesModule
 Deprecated_ChannelIssuesModule
@@ -505,6 +512,7 @@ FollowingHeaderViewStyler
 ffffff
 MastheadViewStylerType
 MastheadViewStyler
+TagFeedUpdateFeedItemsBlueprintModifier
 TagFeedExpandContext
 NewsUI2
 MagazineFeedViewController
@@ -553,6 +561,7 @@ WelcomeInteractor
 NotificationPrompterSettings
 NotificationPromptManager
 TopicTodayFeedGroup
+CodingKeys
 TagFeedViewerModuleType
 TagFeedViewerModule
 NowPlayingRouteModel
@@ -561,6 +570,7 @@ TodayBlueprintModifierFactory
 FollowingButtonModel
 Identifier
 MagazineFeedGroup
+CodingKeys
 MagazineTodayFeedGroupKnobs
 CodingKeys
 IssueErrorAlertPresenterFactoryType
@@ -604,7 +614,7 @@ BridgedMastheadTheme
 BridgedMastheadViewLayoutAttributes
 BridgedMastheadViewLayoutAttributesFactory
 FeaturedIssueArticleMagazineFeedGroupConfig
-Keys
+CodingKeys
 data
 activityData
 interaction
@@ -652,7 +662,9 @@ FollowingDislikedRouterType
 FollowingDislikedRouter
 AlertAppStoreSubscriptionRemoval
 LocalNewsTodayFeedGroup
+CodingKeys
 IssuesMagazineFeedGroup
+CodingKeys
 MagazineFeedModuleType
 MagazineFeedModule
 WelcomeViewRendererType
@@ -705,7 +717,6 @@ CodingKeys
 none
 seen
 read
-BridgedSectionsToolbarItemManager
 MagazineFeedInteractorType
 MagazineFeedInteractorTypeDelegate
 MagazineFeedInteractor
@@ -718,7 +729,7 @@ MagazineFeedPaywallViewLayoutAttributesFactoryType
 MagazineFeedPaywallViewLayoutParameters
 MagazineFeedPaywallViewLayoutAttributesFactory
 TopicMagazineFeedGroupConfig
-Keys
+CodingKeys
 NewspaperTodayFeedGroupEmitter
 Errors
 Channel
@@ -868,6 +879,7 @@ SavedService
 InterstitialAdTracker
 UserNotificationsOpenSettingsHandler
 RecommendedIssuesMagazineFeedGroup
+CodingKeys
 AudioConfig
 CodingKeys
 DislikeButtonTintStyle
@@ -877,7 +889,7 @@ MagazineCategoryViewLayoutOptions
 SearchHeaderLayoutAttributes
 MagazineFeedGroupTitleViewTitleStyle
 MyMagazinesSharingActivityItemFactoryWithTracker
-BridgedTitleToolbarItemManager
+BridgedToolbarItemManager
 SeenContentMarkTodayFeedGroupKnobs
 CodingKeys
 Localized
@@ -943,10 +955,6 @@ FollowingTableHeaderView
 NotificationsURLHandler
 DownloadIssueCommandHandler
 FollowingNotificationsLayoutBuilder
-AudioIntentsData
-AudioIntentsDataProviderType
-AudioIntentsDataProvider
-AudioIntents
 WebEmbedRouteModel
 HistoryFeedBlueprintLayoutBuilder
 NewspaperGroup
@@ -954,7 +962,9 @@ AudioErrorHandler
 TagFeedSectionDescriptor
 Identifier
 SpotlightTodayFeedGroup
+CodingKeys
 SeenContentMarkTodayFeedGroup
+CodingKeys
 MagazineGridItemModel
 identifier
 TodayFeedPoolServiceError
@@ -1015,7 +1025,7 @@ ForYouHeadlines
 MyMagazinesSectionHeaderViewLayoutOptions
 FollowingSuggestionsRebuildModifier
 PaywallMagazineFeedGroupConfig
-Keys
+CodingKeys
 DebugMenuCommandHandler
 NewsMastheadViewProviderType
 MastheadViewProvider
@@ -1026,10 +1036,10 @@ TagFeedViewerTitleViewRenderer
 Errors
 TagFeedTrackerType
 TagFeedTracker
-BridgedShareToolbarItemManager
 SearchMoreArticlesExpandModifier
 Errors
 FormatFeedGroup
+CodingKeys
 FollowingDislikedLayoutModel
 SearchMoreTagsModel
 AudioFeedConfiguration
@@ -1053,6 +1063,7 @@ Help
 FollowingSubscriptionChangeIgnoreModifier
 TodayFeedConfig
 CodingKeys
+TodayFeedDatabaseGroupProcessor
 SuggestionTodayFeedGroupKnobs
 CodingKeys
 SubscriptionDetectionManagerType
@@ -1071,8 +1082,6 @@ MagazineFeedLayoutModel
 AudioFeedSectionDecorationFactoryType
 AudioFeedSectionDecorationFactory
 SearchReloadRequest
-GeoLocation
-CodingKeys
 TagFeedFailedData
 MyMagazinesBlueprintViewSupplementaryViewProvider
 TagFeedViewerTitleViewProviderType
@@ -1108,8 +1117,8 @@ WelcomeViewStyleParameters
 WelcomeViewStyler
 WebEmbedRouterType
 WebEmbedRouter
-BestOfBundleFeedGroupKind
 BestOfBundleMagazineFeedGroup
+CodingKeys
 AudioCPListTemplateController
 MagazineFeedBlueprintLayoutBuilder
 TopicMagazineFeedGroupKnobs
@@ -1128,10 +1137,12 @@ TagFeedOnlineBlueprintModifier
 SavedModule
 NewspaperGroupKnobs
 ForYouTodayFeedGroup
+CodingKeys
 SubscriptionStatusCheckBlocker
 SceneStateManagerBridge
 MastheadStyleOptionsProviderType
 MastheadStyleOptionsProvider
+TodayBlueprintCellPrefetcher
 NewIssueMagazineFeedGroupEmitter
 Errors
 ArticleContextPresentationReason
@@ -1142,13 +1153,14 @@ TopSpotImageProcessing
 MagazineGridBuildBlueprintModifier
 SeparatorViewContainerView
 OrderedArticleListMagazineFeedGroup
+CodingKeys
 NewsUI2
 AudioPlaybackCommandHandler
 status
 TrendingMagazineFeedGroupConfig
-Keys
+CodingKeys
 MyMagazinesMagazineFeedGroupConfig
-Keys
+CodingKeys
 SavedURLHandler
 MagazineGridSectionDescriptor
 Identifier
@@ -1253,6 +1265,7 @@ NewFollowTodayFeedGroupConfigData
 CodingKeys
 StubMyMagazinesStore
 TrendingTodayFeedGroup
+CodingKeys
 AlertNewsletterAlreadySubscribed
 MagazineFeedLayoutSauceSolver
 Pattern
@@ -1312,6 +1325,7 @@ MastheadViewLayoutVariant
 AudioPlaylistFeedGroupEmitter
 SearchMoreTagsPrewarmBlueprintModifier
 MissedStoriesTodayFeedGroup
+CodingKeys
 StubTrendingMagazineFeedGroupEmitter
 NewsUI2
 FollowingAssembly
@@ -1330,9 +1344,6 @@ FollowingDislikedViewCellProviderDelegate
 FollowingDislikedViewCellProvider
 FollowingNotificationsDescriptor
 Identifier
-ChannelFontServiceType
-ChannelFontService
-Errors
 MagazineActivityNavigatorType
 MagazineActivityNavigator
 BaseStylerType
@@ -1340,7 +1351,7 @@ BaseStyler
 SavedFeedTrackerType
 SavedFeedTracker
 FeaturedIssueMagazineFeedGroupConfig
-Keys
+CodingKeys
 PaidBundleLinksHeaderDataManagerType
 PaidBundleLinksHeaderDataManager
 MagazineGridBlueprintModifierFactoryType
@@ -1364,6 +1375,7 @@ NewsUI2
 EmailSignupAssembly
 NewsUI2
 WebAccessOptInAdSegmentProvider
+OfferAdSegmentProvider
 ForYouSingleGroupSectionPositionProvider
 HistoryFeedExpandBlueprintModifier
 Errors
@@ -1405,7 +1417,7 @@ ReceivedFile
 LocalDraftsDeviceListenerType
 LocalDraftsDeviceListener
 BestOfBundleMagazineFeedGroupConfig
-Keys
+CodingKeys
 NewsUI2
 SearchAssembly
 AlertWebSubscriptionRemoval
@@ -1446,7 +1458,7 @@ CodingType
 TodayFeedGroupKnobs
 CodingKeys
 RecommendedIssuesMagazineFeedGroupConfig
-Keys
+CodingKeys
 TodayActivityRegistration
 TodayTrackerType
 TodayTracker
@@ -1494,6 +1506,7 @@ AudioHeadlineConverter
 Errors
 NoopAudioHeadlineConverter
 SuggestionTodayFeedGroup
+CodingKeys
 MagazineCategoryGridModelLoader
 PurchaseTransactionTracker
 MagazineTodayFeedGroupConfigProcessor
@@ -1526,6 +1539,7 @@ NewspaperGroupServiceType
 NewspaperGroupService
 Errors
 TodayFeedServiceContext
+CodingKeys
 TagFeedSectionFactoryType
 TagFeedSectionFactory
 MagazineFeedConfig
@@ -1602,7 +1616,6 @@ UpNextTrackData
 MagazineFeedSectionDescriptor
 Identifier
 TodaySectionDescriptor
-Identifier
 IssueModel
 VisitedState
 AutoFavoritedState
@@ -1618,6 +1631,9 @@ PaidBundleLinksHeaderViewStylerType
 PaidBundleLinksHeaderViewStyler
 ShowAnywayButton
 AudioNowPlayingPlaybackState
+BestOfBundleMagazineFeedGroupKind
+CodingType
+CodingKeys
 MagazineCategoriesInteractorType
 MagazineCategoriesInteractorTypeDelegate
 MagazineCategoriesInteractor
@@ -1626,6 +1642,7 @@ FollowingSettingsButtonView
 AdComponentTracker
 AudioListeningProgressRecorder
 MagazineFeedExpandResult
+Result
 BundleSubscriptionURLHandler
 NewsUI2
 AudioFeedViewController
@@ -1640,7 +1657,7 @@ MagazineFeedPaywallRouter
 NewsUI2
 ServiceAssembly
 OrderedArticleListMagazineFeedGroupConfig
-Keys
+CodingKeys
 NewsUI2
 HistoryServiceChange
 HistoryState
@@ -1703,6 +1720,7 @@ AudioFeedUpdatePluginModelModifier
 ModifierError
 ExplicitContentRestrictionAlertPresenter
 FeaturedArticleMagazineFeedGroup
+CodingKeys
 SearchMoreTagsLayoutSectionDescriptor
 StubArticleListMagazineFeedGroupEmitter
 ChannelIssuesBuildBlueprintModifier
@@ -1721,6 +1739,7 @@ NewsUI2
 PaidBundleLinksHeaderViewController
 IssueModelFactoryType
 IssueModelFactory
+TodayUncollapseBlueprintModifier
 HistoryFeedRefreshRequest
 FollowingNotificationsModifierFactoryType
 Descriptor Model
@@ -1770,15 +1789,14 @@ FollowingNotificationsSectionFooterViewLayoutAttributesFactoryType
 FollowingNotificationsSectionFooterViewLayoutAttributesFactory
 PaidBundleBackgroundWorkerFactoryType
 PaidBundleBackgroundWorkerFactory
-NetworkTodayFeedServiceConfigFetcher
-CacheTodayFeedServiceConfigFetcher
+TodayFeedServiceConfigFetcher
 Errors
 SearchBlueprintLayoutBuilder
 MyMagazinesSectionHeaderViewLayoutAttributes
 SubscriptionsRouter
 MoreActionsSheetSource
 NewIssueMagazineFeedGroupConfig
-Keys
+CodingKeys
 FollowingDislikedLayoutBuilder
 MagazineFeedPaywallDefaultStylingRequirementProviderType
 MagazineFeedPaywallDefaultStylingRequirementProvider
@@ -1788,6 +1806,7 @@ CodingKeys
 SupportNotificationResponseHandler
 NewsReferralItemWidgetArticleList
 TrendingMagazineFeedGroup
+CodingKeys
 AudioFeedModel
 CuratedTodayFeedGroupKnobs
 CodingKeys
@@ -1798,8 +1817,11 @@ NewspaperMagazineFeedGroupEmitter
 Errors
 TagFeedReloadRequest
 NewspaperTodayFeedGroup
+CodingKeys
 HistoryModule
+ManageBlockedChannelTopicCommandHandler
 FeaturedIssueMagazineFeedGroup
+CodingKeys
 AudioFeedTitleViewLayoutOptions
 PaidBundleLinksHeaderViewRendererType
 PaidBundleLinksHeaderViewRenderer
@@ -1828,7 +1850,9 @@ WebEmbedTrackerType
 WebEmbedTracker
 EndOfTrackNotificationResponseHandler
 FeaturedIssueArticleMagazineFeedGroup
+CodingKeys
 CacheFlushingManager
+CachePreFlushTask
 FollowingEditorialItemUpdateModifier
 Errors
 ArticleIDProviding
@@ -1838,12 +1862,11 @@ IssueTableOfContentsArticleCoordinator
 SearchMoreTagsLayoutModel
 FollowingNotificationsLayoutDescriptor
 HeroSelectionStrategy
-Errors
 Promoted
+CodingType
 CodingKeys
 StubHeadlineOffensiveStatusProvider
 MagazineFeedSubscribe
-MagazineFeedSubscribeError
 MagazineFeedSubscriptionModifier
 Activity
 TagFeedUpdatePluginModelModifier
@@ -1853,11 +1876,13 @@ Descriptor Model
 SearchMoreArticlesBlueprintModifierFactory
 MagazineFeedReloadRequest
 AnalyticsReferral
+AudioIntentsData
+AudioIntentsDataProviderType
+AudioIntentsDataProvider
+AudioIntents
 ChannelIssuesBlueprintModifierFactoryType
 Descriptor Model
 ChannelIssuesBlueprintModifierFactory
-MagazineFeedTagModel
-TagType
 AudioFeedLayoutSectionDescriptor
 Decoration
 Header
@@ -1869,6 +1894,7 @@ AudioFeedRefreshBlueprintModifier
 MagazineFeedURLHandler
 ForYouTodayConfigFetcher
 MoreForYouTodayFeedGroup
+CodingKeys
 ExternalAnalyticsFeatureAvailability
 MagazineFeedExpandBlueprintModifier
 ModifierError
@@ -1953,6 +1979,7 @@ MainDataManagerType
 MainDataManagerTypeDelegate
 MainDataManager
 TodayFeedServiceConfig
+CodingKeys
 BridgedKeyModifierFlags
 BridgedKeyCommand
 BridgedKeyCommandUnownedProvider
@@ -1980,6 +2007,7 @@ AudioFeedAssembly
 ArticleCoordinator
 SuggestionTodayFeedGroupEmitter
 AudioDailyBriefingTodayFeedGroup
+CodingKeys
 AlertNewsletterUserNotSignedIn
 FeedViewContext
 SearchMoreArticlesInteractorType
@@ -2020,6 +2048,7 @@ FollowingNotificationsStylerType
 FollowingNotificationsStyler
 ChannelIssuesGroupTitleViewModel
 CuratedTodayFeedGroup
+CodingKeys
 PromotedArticleListTagFeedGroupKnobs
 CodingKeys
 CategoriesMagazineFeedGroupKnobs
@@ -2072,7 +2101,7 @@ MagazineCategoriesBlueprintModifierFactoryType
 Descriptor Model
 MagazineCategoriesBlueprintModifierFactory
 CategoriesMagazineFeedGroupConfig
-Keys
+CodingKeys
 AudioSuggestionsFeedGroup
 SearchMoreArticlesBlueprintLayoutBuilder
 IssueURLHandler
@@ -2123,7 +2152,7 @@ CodingKeys
 NewIssueNotificationBackgroundAppRefreshRequester
 RequestWindow
 FormatFeedGroupConfig
-Keys
+CodingKeys
 ShortcutItemUpdater
 ThemeStyle
 FollowingForYouModel
@@ -2182,9 +2211,6 @@ MagazineFeedPaywallModule
 TopicMagazineFeedGroupEmitter
 Errors
 Cursor
-NewsWeatherServiceType
-NewsWeatherService
-NewsWeatherErrors
 StubRecommendedIssuesMagazineFeedGroupEmitter
 ANFParsingService
 NewsUI2
@@ -2232,6 +2258,7 @@ StoppingAction
 SearchMoreArticlesPrewarmBlueprintModifier
 PaidBundleLinksHeaderViewLayoutOptions
 SubscriptionTodayFeedGroup
+CodingKeys
 HistoryFeedStylerType
 HistoryFeedStyler
 FollowingNotificationsSectionFooterViewRendererType
@@ -2240,6 +2267,7 @@ SavedFeedEventHandlerType
 SavedFeedEventHandlerTypeDelegate
 SavedFeedEventHandler
 TodayConfigData
+CodingKeys
 PaidBundleLinksHeaderInteractorType
 PaidBundleLinksHeaderInteractorTypeDelegate
 PaidBundleLinksHeaderInteractor
@@ -2259,6 +2287,7 @@ NotificationAuthorizationStatus
 NotificationSettings
 NotificationServiceType
 NotificationService
+ManageNotificationsCommandHandler
 NewsArticlesRouter
 AudioFeedStylerType
 AudioFeedStyler
@@ -2273,7 +2302,6 @@ NewsShortcutItemHandler
 MailShareLinkTextProvider
 NewsUI2
 MagazineCategoriesAssembly
-AnyTodayFeedService
 TopHeadlinesQueryTimeRangeProvider
 TopHeadlinesQueryTimeRangeConfigurationManager
 RemoveIssuePromptCommandHandler
@@ -2313,6 +2341,7 @@ SavedFeedModule
 SearchRouterType
 SearchRouter
 MyMagazinesMagazineFeedGroup
+CodingKeys
 FollowingSubscriptionChangeMutedModifier
 NotificationHandlingScene
 ScenePickerResult
@@ -2356,6 +2385,7 @@ NoopAudioSessionManager
 SavedFeedBlueprintLayoutBuilder
 TrendingMagazineFeedGroupKnobs
 CodingKeys
+TagFeedUpdateFeedItemsResult
 HistoryFeedExpandResult
 NewsUI2
 PPTAssembly
@@ -2386,7 +2416,7 @@ MyMagazinesSharingActivityItemFactory
 NewsUI2
 ToolbarAssembly
 IssuesMagazineFeedGroupConfig
-Keys
+CodingKeys
 NewsUI2
 FollowingViewController
 ActionModel
@@ -2455,6 +2485,7 @@ SpinnerFooterViewLayoutAttributes
 SpinnerFooterViewLayoutAttributesFactoryType
 SpinnerFooterViewLayoutAttributesFactory
 AudioFeedDragAndDropBlueprintModifier
+TodaySectionGapDescriptor
 ModalNavigationController
 AudioMiniPlayerPresentationStartupTask
 PaywallTagFeedGroupEmitter
@@ -2514,7 +2545,7 @@ AlertAudioPlaybackFailed
 Reason
 SearchLayoutSectionDescriptor
 Footer
-ForYouSingleGroupTodayFeedService
+ForYouTodaySingleGroupFeedManager
 Errors
 Errors
 NewsUI2
@@ -2566,9 +2597,6 @@ Feed
 TodayFeedGroupConfig
 CodingType
 CodingKeys
-none
-seen
-read
 AudioFeedPaywallFeedGroupEmitter
 Errors
 AlertUnmuteAllowInForYouAlert
@@ -2588,10 +2616,6 @@ TodayBridgedFeedGroup
 History
 identifier
 TodayFeedPoolContent
-NewsUI2
-JournalNavigationController
-JournalViewController
-JournalTableViewCell
 Item
 Kind
 Errors
@@ -2610,7 +2634,7 @@ AudioPlaybackOptionsAlertPresenterType
 AudioPlaybackOptionsAlertPresenter
 NoopAudioPlaybackOptionsAlertPresenter
 ArticleListMagazineFeedGroupConfig
-Keys
+CodingKeys
 TodayLoadingGate
 NewsUI2
 BundleSubscriberAdSegmentProvider
@@ -2619,6 +2643,7 @@ MagazineGridModelLoaderType
 KnownMagazineGridModelLoader
 NewspaperTodayFeedGroupEmitterCursor
 NewIssueMagazineFeedGroup
+CodingKeys
 AudioFeedPool
 AudioFeedPoolService
 TagFeedServiceConfigFetcher
@@ -2641,7 +2666,7 @@ MagazineCategoriesLayoutModel
 MyMagazinesSectionHeaderViewRendererType
 MyMagazinesSectionHeaderViewRenderer
 FeaturedArticleMagazineFeedGroupConfig
-Keys
+CodingKeys
 ChannelIssuesPluginFactory
 TagFeedEventHandlerType
 TagFeedEventHandlerTypeDelegate
@@ -2721,6 +2746,10 @@ StubBestOfBundleMagazineFeedGroupEmitter
 AudioFeedPlacardRendererType
 AudioFeedPlacardRenderer
 ArticleListMagazineFeedGroup
+CodingKeys
+none
+seen
+read
 TodayModel
 TodayGapLocation
 NewsAssetURLSchemeHandler
@@ -2844,7 +2873,6 @@ prefs:root=NEWS
 prefs:root=APPLE_ACCOUNT
 prefs:root=NEWS&path=NOTIFICATIONS
 prefs:root=APPLE_ACCOUNT&path=FAMILY
-T@"WFServiceConnection",R,N,V_connection
 q24@?0@"RTLocationOfInterest"8@"RTLocationOfInterest"16
 news.options.masthead.overrides.logo
 news.options.masthead.overrides.name
@@ -2865,11 +2893,11 @@ The title of the newsletter switch on the manage your notifications view
 ForYouTodayFeedManagerQueue
 disableABTesting
 Featured Article
+Title for the navgitation bar in SearchMore
 /:channelID/:articleID
 yyyy-MM-dd HH:mm:ssZ
 Audio Daily Briefing
 my-magazines-store
-Title for the navgitation bar in SearchMore
 followingFooterView
 followingFooterViewNoHairline
 followingFooterViewTopHairlineOnly
@@ -2902,15 +2930,13 @@ presentLandingPageWhenFinishedInBackground
 playIgnoringPlaylist
 canChangePosition
 prefixTitleWithPreviewInPlayer
-tagID
-sectionID
-allowsFollowing
+type
+data
 articleList
 promotedArticleList
 issueList
 paywall
 curated
-type
 /:tagID/subscription
 /:tagID/subscription/weboptin
 accessoryText
@@ -2948,6 +2974,12 @@ maxNewsVersion
 none
 seen
 read
+formatGroup
+channel
+sections
+weather
+issues
+rankMultiplier
 todayFeedConfig
 todayKnobsConfig
 groupTitleColors
@@ -2959,10 +2991,9 @@ reverseChronological
 personalization
 audioFeedConfig
 audioFeedKnobs
-rankMultiplier
 callToAction
 groups
-topStories
+feedGroupKind
 articleListID
 disableAnimation
 collapseSidebar
@@ -3005,6 +3036,9 @@ themes
 feedFormatPackages
 geoLocation
 filter
+dateRange
+extendedDateRange
+ignoreFeedItemIdentifiers
 repool
 magazinesFeedConfig
 magazinesKnobsConfig
@@ -3015,7 +3049,9 @@ Issue
 Autocomplete
 unknown
 /interstitial-preview
+featuredHeadline
 /subscription/:articleID
+additionalHeadlines
 todayFeed
 magazineFeed
 tagFeed
@@ -3025,11 +3061,18 @@ savedFeed
 search
 searchMore
 /channels/:tagID
+promoted
 excerpt
+contentConfig
+contentConfigData
+paidBundleConfig
+appConfig
+cachePolicy
+subscriptionController
+cacheKey
 categories
 featuredIssue
 featuredIssueArticle
-issues
 myMagazines
 newIssue
 orderedArticleList
@@ -3047,6 +3090,7 @@ content
 editorialHero
 playlist
 recentlyPlayed
+tags
 /articles/:articleID
 /:paywallArticleID
 /articles/:paywallArticleID
@@ -3063,7 +3107,6 @@ newFollow
 spotlight
 seenContentMark
 /favoritespicker
-refreshStrategy
 trackContent
 trackCell
 header
@@ -3278,6 +3321,21 @@ NULinkedArticleContentProvider
 TSAdPreviewModuleType
 @"UIViewController"24@0:8@"NSString"16
 supportsSecureCoding
+FCSectionProviding
+parentID
+supergroupKnobsJson
+supergroupKnobs
+T@"FCSectionSupergroupKnobs",N,R
+@"FCSectionSupergroupKnobs"16@0:8
+FCChannelProviding
+sectionIDs
+defaultSectionID
+supportsNotifications
+isWhitelisted
+currentIssueIDs
+backIssuesListID
+supergroupConfigJson
+@"NSString"32@0:8@"NSString"16q24
 TSGroupRankProvider
 q24@0:8@"NSString"16
 FCNewsAppConfiguration
@@ -3318,6 +3376,7 @@ exploreArticleID
 externalAnalyticsConfigurations
 mediaSharingBlacklistedChannelIDs
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishDates
@@ -3356,7 +3415,13 @@ userVectorWhitelistResourceId
 userVectorModelResourceId
 articleReadCountThreshold
 forYouGroupShouldPromoteAccessibleHeadline
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 notificationEnableAssetPrefetching
 notificationAssetPrefetchingRequiresWatch
@@ -3421,6 +3486,22 @@ uniqueKey
 @"UIImage"16@0:8
 v24@0:8@"OS_dispatch_group"16
 @"<TSAssetDataProviderType>"16@0:8
+FCNewsAppConfigurationManager
+appConfiguration
+T@"<FCNewsAppConfiguration>",N,R
+possiblyUnfetchedAppConfiguration
+treatmentIDs
+segmentSetIDs
+feldsparID
+fetchedAppConfiguration
+jsonEncodableAppConfiguration
+T@"<FCJSONEncodableObjectProviding><FCNewsAppConfiguration>",N,R
+@"<FCNewsAppConfiguration>"16@0:8
+v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSError">16
+v32@0:8@"OS_dispatch_queue"16@?<v@?@"<FCNewsAppConfiguration>"@"NSError">24
+v24@0:8@"<FCNewsAppConfigurationObserving>"16
+v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSDictionary"@"NSError">16
+@"<FCNewsAppConfiguration><FCJSONEncodableObjectProviding>"16@0:8
 TSForYouTodayModuleType
 @"<TSForYouTodayPluginFactoryType>"24@0:8@"UIView"16
 FCForYouPluginGroupManaging
@@ -3489,7 +3570,6 @@ singleChannelFeedMinFeedItemsPerRequest
 maxRetriesForDroppedFeeds
 delayBeforeRetryingDroppedFeeds
 channelUpsellConfigsByChannelID
-paidBundleConfig
 T@"FCPaidBundleConfiguration",N,R
 magazinesConfigRecordID
 entitlementsCacheRecoveryAttemptDurationInSeconds
@@ -3541,7 +3621,6 @@ widgetSystemReloadJitterMaxHoneymoon
 @"FCPaidALaCartePaywallConfig"24@0:8@"NSString"16
 @"NTPBTodayConfig"56@0:8@"NSString"16@"NSArray"24@"NSString"32@"NSString"40@"NSString"48
 FCCoreConfigurationManager
-configuration
 T@"<FCCoreConfiguration>",N,R
 @"<FCCoreConfiguration>"16@0:8
 v24@0:8@?<v@?@"<FCCoreConfiguration>"@"NSError">16
@@ -3563,6 +3642,7 @@ TSMagazineCategoriesModuleType
 @40@0:8@16@24@32
 @"TSPlugin"40@0:8@"NSString"16@"TSPluginLayoutOptionsProvider"24@"TSMagazineCategoriesConfig"32
 TSCacheFlushingManagerType
+@"TSCachePreFlushTask"16@0:8
 TSNotificationManagerType
 TSLocationDetectionManagerType
 locationServicesEnabled
@@ -3578,6 +3658,7 @@ SXSceneStateMonitor
 v24@0:8@?<v@?>16
 TUStateRestoreControllerType
 isStateRestorationAllowed
+isStateRestorationFeatureEnabled
 hasStateDiscarded
 FCBundleSubscriptionManagerType
 v32@0:8Q16@?24
@@ -3640,34 +3721,17 @@ useSearchModule
 useNewAds
 useNewsUINotificationHandling
 narrativeAudio
-FCNewsAppConfigurationManager
-appConfiguration
-T@"<FCNewsAppConfiguration>",N,R
-possiblyUnfetchedAppConfiguration
-treatmentIDs
-segmentSetIDs
-feldsparID
-fetchedAppConfiguration
-jsonEncodableAppConfiguration
-T@"<FCJSONEncodableObjectProviding><FCNewsAppConfiguration>",N,R
-@"<FCNewsAppConfiguration>"16@0:8
-v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSError">16
-v32@0:8@"OS_dispatch_queue"16@?<v@?@"<FCNewsAppConfiguration>"@"NSError">24
-v24@0:8@"<FCNewsAppConfigurationObserving>"16
-v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSDictionary"@"NSError">16
-@"<FCNewsAppConfiguration><FCJSONEncodableObjectProviding>"16@0:8
 TSSiriSuggestionStatusProvider
 isOptedInToSiriSuggestions
-NEFeedNavImageStylerType
-@"UIColor"24@0:8@"NSString"16
-FCForYouBridgedFeedGroup
-assetHandles
-equivalentTopicIDs
-T@"<FCTagProviding>",N,R
-@"<FCTagProviding>"16@0:8
 NUURLHandling
 v40@0:8@16@24@?32
 v40@0:8@"NSURL"16@"NSDictionary"24@?<v@?B>32
+NEFeedNavImageStylerType
+@"UIColor"24@0:8@"NSString"16
+FCForYouBridgedFeedGroup
+equivalentTopicIDs
+T@"<FCTagProviding>",N,R
+@"<FCTagProviding>"16@0:8
 FCMagazinesConfigurationManager
 magazinesConfigurationData
 v32@0:8@"OS_dispatch_queue"16@?<v@?@"NSData"@"NSError">24
@@ -3692,16 +3756,6 @@ Tq,N
 TUPluggableDelegate
 v40@0:8@16{CGSize=dd}24
 v40@0:8@"UIViewController<TUPluggable>"16{CGSize=dd}24
-FCChannelProviding
-sectionIDs
-defaultSectionID
-supportsNotifications
-isWhitelisted
-currentIssueIDs
-backIssuesListID
-supergroupKnobsJson
-supergroupConfigJson
-@"NSString"32@0:8@"NSString"16q24
 FCAudioPlaylistType
 v32@0:8@16Q24
 articleIDs
@@ -3742,11 +3796,6 @@ FCBackgroundActivityScheduler
 v40@0:8d16@24@?32
 v40@0:8d16@"NSString"24@?<v@?@?<v@?q>@?<B@?>>32
 v32@0:8@"NSDate"16@"NSDate"24
-FCSectionProviding
-parentID
-supergroupKnobs
-T@"FCSectionSupergroupKnobs",N,R
-@"FCSectionSupergroupKnobs"16@0:8
 FCPaidAccessCheckerType
 B32@0:8B16B20@24
 bundleSubscriptionProvider
@@ -4050,6 +4099,7 @@ _TtC7NewsUI223AudioFeedSectionFactory
 coreConfigurationManager
 feedContextFactory
 headlineModelFactory
+old new 
 titleCompact
 shortExcerpt
 T@"NSURL",N,R
@@ -4061,7 +4111,9 @@ _TtC7NewsUI239SearchMoreTagsBlueprintViewCellProvider
 tagViewRenderer
 baseStyler
 _TtC7NewsUI227PDFReplicaViewerCoordinator
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Coordinators/PDFReplicaViewerCoordinator.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Coordinators/PDFReplicaViewerCoordinator.swift
+_TtC7NewsUI230TagFeedBlueprintCellPrefetcher
+feedItemPrefetcher
 _TtC7NewsUI218MagazineFeedRouter
  articleNavigationAction referringURL 
 Open in New Window
@@ -4098,7 +4150,6 @@ AudioDailyBriefingStore: Found configured daily briefing and hero candidates: %{
 AudioDailyBriefingStore: Missing daily briefing and hero articles %{public}@
 AudioDailyBriefingStore: Found all non-expired daily briefing and hero headlines in cache
 _TtC7NewsUI223AudioDailyBriefingStore
-subscriptionController
 AudioDailyBriefingStore: Fetched daily briefing and hero articles
 AudioDailyBriefingStore: Group w/ ttl=%{public}@ localExpiry=%{public}@ is expired against publish data %{public}@: %{public}@
 T@"NSDate",N,R
@@ -4141,7 +4192,6 @@ T@"NSArray",N,R
 nameCompact
 Tq,N,R
 isDeprecated
- cursor 
 Seen Content Mark
 Audio Daily Breifing
 _TtC7NewsUI221DislikeButtonRenderer
@@ -4220,6 +4270,8 @@ logo
 name
 news.options.theme
 news.transitions.bridged.force_navigation_transition
+_TtC7NewsUI226IssueModelReferenceService
+issueModelFactory
 B16@?0@"<FCFeedPersonalizingItem>"8
 My headlines fetch filtered feed items from %ld to %ld
 v24@?0@"NSArray"8@"NSError"16
@@ -4269,7 +4321,10 @@ v24@0:8@"<TSWelcomeDataManagerType>"16
 v32@0:8@"<TSWelcomeDataManagerType>"16q24
 FollowingPrewarmModifier()
 NewsUI2/FollowingPrewarmModifier.swift
+_TtC7NewsUI233ManageSubscriptionsCommandHandler
+navigator
 _TtC7NewsUI218WebEmbedViewStyler
+_TtC7NewsUI234DiscoverChannelTopicCommandHandler
 _TtC7NewsUI215TagImageApplier
 feedNavImageStyler
 FeedNavImageImageKey
@@ -4313,6 +4368,7 @@ globalCohorts
 bodyTextLength
 videoURL
 hiddenFromFeeds
+assetHandles
 _TtC7NewsUI234AudioEditorialHeroFeedGroupEmitter
 _TtC7NewsUI217BootstrapAssembly
 @16@0:8
@@ -4341,6 +4397,7 @@ TSForYouTodayPluginFactory
 layoutOptionsProvider
 paidBundleConfigManager
 webEmbedViewControllerReuseManager
+appConfigManager
 TSForYouTodayPluginFactoryType
 @"TSPlugin"32@0:8@"NSString"16@"<FCForYouBridgedFeedGroup>"24
 NewsUI2.PaidBundleBackgroundWorkerManager
@@ -4353,15 +4410,13 @@ registeredWorkers
 Registering objects that need to do background work for paid bundle subscribers
 FCBundleSubscriptionChangeObserver
 v24@0:8@"FCBundleSubscription"16
-v40@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24@"FCBundleSubscriptionChangeSet"32
-q16@0:8
-@24@0:8:16
+v32@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24
 _TtC7NewsUI215FollowingStyler
 Localized string for search bar
 Button that dismisses presented search results
 _TtC7NewsUI214VideoAdTracker
 trackerConfiguration
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Ads/VideoAdTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Ads/VideoAdTracker.swift
 NewsUI2.SearchMoreTagsContext
 TSSearchMoreTagsContext
 v24@0:8@16
@@ -4395,6 +4450,8 @@ Section headlines fetch operation failed for channel, channelID=%{public}@, erro
 TSAnimatedViewPropertiesProviderType
 @"<TSAnimatedViewProperties>"16@0:8
 TSAnimatedViewProperties
+Did route to article, articleID=%{public}@
+Presenting created article view controller, articleID=%{public}@
  article 
 articleID articleIDs articleNavigationAction 
 articleID articleIDs headlines articleNavigationAction 
@@ -4427,8 +4484,6 @@ _TtC7NewsUI219TagFeedViewerRouter
 TSSearchResultsModuleType
 @"UIViewController<TSSearchResultsProviderType>"16@0:8
 _TtC7NewsUI236ForYouSingleGroupMagazineFeedService
-magazineConfigurationService
-personalizationService
 NewsUI2/MagazineFeedRefreshControl.swift
 NewsUI2.MagazineFeedRefreshControl
 _TtC7NewsUI226MagazineFeedRefreshControl
@@ -4634,14 +4689,15 @@ TagFeed refreshing with refresh strategy=%{public}@, trigger=%{public}@
 NewsUI2.TagFeedDataManager
 _TtC7NewsUI218TagFeedDataManager
 feedServiceConfigFetcher
-appConfigManager
 v48@0:8@16@24@32q40
+Failed to refetch headlines for updating feed items, error=%{public}@
 TagFeed failed refresh, time=%fms, error=%{public}@
 cursor serviceConfig strategy trigger 
 TagFeed failed expanded gap, time=%fms, identifier=%{public}@, error=%{public}@
 TagFeed successfully expanded gap, time=%fms, identifier=%{public}@, fetchResultData=%@
 TagFeed got fetch result, time=%fms, identifier=%{public}@, fetchResultData=%@
 Failed to use feedPool to expand cursor, error=%{public}@
+ tracker 
 TSPluginDelegate
 v32@0:8@"TSPlugin"16@"TSPluginModel"24
 FCReadingHistoryObserving
@@ -4712,13 +4768,12 @@ magazineTabBarItem
 NewsUI2/MagazinesBadgingCoordinator.swift
 _TtC7NewsUI216NowPlayingRouter
 _TtC7NewsUI236MagazineFeedBlueprintModifierFactory
-issueModelFactory
 _TtC7NewsUI225StubOfferOverrideProvider
 _TtC7NewsUI243MagazineCategoriesBlueprintViewCellProvider
 magazineCategoryViewRenderer
 _TtC7NewsUI217HistoryFeedModule
 resolver
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/HistoryFeed/HistoryFeedModule.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/HistoryFeed/HistoryFeedModule.swift
 _TtC7NewsUI213TagFeedStyler
 _TtC7NewsUI218MagazineGridStyler
 NewsUI2/FollowingTagModel.swift
@@ -4740,7 +4795,6 @@ Title text shown when audio stories are loading in CarPlay.
 AudioCPListSectionAudioQueuesProcessor: Found no sections, returning no audio section
 text
 _TtC7NewsUI215FollowingRouter
-navigator
 NewsUI2.OfflineIssueAutoDownloader
 _TtC7NewsUI226OfflineIssueAutoDownloader
 currentIssuesChecker
@@ -4772,12 +4826,17 @@ maxOccurrencesPerEdition
 shouldPromoteAccessibleHeadline
 _TtC7NewsUI233FollowingSettingsButtonViewStyler
 fontMetrics
+Unexpected INPlayMediaIntent parameters
+_TtC7NewsUI218AudioIntentHandler
+audioDataManager
+Error retrieving headlines for INPlayMediaIntent with articleID %{public}@
+Error executing .playNow command with error %{public}@
 TSProxyResolverProvider
 bundleAssemblies
 NewsUI2.Deprecated_ChannelIssuesModule
 _TtC7NewsUI219ChannelIssuesModule
 TSChannelIssuesModule
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/ChannelIssues/ChannelIssuesModule.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/ChannelIssues/ChannelIssuesModule.swift
 news.startup.force_upsell_on_every_launch
 news.startup.reset_upsell_instance_id
 news.startup.reset_upsell_app_launch_count
@@ -4792,6 +4851,11 @@ Received article notification response via save article action. Saving article: 
 Received article notification response via open article action. Route to article: %{public}@
 _TtC7NewsUI234ArticleNotificationResponseHandler
 commandContainer
+Received article notification response via open article action. Use identifier for routing %{public}@
+Received article notification response via open article action. Use headline for routing %{public}@
+Notification headline payload %{public}@
+Make notification headline source channel is empty
+Make notification headline from channel data %{public}@
 _TtC7NewsUI223FeedAvailabilityService
 feedManager
 v24@?0@"<FCTagProviding>"8@"NSError"16
@@ -4844,7 +4908,6 @@ _TtCC7NewsUI222AudioFeedDataPrewarmerP33_3719C8FD382B027F820849EAD18939F27Sessio
 state
 deferredPromise
 workQueue
-audioDataManager
 audioConfigurationManager
 AudioFeedDataPrewarmer: re-prewarming due to session invalidation
 AudioFeedDataPrewarmer: will start prewarming
@@ -4885,7 +4948,6 @@ NewsUI2/MagazineFeedViewController.swift
 NewsUI2.MagazineFeedViewController
 Title for the Magazine Feed navigation item.
 Accessibility label for the magazine feed scroll area
- headline 
 _TtC7NewsUI226MagazineFeedViewController
 styler
 blueprintSelectionProvider
@@ -4969,6 +5031,7 @@ _TtC7NewsUI225ForYouMagazineFeedManager
 v32@0:8@16@?24
 magazineFeedServiceConfigFetcher
 magazineFeedService
+personalizationService
 knownCursors
 knownGroups
 lock
@@ -5014,12 +5077,14 @@ TSWelcomeDataManagerMacOSType
 FCNetworkReachabilityObserving
 v24@0:8@"FCNetworkReachability"16
 _TtC7NewsUI225NotificationPromptManager
+q24@0:8@16
 pptContext
 settings
 authorizationStatus
 _TtC7NewsUI219TagFeedViewerModule
 _TtC7NewsUI229TodayBlueprintModifierFactory
 sectionFactory
+nativeAdManager
 policyValidator
 layoutCollectionProvider
 manageNotifications
@@ -5065,7 +5130,6 @@ _TtC7NewsUI234WelcomeViewLayoutAttributesFactory
 _TtC7NewsUI230LocalNewsTodayFeedGroupService
 sectionHeadlinesService
 heroSelector
-channelFontService
 weatherService
 localAreasManager
 Unable to create local news group for channel, channelID=%{public}@, error=%{public}@
@@ -5135,7 +5199,6 @@ intentDeserializer
 feedIDKey
 @24@0:8@16
 _TtC7NewsUI227UserActivityHandlerAssembly
-v16@?0@"UIGraphicsImageRendererContext"8
 Menu item title for setting the audio playback rate to 0.75x.
 Menu item title for setting the audio playback rate to 1x.
 Menu item title for setting the audio playback rate to 1.5x.
@@ -5181,6 +5244,7 @@ Found an item %{public}@ on the AVPlayerItem, but no observer
 Found an observer %{public}@ of an AVPlayerItem, but no item on the player
 Removing observer of item %{public}@
 _TtC7NewsUI221TagFeedViewerAssembly
+v16@0:8
 _TtC7NewsUI217NoopAudioAssembly
 _TtC7NewsUI219WelcomeViewAnimator
 _TtC7NewsUI219ChannelIssuesStyler
@@ -5217,9 +5281,10 @@ Alert action title when app store purchased channel is removed from Following se
 feed-MagazineFeed
 NewsUI2.MagazineFeedModule
 TSMagazineFeedModule
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/MagazineFeed/MagazineFeedModule.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/MagazineFeed/MagazineFeedModule.swift
 _TtC7NewsUI219WelcomeViewRenderer
 stylerFactory
+Blocking plugin manager using zero for plugin size because we failed to receive the model, identifier=%{public}@
 TSBlockingPluginManager
 {CGSize=dd}24@0:8@16
 pluginManager
@@ -5229,11 +5294,13 @@ viewControllers
 dataLock
 viewControllersLock
 T@"TSPluginManager",N,R,VpluginManager
-plugin manager failed to layout plugin with identifier %{public}@
+Blocking plugin manager failed to find plugin model promise, identifier=%{public}@
+Blocking plugin manager failed to layout plugin, identifier=%{public}@
+Blocking plugin manager failed to get plugin model result from promise, identifier=%{public}@
 _TtC7NewsUI224MagazineGridEventHandler
 NewsUI2.NotificationAuthorizationRequester
 _TtC7NewsUI234NotificationAuthorizationRequester
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/ForYouMagazines/ForYouMagazinesPluginFactory.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/ForYouMagazines/ForYouMagazinesPluginFactory.swift
 networkPrewarmer
 NewsUI2.ForYouMagazinesPluginFactory
 TSForYouMagazinesPluginFactory
@@ -5270,6 +5337,8 @@ _TtC7NewsUI233PaidBundleLinksHeaderEventHandler
 presentationMeter
 model channelTraits overrides 
 model issueTraits overrides 
+offset element 
+ parentCursor 
 _TtC7NewsUI215AudioFeedRouter
 _TtC7NewsUI234SavedFeedBlueprintViewCellProvider
 _TtC7NewsUI239NowPlayingActivityViewControllerFactory
@@ -5302,10 +5371,7 @@ largeTextLabel
 subscribeButton
 offersButton
 NewsUI2/MagazineFeedVideoPaywallView.swift
-NewsUI2.BridgedSectionsToolbarItemManager
-TSSectionsToolbarItemManager
-toolbarManager
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/MagazineFeed/MagazineFeedInteractor.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/MagazineFeed/MagazineFeedInteractor.swift
 offlineManager
 supplementaryDataProvider
 offlineIssueIndicationUpdater
@@ -5324,6 +5390,8 @@ Magazine feed successfully loaded with visible duration %fms
 FCNewsAppConfigurationObserving
 v32@0:8@"<FCNewsAppConfigurationManager>"16@"<FCNewsAppConfiguration>"24
 v24@0:8@"<FCNewsAppConfigurationManager>"16
+q16@0:8
+@24@0:8:16
 _TtC7NewsUI217MyMagazinesRouter
 controller
 newssubscription.entitlements.entitlements_override
@@ -5376,6 +5444,7 @@ _TtC7NewsUI229FollowingNotificationsTracker
 NewsUI2.SearchViewController
 Title for the Search Results toolbar.
 _TtC7NewsUI220SearchViewController
+toolbarManager
 parsecQueryID
 searchBar
 searchAction
@@ -5436,13 +5505,14 @@ _TtC7NewsUI219SpotlightURLHandler
 articleContextFactory
 _TtC7NewsUI224ArticleLinkActionHandler
 NewsUI2/ArticleLinkActionHandler.swift
+identifier identifiers navigationAction 
+identifier navigationAction 
 _TtC7NewsUI240MagazineCategoriesBlueprintLayoutBuilder
 magazineCategoryViewLayoutAttributesFactory
-v16@0:8
 alertShownCount
 NewsUI2.MagazineGridInteractor
 NewsUI2/MagazineGridInteractor.swift
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/MagazinesGrid/MagazineGridInteractor.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/MagazinesGrid/MagazineGridInteractor.swift
 v24@?0@8@"NSError"16
 @"NSArray"16@?0@"FCIssue"8
 v16@?0d8
@@ -5665,6 +5735,7 @@ email_sign_up_personalized_newsletter_signup_seen_on_launch_num
 email_sign_up_show_on_app_startup
 _TtC7NewsUI246StubOrderedArticleListMagazineFeedGroupEmitter
 _TtC7NewsUI215FactoryAssembly
+configuration
 d24@0:8@16
 _TtC7NewsUI213SeeMoreButton
 paddingBetweenTitleAndImage
@@ -5676,21 +5747,20 @@ _TtC7NewsUI212SavedService
 headlineStreamingResults
 Error fetching articles for changed articleIDs. 
 _TtC7NewsUI221InterstitialAdTracker
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Ads/InterstitialAdTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Ads/InterstitialAdTracker.swift
 _TtC7NewsUI236UserNotificationsOpenSettingsHandler
 Error while trying to navigate to manage notifications. %@
 _TtC7NewsUI219DislikeButtonStyler
 _TtC7NewsUI248MyMagazinesSharingActivityItemFactoryWithTracker
 factory
-NewsUI2.BridgedTitleToolbarItemManager
-TSTitleToolbarItemManager
+NewsUI2.BridgedToolbarItemManager
+TSToolbarItemManager
 _TtC7NewsUI2P33_1C0D3616385BF021677FDDFCFCAD60A29Localized
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/MagazineFeed/MagazineFeedTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/MagazineFeed/MagazineFeedTracker.swift
 _TtC7NewsUI219MagazineFeedTracker
 NewsUI2/MagazineFeedTracker.swift
 Unknown enum case.
 _TtC7NewsUI216StubOfferManager
-key value 
 _TtC7NewsUI227ShortcutItemHandlerAssembly
 TSAlertable
 message
@@ -5719,6 +5789,7 @@ _TtC7NewsUI224SubscriptionsFoundModule
 Error while prewarming saved feed with visible duration %fms, error=%{public}@
 Saved feed successfully loaded with visible duration %fms
 _TtC7NewsUI220MagazineFeedAssembly
+MagazineFeedView
 NewsUI2/NoContentView.swift
 NewsUI2.NoContentView
 init(frame:)
@@ -5787,26 +5858,16 @@ Error while trying to navigate to Notifications: %{public}@
 _TtC7NewsUI223NotificationsURLHandler
 _TtC7NewsUI227DownloadIssueCommandHandler
 NewsUI2/DownloadIssueCommandHandler.swift
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Commands/Handlers/DownloadIssueCommandHandler.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Commands/Handlers/DownloadIssueCommandHandler.swift
 _TtC7NewsUI235FollowingNotificationsLayoutBuilder
 footerViewLayoutAttributesFactory
-_TtC7NewsUI224AudioIntentsDataProvider
-audioIntentData
-dailyBriefingTrack
-_TtC7NewsUI212AudioIntents
-dataProvider
-Play request interaction donation succeeded
-Could not donate interaction %@
-AudioIntentsDataProvider: Encountered an error fetching artwork, using fallback %{public}@
-AudioIntentsDataProvider: Encountered an error fetching artwork %{public}@
-offset element 
 _TtC7NewsUI233HistoryFeedBlueprintLayoutBuilder
 _TtC7NewsUI217AudioErrorHandler
 AudioErrorHandler: Error reset to nil
 AudioErrorHandler: Error occurred: %{public}@
 NewsUI2/TagFeedSectionDescriptor.swift
  group should never be used with the FeedLayoutSolver
-Feed pool fetching in date range %{public}@
+Feed pool fetching in date range %{public}@, ignoreCount=%ld
 _TtC7NewsUI220TodayFeedPoolService
 Encountered negative rank multiplier while decoding supergroup knobs. Using 0.0 instead.
 _TtC7NewsUI228SidebarTableViewCellRenderer
@@ -5823,6 +5884,7 @@ NewsUI2/JournalDetailViewController.swift
 NewsUI2.JournalDetailViewController
 Report Issue for Group
 TSJournalDetailViewController
+tableView
 q32@0:8@16q24
 @32@0:8@16q24
 d32@0:8@16q24
@@ -5885,12 +5947,12 @@ news.modules.tag_feed.debug_feed_config.url
 http://127.0.0.1:8080/configs/tag-feed-config.jinja.yaml
 news.modules.audio_feed.debug_feed_config.url
 http://127.0.0.1:8080/configs/audio-config.yaml
+news.modules.today_feed.always_load_from_network
 news.modules.today_feed.minimum_refresh_duration
 news.modules.today_feed.refresh_strategy
 news.modules.today_feed.last_refresh_date
 news.modules.today_feed.auto_refresh_strategy
 news.modules.magazine_feed.sauce.group_distance
-news.modules.magazine_feed.debug_enabled
 news.modules.magazine_feed.magazine_configuration_date
 news.modules.magazine_feed.is_parallax_enabled
 news.modules.magazine_feed.debug_feed_config.url
@@ -5972,20 +6034,14 @@ NUTitleViewStyler
 _TtC7NewsUI230TagFeedViewerTitleViewRenderer
 publisherLogoImageCache
 _TtC7NewsUI214TagFeedTracker
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/TagFeed/TagFeedTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/TagFeed/TagFeedTracker.swift
 NewsUI2/TagFeedTracker.swift
-NewsUI2.BridgedShareToolbarItemManager
-TSShareToolbarItemManager
-windowScene
 base-header-title
 AudioFeedConfiguration: Can't provide expiration date because publish date is missing
 AudioFeedConfiguration: Found duplicate articleID in AudioConfig %{public}@
 notificationTriggeredAtTimeFromEnd
 _TtC7NewsUI223FollowingEditorialModel
 editorialModel
-NewsUI2.App
-init(application:monitor:environment:)
-_TtC7NewsUI23App
 NewsUI2.NewsActivityInfo
 _TtC7NewsUI216NewsActivityInfo
 title
@@ -6005,17 +6061,10 @@ NewsUI2.ReportConcernViewPresenter
 _TtC7NewsUI226ReportConcernViewPresenter
 NUReportConcernViewPresenter
 _TtC7NewsUI222FeedViewContextFactory
-TodayPluginGroupConfigCache
-TSDatabaseAssembly
-Failed to create persistent audio database with error: %{public}@
-Failed to create in-memory audio database with error: %{public}@
-today-plugin-group-config-database
-Failed to create persistent Today plugin group config database with error: %{public}@
-Failed to create in-memory Today plugin group config database with error: %{public}@
 my-magazines-database
-Failed to create persistent My Magazines database with error: %{public}@
-Failed to create in-memory My Magazines database with error: %{public}@
-Opened My Magazines database at path %@
+today-plugin-group-config-database
+today-feed-database
+_TtC7NewsUI216DatabaseAssembly
 _TtC7NewsUI224AudioQueueCommandHandler
 playbackConductor
 playNowIgnoringPlaylistSlot
@@ -6026,6 +6075,7 @@ Asked to play headline last that is already playing. Not doing anything. %{publi
 Asked to play headline next that is already playing. Not doing anything. %{public}@
 newsui.help.aboutNewsletterPrivacy
 newsui.help.aboutPrivacy
+_TtC7NewsUI231TodayFeedDatabaseGroupProcessor
 purchase discovered notification missing tags, notification=: %{public}@
 purchasedChannelIDs
 _TtC7NewsUI228SubscriptionDetectionManager
@@ -6091,7 +6141,6 @@ sectionFooterViewLayoutAttributesFactory
 NewsUI2/MagazineFeedBlueprintLayoutBuilder.swift
 Newspaper layout descriptor is handled inline
 Format layout descriptor is handled inline
-The default prefix text for sections that support a footer and a prefix in the footer (for example MORE FROM Wall Street Journal
 _TtC7NewsUI214PaywallTracker
 paywallModel
 feedData
@@ -6127,6 +6176,7 @@ _TtC7NewsUI223SceneStateManagerBridge
 activityReceiver
 _TtC7NewsUI228MastheadStyleOptionsProvider
 magazineFeedPaywallDefaultStylingRequirementProvider
+_TtC7NewsUI228TodayBlueprintCellPrefetcher
 Unable to create new issue group for issue, issue=%{public}@, error=%{public}@
 Found new issue=%{public}@
 Unable to create new issue group for issue, issue=%{public}@, error=%{public}@.
@@ -6246,7 +6296,7 @@ NewsUI2/SidebarTableViewCell.swift
 _TtC7NewsUI220SidebarTableViewCell
 shadowView
 swiftResolver objcResolver 
-Unexpected intent parameters in app delegate
+Unexpected intent type in app delegate
 TSAppDelegate
 $__lazy_storage_$_resolverManager
 $__lazy_storage_$_resolvers
@@ -6260,8 +6310,6 @@ T@"UIWindow",N,&,Vwindow
 NewsUI22
 Error in application performFetchWithCompletionHandler error %{public}@
 NewsUI2/AppDelegate.swift
-Error retrieving headlines for intent with articleID %{public}@
-Error executing .playNow command with error %{public}@
 Error handling remote notification: %{error}@
 NFResolver
 @24@0:8#16
@@ -6368,6 +6416,7 @@ accessLevel
 deletedState
 nativeAdInfo
 blockedState
+premiumBadge
 _TtC7NewsUI219SeeMoreButtonStyler
 Asked to create an animation for an item with no start index path or end frame. This is unsupported
 AudioFeedAnimator: Laying out %{public}@ items %{public}@
@@ -6429,15 +6478,17 @@ Double-tap to expand section
 Accessibility hint for following header view in collapsed state
 _TtC7NewsUI227FollowingHeaderViewRenderer
 titleViewRenderer
+ForYouTodayFeedManager caught error while trying to fetch groups, error=%{public}@
 cached_group_configs
 _TtC7NewsUI222ForYouTodayFeedManager
 feedGroupEmitterFactory
 emitterQueue
-Timed out trying to lookup known group from cache
-Error occurred when checking config cache for identifier: %@. Error: %@
-Known group not emitted: %@
-Skipping non-bridged groups
-No groups emitted: %@
+ForYouTodayFeedManager timed out trying to look up known group from cache
+ForYouTodayFeedManager caught error when checking config cache, identifier=%{public}@, error: %{public}@
+ForYouTodayFeedManager caught error from emitter while trying to emit group, error=%{public}@
+ForYouTodayFeedManager did not emit known group: %@
+ForYouTodayFeedManager skipping non-bridged groups
+ForYouTodayFeedManager emitted no groups: %@
 ForYouTodayFeedManager failed to cache group config for identifier %s
 NewsUI2/ForYouTodayFeedManager.swift
 These groups are not supported across the bridge; this is handled by the `TodayBridgedGroupConfig` already
@@ -6510,7 +6561,7 @@ $__lazy_storage_$_stateRestorationActivityProvider
 $__lazy_storage_$_featureAvailability
 $__lazy_storage_$_alternateUniversalLinksDefaultSettingsManager
 $__lazy_storage_$_redirectService
-$__lazy_storage_$_todayPrewarmer
+$__lazy_storage_$_todayFeedManager
 $__lazy_storage_$_todayLoadingGate
 $__lazy_storage_$_alternateUniversalLinksManager
 $__lazy_storage_$_sceneStateTracker
@@ -6529,14 +6580,12 @@ v48@0:8@"UIWindowScene"16@"<UICoordinateSpace>"24q32@"UITraitCollection"40
 v40@0:8@"UIWindowScene"16@"UIApplicationShortcutItem"24@?<v@?B>32
 v32@0:8@"UIWindowScene"16@"CKShareMetadata"24
 _TtC7NewsUI233FollowingDislikedViewCellProvider
-_TtC7NewsUI218ChannelFontService
-fontManager
 _TtC7NewsUI225MagazineActivityNavigator
 Failed to fetch paid bundle config to navigate to magazine content, error=%{public}@
 Error while trying to navigate to alert: %{public}@
 Error while trying to navigate to activity %{public}@: %{public}@
 _TtC7NewsUI210BaseStyler
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/SavedFeed/SavedFeedTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/SavedFeed/SavedFeedTracker.swift
 _TtC7NewsUI216SavedFeedTracker
 NewsUI2/SavedFeedTracker.swift
 A default title for a featured issue group
@@ -6614,6 +6663,8 @@ AudioFeedDataManager: fetching all groups
 AudioFeedDataManager: fetching configurations
 _TtC7NewsUI219EmailSignupAssembly
 _TtC7NewsUI231WebAccessOptInAdSegmentProvider
+_TtC7NewsUI222OfferAdSegmentProvider
+offerManager
 _TtC7NewsUI240ForYouSingleGroupSectionPositionProvider
 groupIdentifier
 groupRankProvider
@@ -6637,6 +6688,7 @@ _TtC7NewsUI215SavedFeedStyler
 Network fetching magazine and paid-bundle configs...
 _TtC7NewsUI237CacheMagazineFeedServiceConfigFetcher
 logName
+magazineConfigurationService
 _TtC7NewsUI239NetworkMagazineFeedServiceConfigFetcher
 Network fetched magazine and paid-bundle configs, time=%0.2f ms
 _TtC7NewsUI227UnrecognizedURLRetryHandler
@@ -6710,10 +6762,10 @@ TSBundleHardPaywallAssembly
 _TtC7NewsUI236DemoMagazineConfigurationDataService
 returnJSON
 assetService
-data
 the default  name of the daily briefing group in the today feed
 the default subtitle of the daily briefing group when shown in the today feed
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/Today/TodayTracker.swift
+key value 
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/Today/TodayTracker.swift
 No cursor in the Today blueprint! Missed analytics event for a Today feed group!
 Gap impression started, identifier=%{public}@
 Gap impression ended, identifier=%{public}@
@@ -6739,10 +6791,12 @@ _TtC7NewsUI230AlternateUniversalLinksManager
 fcAlternateUniversalLinksManager
 urlMap
 sanitizationCount
-NewsUI2/SearchMoreArticlesViewController.swift
 NewsUI2.SearchMoreArticlesViewController
 SearchMoreArticles
 _TtC7NewsUI232SearchMoreArticlesViewController
+titleText
+NewsUI2/SearchMoreArticlesViewController.swift
+The name of the feed, including the logo, as presented in the masthead
 NewsUI2.MagazineCategoriesConfig
 NewsUI2.MagazineCategoriesModule
 TSMagazineCategoriesConfig
@@ -6816,11 +6870,12 @@ MagazineCategoryGridModelLoader will fetch %d issues...
 MagazineCategoryGridModelLoader finished fetching tags, time=%0.2f ms
 MagazineCategoryGridModelLoader will fetch %d tags...
 MagazineCategoryGridModelLoader will fetch category config...
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Trackers/PurchaseTransactionTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Trackers/PurchaseTransactionTracker.swift
 _TtC7NewsUI226PurchaseTransactionTracker
 NewsUI2/FCIssue+Analytics.swift
 Failed to retrieve paywall configuration while emitting magazine feed paywall group.
 Error fetching app configuration while emitting magazine feed paywall group: %{public}@
+v16@?0@"UIGraphicsImageRendererContext"8
 NewsUI2.FeedNavImageAssetHandle
 NEFeedNavImageAssetHandle
 @56@0:8@16@24{CGSize=dd}32@48
@@ -6864,6 +6919,9 @@ newspaper-subgroup-
 newspaper-section-kicker-title
 newspaper-section-kicker-url
 newspaper-header-subtitle
+Today feed checking should NOT read root cursor from database with created date %{public}@ due to date range %{public}@ isTopOfFeed=%d
+Today feed checking should read root cursor from database with created date %{public}@ within date range %{public}@ isTopOfFeed=%d
+Today feed settings set to always load from the network
 Unknown format item %{public}@ encountered. Please update this switch statement to handle the new case.
 imageAssetHandle
 gradientDescriptor
@@ -6915,25 +6973,17 @@ TodayFeed start expanding identifier=%{public}@, location=%{public}@
 NewsUI2.TodayDataManager
 _TtC7NewsUI216TodayDataManager
 pluginFactory
-prewarmer
 nativeAdService
 _subscribedTagIDsSinceLastRefresh
+cachePreFlushTask
 TodayFeed failed expanded gap, time=%fms, identifier=%{public}@, error=%{public}@
 TodayFeed successfully expanded gap, time=%fms, identifier=%{public}@, fetchResultData=%@
 TodayFeed got fetch result, time=%fms, identifier=%{public}@
 TodayFeed failed refresh, time=%fms, error=%{public}@
 TodayFeed refreshing with refresh strategy=%{public}@, minimumDuration=%f, trigger=%{public}@
-Today will not wait on deferred reload
-Today will maybe wait on deferred reload
-Today failed deferred prewarm reload, error=%{public}@
-Today expanded deferred prewarm reload, expandResults=%{public}@
-Today failed prewarmed data, time=%fms, error=%{public}@
-Today expanded prewarmed data, time=%fms, expandResults=%{public}@
-Today prewarmed %ld results, time=%fms
-Today requesting prewarmed data
+TodayFeed got fetch result, time=%fms, identifier=%{public}@, fetchResultData=%@
 _TtC7NewsUI233ChannelIssuesGroupTitleViewStyler
 _TtC7NewsUI226AudioCPListSectionProvider
-sections
 AudioCPListSectionProvider: Creating sections with queues %{public}@
 AudioCPListSectionProvider: Processing playback state
 NewsUI2.AudioAutoClosePlayerHandler
@@ -6967,6 +7017,7 @@ NewsUI2/TodaySectionDescriptor.swift
 _TtC7NewsUI216LikeButtonStyler
 Error while trying to navigate to Intersitial preview: %{public}@
 _TtC7NewsUI229InterstitialPreviewURLHandler
+adConfiguration
 _TtC7NewsUI231PaidBundleLinksHeaderViewStyler
 _TtC7NewsUI216ShowAnywayButton
 _TtC7NewsUI227FollowingSettingsButtonView
@@ -6974,14 +7025,13 @@ button
 isAccessibilityElement
 NewsUI2/FollowingSettingsButtonView.swift
 _TtC7NewsUI218AdComponentTracker
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Ads/AdComponentTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Ads/AdComponentTracker.swift
 _TtC7NewsUI230AudioListeningProgressRecorder
 playbackStateObserver
 AudioListeningProgressRecorder: initialized
 AudioListeningProgressRecorder: saving listening progress %.1f for %{public}@
 AudioListeningProgressRecorder: not saving listening progress for %{public}@ because it's disabled
 _TtC7NewsUI228BundleSubscriptionURLHandler
-offerManager
 NewsUI2/AudioFeedViewController.swift
 NewsUI2.AudioFeedViewController
 Accessibility label for the Audio feed scroll area
@@ -7010,6 +7060,7 @@ TATagRemovalAlertMessage
 Alert message when a channel/topic is removed from Following section with publisher name.
 Alert action to cancel the alert shown for unfollowing the channel/topic from Following section.
 Alert action to unfollow the channel/topic when removed from Following section.
+factoryObserver
 NewsUI2/TagFeedViewerTitleView.swift
 _TtC7NewsUI222TagFeedViewerTitleView
 _TtC7NewsUI220WebEmbedEventHandler
@@ -7058,6 +7109,7 @@ com.apple.appLaunchUpsell
 com.apple.news.ads
 com.apple.news.subscription
 com.apple.news.tagFeed
+com.apple.news.articleload
 com.apple.news.userNotifications
 UserNotifications
 com.apple.news.carPlay
@@ -7113,7 +7165,6 @@ NUPaywallGroupData
 @56@0:8q16@24i32i36@40@48
 NUPaywallEventData
 @72@0:8@16@24@32@40@48@56@64
-channel
 _TtC7NewsUI210MainModule
 followingTabBarItem
 The title for the Audio tab bar item
@@ -7127,6 +7178,7 @@ _TtC7NewsUI238StubCategoriesMagazineFeedGroupEmitter
 _TtC7NewsUI236MyMagazinesBlueprintViewCellProvider
 _TtC7NewsUI235MyMagazinesBlueprintModifierFactory
 _TtC7NewsUI218TodayPluginFactory
+articleViewerObserver
 _TtC7NewsUI228IssueListTagFeedGroupEmitter
 Failed to resolve issue list group, error=%{public}@
 Failed to resolve issue list group
@@ -7151,9 +7203,7 @@ refreshControl
 Title to show for empty state in tag feed.
 _TtC7NewsUI262FollowingNotificationsSectionFooterViewLayoutAttributesFactory
 _TtC7NewsUI233PaidBundleBackgroundWorkerFactory
-_TtC7NewsUI236NetworkTodayFeedServiceConfigFetcher
-configManager
-_TtC7NewsUI234CacheTodayFeedServiceConfigFetcher
+_TtC7NewsUI229TodayFeedServiceConfigFetcher
 _TtC7NewsUI228SearchBlueprintLayoutBuilder
 searchHeaderLayoutAttributesFactory
 NewsUI2/SearchBlueprintLayoutBuilder.swift
@@ -7184,6 +7234,8 @@ NewsUI2/HistoryModule.swift
 The history module is not supported in Swift yet...
 NewsUI2.HistoryModule
 _TtC7NewsUI213HistoryModule
+_TtC7NewsUI239ManageBlockedChannelTopicCommandHandler
+followingDataManager
 Accessibility label used for the logotype in the paid bundle links header in articles
 Accessibility label used for the dismiss button in the paid bundle links header in articles
 _TtC7NewsUI233PaidBundleLinksHeaderViewRenderer
@@ -7235,14 +7287,17 @@ action
 NewsUI2/TitleView.swift
 _TtC7NewsUI240ArticleRecirculationConfigurationService
 _TtC7NewsUI215WebEmbedTracker
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/WebEmbed/WebEmbedTracker.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/WebEmbed/WebEmbedTracker.swift
 _TtC7NewsUI237EndOfTrackNotificationResponseHandler
 EndOfTrackNotificationResponseHandler cannot handle non-endOfTrack notification responses
 Received end of track notification response for article: %{public}@
 NewsUI2.CacheFlushingManager
+NewsUI2.CachePreFlushTask
 TSCacheFlushingManager
 cacheFlusher
 preFlushGroup
+TSCachePreFlushTask
+block
 TSChannelIssuesGroupViewControllerType
 TSChannelIssuesGroupViewControllerDelegate
 NewsUI2/AudioFeedBlueprintViewSupplementaryViewProvider.swift
@@ -7252,13 +7307,10 @@ We shouldn't need to handle any actions from audio feed supplementary views
 v16@?0@"AAViewingSession"8
 _TtC7NewsUI238IssueTableOfContentsArticleCoordinator
 articleCoordinator
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Coordinators/IssueTableOfContentsArticleCoordinator.swift
-NewsUI2/HeroSelectionStrategy.swift
-not implemented; for `Codable` protocol conformance only
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Coordinators/IssueTableOfContentsArticleCoordinator.swift
 _TtC7NewsUI235StubHeadlineOffensiveStatusProvider
 MagazineFeedSubscriptionModifier(action=
-magazineTagModel blueprint 
-old new 
+ headline 
 _TtC7NewsUI242SearchMoreArticlesBlueprintModifierFactory
 NewsUI2.AnalyticsReferral
 TSAnalyticsReferral
@@ -7279,15 +7331,20 @@ T@"NTPBWidgetEngagement",N,R,VwidgetEngagement
 TB,N,R,VappOpenedByUserActivity
 Ti,N,R,VappSessionStartMethod
 Ti,N,R,VappSessionStartNotificationType
+_TtC7NewsUI224AudioIntentsDataProvider
+audioIntentData
+dailyBriefingTrack
+_TtC7NewsUI212AudioIntents
+dataProvider
+Play request interaction donation succeeded
+Could not donate interaction %@
+AudioIntentsDataProvider: Encountered an error fetching artwork, using fallback %{public}@
+AudioIntentsDataProvider: Encountered an error fetching artwork %{public}@
 _TtC7NewsUI237ChannelIssuesBlueprintModifierFactory
-NewsUI2/MagazineFeedTagModel.swift
-This is an unknown enum case.  Please update this switch statement to add and cover the new cases
-whoops! you created a magazine feed group tag that cannot be followed. these are not the tags you are looking for
-MagazineFeedTagModel(identifier=
 The label for the section that shows the latest issue from each magazine that the user follows, in reverse chronological order
 The label for the section that shows the cover of the issue that the user has opened most recently
 creativeType
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Ads/AdAnalyticsJournalEntryProcessor.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Ads/AdAnalyticsJournalEntryProcessor.swift
 AudioFeedRefreshBlueprintModifier failed to create AudioFeedAnimator.Context with error %{public}@
 AudioFeedRefreshBlueprintModifier failed to process invalid context %{public}@
 blueprint diff bookmark animation 
@@ -7458,14 +7515,12 @@ _TtC7NewsUI215MainDataManager
 emailSignupDetectionManager
 subscriptionDetectionManager
 familySharingDetectionManager
+Ignore Feed Item Count
+Extended Date Range Start
+Extended Date Range End
+Extended Date Range Duration
 _TtC7NewsUI222TodayFeedServiceConfig
-contentConfig
-contentConfigData
-appConfig
-cachePolicy
-dateRange
 refreshInterval
-cacheKey
 NewsUI2.BridgedKeyCommand
 TSKeyCommand
 @56@0:8@16q24@32@40:48
@@ -7529,6 +7584,7 @@ Failed to resolve the suggstion group, error=%{public}@
 Failed to resolve suggestion group, error=
 Sugestions group %{public}@ filtered headlines %ld to %ld
 Suggestions group %{public}@ skipping tag because headlines %ld less than min cluster size %ld
+Suggestions found %ld seen groups for suggested tags
 Suggestions created %ld clusters
 _TtC7NewsUI230AlertNewsletterUserNotSignedIn
 TANewsletterUserNotSignedInAlertGoToSettingsButton
@@ -7609,7 +7665,6 @@ _TtC7NewsUI228FollowingNotificationsStyler
 headerLabelTextProvider
 Title for the manage notifications feed in Following
 _TtC7NewsUI224SearchMoreArticlesStyler
-titleText
 _TtC7NewsUI222ANFSceneActivityBridge
 sceneDidDisconnectObserverBlocks
 NewsUI2.FollowingNotificationsModule
@@ -7698,11 +7753,6 @@ Encountered error fetching cohort tags %@
 Encountered error fetching topic tags %@
 v16@?0@"NSDictionary"8
 Encountered error fetching feature tags %@
-group score reason 
-Available in For You
-Available in Magazine Feed
-Min News Version
-Max News Version
 Default
 Paid
 (unknown: %i)
@@ -7777,7 +7827,6 @@ Migrate the magazine feed to the new tracker component and command center
 NewsUI2.TodayMagazineFeedDataManager
 _TtC7NewsUI228TodayMagazineFeedDataManager
 cursor
-feedContext
 myMagazinesModule
 _TtC7NewsUI233FollowingViewHeaderFooterProvider
 footerViewReuseIdentifier
@@ -7786,10 +7835,8 @@ footerViewTopHairlineOnlyReuseIdentifier
 footerViewBottomHairlineOnlyReuseIdentifier
 collapsibleStateManager
 NewsUI2/FollowingViewHeaderFooterProvider.swift
-NewsUI2/MagazineFeedGroupTitleViewRenderer.swift
 _TtC7NewsUI234MagazineFeedGroupTitleViewRenderer
-debugEnabled
-Failed to retrieve the magazine feed journal
+NewsUI2/MagazineFeedGroupTitleViewRenderer.swift
 Subtitle for the Apple News Newsletter toggle on the Notifications & Email screen
 Get show notes while listening to %@.
 Subtitle for the audio feature (Apple News Today) toggle on the Notifications & Email screen
@@ -7802,16 +7849,16 @@ newsActivity
 Will apply a queued refresh update with behavior=%{public}@
 Today feed will check auto refresh triggered by session=%{public}@, prewarmState=%{public}@, isOnline=%d
 Today feed will attempt auto refresh triggered by session=%{public}@
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/Today/TodayInteractor.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/Today/TodayInteractor.swift
 adIntegrator
 queuedRefreshResult
 prewarmState
-Today feed will reload from deferred prewarm
-Today feed successfully reloaded from deferred prewarm
 Error while applying queued today feed refresh update, error=%{public}@
 Today feed successfully applied refresh updaate with visible duration %fms
 Error while refreshing today feed with visible duration %fms, error=%{public}@
 Today feed successfully queued refresh with visible duration %fms
+Today feed visible uncollpase time=%fms
+Today feed visible relayout time=%fms
 Error while prewarming today feed with visible duration %fms, error=%{public}@
 Today feed successfully loaded with visible duration %fms
 NewsUI2/NewsActivitySerializer.swift
@@ -7832,6 +7879,8 @@ See my saved stories
 Title for saved activity
 See stories from Apple News
 Default title for viewing a channel if title is not set
+See stories from %@
+Title for viewing a channel when title set
 Default title for viewing an article if title is not set
 news keyword that might help the user to find My Magazines activity
 news keyword that might help the user to find feed activity
@@ -7948,12 +7997,9 @@ Cannot Send Bundle Subscription. Failed to create event.
 NewsUI2/BundleSubscriptionInfoReporter.swift
 Sending Bundle Subscription Report with data: %{public}@ and event: %{public}@
 _TtC7NewsUI225MagazineFeedPaywallModule
+purchaseID buyParams offer 
 Failed to emit magazine feed groups due to unknown error=
 No topic groups left to emit
-_TtC7NewsUI218NewsWeatherService
-wrapper
-v24@?0@"WFWeatherConditions"8@"NSError"16
-v24@?0@"WFLocation"8@"NSError"16
 _TtC7NewsUI245StubRecommendedIssuesMagazineFeedGroupEmitter
 _TtC7NewsUI217ANFParsingService
 NewsUI2.TodayViewController
@@ -7977,6 +8023,7 @@ configQueue
 baseURL
 connection
 parsecParamsFactory
+configManager
 suggest_with_results
 news.onboarding.version.debug_latest_completed
 news.onboarding.version.latest_completed
@@ -8085,6 +8132,9 @@ AudioDataManager: Update requested from playlist store but currently ignoring st
 _TtC7NewsUI217HistoryFeedStyler
 _TtC7NewsUI247FollowingNotificationsSectionFooterViewRenderer
 _TtC7NewsUI221SavedFeedEventHandler
+_TtC7NewsUI215TodayConfigData
+recordID
+headlines
 _TtC7NewsUI231PaidBundleLinksHeaderInteractor
 Title for the trending searches section in Search.
 Title for the Blocked Topics section in Following.
@@ -8141,6 +8191,7 @@ UNUserNotificationCenterDelegate
 v40@0:8@"UNUserNotificationCenter"16@"UNNotification"24@?<v@?Q>32
 v40@0:8@"UNUserNotificationCenter"16@"UNNotificationResponse"24@?<v@?>32
 v32@0:8@"UNUserNotificationCenter"16@"UNNotification"24
+_TtC7NewsUI233ManageNotificationsCommandHandler
 _TtC7NewsUI218NewsArticlesRouter
 headline articleNavigationAction blueprintProvider observer 
 _TtC7NewsUI215AudioFeedStyler
@@ -8149,8 +8200,8 @@ Must be overridden in feldspar
 _TtC7NewsUI225LegacyArticleViewerModule
 _TtC7NewsUI224LegacyArticleProxyModule
 articleModule
-NewsUI2.AMSHandleNotificationDiscerner
 _TtC7NewsUI230AMSHandleNotificationDiscerner
+$__lazy_storage_$_pushHandler
 _TtC7NewsUI221AudioFeedEventHandler
 com.apple.news.openforyou
 Failed to handle shortcut item: %@
@@ -8627,11 +8678,11 @@ Message displayed in an alert when audio playback fails because the user is unau
 Sorry, this story isn
 t available right now. Please try again later.
 Message displayed in an alert when audio playback fails for an unknown reason
-_TtC7NewsUI233ForYouSingleGroupTodayFeedService
+_TtC7NewsUI233ForYouTodaySingleGroupFeedManager
 TSFollowingDislikedAssembly
 _TtC7NewsUI233RemoveIssueDownloadCommandHandler
 NewsUI2/RemoveIssueDownloadCommandHandler.swift
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Commands/Handlers/RemoveIssueDownloadCommandHandler.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Commands/Handlers/RemoveIssueDownloadCommandHandler.swift
 @"UIImage"24@?0{CGSize=dd}8
 track time playbackRate waiting 
 MPNowPlayingInfoCenter: Updating now playing info center with playing item state %{public}@
@@ -8688,7 +8739,6 @@ The offline title when a tag feed is not available due to a problem with the ser
 The offline messsage when a tag feed is not available due to a problem with the server
 _TtC7NewsUI232RemoteNotificationArrivalHandler
 offlineProvider
-pushHandler
 RemoteNotificationArrivalHandler received an article notification response.
 RemoteNotificationArrivalHandler cannot handle notification responses while offline.
 RemoteNotificationArrivalHandler is fetching push notification result.
@@ -8737,24 +8787,11 @@ NewsUI2/TodayBridgedFeedGroup.swift
 Not a supported bridged group, group=
 _TtC7NewsUI221TodayBridgedFeedGroup
 emitter
-headlines
 webEmbedURLs
 newsui.history.reset_identifier
 newsui.history.clear_all
 newsui.history.clear_recommendations
 newsui.history.clear_history
-NewsUI2/JournalViewController.swift
-NewsUI2.JournalViewController
-Magazine Feed Groups
-group score 
-TSJournalNavigationController
-@32@0:8#16#24
-_TtC7NewsUI221JournalViewController
-tableView
-magazineFeedJournal
-journalGroup
-q24@0:8@16
-_TtC7NewsUI220JournalTableViewCell
 _TtCCC7NewsUI217AudioFeedAnimator8Snapshot4Item
 view
 layoutAttributes
@@ -8801,21 +8838,27 @@ NewsUI2.UserNotificationDelegate
 UserNotificationDelegate received request to open settings.
 UserNotificationDelegate received a notification for response handling.
 Error in didReceive notification response , error=%{public}@
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/UserNotifications/UserNotificationDelegate.swift
+No activity returned to route %{public}@
+Notification response activity to route=%{public}@
+UserNotificationDelegate is routing to new window for activity=%{public}@
+UserNotificationDelegate is routing to scene.
+Error Multiple activities in results, activities=%{public}@
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/UserNotifications/UserNotificationDelegate.swift
+UserNotificationDelegate is navigating to activity=%{public}@.
 Failed to connect new UIScene, error=%{public}@
 Error handling notification willPresent: %{error}@
 UserNotificationDelegate will present nootification with options: %{public}@
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Observers/CommandObserver+Saving.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Observers/CommandObserver+Saving.swift
 _TtC7NewsUI236MyMagazinesSectionHeaderViewRenderer
 A default title for a featured article group
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Modules/ChannelIssues/ChannelIssuesPluginFactory.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Modules/ChannelIssues/ChannelIssuesPluginFactory.swift
 NewsUI2.ChannelIssuesPluginFactory
 TSChannelIssuesPluginFactory
 TSChannelIssuesPluginFactoryType
 @"TSPlugin"32@0:8@"NSString"16@"TSChannelIssuesGroupConfig"24
 _TtC7NewsUI219TagFeedEventHandler
 TSTodayAssembly
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsUI/Observers/CommandObserver+Blocking.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsUI/Observers/CommandObserver+Blocking.swift
 _TtC7NewsUI227TodayBlueprintLayoutBuilder
 NewsUI2/TodayBlueprintLayoutBuilder.swift
 _TtC7NewsUI224TagSearchResultsInflater
@@ -8876,6 +8919,8 @@ Error while trying to expand tag feed, request=%{public}@, error=%{public}@
 Error while applying queued tag feed refresh update, error=%{public}@
 Tag feed successfully applied refresh update with visible duration %fms
 Error while reloading the tag feed, error=%{public}@
+Error while refreshing the tag feed, error=%{public}@
+Tag feed successfully applied refresh changed state update with visible duration %fms
 Error while refreshing tag feed with visible duration %fms, error=%{public}@
 Tag feed successfully refreshed with visible duration %fms
 Failed to prewarm content for TagFeedViewController, error=%{public}@
@@ -8916,7 +8961,6 @@ NewsUI2.ReaderAdSegmentProvider
 _TtC7NewsUI223ReaderAdSegmentProvider
 v16@?0@"<FCPersonalizationAggregate>"8
 _TtC7NewsUI218TagFeedPoolService
-Failed to fetch draft issues for tag feed %{public}@; error: %{public}@
 Failed to fetch issues for tag feed %{public}@; error: %{public}@
 v52@?0@"NSArray"8@"NSArray"16@"FCFeedRange"24@"FCFeedRange"32B40@"NSError"44
 _TtC7NewsUI240StubBestOfBundleMagazineFeedGroupEmitter
@@ -8962,6 +9006,7 @@ MagazineFeed start refreshing identifier=%{public}@, force=%{public}@
 NewsUI2.MagazineFeedDataManager
 _TtC7NewsUI223MagazineFeedDataManager
 categoriesModule
+prewarmer
 lastRefreshDate
 _persistedConfigurationDate
 MagazineFeed failed refreshing feed, time=%fms, identifier=%{public}@, error=%{public}@
@@ -9103,7 +9148,10 @@ $s5TeaUI29BlueprintViewCellProviderTypeP
 _pSgXw
 So25FCPaidBundleConfigurationC
 $s8NewsFeed0B17ServiceConfigTypeP
+So16UICollectionViewC
+$s5TeaUI27BlueprintCellPrefetcherTypeP
 $s7NewsUI225AudioPlaybackControllableP
+_pSg
 _pSg
 $s7NewsUI222MagazineFeedRouterTypeP
 So16UIViewControllerCSgXw
@@ -9129,7 +9177,6 @@ So24FCSubscriptionControllerC
 ySSSo19FCHeadlineProviding_pG
 SgXw
 SgXwz_Xx
-So16UICollectionViewC
 So20UICollectionViewCellC
 $s7NewsUI245MagazineGridBlueprintViewCellProviderDelegateP
 _pSgXw
@@ -9153,7 +9200,6 @@ ySo14FCTagProviding_pGG
 ySaySo19FCHeadlineProviding_pGGG
 yXlSg
 SaySo8NSNumberCG
-G6cursort
 $s8NewsFeed0B9GroupTypeP
 $s7NewsUI225DislikeButtonRendererTypeP
 SSSg
@@ -9229,6 +9275,7 @@ GIegn_
 Gz_Xx
 So30TSSiriSuggestionStatusProvider_p
 _pSgIegg_
+So13NUURLHandling_p
 $s7NewsUI222WebEmbedViewStylerTypeP
 So24NEFeedNavImageStylerType_p
 So11UIImageViewC
@@ -9320,8 +9367,6 @@ $s7NewsUI223TagFeedViewerRouterTypeP
 3tag_t
 ytG8headline_t
 $s7NewsUI229SearchResultsLegacyModuleTypeP
-So25FCPaidBundleConfigurationC
-_pIeggozo_
 So24FCForYouBridgedFeedGroup_p
 $s8NewsFeed0B11ServiceTypeP
 So16UIRefreshControlC
@@ -9335,7 +9380,7 @@ _pIegnzo_
 So18FCChannelProviding_pSg
 So16FCTopicProviding_pSg
 $s7NewsUI226AudioCPInterfaceControllerP
-_pIegnozo_
+_pIeggozo_
 $s7NewsUI233OfflineAlertControllerFactoryTypeP
 SgXw
 SgXwz_Xx
@@ -9343,8 +9388,8 @@ $s7NewsUI238TodayBlueprintViewCellProviderDelegateP
 _pSgXw
 _pSgXw
 Sbz_Xx
-ShySSGSo16FCFeedDescriptorC
-_pIeggggozo_
+So16FCFeedDescriptorC
+_pIegggozo_
 $s7NewsUI2022SeparatorViewContainerD12RendererTypeP
 $s7NewsUI222TopicColorProviderTypeP
 $s7NewsUI214FeedModuleTypeP
@@ -9362,7 +9407,6 @@ yAcD
 ySo11UITableViewC
 yAeN
 yAEGAPGGG
-So13NUURLHandling_p
 Iegg_
 ShySSG3ids_t
 So22MPNowPlayingInfoCenterC
@@ -9428,7 +9472,7 @@ yycSg
 ytIegr_
 _pIegggozo_
 _pIeggozo_
-_pIegngozo_
+_pIegggozo_
 _pIegggozo_
 SgXw
 SgXwz_Xx
@@ -9504,12 +9548,15 @@ _pIeggozo_
 $s7NewsUI228WelcomeViewStylerFactoryTypeP
 $s7NewsUI237FollowingSettingsButtonViewStylerTypeP
 So13UIFontMetricsC
+So16INIntentResponseCIegg_
+$s7NewsUI222AudioIntentHandlerTypeP
 $s7NewsUI221ProxyResolverProviderP
 $s7NewsUI223ChannelIssuesModuleTypeP
 $s7NewsUI234Deprecated_ChannelIssuesModuleTypeP
 GIegn_
 _pIegnzo_
 SDySS
+ShySiGSg
 _pIeggrzo_
 $s7NewsUI239WebEmbedViewLayoutAttributesFactoryTypeP
 So15FCTagControllerC
@@ -9664,10 +9711,7 @@ $s7NewsUI205LocalA25TodayFeedGroupServiceTypeP
 So30TSLocationDetectionManagerType_p
 So19FCLocalAreasManager_p
 SaySo18FCSectionProviding_pG
-SaySo13FCAssetHandleCG
-_pIeggnrzo_
 Iegn_
-Iegy_
 So10CLLocationC
 SaySo19FCHeadlineProviding_pG
 _pIeggozo_
@@ -9681,7 +9725,6 @@ $s7NewsUI246BridgedMastheadViewLayoutAttributesFactoryTypeP
 So32TSNewsActivityIntentDeserializer_p
 SS12activityType_t
 SS5field_t
-So30UIGraphicsImageRendererContextCIgg_
 yxGSgXw
 yxGSgXwz_x_
 RzlXX
@@ -9768,8 +9811,8 @@ yxGSgXw
 yxGSgXwz_x_
 10Descriptor
 5ModelAGRtzlXX
-_pIegggzo_
-_pIegggzo_
+_pIegngzo_
+_pIegngzo_
 $s7NewsUI226MagazineFeedInteractorTypeP
 $s7NewsUI234MagazineFeedInteractorTypeDelegateP
 _pSgXw
@@ -9911,6 +9954,7 @@ So18FCStreamingResultsCySo10FCHeadlineCG
 So19FCArticleControllerC
 So7UIColorCSg5color_t
 $s7NewsUI223DislikeButtonStylerTypeP
+So35UIActivityItemsConfigurationReading_pSgIeyBa_
 $s7NewsUI223MagazineFeedTrackerTypeP
 So19FCHeadlineProviding_p
 $s7NewsUI216BridgedAlertableP
@@ -9973,10 +10017,6 @@ $s7NewsUI229AudioConfigurationManagerTypeP
 SS10identifier_
 8locationt
 SaySSG21reamingingHeadlineIDs_t
-So7INImageC
-$s7NewsUI228AudioIntentsDataProviderTypeP
-SgXw
-SgXwz_Xx
 SgXw
 5model_
 11issueTraits
@@ -10023,8 +10063,6 @@ So7UIImageC
 _pIeggrzo_
 So7UIImageCIegg_
 $s7NewsUI218TagFeedTrackerTypeP
-So35UIActivityItemsConfigurationReading_pSgIeyBa_
-So13UIWindowSceneC
 ySo19FCHeadlineProviding_pG
 8tagModel_t
 SS10identifier_
@@ -10038,6 +10076,7 @@ So14FCTagProviding_pSg
 $s7NewsUI234ReportConcernViewPresenterDelegateP
 _pSgXw
 ySo19FCHeadlineProviding_pG
+$s8NewsFeed0B26DatabaseGroupProcessorTypeP
 $s7NewsUI232SubscriptionDetectionManagerTypeP
 $s7NewsUI240SubscriptionDetectionManagerTypeDelegateP
 _pSgXw
@@ -10075,8 +10114,6 @@ _pIegngzo_
 $s7NewsUI219SavedFeedRouterTypeP
 $s7NewsUI221WelcomeViewStylerTypeP
 $s7NewsUI218WebEmbedRouterTypeP
-SaySo19FCHeadlineProviding_pG9headlines_ABSg12allHeadlinest
-So19FCHeadlineProviding_p16featuredHeadline_SaySoAA_pG9headlinesACSg12allHeadlinest
 So14CPListTemplateC
 SaySo13CPListSectionCGIegg_
 _ACtG
@@ -10117,8 +10154,19 @@ GSgXw
 yxGSgXwz_
 RzlXX
 GIegg_
-ySaySo19FCHeadlineProviding_pGG
+SaySo19FCHeadlineProviding_pGSay
+_ADtG
+_pIegggozo_
+_pIegngozo_
+AASay
+_pIegnrozo_
+ySaySo19FCHeadlineProviding_pG_Say
 _pIeggnozo_
+SaySo19FCHeadlineProviding_pGSay
+yAB_ADtG
+_pIegggozo_
+SaySo19FCHeadlineProviding_pGABSay
+_pIeggoozo_
 _pIeggoozo_
 yytGSg
 SDySS
@@ -10138,6 +10186,8 @@ So16AMSMarketingItemC_
 So7FCIssueC_Say
 GSgt
 SS_Say
+GSgt
+So7FCIssueC_SS18feedItemIdentifierSay
 GSgt
 _Say
 GSgt
@@ -10210,9 +10260,6 @@ $s7NewsUI227FollowingDislikedModuleTypeP
 $s7NewsUI239FollowingSettingsButtonViewRendererTypeP
 _p13swiftResolver_So10NFResolver_p04objcB0t
 IeyBy_
-SgXw
-SgXwz_Xx
-So16INIntentResponseCIegg_
 So11UIResponderC
 _p13swiftResolver_So10NFResolver_p04objcB0tSg
 So8UIWindowCSg
@@ -10254,7 +10301,6 @@ SgXw
 SgXwz_Xx
 SaySo14FCTagProviding_pG
 So24FCForYouBridgedFeedGroup_pSgz_Xx
-So21OS_dispatch_semaphoreC
 _pIegnzo_
 So12NSDictionaryCSgSo7NSErrorCSgIeyByy_
 $s7NewsUI225ForYouMagazinesModuleTypeP
@@ -10276,7 +10322,6 @@ So19FCAccessCheckResultC_So7FCIssueCtIegn_
 So19FCAccessCheckResultCSo7FCIssueCIeggg_
 GSgXw
 So18UISearchControllerCIego_
-_pSg
 Sb6enable_t
 So25UIApplicationShortcutItemC
 IeyBy_
@@ -10308,9 +10353,6 @@ _pSgXw
 5model_t
 5model_
 11footerModelt
-_pIeggozo_
-$s7NewsUI222ChannelFontServiceTypeP
-SS9channelID_SaySo14FCLoadableFontCG5fontst
 So25FCPaidBundleConfigurationC
 SgIeggr_
 So25FCPaidBundleConfigurationC
@@ -10348,8 +10390,6 @@ $s7NewsUI237FollowingNotificationsDataManagerTypeP
 _p5model_t
 $s7NewsUI245FollowingNotificationsDataManagerTypeDelegateP
 _pSgXw
-SgSay
-_pIegngrzo_
 $s7NewsUI219SavedFeedStylerTypeP
 So22FCNewsAppConfiguration_p
 So012FCPaidBundleC0CSo10FCPurchaseCSg
@@ -10358,10 +10398,10 @@ So22FCNewsAppConfiguration_pIegn_
 $s8NewsFeed0B24ServiceConfigFetcherTypeP
 So26FCVanityURLRedirectServiceC
 $s7NewsUI223WelcomeViewProviderTypeP
-yAAG
-_pIeggozo_
 ySaySo7FCIssueCGG
 So11FCFeedRangeCSg
+yAAG
+_pIeggozo_
 So7FCIssueCSb
 _pIeggdzo_
 _pIeggozo_
@@ -10436,6 +10476,7 @@ _pIeggozo_
 SaySo7FCIssueCGSDySS
 _pIeggozo_
 _pIegozo_
+So30UIGraphicsImageRendererContextCIgg_
 $s7NewsUI222FeedNavImageStylerTypeP
 $s7NewsUI228AudioFeedTitleViewStylerTypeP
 $s7NewsUI225AudioFeedTrackFactoryTypeP
@@ -10445,8 +10486,6 @@ $s7NewsUI224BridgedFeedArticleRouterP
 So16UINavigationItemC
 $s7NewsUI221TitleViewRendererTypeP
 $s7NewsUI225NewspaperGroupServiceTypeP
-SaySo13FCAssetHandleCG
-_pIeggrzo_
 $s7NewsUI225TagFeedSectionFactoryTypeP
 So19FCArticleAudioTrackC
 So17TSAssetHandleType_p
@@ -10476,12 +10515,12 @@ SDySS
 _pIeggozo_
 Sdz_Xx
 _pIegggozo_
+_pIegnozo_
 yAAGG
 _pIegggozo_
 _pIegggozo_
 yAAG
 _pIeggozo_
-_pIegggozo_
 $s7NewsUI220TodayDataManagerTypeP
 $s7NewsUI228TodayDataManagerTypeDelegateP
 _pSgXw
@@ -10489,6 +10528,9 @@ yShySSGSgG
 SDySS
 _pIeggrzo_
 SgIegn_
+So25FCPaidBundleConfigurationC
+_pIegngozo_
+_pIegozo_
 SDySS
 _pIeggozo_
 $s7NewsUI237ChannelIssuesGroupTitleViewStylerTypeP
@@ -10509,6 +10551,8 @@ SS10identifier_
 SS10identifier_
 $s7NewsUI220LikeButtonStylerTypeP
 $s7NewsUI235PaidBundleLinksHeaderViewStylerTypeP
+SaySo19FCHeadlineProviding_pG9headlines_t
+So19FCHeadlineProviding_p16featuredHeadline_SaySoAA_pG9headlinest
 $s7NewsUI224NativeAdDataProviderTypeP
 $s7NewsUI232MagazineCategoriesInteractorTypeP
 $s7NewsUI240MagazineCategoriesInteractorTypeDelegateP
@@ -10521,6 +10565,7 @@ yAeN
 yAeNGASGGG
 SgXw
 SgXwz_Xx
+G12parentCursort
 ySo16UICollectionViewC
 yAeM
 yAemRGARGARG
@@ -10536,6 +10581,7 @@ _pSgXw
 So25FCClearableReadingHistory_p
 $s7NewsUI237ArticleBlueprintRouteModelFactoryTypeP
 11LayoutModel
+_pSgXw
 5model_
 21titleLayoutAttributest
 $s7NewsUI224WebEmbedEventHandlerTypeP
@@ -10614,8 +10660,6 @@ yAeM
 yAeMGARGARG
 $s7NewsUI266FollowingNotificationsSectionFooterViewLayoutAttributesFactoryTypeP
 $s7NewsUI237PaidBundleBackgroundWorkerFactoryTypeP
-So25FCPaidBundleConfigurationC
-_pIegngozo_
 SaySo20UIActivityItemSource_pG
 SaySo10UIActivityCG
 $s7NewsUI256MagazineFeedPaywallDefaultStylingRequirementProviderTypeP
@@ -10654,12 +10698,14 @@ So27AAViewingSessionManagerType_p
 Sg11footerModel
 Sg0d6LayoutC0t
 8tagModel_t
-16magazineTagModel_
-G9blueprintt
 $s7NewsUI246SearchMoreArticlesBlueprintModifierFactoryTypeP
 10Descriptor
 5Model
 So20NTPBWidgetEngagementCSg
+So7INImageC
+$s7NewsUI228AudioIntentsDataProviderTypeP
+SgXw
+SgXwz_Xx
 $s7NewsUI241ChannelIssuesBlueprintModifierFactoryTypeP
 G4data_t
 G4data_t
@@ -10769,7 +10815,7 @@ _pSgXw
 $s7NewsUI223LegacySearchServiceTypeP
 Iegn_
 $s7NewsUI228AudioActionSheetProviderTypeP
-ySaySo19FCHeadlineProviding_pGG
+ySaySo19FCHeadlineProviding_pG_Say
 _pIeggnozo_
 _pIeggoozo_
 $s7NewsUI243MagazineFeedPaywallViewRendererProviderTypeP
@@ -10790,6 +10836,7 @@ _pIegnoozo_
 _pIeggnozo_
 ySo14FCTagProviding_pGIego_
 ySaySo19FCHeadlineProviding_pGGIego_
+SDySS
 _pIeggoozo_
 So8NSNumberCSg
 ySo19FCHeadlineProviding_pG
@@ -10873,8 +10920,6 @@ Iegy_
 _pSgXw
 GIegn_
 GIegg_
-SgXw
-SgXwz_Xx
 $s7NewsUI238MagazineFeedGroupTitleViewRendererTypeP
 SgXw
 SgXwz_Xx
@@ -10954,30 +10999,12 @@ _pIeggzo_
 $s7NewsUI229MagazineFeedPaywallModuleTypeP
 _pIegngozo_
 SS17emitterIdentifier_t
-_pIeggozo_
 _pIegnozo_
-So10WFLocationC
-_pIeggozo_
-_pIegozo_
-xIegn_
-$s7NewsUI20A18WeatherServiceTypeP
-So21WeatherServiceWrapperC
-SS_SSt
-_pIegozo_
-So19WFWeatherConditionsC
-_pIeggrzo_
-So19WFWeatherConditionsCIegn_
-So19WFWeatherConditionsCIegg_
-So19WFWeatherConditionsCSg
-_pSgIegng_
-So10WFLocationCIegn_
-So10WFLocationCIegg_
-So10WFLocationCSg
-_pSgIegng_
 SgXw
 ySo16UICollectionViewC
 yAeM
 yAeMGARGARG
+SgXwz_Xx
 $s7NewsUI230SearchMoreTagsEventHandlerTypeP
 $s7NewsUI238SearchMoreTagsEventHandlerTypeDelegateP
 _pSgXw
@@ -11025,7 +11052,7 @@ $s7NewsUI251FollowingNotificationsSectionFooterViewRendererTypeP
 $s7NewsUI225SavedFeedEventHandlerTypeP
 $s7NewsUI233SavedFeedEventHandlerTypeDelegateP
 _pSgXw
-SDySSSo5FCTagCG
+SDySSSo14FCTagProviding_pG
 $s7NewsUI235PaidBundleLinksHeaderInteractorTypeP
 $s7NewsUI243PaidBundleLinksHeaderInteractorTypeDelegateP
 _pSgXw
@@ -11051,12 +11078,11 @@ $s7NewsUI219AudioFeedStylerTypeP
 $s7NewsUI229LegacyArticleViewerModuleTypeP
 $s7NewsUI228LegacyArticleProxyModuleTypeP
 So31TSLegacyArticleViewerModuleType_p
-So14AMSPushHandlerC
+So14AMSPushHandlerCSg
 $s7NewsUI225AudioFeedEventHandlerTypeP
 $s7NewsUI233AudioFeedEventHandlerTypeDelegateP
 _pSgXw
 $s7NewsUI232SiriSuggestionStatusProviderTypeP
-yACGc
 $s7NewsUI234TopHeadlinesQueryTimeRangeProviderP
 SgXw
 SgXwz_Xx
@@ -11101,6 +11127,7 @@ _pSgXw
 _pSgXw
 _pSgXw
 So23FCPaidAccessCheckerType_pSgXw
+_pSgXw
 _pSgXw
 _pSgXw
 $s7NewsUI228FollowingDislikedTrackerTypeP
@@ -11199,7 +11226,7 @@ _pIegggzo_
 $s7NewsUI244FakeNewArticleLocalNotificationSchedulerTypeP
 $s7NewsUI230MagazineFeedSectionFactoryTypeP
 $s7NewsUI244SpinnerFooterViewLayoutAttributesFactoryTypeP
-_pIegnozo_
+_pIeggozo_
 ySdG
 So12FCObservableCyqd__G
 xqd__Iegno_
@@ -11237,8 +11264,6 @@ So19FCHeadlineProviding_p8headline_Si5indext
 Si5index_t
 6header_
 6footert
-So25FCPaidBundleConfigurationC
-_pIeggozo_
 _pIegnzo_
 _pIeggzo_
 $s7NewsUI221AudioStateFactoryTypeP
@@ -11248,6 +11273,8 @@ ySo16UICollectionViewC
 yAeM
 yAeMGARGARG
 So15UIBarButtonItemC
+SgXw
+SgXwz_Xx
 $s7NewsUI221TodayEventHandlerTypeP
 $s7NewsUI229TodayEventHandlerTypeDelegateP
 _pSgXw
@@ -11272,7 +11299,6 @@ _pIeggrzo_
 GIegn_
 _pIegnzo_
 yxSSG
-So22UINavigationControllerC
 So32UICollectionViewLayoutAttributesC
 $s7NewsUI220AudioFeedTrackerTypeP
 $s7NewsUI223ChannelIssuesRouterTypeP
@@ -11315,6 +11341,7 @@ qd__Sgz_
 _qd__ABRszSeRd__r__lXX
 qd__
 _pIegnzo_
+So21OS_dispatch_semaphoreC
 _pIegnzo_
 So7NSErrorCSg
 So7NSErrorCSgz_Xx
@@ -11352,6 +11379,7 @@ yAcD
 ySo16UICollectionViewC
 yAeN
 yAeNGASGGG
+_pIegggozo_
 _pIeggozo_
 yxGytSg
 _pIegngdzo_
@@ -11367,7 +11395,6 @@ SaySo26FCPersonalizationAggregate_pG
 SDySSSo24FCPersonalizationFeatureCG
 SaySo26FCPersonalizationAggregate_pGz_Xx
 SDySSSo24FCPersonalizationFeatureCGz_Xx
-So21FCDraftFeedDescriptorC
 SaySo7FCIssueCGIegg_
 SaySo7FCIssueCGIegn_
 Iegn_
@@ -11390,14 +11417,11 @@ _pIeggzo_
 $s7NewsUI213AudioPlayableP
 _pIeggozo_
 _pIegggozo_
-_pIeggozo_
 $s7NewsUI227MagazineFeedDataManagerTypeP
 $s7NewsUI235MagazineFeedDataManagerTypeDelegateP
 So30TSMagazineCategoriesModuleType_p
 _pIegggozo_
-_pIeggozo_
 Iegn_
-Iegg_
 $s7NewsUI217SceneStateTrackerP
 SgXw
 SgXwz_Xx
@@ -11435,7 +11459,7 @@ $s7NewsUI228LocalDraftsDeviceManagerTypeP
 So21TSLocalDraftsDelegate_pSgXw
 So31TSPrefetchedArticlesServiceType_p
 GSay
-_pIegggozo_
+_pIegggrzo_
 GIegn_
 GIegg_
 $s7NewsUI243AudioFeedPlacardLayoutAttributesFactoryTypeP
@@ -11542,6 +11566,9 @@ FeedContentConfig
 FeedPool
 models
 stream
+feedItemPrefetcher
+LayoutModel
+View
 frame
 imageFrame
 scrimFrame
@@ -11612,7 +11639,10 @@ subscription
 spotlight
 suggestion
 seenContentMark
+type
+data
 Kind
+RawValue
 content
 styler
 groups
@@ -11703,6 +11733,8 @@ accessoryViewFrame
 accessoryOptions
 height
 shouldLayoutForLargeText
+issueService
+issueModelFactory
 articles
 userLocalExpiry
 identifier
@@ -11771,15 +11803,19 @@ topHit
 channels
 topics
 articles
+completedQuery
 config
 formatGroup
 badURL
 invalidParams
 emptyResponseFromServer
-tagID
-sectionID
-allowsFollowing
-RawValue
+navigator
+tracker
+urlHandler
+CommandContext
+navigator
+tracker
+CommandContext
 imageCache
 feedNavImageStyler
 config
@@ -11845,7 +11881,6 @@ headlines
 paidVisibility
 paidVisibilityInForYou
 rankMultiplier
-namespace
 articleList
 promotedArticleList
 issueList
@@ -11877,6 +11912,8 @@ tracker
 layoutOptionsProvider
 paidBundleConfigManager
 webEmbedViewControllerReuseManager
+cloudContext
+appConfigManager
 backgroundFetchManager
 workerFactory
 bundleSubscriptionManager
@@ -11945,8 +11982,6 @@ tracker
 headline
 headline
 group
-magazineConfigurationService
-personalizationService
 feedContextFactory
 badGroup
 FeedServiceConfig
@@ -12094,6 +12129,7 @@ onProcessing
 delegate
 feedServiceConfigFetcher
 feedService
+headlineService
 pluginManager
 pluginFactory
 accessQueue
@@ -12244,9 +12280,13 @@ minFeedItemsToFetch
 maxOccurrencesPerEdition
 shouldPromoteAccessibleHeadline
 fontMetrics
+headlineService
+audioDataManager
+commandCenter
 resolver
 tracker
 pluginModels
+visibleSections
 Descriptor
 Model
 styler
@@ -12411,6 +12451,10 @@ privacyIdentifier
 signMeUpButtonText
 notNowButtonText
 baseStyler
+updateResult
+sectionFactory
+Descriptor
+Model
 pluginLayoutOptionsProvider
 styler
 eventHandler
@@ -12426,7 +12470,7 @@ sharingActivityProviderFactory
 bundlePurchasePrewarmer
 heightChangeRelayoutThreshold
 viewportFromLastRelayout
-commandCenter
+commandContainer
 newsActivityManager
 isBeingUsedAsPlugin
 pluggableDelegate
@@ -12492,7 +12536,6 @@ knownCursors
 knownGroups
 lock
 group
-config
 identifier
 headlines
 assetHandles
@@ -12549,6 +12592,7 @@ resolver
 tracker
 article
 sectionFactory
+nativeAdManager
 feedContextFactory
 policyValidator
 layoutCollectionProvider
@@ -12570,7 +12614,10 @@ trending
 bestOfBundle
 format
 newspaper
+type
+data
 Kind
+RawValue
 rules
 repool
 knobs
@@ -12622,7 +12669,6 @@ seeMore
 sectionHeadlinesService
 personalizer
 heroSelector
-channelFontService
 weatherService
 formatService
 subscriptionController
@@ -12673,6 +12719,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 issueID
 featuredArticleID
 additionalArticleIDs
@@ -12764,7 +12811,7 @@ formatGroup
 channel
 sections
 weather
-additionalAssetHandles
+RawValue
 identifier
 groupTitle
 groupTitleColor
@@ -12774,6 +12821,7 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
+RawValue
 resolver
 tracker
 contextBuilder
@@ -12882,7 +12930,6 @@ maxOccurrence
 minNumberOfItems
 orderBy
 rankMultiplier
-toolbarManager
 delegate
 pipeline
 modifierFactory
@@ -12926,6 +12973,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 groupTitleColor
 groupDarkStyleTitleColor
 RawValue
@@ -13330,7 +13378,7 @@ issues
 paidVisibility
 paidVisibilityInForYou
 rankMultiplier
-namespace
+RawValue
 feedConfig
 knobsConfig
 FeedConfig
@@ -13354,6 +13402,7 @@ shine
 solidColor
 tracker
 factory
+sceneProvider
 toolbarManager
 rules
 repool
@@ -13456,15 +13505,6 @@ Descriptor
 Model
 LayoutDescriptor
 LayoutModel
-track
-identifier
-artwork
-isPlaying
-audioIntentData
-currentlyPlaying
-dailyBriefingTrack
-imageCache
-dataProvider
 actionURL
 feedLayoutSolver
 Descriptor
@@ -13475,7 +13515,6 @@ config
 formatGroup
 channel
 sections
-additionalAssetHandles
 currentError
 commandCenter
 sceneProvider
@@ -13602,6 +13641,7 @@ availableInMagazineFeed
 paidVisibility
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 CommandContext
 mastheadView
@@ -13623,8 +13663,6 @@ scienceDataFactory
 channelDataFactory
 contentPrefetchManager
 trackerConfiguration
-windowScene
-toolbarManager
 expandResult
 feedContext
 headlineModelFactory
@@ -13658,7 +13696,6 @@ FeedGroupConfig
 FeedServiceContext
 RawValue
 editorialModel
-pptContext
 type
 identifier
 title
@@ -13697,7 +13734,8 @@ groups
 topStories
 FeedGroupConfig
 FeedServiceContext
-RawValue
+formatService
+FeedGroup
 rules
 repool
 delegate
@@ -13725,8 +13763,6 @@ imageFactory
 baseStyler
 headlineIDs
 tagIDs
-latitude
-longitude
 identifier
 feedLocation
 sectionHeaderRenderer
@@ -13801,8 +13837,6 @@ shouldShowLocationOptInUI
 controller
 resolver
 tracker
-headlines
-featuredHeadline
 identifier
 groupTitle
 groupTitleColor
@@ -13813,6 +13847,8 @@ paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
 feedGroupKind
+candidateScoredItems
+RawValue
 template
 feedLayoutSolver
 assetManager
@@ -13857,9 +13893,14 @@ rankMultiplier
 repooling
 config
 formatGroup
+candidateScoredItems
+RawValue
 isCheckAllowed
 activityReceiver
 magazineFeedPaywallDefaultStylingRequirementProvider
+feedItemPrefetcher
+LayoutModel
+View
 config
 knobs
 personalizationService
@@ -13912,6 +13953,7 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
+RawValue
 dataManager
 playbackConductor
 playNowIgnoringPlaylistSlot
@@ -13940,6 +13982,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 kind
 identifier
@@ -13951,6 +13994,7 @@ paidVisibility
 paidVisibilityInForYou
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 patterns
 navigator
@@ -14044,6 +14088,7 @@ disableAnimation
 collapseSidebar
 scrollToTop
 identifier
+feedIssue
 continueViewingSession
 allowsDuplicates
 legacy
@@ -14225,6 +14270,7 @@ accessLevel
 deletedState
 nativeAdInfo
 blockedState
+premiumBadge
 subtitle
 subtitleColor
 expandResults
@@ -14271,7 +14317,9 @@ tracker
 pluginModels
 Descriptor
 Model
+headlineService
 sectionFactory
+nativeAdManager
 feedContextFactory
 policyValidator
 layoutCollectionProvider
@@ -14337,6 +14385,8 @@ Descriptor
 Model
 config
 formatGroup
+candidateScoredItems
+RawValue
 config
 FeedServiceConfig
 article
@@ -14386,7 +14436,7 @@ $__lazy_storage_$_stateRestorationActivityProvider
 $__lazy_storage_$_featureAvailability
 $__lazy_storage_$_alternateUniversalLinksDefaultSettingsManager
 $__lazy_storage_$_redirectService
-$__lazy_storage_$_todayPrewarmer
+$__lazy_storage_$_todayFeedManager
 $__lazy_storage_$_todayLoadingGate
 $__lazy_storage_$_alternateUniversalLinksManager
 $__lazy_storage_$_sceneStateTracker
@@ -14422,10 +14472,6 @@ channel
 recommended
 features
 email
-tagService
-fontManager
-fontCacheMiss
-fontDownloadFailure
 configurationManager
 navigator
 theme
@@ -14449,6 +14495,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 issueID
 additionalArticleIDs
 RawValue
@@ -14489,6 +14536,10 @@ Descriptor
 Model
 needsUpdate
 purchaseController
+SegmentValue
+needsUpdate
+offerManager
+appConfigurationManager
 SegmentValue
 groupIdentifier
 groupRankProvider
@@ -14562,7 +14613,6 @@ feedDescriptor
 dateRange
 tagHeadlines
 issues
-seenHeadlineIdentifiers
 headlines
 promotedHeadlines
 nextFreeFetchRange
@@ -14600,6 +14650,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 tagModel
 reloadRequest
@@ -14703,6 +14754,7 @@ paidVisibility
 paidVisibilityInForYou
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 scroll
 session
@@ -14739,6 +14791,7 @@ eventHandler
 blueprintViewController
 toolbarManager
 sharingActivityProviderFactory
+titleText
 Descriptor
 Model
 todayFeed
@@ -14876,7 +14929,6 @@ styler
 sectionHeadlinesService
 personalizer
 heroSelector
-channelFontService
 formatService
 invalidChannelID
 noCompatiblePackageForChannelID
@@ -14884,6 +14936,10 @@ noArticlesInDefaultSection
 notEnoughHerosForLayout
 notEnoughSectionsForLayout
 dateRange
+isTopOfFeed
+extendedDateRange
+ignoreFeedItemIdentifiers
+RawValue
 headlineModelFactory
 feedDescriptor
 bannerAdFactory
@@ -14933,7 +14989,6 @@ Model
 prewarmResult
 sectionFactory
 refresh
-isDeferred
 Descriptor
 Model
 slots
@@ -14962,6 +15017,7 @@ postPurchaseBehavior
 sourceChannelID
 purchaseTraits
 paywallType
+completedQuery
 searchResult
 resultGroupsList
 groupID
@@ -15034,7 +15090,7 @@ curatedKnobs
 stringValue
 intValue
 delegate
-feedService
+feedManager
 feedServiceConfigFetcher
 bundleSubscriptionManager
 accessQueue
@@ -15044,11 +15100,11 @@ readingHistory
 readingList
 appConfigManager
 subscriptionList
-prewarmer
 nativeAdService
 loadingGate
 _subscribedTagIDsSinceLastRefresh
 subscriptionService
+cachePreFlushTask
 sections
 audioStatus
 playbackState
@@ -15123,7 +15179,7 @@ tinted
 untinted
 patterns
 navigator
-featureAvailability
+adConfiguration
 plugin
 newPluginModel
 pluginNotFound
@@ -15134,6 +15190,10 @@ onTap
 playing
 paused
 stopped
+headlines
+featuredHeadline
+type
+RawValue
 delegate
 pipeline
 modifierFactory
@@ -15145,8 +15205,10 @@ tracker
 trackerConfiguration
 playbackStateObserver
 identifier
-fetchResult
+result
 pluginModel
+fetchResult
+pluginGroup
 patterns
 magazineActivityNavigator
 offerManager
@@ -15189,6 +15251,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 added
 removed
@@ -15213,6 +15276,7 @@ Descriptor
 Model
 blueprintLayoutProvider
 context
+factoryObserver
 identifier
 headline
 bridgedContext
@@ -15327,7 +15391,7 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
-tagModel
+RawValue
 blank
 config
 FeedServiceConfig
@@ -15370,6 +15434,8 @@ featureAvailability
 subscriptionController
 subscriptionService
 offlineIssueManager
+Descriptor
+Model
 addedArticleIDs
 removedArticleIDs
 sortedReadingHistory
@@ -15432,6 +15498,7 @@ Model
 cachedOnly
 networkIfNeeded
 high
+articleViewerObserver
 resolver
 tracker
 blueprintProvider
@@ -15475,7 +15542,6 @@ logName
 configManager
 paidBundleConfigManager
 subscriptionController
-cannotFetchFromCacheWhenConfigOverrideSpecified
 invalidDebugURL
 FeedServiceContext
 FeedServiceConfig
@@ -15510,6 +15576,7 @@ paidVisibility
 paidVisibilityInForYou
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 titleViewLayoutAttributesFactory
 tagViewLayoutAttributesFactory
@@ -15537,6 +15604,7 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
+RawValue
 dailyBriefing
 playlistTrack
 suggestedTrack
@@ -15564,8 +15632,12 @@ config
 formatGroup
 channel
 sections
-additionalAssetHandles
+RawValue
 resolver
+navigator
+tracker
+followingDataManager
+CommandContext
 identifier
 groupTitle
 groupTitleColor
@@ -15577,6 +15649,7 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
+RawValue
 layoutOptions
 useLargeTitle
 styler
@@ -15635,9 +15708,11 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
+RawValue
 cacheFlusher
 storageLevelProvider
 preFlushGroup
+block
 editorialItem
 tagService
 invalidBlueprint
@@ -15662,7 +15737,6 @@ recommended
 features
 promoted
 personalization
-unknownHeroSelectionStrategy
 timeToLive
 type
 data
@@ -15670,7 +15744,6 @@ RawValue
 subscribe
 unsubscribe
 updated
-tagNotFound
 activity
 action
 result
@@ -15698,16 +15771,20 @@ widgetEngagement
 appOpenedByUserActivity
 appSessionStartMethod
 appSessionStartNotificationType
+track
+identifier
+artwork
+isPlaying
+audioIntentData
+currentlyPlaying
+dailyBriefingTrack
+imageCache
+dataProvider
 issueModelFactory
 paidAccessChecker
 offlineIssueManager
 Descriptor
 Model
-configTag
-tagModel
-initialTagModel
-channel
-topic
 dailyBriefing
 playlist
 suggestions
@@ -15931,12 +16008,12 @@ contentConfigData
 paidBundleConfig
 appConfig
 cachePolicy
-dateRange
 subscriptionController
 refreshInterval
 cacheKey
 FeedContentConfig
 FeedPool
+RawValue
 title
 flags
 selector
@@ -16131,7 +16208,6 @@ rules
 maximumNumberOfItems
 maxOccurrence
 baseStyler
-titleText
 feedItem
 plugin
 sceneDidDisconnectObserverBlocks
@@ -16252,6 +16328,7 @@ availableInMagazineFeed
 paidVisibility
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 paidVisibility
 identifier
@@ -16275,7 +16352,6 @@ userInfo
 delegate
 group
 cursor
-feedContext
 myMagazinesModule
 pluginManager
 subscriptionService
@@ -16301,10 +16377,6 @@ header
 separator
 styler
 shineImageFactory
-blueprintProvider
-cloudContext
-featureAvailability
-debugEnabled
 text
 styler
 eventHandler
@@ -16362,6 +16434,7 @@ allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
 rankMultiplier
+type
 RawValue
 subscriptionService
 personalizationService
@@ -16480,13 +16553,6 @@ name
 missingCursor
 groups
 FeedServiceConfig
-wrapper
-missingComponent
-mismatchedComponentType
-requestTimedOut
-missingOrInvalidConditionCode
-invalidRequest
-unknown
 config
 FeedServiceConfig
 styler
@@ -16620,6 +16686,7 @@ tracker
 recordID
 headlines
 tags
+RawValue
 delegate
 dataManager
 identifier
@@ -16649,12 +16716,16 @@ showInNotificationCenter
 showBanners
 options
 RawValue
+navigator
+tracker
+followingDataManager
+CommandContext
 tagService
 navigator
 featureAvailability
 baseStyler
 articleModule
-pushHandler
+$__lazy_storage_$_pushHandler
 delegate
 interactor
 router
@@ -16664,8 +16735,6 @@ userActivityDeserializer
 tracker
 patterns
 context
-fetchNextGroupBlock
-FeedServiceConfig
 appConfigurationManager
 offlineIssueManager
 offlineIssueList
@@ -16719,6 +16788,7 @@ draggableStateProvider
 paidAccessChecker
 deletedStatusProvider
 blockedStatusProvider
+feedContextFactory
 tracker
 rootViewController
 lazyDockableViewController
@@ -16747,6 +16817,7 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 knobs
+RawValue
 subscriptionChanges
 Descriptor
 Model
@@ -16771,7 +16842,6 @@ config
 formatGroup
 channel
 sections
-additionalAssetHandles
 baseStyler
 modalHostStyle
 styler
@@ -16837,6 +16907,7 @@ maxOccurrence
 rankMultiplier
 minNumberOfItems
 maxNumberOfItems
+headlinesById
 identifier
 headlines
 location
@@ -16908,6 +16979,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 searchProvider
 lazySearchViewController
@@ -16960,6 +17032,7 @@ navigator
 patterns
 navigator
 userActivityDeserializer
+tracker
 recentlyPlayedUpdatedSignal
 readingHistory
 headlineService
@@ -17056,6 +17129,8 @@ item
 targetIndexPath
 Descriptor
 Model
+collapsed
+active
 commandCenter
 CommandContext
 bootstrapper
@@ -17198,6 +17273,8 @@ sectionFooter
 group
 paidBundleConfigManager
 feedContextFactory
+cloudContext
+appConfigManager
 badGroup
 FeedServiceConfig
 missingHeadlineInFetchOperation
@@ -17224,7 +17301,6 @@ groupKnobs
 maxGroups
 refreshStrategy
 FeedGroupKnobs
-RawValue
 reloadRequest
 sectionFactory
 Descriptor
@@ -17290,7 +17366,7 @@ minUnseenRatio
 cloudContext
 offlineProvider
 offlineArticleManager
-pushHandler
+$__lazy_storage_$_pushHandler
 headlineModelFactory
 sectionFactory
 feedContextFactory
@@ -17356,10 +17432,6 @@ available
 consumedIdentifiers
 consumed
 keyPath
-tableView
-magazineFeedJournal
-journalGroup
-cloudContext
 view
 kind
 snapshot
@@ -17430,6 +17502,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 RawValue
 deferredPromise
 sealed
@@ -17451,7 +17524,7 @@ headlines
 paidVisibility
 paidVisibilityInForYou
 rankMultiplier
-namespace
+RawValue
 FeedGroup
 FeedServiceConfig
 name
@@ -17512,6 +17585,7 @@ paidVisibilityInForYou
 allowDuplicatesAcrossGroups
 minNewsVersion
 maxNewsVersion
+type
 featuredArticleID
 additionalArticleIDs
 RawValue
@@ -17556,7 +17630,6 @@ title
 titleSize
 titleColor
 subtitle
-tagModel
 layoutOptions
 topPadding
 bottomPadding
@@ -17655,6 +17728,7 @@ SegmentValue
 context
 headlineService
 missingAppConfigData
+issueNotFound
 FeedServiceConfig
 config
 FeedServiceConfig
@@ -17668,6 +17742,7 @@ paidVisibility
 paidVisibilityInForYou
 rankMultiplier
 allowDuplicatesAcrossGroups
+RawValue
 gapOffline
 headline
 webEmbed
@@ -17676,6 +17751,7 @@ audioTrack
 bannerAd
 nativeAd
 customItem
+collapsed
 cursor
 topOfFeed
 task
@@ -17954,14 +18030,15 @@ headerView
 initialFollowingTags
 Descriptor
 Model
+identifier
 issue
+observer
 TSLaunchPad
 TSApplicationWorkspace
 TSNavigationBarTitleView
 NewsUIBridge
 TSSKUI
 NewsUI
-WeatherServiceWrapper
 TSRTRoutineManager
 openApplication:options:withResult:
 launchSettings
@@ -17982,14 +18059,8 @@ ts_setSharingRowExcludedWithActivitiesToKeep:
 metricsForTextStyle:
 presentExplictRestrictionAlertControllerFromViewController:
 fontMetricsSection1
+_sourceApplication
 ts_sourceApplication
-init
-initWithStore:
-addClient:
-connection
-enqueueRequest:
-.cxx_destruct
-_connection
 latitude
 longitude
 initWithLatitude:longitude:
@@ -18008,6 +18079,7 @@ fetchLocationsOfInterestOfType:withHandler:
 fetchMostFrequentLocationWithCompletion:
 sharedApplication
 initWithEffect:
+init
 boldButton
 linkButton
 labelColor
@@ -18022,7 +18094,6 @@ systemBackgroundColor
 initWithRed:green:blue:alpha:
 ts_dynamicColor:withDarkStyleVariant:
 initWithValue:
-lightGrayColor
 secondarySystemBackgroundColor
 tertiarySystemBackgroundColor
 systemGrayColor
@@ -18228,6 +18299,18 @@ debugAdvertisementSettings
 headlineForIdentifier:
 createViewControllerWithIdentifier:
 supportsSecureCoding
+parentID
+supergroupKnobsJson
+supergroupKnobs
+sectionIDs
+defaultSectionID
+supportsNotifications
+isWhitelisted
+currentIssueIDs
+backIssuesListID
+freeFeedIDForSection:bin:
+paidFeedIDForSection:bin:
+supergroupConfigJson
 groupRankFor:
 onboardingFeedIDs
 autoScrollToTopFeedTimeout
@@ -18262,6 +18345,7 @@ exploreArticleID
 externalAnalyticsConfigurations
 mediaSharingBlacklistedChannelIDs
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishDates
@@ -18299,7 +18383,13 @@ userVectorWhitelistResourceId
 userVectorModelResourceId
 articleReadCountThreshold
 forYouGroupShouldPromoteAccessibleHeadline
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 notificationEnableAssetPrefetching
 notificationAssetPrefetchingRequiresWatch
@@ -18359,6 +18449,19 @@ fallbackImage
 uniqueKey
 downloadWithGroup:
 assetDataProvider
+appConfiguration
+possiblyUnfetchedAppConfiguration
+fetchAppConfigurationIfNeededWithCompletion:
+fetchAppConfigurationIfNeededWithCompletionQueue:completion:
+refreshAppConfigurationIfNeededWithCompletionQueue:refreshCompletion:
+addAppConfigObserver:
+removeAppConfigObserver:
+fetchAppWidgetConfigurationWithCompletion:
+treatmentIDs
+segmentSetIDs
+feldsparID
+fetchedAppConfiguration
+jsonEncodableAppConfiguration
 createPluginFactoryForParentView:
 fetchGroupsWithGroupConfigs:forYouConfig:precedingArticleIDs:prefetchedHeadlinesByID:assetManager:completion:
 appConfigRefreshRate
@@ -18487,6 +18590,7 @@ notifyObservers
 createPluginWithIdentifier:layoutOptionsProvider:config:
 enableFlushing
 addPreFlushTask:
+createPreFlushTask
 subscribeNotificationPromptForTagID:
 notificationPrompt
 locationServicesEnabled
@@ -18496,6 +18600,7 @@ observableMostFrequentLocation
 fetchRegions:
 performOnSceneDidDisconnect:
 isStateRestorationAllowed
+isStateRestorationFeatureEnabled
 hasStateDiscarded
 sceneDidEnterBackground
 markStateDiscarded
@@ -18537,6 +18642,7 @@ fetchImageForRequest:completion:
 fetchImageForRequest:expires:completion:
 fetchImageForRequest:
 setImage:forRequest:
+cancelAllRunningOperations
 transitionDuration:
 animateTransition:
 interruptibleAnimatorForTransition:
@@ -18551,20 +18657,8 @@ useSearchModule
 useNewAds
 useNewsUINotificationHandling
 narrativeAudio
-appConfiguration
-possiblyUnfetchedAppConfiguration
-fetchAppConfigurationIfNeededWithCompletion:
-fetchAppConfigurationIfNeededWithCompletionQueue:completion:
-refreshAppConfigurationIfNeededWithCompletionQueue:refreshCompletion:
-addAppConfigObserver:
-removeAppConfigObserver:
-fetchAppWidgetConfigurationWithCompletion:
-treatmentIDs
-segmentSetIDs
-feldsparID
-fetchedAppConfiguration
-jsonEncodableAppConfiguration
 isOptedInToSiriSuggestions
+openURL:options:completion:
 padding
 cornerRadius
 tagTitleFont
@@ -18574,7 +18668,6 @@ webEmbedURLs
 assetHandles
 equivalentTopicIDs
 backingTag
-openURL:options:completion:
 magazinesConfigurationData
 fetchMagazinesConfigurationIfNeededWithCompletionQueue:completion:
 markIssueWithID:asVisitedWithBookmark:
@@ -18604,16 +18697,6 @@ setNa_endOfArticleSection:
 view
 na_reportNativeClickEvent
 pluggableViewController:didChangeSizeTo:
-sectionIDs
-defaultSectionID
-supportsNotifications
-isWhitelisted
-currentIssueIDs
-backIssuesListID
-freeFeedIDForSection:bin:
-paidFeedIDForSection:bin:
-supergroupKnobsJson
-supergroupConfigJson
 articleIDs
 containsArticleID:
 insertArticleID:atIndex:
@@ -18650,8 +18733,6 @@ notifyWhenFinishedDownloadingWithBlock:
 scheduleBackgroundTaskRepeatingAtInterval:identifier:task:
 cancelRepeatingTaskWithIdentifier:
 requestBackgroundAppRefreshStartingAfter:before:
-parentID
-supergroupKnobs
 canGetAccessToItemPaid:bundlePaid:channel:
 canGetSubscriptionToChannel:
 canGetBundleSubscriptionToChannel:
@@ -18850,6 +18931,7 @@ currentNotificationCenter
 initWithNibName:bundle:
 childViewControllerForStatusBarStyle
 childViewControllerForStatusBarHidden
+.cxx_destruct
 addChildViewController:
 setAutoresizingMask:
 bounds
@@ -18976,7 +19058,7 @@ setObject:forKey:
 createPluginWithIdentifier:group:
 bundleSubscriptionDidSubscribe:
 bundleSubscriptionDidExpire:
-bundleSubscriptionDidChange:previousBundleSubscription:changeSet:
+bundleSubscriptionDidChange:previousBundleSubscription:
 setSeparatorStyle:
 ts_clearBackdropStyle
 setSearchBarStyle:
@@ -19104,7 +19186,6 @@ activityObservingApplicationWillResignActiveWithSceneID:
 activityObservingApplicationWillTerminate
 activityObservingApplicationWindowDidBecomeForeground
 activityObservingApplicationWindowDidBecomeBackground
-valueForComponent:
 handleInterruption:
 sharedCommandCenter
 pause
@@ -19139,10 +19220,11 @@ setCalendar:
 setTimeZone:
 setLocale:
 CGColor
+setQualityOfService:
+setRelativePriority:
 setDateRange:
 setStreamFeedItems:
 setStreamFeedItemsCount:
-containsDate:
 setIncludeEvergreenFeedItems:
 setFeedItemsChangedHandler:
 sortedNonEditorialFeedItems
@@ -19176,6 +19258,8 @@ setContentHorizontalAlignment:
 setUserInteractionEnabled:
 ts_setHyphenationFactor:
 setLineBreakMode:
+mediaContainer
+initWithCode:userActivity:
 createSceneResolver
 createCarPlaySceneResolver
 bundleAssemblies
@@ -19183,8 +19267,8 @@ shouldHideHeadline:
 notification
 actionIdentifier
 setRole:
-initWithArticlePayload:sourceChannel:assetManager:
 isValid
+initWithArticlePayload:sourceChannel:assetManager:
 slowCachedTagForID:
 feedDescriptorForForYou
 fastCachedTagForID:
@@ -19238,7 +19322,6 @@ ne_visualEffectsForDailyBriefing
 setBackgroundEffects:
 setMinimumLineHeight:
 setMaximumLineHeight:
-setFirstLineHeadIndent:
 gutterView
 selectItemAtIndexPath:animated:scrollPosition:
 unclipUpToGutterView
@@ -19268,13 +19351,14 @@ deselectItemAtIndexPath:animated:
 isFreeTrialEligible
 indexPathsForVisibleItems
 scrollToItemAtIndexPath:atScrollPosition:animated:
+adjustedContentInset
+setContentOffset:animated:
 reloadData
 setScrollEnabled:
 setTu_deriveVisibleBoundsFromContainingScrollView:
 initWithMissingClass:
 childViewControllers
 setupTestWithContext:completion:
-setContentOffset:animated:
 articleIDsToDownload
 articleDownloadOptions
 prepareToContributeWithCompletionHandler:
@@ -19314,7 +19398,6 @@ playWithPlaybackKind:looping:
 handleNotificationResponse:bag:
 rootViewController
 autoFavoriteTagIDsForLocation:
-coordinate
 hasSubscriptionToTagID:
 channel
 sectionHeadlinesGroups
@@ -19336,11 +19419,6 @@ topToText
 initWithHeight:topToText:
 localizedTitle
 intent
-initWithSize:
-imageWithActions:
-drawInRect:withAttributes:
-setFill
-fillRect:
 observeValueForKeyPath:ofObject:change:context:
 seekToTime:toleranceBefore:toleranceAfter:
 currentItem
@@ -19416,8 +19494,6 @@ setPlaybackState:
 initWithActivityItems:applicationActivities:
 setSharingStyle:
 layerClass
-updateMenu:
-deconfigure
 markArticleAsSeenWithHeadline:
 configurationManagerPaywallConfigDidChange:
 configurationManager:appConfigurationDidChange:
@@ -19434,7 +19510,6 @@ setAccessibilityIdentifier:
 setAutocorrectionType:
 setAutocapitalizationType:
 resignFirstResponder
-adjustedContentInset
 searchBar:textDidChange:
 didPresentSearchController:
 didDismissSearchController:
@@ -19505,8 +19580,6 @@ initWithContext:flintHelper:issueID:
 setProgressHandler:
 setLayeredCoverHandlesProvider:
 setCachedOnly:
-setQualityOfService:
-setRelativePriority:
 setIsBackgroundDownloadOperation:
 scheduleLowPriorityOperation:
 addOperation:
@@ -19595,8 +19668,15 @@ addArticleToReadingList:
 removeArticleFromReadingList:
 isArticleOnReadingList:
 isFinished
-updateWithText:
-updateWithImage:tooltip:
+setActivityItemsConfiguration:
+configure
+updateShareConfigurationFactory:
+removeShareConfigurationFactory
+updateTitleWithText:
+updateTitleWithImage:tooltip:
+updateSectionsMenu:
+removeSectionsMenu
+deconfigure
 initWithDictionary:
 message
 selectedArticleID
@@ -19658,14 +19738,6 @@ positionTime
 initWithContentsOfFile:
 layoutMarginsGuide
 layoutFrame
-initWithIdentifier:title:type:artwork:artist:
-sharedManager
-setPredictionMode:forType:
-setSuggestedMediaIntents:
-initWithIntent:response:
-donateInteractionWithCompletion:
-initWithIdentifier:title:type:artwork:
-imageWithImageData:
 fc_isAVUnauthorizedError
 textLabel
 initWithNewsAppConfiguration:
@@ -19766,8 +19838,6 @@ feedTitleViewUpdateForFeedImage:accessibilityTitle:
 feedTitleViewUpdateForCheckingForNewStories
 currentTraitCollection
 feedTitleViewUpdateForFeedName:
-setActivityItemsConfiguration:
-updateShareConfigurationFactory:
 setIdentifier:
 setSubtitle:
 subtitleColor
@@ -19844,9 +19914,6 @@ bezierPathWithRoundedRect:cornerRadius:
 CGPath
 setShadowPath:
 insertSubview:atIndex:
-initWithCode:userActivity:
-mediaContainer
-headlinesFetchOperationForArticleIDs:
 canPerformAction:withSender:
 forwardingTargetForSelector:
 buildMenuWithBuilder:
@@ -19965,8 +20032,6 @@ isKeyWindow
 isRunningPerformanceTest
 windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:
 windowScene:userDidAcceptCloudKitShareWithMetadata:
-defaultHeadlineTemplate
-loadableFonts
 areMagazinesEnabled
 setPrefersLargeTitles:
 setBarTintColor:
@@ -20026,6 +20091,7 @@ ts_handThumbsDownFillForHUD
 setURL:forKey:
 webAccessOptInListChanged
 webAccessOptedInTagIDs
+offeredBundlePurchaseIDs
 defaultMetrics
 scaledValueForValue:
 boundingRectWithSize:options:attributes:context:
@@ -20086,6 +20152,8 @@ code
 type
 topicTagIDs
 downloadIfNeededWithCompletion:
+initWithSize:
+imageWithActions:
 setFilePath:
 setFallbackImage:
 initWithIdentifier:feedNavImage:feedNavImageSize:feedNavImageStyler:
@@ -20101,6 +20169,7 @@ startAnimation
 applyShineImage:forShineImageRequest:
 groupID
 curatedBatchID
+containsDate:
 iAdSegmentIDs
 weekendGreatStoriesYouMissedTimeRange
 subscribedTagIDs
@@ -20223,6 +20292,7 @@ session:didReceiveUserInfo:
 session:didFinishFileTransfer:error:
 session:didReceiveFile:
 sendSubviewToBack:
+finish
 userActivityType
 creativeID
 campaignID
@@ -20235,6 +20305,14 @@ appOpenedByUserActivity
 appSessionStartMethod
 appSessionStartNotificationType
 initWithUserActivityType:creativeID:campaignID:campaignType:referringApplication:referringURL:widgetModeGroupID:widgetEngagement:appOpenedByUserActivity:appSessionStartMethod:appSessionStartNotificationType:
+initWithIdentifier:title:type:artwork:artist:
+sharedManager
+setPredictionMode:forType:
+setSuggestedMediaIntents:
+initWithIntent:response:
+donateInteractionWithCompletion:
+initWithIdentifier:title:type:artwork:
+imageWithImageData:
 thumbnailSize
 screens
 setBackgroundView:
@@ -20251,7 +20329,6 @@ minFollowedMagazinesToHideSuggestionsRegular
 minimumReadIssuesInMyMagazines
 accessibilityElements
 setMessage:
-isAllowedToSeeDraftsForChannelID:
 feedDescriptorForDraftFeedForChannel:
 privateChannelMembershipController:didAddMemberships:changedMemberships:removedMemberships:
 nowPlayingViewController:seekToPosition:
@@ -20298,6 +20375,8 @@ tagSearchResult
 channels
 articleSearchResult
 articles
+searchResult
+completedQuery
 inflatedHeadline
 deflatedHeadline
 minClusterSizeAutoFavorite
@@ -20351,6 +20430,7 @@ body
 threadIdentifier
 recommendedNotificationChannelIDs
 preSubscribedNotificationsChannelIDs
+coordinate
 dictionaryForKey:
 paidAccessChecker
 initWithContext:articleIDs:ignoreCacheForArticleIDs:
@@ -20372,6 +20452,7 @@ initWithAssetIdentifiers:activityItems:applicationActivities:
 _shouldShowSystemActivityType:
 nss_NewsURLForMagazines
 adStatusConditionsByType
+isServicesBundleUser
 contentsOfDirectoryAtPath:error:
 initWithCloudContext:group:
 contentIdentifier
@@ -20492,16 +20573,12 @@ fc_zlibDeflate
 setContent:
 setAppConfigurationManager:
 setEnvelopes:
-offeredBundlePurchaseIDs
-location
-isDay
-forecastRequestForLocation:completionHandler:
-initWithCoordinate:resultHandler:
 documentController
 requiredResourceURLs
 initWithIdentifier:shareURL:JSONData:resourceDataSource:host:error:
 significantTimeChangeDidOccur
 setNeedsLayout
+layoutAttributesForElementsInRect:
 enqueueBlock:
 searchBaseURLForConfiguration:
 initWithQualityOfService:
@@ -20544,6 +20621,8 @@ userNotificationCenter:willPresentNotification:withCompletionHandler:
 userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:
 userNotificationCenter:openSettingsForNotification:
 shouldHandleNotification:
+setUserNotificationExtensionId:
+initWithConfiguration:bag:
 model
 allReadArticleIDs
 initWithStartDate:endDate:
@@ -20598,7 +20677,6 @@ addTestCase:
 addSubTestSuite:
 addTestSuite:
 task
-finish
 initWithURL:statusCode:HTTPVersion:headerFields:
 initWithContentsOfURL:options:error:
 UUIDString
@@ -20620,6 +20698,7 @@ setPreservesSuperviewLayoutMargins:
 viewControllers
 setViewControllers:
 popToViewController:animated:
+ts_performWithoutDeferringTransitions:
 scrollRectToVisible:animated:
 tabBarControllerDidDoubleTapBarButtonItem:
 selectRowAtIndexPath:animated:scrollPosition:
@@ -20689,7 +20768,9 @@ requiredCapabilities
 presenterForPrivacySplashWithIdentifier:
 setPresentingViewController:
 present
+subscriptionLinkTargetType
 defaultLandingPageArticleID
+defaultServicesBundleLandingPageArticleID
 nowPlayingInfo
 initWithBoundsSize:requestHandler:
 setNowPlayingInfo:
@@ -20701,15 +20782,16 @@ syncWithCompletion:
 handleRemoteNotification:completionHandler:
 keyEnumerator
 smallSystemFontSize
-initWithNavigationBarClass:toolbarClass:
 cellForItemAtIndexPath:
 convertRect:fromCoordinateSpace:
 supplementaryViewForElementKind:atIndexPath:
 separatorColor
 bundlePurchaseID
+servicesBundlePurchaseID
 initWithActivityType:
 createPluginWithIdentifier:usingConfig:
 foregroundColor
+darkStyleForegroundColor
 _isSimilarToColor:withinPercentage:
 darkStyleBackgroundColor
 backgroundColor
@@ -20729,6 +20811,7 @@ targetType
 landingPageArticleID
 audioFeedPaywallSubtype
 audioPaywallConfigurationsByType
+audioServicesBundlePaywallConfigurationsByType
 visualSpecConfig
 multiResolutionImage
 darkStyleMultiResolutionImage
@@ -20753,15 +20836,13 @@ videoWidth
 descriptionNonTrial
 descriptionTrial
 magazineFeedPaywallSubtype
+servicesBundlePaywallConfigurationsByType
 imageURL3x
 imageURL2x
 imageURL1x
 sharedInstance
-setUserNotificationExtensionId:
-initWithConfiguration:bag:
 currentIssuesChecker
 newIssuesNotificationDeliveryLocalTime
-layoutAttributesForElementsInRect:
 enumerateAggregatesUsingBlock:
 segmentsHistoryWindowInterval
 segmentsMinimumEventCount
@@ -20803,7 +20884,6 @@ setSurfacedBySectionID:
 v16@0:8
 @16@0:8
 v24@0:8@16
-@"WFServiceConnection"
 @24@0:8@16
 v24@0:8@?16
 the 
@@ -20868,8 +20948,7 @@ issues
 MagazineFeed
 multiPrewarmer
 cachePrewarmer
-MyMagazines
-Audio
+audio-database
 none
 topHit
 articles

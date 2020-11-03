@@ -772,6 +772,8 @@ Unserialization deviceID not a string: (%@)
 Failed to convert unserialized deviceID (%@) into a UUID
 Failed with error: (%@) to apply consent for deviceID: %@
 Ingesting post-restore migration data complete
+Device collection migrated to most recent history entry %p
+Clearing historical device collection %p
 Can't create path %{public}@! error=%{public}@
 client %{public}@ is missing the %@ entitlement
 Internal functionality not available in customer builds

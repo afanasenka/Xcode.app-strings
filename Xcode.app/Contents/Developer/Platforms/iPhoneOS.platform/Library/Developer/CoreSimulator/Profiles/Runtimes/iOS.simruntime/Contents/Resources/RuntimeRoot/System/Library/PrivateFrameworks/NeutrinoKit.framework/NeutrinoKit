@@ -1,4 +1,5 @@
-@(#)PROGRAM:NeutrinoKit  PROJECT:Neutrino-310.1.190
+@(#)PROGRAM:NeutrinoKit  PROJECT:Neutrino-310.2.160
+33333cs@
 %@; zoomScale: %g
 <%p %@> frame = %@, bounds = %@%@%@, isHidden = %@, position = %@, anchor = %@
 sublayerTransform
@@ -34,6 +35,9 @@ currentItem
 rate
 We should have an AVPlayer object here
 NUAVPlayerController.m
+view with dolby metadata
+view ignoring dolby metadata
+debugTryDolbyInEdit
 v32@?0@"AVPlayerItem"8Q16^B24
 expected an AVQueuePlayer
 readyForDisplay
@@ -293,10 +297,12 @@ viewport != nil
 <%p> status %d
 <%p> kPlayerCurrentItemCtx
 <%p> external playback active %d
+Updated %lu items to %@
 Failed to loop audio mix, error: %@
 Failed to repeat video composition, error: %@
 Failed to loop video composition %@
 Failed to loop audio mix %@
+Created 1 item to %@
 Failed to create player item from asset: %@
 update display: %@, layer: %@
 Continue: %{public}@
@@ -389,6 +395,7 @@ _playerTimeObserver
 _observatory
 _playerControllerKVOFlags
 _playerItemObservations
+_appliesPerFrameHDRDisplayMetadata
 _loopsVideo
 _currentlySeeking
 _muted
@@ -406,6 +413,7 @@ _playerItemWithVideoAsset:videoComposition:audioMix:
 _loopingPlayerItemWithVideoAsset:videoComposition:audioMix:
 updateVideoComposition:
 updateAudioMix:
+updateAppliesPerFrameHDRDisplayMetadata:
 observeValueForKeyPath:ofObject:change:context:
 pause
 play
@@ -477,6 +485,10 @@ floatValue
 error
 integerValue
 objectForKey:
+count
+setAppliesPerFrameHDRDisplayMetadata:
+boolForKey:
+standardUserDefaults
 setAudioMix:
 repeatAudio:count:error:
 setVideoComposition:

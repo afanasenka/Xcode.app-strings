@@ -1,4 +1,5 @@
-@(#)PROGRAM:XCBTaskExecution  PROJECT:xcbuild-17504
+@(#)PROGRAM:XCBTaskExecution  PROJECT:xcbuild-17508.1
+ffff
 @XCBTaskExecution
 FileCopyTaskAction
 PropertyListFormat
@@ -113,7 +114,6 @@ $sSY
 ySSG
 ySS_S2SSgtG
 SS_S2SSgt
-ySnySiGG
 ySiG
 ySS_
 ySS_
@@ -191,6 +191,7 @@ _pSg
 ySS_
 ySS_
 ySS_
+ySnySiGG
 Sg_ABt
 _AAt
 SDySS
@@ -514,10 +515,11 @@ destinationPlatformName
 entitlementsFilePath
 entitlementsModificationTimestamp
 Unable to apply test host sandboxing entitlements due to unexpected input data
-Swift/x86_64-apple-macos.swiftinterface
+Swift/NativeDictionary.swift
 Duplicate values for key: '
 com.apple.security.temporary-exception.mach-lookup.global-name
 com.apple.security.temporary-exception.files.absolute-path.read-only
+Swift/Dictionary.swift
 missing required option: -entitlements
  -entitlements [-format <name>] <input-file> -o <output-path>
   -entitlements

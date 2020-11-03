@@ -2753,6 +2753,8 @@ addChildViewController:
 didMoveToParentViewController:
 _showDevicePicker
 setLeftBarButtonItem:
+setSpotlightSearchController:
+setSpotlightResultsController:
 presentDevicePicker
 setMaxConcurrentOperationCount:
 hasUpdateAvailable
@@ -2791,17 +2793,8 @@ addIndex:
 removeObjectsAtIndexes:
 presentNewPairingFlowIfPossible
 subviews
-setSpotlightResultsController:
-spotlightResultsController
-initWithSearchResultsController:
-setSpotlightSearchController:
-spotlightSearchController
-setSearchResultsUpdater:
-searchBar
-setAdditionalSafeAreaInsets:
-setDefinesPresentationContext:
-setSearchController:
-setSearchCategoriesWithoutIcons:
+devicePickerPresented
+loadSpolightSearchControllers
 setBackButtonTitle:
 _refreshAppInstallationStatus
 fetchFamilyDetails
@@ -2812,6 +2805,15 @@ setShouldRefreshRowsOnForegroundEvent:
 hasRowsPendingInstallation
 cachedNameForDevice:
 _setLargeTitleTwoLineMode:
+spotlightResultsController
+initWithSearchResultsController:
+spotlightSearchController
+setSearchResultsUpdater:
+searchBar
+setAdditionalSafeAreaInsets:
+setDefinesPresentationContext:
+setSearchController:
+setSearchCategoriesWithoutIcons:
 showPairingButton
 skippedSetupPaneClassesForCurrentDevice
 loadBundleControllerClasses
@@ -3252,6 +3254,10 @@ preflightWithCompletion:
 viewControllerDidTerminateSetupFlow:
 viewController:requestPasscodeUpgradeForPasscodeUpgradeFlowController:completion:
 viewController:didExitPasscodeUpgradeForPasscodeUpgradeFlowController:withShouldContinue:error:
+isLoaded
+load
+classNamed:
+methodForSelector:
 peerPaymentAddAssociatedAccountViewController:didFinishWithSuccess:updatedPeerPaymentAccount:
 peerPaymentAddAssociatedAccountViewControllerDidSkipSetup:
 viewControllerDidCancelSetupFlow:
@@ -3267,6 +3273,7 @@ viewController:canProceedWithInstallment:featureApplication:completion:
 viewController:didFinishWithPasses:error:
 endRegistrationTransaction
 prewarmPaymentInfrastructure
+_passLibraryDataProvider
 registrationController
 setRegistrationController:
 _registrationController
@@ -3875,6 +3882,7 @@ URLQueryAllowedCharacterSet
 indexOfSpecifier:
 _scrollToSpecifierWithID:animated:
 setSpecifierDataSource:
+setDevicePickerPresented:
 pathComponents
 currentSpecifierIDPath
 subarrayWithRange:
@@ -4167,6 +4175,7 @@ _processingProfileURL
 _networkStartCount
 _timeoutLimit
 _settingsWasResigned
+_devicePickerPresented
 _syncTrapEnabled
 _syncTrapCompleted
 _revLockEnabled
@@ -5196,6 +5205,7 @@ initWithWithUserStudyPhase:
 insertSubview:atIndex:
 processScannedCode
 isOverCamera
+lowercaseString
 deviceSetupName
 setupWristSelectionView
 materialDescription:
@@ -5716,7 +5726,6 @@ presentConfirmationAlertWithTitle:message:okButtonTitle:cancelButtonTitle:termsE
 buddyTCSubController:didFinishWithAgree:
 offlineWarrantyController
 absoluteURL
-lowercaseString
 postbackData
 initWithURL:cachePolicy:timeoutInterval:
 clientInfoHeader
@@ -5901,8 +5910,6 @@ remotePlanItemsWithUpdateFetch:withCSN:completion:
 checkIfWatch:hasPlanWithBlock:
 setHighlightedTextColor:
 _applicationResumed:
-isLoaded
-load
 jumpToFindMyApp
 confirmUnpairingMissing
 confirmMigration:
@@ -8388,7 +8395,7 @@ flattenImages
 TB,N,V_flattenImages
 dataSource
 T@"COSFeatureHighlightDataSource",W,N,V_dataSource
-MarketingBanner-9-2019
+Set_Up_Apple_Watch
 AutomationButton
 Automation
 com.apple.bluetooth.power-changed
@@ -8439,8 +8446,6 @@ pluginLoaderQueue
 T@"NSObject<OS_dispatch_queue>",&,N,V_pluginLoaderQueue
 loadingPlugins
 TB,N,V_loadingPlugins
-ListeningExperience
-HAELiveNotification
 SAVE_IN_HEALTH
 HeadphonePrivacy
 SAVE_IN_HEALTH_GROUP
@@ -8980,9 +8985,9 @@ fakeWatch
 431078C9-5856-4EE3-BD2D-DCA0D02CE82C
 v32@?0@"PSSpecifier"8Q16^B24
 @"NSString"16@?0@"NSString"8
-SEARCH_SETTINGS_PLACEHOLDER
 MY_WATCH
 -[COSSettingsListController updateNavTitle]
+SEARCH_SETTINGS_PLACEHOLDER
 CELLULAR_ID
 Root
 allowAppInstallation
@@ -9253,6 +9258,8 @@ T@"UITextView",&,N,V_textView
 specifier
 T@"PSSpecifier",W,N,V_specifier
 COSPaymentSetupErrorDomain
+NPKPassbookPaymentSetupDelegate
+sharedSetupDelegate
 registrationController
 T@"<PKSetupAssistantStep>",&,N,V_registrationController
 T@"<PKPaymentSetupViewControllerDelegate>",W,N,V_delegate
@@ -9486,15 +9493,14 @@ COSHeadphoneNotificationsGroupKey
 COSHeadphoneNotificationsSwitchKey
 COSHeadphoneWeeklyNotificationsKey
 HEADPHONE_HEARING_PROTECTION
-HEADPHONE_LEVEL_LIMIT_LABEL
 HEADPHONE_LEVEL_NOTIFICATIONS_SWITCH
 HEADPHONE_LEVEL_WEEKLY_NOTIFICATIONS
 HEADPHONE_LEVEL_LIMIT_SELECTION_FOOTER
 openHealthArticleSafeListening
+HEADPHONE_LEVEL_LIMIT_LABEL
 speaker.2.fill
 speaker.3.fill
 Bridge:root=PRIVACY_ID&path=HeadphoneAudio
-x-apple-Health://HearingAppPlugin.healthplugin/WhyHearingHealthMatters
 month
 count
 order
@@ -9771,6 +9777,8 @@ settingsController
 T@"COSPreferencesRootController",R,N,V_settingsController
 settingsSplitViewController
 T@"PSSplitViewController",R,N,V_settingsSplitViewController
+devicePickerPresented
+TB,N,V_devicePickerPresented
 syncTrapEnabled
 TB,N,V_syncTrapEnabled
 syncTrapCompleted
@@ -10558,8 +10566,18 @@ PAIR_MANUALLY_%@
 -[COSGizmoCaptureViewController didCancelManualPairing]
 -[COSGizmoCaptureViewController alternatePathBeganConnecting:]
 -[COSGizmoCaptureViewController productTypeIsTinkerEnabled:isCellularEnabled:]
-Watch3,1
-Watch3,2
+watch3,1
+watch3,2
+watch3,3
+watch3,4
+watch4,1
+watch4,2
+watch5,1
+watch5,2
+watch5,9
+watch5,10
+watch6,1
+watch6,2
 Watch4,3
 Watch4,4
 Watch5,3
@@ -10890,6 +10908,8 @@ VictoryBackground-568h@2x.jpg
 VictoryBackground-812h@3x.jpg
 VictoryBackground-896h@2x.jpg
 VictoryBackground-896h@3x.jpg
+VictoryBackground-844h@3x.png
+VictoryBackground-926h@3x.png
 VICTORY_INSTALL
 ITUNESSTORE_TITLE
 ITUNESSTORE_WHY_SIGN_IN
@@ -11735,6 +11755,7 @@ COSPaymentRegistrationController: Unexpected viewController:requestPasscodeUpgra
 COSPaymentRegistrationController: Unexpected viewController:didExitPasscodeUpgradeForPasscodeUpgradeFlowController:withShouldContinue:error:, did you forget to set a delegate?
 COSPaymentRegistrationController: Unexpected peerPaymentAddAssociatedAccountViewController:, did you forget to set a delegate?
 COSPaymentRegistrationController: Unexpected peerPaymentAddAssociatedAccountViewControllerDidSkipSetup:, did you forget to set a delegate?
+Unable to invoke +[NPKPassbookPaymentSetupDelegate sharedSetupDelegate]!
 (child-apple-pay) assuming addedAccountToWatch
 Skipping Apple Pay (iPhone iCloud enabled %@, Watch iCloud enabled %@, Passcode Set: %@)
 Apple Pay elligibility: (NeedsToRun: %@) (requirements: %@) (willShowController: %@) -- (iPhone iCloud enabled %@, Watch iCloud enabled %@, Passcode Set: %@)
@@ -12578,11 +12599,17 @@ Could not load WristDetect_3_0.mlmodelc in the bundle resource
 <string>com.apple.Bridge</string>
 <key>com.apple.developer.healthkit</key>
 <true/>
+<key>com.apple.developer.icloud-services</key>
+<array>
+<string>CloudKit</string>
+</array>
 <key>com.apple.developer.pass-type-identifiers</key>
 <array>
 <string>*.pass.com.apple.itunes.storecredit</string>
 </array>
 <key>com.apple.findmylocaldevice-playsounds</key>
+<true/>
+<key>com.apple.fitcore</key>
 <true/>
 <key>com.apple.frontboard.shutdown</key>
 <true/>

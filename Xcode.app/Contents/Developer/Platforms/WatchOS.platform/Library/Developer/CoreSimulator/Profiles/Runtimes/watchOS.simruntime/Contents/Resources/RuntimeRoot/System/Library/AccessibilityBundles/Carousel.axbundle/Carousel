@@ -145,11 +145,6 @@ scrollToNode: animated:
 kAXAddedVOStatusObserver
 edit.app.announcement
 SKDisplayLink
-IOSSHLMainWorkspace
-sharedInstance
-topActiveApplication
-bundleIdentifier
-com.apple.nanobuddy
 CSLWorkoutSessionStatusViewState
 CSLNotificationCenterViewController
 _items
@@ -162,9 +157,11 @@ statusbar.phone.label
 CSLUIIconView
 node
 CSLHexAppNode
+bundleIdentifier
 isEditing
 _accessibilityIsInstalling
 IOSSHLApplicationsManager
+sharedInstance
 localizedPlistDictionary
 CFBundleSpokenName
 superview
@@ -257,7 +254,9 @@ UIApplicationSceneSettings
 CUISAlertViewController
 applicationWithPid:
 applicationWithProcess:
+IOSSHLMainWorkspace
 IOSSHLWorkspace
+topActiveApplication
 CSLDockProvider
 isDocked
 CSLClockWorkspaceCoordinator
@@ -300,6 +299,7 @@ CSLAlertRootViewControllerAccessibility
 CSLShutdownSliderBasedAlertViewControllerAccessibility
 CSLUIApplicationViewControllerAccessibility
 CSLAppSwitcherPlatterViewAccessibility
+com.apple.nanobuddy
 com.apple.voiceovertouch.disablebuddywarning
 com.apple.voiceovertouch.enablebuddywarning
 voiceover.instructions.text
@@ -613,7 +613,6 @@ accessibilityContainer
 superlayer
 frame
 _accessibilityConvertSystemBoundedScreenRectToContextSpace:
-isEqualToString:
 safeBoolForKey:
 numberOfSections
 numberOfRowsInSection:
@@ -648,6 +647,7 @@ enumerateScenesWithBlock:
 allObjects
 array
 bundleIdentifier
+isEqualToString:
 accessibilitySceneIsForegroundVisible
 accessibilitySceneIsEffectivelyBackground
 accessibilityIsSceneInsideAppSwitcher

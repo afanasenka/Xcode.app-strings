@@ -1441,7 +1441,6 @@ crypto/asn1/asn_moid.c
 stbl_section
 crypto/asn1/asn_mstbl.c
 mask
-flags
 nomask
 field=
 crypto/asn1/asn_pack.c
@@ -3012,7 +3011,6 @@ operation fail
 fopen
 connect
 getservbyname
-socket
 ioctlsocket
 bind
 listen
@@ -3297,7 +3295,6 @@ crypto/hmac/hm_pmeth.c
 crypto/hmac/hmac.c
 crypto/init.c
 crypto/kdf/hkdf.c
-mode
 EXTRACT_AND_EXPAND
 EXTRACT_ONLY
 EXPAND_ONLY
@@ -3332,7 +3329,6 @@ pass
 hexpass
 maxmem_bytes
 crypto/kdf/tls1_prf.c
-secret
 hexsecret
 hexseed
 crypto/lhash/lhash.c
@@ -3890,6 +3886,7 @@ Enterprises
 dcobject
 dcObject
 domainComponent
+domain
 Domain
 NULL
 selected-attribute-types
@@ -3981,6 +3978,7 @@ rfc822Mailbox
 favouriteDrink
 roomNumber
 userClass
+manager
 documentIdentifier
 documentTitle
 documentVersion
@@ -5023,6 +5021,7 @@ requestList
 requestExtensions
 tbsRequest
 optionalSignature
+responseType
 responseStatus
 responseBytes
 value.byName
@@ -5464,7 +5463,6 @@ Mask Algorithm:
 INVALID
 mgf1 with sha1 (default)
 %s Salt Length: 0x
-Minimum
 14 (default)
 Trailer Field: 0x
 BC (default)
@@ -5649,6 +5647,7 @@ crypto/stack/stack.c
 crypto/store/loader_file.c
 file:
 localhost/
+-----BEGIN 
 %08lx
 PEM type is '
 pass phrase
@@ -6313,7 +6312,6 @@ GeneralNames
 crypto/x509v3/v3_ia5.c
 ACCESS_DESCRIPTION
 AUTHORITY_INFO_ACCESS
-method
 crypto/x509v3/v3_info.c
 %s - %s
 crypto/x509v3/v3_lib.c
@@ -6859,7 +6857,6 @@ Would block requesting userauth list
 Waiting for publickey USERAUTH response
 Invalid signature for supplied public key, or bad username/public key combination
 Unable to allocate memory for userauth_list
-none
 Unable to send userauth-none request
 Failed getting response
 No error
@@ -7051,9 +7048,7 @@ filePath
 T@"NSString",C,N,V_filePath
 httpContentType
 T@"NSString",C,N,V_httpContentType
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ActionKit/External/JXHTTP/JXHTTP/JXHTTPFileBody.m
-wfName
-T@"NSString",R,C
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ActionKit/External/JXHTTP/JXHTTP/JXHTTPFileBody.m
 UITextChecker
 @"INStringResolutionResult"24@?0@"NSString"8Q16
 WFPinUnread
@@ -7079,19 +7074,18 @@ TB,N,V_clearsCookies
 http://my.cl.ly
 identifier = %@
 connection = %@
+name
 This file is too large. You can upload files up to %dMB but this file is %dMB.
 max_upload_size
-fileURL
-data
 You've reached the daily upload limit allowed by the Free plan. Grab one of our snazzy Pro plans and never see this message again.
 uploads_remaining
+Accept
 /purchases
 ?item[private]=true
 ?item[private]=false
 /items/new
 &type=%@
 /items?page=%i&per_page=%i&deleted=%@
-false
 /items
 /account
 /register
@@ -7132,9 +7126,7 @@ iPhone 1G
 iPhone Simulator
 iPad Simulator
 x86_64
-iPad
 iPod
-iPhone
 AppleTV2
 iPad3
 iPad2
@@ -7164,7 +7156,6 @@ responseHandler
 T@?,C,N,VresponseHandler
 country
 locale
-grant_type
 credentials
 PocketAPICurrentLogin
 Encountered an exception reading Pocket login: %@
@@ -7177,10 +7168,10 @@ This is probably a sever error.
 pocketapp%lu
 *** ERROR: The access token that exists does not match the consumer key. The user has been logged out.
 %02x
+%@-%@
 pocket-oauth-v1
 %@.%@
 PocketAPI
-%llu
 WFImageResizeHeight
 WFImageResizeWidth
 radiosPreferences
@@ -7192,16 +7183,14 @@ WFRadiosPreferencesSettingsClient.m
 void *AppSupportLibrary(void)
 RadiosPreferences
 Class getRadiosPreferencesClass(void)_block_invoke
-Unable to find class %s
 UITextContentTypeCountryName
 initUITextContentTypeCountryName
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ActionKit/ActionKit/WFCountryFieldParameter.m
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ActionKit/ActionKit/WFCountryFieldParameter.m
 -stateClass expected to be WFVariableStringParameterState
 WFCountryFieldParameter.m
 requestData
 T@"NSData",&,N,V_requestData
-application/json; charset=utf-8
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ActionKit/External/JXHTTP/JXHTTP/JXHTTPJSONBody.m
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ActionKit/External/JXHTTP/JXHTTP/JXHTTPJSONBody.m
 %@ (%d) ERROR: %@
 setting
 Tq,R,N,V_setting
@@ -7215,7 +7204,6 @@ T@"NSCache",R,N,V_cache
 Please enter a valid address into the Street Address action.
 No Address
 WFPostalCode
-WFCountry
 WFState
 WFCity
 WFAddressLine2
@@ -7234,6 +7222,7 @@ EEE, d MMM yyyy HH:mm
 EEE, d MMM yyyy HH:mm:ss
 EEE, d MMM yyyy HH:mm zzz
 EEE, d MMM yyyy HH:mm:ss zzz
+en_US_POSIX
 healthStore
 T@"HKHealthStore",R,N,V_healthStore
 @"NSString"16@?0@"WFHealthKitAuthorizationUnit"8
@@ -7243,9 +7232,9 @@ This shortcut does not have access to your %@ data.
 This shortcut will be able to update the following Health data categories: %@.
 This shortcut will be able to access the following Health data categories: %@.
 @"WFHealthKitAccessResourcePerWorkflowStateEntry"16@?0@"HKObjectType"8
+com.apple.Health
 x-apple-health://
 Allow Access
-Open Health
 In order to answer this question, Shortcuts needs access to your %@ data.
 Shortcuts does not have access to your %@ data.
 Health access to %@ is off. You can turn on health data categories in the Health app.
@@ -7293,12 +7282,9 @@ T@,&,N,V_userInfo
 internalContext
 T@,&,N,V_internalContext
 WFCameraCaptureQuality
-High
 WFCameraCaptureDevice
-Back
 Front
 WFRecordingStart
-On Tap
 Immediately
 UIImagePickerController
 Class getUIImagePickerControllerClass(void)_block_invoke
@@ -7310,17 +7296,13 @@ WFSeekAction.m
 WFTimeInterval
 WFSeekBehavior
 v24@?0@"WFMachineReadableCode"8@"NSError"16
-TQ,R
-T#,R
 T@"NSString",C,N,V_host
 edamUserId
 T@"NSString",C,N,V_edamUserId
 webApiUrlPrefix
 T@"NSString",C,N,V_webApiUrlPrefix
 T@"NSString",C,N,V_authenticationToken
-expirationDate
 T@"NSDate",&,N,V_expirationDate
-host
 Error getting password from keychain: %@
 Error saving to keychain: %@ %ld
 Color
@@ -7344,7 +7326,6 @@ B9F499526A62395B4B74670B1A42F1C9
 65099705565294D471733DF04B6EFF81
 Heavy
 54E8B33AF99FF270CA5063C498BD3C90
-Medium
 26974227534FC2BE01BA2FEA23B0B1CA
 Cross Process
 BD3BD3746830FD852159955AB11EEE21
@@ -7427,11 +7408,11 @@ Trello item
 v32@?0@"WFTrelloItemContentItem"8@16@?<v@?@>24
 Description
 link.contentkit.ennoteref
-TQ,R,N,V_extensions
+extensions
 T@"MMHTMLParser",R,N,V_htmlParser
 spanParser
 T@"MMSpanParser",R,N,V_spanParser
-&lt;
+<!--
 T@"NSString",C,N,V_name
 contentURL
 T@"NSURL",&,N,V_contentURL
@@ -7443,6 +7424,7 @@ T@"NSURL",&,N,V_remoteURL
 T@"NSURL",&,N,V_href
 iconURL
 T@"NSURL",&,N,V_iconURL
+icon
 T@"UIImage",C,N,V_icon
 trashed
 TB,N,GisTrashed,V_trashed
@@ -7468,18 +7450,17 @@ CLWebItemViewCountKey
 CLWebItemTypeKey
 CLWebItemNameKey
 <%@: %@ (%i) %@>
-updateNoteWhenIdleForMillis
 syncStateIntervalMillis
 ClientSyncRateConfig
 T@"NSNumber",&,N,V_syncStateIntervalMillis
+updateNoteWhenIdleForMillis
 T@"NSNumber",&,N,V_updateNoteWhenIdleForMillis
 updateNoteDuringEditIntervalMillis
 T@"NSNumber",&,N,V_updateNoteDuringEditIntervalMillis
-clientSyncRateConfig
 userMaxMessageEventId
 uploaded
 SyncState
-T@"NSNumber",&,N,V_currentTime
+currentTime
 fullSyncBefore
 T@"NSNumber",&,N,V_fullSyncBefore
 updateCount
@@ -7496,6 +7477,7 @@ currentDevicesUsed
 T@"NSNumber",&,N,V_currentDevicesUsed
 showChoiceScreen
 T@"NSNumber",&,N,V_showChoiceScreen
+clientSyncRateConfig
 T@"EDAMClientSyncRateConfig",&,N,V_clientSyncRateConfig
 Preferences
 updateSequenceNum
@@ -7532,7 +7514,6 @@ expungedLinkedAccounts
 T@"NSArray",&,N,V_expungedLinkedAccounts
 includeNoteResourceApplicationDataFullMap
 includeResourceApplicationDataFullMap
-includeNoteApplicationDataFullMap
 includeExpunged
 includeTags
 includeNotes
@@ -7552,6 +7533,7 @@ T@"NSNumber",&,N,V_includeResources
 includeLinkedNotebooks
 T@"NSNumber",&,N,V_includeLinkedNotebooks
 T@"NSNumber",&,N,V_includeExpunged
+includeNoteApplicationDataFullMap
 T@"NSNumber",&,N,V_includeNoteApplicationDataFullMap
 T@"NSNumber",&,N,V_includeResourceApplicationDataFullMap
 T@"NSNumber",&,N,V_includeNoteResourceApplicationDataFullMap
@@ -7569,8 +7551,8 @@ requireNoteContentClass
 T@"NSString",&,N,V_requireNoteContentClass
 notebookGuids
 T@"NSSet",&,N,V_notebookGuids
+context
 includeAllReadableNotebooks
-emphasized
 timeZone
 NoteFilter
 order
@@ -7582,9 +7564,9 @@ T@"NSArray",&,N,V_tagGuids
 T@"NSString",&,N,V_timeZone
 inactive
 T@"NSNumber",&,N,V_inactive
+emphasized
 T@"NSString",&,N,V_emphasized
 T@"NSNumber",&,N,V_includeAllReadableNotebooks
-context
 T@"NSString",&,N,V_context
 NoteList
 startIndex
@@ -7596,12 +7578,11 @@ T@"NSArray",&,N,V_stoppedWords
 searchedWords
 T@"NSArray",&,N,V_searchedWords
 deleted
+updated
 created
 contentLength
-guid
 NoteMetadata
 T@"NSNumber",&,N,V_contentLength
-updated
 T@"NSNumber",&,N,V_updated
 T@"NSNumber",&,N,V_deleted
 largestResourceMime
@@ -7609,6 +7590,7 @@ T@"NSString",&,N,V_largestResourceMime
 largestResourceSize
 T@"NSNumber",&,N,V_largestResourceSize
 NotesMetadataList
+includeLargestResourceMime
 includeDeleted
 includeCreated
 includeTitle
@@ -7628,7 +7610,6 @@ includeTagGuids
 T@"NSNumber",&,N,V_includeTagGuids
 includeAttributes
 T@"NSNumber",&,N,V_includeAttributes
-includeLargestResourceMime
 T@"NSNumber",&,N,V_includeLargestResourceMime
 includeLargestResourceSize
 T@"NSNumber",&,N,V_includeLargestResourceSize
@@ -7682,8 +7663,8 @@ NoteVersionId
 saved
 T@"NSNumber",&,N,V_saved
 T@"NSNumber",&,N,V_lastEditorId
-ClientUsageMetrics
 sessions
+ClientUsageMetrics
 T@"NSNumber",&,N,V_sessions
 subjectConsumerKey
 T@"NSString",&,N,V_subjectConsumerKey
@@ -7691,6 +7672,7 @@ subjectConsumerSecret
 T@"NSString",&,N,V_subjectConsumerSecret
 referenceUri
 plainText
+noteGuid
 RelatedQuery
 T@"NSString",&,N,V_noteGuid
 T@"NSString",&,N,V_plainText
@@ -7729,10 +7711,10 @@ maxRelatedContent
 T@"NSNumber",&,N,V_maxRelatedContent
 relatedContentTypes
 T@"NSSet",&,N,V_relatedContentTypes
+contextFilter
 prefix
 SearchSuggestionQuery
 T@"NSString",&,N,V_prefix
-contextFilter
 T@"EDAMNoteFilter",&,N,V_contextFilter
 SearchSuggestionResultSpec
 maxTypeAheadSuggestions
@@ -7740,8 +7722,8 @@ T@"NSNumber",&,N,V_maxTypeAheadSuggestions
 SearchSuggestion
 suggestionText
 T@"NSString",&,N,V_suggestionText
-SearchSuggestionResult
 typeAheadSuggestions
+SearchSuggestionResult
 T@"NSArray",&,N,V_typeAheadSuggestions
 nextLeaveDaylightSavings
 dstSavingsAdjustmentMillis
@@ -7771,7 +7753,6 @@ totalNotesByNotebook
 T@"NSDictionary",&,N,V_totalNotesByNotebook
 matchingNotebooks
 T@"NSArray",&,N,V_matchingNotebooks
-viewIdleExpiration
 lockRenewBy
 NoteLockStatus
 noteUpdateSequenceNumber
@@ -7781,6 +7762,7 @@ T@"NSNumber",&,N,V_lockHolderUserId
 T@"NSNumber",&,N,V_lockRenewBy
 viewingUserIds
 T@"NSArray",&,N,V_viewingUserIds
+viewIdleExpiration
 T@"NSNumber",&,N,V_viewIdleExpiration
 unknownUsers
 T@"NSDictionary",&,N,V_unknownUsers
@@ -7823,11 +7805,12 @@ T@"NSArray",&,N,V_membershipsToUpdate
 T@"NSArray",&,N,V_invitationsToCreateOrUpdate
 unshares
 T@"NSArray",&,N,V_unshares
-notFoundException
 userIdentity
 ManageNotebookSharesError
 T@"EDAMUserIdentity",&,N,V_userIdentity
+userException
 T@"EDAMUserException",&,N,V_userException
+notFoundException
 T@"EDAMNotFoundException",&,N,V_notFoundException
 errors
 ManageNotebookSharesResult
@@ -7867,16 +7850,16 @@ T@"NSNumber",&,N,V_userID
 ManageNoteSharesResult
 noteCount
 noteRank
-selectedNoteGUID
+searchScope
 noteFilter
 SearchRecord
 userQuery
 T@"NSString",&,N,V_userQuery
 T@"EDAMNoteFilter",&,N,V_noteFilter
-searchScope
 T@"NSNumber",&,N,V_searchScope
 searchTime
 T@"NSNumber",&,N,V_searchTime
+selectedNoteGUID
 T@"NSString",&,N,V_selectedNoteGUID
 selectTime
 T@"NSNumber",&,N,V_selectTime
@@ -7886,6 +7869,8 @@ LogRequest
 searchRecord
 T@"EDAMSearchRecord",&,N,V_searchRecord
 LogResponse
+TQ,R
+T#,R
 getLinkedAccountSyncState
 linkedAccount
 sendLogRequest
@@ -7898,6 +7883,7 @@ unpublishNotebook
 convertGroupSharesToIndividual
 joinPublishedBusinessNotebook
 manageNoteShares
+parameters
 getNoteShares
 getNotebookShares
 manageNotebookShares
@@ -8044,36 +8030,36 @@ Enable Siri
 In order to use this action, enable Siri in Settings.
 AFPreferencesDidChangeNotification
 initAFPreferencesDidChangeNotification
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ActionKit/ActionKit/WFSiriAccessResource.m
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ActionKit/ActionKit/WFSiriAccessResource.m
 T@"NSDate",R,N,V_date
 T@"CLLocation",R,C,N,V_location
+temperature
 T@"NSMeasurement",R,N,V_temperature
-highTemperature
 T@"NSMeasurement",R,N,V_highTemperature
 T@"NSMeasurement",R,N,V_lowTemperature
+feelsLikeTemperature
 T@"NSMeasurement",R,N,V_feelsLikeTemperature
 condition
 TQ,R,N,V_condition
-localizedConditionString
 visibility
 T@"NSMeasurement",R,N,V_visibility
-dewpoint
 T@"NSMeasurement",R,N,V_dewpoint
 T@"NSNumber",R,C,N,V_humidity
-pressure
 T@"NSMeasurement",R,N,V_pressure
+precipitationAmount
 T@"NSMeasurement",R,N,V_precipitationAmount
-precipitationChance
 T@"NSNumber",R,C,N,V_precipitationChance
+windSpeed
 T@"NSMeasurement",R,N,V_windSpeed
-windDirection
 T@"NSString",R,C,N,V_windDirection
+uvIndex
 T@"NSNumber",R,C,N,V_uvIndex
 sunriseTime
 T@"NSDate",R,C,N,V_sunriseTime
 T@"NSDate",R,C,N,V_sunsetTime
 localizedAirQualityIndex
 T@"NSNumber",R,C,N,V_localizedAirQualityIndex
+localizedAirQualityCategory
 T@"NSString",R,C,N,V_localizedAirQualityCategory
 T@"NSArray",R,C,N,V_pollutants
 pollutants
@@ -8193,6 +8179,7 @@ WFHandOffPlaybackAction.m
 v24@?0@"WFMediaRouteDescriptor"8@"NSError"16
 airPlayRouteIDs
 T@"NSArray",R,C,N
+executionContext
 HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"
 HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
 HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"
@@ -8211,6 +8198,7 @@ script
 applet
 button
 select
+input
 small
 samp
 cite
@@ -8242,7 +8230,6 @@ WFItemSpecifier
 pocket
 T@"PocketAPI",&,N,V_pocket
 T@?,C,N,V_loginHandler
-debugDescription
 Pocket
 pocketapp%@
 36486-fbcaffd4ccb4dcdcce449a20
@@ -8356,7 +8343,7 @@ T@"NSString",R,C,N,V_clientIdentifier
 clientVersion
 T@"NSString",R,C,N,V_clientVersion
 v24@?0@"AMSMediaResult"8@"NSError"16
-episodes
+com.apple.shortcuts
 v24@?0@"WFTrelloList"8@"NSError"16
 WFTrelloPosition
 You must select a board to create the list on.
@@ -8377,6 +8364,7 @@ T@"NSDate",R,C,N,V_updatedAt
 valid
 TB,R,N,GisValid
 -[WFAccount isValid] must be overridden
+supportsSecureCoding
 +[WFAccount loginViewControllerClass] must be overridden
 +[WFAccount localizedServiceName] must be overridden
 +[WFAccount serviceID] must be overridden
@@ -8402,7 +8390,9 @@ T@"NSString",R,N,V_title
 T@"NSString",R,N,V_uuid
 storeId
 T@"NSString",R,N,V_storeId
+T@"NSURL",R,N,V_feedURL
 T@"NSArray",R,N,V_children
+wfName
 children
 feedUrl
 cipher
@@ -8433,18 +8423,17 @@ isAdmin
 blogid
 blogId
 xmlrpc
-endpointURL
 post_id
 postId
 T@"NSNumber",R,C,N,V_postId
 T@"NSURL",R,C,N,V_link
 file
+fileId
 T@"NSNumber",R,C,N,V_fileId
 T@"NSString",R,C,N,V_filename
 term_id
 termId
 T@"NSNumber",R,C,N,V_termId
-T@"NSString",R,C,N,V_name
 taxonomy
 T@"NSString",R,C,N,V_taxonomy
 label
@@ -8453,13 +8442,13 @@ labels
 T@"NSDictionary",R,C,N,V_labels
 Trello
 is.workflow.my.app.trello
+email
 v24@?0@"WFTrelloUser"8@"NSError"16
 WFNote
 WFAppendToNoteAction.m
 Please pass a note to the Append to Note action.
 No Note Provided
 targetNote
-content
 Decode
 WFEncodeMode
 com.apple.Maps
@@ -8511,11 +8500,9 @@ failed
 Failed to open the Pocket authentication URL.
 https://getpocket.com/auth/authorize?request_token=%@&redirect_uri=%@
 pocket-oauth-v1:///authorize?request_token=%@&redirect_uri=%@
-redirect_uri
 %@:authorizationFinished
 uuid
 apiKey
-application/json
 Bearer %@
 api-version
 Ocp-Apim-Subscription-Key
@@ -8568,29 +8555,28 @@ runLoopModes
 T@"NSSet",&,N,V_runLoopModes
 inputStream
 T@"NSInputStream",&,D,N
-outputStream
 T@"NSOutputStream",&,N,V_outputStream
 responseData
 isCancelled
 request
 isReady
 isExecuting
-isFinished
 isPaused
+outputStream
 <%@: %p, state: %@, cancelled: %@ request: %@, response: %@>
 com.alamofire.networking.operation.lock
 !*'();:@&=+$,/?%#[]%
 v24@?0@"NSString"8@"NSString"16
 WFEmailAddress
 evernoteAccessResource
-T@"WFEvernoteAccessResource",&,N,V_evernoteAccessResource
 @24@?0@"EDAMTag"8Q16
+WFEvernoteTags
 TB,R,N,V_entireMusicLibrary
+playlistName
 T@"NSString",R,C,N,V_playlistName
 persistentIdentifier
 T@"NSNumber",R,N,V_persistentIdentifier
 entireMusicLibrary
-playlistName
 v24@?0@"<NSSecureCoding>"8@"NSError"16
 EntireMusicLibrary
 [value isKindOfClass:[WFPlaylistDescriptor class]]
@@ -8598,7 +8584,6 @@ WFPlaylistSubstitutableState.m
 MPMediaPlaylistPropertyName
 NSString *getMPMediaPlaylistPropertyName(void)
 !$&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~
-href
 Get Current Location failed because a network error occurred.
 WFGetCurrentLocationAction.m
 The expression could not be evaluated.
@@ -8661,7 +8646,7 @@ Carrier Name
 WFCellularDetail
 CTTelephonyNetworkInfo
 Class getCTTelephonyNetworkInfoClass(void)_block_invoke
-Cellular
+BSSID
 Network Name
 WFWiFiDetail
 WFNetworkDetailsNetwork
@@ -8700,6 +8685,7 @@ evernote-export
 WFChooseFromListActionPrompt
 WFChooseFromListActionSelectMultiple
 WFChooseFromListActionSelectAll
+completionHandler
 WFChooseFromListAction.m
 com.apple.shortcuts.choose-from-list
 v32@?0@"WFContentItem"8Q16@?<v@?@"WFChooseFromListItem"@"NSError">24
@@ -8717,9 +8703,7 @@ WFAddToReadingListAction.m
 %d Trello lists
 Trello lists
 Trello list
-symbol
 Measurement failed because no unit was specified. Please pick a unit.
-type
 T@"NSString",C,N,V_guid
 linkedNotebook
 T@"ENLinkedNotebookRef",&,N,V_linkedNotebook
@@ -8728,10 +8712,12 @@ T@"ENLinkedNotebookRef",&,N,V_linkedNotebook
 shared
 business
 personal
+guid
 permission
 T@"WFImgurUploadAction",W,N,V_action
 usesAccount
 TB,N,V_usesAccount
+hash
 %@=%@
 %@[]
 %@[%@]
@@ -8742,12 +8728,10 @@ tokenPayload
 T@"NSString",&,N,V_tokenPayload
 T@"NSNumber",&,N,V_serviceProvider
 PlainCredential
-userId
 T@"NSString",&,N,V_password
 AuthenticationRequestResult
 userEmail
 T@"NSString",&,N,V_userEmail
-result
 T@"NSNumber",&,N,V_result
 refreshToken
 RegistrationRequestResult
@@ -8804,6 +8788,7 @@ NSRegularExpression
 <br />
 %C%C%C%C
 abbr
+strong
 span
 </script>
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
@@ -8814,6 +8799,7 @@ appID
 Tq,N,V_appID
 authURL
 T@"NSURL",&,N,V_authURL
+channels
 T@"NSDictionary",&,N,V_channels
 CLSocketChannelsKey
 CLSocketAuthURLKey
@@ -8840,6 +8826,7 @@ mpim:history
 mpim:read
 users:read
 users:write
+T@"NSString",R,C
 https://slack.com/oauth/authorize
 https://slack.com/api/oauth.access
 prefs:root=General&path=Keyboard/DictationSettings
@@ -8859,13 +8846,13 @@ category
 T@"NSURL",C,N,V_endpointURL
 T@"NSNumber",C,N,V_blogId
 faultString
-faultCode
 The WordPress request failed (%@).
 The specified blog URL was invalid.
 text/xml
 Content-Length
 wp.uploadFile
 bits
+type
 wp.getPost
 wp.newPost
 comment_status
@@ -8889,7 +8876,6 @@ wp.getPostTypes
 wp.getTerms
 wp.getUsersBlogs
 AccountClass
-possibleStates
 T@,R,N,V_observer
 accountClass
 T#,R,N,V_accountClass
@@ -8917,7 +8903,7 @@ is.workflow.WFDiskCache.
 Caches
 Library
 T@"NSString",R,N,V_clientID
-T@"NSString",R,N,V_state
+T@?,C,N,V_completionHandler
 authorizationURLs
 T@"NSArray",R,N,V_authorizationURLs
 successURI
@@ -8936,7 +8922,6 @@ oauth2:
 WFDropboxAppAuthorizationSession.m
 v40@?0@"NSNumber"8@"NSString"16@"NSError"24@?<v@?@@"NSError">32
 WFNumberFormatDecimalPlaces
-htmlParser
 T@"ENXMLSaxParser",&,N,V_htmlParser
 enmlWriter
 T@"ENMLWriter",&,N,V_enmlWriter
@@ -8966,7 +8951,7 @@ T@"NSString",&,N,V_mimeType
 %s %@
 UTF-8
 Untitled
-ENSDKResources
+bundle
 style
 head
 teamName
@@ -8989,9 +8974,9 @@ Make Video from GIF failed because the GIF passed as input was not an animated G
 GIF Not Animated
 WFMakeVideoFromGIFActionLoopCount
 WFImgurErrorDomain
-progressTable
-T@"NSMapTable",R,N,V_progressTable
+T@"NSURLSession",R,N,V_session
 clientID
+T@"NSString",R,C,N,V_clientID
 Authorization
 Client-ID %@
 data.link
@@ -9031,17 +9016,13 @@ T@"<NSCoding>",C,N
 hostPatterns
 T@"NSArray",&,N,V_hostPatterns
 T@"NSString",&,N,V_hostname
-user
 T@"NSString",&,N,V_user
 T@"NSNumber",&,N,V_port
 identityFiles
 T@"NSArray",&,N,V_identityFiles
-presentationContext
 T@"WFWebAuthenticationSessionPresentationContext",&,N,V_presentationContext
 WFTrelloAccessResource.m
-token
 workflow://trello-auth-flow
-name
 never
 read,write,account
 return_url
@@ -9060,6 +9041,7 @@ SSH Key
 Please check your credentials in the Run SSH Script action and try again.
 SSH Password Authentication Failed
 @"NSString"16@?0@"NSString"8
+Password
 WFSSHScript
 WFSSHPassword
 WFSSHAuthenticationType
@@ -9080,8 +9062,7 @@ WFSSHUser
 WFSSHPort
 WFSSHHost
 T@"<IKEngineDelegate>",N,V_delegate
-OAuthToken
-T@"NSString",C,N,V_OAuthTokenSecret
+OAuthTokenSecret
 %@="%@", 
 OAuth 
 oauth_signature
@@ -9090,7 +9071,6 @@ oauth_signature
 %@&%@&
 oauth_consumer_key
 oauth_nonce
-%@=%@&
 https://www.instapaper.com
 %ld:%lu,
 /api/1/folders/set_order
@@ -9122,17 +9102,16 @@ client_auth
 x_auth_password
 x_auth_username
 @"WFPodcastSubstitutableState"24@?0@"WFiTunesPodcastObject"8Q16
-bluetoothClient
-T@"WFBluetoothSettingsClient",R,N,V_bluetoothClient
 supportedDevices
 T@"NSArray",R,N,V_supportedDevices
 supportedDevicesLock
 T{os_unfair_lock_s=I},R,N,V_supportedDevicesLock
-availabilityCompletion
+T@?,C,N,V_availabilityCompletion
 -[WFListeningModeDeviceAccessResource makeSettingsClientIfNecessary]_block_invoke
 Your %@ has not connected to any devices that support Noise Control modes.
 WFCameraCaptureShowPreview
 WFPhotoCount
+session
 T@"AVCaptureSession",&,N,V_session
 remainingPhotos
 TQ,N,V_remainingPhotos
@@ -9156,7 +9135,7 @@ No suitable camera was detected on this device.
 WFTakePhotoAction.m
 AVCaptureDeviceDiscoverySession
 Class getAVCaptureDeviceDiscoverySessionClass(void)_block_invoke
-T@"HKQuantityType",&,N,V_quantityType
+quantityType
 Meal Time
 Test Type
 Reason
@@ -9167,6 +9146,7 @@ connectionTypes
 includeSpecialFolders
 identifiers
 T@"NSMutableArray",R,N,V_identifiers
+debugDescription
 WFInstapaperFolder
 WFInstapaperFolders
 Archive
@@ -9178,7 +9158,6 @@ encoding
 TQ,N,V_encoding
 indentationLevel
 Tq,N,V_indentation
-openElements
 T@"NSArray",R,W,N
 &#%d;
 &euro;
@@ -9190,7 +9169,6 @@ T@"NSArray",R,W,N
 nil != string
 KSXMLWriter.m
 Unsupported character encoding %@ (%u)
-&quot;
 &amp;
 trying to escaping non-single character string
 element
@@ -9214,8 +9192,6 @@ T@"NSOutputStream",&,V_outputStream
 JXHTTP
 B16@?0@"PHAsset"8
 WFRemovePhotoFromAlbumAction.m
-The photo album that was selected does not exist.
-Unknown Album
 WFRemoveAlbumSelectedGroup
 -[WFMediaPlaybackController(MPCAssistant) getPreferredMediaControlDestinationForOutputDeviceUIDs:completionBlock:]
 v20@?0^v8B16
@@ -9237,6 +9213,7 @@ PLAINTEXT
 oauth_token
 https://api.dropboxapi.com/1/oauth2/token_from_oauth1
 accessTokenSecret
+accessToken
 v24@?0@"NSSecurityScopedURLWrapper"8@"NSError"16
 The input was not a video that can be edited.
 UIVideoEditorController
@@ -9248,7 +9225,6 @@ T@"NSArray",&,N,V_contentClasses
 WFAppName
 WFOpenInAppIdentifier
 v32@?0@"WFFileRepresentation"8@"WFContentAttributionSet"16@"NSError"24
-%1$@ is not installed or could not open the file %2$@.
 T@"NSMutableData",&,N,V_requestData
 responseDataOffset
 Ti,N,V_responseDataOffset
@@ -9265,7 +9241,6 @@ WFPodcastShow
 Podcast
 Unable to play podcast because an unknown error occurred.
 Unable to Play Podcast
-The specified podcast could not be found.
 Podcast Not Found
 v16@?0^v8
 -[WFPlayPodcastAction runAsynchronouslyWithInput:]_block_invoke
@@ -9292,6 +9267,7 @@ v16@?0@"HKSource"8
 v32@?0@"HKSampleQuery"8@"NSArray"16@"NSError"24
 @"WFHKSampleContentItem"24@?0@"HKCategorySample"8Q16
 @"WFHKSampleContentItem"24@?0@"HKQuantitySample"8Q16
+Source
 End Date
 Start Date
 unit.unitString
@@ -9309,10 +9285,10 @@ T@"MPPlaybackArchive",&,N,V_playbackArchive
 itemName
 mediaItems
 mediaContainer
-Music
 Has Played Music
 None
 WFPlayMusicActionRepeat
+Albums
 Songs
 WFPlayMusicActionShuffle
 WFPlayMusicAction.m
@@ -9548,13 +9524,12 @@ T@"NSNumber",&,N,V_validUntil
 T@"NSNumber",&,N,V_itunesReceiptRequested
 accountLimits
 businessUserInfo
+attributes
 serviceLevel
-User
 T@"NSNumber",&,N,V_id
 timezone
 T@"NSString",&,N,V_timezone
 T@"NSNumber",&,N,V_privilege
-T@"NSNumber",&,N,V_serviceLevel
 T@"NSNumber",&,N,V_created
 active
 T@"NSNumber",&,N,V_active
@@ -9634,7 +9609,6 @@ T@"EDAMLazyMap",&,N,V_applicationData
 alternateData
 mime
 Resource
-noteGuid
 T@"EDAMData",&,N,V_data
 T@"NSString",&,N,V_mime
 T@"NSNumber",&,N,V_width
@@ -9706,11 +9680,14 @@ limits
 sharedNotes
 tagNames
 notebookGuid
+content
 T@"NSString",&,N,V_content
+contentHash
 T@"NSData",&,N,V_contentHash
 T@"NSString",&,N,V_notebookGuid
 tagGuids
 resources
+T@"NSArray",&,N,V_resources
 T@"EDAMNoteAttributes",&,N,V_attributes
 T@"NSArray",&,N,V_tagNames
 T@"NSArray",&,N,V_sharedNotes
@@ -9874,7 +9851,6 @@ T@"NSString",&,N,V_sourceId
 T@"NSString",&,N,V_sourceUrl
 sourceFaviconUrl
 T@"NSString",&,N,V_sourceFaviconUrl
-T@"NSString",&,N,V_sourceName
 date
 T@"NSNumber",&,N,V_date
 teaser
@@ -9957,8 +9933,10 @@ T@"NSString",C,N,V_body
 TB,N,V_isHTML
 attachments
 T@"NSArray",C,N,V_attachments
+body
 WFUlyssesAccessToken
 WFUlyssesAccessResourceAvailabilityChangedNotification
+scheme
 T@"ICScheme",R,N,V_scheme
 com.ulyssesapp.ios
 access-token
@@ -10014,6 +9992,7 @@ Blood Type
 Date of Birth
 Wheelchair Use
 @"HKUnit"24@?0@"NSDictionary"8Q16
+unitString
 q24@?0@"NSDictionary"8@"NSDictionary"16
 important
 en_US
@@ -10044,9 +10023,9 @@ Wheelchair Distance
 Swimming Distance
 Sexual Activity
 Spotting
-Menstruation
 Ovulation Test Result
 Cervical Mucus Quality
+UV Index
 Water
 Basal Body Temperature
 Sleep
@@ -10159,7 +10138,6 @@ Pilates
 Pickleball
 Paddling
 Paddle Sports
-Other
 Mixed Metabolic Cardio Training
 Mixed Cardio
 Mind and Body
@@ -10256,6 +10234,7 @@ TQ,N,V_position
 InputType
 SLTypes
 ContentItems
+Image
 TextItemHandling
 ItemProvider
 AttributedContentText
@@ -10331,6 +10310,7 @@ Fragment '%@' does not match fragment '%@'
 Query '%@' does not match query '%@'
 Path '%@' does not match path '%@'
 Path '%@' does not match resource specifier '%@'
+mailto
 Authority '%@' does not match authority '%@'
 Scheme '%@' does not match scheme '%@'
 ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
@@ -10396,12 +10376,15 @@ WebResourceURL
 WebResourceData
 resolvedValue
 TB,N,V_resolvedValue
+stringAnswer
+dateAnswer
 What text?
 What URL?
 What date and time?
 What time?
 What date?
 What number?
+T@"NMSSHSession",&,N,V_session
 T^{_LIBSSH2_CHANNEL=},N,V_channel
 Tq,N,V_type
 ptyTerminalName
@@ -10455,7 +10438,6 @@ Sent EOF to host (return code = %i)
 Error requesting pseudo terminal
 Error requesting %s pty: %@
 Unable to open a session
-You have to provide a valid NMSSHSession!
 linkedNotebookRef
 T@"ENLinkedNotebookRef",&,N,V_linkedNotebookRef
 T@"<ENLinkedNoteStoreClientDelegate>",W,N,V_delegate
@@ -10471,6 +10453,7 @@ datePickerMode
 Tq,R,N,V_datePickerMode
 immediatelyActivateWatchDictation
 WFInputType
+http://
 WFAskForInputAction.m
 WFAskActionAllowsNegativeNumbers
 WFAskActionAllowsDecimalNumbers
@@ -10497,10 +10480,11 @@ Are you ABSOLUTELY sure you want to delete %@?
 Delete %1$@ and %2$d other notes?
 Delete %@?
 WFEvernoteConfirmDeletion
+message
 error_code
 sync_to_mobile
+folder
 progress_timestamp
-hash
 private_source
 time
 subscription_is_active
@@ -10539,7 +10523,11 @@ TQ,N,V_status
 @sum.length
 userInterfaceType
 WFConfigureAudioRoutesForUserInterface_block_invoke
+Custom
 Bottom Right
+Bottom Left
+Top Right
+Center
 WFImageCropY
 WFImageCropX
 WFImageCropHeight
@@ -10549,7 +10537,6 @@ WFImageCropPosition
 </param></params></methodResponse>
 </value></fault></methodResponse>
 <params>
-</methodResponse>
 methodResponse
 utf8
 tidyString:inputFormat:outputFormat:encoding:diagnostics:error:
@@ -10605,6 +10592,7 @@ WFNotificationAction.m
 v32@?0@"WFContentItem"8Q16@?<v@?@"NSArray"@"NSError">24
 @"UNNotificationAttachment"24@?0@"WFFileRepresentation"8Q16
 [WFNotificationAction] Error creating attachment from %@: %@
+data
 T@"NSMutableData",&,N,V_data
 stream
 T^{__CFReadStream=},N,V_stream
@@ -10620,11 +10608,13 @@ WFNetDBErrorDomain
 https://workflow.is/api/external_ip
 WFImageFlipDirection
 Audio Recording
+outputFormat
 startImmediately
-recordingDuration
+Td,R,N
 WFRecordingTimeInterval
 After Time
 WFRecordingEnd
+Normal
 WFRecordingCompression
 WFImagePreserveMetadata
 WFImageCompressionQuality
@@ -10696,7 +10686,6 @@ info
 T@"MWFeedInfo",&,N,Vinfo
 pathOfElementWithXHTMLType
 T@"NSString",C,N,VpathOfElementWithXHTMLType
-delegate
 T@"<MWFeedParserDelegate>",W,N,Vdelegate
 feedParseType
 Ti,N,VfeedParseType
@@ -10781,6 +10770,7 @@ executing
 TB,N,GisExecuting,V_executing
 finished
 TB,N,GisFinished,V_finished
+fileURL
 T@"NSURL",R,N,V_fileURL
 downloadedFiles
 T@"NSArray",R,N,V_downloadedFiles
@@ -10852,6 +10842,7 @@ RouteType
 bookmarkID
 Tq,N,V_bookmarkID
 T@"NSURL",&,N,V_URL
+title
 descr
 T@"NSString",C,N,V_descr
 T@"NSDate",&,N,V_date
@@ -10975,12 +10966,14 @@ JXHTTP-%@-%@
 Localizable
 DisambiguationSelectionPromptDialog
 WFListeningMode
+action
 Localizable-B298
 Noise Cancellation
 Noise Control mode is not supported on %@
+Unable to find class %s
 WFListeningModePickerParameter.m
 Please select a valid route first
-Playback
+Device
 The playback destination could not be set.
 It took too long to set the destination to the specified device.
 Set Playback Destination failed because the device could not be found.
@@ -11002,7 +10995,6 @@ xmlTextWriterStartCDATA
 xmlTextWriterWriteString
 xmlTextWriterWriteRaw
 xmlTextWriterWriteAttribute
-&#38;
 xmlTextWriterEndElement
 xmlTextWriterStartElement
 xmlTextWriterEndDocument
@@ -11027,14 +11019,13 @@ episode.genres
 Genres
 episode.descriptionText
 episode.author
-Author
 episode.title
-Title
 episode.viewURL
 Store URL
 episode.identifier
 Store ID
 sourceUrl
+T@"NSString",C,N,V_sourceUrl
 cachedENMLContent
 T@"NSString",C,N,V_cachedENMLContent
 serviceNote
@@ -11044,7 +11035,6 @@ T@"ENNoteContent",&,N,V_content
 T@"NSArray",C,N,V_tagNames
 isReminder
 TB,N,V_isReminder
-modificationDate
 T@"NSDate",R,N
 creationDate
 Note fails validation for resource length: %@
@@ -11063,15 +11053,14 @@ WFStorageServicesAllowedServices
 registeredServices
 T@"NSArray",R,N,V_registeredServices
 storageServices
-T@"NSArray",R,N
 objectRepresentationClasses
 T@"NSSet",R,N
 B16@?0@"<WFFileStorageService>"8
 @"<WFFileStorageService>"24@?0#8Q16
 Metadata
 IsIndoor
-Identifier
 [value isKindOfClass:getFIUIWorkoutActivityTypeClass()]
+Invalid parameter not satisfying: %@
 WFFIUIWorkoutActivityTypeSubstitutableState.m
 /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
 /System/Library/PrivateFrameworks/FitnessUI.framework/Contents/MacOS/FitnessUI
@@ -11091,7 +11080,6 @@ DBCredentialVersion
 is.workflow.my.app.dropbox.auth
 agent
 T^{_LIBSSH2_AGENT=},N,V_agent
-session
 T^{_LIBSSH2_SESSION=},N,GrawSession,V_session
 connected
 TB,N,GisConnected,V_connected
@@ -11102,7 +11090,6 @@ T@?,C,N,V_kbAuthenticationBlock
 channel
 T@"NMSSHChannel",&,N,V_channel
 T@"NMSFTP",&,N,V_sftp
-port
 hostConfig
 T@"NMSSHHostConfig",&,N,V_hostConfig
 T@"<NMSSHSessionDelegate>",W,N,V_delegate
@@ -11114,7 +11101,6 @@ Tq,N,V_fingerprintHash
 banner
 T@"NSString",&,N,V_banner
 remoteBanner
-T@"NSString",R,N
 T^{__CFSocket=},R,N,V_socket
 authorized
 TB,R,N,GisAuthorized
@@ -11197,6 +11183,7 @@ Event
 WFCalendarItemEntityType
 xmlXPath
 T^{_xmlXPathObject=i^{_xmlNodeSet}id*^vi^vi},N,V_xmlXPath
+cursor
 TQ,N,V_cursor
 document
 T@"ONOXMLDocument",&,N,V_document
@@ -11226,16 +11213,16 @@ lineNumber
 TQ,N,V_lineNumber
 namespace
 T@"NSString",C,N,V_namespace
-parent
 T@"ONOXMLElement",&,N,V_parent
 T@"NSArray",&,D,N
 previousSibling
 T@"ONOXMLElement",&,N,V_previousSibling
 nextSibling
 T@"ONOXMLElement",&,N,V_nextSibling
-attributes
 T@"NSDictionary",&,N,V_attributes
+T@"NSString",C,N,V_stringValue
 T@"NSNumber",C,N,V_numberValue
+dateValue
 T@"NSDate",C,N,V_dateValue
 xmlNode
 T^{_xmlNode=^vi*^{_xmlNode}^{_xmlNode}^{_xmlNode}^{_xmlNode}^{_xmlNode}^{_xmlDoc}^{_xmlNs}*^{_xmlAttr}^{_xmlNs}^vSS},N,V_xmlNode
@@ -11273,12 +11260,15 @@ T@"NSString",R,N,V_comment
 localizedType
 %@ Key
 %@-bit %@ Key
+%@ %@ %@
 format
 WFSSHKeyPair.m
 sharedKeyPair
 T@"WFSSHKeyPair",&,N
 knownHostFileURL
+T@"NSURL",R,N
 defaultKeyComment
+TB,R
 Shortcuts on %@
 com.apple.shortcuts.ssh
 v40@?0@"WFWorkflow"8@"<WFUserInterfaceHost>"16@"NSArray"24@?<v@?B@"NSError">32
@@ -11363,14 +11353,16 @@ T@"WFGiphySessionManager",R,N,V_sessionManager
 WFGiphyLimit
 v24@?0@"<WFGiphyActionUserInterface>"8@"NSError"16
 WFImageRotateAmount
-CloudApp
 is.workflow.my.app.cloudapp.%@password
 WFCloudAppEmail
 Your email or password is incorrect.
 WFCloudAppAccessResource.m
 com.matthiasplappert.InstapaperKit
-PublicUserInfo
 privilege
+PublicUserInfo
+userId
+T@"NSNumber",&,N,V_serviceLevel
+username
 T@"NSString",&,N,V_noteStoreUrl
 T@"NSString",&,N,V_webApiUrlPrefix
 userWebSocketUrl
@@ -11386,9 +11378,8 @@ communicationEngineUrl
 T@"NSString",&,N,V_communicationEngineUrl
 expiration
 AuthenticationResult
-currentTime
+T@"NSNumber",&,N,V_currentTime
 T@"NSNumber",&,N,V_expiration
-T@"EDAMUser",&,N,V_user
 publicUserInfo
 T@"EDAMPublicUserInfo",&,N,V_publicUserInfo
 secondFactorRequired
@@ -11399,7 +11390,6 @@ urls
 T@"EDAMUserUrls",&,N,V_urls
 enableSponsoredAccounts
 enableSingleNoteSharing
-enableSharedNotebooks
 enableSupportTickets
 cardscanUrl
 marketingUrl
@@ -11419,6 +11409,7 @@ T@"NSNumber",&,N,V_enableFacebookSharing
 enableGiftSubscriptions
 T@"NSNumber",&,N,V_enableGiftSubscriptions
 T@"NSNumber",&,N,V_enableSupportTickets
+enableSharedNotebooks
 T@"NSNumber",&,N,V_enableSharedNotebooks
 T@"NSNumber",&,N,V_enableSingleNoteSharing
 T@"NSNumber",&,N,V_enableSponsoredAccounts
@@ -11431,7 +11422,6 @@ T@"NSNumber",&,N,V_enablePublicNotebooks
 enableGoogle
 T@"NSNumber",&,N,V_enableGoogle
 BootstrapProfile
-settings
 T@"EDAMBootstrapSettings",&,N,V_settings
 BootstrapInfo
 profiles
@@ -11449,7 +11439,6 @@ consumerSecret
 usernameOrEmail
 AuthenticationParameters
 T@"NSString",&,N,V_usernameOrEmail
-password
 ssoLoginToken
 T@"NSString",&,N,V_ssoLoginToken
 consumerKey
@@ -11463,7 +11452,7 @@ supportsTwoFactor
 T@"NSNumber",&,N,V_supportsTwoFactor
 T@"NSNumber",&,N,V_supportsBusinessOnlyAccounts
 systemException
-userException
+success
 getConnectedIdentities
 identityIds
 getAccountLimits
@@ -11508,21 +11497,18 @@ WFImageCombineSpacing
 In a Grid
 Horizontally
 WFImageCombineMode
-T@"NSString",R,N,V_identifier
+dictionaryValue
+T@"NSDictionary",R,C,N
 shortUrl
 desc
 itemDescription
 T@"NSString",R,N,V_itemDescription
 creationPosition
 T@"NSNumber",R,N,V_creationPosition
-dueDate
-T@"NSDate",R,N,V_dueDate
 T@"NSURL",R,N,V_URL
 closed
 TB,R,N,V_closed
-username
 fullName
-email
 T@"NSString",R,N,V_email
 T@"NSString",R,N,V_username
 threeLeggedOAuthCallback
@@ -11537,7 +11523,6 @@ v32@?0@"NSURLResponse"8@"NSData"16@"NSError"24
 Authentication request failed
 oauth_token_secret
 https://www.tumblr.com/oauth/access_token
-api_key
 oauth_verifier
 Permission denied by user
 tumblr-authorize
@@ -11547,7 +11532,6 @@ https://www.tumblr.com/oauth/request_token?oauth_callback=%@
 %@ - %@
 %@ - %@: %@
 Concentration
-Air Pollutants
 Air Pollutant (Plural)
 Air Pollutant
 Air Pollutant (Single)
@@ -11622,11 +11606,9 @@ not_in_channel
 The requested channel could not be found. Make sure the channel name includes the # symbol.
 Channel Not Found
 channel_not_found
-POST
 files.upload
 Content-Type: %@
 --%@
-filename
 chat.postMessage
 unfurl_links
 as_user
@@ -11637,6 +11619,7 @@ users.list
 groups.list
 channels.list
 team
+user
 auth.test
 https://slack.com/api
 WFISO8601IncludeTime
@@ -11690,7 +11673,6 @@ WFDeletePhotosIntentHandler.m
 T@"NSString",R,N,V_service
 T@"NSString",R,N,V_accessGroup
 WFKeychain.m
-/example.txt
 example.txt
 WFAppendFileWriteMode
 WFAppendOnNewLine
@@ -11708,6 +11690,7 @@ hasSubsamples
 T@"NSString",R,C,N
 TB,R,N,V_canProvideDataSamples
 dataSamples
+T@"NSArray",R,N
 @"NSNumber"24@?0@"WFHKQuantitySampleContainer"8Q16
 %1$@ %2$@
 %@ Quantity Sample, no unit data
@@ -11725,14 +11708,11 @@ is.workflow.my.app.todoist
 WFOpenAppActionErrorDomain
 WFAppIdentifier
 Open App failed because the app could not be opened.
-executionContext
 credential
 WFOAuth2Account.m
 +[WFOAuth2Account clientID] must be overridden
 +[WFOAuth2Account sessionManager] must be overridden
-expires_in
 expire_date
-T@"WFOAuth2Credential",C,N,V_credential
 v24@?0@"WFOAuth2Credential"8@"NSError"16
 v16@?0@"MPCAssistantMutableRemoteControlDestination"8
 MPCAssistantMediaRemoteSendCommandErrorDomain
@@ -11762,10 +11742,10 @@ T@"NSURL",R,C,N,V_shazamURL
 T@"NSURL",R,C,N,V_appleMusicURL
 TB,R,N,V_isExplicit
 videoURL
+lyricsSnippet
 T@"NSString",R,C,N,V_lyricsSnippet
 T@"NSString",R,C,N,V_lyricsSnippetSynced
 lyricsSnippetSynced
-lyricsSnippet
 shazamURL
 artworkURL
 <%@: %p, name: %@>
@@ -11776,7 +11756,6 @@ void *ShazamKitLibrary(void)
 SHMatchedMediaItem
 Class getSHMatchedMediaItemClass(void)_block_invoke
 WFShazamMedia.m
-supportsSecureCoding
 -%@ only defined for abstract class. Define -[%@ %@]!
  %@ = %@;
 : %p;
@@ -11811,7 +11790,6 @@ Ulysses sheet
 sheet.notes
 Notes
 sheet.keywords
-Keywords
 sheet.text
 Contents
 sheet.identifier
@@ -11867,6 +11845,7 @@ TQ,N
 v32@?0@8Q16^B24
 Character '%C' is not a valid delimiter
 Invalid delimiter character
+location
 startLocation
 Could not commit transaction because the stack is empty
 Transaction underflow
@@ -11892,12 +11871,12 @@ The person you are trying to request money from doesn't have an account set up w
 The person you are trying to send money to doesn't have an account set up with %@.
 No Account
 Contact
-Apple Pay
 currencyAmount
 1075
 WFVenmoActionAppSwitch
 WFGetDirectionsActionApp
 v32@?0@"WFStreetAddress"8@"NSString"16@"NSError"24
+WFLocation
 Please select a different app for the Show Directions action.
 Biking
 Driving
@@ -11906,7 +11885,6 @@ WFCalendarItemEndDate
 WFCalendarItemStartDate
 WFCalendarItemCalendar
 v24@?0@"<WFAddNewEventActionUserInterface>"8@"NSError"16
-ShowWhenRun
 The alert time provided was invalid. Please check for spelling errors and ensure you provide a time of day.
 WFAlertTime
 An invalid end date was provided. Please provide an end date for this event.
@@ -11972,7 +11950,6 @@ Please provide an end time that is later than the current time for Do Not Distur
 Current Location
 event
 Event Ends
-location
 I Leave
 Time
 AssertionType
@@ -12028,6 +12005,7 @@ At Time
 WFAlertCondition
 No Alert
 WFAlertEnabled
+Medium
 REMSaveRequest
 Class getREMSaveRequestClass(void)_block_invoke
 No title was provided. Please provide a title for this reminder.
@@ -12101,6 +12079,7 @@ invalid_token
 temporarily_unavailable
 server_error
 unsupported_response_type
+access_denied
 invalid_scope
 unsupported_grant_type
 unauthorized_client
@@ -12109,7 +12088,6 @@ invalid_client
 invalid_request
 WFTrelloBoards
 WFTrelloBoardParameterNeedsUpdateNotification
-observer
 @"WFTrelloBoardSubstitutableState"24@?0@"WFTrelloBoard"8Q16
 WorkoutGoal
 This action can only be run on Apple Watch.
@@ -12198,7 +12176,7 @@ com.apple.intents.WorkoutNameIdentifier.Archery
 com.apple.intents.WorkoutNameIdentifier.AmericanFootball
 kcal
 Make sure a valid shortcut is selected in the Open Shortcut action.
-Shortcut Not Found
+WFWorkflow
 TenToThePowerOf
 10 ^
 Billionths
@@ -12239,6 +12217,7 @@ WebSubframeArchives
 WebSubresources
 WebMainResource
 Error deserializing web archive from data: %@
+sampleType
 T@"EDAMNotebook",&,N,V_notebook
 T@"EDAMLinkedNotebook",&,N,V_linkedNotebook
 T@"EDAMSharedNotebook",&,N,V_sharedNotebook
@@ -12259,7 +12238,6 @@ isDefaultNotebook
 <%@: %p; name = "%@"; business = %@; shared = %@; owner = %@; access = %@>
  (me)
 "%@"
-notebook
 timer
 T@"NSObject<OS_dispatch_source>",&,N,V_timer
 delayProgress
@@ -12376,6 +12354,8 @@ A single note
 Note
 @24@?0@"INNote"8Q16
 T@"INNote",R,N
+modificationDate
+Last Modified Date
 note.groupName
 Body
 @"NSArray"8@?0
@@ -12414,7 +12394,6 @@ application/x-www-form-urlencode
 getpocket.com/v3
 getpocket.com/v3/oauth
 <%@: %p https://%@/%@ %@>
-!*'();:@&=+$,/?%#[]
 selectedStorageService
 T@"<WFFileStorageService>",R,N
 showsFilePicker
@@ -12422,18 +12401,18 @@ WFFilePath
 WFFileStorageService
 Please select a service in %@.
 WFParameterValue
-WFParameterRelationResource
+WFParameterKey
 fda7ea0c0060d17c5407a4464de9cb1b
 WFTrelloErrorDomain
 T@"NSDateFormatter",R,N,V_dateFormatter
 baseURL
+T@"NSURL",R,N,V_baseURL
+POST
 path.length
 WFTrelloSessionManager.m
 cards
 v32@?0@"NSDictionary"8Q16@?<v@?@@"NSError">24
 cards/%@/attachments
---%@--
-Content-Disposition: form-data; name="file"; filename="%@"
 Boundary+%08X%08X
 idList
 idBoard
@@ -12510,6 +12489,7 @@ authenticationCompletion
 T@?,C,N,V_authenticationCompletion
 sessionHost
 T@"NSString",C,N,V_sessionHost
+T@"EDAMUser",&,N,V_user
 primaryAuthenticationToken
 T@"NSString",C,N,V_primaryAuthenticationToken
 Primary note store operation failed authentication. Unauthenticating.
@@ -12529,8 +12509,6 @@ Cannot authenticate to business on main thread
 CredentialStore
 authenticationToken
 parameter
-EDAMErrorCode
-Host
 application/x-www-form-urlencoded;charset=UTF-8
 auth=%@
 https://%@/shard/%@/thm/note/%@%@
@@ -12541,6 +12519,7 @@ noteRef parameter is required to get download note
 Ti,N,V_updateSequenceNum
 noteRef
 T@"ENNoteRef",&,N,V_noteRef
+notebook
 T@"ENNotebook",&,N,V_notebook
 T@"NSDate",&,N,V_created
 T@"NSDate",&,N,V_updated
@@ -12574,6 +12553,7 @@ T@"NSMutableArray",&,N,V_findMetadataResults
 resultGuidsFromBusiness
 T@"NSSet",&,N,V_resultGuidsFromBusiness
 T@"NSArray",&,N,V_results
+completion
 T@?,C,N,V_completion
 Cannot sort by relevance across multiple search scopes. Using update date.
 Search scope or notebook must be specified. Defaulting to personal scope.
@@ -12642,6 +12622,7 @@ your secret
 your key
 TQ,N,V_userID
 T@"NSString",C,N,V_username
+subscribed
 TB,N,GisSubscribed,V_subscribed
 <%@: %@ (%lu), subscribed:%d>
 requestParameters
@@ -12657,38 +12638,36 @@ T@"NSDictionary",&,N,V_OAuthParameters
 Accept-Encoding
 gzip
 oauth_version
+Content-Type
 %@?%@
+http
 WFWunderlistErrorDomain
 clientId
 T@"NSString",C,N,V_clientId
-message
 bad_request
 X-Client-ID
 X-Access-Token
 uploads
 PATCH
 files
-local_created_at
 upload_id
 task_id
+yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 uploads/%@
 x-amz-date
 authorization
 Content-MD5
 part
 md5sum
-file_size
+file_name
 reminders
-notes
 tasks
 due_date
-list_id
 lists
 https://a.wunderlist.com/api/v1
 WFWunderlistSessionManager.m
 requestCachePolicy
 requestShouldUsePipelining
-TB,N
 requestMainDocumentURL
 T@"NSURL",&,N
 requestTimeoutInterval
@@ -12751,7 +12730,6 @@ user/dashboard
 user/info
 Turn Wi-Fi ${OnValue}
 Turn WLAN ${OnValue}
-Wi-Fi
 WLAN
 Set Wi-Fi
 Set WLAN
@@ -12782,7 +12760,6 @@ T@"NSString",C,N,Vcontent
 T@"NSString",C,N,Vauthor
 T@"NSArray",C,N,Venclosures
 enclosures
- - %@
 MWFeedItem: 
 This shortcut is not allowed to run other shortcuts. You can change this in this shortcut's details.
 This shortcut is not allowed to run other shortcuts.
@@ -12868,8 +12845,6 @@ fieldset
 form
 noscript
 table
-blockquote
-<!--
 %d Blood pressures
 %d Blood pressure
 Multiple blood pressure recordings
@@ -12881,12 +12856,12 @@ Blood Pressure Start Date
 Blood Pressure Date
 endDate
 startDate
-T@"NSString",C,N,V_sourceUrl
 dataHash
 T@"NSData",&,N,V_dataHash
 edamAttributes
 T@"NSString",C,N,V_filename
 mediaTag
+T@"NSString",R,N
 Key %@ not found on EDAMResource.attributes
 Unable to set value %@ for key %@ on EDAMResource.attributes
 Data length for resource is greater than int32.
@@ -12945,7 +12920,6 @@ Class getMFMailComposeViewControllerClass(void)_block_invoke
 v32@?0@"NSString"8Q16@?<v@?@"NSArray"@"NSError">24
 @24@?0@"WFContentItem"8Q16
 Cannot send emails. Mail may not be set up.
-WFLocation
 WFGetHalfwayPointAction.m
 CLLocationCoordinate2DIsValid
 BOOL WFCLLocationCoordinate2DIsValid(CLLocationCoordinate2D)
@@ -12977,8 +12951,7 @@ color
 T@"WFColor",R,N,V_color
 collapsed
 TB,R,N,V_collapsed
-dictionaryValue
-T@"NSDictionary",R,C,N
+&#x27;
 attributesAsDictionary
 T@"NSDictionary",C,N
 KSXMLAttributes.m
@@ -13040,6 +13013,8 @@ InvolvedMediaRoute
 Speaker
 routingController
 T@"MPAVRoutingController",&,N,V_routingController
+bluetoothClient
+T@"WFBluetoothSettingsClient",R,N,V_bluetoothClient
 observers
 T@"NSMutableArray",R,N,V_observers
 T@"NSObject<OS_dispatch_queue>",R,N,V_queue
@@ -13055,7 +13030,6 @@ v24@?0@"MPAVRoute"8@"NSError"16
 v16@?0^{__CFError=}8
 destinationUID
 sourceUID
-Invalid parameter not satisfying: %@
 -[WFMediaRoutePicker selectRoute:timeout:completionHandler:]
 -[WFMediaRoutePicker selectRoute:timeout:completionHandler:]_block_invoke_2
 -[WFMediaRoutePicker selectRoute:timeout:completionHandler:]_block_invoke
@@ -13095,7 +13069,6 @@ The second date provided was invalid.
 WFQuickLookActionFullScreen
 The Quick Look action wasn't passed any items to preview.
 No Items
-action
 @"WFNSUnitSubstitutableState"24@?0@"NSUnit"8Q16
 WFMeasurementUnitTypeKey
 extended
@@ -13104,6 +13077,7 @@ toread
 WFPinboardErrorDomain
 dateTimeFormatter
 T@"NSDateFormatter",R,N,V_dateTimeFormatter
+T@"NSString",C,N,V_password
 apiToken
 T@"NSString",C,N,V_apiToken
 Your username and password or API token are incorrect.
@@ -13146,6 +13120,7 @@ WFTodoistErrorDomain
 T@"NSURL",R,C,N,V_baseURL
 syncToken
 T@"NSString",C,N,V_syncToken
+T@"WFOAuth2Credential",C,N,V_credential
 v32@?0@"NSData"8@"NSURLResponse"16@"NSError"24
 Adding notes, reminders, and files requires a Todoist premium subscription.
 Premium Required
@@ -13170,6 +13145,8 @@ priority
 project_id
 file_attachment
 upload_file
+--%@--
+Content-Disposition: form-data; name="file"; filename="%@"
 Content-Disposition: form-data; name="token"
 projects
 https://todoist.com/API/v8
@@ -13177,6 +13154,7 @@ WFInstapaperUsername
 WFInstapaperToken
 NSDictionary *WFInstapaperQueryDictionaryWithToken(NSString *__strong, NSString *__strong)
 is.workflow.my.app.instapaper.%@
+token
 WFInstapaperAccessResource.m
 tokenSecret
 ad023926d2fd402c8186da34500e943b
@@ -13199,16 +13177,15 @@ EMFEmojiLocaleData
 Failed to find the emoji font.
 AppleColorEmoji
 v16@?0@"NSDictionary"8
+possibleStates
 tumblrAccessResource
 T@"WFTumblrAccessResource",&,N,V_tumblrAccessResource
 @"WFTumblrBlogSubstitutableState"24@?0@"NSString"8Q16
 blogs
 WFTumblrBlogs
 T@"NSString",C,N,V_apiKey
-T@"NSURL",R,N,V_baseURL
 images
 original
-image
 mp4_url
 _still
 still_url
@@ -13226,6 +13203,7 @@ https://api.giphy.com/v1
 hostConfigs
 T@"NSArray",&,N,V_hostConfigs
 identityfile
+port
 hostname
 The iCloud Container could not be found.
 Documents
@@ -13277,11 +13255,12 @@ v32@?0@"NSURL"8Q16@?<v@?@"WFFileStorageServiceResult"@"NSError">24
 yyyy'-'MM'-'dd'T'HH:mm:ss
 yyyyMMdd'T'HH:mm:ss
 base64
-boolean
+dateTime.iso8601
+string
+double
 struct
 params
 array
-categoryType
 T@"HKCategoryType",&,N,V_categoryType
 v24@?0@"MPMediaPlaylist"8@"NSError"16
 MPMediaLibrary
@@ -13377,7 +13356,6 @@ Unable to parse news feed
 WFRSSItemQuantity
 WFRSSFeedURL
 groupingOption
-Tq,N,V_groupingOption
 conversionCalendar
 T@"NSCalendar",&,N,V_conversionCalendar
  (%@)
@@ -13403,9 +13381,11 @@ No word was passed as input to Show Definition
 No Word Specified
 WFTrelloLists
 WFTrelloListParameterNeedsUpdate
+observer
 BoardKey
 @"WFTrelloListSubstitutableState"24@?0@"WFTrelloList"8Q16
 blog
+endpointURL
 WordPress
 is.workflow.my.app.wordpress
 T@"NSArray",C,N,V_contents
@@ -13432,6 +13412,7 @@ playbackOrder
 NEWEST_FIRST
 @"WFiTunesPodcastObject"24@?0@"WFPodcastShowObject"8Q16
 @"NSString"24@?0@"WFPodcastShowObject"8Q16
+Podcasts
 com.apple.podcasts
 @"NSURLQueryItem"24@?0@"NSString"8Q16
 podcasts://
@@ -13447,12 +13428,13 @@ v24@?0@"<WFSendMessageActionUserInterface>"8@"NSError"16
 @"WFSendRecipient"24@?0@"INPerson"8Q16
 value != nil
 outgoingMessageType
+Tq,R,N
 The Weather Channel
 WFAttribution
 /System/Library/PrivateFrameworks/WeatherFoundation.framework/WeatherFoundation
 WFDeletePhotosAction.m
 @"NSString"24@?0@"PHAsset"8Q16
-photos
+assetIdentifiers
 MPMediaItemCollection
 Class getMPMediaItemCollectionClass(void)_block_invoke
 WFSelectMusicAction.m
@@ -13461,6 +13443,7 @@ WFExportSongActionSelectMultiple
 v24@?0@"MPMediaItemCollection"8@"NSError"16
 v24@?0@"NSError"8@"NSArray"16
 Beginning
+Back
 Forward
 /System/Library/PrivateFrameworks/MediaPlaybackCore.framework/MediaPlaybackCore
 /System/Library/PrivateFrameworks/MediaPlaybackCore.framework/Contents/MacOS/MediaPlaybackCore
@@ -13478,19 +13461,22 @@ TvXKq6PUXP2GldJBTKM99C4ly30vrKerTF3Cr5LNqy3J3gZBPf
 tumblrOAuthToken
 tumblrOAuthTokenSecret
 is.workflow.my.app.tumblr.%@
+secret
 WFTumblrOAuthToken
-OAuthTokenSecret
+OAuthToken
+T@"NSString",C,N,V_OAuthTokenSecret
 Tumblr
 your Tumblr account
 x-apple-reminderkit://REMCDList/%@/contents
 WFList
 &#60;
 &#62;
-&gt;
+&#38;
+&lt;
 &#x96;
 &#x92;
 &#x39;
-&#x27;
+&quot;
 v32@?0@"WFWorkflowRecord"8Q16@?<v@?@"NSURL"@"NSError">24
 Create Link
 Anyone with access to this shared iCloud link will be able to view the contents of the shortcut.
@@ -13505,37 +13491,41 @@ Current Date
 WFDateActionDate
 WFDateActionMode
 WFWunderlistDateTimeTransformer
+createdAt
 created_at
 WFWunderlistDateTransformer
 @"NSString"32@?0@"NSDate"8^B16^@24
 @"NSDate"32@?0@"NSString"8^B16^@24
-yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+yyyy-MM-dd
 listId
 Tq,R,N,V_listId
-createdAt
 T@"NSDate",R,N,V_createdAt
+revision
 Tq,R,N,V_revision
+list_id
+dueDate
 created_by_id
-assignerId
 assigner_id
+assigneeId
 assignee_id
 taskId
 Tq,R,N,V_taskId
 TB,R,N,V_starred
-assigneeId
+T@"NSDate",R,N,V_dueDate
 Tq,R,N,V_assigneeId
+assignerId
 Tq,R,N,V_assignerId
 createdById
 Tq,R,N,V_createdById
 webURL
-T@"NSURL",R,N
 https://www.wunderlist.com/#/tasks/%ld
+updated_at
 noteId
 Tq,R,N,V_noteId
 T@"NSString",R,N,V_content
 T@"NSDate",R,N,V_updatedAt
-file_name
-fileId
+local_created_at
+file_size
 Tq,R,N,V_fileId
 Tq,R,N,V_userId
 T@"NSURL",R,N,V_url
@@ -13566,7 +13556,9 @@ Rating Index
 Rating Index (Attribute)
 Release Year
 Release Year (Attribute)
+Keywords
 Keywords (Attribute)
+Author
 Author (Attribute)
 Movie
 Movie (Attribute)
@@ -13603,7 +13595,9 @@ Artists (Entity Type)
 Books
 Books (Entity Type)
 Mac (Entity Type)
+iPad
 iPad (Entity Type)
+iPhone
 iPhone (Entity Type)
 Seasons
 Seasons (Entity Type)
@@ -13618,14 +13612,12 @@ Audiobook Authors (Entity Type)
 Songs (Entity Type)
 Music Videos
 Music Videos (Entity Type)
-Albums
 Albums (Entity Type)
 Tracks
 Music Tracks (Entity Type)
 Music Artists (Entity Type)
 Authors
 Podcast Authors (Entity Type)
-Podcasts
 Podcasts (Entity Type)
 Artists
 Movie Artists (Entity Type)
@@ -13642,24 +13634,28 @@ TV Shows (Media Type)
 Short Films (Media Type)
 Audiobooks (Media Type)
 Music Videos (Media Type)
+Music
 Music (Media Type)
 Podcasts (Media Type)
 Movies (Media Type)
 WFMediaType
 Storefront
 WFItemLimit
+WFCountry
 WFSearchTerm
-%@ (Pluralization)
 WFCreateNoteInput
 WFNoteGroup
+ShowWhenRun
+Title
 WFCreateNoteAction.m
 DefaultNotesAccount
 Please specify some text in the %@ action.
 No Content
 @"NSString"24@?0@"WFStringContentItem"8Q16
-Tq,R,N
 WFVariable
+categoryType
 Start of Cycle
+Folder
 v32@?0@"WFFileRepresentation"8@"WFDropboxMetadata"16@"NSError"24
 %d Dropbox files
 %d Dropbox file
@@ -13668,6 +13664,7 @@ Dropbox files
 A single Dropbox file
 Dropbox file
 v32@?0@"WFDropboxItemContentItem"8@16@?<v@?@>24
+Creation Date
 https://www.youtube.com/results?search_query=%@
 YouTube
 https://search.yahoo.com/mobile/s?p=%@
@@ -13687,11 +13684,11 @@ Bing
 https://www.amazon.com/s/s?k=%@
 Amazon
 WFSearchWebDestination
+flashlight
 T@"AVFlashlight",R,N,V_flashlight
 -[WFFlashlightSettingsClient toggleWithBrightnessLevel:completionHandler:]
 -[WFFlashlightSettingsClient turnOnWithBrightnessLevel:completionHandler:]
 -[WFFlashlightSettingsClient turnOffWithCompletionHandler:]
-flashlight
 WFFlashlightSettingsClient.m
 +[WFFlashlightSettingsClient createClientWithCompletionHandler:]
 +[WFFlashlightSettingsClient createClientWithCompletionHandler:]_block_invoke
@@ -13708,10 +13705,6 @@ WFRotation
 WFOverlayImageOpacity
 WFImageY
 WFImageX
-Custom
-Bottom Left
-Top Right
-Center
 WFImagePosition
 WFImageHeight
 WFImageWidth
@@ -13720,7 +13713,6 @@ outputHTML
 T@"NSMutableString",&,N,V_outputHTML
 htmlWriter
 T@"KSHTMLWriter",&,N,V_htmlWriter
-T@"NSArray",&,N,V_resources
 completionBlock
 T@?,C,N,V_completionBlock
 xmlParser
@@ -13729,17 +13721,16 @@ shouldIgnoreNextEndElement
 TB,N,V_shouldIgnoreNextEndElement
 shouldInlineResources
 TB,N,V_shouldInlineResources
-input
 disabled
 checkbox
 data:%@;base64,%@
 image/
 TB,V_isExecuting
+isFinished
 TB,V_isFinished
 stateQueue
 T@"NSObject<OS_dispatch_queue>",&,V_stateQueue
 %@.%p.state
-Folder
 v56@?0@"NSString"8{_NSRange=QQ}16{_NSRange=QQ}32^B48
 RideOption
 PaymentMethod
@@ -13768,6 +13759,8 @@ Sign In Required
 paymentMethod
 partySize
 rideOptionName
+dropOffLocation
+pickupLocation
 WFRequestRideIntentAction.m
 WFXCallbackCustomSuccessURL
 WFXCallbackCustomSuccessURLEnabled
@@ -13775,7 +13768,6 @@ WFXCallbackCustomErrorKey
 WFXCallbackCustomCancelKey
 WFXCallbackCustomSuccessKey
 WFXCallbackCustomCallbackEnabled
-scheme
 Yottabytes
 Zettabytes
 Exabytes
@@ -13785,19 +13777,21 @@ Gigabytes
 Megabytes
 Kilobytes
 Closest Unit
-currency
+Wi-Fi
+Cellular
 Currency
-companyName
 Company Name
+infoURL
 Info URL
 Time Quote Was Last Updated
 52-Week High
 52-Week Low
-highPrice
 High Price
+lowPrice
 Low Price
 Open Price
 Change in Price
+price
 Price
 %d Stocks
 %d Stock
@@ -13805,19 +13799,17 @@ Information about multiple stocks
 Stocks
 Stocks (Plural)
 Stock information
+Stock
 Stock (Single)
 HKUILocalizedWorkoutTypeName
+method
 T@"NSString",R,N,V_method
-parameters
 T@"NSArray",R,N,V_parameters
-body
 </base64></value>
 v16@?0@"NSString"8
 <value><base64>
-dateTime.iso8601
 %.4ld%.2d%.2dT%.2d:%.2ld:%.2ld%@
-string
-double
+boolean
 </struct></value>
 </member>
 </name>
@@ -13829,11 +13821,13 @@ double
 <value><%@>%@</%@></value>
 </params>
 </methodCall>
+</methodResponse>
 </param>
 <param>
 </methodName><params>
 <methodCall><methodName>
 </fault>
+faultCode
 <fault>
 <methodResponse>
 <?xml version="1.0"?>
@@ -13848,7 +13842,6 @@ com.apple.mobilenotes
 WFLogHealthSampleActionErrorDomain
 currentDate
 T@"NSDate",&,N,V_currentDate
-unitString
 WFQuantitySampleType
 WFQuantitySampleAdditionalQuantity
 WFQuantitySampleQuantity
@@ -13914,8 +13907,8 @@ Your site ran out of memory while processing this request
 Allowed memory size of \d+ bytes exhausted
 methodName
 fault
-outputFormat
 Tq,N,V_outputFormat
+recordingDuration
 Td,N,V_recordingDuration
 outputURL
 T@"NSURL",&,N,V_outputURL
@@ -13924,6 +13917,7 @@ T@"AVAudioRecorder",&,N,V_recorder
 updateTimer
 T@"NSTimer",&,N,V_updateTimer
 runningUpdateTimer
+TB,N
 paused
 TB,N,V_paused
 hasFinished
@@ -13959,20 +13953,22 @@ NSString *getAVSampleRateKey(void)
 AVFormatIDKey
 NSString *getAVFormatIDKey(void)
 WFEvernoteNotebooks
+T@"WFEvernoteAccessResource",&,N,V_evernoteAccessResource
 @"WFStringSubstitutableState"24@?0@"ENNotebook"8Q16
+%1$@ is not installed or could not open the file %2$@.
 com.goodiware.goodreader4
 @"NSString"32@?0@"NSDictionary"8^B16^@24
 attributes.description.short
 attributes.description.standard
 attributes.artwork.url
+artworkURLTemplate
 attributes.feedUrl
+feedURL
 attributes.url
-viewURL
 attributes.releaseDateTime
+releaseDate
 attributes.episodeNumber
-episodeNumber
 attributes.durationInMilliseconds
-duration
 attributes.genreNames
 attributes.artistName
 attributes.name
@@ -13981,14 +13977,13 @@ descriptionText
 T@"NSString",R,N,V_descriptionText
 genres
 T@"NSArray",R,N,V_genres
+episodeNumber
 T@"NSNumber",R,N,V_episodeNumber
-releaseDate
 T@"NSDate",R,N,V_releaseDate
+duration
 T@"WFTimeInterval",R,N,V_duration
+viewURL
 T@"NSURL",R,N,V_viewURL
-feedURL
-T@"NSURL",R,N,V_feedURL
-artworkURLTemplate
 T@"NSString",R,N,V_artworkURLTemplate
 com.samsoffes.ENSSKeychain
 acct
@@ -13998,11 +13993,11 @@ mdat
 svce
 Unable to subscribe to podcast because an unknown error occurred.
 Unable to Subscribe
+The specified podcast could not be found.
 v20@?0I8^{__CFArray=}12
 v40@?0@"WFContentItem"8Q16@?<v@?@"NSError">24^B32
-manager
 T@"BluetoothManager",R,N,V_manager
-T@?,C,N,V_availabilityCompletion
+availabilityCompletion
 observeBlocksPerDeviceType
 T@"NSMutableDictionary",R,N,V_observeBlocksPerDeviceType
 -[WFBluetoothSettingsClient setState:completionHandler:]_block_invoke
@@ -14028,17 +14023,19 @@ Class getBluetoothManagerClass(void)_block_invoke
 AVSpeechUtteranceDefaultSpeechRate
 float getAVSpeechUtteranceDefaultSpeechRate(void)
 WFSpeakTextRateParameter.m
+%@=%@&
 %@:%@
 NSMutableURLRequest+WFOAuth2.m
 Bearer 
+bearer
 WFWorkflowName
-WFWorkflow
 workflowController
 T@"WFWorkflowController",W,N,V_workflowController
 progress.fractionCompleted
 v16@?0@"WFWorkflowControllerState"8
 WFHandoffWorkflowControllerState
 Make sure a valid shortcut is selected in the Run Shortcut action.
+Shortcut Not Found
 v24@?0@"WFImageContentItem"8@?<v@?@@"NSError">16
 Custom Image
 Ellipse
@@ -14058,17 +14055,17 @@ userResult
 An unknown error occurred when running JavaScript.
 exception
 JavaScript Exception
-success
 Run JavaScript on Web Page failed because the script took too long to call the completion handler.
 JavaScript Timeout
 Run JavaScript on Web Page failed because no web page was passed as input.
 No Web Page
 The script must call the function `completion(result)` when finished.
 Invalid JavaScript
-completion
+symbol
 WFNSUnitSymbol
 WFNSUnitType
 WFQRErrorCorrectionLevel
+High
 Quartile
 This shortcut is not allowed to add web pages to Safari Reading List. You can change this in this shortcut's details.
 This shortcut is not allowed to add web pages to Safari Reading List.
@@ -14082,11 +14079,9 @@ WFMakeGIFActionLoopEnabled
 WFMakeGIFActionLoopCount
 WFMakeGIFActionDelayTime
 receipt-data
-redirect_url
-deleted_at
+false
 accept_tos
-bookmark
-video
+text
 T^{__CTServerConnection=},R,N,V_connection
 _CTServerConnectionSetCellularDataIsEnabled
 CTError WF_CTServerConnectionSetCellularDataIsEnabled(CTServerConnectionRef, Boolean)
@@ -14103,16 +14098,15 @@ CTError WF_CTServerConnectionGetCellularDataIsEnabled(CTServerConnectionRef, Boo
 serverConnection
 _CTServerConnectionCreateWithIdentifier
 CTServerConnectionRef WF_CTServerConnectionCreateWithIdentifier(CFAllocatorRef, CFStringRef, CTServerConnectionCallback, _CTServerConnectionContext *)
-com.apple.shortcuts
-accountIdentifier
 T@"NSString",R,C,N,V_accountIdentifier
 managedLevel
 TQ,R,N,V_managedLevel
+speakableString
 T@"INSpeakableString",R,N,V_speakableString
 targetContentAttribution
 T@"WFContentAttribution",R,N
-speakableString
 B16@?0@"NSURLQueryItem"8
+accountIdentifier
 ACAccountDataclassNotes
 NSString *getACAccountDataclassNotes(void)
 v32@?0@"ACAccount"8Q16^B24
@@ -14123,16 +14117,18 @@ void *AccountsLibrary(void)
 v40@?0@"INSpeakableString"8@"NSString"16@"WFContentAttributionSet"24@"NSError"32
 v24@?0@"WFNoteGroupDescriptor"8@"NSError"16
 B16@?0@"INSpeakableString"8
+Identifier
 DisplayString
 WFAction
 %@ (WFContentItemPropertyName)
 %@ (Parameter Value)
+%@ (Pluralization)
 WFSpeechLanguage
 DictateTextAction
 WFDictateTextAction
+On Tap
 After Short Pause
 After Pause
-actionUserInterface
 T@"<WFDictateTextActionUserInterface>",&,N,V_actionUserInterface
 dictationConnection
 T@"AFDictationConnection",&,N,V_dictationConnection
@@ -14153,7 +14149,6 @@ v24@?0@"<WFRemoteUserInterface>"8@"NSError"16
 AFDictationConnection
 CFBundleShortVersionString
 AFDictationOptions
-%@-%@
 WFDictateTextStopListening
 v40@?0@8@"NSString"16@"NSError"24@?<v@?@@"NSError">32
 v40@?0@"NSString"8@"NSString"16@"NSError"24@?<v@?@@"NSError">32
@@ -14163,29 +14158,31 @@ Fragment
 Query
 Path
 Port
-Password
+Host
+User
 Scheme
 WFURLComponent
 WFGetFileInitialDirectoryPath
 SelectMultiple
+/example.txt
 WFShowFilePicker
 WFGetFilePath
 WFFileErrorIfNotFound
 v32@?0@"NSArray"8@"WFContentAttributionSet"16@"NSError"24
 v24@?0@"<WFGetFileActionUserInterface>"8@"NSError"16
+address
 T@"NSString",C,N,V_address
 contactType
-address
+sessionManager
 T@"WFOAuth2SessionManager",R,N,V_sessionManager
-responseType
 T@"NSString",R,C,N,V_responseType
-completionHandler
-T@?,C,N,V_completionHandler
+T@"NSString",R,N,V_state
 authenticationSession
 T@"ASWebAuthenticationSession",&,N,V_authenticationSession
+presentationContext
 responseKey
 T@"NSString",R,N,V_responseKey
-authorizationURL
+T@"NSURL",R,C,N,V_authorizationURL
 redirectURI
 T@"NSURL",R,C,N,V_redirectURI
 workflow
@@ -14197,13 +14194,15 @@ void *AuthenticationServicesLibrary(void)
 ASWebAuthenticationSession
 Class getASWebAuthenticationSessionClass(void)_block_invoke
 WFOAuth2WebAuthorizationSession.m
-http
 v24@?0@"NSURL"8@"NSError"16
+redirect_uri
 response_type
 Unknown response type "%@"
-sessionManager
-extensions
+access_token
+TQ,R,N,V_extensions
+htmlParser
 T@"NSMutableArray",&,N,V_elements
+openElements
 T@"NSMutableArray",&,N,V_openElements
 blockElement
 T@"MMElement",&,N,V_blockElement
@@ -14220,8 +14219,8 @@ B8@?0
 ()\ 
 ^[-._0-9\p{L}]+@[-\p{L}0-9][-.\p{L}0-9]*\.\p{L}+$
 ^(\w+)://
+&gt;
 `&<>
-http://
 www.
 ._-+
 ,_-/:?&;%~!#+=@
@@ -14229,28 +14228,31 @@ www.
 range
 T{_NSRange=QQ},N,V_range
 Ti,N,V_type
-innerRanges
 T@"NSArray",C,N,V_innerRanges
 alignment
 Tq,N,V_alignment
 level
 TQ,N,V_level
+href
 T@"NSString",C,N,V_href
-title
-T@"NSString",C,N,V_stringValue
+identifier
+parent
 T@"MMElement",W,N,V_parent
 T@"NSArray",C,N,V_children
 T@"NSString",C,N,V_language
+innerRanges
 <%@: %p; type=%@; range=%@>
+none
 header
 paragraph
-strong
-mailto
+blockquote
+image
 entity
 definition
 !*'"();:@&=+$,/?%#[]% 
 WFSettingsClientErrorDomain
 WFFindHealthSamplesActionErrorDomain
+Tq,N,V_groupingOption
 fillMissing
 TB,N,V_fillMissing
 queryStartDate
@@ -14258,7 +14260,7 @@ T@"NSDate",&,N,V_queryStartDate
 queryEndDate
 T@"NSDate",&,N,V_queryEndDate
 readableSampleType
-com.apple.Health
+Open Health
 There are either no %@ samples logged or you need to give Shortcuts access to the samples in the Health app.
 No Samples Found
 v16@?0@"NSArray"8
@@ -14282,10 +14284,9 @@ WFHKSampleFilteringGroupBy
 v16@?0@"HKSampleType"8
 [WFFindHealthSamplesAction] categoryType and quantityType are nil for sampleTypeName = %@, sampleTypeIdentifier = %@
 @"NSString"24@?0@"HKSource"8Q16
-Source
 contentPropertyName
 WFParameterValues
-WFParameterKey
+WFParameterRelationResource
 WFResourceClass
 Whether or not to fill in empty groups with zero values. This is useful to turn off when averaging over a longer period of time.
 Fill Missing
@@ -14299,31 +14300,25 @@ T@"NSString",C,N,V_type
 T@"NSData",C,N,V_data
 -----END 
 -----
------BEGIN 
 WFPEMEncodingErrorDomain
 Private key contained PEM header and footer, but was not encoded correctly.
+itemKind
 T@"NSString",&,N,V_itemKind
+T@"NSString",R,C,N,V_name
 T@"NSString",R,C,N,V_path
 T@"NSString",R,C,N,V_identifier
 T@"NSString",R,C,N,V_revision
 T@"NSString",R,C,N,V_contentHash
 isDirectory
-T@"NSDate",R,N,V_clientModifiedDate
-serverModifiedDate
-T@"NSDate",R,N,V_serverModifiedDate
-folder
-en_US_POSIX
-\.tag
-itemKind
-server_modified
-client_modified
 clientModifiedDate
+T@"NSDate",R,N,V_clientModifiedDate
+T@"NSDate",R,N,V_serverModifiedDate
+yyyy-MM-dd'T'HH:mm:ss'Z'
+\.tag
+server_modified
+serverModifiedDate
 content_hash
-contentHash
-revision
-identifier
 path_display
-path
 /Adventure/
 Adventure/
 You must specify a path for the new folder.
@@ -14342,7 +14337,6 @@ Maximum Price
 minimumPrice
 Minimum Price
 Drop Off Location
-pickupLocation
 CLPlacemark
 Pickup Location
 estimatedPickupDate
@@ -14354,7 +14348,6 @@ Vehicle Information
 rideStatus
 T@"INRideStatus",R,N
 %@ %@ - (%@)
-%@ %@ %@
 T@"ENNoteRef",R,N
 v32@?0@"ENNote"8@"NSString"16@"NSError"24
 v32@?0@"UIPrintFormatter"8@"NSString"16@"NSError"24
@@ -14362,6 +14355,7 @@ v32@?0@"UIPrintFormatter"8@"NSString"16@"NSError"24
 v16@?0@"NSData"8
 v24@?0@"WFFileRepresentation"8@"NSError"16
 v32@?0@8@"NSString"16@"NSError"24
+UIPrintFormatter
 %d Evernote notes
 %d Evernote note
 Multiple Evernote notes
@@ -14372,43 +14366,39 @@ UIKit
 v32@?0@"WFContentCollection"8@"WFContentCollection"16@"NSError"24
 @24@?0@"WFURLContentItem"8Q16
 @24@?0@"WFStringContentItem"8Q16
-Last Modified Date
 v32@?0@"WFEvernoteContentItem"8@16@?<v@?@>24
-Creation Date
 v20@?0B8@"NSError"12
 StockUpdateManager
 /System/Library/PrivateFrameworks/Stocks.framework/Stocks
-Stock
 StockSymbol
-price
 T@"NSDecimalNumber",R,N,V_price
-openPrice
 T@"NSDecimalNumber",R,N,V_openPrice
+highPrice
 T@"NSDecimalNumber",R,N,V_highPrice
-lowPrice
 T@"NSDecimalNumber",R,N,V_lowPrice
-yearLowPrice
 T@"NSDecimalNumber",R,N,V_yearLowPrice
-yearHighPrice
 T@"NSDecimalNumber",R,N,V_yearHighPrice
-changeInPrice
 T@"NSDecimalNumber",R,N,V_changeInPrice
 timeQuoteWasLastUpdated
 T@"NSDate",R,N,V_timeQuoteWasLastUpdated
 T@"NSURL",R,N,V_infoURL
+companyName
 T@"NSString",R,N,V_companyName
 T@"NSString",R,N,V_currency
-infoURL
+changeInPrice
+yearHighPrice
+yearLowPrice
+openPrice
+currency
 Diastolic
-workout
 T@"HKWorkout",&,N,V_workout
 distanceUnit
 T@"HKUnit",&,N,V_distanceUnit
 caloriesUnit
 T@"HKUnit",&,N,V_caloriesUnit
 caloriesValue
-Td,R,N
 distanceValue
+workout
 , total calories %1$@ %2$@
 , total distance %1$@ %2$@
 %1$@ Workout, %2$@
@@ -14432,8 +14422,9 @@ PHAssetCollectionChangeRequest
 Class getPHAssetCollectionChangeRequestClass(void)_block_invoke
 PHAsset
 Class getPHAssetClass(void)_block_invoke
+The photo album that was selected does not exist.
+Unknown Album
 WFCameraRollSelectedGroup
-TB,R
 localIdentifier
 T@"NSString",R,C,N,V_localIdentifier
 localizedTitle
@@ -14482,7 +14473,6 @@ Class getAVAssetExportSessionClass(void)_block_invoke
 void *CoreMediaLibrary(void)
 AVMutableComposition
 Class getAVMutableCompositionClass(void)_block_invoke
-Normal
 0.5X
 1920x1080
 1280x720
@@ -14528,8 +14518,10 @@ WFMetadataGenre
 WFMetadataAlbum
 WFMetadataArtist
 WFMetadataTitle
+host
 This shortcut is not allowed to access your podcasts. You can change this in this shortcut's details.
 This shortcut is not allowed to access your podcasts.
+!*'();:@&=+$,/?%#[]
 statisticsQueue
 T@"NSObject<OS_dispatch_queue>",&,N,V_statisticsQueue
 stddev:
@@ -14563,6 +14555,7 @@ MKMapItem
 Class  _Nonnull getMKMapItemClass(void)_block_invoke
 WFSearchMapsAction.m
 Please select a different app for the Show in Maps action.
+filename
 T@"NSString",&,N,V_filename
 TB,N,V_isDirectory
 T@"NSDate",&,N,V_modificationDate
@@ -14574,6 +14567,7 @@ ownerGroupID
 TQ,N,V_ownerGroupID
 permissions
 T@"NSString",&,N,V_permissions
+flags
 TQ,N,V_flags
 <%@: %p> Filename: %@
 WFSocialPostPrefix
@@ -14582,35 +14576,36 @@ v16@?0@"WFContentCollection"8
 ConvertsAnimatedImagesToVideo
 WFEvernoteNoteTitle
 WFEvernoteNotebook
-WFEvernoteTags
 v24@?0@"ENNote"8@"NSError"16
 v24@?0@"ENNote"8@"ENNotebook"16
 WFArchiveFormat
 WFZIPName
+appBundleIdentifier
+T@"NSString",C,N,V_appBundleIdentifier
 @"WFNoteGroupSubstituableState"24@?0@"INSpeakableString"8Q16
 [value isKindOfClass:[HKSampleType class]]
 WFHKSampleTypeSubstitutableState.m
+Menstruation
 Menstrual Flow
 +[ENSDKResourceLoader pathToResourceNamed:extension:]
-/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.2.1.1/ActionKit/External/Evernote/EvernoteCore/Private/ENSDKResourceLoader.m
+/Library/Caches/com.apple.xbs/Sources/Shortcuts_Sim/Shortcuts-1092.4/ActionKit/External/Evernote/EvernoteCore/Private/ENSDKResourceLoader.m
+path
 Failed to load resource from ENSDKResources.bundle. Is it included in your app?
-bundle
+ENSDKResources
 QuantityTypeKey
 QuantityType
-quantityType
 T@"HKQuantityType",R,N,V_quantityType
 Systolic
 @24@?0@"HKUnit"8Q16
 9d076f4c40af42569a8b34bfb66a752c
 WFSelectedLanguage
 WFSelectedFromLanguage
+interfaceName
 T@"NSString",R,N,V_interfaceName
 SSID
-BSSID
 IPv4Address
 IPv6Address
 %02X:%02X:%02X:%02X:%02X:%02X
-interfaceName
 WFNetworkInterface.m
 en-crypt
 en-todo
@@ -14622,21 +14617,21 @@ en-media
 v32@?0@"WFFileRepresentation"8@"NSError"16@?<v@?@@"NSError">24
 client_secret_post
 client_secret_basic
-T@"NSURLSession",R,N,V_session
 tokenURL
 T@"NSURL",R,C,N,V_tokenURL
-T@"NSURL",R,C,N,V_authorizationURL
-T@"NSString",R,C,N,V_clientID
+authorizationURL
 clientSecret
 T@"NSString",R,C,N,V_clientSecret
-authenticationMethod
 T@"NSString",R,N,V_authenticationMethod
-client_id
 v32@?0@"NSDictionary"8@"NSHTTPURLResponse"16@"NSError"24
+refresh_token
+client_secret
 WFOAuth2SessionManager.m
+grant_type
 refreshCredential.refreshToken
 authorization_code
 client_credentials
+authenticationMethod
 WFStatisticsOperation
 v24@?0@"WFContentCollection"8@"NSError"16
 v40@?0@"WFConcreteStatisticsSampleProvider"8@"NSString"16@"NSError"24@?<v@?@@"NSError">32
@@ -14648,37 +14643,38 @@ Range
 Mode
 Median
 Maximum
+Minimum
 Average
 route
 T@"MPAVRoute",R,N,V_route
 [value isKindOfClass:[WFMediaRouteDescriptor class]]
 WFMediaRouteState.m
-localizedAirQualityCategory
+CLLocation
+Air Pollutants
 Air Quality Category
 Air Quality Index
 Sunset Time
 Sunrise Time
-uvIndex
-UV Index
+windDirection
 Wind Direction
-windSpeed
 Wind Speed
+precipitationChance
 Precipitation Chance
-precipitationAmount
 Precipitation Amount
+pressure
 Pressure
 Humidity
+dewpoint
 Dewpoint
 Visibility
+localizedConditionString
 Condition
-feelsLikeTemperature
 Feels Like
-temperature
+highTemperature
 Temperature
 /System/Library/Frameworks/CoreLocation.framework/CoreLocation
 /System/Library/Frameworks/CoreLocation.framework/Contents/MacOS/CoreLocation
 void *CoreLocationLibrary(void)
-CLLocation
 Class getCLLocationClass(void)_block_invoke
 WFWeatherDataContentItem.m
 Location
@@ -14689,9 +14685,7 @@ Weather Conditions
 Weather Conditions (Plural)
 Weather Conditions (Single)
 CoreLocation
-Image
 UlyssesAttachmentType
-UIPrintFormatter
 /System/Library/Frameworks/UIKit.framework/UIKit
 Page Range
 Single Page
@@ -14710,13 +14704,14 @@ LanguageDetection
 WFDropboxErrorDomain
 contentBaseURL
 T@"NSURL",R,N,V_contentBaseURL
+progressTable
+T@"NSMapTable",R,N,V_progressTable
 reason
 .tag
 An unknown error occurred (%@)
 An unknown error occurred
 error_summary
 Access to the requested path is forbidden.
-access_denied
 A shared link already exists.
 shared_link_already_exists
 An error occurred when creating a sharing link because the email associated with your Dropbox account has not been verified.
@@ -14742,14 +14737,15 @@ restricted_content
 not_folder
 not_file
 not_found
-Content-Type
+application/json; charset=utf-8
+%llu
 Dropbox-API-Arg
 \u%04x
 v32@?0@"NSURL"8@"NSURLResponse"16@"NSError"24
 Dropbox-API-Result
 files/search
 metadata
-matches
+mode
 files/download
 v32@?0@"WFFileRepresentation"8@"NSDictionary"16@"NSError"24
 sharing/list_shared_links
@@ -14759,16 +14755,17 @@ link_permissions
 links
 sharing/create_shared_link_with_settings
 v24@?0@"NSDictionary"8@"NSError"16
+settings
 files/delete
 v24@?0Q8@"NSString"16
 files/upload_session/append_v2
 files/upload_session/finish
-cursor
 commit
 files/upload_session/start
 v24@?0@8@"NSError"16
 files/upload
 session_id
+client_modified
 autorename
 overwrite
 files/create_folder
@@ -14798,6 +14795,7 @@ Class getMPAVOutputDeviceRouteClass(void)_block_invoke
 Set Noise Control Mode failed because no route was selected.
 Could Not Set Noise Control mode
 WFFileType
+actionUserInterface
 T@"<WFSaveFileActionUserInterface>",&,N,V_actionUserInterface
 saveOperation
 T@"<WFFileStorageServiceOperation>",&,N,V_saveOperation
@@ -14811,9 +14809,11 @@ v24@?0Q8@"NSError"16
 v24@?0@"<WFSaveFileActionUserInterface>"8@"NSError"16
 T@"NSDate",&,N,V_startDate
 T@"NSDate",&,N,V_endDate
-sampleType
+T@"HKQuantityType",&,N,V_quantityType
 T@"HKSampleType",R,N
+T@"NSString",&,N,V_sourceName
 Not Set
+Other
 Male
 Female
 HKUnitPreferenceController
@@ -14833,17 +14833,16 @@ v32@?0@"HKSourceQuery"8@"NSSet"16@"NSError"24
 responseObject
 T@"NSDictionary",R,N,V_responseObject
 T@"NSString",R,N,V_accessToken
+tokenType
 T@"NSString",R,N,V_tokenType
 T@"NSString",R,N,V_refreshToken
+expirationDate
 T@"NSDate",R,N,V_expirationDate
 expired
 TB,R,N,GisExpired
-tokenType
-accessToken
-bearer
-refresh_token
+expires_in
 token_type
-T@"NSString",C,N,V_password
+password
 userInterface
 T@"<WFUserInterfaceHost>",R,N,V_userInterface
 viewController
@@ -14856,8 +14855,7 @@ data:read_write
 data:delete
 project:delete
 Content-Typee
-client_secret
-access_token
+client_id
 https://todoist.com/api/access_tokens/revoke
 WFTodoistOAuth2SessionManager.m
 https://todoist.com/oauth/authorize
@@ -14873,10 +14871,12 @@ Td,N,V_scale
 opacity
 Td,N,V_opacity
 v56@?0@"WFImage"8@"WFBitmapContext"16{CGRect={CGPoint=dd}{CGSize=dd}}24
+CloudApp
 is.workflow.my.app.cloudapp
 engine
 T@"CLAPIEngine",R,N,V_engine
-Device
+Playback
+Audio/Video
 /System/Library/PrivateFrameworks/Celestial.framework/Celestial
 /System/Library/PrivateFrameworks/Celestial.framework/Contents/MacOS/Celestial
 void *CelestialLibrary(void)
@@ -14884,23 +14884,22 @@ AVSystemController
 Class getAVSystemControllerClass(void)_block_invoke
 WFSetVolumeAction.m
 WFVolume
-yyyy-MM-dd
-yyyy-MM-dd'T'HH:mm:ss'Z'
-Accept
-updated_at
-icon
+application/json
+bookmark
+video
+deleted_at
 remote_url
+redirect_url
 view_counter
 item_type
-channels
 auth_url
 app_id
+api_key
+socket
 alpha
 subscription_expires_at
-subscribed
 private_items
 domain_home_page
-domain
 rideOptions
 T@"NSArray",C,N,V_rideOptions
 paymentMethods
@@ -14916,10 +14915,8 @@ T@"NSMutableArray",R,N,V_completionBlocks
 loadingOptionsQueue
 T@"NSObject<OS_dispatch_queue>",R,N,V_loadingOptionsQueue
 T@"CLPlacemark",C,N,V_pickupLocation
-dropOffLocation
 T@"CLPlacemark",C,N,V_dropOffLocation
-appBundleIdentifier
-T@"NSString",C,N,V_appBundleIdentifier
+delegate
 T@"<WFRideOptionsLoaderDelegate>",W,N,V_delegate
 rideOptionParameterParameter
 T@"WFRideOptionParameter",&,N,V_rideOptionParameterParameter
@@ -14930,19 +14927,24 @@ v24@?0@"INInteraction"8@"NSError"16
 v32@?0@?<v@?@"NSArray"@"NSArray"@"NSError">8Q16^B24
 @24@?0@"INPaymentMethod"8Q16
 @24@?0@"INRideOption"8Q16
+ - %@
+Apple Pay
 com.apple.Shortcuts.actions.RequestRide.LoadOptionsQueue
 ENStoreClientDidFailWithAuthenticationErrorNotification
 T@"NSObject<OS_dispatch_queue>",&,N,V_queue
 ENStoreClient got authentication EDAM error %u
+EDAMErrorCode
 v8@?0
 com.evernote.sdk.%@
+episodes
 WFEnforceClass
 relationships
+notes
+T@"NSString",R,N,V_identifier
 T@"NSString",R,N,V_text
 keywords
 T@"NSArray",R,N,V_keywords
 T@"NSArray",R,N,V_notes
-T@"NMSSHSession",&,N,V_session
 sftpSession
 T^{_LIBSSH2_SFTP=},N,V_sftpSession
 contentsAtPath:progress: failed to get file attributes
@@ -14956,45 +14958,44 @@ Failed to close directory
 Unable to read directory
 Could not open directory at path %@ (Error %li: %@)
 Unable to init SFTP session
+You have to provide a valid NMSSHSession!
 separator
 customSeparator
-code
-T@"NSString",C,D,N
 pattern
+caseSensitive
+T@"NSNumber",C,D,N
+matches
+T@"NSArray",C,D,N
 errorDescription
 groupIndex
 noMatchIndex
 rangeErrorGroupNumber
 rangeErrorGroupCount
 question
-stringAnswer
 numberAnswer
 urlAnswer
+T@"NSURL",C,D,N
 defaultURLAnswer
-dateAnswer
+T@"NSDateComponents",C,D,N
 timeAnswer
 dateAndTimeAnswer
 allowsDecimalNumbers
 allowsNegativeNumbers
+Tq,N,V_code
+result
 T@"WFAskForInputResult",C,D,N
 prompt
+T@"NSString",C,D,N
 originalItems
-T@"NSArray",C,D,N
 chosenItems
 selectedItem
 T@"WFChooseFromListItem",C,D,N
-Tq,D,N
-T@"NSNumber",C,D,N
-Tq,N,V_code
-operation
 state
-assetIdentifiers
-text
-caseSensitive
+Tq,D,N
+operation
+photos
+code
 urlValue
-T@"NSURL",C,D,N
-dateValue
-T@"NSDateComponents",C,D,N
 timeValue
 dateAndTimeValue
 %s Warning: %{public}@ is of type %{public}@, not %{public}@! Falling back to nil.
@@ -24173,7 +24174,7 @@ opacity
 setOpacity:
 drawInContext:inRect:blendMode:alpha:
 setLocalVolume:
-setActiveCategoryVolumeTo:
+setVolumeTo:forCategory:
 accountWithJSONDictionaryData:
 accountWithAPIDictionary:
 socketWithJSONDictionaryData:

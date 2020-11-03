@@ -1,4 +1,5 @@
-@(#)PROGRAM:DVTFoundation  PROJECT:DVTFrameworks-17511
+@(#)PROGRAM:DVTFoundation  PROJECT:DVTFrameworks-17515.1
+ffff
 MbP?
 ?333333
 ?333333
@@ -6652,7 +6653,7 @@ DVTShouldAssertForEnvironment(%@) -> %@
 void _DVTGetBuildDateComponentsWithoutCaching(char * _Nonnull, NSArray *__autoreleasing *, NSInteger * _Nonnull, NSInteger * _Nonnull, NSInteger * _Nonnull)
 DVTFoundationUtilities.m
 [dateComponents count] == 3
-Sep 22 2020
+Oct  7 2020
 BOOL _DVTIsBuildDateAfterDateStringWithoutCaching(NSInteger, NSInteger, NSInteger, NSString * _Nonnull __strong)
 You can disable this assertion by setting the hidden user default '%@' to NO. 
 This was automatically enabled for QuickLooks on %@.
@@ -10705,6 +10706,8 @@ foundRange.location == NSNotFound || (foundRange.location >= range.location && (
 (shouldGroup)
 -[NSArray(DVTFoundationClassAdditions) dvt_unorderedArrayByGroupingObjectsUsingKeyPaths:]
 keyPaths.dvt_isNonEmpty
+-[NSArray(DVTFoundationClassAdditions) dvt_unorderedArrayByGroupingObjectsUsingKeys:]
+key.dvt_isNonEmpty
 %@ %@ %@
 %@%@%@ %@
 -[NSArray(DVTFoundationClassAdditions) dvt_objectAtWrappedIndex:]
@@ -18687,7 +18690,7 @@ _terminalWidth
 supportedUDIDs
 canBeInstalledOnDeviceWithIdentifier:
 filePathMock
-appIdentifierPrefixes
+applicationIdentifierPrefixes
 appIdentifierEntitlement
 appIdentifierEntitlementWithoutPrefix
 usesExplicitAppIdentifier
@@ -19924,6 +19927,7 @@ _sysmonRequest
 _currentRow
 bridgeHasNewProcessInformation:
 dvt_rangeOfArray:inRange:
+dvt_unorderedArrayByGroupingObjectsUsingKeys:
 dvt_arrayByAddingObjects:
 dvt_objectAtIndexIfInBounds:
 dvt_isIndexInBounds:
@@ -20026,7 +20030,6 @@ _firstApplicationArgument
 _allApplicationArguments
 initWithName:UUID:entitlements:appIdentifierName:appIdentifierPrefixes:teamName:teamIdentifierPrefixes:dateCreated:dateExpired:platforms:supportedUDIDs:certificateSHA1Hashes:certificateKinds:isUniversal:isAppleInternal:isXcodeManaged:
 applicationIdentifierEntitlement
-applicationIdentifierPrefixes
 dvt_stringByAppendingSuffixIfMissing:
 initWithName:UUID:entitlements:appIdentifierName:appIdentifierPrefixes:teamName:teamIdentifierPrefixes:dateCreated:dateExpired:platforms:supportedUDIDs:certificates:isUniversal:isAppleInternal:isXcodeManaged:
 underlyingProfile
@@ -22648,8 +22651,8 @@ So8NSStringC
 ySS_SStG
 SS_SSt
 $ss25ExpressibleByArrayLiteralP
-$ss10SetAlgebraP
 $sSY
+$ss10SetAlgebraP
 $ss9OptionSetP
 $ss21_ObjectiveCBridgeableP
 7ElementSTQz7element_Sb6isLastt
@@ -22677,10 +22680,13 @@ G0R1_
 $s13DVTFoundation25DVTDebugStringConvertibleP
 So17OS_dispatch_queueC
 $s13DVTFoundation10BoxedValueP
+ySsG
 ySSSayy
 ySo8NSObject_pGcGG
+ySo8NSObject_pGcG
 _ypt
 yS2SG
+ySiG
 ySSypG
 SSSg5label_yp5valuetSg
 SS_ypt
@@ -22723,12 +22729,8 @@ SDyS2SG
 So23DVTSourceCodeSymbolKindC
 So15DVTFileDataTypeC
 So15DVTFileDataTypeCSg
-ySiG
-ySsG
-ySnySiGG
-ySo17OS_dispatch_queueCG
 ySo11DVTFilePathCG
-ySo8NSObject_pGcG
+ySo17OS_dispatch_queueCG
 SSIgo_
 $ss12CaseIterableP
 _yptG
@@ -22796,6 +22798,7 @@ ySo8NSObjectCGG
 ySo11DVTFilePathCG
 ySSG
 So13DVTRangeArrayC
+ySnySiGG
 xSgSDy
 ypGSgSpy
 GIegggy_
@@ -22824,8 +22827,8 @@ reverseHexDumpFailed
 failedToLocateXARSigner
 failedToCreateTemporaryDataPath
 ArrayLiteralElement
-Element
 RawValue
+Element
 _ObjectiveCType
 wrapped
 iterator

@@ -708,6 +708,7 @@ Update Access Record: %@ for %@ to %@ (v%llu) at %lld (%@)
 Timeout
 SB Ext
 Allow Standard User to Set System Service
+Next Request Should Prompt
  CodeReq: %@
  Indirect %@ : %@
  Indirect : %@
@@ -1300,6 +1301,7 @@ AllowStandardUserToSetSystemService
 SELECT flags FROM access WHERE service = ? AND client = ? AND client_type = ?
 UPDATE access SET flags = ? WHERE service = ? AND client = ? AND client_type = ?
 SELECT service, client, client_type, flags FROM access WHERE flags & ?
+Receiver must not be the empty string.
 open() for F_GETPATH failed.
 fcntl(,F_GETPATH) failed.
 identityType
@@ -1867,9 +1869,11 @@ messageIdentifier
 authorizationReason
 setAuthorizationValue:
 setAuthorizationReason:
-spiVersion
-upgradeV1AuthorizationValue
 authorizationVersionNumber
+upgradeV1AuthorizationValue
+spiVersion
+recordUpgradePolicy
+promptRightsMask
 setDatabaseAction:
 setReplyNoCacheAuthorization:
 promptingPolicy
@@ -1893,7 +1897,6 @@ auditToken
 isAccessAllowedByDefault
 defaultAllowedIdentifiersList
 setDatabaseFlags:
-recordUpgradePolicy
 setV1AuthorizationUpgrade:
 setV1AuthorizationValue:
 setV1AuthorizationReason:
@@ -1913,7 +1916,6 @@ displayName
 dictionary
 requestTitleTextLocalizationKey
 requestAdditionalTextLocalizationKey
-promptRightsMask
 authorizationPromptRightsMask
 allowAuthorizationButtonTitleLocalizationKey
 denyAuthorizationButtonTitleLocalizationKey
@@ -2047,6 +2049,11 @@ initWithService:indirectObject:
 _serviceObject
 _indirectObject
 fileExistsAtPath:
+loadAndParse
+watchPlistChanges
+plistFilePath
+allowedParser:
+watchedPath
 rightDescription
 reasonDescription
 reset
@@ -2364,22 +2371,17 @@ _authorizationReason
 _flags
 _lastModifiedDate
 orderedOverridePolicies
-loadAndParse
 _locked_evaluateAccessByIdentity:toService:withIndirectObjectIdentityIdentity:authorizationReason:
 setPolicyAccessByIdentifier:
-plistFilePath
 setPlistDictionary:
 plistDictionary
 loadPlist
 parsePlist
 policyAccessByIdentifier
-allowedParser:
 validateEntry:identifierType:codeRequirementString:serviceName:allowed:comment:
 parseCodeRequirements:
 watchedFileVnodeSource
 setWatchedFileVnodeSource:
-watchedPath
-watchPlistChanges
 loadPolicyData
 evaluateOverridePolicyForAccessByIdentity:toService:withIndirectObjectIdentityIdentity:authorizationReason:
 setPromptingPolicy:
@@ -2556,6 +2558,8 @@ _isSBRemoteAlertAvailable
 _isDeviceLocked
 _waitForDeviceUnlock
 _handleSBRemoteAlert:
+isValid
+invalidate
 remoteAlertHandleDidActivate:
 remoteAlertHandleDidDeactivate:
 remoteAlertHandle:didInvalidateWithError:
@@ -3100,7 +3104,8 @@ Remote Alert: activating for %{public}@: %{public}@
 Remote Alert: alert not configured correctly: %{public}@.
 Display Alert: alert condition (%ld) not supported or misconfigured: %{public}@
 Remote Alert: %{public}@ didActivate
-Remote Alert: handle: %{public}@, error: %{public}@
+Remote Alert: %{public}@ didDeactivate
+Remote Alert: handle: %{public}@, didInvalidateWithError: %{public}@
 TCCDMasterSyncController
 PSYSyncCoordinatorDelegate
 NSObject
@@ -3403,7 +3408,7 @@ B24@0:8q16
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B60x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

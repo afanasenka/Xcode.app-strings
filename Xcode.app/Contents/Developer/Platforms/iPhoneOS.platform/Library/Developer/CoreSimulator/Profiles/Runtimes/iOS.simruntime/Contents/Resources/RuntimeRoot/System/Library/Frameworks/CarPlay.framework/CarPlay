@@ -334,7 +334,6 @@ kCPListTemplateSectionsKey
 kCPListTemplateEmptyTitlesKey
 kCPListTemplateEmptySubtitlesKey
 v32@?0@"CPListSection"8Q16^B24
-v24@?0@"<CPListTemplateItem>"8^B16
 maximumItemCount
 maximumSectionCount
 itemsToReload
@@ -761,7 +760,6 @@ Application exceeded audio metadata throttle limit.
 %@: Activated button: %@ for control identifier: %@
 %@: No available button for identifier %@
 Failed to identify a local template for identifier %@
-Couldn't match an update for item %@ to an indexpath in %@
 Sending List Template update for %@ with %@
 Failed to identify a local item for %@
 %@ didSelectListItemWithIdentifier %@
@@ -839,8 +837,8 @@ CPAlertTemplate
 CPBarButton
 CPNowPlayingTemplateObserver
 CPNowPlayingTemplate
-CPListItemPrivate
 CPListSection
+CPListItemPrivate
 CPWindow
 CPVoiceControlState
 CPVoiceControlTemplate
@@ -1200,6 +1198,7 @@ _presentActionSheetTemplate:animated:completion:
 _presentAlertTemplate:animated:completion:
 _pushVoiceControlTemplate:animated:completion:
 dismissTemplateAnimated:reply:
+invalidateTemplateProvider
 _synchronousTemplateProvider
 getPresentedTemplateWithReply:
 getTopTemplateWithReply:
@@ -1257,7 +1256,7 @@ _whitelistClassesForBaseTemplateProvider:
 updateWithInformationTemplate:
 listTemplate:didSelectListItemWithIdentifier:completionHandler:
 listTemplate:didSelectImageAtIndex:inImageRowItem:
-updateSections:
+reloadTemplate:
 reloadItems:
 previewTripIdentifier:usingRouteIdentifier:
 startTripIdentifier:usingRouteIdentifier:
@@ -1334,15 +1333,11 @@ activationState
 updateLayoutGuideWithInsets:
 sharedTemplate
 objectAtIndex:
-invalidateTemplateProvider
 removeObjectAtIndex:
-presentedTemplate
-setPresentedTemplate:
-lastPresentedTemplate
-setLastPresentedTemplate:
 enumerateObjectsWithOptions:usingBlock:
 _activeMapTemplate
 setPrefersDarkUserInterfaceStyle:
+presentedTemplate
 topTemplate
 presentTemplate:animated:
 popToTemplate:animated:
@@ -1356,6 +1351,9 @@ prefersDarkUserInterfaceStyle
 rootTemplate
 setRootTemplate:
 setTemplateStack:
+setPresentedTemplate:
+lastPresentedTemplate
+setLastPresentedTemplate:
 carWindow
 setCarWindow:
 setWindowProvider:
@@ -1425,9 +1423,6 @@ initWithItems:header:sectionIndexTitle:
 items
 arrayWithArray:
 replaceObjectAtIndex:withObject:
-listTemplate
-setListTemplate:
-_setNeedsUpdate
 header
 sectionIndexTitle
 initWithItems:
@@ -1439,6 +1434,9 @@ replaceItems:
 _header
 _sectionIndexTitle
 _items
+listTemplate
+setListTemplate:
+_setNeedsUpdate
 addLayoutGuide:
 topAnchor
 constraintEqualToAnchor:constant:
@@ -1584,7 +1582,6 @@ emptyViewTitleVariants
 emptyViewSubtitleVariants
 sectionCount
 indexPathForRow:inSection:
-indexPathForItem:
 itemsToReload
 setNeedsUpdate
 allObjects
@@ -1593,7 +1590,9 @@ _itemForHostItemWithIdentifier:
 listTemplate:didSelectListItem:completionHandler:
 listImageRowHandler
 initWithTitle:sections:
+updateSections:
 itemCount
+indexPathForItem:
 performUpdate
 setEmptyViewTitleVariants:
 setEmptyViewSubtitleVariants:
@@ -2154,6 +2153,7 @@ v24@0:8@"CPInformationTemplate"16
 v40@0:8@16Q24@32
 v40@0:8@"CPListTemplate"16@"NSUUID"24@?<v@?>32
 v40@0:8@"CPListTemplate"16Q24@"CPListImageRowItem"32
+v24@0:8@"CPListTemplate"16
 v24@0:8q16
 v48@0:8{CGPoint=dd}16{CGPoint=dd}32
 v32@0:8{CGPoint=dd}16
@@ -2200,9 +2200,8 @@ v36@0:8@?16B24@28
 v24@0:8@"CPNowPlayingTemplate"16
 v32@0:8q16@24
 @"CARObserverHashTable"
-@"CPListTemplate"16@0:8
-v24@0:8@"CPListTemplate"16
 Q24@0:8@16
+@"CPListTemplate"16@0:8
 @56@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48
 @"CPTemplateApplicationScene"
 @"UILayoutGuide"

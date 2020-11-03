@@ -1,6 +1,3 @@
-}|%1
-}LQ0
-wh"0
 N5zilch19GeometryPathElementE
 N5zilch11PathElementE
 NSt3__118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE
@@ -22387,6 +22384,7 @@ EXECUTE
 RECALCULATING
 LOST_LOCATION
 GEOMapURLBuilder
+nil == destinationAddress && nil == startAddress
 nil == destinationAddress
 %lf,%lf,%lf,%lf
 %lf,%lf,%lf
@@ -38589,6 +38587,8 @@ Canceling place data request: %p
 %{public}@ came back with an error!
 %@<%p> is compatible with protocol version %lu
 %@<%p> is not compatible with protocol version %lu
+Removed origin/destination from route: %@
+Removed waypoints from route: %@
  | Converting to generic step
 Assertion failed: !formattedString || [formattedString isKindOfClass:GEOFormattedString.class]
 Assertion failed: !instructionSet || [instructionSet isKindOfClass:GEOInstructionSet.class]
@@ -59384,6 +59384,7 @@ _requestToUUID
 _requestToUUIDLock
 maneuverStep
 needsStepsRewrite
+needsWaypointRemoval:
 instanceCompatibleWithProtocolVersion:
 genericStepForCyclingStep:protocolVersion:
 initWithObjects:

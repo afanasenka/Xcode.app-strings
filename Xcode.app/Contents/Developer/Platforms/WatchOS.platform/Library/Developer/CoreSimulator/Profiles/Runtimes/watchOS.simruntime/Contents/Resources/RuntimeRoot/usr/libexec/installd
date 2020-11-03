@@ -61,6 +61,7 @@ SignerIdentity
 SignerOrganization
 CodeInfoIdentifier
 TeamIdentifier
+SignatureVersion
 com.apple.MobileContainerManager.Entitlements
 ValidatedByProfile
 ValidatedByUPP
@@ -74,6 +75,8 @@ codeInfoIdentifier
 T@"NSString",R,C,N,V_codeInfoIdentifier
 teamIdentifier
 T@"NSString",R,C,N,V_teamIdentifier
+signatureVersion
+T@"NSNumber",R,C,N,V_signatureVersion
 entitlements
 T@"NSDictionary",R,C,N,V_entitlements
 validatedByProfile
@@ -140,8 +143,6 @@ allowPatchWithoutSinf
 TB,R,N,V_allowPatchWithoutSinf
 codeSigningEnforcementIsDisabled
 TB,R,D,N
-isInternalImageType
-TB,R,N,V_isInternalImageType
 nSimultaneousInstallations
 Tq,R,N,V_nSimultaneousInstallations
 haveUpdatedPluginContainersWithParentID
@@ -267,7 +268,6 @@ Double-check Info.plist format
 SPI failed
 -[MIClientConnection updatePlaceholderMetadataForApp:installType:failureReason:underlyingError:failureSource:completion:]
 Update placeholder metadata requested by client %@ for app %@ installType = %lu failureReason = %lu underlyingError = %@ failureSource = %lu
-Bundle container for %@ at %@ missing bundle executable
 -[MIClientConnection getAppMetadataForApp:completion:]
 Get app metadata requested by client %@ for app %@
 Failed to save bundle metadata for %@. Error: %@
@@ -489,6 +489,7 @@ Failed to get VPN plugin bundle container with ID %@ for app %@ : %@
 -[MIInstalledInfoGatherer launchServicesDictionaryWithError:]
 Failed to validate binary at %@: %@. This binary may not work properly.
 CodeSigningInfoNotAuthoritative
+Failed to fetch signature version for executable at %@ with libMIS error %@; continuing
 IsContainerized
 HasAppGroupContainers
 HasSystemContainer
@@ -921,7 +922,6 @@ PreflightingApplication
 DuplicateIdentifier
 Found bundle at %@ with the same identifier (%@) as bundle at %@
 The parent bundle has the same identifier (%@) as sub-bundle at %@
-Failed to get installType from existing placeholder bundle %@ : %@
 ReplaceExtensionlessWatchKitAppWithExtensionBasedAppNotAllowed
 Attempted to replace extensionless WatchKit app with identifier %@ with extension-based WatchKit app
 -[MIInstallableBundle _validateCompanionAppStateInWatchKitApp:withVersion:error:]
@@ -1008,6 +1008,7 @@ Wrote %ld bytes of data from options key %@ to %@
 BuildVersion
 -[MIInstallableBundle _setBundleMetadataWithError:]
 Failed to copy build version for %@
+Failed to get installType from existing bundle %@ : %@
 CreatingContainer
 -[MIInstallableBundle performInstallationWithError:]
 Don't know how to create bundle container for installable type %d
@@ -1018,6 +1019,7 @@ Failed to create plugin data container for plugin %@
 PostflightingApplication
 OverrideLaunchDisabled
 -[MIInstallableBundle postFlightInstallationWithError:]
+%@ is already installed and launch enabled - will keep launch enabled state
 Disabled launch for %@ until companion counterpart is installed
 -[MIInstallableBundle _refreshUUIDForContainer:withError:]
 Data container for %@ is now at %@
@@ -1062,6 +1064,10 @@ Successfully cleaned up orphaned temp %s container for %@
 -[MIExecutableBundle _validateWithError:]
 MissingBundleExecutable
 Bundle at path %@ has missing or invalid CFBundleExecutable in its Info.plist
+-[MIExecutableBundle lsInstallTypeWithError:]
+Could not get install type because no bundle container relation is set on %@
+Could not get install type because bundle metadata could not be read from %@
+Install type not set in bundle metadata for %@
 -[MIExecutableBundle watchKitAppExecutableHashWithError:]
 Could not calculate hash because there is no watch app executable URL
 %@ is not expected to contain watch app executables
@@ -1223,6 +1229,8 @@ watchKitPlugin
 T@"MIPluginKitPluginBundle",&,N,V_watchKitPlugin
 installationIdentity
 T@"MIInstallationIdentity",C,N,V_installationIdentity
+lsInstallType
+TQ,N,V_lsInstallType
 T@"MIBundleContainer",W,N,V_bundleContainer
 executableName
 executableURL
@@ -1238,8 +1246,6 @@ maxLinkedSDKVersion
 TI,R,N
 counterpartIdentifiers
 T@"NSArray",R,C,D,N
-lsInstallType
-TQ,R,N,V_lsInstallType
 hasWatchGlance
 hasWatchCustomNotification
 isExtensionBasedWatchKitApp
@@ -1967,12 +1973,13 @@ _systemAppPlaceholders
 _enumerator
 initWithDictionaryRepresentation:fromSource:
 unsignedIntegerValue
-initWithSignerIdentity:signerOrganization:codeInfoIdentifier:teamIdentifier:entitlements:validatedByProfile:validatedByUPP:isAdHocSigned:validatedByFreeProfile:signingInfoSource:
+initWithSignerIdentity:signerOrganization:codeInfoIdentifier:teamIdentifier:signatureVersion:entitlements:validatedByProfile:validatedByUPP:isAdHocSigned:validatedByFreeProfile:signingInfoSource:
 entitlements
 signerIdentity
 signerOrganization
 codeInfoIdentifier
 teamIdentifier
+signatureVersion
 validatedByProfile
 numberWithBool:
 validatedByUPP
@@ -1990,6 +1997,7 @@ _signerIdentity
 _signerOrganization
 _codeInfoIdentifier
 _teamIdentifier
+_signatureVersion
 _entitlements
 _signingInfoSource
 xpcConnection
@@ -2023,7 +2031,7 @@ initWithSuiteName:
 stringForKey:
 boolForKey:
 integerForKey:
-isInternalImageType
+allowsInternalSecurityPolicy
 synchronize
 setBool:forKey:
 dictionary
@@ -2040,7 +2048,6 @@ skipThinningCheck
 allowPatchWithoutSinf
 nSimultaneousInstallations
 installEmbeddedWatchAppIfPresent
-_isInternalImageType
 _skipDeviceFamilyCheck
 _skipThinningCheck
 _allowPatchWithoutSinf
@@ -2111,7 +2118,6 @@ bundleMetadataWithError:
 setPlaceholderFailureReason:
 setPlaceholderFailureUnderlyingError:
 setPlaceholderFailureUnderlyingErrorSource:
-setLSInstallType:error:
 setInstallType:
 saveBundleMetadataWithError:
 watchKitAppExecutableHash
@@ -2518,7 +2524,6 @@ validateSinfWithError:
 date
 setInstallDate:
 setInstallBuildVersion:
-lsInstallType
 tempAppBundleContainerWithIdentifier:error:
 tempVPNPluginBundleContainerWithIdentifier:error:
 captureBundleByMoving:withError:
@@ -2548,8 +2553,8 @@ _identifiersMap
 _appIdentifier
 realPathForURL:ifChildOfURL:
 executableName
-installTypeForBundle:error:
-setInstallType:onBundle:error:
+installType
+installTypeFromExtendedAttributeOnBundle:error:
 wk1AppBundle
 wk2AppBundle
 installationIdentity
@@ -2609,8 +2614,9 @@ updateAndValidateSinf:error:
 hasSinf
 minimumWatchOSVersionIsV6OrLater
 watchKitAppBundleForWKVersionOrEarlier:error:
+lsInstallType
+setLsInstallType:
 _cfBundle
-_lsInstallType
 _codeSignatureVerificationState
 _installationIdentity
 _wk1AppBundleError
@@ -2621,6 +2627,7 @@ _codeSigningInfo
 _codeSigningInfoError
 _watchKitAppExecutableHash
 _watchKitPlugin
+_lsInstallType
 containerWithIdentifier:createIfNecessary:existed:error:
 builtInApplicationBundleIDs
 initWithBytes:length:encoding:
@@ -2846,10 +2853,11 @@ B24@0:8^@16
 B16@0:8
 v16@0:8
 @"NSMutableSet"
-@80@0:8@16@24@32@40@48B56B60B64B68Q72
+@88@0:8@16@24@32@40@48@56B64B68B72B76Q80
 @32@0:8@16Q24
 Q16@0:8
 @"NSString"
+@"NSNumber"
 @"NSDictionary"
 v24@0:8@?16
 v40@0:8@16@24@?32

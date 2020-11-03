@@ -2183,6 +2183,7 @@ initWithContainer:center:transform:
 dropItem:toTarget:
 _hasActiveDrop
 collectionView:dropPreviewParametersForItemAtIndexPath:
+legibilityWeight
 verticalSizeClass
 updateFavoritesRanksToMatchOrderedFavorites:completion:
 moveTag:toIndex:

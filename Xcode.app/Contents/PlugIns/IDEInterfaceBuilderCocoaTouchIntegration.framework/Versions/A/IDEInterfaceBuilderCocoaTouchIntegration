@@ -1,4 +1,5 @@
-@(#)PROGRAM:IDEInterfaceBuilderCocoaTouchIntegration  PROJECT:IDEInterfaceBuilderCocoaTouch-17502
+@(#)PROGRAM:IDEInterfaceBuilderCocoaTouchIntegration  PROJECT:IDEInterfaceBuilderCocoaTouch-17504.1
+ffff
 f@333333
 F@UUUUUU
 k@ffffff
@@ -500,12 +501,12 @@ UIReferencedControllerIdentifier
 UIReferencedStoryboardName
 UIReferencedBundleIdentifier
 -[IBCocoaTouchPlatform identifier]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderCocoaTouch/IDEInterfaceBuilderCocoaTouch-17502/InterfaceBuilder/Documents/IBCocoaTouchPlatform.m
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderCocoaTouch/IDEInterfaceBuilderCocoaTouch-17504.1/InterfaceBuilder/Documents/IBCocoaTouchPlatform.m
 -[IBCocoaTouchPlatform buildSystemPlatformName]
 -[IBCocoaTouchPlatform buildSystemPlatformIdentifier]
 Xcode.InterfaceBuilderKit.CocoaTouchIntegration.DocumentDependency.InterfaceBuilderVersion
 -[IBCocoaTouchPlatform systemDocumentDependency]
-%02lu%02lu
+%02lu%01lu%01lu
 %x.%x
 %x.%x.%x
 c16@?0@"IBCocoaTouchOSVersion"8
@@ -3632,9 +3633,12 @@ prompted
 Tc,R,N,GisPrompted
 T@"IBUITextInputTraits",&,N,V_textInputTraits
 -[IBICiOSMacPlatformAdapter simulatorPlatformIdentifier]
-/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderCocoaTouch/IDEInterfaceBuilderCocoaTouch-17502/ImageCatalog/IBICiOSMacPlatformAdapter.m
+/Library/Caches/com.apple.xbs/Sources/IDEInterfaceBuilderCocoaTouch/IDEInterfaceBuilderCocoaTouch-17504.1/ImageCatalog/IBICiOSMacPlatformAdapter.m
 11.3
 10.16
+apple7
+16GB
+c32@?0@"IBICAbstractCatalogItem"8@"IBICSlot"16@"NSMutableArray"24
 c16@?0@"NSString"8
 Including Mac idiom assets in a Mac Catalyst asset catalog requires building on macOS 11.0. The content will be missing.
 -[IBICiOSMacPlatformAdapter selectCatalogItemsForCARCompilerFromCollection:ignoringItems:forCompilingWithOptions:populatingIssues:]
@@ -7146,6 +7150,7 @@ documentDependencyWithIdentifier:
 versionWithStringValue:
 majorComponent
 minorComponent
+updateComponent
 scannerWithString:
 scanHexInt:
 idioms
@@ -11420,6 +11425,7 @@ _scopeBarBackgroundImage
 _selectedScopeButtonIndex
 setFallbackIdioms:
 marketingIdiomForIdiom:
+hostOSAvailabilityProcessorForOptions:
 hostOSVersionOverrideForUnitTesting
 isVersion:greaterThanOrEqualToVersion:
 selectCatalogItemsForCompilingCollection:options:
@@ -14755,6 +14761,7 @@ v40@0:8@16{CGPoint=dd}24
 v24@0:8@"IBUITextInputTraits"16
 @"IBUITextInputTraits"
 @"IBOffsetWrapper"
+@?24@0:8@16
 @60@0:8@16d24c32{CGSize=dd}36@52
 v32@0:8d16Q24
 d24@0:8Q16
@@ -14907,7 +14914,6 @@ v32@0:8c16c20@24
 v36@0:8{CGSize=dd}16c32
 @40@0:8(?={?=qq}[2q])16@32
 B16@0:8
-@?24@0:8@16
 zPLR
 zPLR
 zPLR

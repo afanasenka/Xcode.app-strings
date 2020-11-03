@@ -913,13 +913,13 @@ DSTROOT
 -L must be immediately followed by a directory path (no space)
 -F missing argument
 -F must be immediately followed by a directory path (no space)
-BUILD 13:30:51 Sep 22 2020
+BUILD 09:08:16 Oct  7 2020
 configured to support archs: %s
 LTO support using: %s (static support for %d, runtime is %d)
 TAPI support using: %s
 -version_details
 "version": "%s",
-609.5
+609.6
 "architectures": [
 armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
 "%s"
@@ -1114,7 +1114,7 @@ platform not specified
 -arch not specified
 SRCROOT
 SRCROOT=
-ld64-609.5
+ld64-609.6
 -classic_linker
 using ld_classic
 ld_classic

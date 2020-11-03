@@ -163,6 +163,9 @@ systemGrayColor
 systemTealColor
 systemIndigoColor
 labelColor
+secondaryLabelColor
+tertiaryLabelColor
+quaternaryLabelColor
 controlAccentColor
 tintColor
 knockout
@@ -180,6 +183,9 @@ knockout-systemGrayColor
 knockout-systemTealColor
 knockout-systemIndigoColor
 knockout-labelColor
+knockout-secondaryLabelColor
+knockout-tertiaryLabelColor
+knockout-quaternaryLabelColor
 knockout-controlAccentColor
 knockout-tintColor
 v32@?0@8@16^B24
@@ -1043,7 +1049,8 @@ RunTimeThemeRefForFileURL() failed to initialize CUIStructuredThemeStore at path
 RunTimeThemeRefForBytes() failed to initialize CUIStructuredThemeStore
 com.apple.CoreUI.ThemeRef-cache
 CoreUI: %s couldn't create SVGDocument From data
--[_CUIThemeSVGRendition _nts_svgDocument]
+-[_CUIThemeSVGRendition svgDocument]
+CoreUI: %s svgdocument released/NULLed
 CUIThemeGradient.m
 CUIThemeGradient can't initialize with unsupported color space: %@
 CUIThemeGradient needs the same number of colors as there are of color locations for initialization
@@ -1100,16 +1107,13 @@ kCoreThemeColorLabel
 Label Text
 kCoreThemeColorSecondaryLabel
 Label Text, Secondary
-secondaryLabelColor
 kCoreThemeColorControlBackground
 Control Background
 controlBackgroundColor
 kCoreThemeColorTertiaryLabel
 Label Text, Tertiary
-tertiaryLabelColor
 kCoreThemeColorQuaternaryLabel
 Label Text, Quaternary
-quaternaryLabelColor
 kCoreThemeColorWindowRim
 Window Rim
 CUIWindowRimColor

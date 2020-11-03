@@ -1,4 +1,5 @@
-@(#)PROGRAM:Xcode3Core  PROJECT:Xcode3ProjectSupport-17508
+@(#)PROGRAM:Xcode3Core  PROJECT:Xcode3ProjectSupport-17511.1
+ffff
 generateAvailableHardenedRuntimeAllowances
 initWithCapabilitiesContext:item:
 readValuesFromEntitlements
@@ -2447,6 +2448,7 @@ The flag -threadSanitizerEnabled must be supplied with an argument YES or NO
 The flag -undefinedBehaviorSanitizerEnabled must be supplied with an argument YES or NO
 A -destination flag must be supplied when specifying -xctestrun.
 Performance test configuration plist is malformed.
+traceCollectionEnabled
 traceConfigurations
 -trace-collection-enabled is a prototype feature and subject to change without notice.
 Unable to use -trace-collection-enabled option because parallel testing is enabled.
@@ -3191,7 +3193,6 @@ collectBuildTimeStatistics
 Tc,V_collectBuildTimeStatistics
 xcrootPaths
 T@"NSArray",&,V_xcrootPaths
-traceCollectionEnabled
 T@"NSNumber",&,V_traceCollectionEnabled
 performanceTestConfiguration
 T@"NSDictionary",&,V_performanceTestConfiguration

@@ -162,6 +162,8 @@ checkInCleanupActivity
 uninstallClipsWithParentAppInstalledWithCompletionHandler:
 removeFailedClipInstallsWithCompletionHandler:
 purgeOldImagesWithCompletionHandler:
+sharedStore
+purgeDuplicateWebClipsWithCompletionHandler:
 mapTableWithStrongToWeakObjects
 _appForBundleID:createIfNeeded:
 defaultManager
@@ -300,7 +302,6 @@ originIsControlCenter
 openURL:inAppWithBundleIdentifier:promptForUnlock:originIsControlCenter:completionHandler:
 _logOpenAppClipEventForBundleID:session:didOpenFullApp:requiresAppClipInstall:
 setOpeningWebClipFromDaemon:
-sharedStore
 updateClipDataForEntryPointWithWebClip:launchOptions:
 identifier
 launchWebClipWithIdentifier:origin:
@@ -383,6 +384,7 @@ Finished cleaning up failed clip installs
 Deferring cleanup activity
 Finished cleaning up app clips with installed parent apps
 Finished purging image store
+Finished purging duplicate web clips
 Done with cleanup activity
 start downloading IPA from demo server: URL: %@
 Start Fetching ABR metadata
@@ -578,7 +580,7 @@ v56@0:8@16@24@32@40@?48
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B60x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

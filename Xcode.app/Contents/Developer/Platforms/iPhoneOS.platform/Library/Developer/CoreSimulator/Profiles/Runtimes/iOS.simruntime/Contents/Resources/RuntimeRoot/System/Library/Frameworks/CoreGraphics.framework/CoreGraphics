@@ -29318,6 +29318,7 @@ kCGHLGEOTFTable
 com.apple.cmm.PQInvEOTFTableSize
 kCGPQInvEOTFTableSize
 com.apple.cmm.TRCSize
+com.apple.cmm.GridPointCount
 com.apple.cmm.NxMLUTFormat
 com.apple.cmm.NxMFixed16
 com.apple.cmm.TextureNxMtoRGBXFloat32
@@ -29330,9 +29331,8 @@ com.apple.cmm.TransformIterationType
 com.apple.cmm.FullConversion
 com.apple.cmm.SimplifiedConversion
 com.apple.cmm.CompactConversion
-Names
 get_names_and_paths
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphics/Fonts/CGFontDB.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphics/Fonts/CGFontDB.c
 CFGetTypeID(value) == CGFontGetTypeID()
 Families
 Faces
@@ -29403,7 +29403,6 @@ iOS
 /CreationDate
 /Creator
 /Subject
-Subject
 /Author
 /Producer
 %/ %T
@@ -29428,15 +29427,12 @@ kCGPathStroke
 kCGPathFillStroke
 kCGPathEOFillStroke
 W* n
-kCGColorTransformBlackPointCompensation
 kCGColorConversionTRCSize
 CGColorConversionInfo
 <NULL CGColorConversionInfo>
 <CGColorConversionInfo %p;transform:%@;
 options:%@;
 <CGColorConversionInfo %p>
-NULLTransform
-com.apple.cmm.TransformType
 ColorSyncTransformGetTypeID
 com.apple.cmm.HLGSceneMapping3DLutGridPoints
 kCGHLGSceneMapping3DLutGridPoints
@@ -29576,6 +29572,7 @@ ColorSyncRenderingIntentPerceptual
 ColorSyncTransformTag
 ColorSyncRenderingIntent
 ColorSyncProfile
+com.apple.ColorSync.GenericGrayGamma2.2
 aapy
 ColorSyncProfileIsWideGamut
 profile_is_matrix_based
@@ -29591,8 +29588,8 @@ bXYZ
 gXYZ
 rXYZ
 bTRC
-rTRC
 calRGB
+Generic HDR Profile
 description
 Date
 bGamma
@@ -29607,6 +29604,7 @@ paraR
 bkpt
 calGray
 paraK
+sRGB IEC61966-2.1 Linear
 displayRGB
 noNDIN
 noVCGT
@@ -29620,10 +29618,11 @@ phosphorGy
 phosphorGx
 phosphorRy
 phosphorRx
-Linear Gray
+com.apple.ColorSync.sRGB
 kGamma
 Display P3 Linear
 com.apple.ColorSync.DisplayP3
+Rec. ITU-R BT.2020-1 Linear
 com.apple.ColorSync.ITUR2020
 %@ Linearized
 ColorSyncProfileSetHeader
@@ -29697,14 +29696,14 @@ Display P3
 Display P3 Extended
 ShouldAllowHDROutputSpaces
 Display P3; SMPTE ST 2084 PQ EOTF
-com.apple.ColorSync.DisplayP3-PQ
 Display P3; ARIB STD-B67 HLG
+com.apple.ColorSync.DisplayP3-HLG
+Display P3; ITU-R 709 OETF
+com.apple.ColorSync.DisplayP3-709OETF
 Generic Gray Gamma 2.2 Profile
-com.apple.ColorSync.GenericGrayGamma2.2
 Adobe RGB (1998)
 com.apple.ColorSync.AdobeRGB1998
 sRGB IEC61966-2.1
-com.apple.ColorSync.sRGB
 Generic XYZ Profile
 com.apple.ColorSync.GenericXYZ
 ACES CG Linear (Academy Color Encoding System AP1)
@@ -29713,14 +29712,15 @@ Rec. ITU-R BT.709-5
 com.apple.ColorSync.ITUR709
 Rec. ITU-R BT.2020-1
 Rec. ITU-R BT.2020-1 Extended
-Rec. ITU-R BT.2020-1 Linear
 Rec. ITU-R BT.2100 PQ
+com.apple.ColorSync.ITUR2100_PQ
 Rec. ITU-R BT.2020 HLG
+com.apple.ColorSync.ITUR2100_HLG
 ROMM RGB: ISO 22028-2:2013
 com.apple.ColorSync.ROMMRGB
 SMPTE RP 431-2-2007 DCI (P3)
 com.apple.ColorSync.DCIP3
-sRGB IEC61966-2.1 Linear
+Linear Gray
 Perceptual Standard RGB 1.0
 com.apple.ColorSync.PerceptualStandardRGB
 Ignoring identity encoding for non-embedded font `%s'.
@@ -29785,6 +29785,8 @@ ColorSyncTransformConvert
 src_bits_per_pixel == CGBitmapPixelInfoGetBitsPerPixel(dst->pixel_info)
 RegularTransform.
 DeviceTransform
+NULLTransform
+com.apple.cmm.TransformType
 USE_COLORSYNC_FOR_HDR
 convert_Lab_to_device
 src_component == dst_component && (src_component == kCGPixelComponent8BitInteger || src_component == kCGPixelComponent16BitInteger || src_component == kCGPixelComponent16BitFloat || src_component == kCGPixelComponent32BitFloat)
@@ -29793,7 +29795,6 @@ convert_device
 (int)dstType >= kCGColorSpaceDeviceGray && (int)dstType <= kCGColorSpaceDeviceCMYK
 Failed to create a 3D texture
 com.apple.cmm.3D-LUT
-com.apple.cmm.GridPointCount
 create_linear_parametric_data
 converter != NULL && converter->nSrcComp == 3 && converter->nDstComp == 3
 com.apple.cmm.ChannelID
@@ -29918,6 +29919,7 @@ crypt filter specified without encryption parameters.
 unrecognized filter name `%s'.
 CGFontUseCustomConvolveKernels
 CGFontUseMonochromeKernel
+Names
 Dests
 failed to find `%.*s' in name table dictionary.
 invalid name table: invalid /Names entry.
@@ -30486,9 +30488,8 @@ b->is_valid
 /Registry %T
 /Ordering %T
 /Supplement %d
-Identity
 CGSConvertW8toRGBA8888
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphics/Misc/blt/convert-to-rgba8.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphics/Misc/blt/convert-to-rgba8.c
 CGSConvertRGB888toRGBA8888
 CGSConvertBGR888toRGBA8888
 CGSConvertXRGB8888toRGBA8888
@@ -30676,6 +30677,7 @@ no profile description
 input
 output
 profile_sets_create_icc_profile_description
+<no description>
 ColorSyncTransformPCSToDevice
 ColorSyncTransformPCSToPCS
 s->state->type == kCGColorSpaceProfileSets
@@ -30709,11 +30711,11 @@ Invalid value for kCGPDFContextDocumentID.
 /Info
 /Encrypt
 /Root
-/Size
 /StructTreeRoot
 /OutputIntents
 /Pages
 /XML
+/Subtype
 CGImageMetadataCreateXMPData
 xmpMM:DocumentID
 CGImageMetadataSetValueWithPath
@@ -30747,6 +30749,7 @@ CGImageMetadataCreateMutable
 /T %T
 /K %d 
 /K [
+Lang
 TagNodeProperties
 TagNodeChildren
 PageObjectNumber
@@ -30773,6 +30776,7 @@ kCGColorSpaceExtendedDisplayP3
 kCGColorSpaceExtendedLinearDisplayP3
 kCGColorSpaceDisplayP3_PQ
 kCGColorSpaceDisplayP3_HLG
+kCGColorSpaceDisplayP3_709OETF
 kCGColorSpaceGenericGrayGamma2_2
 kCGColorSpaceAdobeRGB1998
 kCGColorSpaceSRGB
@@ -30800,7 +30804,6 @@ kCGColorSpaceUserCMYK
 kCGColorSpaceGenericRGBLinear
 kCGColorSpaceStandardRangeDerivative
 CGColorSpaceCreateWithName failed for %s
-Generic HDR Profile
 kCGColorSpaceDisplayP3_PQ_EOTF
 kCGColorSpaceITUR_2020_HLG
 kCGColorSpaceITUR_2020_PQ
@@ -31039,34 +31042,33 @@ copy_read_only
 CGDataProviderCopyPixelData
 bytes_per_row > pixel_bytes_per_row
 acquire_function_1d
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphicsRIP/RIP/RIPFunction.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphicsRIP/RIP/RIPFunction.c
 (components == CGFunctionGetRangeDimension(function)) || (components + 1 == CGFunctionGetRangeDimension(function))
 %s - CGColorTransformConvertComponentData failed
 acquire_function_2d
 kCGColorSpaceExtendedRange
 icc_get_default_color_components
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphics/ColorSpaces/CGColorSpace_ICC.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphics/ColorSpaces/CGColorSpace_ICC.c
 component_count > 0 && component_count <= kCGColorSpaceICCMaxComponents
 icc_get_md5
 state->type == kCGColorSpaceICCBased
 icc_create_icc_profile_ascii_description
 s->state->type == kCGColorSpaceICCBased
-<no description>
 ColorSyncProfileCopyASCIIDescriptionString
 icc_get_icc_md5
 icc_create_icc_profile_description
 ColorSyncProfileCopyDescriptionString
 icc_finalize
+ColorSyncTransformDeviceToPCS
 ColorSyncCreateOutputPoppyProfile
 ColorSyncProfileVerify
 color_space_state_create_icc_with_state
 is_scene_referred_derivative && is_display_referred_derivative == false
-com.apple.ColorSync.ITUR2100_PQ
 ColorSyncVerifyICC_DataByName
 com.apple.ColorSync.ITUR2020_2084_PQ
-com.apple.ColorSync.DisplayP3-HLG
-com.apple.ColorSync.ITUR2100_HLG
+com.apple.ColorSync.DisplayP3-PQ
 com.apple.ColorSync.ITUR2020_B67_HLG
+ColorSyncVerifyDisplayP3ITU709Data
 com.apple.ColorSync.CoreVideo709
 ColorSyncVerifyCoreVideo709Data
 ColorSyncVerifyGenericLabData
@@ -31234,14 +31236,13 @@ Failed to create bitmap context delegate
 Unable to create bitmap delegate device
 Failed to create bitmap context color transform
 ripc_component_type_from_info
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphicsRIP/RIP/RIPBitmapContext.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphicsRIP/RIP/RIPBitmapContext.c
 SAMPLEINDEX
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphics/Misc/blt/SAMPLEINDEX.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphics/Misc/blt/SAMPLEINDEX.c
 alpha == MESHED_ALPHA
 write_top_level_object
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphicsRIP/PDF/Annotations/PDFMetaSet.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphicsRIP/PDF/Annotations/PDFMetaSet.c
 n != PDFObjectNumberInvalid
-/%Stream
   BEGIN: resetting gstate.
   END: resetting gstate.
 %f w
@@ -35092,11 +35093,14 @@ mapped file: Library domain: [%s] home: [%s] original data pointer passed to pro
 %lu %zu
 %010u 65535 f 
 %010llu 00000 n 
+Width
 /tmp/original_mask
 CGFocusRingStyle
 /tmp/focus_ring_mask
 CGFocusRingShrinkMask
 CGFocusRingDebugMasks
+CropBox
+BleedBox
 kCGPDFContextTitle
 kCGPDFContextAuthor
 kCGPDFContextSubject
@@ -35151,7 +35155,6 @@ Subtype
 /Border
 /Rect
 /Link
-/Subtype
 /URI
 /Action
 CGPDFContextAddDestinationAtPoint
@@ -35164,6 +35167,7 @@ CGPDFContextAddCatalogEntry
 AddCatalogEntry
 Value
 CGPDFContextAddDocumentMetadata
+/%Stream
 /Metadata
 CGPDFContextAddPDFXInfo
 AddPDFXInfo
@@ -35172,7 +35176,6 @@ SetOutputIntent
 CGPDFContextSetShouldDeflate
 ShouldDeflate
 CGPDFContextBeginDrawingHiddenText
-BeginDrawingHiddenText
 CGPDFContextEndDrawingHiddenText
 EndDrawingHiddenText
 CGPDFContextSetImageTag
@@ -35224,7 +35227,9 @@ CGPDFContextEndTag
 EndTag
 CGPDFContextBeginTagWithMCID
 BeginTagWithMCID
+PageProperties
 CGPDFContextSetRedactionPath
+SetRedactionPath
 CGPDFContextBeginAccessibilitySpan
 BeginAccessibilitySpan
 CGPDFContextEndAccessibilitySpan
@@ -35242,6 +35247,7 @@ unsupported encryption `V' entry `%ld'.
 Standard
 unsupported security handler `%s'.
 StmF
+Identity
 StrF
 missing or invalid crypt filter `%s'.
 invalid function: invalid `C0' value.
@@ -36301,7 +36307,6 @@ Usage
 Generation
 Reference
 Address
-Width
 Height
 %.18s %.10s %.10s %.18s %.18s %.6s %.6s %.8s
 %-18s %-10s %-10s %-10s
@@ -36432,7 +36437,6 @@ Failed to read EPS bounding box.
 D:%04d%02d%02d%02d%02d%02dZ00'00'
 Im%d
 CGImageCopyJPEGDataAndColorSpace
-public.jpeg-2000
 --------rrrrrrrrggggggggbbbbbbbb
 aaaaaaaarrrrrrrrggggggggbbbbbbbb
 RRRRRRRRGGGGGGGGBBBBBBBB--------
@@ -37198,15 +37202,16 @@ Matrix
 /S /Luminosity
 /G %R
 /Matrix [1 0 0 1 0 0]
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphics/ColorSpaces/CGColorSpaceFromICCDataCache.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphics/ColorSpaces/CGColorSpaceFromICCDataCache.c
 colorspace_cache != NULL
 com.apple.CoreGraphics.colorspace_from_ICC_data_cache
 cache_create("com.apple.CoreGraphics.colorspace_from_ICC_data_cache", &attrs, &colorspace_cache->cache) == 0
 ColorSyncProfileGetMD5
 SetOutputIntent cannot be used when generating PDF/A output
 RedactionPath
-SetRedactionPath
-PageProperties
+BeginDrawingHiddenText
+public.jpeg
+public.jpeg-2000
 FontDescriptor
 FontBBox
 Flags
@@ -37244,6 +37249,7 @@ encountered unexpected /Perms entry.
 EncryptMetadata
 Failed to generate file decryption key.
 Failed to generate decryption key.
+kCGColorTransformBlackPointCompensation
 kCGColorTransformUseCalibratedColor
 kCGColorTransformCreateMask
 kCGColorTransformFlattenImage
@@ -37380,8 +37386,6 @@ Rotate
 Pages
 Parent
 Annots
-CropBox
-BleedBox
 TrimBox
 ArtBox
 Contents
@@ -37480,9 +37484,8 @@ kCGFontNameKeyLicenseURL
 kCGFontNameKeyPreferredFamily
 kCGFontNameKeyPreferredSubfamily
 kCGFontNameKeySampleText
-CG Cal RGB
 CGColorSpaceGetCalibratedRGBData
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphics/ColorSpaces/CGColorSpace_CalRGB.c
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphics/ColorSpaces/CGColorSpace_CalRGB.c
 space->state->type == kCGColorSpaceCalibratedRGB
 missing or invalid `Subtype' entry.
 Image
@@ -37598,7 +37601,6 @@ Style
 %s: END: Draw style.
 /P << /MCID %d >> BDC
 ActualText
-Lang
 /Span BDC
 /Span <<
 >> BDC
@@ -37787,6 +37789,7 @@ unable to create Type 0 function.
 /Encode
 /Order
 /BitsPerSample
+/Size
 /Range
 mesh %p: colorspace %p ; function %p
   point size: %zu
@@ -38022,6 +38025,7 @@ kCGPDFDocumentProducer
 kCGPDFDocumentCreationDate
 kCGPDFDocumentModificationDate
 Title
+Subject
 Creator
 Producer
 CreationDate
@@ -38130,11 +38134,10 @@ CIF10_image_pixel
 /Thumb %R
 CGImageDestinationFinalize
 CGLibraryLoadImageIOFunction
-/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1459/CoreGraphics/Images/CGImageIO.h
+/Library/Caches/com.apple.xbs/Sources/CoreGraphics_Sim/CoreGraphics-1461/CoreGraphics/Images/CGImageIO.h
 handle != NULL
 ptr != NULL
 CGImageDestinationAddImage
-public.jpeg
 CGImageDestinationCreateWithData
 ASCII85Decode: encountered unexpected EOF.
 ASCII85Decode: invalid character 0x%02x encountered in stream.
@@ -38189,13 +38192,13 @@ kCGIndexedColorTableKey
 kCGIndexedBaseColorSpaceKey
 kCGLastIndexKey
 ColorSyncProfileCreate
+CG Cal RGB
 kCGColorSpaceICCData
 ColorSyncProfileCopyHeader
 ColorSyncTransformDeviceToSceneLinearPCS
 ColorSyncTransformSceneLinearPCSToDevice
 ColorSyncTransformPCSToSceneLinear
 ColorSyncTransformSceneLinearToPCS
-ColorSyncTransformDeviceToPCS
 ^{CGColorSpace={__CFRuntimeBase=QAQ}{?=i}^{color_space_state}{_opaque_pthread_mutex_t=q[56c]}}16@?0^{CGColorSpace={__CFRuntimeBase=QAQ}{?=i}^{color_space_state}{_opaque_pthread_mutex_t=q[56c]}}8
 ColorSyncProfileCopyData
 ColorSyncProfileSetDescriptionTag
@@ -38203,6 +38206,7 @@ hdTF
 ColorSyncProfileSetTag
 gTRC
 ColorSyncProfileRemoveTag
+rTRC
 ColorSyncProfileCreateMutableCopy
 ColorSyncProfileCopyTag
 ColorSyncProfileCreateWithName

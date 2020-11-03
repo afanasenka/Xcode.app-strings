@@ -534,6 +534,7 @@ _kMDItemStorageSize
 FieldMatch(_kMDItemPersonaID, 
 deletes
 ~/Library/Logs/CrashReporter/DiagnosticLogs/Search
+((%@="*") || (%@="*") || (%@="*") || (%@="*") || (%@="*") || (%@="*")) && ((%@!="*") || (%@<$time.now(-1d)))
 <%@:%p dc:%u rc:%d st:%llu ito:%llu dto:%lld
 idle dirty
 block
@@ -925,6 +926,11 @@ creating dictionary for %@
 Failure for %@ / %@
 queue related delete %@:%@
 flushing %d related deletes for %@
+~~~ Unexpected input!
+3 Enter group %p
+4 Enter group %p
+4 Leave group %p
+3 Leave group %p
 %@ stopped
 %@ start
 %@ %llu complete
@@ -1029,6 +1035,7 @@ NSObject
 MDIndexer
 CSSearchableIndexInterface
 SPUAProgressItem
+SPCoreSpotlightContactsUpdater
 SDDirtyIdleTimer
 SDEventMonitor
 SDMigrationMonitor
@@ -1650,6 +1657,7 @@ addObserverForName:object:queue:usingBlock:
 userInfo
 setDataMigrationBundleIDs:
 mergeWithProtectionClasses:power:completionHandler:
+revokeExpiredItems:protected:
 issueDefrag:group:
 reindexAllItemsSource
 _reindexAllItemsWithExtensionsAndCompletionBlock:
@@ -1695,7 +1703,7 @@ _openIndex:
 writeData:
 reason
 closeFile
-blacklistCheck:withOptions:
+blocklistCheck:withOptions:
 initWithDomain:code:userInfo:
 fileProviderAppToExtensionBundleMap
 deleteAllSearchableItemsWithBundleID:protectionClass:shouldGC:completionHandler:
@@ -1901,6 +1909,11 @@ localizedStrings
 customAttributeDictionary
 numberWithUnsignedInteger:
 stringByExpandingTildeInPath
+unsignedIntegerValue
+timeIntervalSinceNow
+updatedCountsFromExisting:result:shouldUpdateMonth:
+addAttributesFromDictionary:
+updateContactCounts:
 block
 _stop
 initWithQueue:timeoutBlock:
@@ -2284,6 +2297,7 @@ v44@0:8@16B24@28@?36
 @40@0:8@16@24@32
 v20@0:8i16
 v20@0:8I16
+@36@0:8@16^q24B32
 @32@0:8@16@?24
 v32@0:8@?16@24
 v24@0:8@"SDEventMonitor"16

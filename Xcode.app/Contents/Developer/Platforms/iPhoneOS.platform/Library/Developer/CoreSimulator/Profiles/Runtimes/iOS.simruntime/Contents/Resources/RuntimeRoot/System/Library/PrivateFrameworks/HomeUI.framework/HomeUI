@@ -52,6 +52,8 @@ zt?433333
 @UUUUUU
 0@333333
 v?-C
+?333333
+333333
 ?YYYYYY
 ffffff
 ?ffffff
@@ -138,9 +140,13 @@ T@"<HUDayOfWeekPickerCellDelegate>",W,N,V_delegate
 selectedRecurrences
 T@"NSSet",&,N,V_selectedRecurrences
 T@"HFItem",&,N,V_item
+Home
+LYgIcvXzpTTap0GYj4OMwW
 cellToItemMap
 T@"NSMapTable",R,N,V_cellToItemMap
 T@"<HUHomePodAlarmItemModuleControllerDelegate>",W,N,V_delegate
+allowsCellSelection
+TB,R,N,V_allowsCellSelection
 com.apple.Home.group
 HUDashboardViewController.m
 -[HUDashboardViewController init]
@@ -163,6 +169,9 @@ HUAddMenuScene
 HUCancelTitle
 Unknown sender for showAddMenu:%@
 v16@?0@"UIViewController<HUPreloadableViewController>"8
+store
+%s is an abstract method that must be overriden by subclass %@
+-[HUDashboardViewController welcomeUISelected:]
 homeKitObject
 T@"<HFHomeKitObject>",R,N
 home
@@ -196,6 +205,8 @@ B16@?0@"<HFDiffOperation>"8
 Accessory became reachable
 HUSetupCellMultiUserTokenFix_Title
 HUSetupCellMultiUserTokenFix_Details
+HUWelcomeUIBannerCell_Title
+HUWelcomeUIBannerCell_Details
 Asked for a view for an unexpected kind: %@
 Asked for header for a section without a title: %@
 com.appleinternal.DiagonAlley
@@ -220,6 +231,8 @@ dynamicScrollingOptions
 T@"HUDynamicScrollingOptions",&,N,V_dynamicScrollingOptions
 navigationAddButton
 T@"HUDashboardNavigationButton",&,N,V_navigationAddButton
+navigationAnnounceButton
+T@"HUDashboardNavigationButton",&,N,V_navigationAnnounceButton
 navigationHomesAndRoomsButton
 T@"HUDashboardNavigationButton",&,N,V_navigationHomesAndRoomsButton
 navigationEditDoneButton
@@ -284,8 +297,6 @@ maximumNumberOfMatches
 TQ,R,N
 block
 T@?,C,N,V_block
-Home
-LYgIcvXzpTTap0GYj4OMwW
 requiredSubpredicates
 T@"NSArray",R,C,N,V_requiredSubpredicates
 optionalSubpredicates
@@ -306,7 +317,6 @@ T@"HFWallpaperSlice",&,N,V_darkModeBlurredWallpaperSlice
 HIQuickControlSecondaryPresentationStyleNavigationController
 HIQuickControlSecondaryPresentationStyleDefault
 HUQuickControlViewController.m
-%s is an abstract method that must be overriden by subclass %@
 +[HUQuickControlViewController controlItemPredicate]
 -[HUQuickControlViewController initWithNibName:bundle:]
 -[HUQuickControlViewController initWithCoder:]
@@ -556,10 +566,6 @@ disclosureImageView
 T@"UIImageView",&,N,V_disclosureImageView
 badgeCount
 Tq,N,V_badgeCount
-HUPrimaryUserAutomaticItem.m
-mediaProfileContainer
-HUPrimaryUserSettingsAutomaticSection_Title
-T@"<HFMediaProfileContainer>",R,N,V_mediaProfileContainer
 HUBridgeAndResidentDeviceListViewController.m
 -[HUBridgeAndResidentDeviceListViewController initWithItemManager:tableViewStyle:]
 HUBridgeAndResidentListItemTitle
@@ -623,7 +629,6 @@ nextSection
 previousSection
 HFAppleMusicChangeDefaultAccount
 HFAppleMusicSignIn
-HUPrimaryUserSettingsOtherSection_UseOtherAccountButton
 HUSoftwareUpdateUIManager.m
 v24@?0@"NSNull"8@"NSError"16
 B16@?0@8
@@ -647,6 +652,7 @@ HOMediaSelectionShowLibraryContentKey
 HOMediaSelectionPickingForExternalPlayerKey
 HUTriggerMediaPickerUnavailableMusicAppUninstalledPromptMessage
 HUTriggerMediaPickerUnavailableMusicCatalogPlaybackDisabledPromptMessage
+HUTriggerMediaPickerUnavailableMusicAppUninstalledForMusicAlarmPromptMessage
 v24@?0Q8@"NSError"16
 v16@?0@"<HFMediaProfileContainer>"8
 +[HUMediaAccountUtilities determineMediaPickerAvailabilityForHomePodProfiles:inHome:]
@@ -973,6 +979,10 @@ QRBadgeSm
 video.slash.fill
 checkmark
 xmark.circle.fill
+waveform
+stop.fill
+arrow.up
+forward.fill
 play.circle.fill
 pause.circle.fill
 stop.circle.fill
@@ -1009,6 +1019,13 @@ suggestionsItemManager
 T@"HUSceneSuggestionsItemManager",W,N,V_suggestionsItemManager
 sceneEditorDelegate
 T@"<HUSceneEditorDelegate>",W,N,V_sceneEditorDelegate
+HUHomeTheaterOnboardingKey_UserInput
+HUHomeTheaterOnboardingKey_Accessory
+Home Theater Setup
+HUHomeTheaterOnboardingFlow.m
+(userInputValue.integerValue == HUHomeTheaterOnboardingValue_Setup) || (userInputValue.integerValue == HUHomeTheaterOnboardingValue_DontSetup)
+appleTVs
+T@"NSArray",&,N,V_appleTVs
 round
 strokeEnd
 strokeEndAnimation
@@ -1299,6 +1316,8 @@ HUAppleMusicAccountSelectionFooter_Plural
 HUAppleMusicAccountExplicitSignedInFooter
 appleMusicAccountActionItemProvider
 T@"HFStaticItemProvider",R,N,V_appleMusicAccountActionItemProvider
+mediaProfileContainer
+T@"<HFMediaProfileContainer>",R,N,V_mediaProfileContainer
 appleMusicAccountItemProvider
 T@"HUAppleMusicAccountItemProvider",R,N,V_appleMusicAccountItemProvider
 loggedInUsernameItem
@@ -2076,6 +2095,7 @@ hf_isReachable
 hf_supportsSoftwareUpdate
 hf_supportsStereoPairing
 hf_showsAudioSettings
+hf_supportsMusicAlarm
 hf_prettyDescription
 hf_categoryLocalizedDescription
 hf_backingAccessory
@@ -2087,7 +2107,7 @@ hf_mediaValueSource
 T@"<HFMediaValueSource>",R,N
 hf_deviceIdentifiers
 hf_mediaRouteIdentifier
-hf_supportsPreferredMediaUser
+hf_supportsHomeTheater
 HUUsersPersonalRequestsSelectedHomePodDescriptionText
 HUUsersPersonalRequestsVoiceRecognitionNotAvailableDescription
 @"NSMutableDictionary"16@?0@"NSDictionary"8
@@ -2128,7 +2148,6 @@ reuseStack
 T@"NSMutableArray",R,N,V_reuseStack
 contentViewClass
 T#,R,N,V_contentViewClass
-T@"<HUPrimaryUserSettingsItemModuleControllerDelegate>",W,N,V_delegate
 @"HFImageIconDescriptor"16@?0@"NSString"8
 Selected icon descriptor (%@) is not in the set of all icon descriptors (%@)
 HUIconPickerTitle
@@ -2538,6 +2557,7 @@ supportingLanguages
 languageCodeKey
 localizedLanguageNameKey
 mediaProfilesKey
+cce7c4ecef404121ae8971
 %@: Shouldn't be called in this case
 %@: fetchSupportedVoiceRecognitionLanguages called before _fetchSupportedMultiUserLanguagesSynchronously - this should not happen!
 HUTurnOffVoiceRecognition_Alert_Title
@@ -2612,6 +2632,7 @@ smart_configuration
 B16@?0@"HMTrigger"8
 B16@?0@"HRERecommendation"8
 HUSmartAutomationAddAutomation
+B16@?0@"HMLightProfileSettings"8
 HUNaturalLightingAccessorySetupEnableItem_Title
 HUAvailableTriggerItemModuleNaturalLightingIcon
 @"NSArray"16@?0@"HMAccessory"8
@@ -2922,6 +2943,7 @@ learnMoreBarButtonStyle
 Tq,R,N,V_learnMoreBarButtonStyle
 learnMoreButtonTitle
 T@"NSString",R,N,V_learnMoreButtonTitle
+HUHomeTheaterSettings_Title
 HUNaturalLightingTitle_Title
 HUNaturalLightingTitle_Detail
 Onboarding-NaturalLighting
@@ -3010,7 +3032,8 @@ predictionManager
 T@"HUCCPredictionManager",&,N,V_predictionManager
 itemLimit
 TQ,N,V_itemLimit
-HomePodUnit
+HomePodStereoComponent-Mini-Light
+HomePodStereoComponent-Original-Light
 HUHomePodLeftRole
 HUHomePodRightRole
 transform.scale
@@ -3739,6 +3762,7 @@ room-identifier-key
 home-name-key
 room-name-key
 service-type-key
+default-action-url-key
 homeIdentifier
 T@"NSString",&,N,V_homeIdentifier
 roomIdentifier
@@ -3747,6 +3771,8 @@ homeName
 T@"NSString",C,N,V_homeName
 roomName
 T@"NSString",C,N,V_roomName
+defaultActionURL
+T@"NSURL",C,N,V_defaultActionURL
 serviceType
 TQ,N,V_serviceType
 remoteViewControllerProxy
@@ -3763,10 +3789,12 @@ HomeUI_%@
 @"UIImage"16@?0^Q8
 HULocalizable
 Missing localized string key %@ in table %@
+HUSensitiveStrings-Announce
 HUSensitiveStrings-Bolt
 HUSensitiveStrings-DoorbellChime
 HUSensitiveStrings-NaturalLighting
-HUSensitiveStrings-BoltPrimaryUser
+HUSensitiveStrings-Odeon
+HUSensitiveStrings-Store
 imageThumbnailView
 T@"UIImageView",&,N,V_imageThumbnailView
 imageSizeConstraints
@@ -4274,6 +4302,7 @@ HUAlarmEditTableViewCellIdentifier
 HUPlayToneCellIdentifier
 HUPlayMediaCellIdentifier
 HUAlarmEditViewControllerTableViewCellIdentifier
+HUSnoozeSwitchCellReuseIdentifier
 HUVolumeSliderCellReuseIdentifier
 HUVolumeTypeReuseIdentifier
 HUChooseMediahCellReuseIdentifier
@@ -4282,6 +4311,7 @@ HUShuffleMusicSwitchCellReuseIdentifier
 HUMusicAlarmMediaPickerUnavailableMusicCatalogPlaybackDisabledPromptMessage
 HUCreateNewAlarm
 HUAlarmEdit
+AhSLZPuUtPcpYLVJHCtLO
 HUAlarmBack
 HUAlarmEditRepeat
 HUAlarmEditLabel
@@ -4291,10 +4321,14 @@ HUAlarmPlayMedia
 HUAlarmEditAlarmChooseMedia
 HUAlarmEditDelete
 HUAlarmMediaActionPlayUnavailableMessage
+HUAlarmEditAlarmSound
+HUAlarmEditAlarmVolume
 HUMediaSelectionQueueModifierRepeat
 HUMediaSelectionQueueModifierShuffle
 HUAlarmEditAlarmUseCurrentVolume
 HUAlarmEditAlarmUseCustomVolume
+HUAppleMusicSubscriptionErrorKey
+HUAlarmEditAlarmSnooze
 editAlarmView
 T@"HUAlarmEditView",&,N,V_editAlarmView
 editingAlarmSetting
@@ -4311,6 +4345,8 @@ isCustomVolumeSelected
 TB,N,V_isCustomVolumeSelected
 isPlayMediaSelected
 TB,N,V_isPlayMediaSelected
+accessorySupportsMusicAlarm
+TB,N,V_accessorySupportsMusicAlarm
 hfPlaybackArchive
 T@"HFPlaybackArchive",&,N,V_hfPlaybackArchive
 T@"<HFMediaProfileContainer>",&,N,V_mediaProfileContainer
@@ -4656,10 +4692,6 @@ T@"UIView",&,N,V_selectedBackgroundView
 T@"<HUDashboardListViewControllerDelegate>",W,N,V_delegate
 selectedDashboard
 T@"HUDashboardContext",&,N,V_selectedDashboard
-HUPrimaryUserItemProvider.m
--[HUPrimaryUserItemProvider init]
-userItems
-T@"NSMutableSet",&,N,V_userItems
 HUUsersRemovePersonAlertTitle
 HUUsersRemovePersonConfirmationMessage
 HUUsersRemovePersonCancelButtonTitle
@@ -4979,6 +5011,7 @@ T@"HUCameraRecordingSettingsModule",&,N,V_cameraRecordingItemModule
 HUGridHeadlineSectionIdentifier
 HUGridStatusBannerSectionIdentifier
 HUGridMultiUserTokenFixBannerSectionIdentifier
+HUGridWelcomeUIBannerSectionIdentifier
 HUGridStatusSectionIdentifier
 HUGridScenesSectionIdentifier
 HUGridPlaceholderSceneSectionIdentifier
@@ -4988,6 +5021,7 @@ HUGridCamerasSectionIdentifier
 HUGridEditSectionIdentifier
 HUDashboardItemManager.m
 -[HUDashboardItemManager initWithDelegate:sourceItem:]
+HUWelcomeUIBannerCell_ActionBar
 HUEditButtonTitle
 HUGridFavoriteScenesSectionTitle
 HUGridFavoriteServicesSectionTitle
@@ -5020,6 +5054,8 @@ statusBannerItem
 T@"HFItem",&,N,V_statusBannerItem
 multiUserTokenFixBannerItem
 T@"HFItem",&,N,V_multiUserTokenFixBannerItem
+welcomeUIBannerItem
+T@"HFItem",&,N,V_welcomeUIBannerItem
 sceneListItem
 T@"HFActionSetListItem",&,N,V_sceneListItem
 placeholderSceneListItem
@@ -5226,6 +5262,20 @@ T@"UIView<HUQuickControlInteractiveView>",R,N
 T@"HUQuickControlViewProfile",R,N,V_profile
 contraption
 T@"UIViewController",R,N,V_contraption
+HUHomeTheaterAudioItemModule.m
+v16@?0@"<HMMediaDestination>"8
+HomeTheaterAudio
+HUHomeTheaterSettings_FooterTitle
+B16@?0@"<HMMediaDestination>"8
+T@"<HUHomeTheaterAudioItemModuleDelegate>",W,N,V_delegate
+tappedDestinationIdentifier
+T@"NSString",&,N,V_tappedDestinationIdentifier
+selectedUncommittedItem
+T@"HFItem",R,W,N,V_selectedUncommittedItem
+includeLocalDestinations
+TB,R,N,V_includeLocalDestinations
+disableAutomaticCommit
+TB,N,V_disableAutomaticCommit
 HUSetupCellSignIn
 Unknown mosaic base item type %@
 HUCCMosaicItem.m
@@ -5428,6 +5478,8 @@ TQ,N,V_handleViewStyle
 lineView
 T@"UIView",&,N,V_lineView
 HUMultiUserKey_SetIsEnabled
+HUHomeFeatureOnboardingKey_Announce_FinishedOnboarding
+HUHomeFeatureOnboardingKey_HomeTheater_FinishedOnboarding
 HUHomeFeatureOnboardingKey_NaturalLighting_FinishedOnboarding
 HUHomeFeatureOnboardingKey_IdentifyVoice_DismissReminderBanner
 HUHomeFeatureOnboardingKey_IdentifyVoice_FinishedOnboarding
@@ -5470,6 +5522,7 @@ HUServiceDetailsRemoveRouterAlertTitle
 HUServiceDetailsRemoveHomePodAlertTitle
 HUServiceDetailsRemoveDeviceAlertTitleManualNetworkReconfiguration_Format
 HUServiceDetailsRemoveDeviceAlertTitleManualNetworkReconfiguration
+HUBreakHomeTheaterAlert_Body
 HUNetworkRouterRemoveAlertTitle
 HUNetworkRouterRemoveAlertDescriptionFormat
 HUNetworkRouterRemoveAlertButtonRemove
@@ -5492,6 +5545,19 @@ HUServiceDetailsViewControllerHomePodRoomChangePromptMessage
 HUServiceDetailsViewControllerHomePodRoomChangePromptActionUseAsPair
 v24@?0@"HMMediaSystem"8@"NSError"16
 HUServiceDetailsViewControllerHomePodRoomChangePromptActionNotNow
+HUMoveHomeTheaterAlert_AppleTV_Body
+HUMoveHomeTheaterAlert_AppleTV_Button
+HUMoveHomeTheaterAlert_HomePod_Body
+HUMoveHomeTheaterAlert_HomePod_Button
+HUMoveHomeTheaterAlert_Title
+HUMoveHomeTheaterAlert_All_Button
+HUCreateHomeTheaterAlert_AppleTV_Title
+HUCreateHomeTheaterAlert_HomePod_Title
+HUCreateHomeTheaterAlert_Body
+HUCreateHomeTheaterAlert_Use_Button
+AppleTV to room with available HomePod or HomePod Stereo Pair
+HomePod or HomePod Stereo Pair to room with available AppleTV
+HUCreateHomeTheaterAlert_DontUse_Button
 Accessories should contain the same home!
 B16@?0@"HMSymptom"8
 HFSymptomLongDescriptionHardwareFailureContactSupport
@@ -5615,24 +5681,6 @@ actionSetItems
 T@"NSMutableSet",&,N,V_actionSetItems
 actionSetItemStyle
 TQ,R,N,V_actionSetItemStyle
-HUPrimaryUserSettingsHeaderSectionIdentifier
-HUPrimaryUserSettingsAutomaticSectionIdentifier
-HUPrimaryUserSettingsUserSectionIdentifier
-HUPrimaryUserSettingsOtherAccountSectionIdentifier
-HUPrimaryUserSettingsItemModule.m
-HUPrimaryUserSettingsAutomaticSection_Footer
-HUPrimaryUserSettingsUserSection_Header
-HUPrimaryUserSettingsOtherSection_Header
-HUPrimaryUserSettingsOtherSection_Footer
-HUPrimaryUserSettingsAutomaticSection_Header
-primaryUserItemProvider
-T@"HUPrimaryUserItemProvider",&,N,V_primaryUserItemProvider
-primaryUserSettingsHeaderItem
-T@"HFItem",&,N,V_primaryUserSettingsHeaderItem
-automaticItem
-T@"HFItem",&,N,V_automaticItem
-otherAccountItem
-T@"HFItem",&,N,V_otherAccountItem
 cameraCount
 appContext
 HUCameraPresenceRecordingSettingsModule.m
@@ -5893,6 +5941,7 @@ indicatorClippingView
 T@"UIView",&,N,V_indicatorClippingView
 animationApplier
 T@"HUAnimationApplier",&,N,V_animationApplier
+_extra_small
 _small
 _large
 _vector
@@ -5924,8 +5973,8 @@ alarm
 T@"MTMutableAlarm",C,N,V_alarm
 T@"<HUAlarmEditSettingViewControllerDelegate>",W,N,V_delegate
 T@"NSString",R,C,N,V_loggedInAppleMusicAccountDSID
-cellContentViewBackgroundColor
-T@"UIColor",&,N,V_cellContentViewBackgroundColor
+useProxSetupPresentationStyle
+TB,N,V_useProxSetupPresentationStyle
 HUQuickControlButtonRowView.m
 Unsupported alignment %@
 @"NSLayoutConstraint"8@?0
@@ -6160,6 +6209,17 @@ T@"NSString",C,N,V_dayOfWeekString
 dateString
 T@"NSString",C,N,V_dateString
 TB,N,GisEnabled,V_enabled
+kIdentifierStringForBuiltIn
+HUMediaDestinationItem.m
+-[HUMediaDestinationItem init]
+HUHomeTheaterSettings_DefaultOutput
+tv.and.hifispeaker.fill
+homepod.fill
+homepod.2.fill
+homeTheaterAudioItemModule
+T@"HUHomeTheaterAudioItemModule",R,V_homeTheaterAudioItemModule
+thisDestination
+T@"<HMMediaDestination>",R,V_thisDestination
 naturalLightingItems
 T@"NSMutableSet",&,N,V_naturalLightingItems
 lightProfileFilter
@@ -6186,7 +6246,7 @@ failed
 CHANGING
 NOT CHANGING
 v16@?0@"NSNumber"8
-AirDrop Identifier is nil after presentation dance!
+-[HUAccessorySettingsItemModuleController _handleButtonPress:]
 Adapter doesn't exist; you're a failure.
 T@"<HUAccessorySettingsItemModuleControllerDelegate>",W,N,V_delegate
 registeredButtonFutures
@@ -6658,13 +6718,9 @@ HUAppleMusicAccountSignInActionSheetTitle
 HUAppleMusicAccountActionSheetChangeDefaultAccountButtonTitle
 HUMediaSystemAppleMusicAccountEditorViewControllerLoadingText
 HUAppleMusicAccountActionSheetCancelButtonTitle
-HUPrimaryUserSettingsSignOutOtherAccount_AlertTitle
-HUPrimaryUserSettingsSignOutOtherAccount_AlertMessage
 HUAppleMusicAccountSignInUsingADifferentAppleID
 appleMusicAccountModuleController
 T@"HUAppleMusicAccountModuleController",&,N,V_appleMusicAccountModuleController
-primaryUserModuleController
-T@"HUPrimaryUserSettingsItemModuleController",&,N,V_primaryUserModuleController
 accountArbitrationFuture
 T@"NAFuture",&,N,V_accountArbitrationFuture
 appleMusicLoadingViewControllerDeallocationSentinel
@@ -7397,11 +7453,13 @@ SpeakerFlipper
 leadingSwapButtonMargin, trailingSwapButtonMargin, leftSpeakerMargin, rightSpeakerMargin, leftHomePodDetailView, rightHomePodDetailView, swapButton
 H:|[leftSpeakerMargin][leftHomePodDetailView][leadingSwapButtonMargin][swapButton][trailingSwapButtonMargin][rightHomePodDetailView][rightSpeakerMargin]|
 swapButton
-T@"UIButton",R,N,V_swapButton
+T@"UIButton",&,N,V_swapButton
 leftHomePod
-T@"HUHomePodDetailView",R,N,V_leftHomePod
+T@"HUHomePodDetailView",&,N,V_leftHomePod
 rightHomePod
-T@"HUHomePodDetailView",R,N,V_rightHomePod
+T@"HUHomePodDetailView",&,N,V_rightHomePod
+homePodVariant
+TQ,N,V_homePodVariant
 T@"<HUHomePodStereoSwapperCellDelegate>",W,N,V_delegate
 existingScenes
 HUAccessorySceneListIncludedScenesHeaderTitle
@@ -7675,6 +7733,27 @@ T@"NSUUID",&,N,V_notificationUUID
 T@"NSUUID",&,N,V_clipUUID
 playbackStartDateFromSignificantEvent
 T@"NSDate",&,N,V_playbackStartDateFromSignificantEvent
+numberOfAssociatedAccessoriesDisplayed
+TQ,N,V_numberOfAssociatedAccessoriesDisplayed
+HUHomeTheaterSetup_Title
+HUHomeTheaterSetup_Detail
+HUHomeTheaterSetupViewController.m
+-[HUHomeTheaterSetupViewController initWithTitle:detailText:icon:contentLayout:]
+HUHomeTheaterSetup_UseHomeTheaterButton
+HUHomeTheaterSetup_NotNowButton
+Onboarding-HomeTheater
+T@"HMAccessory",&,N,V_accessory
+useHomeTheaterButton
+T@"OBTrayButton",&,N,V_useHomeTheaterButton
+T@"UIImageView",&,N,V_contentImageView
+tableViewController
+T@"HUSimpleItemModuleTableViewController",&,N,V_tableViewController
+tableViewControllerModule
+T@"HUHomeTheaterAudioItemModule",W,N,V_tableViewControllerModule
+tableViewHeightConstraint
+T@"NSLayoutConstraint",&,N,V_tableViewHeightConstraint
+contentViewHeightConstraint
+T@"NSLayoutConstraint",&,N,V_contentViewHeightConstraint
 v32@?0@"HFItemProvider"8Q16^B24
 T@"HFItemManager",R,D,N
 hasStartedSecondTouch
@@ -7724,6 +7803,12 @@ Unhandled significant event type: %@
 T@"NSString",R,N,V_significantEvent
 T@"NSDateComponents",R,N,V_currentOffset
 T@"<HUTimerTriggerOffsetEditorDelegate>",W,N,V_delegate
+WelcomeBanner-Background-large
+WelcomeBanner-Background
+welcomeUIBannerLayoutOptions
+T@"HUGridWelcomeUIBannerCellLayoutOptions",&,N,V_welcomeUIBannerLayoutOptions
+backgroundImageView
+T@"UIImageView",&,N,V_backgroundImageView
 statusItemManager
 T@"HFHomeStatusItemManager",&,N,V_statusItemManager
 T@"NUIContainerStackView",&,N,V_stackView
@@ -8056,6 +8141,18 @@ HUCameraRecordingSettingsHeaderDisplayStyleOnboarding_Body
 HUCameraStorageDurationHeaderItemProvider.m
 -[HUCameraStorageDurationHeaderItemProvider initWithItems:]
 HUServiceDetailsAudioSettingsLabel
+playAnnounceRecordingButton
+waveformImageView
+T@"UIImageView",&,N,V_waveformImageView
+waveformImage
+T@"UIImage",&,N,V_waveformImage
+playRecordingButton
+T@"UIButton",&,N,V_playRecordingButton
+audioPlayer
+T@"HFAudioPlayer",&,N,V_audioPlayer
+T@"NSArray",&,N,V_audioPowerLevels
+audioFileURL
+T@"NSURL",&,N,V_audioFileURL
 HUGridLayoutColumnStyleFixedWidth
 HUGridLayoutColumnStyleFlexibleWidth
 (%f, %f)
@@ -8123,6 +8220,8 @@ bannerCellOptions
 T@"HUGridBannerCellLayoutOptions",C,N,V_bannerCellOptions
 statusBannerCellOptions
 T@"HUGridStatusBannerCellLayoutOptions",C,N,V_statusBannerCellOptions
+welcomeUIBannerCellOptions
+T@"HUGridWelcomeUIBannerCellLayoutOptions",C,N,V_welcomeUIBannerCellOptions
 cellSizeSubclass
 pointWidthForCurrentViewSizeSubclass
 pointWidthForFullWidthCell
@@ -8244,6 +8343,14 @@ verticalSpacingForLipElements
 Td,N,V_verticalSpacingForLipElements
 footerViewLabelFont
 T@"UIFont",&,N,V_footerViewLabelFont
+titleLabelColor
+T@"UIColor",&,N,V_titleLabelColor
+descriptionLabelColor
+T@"UIColor",&,N,V_descriptionLabelColor
+footerLabelColor
+T@"UIColor",&,N,V_footerLabelColor
+continueButtonColor
+T@"UIColor",&,N,V_continueButtonColor
 Td,N,V_containerLeadingMargin
 Td,N,V_containerTrailingMargin
 topMargin
@@ -8479,6 +8586,7 @@ HUServiceDetailsItemManager.m
 [self.sourceServiceItem isKindOfClass:[HFServiceItem class]]
 Unexpected sourceItem: %@
 Internal Debugging
+HUServiceDetailsAudioOutputTitle
 HUServiceDetailsSplitAccountDescription
 HUServiceDetailsSplitAccountTitle
 HUServiceDetailsSplitAccountUseAsDefaultAccount_Button_Title
@@ -8493,6 +8601,7 @@ HUServiceDetailsCameraFaceRecognitionDisplayTitle
 Afroimkne234rsff23
 splitAccount
 AdvancedCameraSettings
+AudioOutput
 cameraActivityZones
 cameraStatusLight
 cameraNightMode
@@ -8556,6 +8665,8 @@ collectDiagnosticsSections
 T@"NSArray",&,N,V_collectDiagnosticsSections
 lockAuthenticatedNFCSections
 T@"NSArray",&,N,V_lockAuthenticatedNFCSections
+homeTheaterAudioSections
+T@"NSArray",&,N,V_homeTheaterAudioSections
 associatedServiceTypeOptionItemProvider
 T@"HFAssociatedServiceTypeOptionItemProvider",&,N,V_associatedServiceTypeOptionItemProvider
 accessoryInfoItemProvider
@@ -8619,6 +8730,8 @@ splitMediaAccountUseDefaultAccountItem
 T@"HFItem",&,N,V_splitMediaAccountUseDefaultAccountItem
 splitMediaAccountSignoutAccountItem
 T@"HFItem",&,N,V_splitMediaAccountSignoutAccountItem
+homeTheaterAudioOutputItem
+T@"HFItem",&,N,V_homeTheaterAudioOutputItem
 groupedAccessoryReachableOverRapport
 TB,N,V_groupedAccessoryReachableOverRapport
 serviceDetailsDelegate
@@ -8640,8 +8753,6 @@ loggedInMediaAccountOnHomePod
 T@"ACAccount",R,N
 sourceItemIsHomePod
 T@"ACAccount",&,N,V_homeMediaAccount
-primaryUserItem
-T@"HFItem",R,N,V_primaryUserItem
 shouldHideAccessoryItem
 TB,N,V_shouldHideAccessoryItem
 shouldHideSeparateTileItem
@@ -8726,7 +8837,6 @@ HUAccessoryDiagnosticsAlertTitle
 HUAccessoryDiagnosticsAlertMessage
 accessoryLogsItemManager
 T@"HUAccessoryDiagnosticsItemManager",W,N,V_accessoryLogsItemManager
-HUPrimaryUserItem.m
 HUMediaSystemEditorInstructionsSectionIdentifier
 HUMediaSystemEditorServiceGridSectionIdentifier
 HUMediaSystemEditorItemManager.m
@@ -9136,6 +9246,8 @@ dashboardType
 TQ,R,N,V_dashboardType
 allowsAdding
 TB,N,V_allowsAdding
+allowsAnnounce
+TB,N,V_allowsAnnounce
 shouldHideHeadline
 TB,N,V_shouldHideHeadline
 shouldHideStatus
@@ -9269,8 +9381,6 @@ v24@?0Q8Q16
 HUAppleMusicAccountItemManager_StateTransition
 appleMusicAccountModule
 T@"HUAppleMusicAccountModule",&,N,V_appleMusicAccountModule
-primaryUserSettingsItemModule
-T@"HUPrimaryUserSettingsItemModule",&,N,V_primaryUserSettingsItemModule
 shouldDisableUpdates
 TB,N,V_shouldDisableUpdates
 minimumDuration
@@ -9596,6 +9706,8 @@ T@"HFTemperatureIconDescriptor",R,D,N
 {CGRect={CGPoint=dd}{CGSize=dd}}8@?0
 currentIconContentView
 T@"HUIconContentView",&,N,V_currentIconContentView
+vibrancyEffectAnimationDuration
+Td,N,V_vibrancyEffectAnimationDuration
 T@"UITextField",&,N,V_textField
 leftConstraint
 T@"NSLayoutConstraint",&,N,V_leftConstraint
@@ -9678,6 +9790,14 @@ T@"HFMultiStateControlItem",R,D,N
 HUNetworkRouterManualReconfigurationSectionIdentifier
 HUNetworkRouterManualReconfigurationItemManager.m
 -[HUNetworkRouterManualReconfigurationItemManager initWithDelegate:sourceItem:]
+HUHomeTheaterSimpleSetupViewController.m
+-[HUHomeTheaterSimpleSetupViewController initWithTitle:detailText:icon:contentImage:]
+destination
+T@"<HMMediaDestination>",&,N,V_destination
+confirmButton
+T@"OBTrayButton",&,N,V_confirmButton
+skipButton
+T@"OBLinkTrayButton",&,N,V_skipButton
 mirroringAxisBias
 TQ,N,V_mirroringAxisBias
 T@"<HUColorWheelSpace>",R,N
@@ -9908,6 +10028,7 @@ Warning: HUDashboardViewController was asked to perform multiple batch updates b
 %@: User tapped Multi User Fix Banner
 %@ Error in fixing MultiUser Token for MediaAccount [%@] in Home [%@] - %@
 %@ Successfully fixed MultiUser Token for MediaAccount [%@] in Home [%@]
+%@: User tapped WelcomeUIBanner
 Completed extended launch
 Delaying full item update until the view is fully visible
 Error refreshing state for media profile [%@]
@@ -9969,6 +10090,8 @@ Resolved to app store download %@
 Resolved to internal store download
 Resolved to internal sideload
 Unable to resolve linked application
+Initializing %@ Onboarding to determine if needed: Will onboarding be started?: %{BOOL}d
+%@:%@ Onboarding not required
 Setting scale %f (min: %f, max %f), offset %@
 Crop scale (%@) doesn't fit within scroll scales (min: %f, max: %f)
 %@: Updating protection mode to %lu for group %@
@@ -10073,8 +10196,6 @@ Successfully updated location device to this device
 Failed to update active location device: %@
 %@:%@ Siri language on this device (%@) matches Siri Language on HomePod (%@)?: %{BOOL}d, & HomePod language is a supported voice recognition language?: %{BOOL}d
 Committing update to assistant access control: %@
-Failed to update automatic setting with error %@
-Failed to update primary user to %@ with error %@
 ----------- Start options for: %@ -----------
 %@ = %@
 ----------- End options for: %@ -----------
@@ -10127,7 +10248,17 @@ hasAppleTVs = %{BOOL}d,
 hasRecordingCameras = %{BOOL}d,
 needsIdentifyVoiceOnboarding = %{BOOL}d, needsTVViewingProfilesOnboarding = %{BOOL}d,
 needsCameraOnboarding = %{BOOL}d,
+needsAnnounceOnboarding = %{BOOL}d
+needsHomeTheaterOnboarding = %{BOOL}d
 needsNaturalLightingOnboarding = %{BOOL}d
+%@:%@: %@ show because: user(%@) in home(%@):
+showsAnnounceButton = %{BOOL}d
+hasPreviouslyDismissed = %{BOOL}d
+%@:%@: %@ show because: user(%@) in home(%@):
+hasCompatibleAppleTVs = %{BOOL}d
+alreadyOneSetup = %{BOOL}d
+userAllowedToEdit = %{BOOL}d
+hasPreviouslyDismissed = %{BOOL}d
 %@:%@: %@ show because: home(%@):
 hasCompatibleLights = %{BOOL}d
 hasCapableResident = %{BOOL}d
@@ -10266,6 +10397,9 @@ Current clip download progress completion percentage: %lu.
 Error: %@ downloading video file for clip: %@. THIS SHOULD NEVER HAPPEN.
 <HUNetworkProtectionModeOptionItem: %p "%@"/%lu> (selected=%{BOOL}d, updating=%{BOOL}d) for group (%@ "%@", target mode %lu)
 User tapped button: %@
+Saving Media Type Alarm
+Alarm Sound ..%@
+Saving Regular Alarm
 New Alarm - Alarm Desc %@
 Move Alarm - Alarm Desc %@
 Edit Alarm - Alarm Desc %@
@@ -10275,6 +10409,8 @@ Editing Alarm - Error preparing hfPlaybackArchive. Treating as Regular Alarm
 Editing Alarm is Media Alarm. Description %@, ToneIdentifier %@, playbackArchiveObj from TL %@
 Failed to convert playback archive %@ into a tone identifier.
 Saving as Media Alarm volume..%@ playback archive properties %@ ToneIdentifier from Tone Library %@ CustomSound %@
+didPickPlaybackArchive Media Alarm. Description %@
+Volume Setting:  Default Volume From Profile %f Custom Volume %@ User Toggled Volume Level %f New Alarm %@ VolumeSet %f
 Error %@ looking up user: %@
 No changes. Dismiss editor.
 Unable to archive custom data:%@
@@ -10360,6 +10496,8 @@ Error setting AMS iTunes Account - [%@] for Home - [%@] - [%@]
 %@ Found Accounts are Split. Displaying the Split account UI
 %@ Dismissing Split Account View
 Unable to initiate fix for symptom. Couldn't find a symptom type.
+%@:%@ setting destination to %@ from possible destinations %@
+%@:%@ completed with error: %@
 Launching Home Control Service NOT permitted
 Error opening Home Control Service Alert using Frontboard System Service [%@]
 Updating HUCameraPlayerLiveContentViewController to source:%@
@@ -10390,6 +10528,17 @@ Unable to launch editor for invalid item:%@
 checkForAccessoriesNeedingReprovisioning serviceManager.sourceItem %@ accessory %@ state %lu
 Service Details Updating accessory %@ to show individual services %@
 %@:%@ HomePod has no stereo pairing versions: %@
+%@:%@ Moving A, which is in a home theater group with B:
+A: %@
+B: %@
+%@:%@ Moving home theater accessory %@ out of group.
+%@:%@ AppleTV destination controller %@ destination cleared, with error: %@
+%@:%@ Moving all home theater accessories in this group to room: %@
+%@:%@ Moving A into room with B:
+A: %@
+B: %@
+%@:%@ Moving %@: audioDestinationController = %@ new destination = %@
+%@:%@ Moved %@ with error: %@
 %@: User tapped header warning/symptom
 HomeKit Object '%@' was not removed; Unable to validate backing source item.
 HomeKit Object '%@' was removed; dismissing presented serviceDetailsViewController
@@ -10405,8 +10554,6 @@ Error setting HFHMSettingKeyPath_DismissedHomePodHasNonMemberMediaAccountWarning
 Mosaic Layout %@ filled, breaking.
 Unable to calculate correct mosaic layout
 Mosaic Layout chosen is %@
-Failed to update primary user for accessory %@ with error %@
-Accessory %@ is nil or does not support primary user
 Error setting camera streaming setting: %@
 ICQOfferManager getting current offer from freshmint service
 ICQUpgradeFlowManager presenting current offer UI
@@ -10427,6 +10574,7 @@ Error removing all camera clips: %@
 Deleted all clips for profile:%@
 Failure to update software update preference due to missing autoupdateItem
 learn more pressed w/ url intention but no url found
+%@:%@: self.thisDestination: %@ tappedDestinationIdentifier: %@ selectedDestination: %@... isSelected = %{BOOL}d, showSpinner = %{BOOL}d
 (Option Item) Failed to update %@ to '%@' with error: %@
 (Option Item) Updated %@ to '%@'
 (Switch) '%@/%@' value changing to '%@'
@@ -10440,8 +10588,7 @@ learn more pressed w/ url intention but no url found
 (Slider) Updated %@ to '%@'
 (Stepper) Failed to update  %@ to '%@' with error: %@
 (Stepper) Updated %@ to '%@'
-UIActivityViewController generated AirPlayId... proceeding.
-Tried to have the activity view controller generate an airplay id - and it didn't work.  Bailing.
+%s(%@)'Export Analytics' does not work on SIMULATOR
 Prediction manager fetched %lu predictions: %@
 Processing user action prediction: %@
 HomeKit object %@ already added, skipping
@@ -10473,16 +10620,16 @@ Found multiple matching service groups that will cause a characteristic trigger 
 Found multiple matching services that will cause a characteristic trigger to fire. This is supported in the HomeKit API, but not in Home.app. Arbitarily picking one to show
 Found multiple matching accessories that will cause a characteristic trigger to fire. This is supported in the HomeKit API, but not in Home.app. Arbitarily picking one to show
 Failed to enable/disable doorbell chime setting : %@
-Initializing %@ Onboarding to determine if needed: Will onboarding be started?: %{BOOL}d
-%@:%@ Onboarding not required
 Control view %@ is in state %@. Ignoring pan gesture in %s.
 Control view %@ is in state %@. Ignoring tap gesture in %s.
 -[HUAppleMusicAccountViewController initWithAccessoryGroupItem:] called without a HFMediaProfileContainer
-Logging out of signed-in media account
 %@ Asked to show dashboard: %@
 %@ Presenting selected dashboard: %@
 Failed to identify dashboard context for item: %@ at index path: %@
 Launching Home app for Home Control Service %@
+HUEditRoomViewController: cancel button pressed
+HUEditRoomViewController: add button pressed
+HUEditRoomViewController: done button pressed
 Home %@ supports shared event automation
 No resident on home %@ supports shared event automation; residents: %@
 CameraPlayerViewController init with config:%@
@@ -10622,6 +10769,8 @@ No playback start date. Waiting until fetch complete.
 Updated camera itemManager:%@ for item:%@
 MicrophoneDisplay: BiDirectionalAudio:%{BOOL}d PortraitHidden:%{BOOL}d LiveStreaming:%{BOOL}d
 Toggled microphone state:%{BOOL}d.
+%@:%@: presented: HTSVC
+%@: Setting Up Home Theater
 fetching activeLocationDevice for current user: %@
 activeLocationDevice for current user: %@
 failed to get activeLocationDevice for current user; error: %@
@@ -10658,6 +10807,7 @@ Dismissing card view controller: %@
 %@ beginScrubbing
 %@ endScrubbingWithTargetTime: %.3f
 %@ scrubToTime: %.3f (resolution: %f)
+Failed prepare to play audioFile [%@] - [%@]
 %@:%@ User Switched Homes - Aborting Current Onboarding
 Source item has determined it needs to hide: %@. Dismissing.
 Update for person %@ disable notification setting %@ failed with error %@
@@ -10700,6 +10850,8 @@ User finished editing text field for %@, entered: %@
 Proceeding with full item update(s)
 -[HUDataAnalyticsLogListViewController initWithAccessoryGroupItem:] called without a HFMediaProfileContainer
 -[HUPersonalRequestsEditorTableViewController initWithAccessoryGroupItem:] called without a HFMediaProfileContainer
+Evalutating check if Announce is shown for Home [%@]
+Evalutating check if Announce is shown for Room [%@]
 Failed to load image for asset %@ with error %@
 Marking event %@ as a misclassification
 Failed to handle misclassification for significant event %@ (error: %@)
@@ -10842,7 +10994,6 @@ HUCCMosaicLayout
 HUPersonalRequestsCustomizeViewController
 HUConfigurationViewController
 HUBadgeAndDisclosureAccessoryView
-HUPrimaryUserAutomaticItem
 HUBridgeAndResidentDeviceListViewController
 HUNetworkConfigurationSettingsViewController
 HUCameraPlayerPlaceholderContentViewController
@@ -10916,6 +11067,7 @@ HUCameraMicrophoneButton
 HUSetupNetworkRouterAppPunchoutViewController
 HFSetupPairingPopupAppPunchout
 HUSceneSuggestionsViewController
+HUHomeTheaterOnboardingFlow
 HULocationTriggerEditorMapDragRadiusView
 HUGridCellProtocol
 HUQuickControlPresentationHost
@@ -11060,7 +11212,6 @@ HFServiceNameComponentsProviding
 HUPersonalRequestsDevicesItemModule
 HULocationDeviceManagerObserver
 HUIconContentViewReuseQueue
-HUPrimaryUserSettingsItemModuleController
 HUIconPickerViewController
 HUCameraRecordingOnboardingFlow
 HUEditRoomItemManager
@@ -11132,6 +11283,7 @@ HUCharacteristicTriggerServicePickerContentViewController
 HUWallpaperView
 HUBackgroundEffectViewGrouping
 HUNewUserEducationToolbarViewModel
+HUHomeTheaterAudioViewController
 HUNaturalLightingTitleViewController
 HUMediaAccessoryAudioSettingsViewController
 HUHomePodStereoSwapperCellDelegate
@@ -11326,7 +11478,6 @@ HULanguageSetupOnboardingFlow
 HUDashboardListViewController
 UITableViewDelegatePrivate
 UITableViewFocusDelegateLegacy
-HUPrimaryUserItemProvider
 HUEditUserViewController
 HUAboutResidentDeviceFooterViewDelegate
 HUAboutResidentDeviceViewControllerDelegate
@@ -11398,6 +11549,7 @@ HUServiceDetailsTextViewDelegate
 _HUQuickControlControllableHostView
 HUQuickControlHostingViewController
 HUQuickControlInteractiveViewController
+HUHomeTheaterAudioItemModule
 HUMultiUserTokenFixBannerCell
 HUCCMosaicItem
 HUCCMosaicOrderable
@@ -11448,7 +11600,6 @@ HUValveItemModule
 HUCameraRecordingOptionsTableViewController
 HUPresenceUserCell
 HUCCFavoriteActionSetItemProvider
-HUPrimaryUserSettingsItemModule
 HUCameraPresenceRecordingSettingsModule
 ICQUpgradeFlowManagerDelegate
 HUHomeStatusDetailsViewController
@@ -11534,6 +11685,7 @@ HUNewUserEducationBaseViewModel
 HUGridActionSetTitleAndDescriptionView
 HUAppleMusicAccountItemProvider
 HUCalendarScrubberCollectionViewCell
+HUMediaDestinationItem
 HUNaturalLightingItemProvider
 HUNaturalLightingItem
 HUUserNotificationTopicListModuleController
@@ -11626,7 +11778,6 @@ HUQuickControlElasticSliderInteractionCoordinator
 HUQuickControlSliderGestureTransformerDelegate
 HUAppleMusicAccountViewController
 HUAppleMusicAccountModuleControllerDelegate
-HUPrimaryUserSettingsItemModuleControllerDelegate
 HUNetworkConfigurationSettingsMismatchViewController
 HUCameraErrorContent
 HUCameraView
@@ -11732,6 +11883,8 @@ HUMediaAccessControlEditorModuleControllerDelegate
 HUGraphicsUtilities
 HUContactDetailsTableViewCell
 HUNCCameraPlayerViewController
+HUHomeTheaterSetupViewController
+HUHomeTheaterAudioItemModuleDelegate
 HUNearbyAccessoriesEditorServiceGridViewController
 HUQuickControlSimpleInteractionCoordinator
 HUCameraUserPermissionsSettingsModule
@@ -11744,6 +11897,7 @@ HUTriggerDurationPickerCell
 HUAccessorySceneListContentItemManager
 HUWaterDropletIconContentView
 HUTimerTriggerOffsetEditorViewController
+HUWelcomeUIBannerCell
 HUGridFlowLayoutCellAttributes
 HUHomeStatusViewController
 HUHomeStatusDetailsViewControllerDelegate
@@ -11780,6 +11934,7 @@ HUServiceDetailsCameraDoorbellChimeMuteItem
 HURemoteContextHostingView
 HUHomePersonalIdentityDeviceLanguageSetupViewController
 HUTriggerIconView
+HUHomeTheaterAudioItemModuleController
 HUCardViewController
 HUQuickControlViewControllerCoordinatorDelegate
 HUFaceRecognitionAddPersonSearchBar
@@ -11793,6 +11948,8 @@ HFCameraClipScrubbing
 HUTriggerActionEditorItemManager
 HUCameraStorageDurationHeaderItemProvider
 HUServiceDetailsAudioSettingsItem
+HURecordedWaveformView
+HFAudioPlayerDelegate
 HUGridLayoutOptions
 HUGridDisplayOptions
 HUGridLimitedWidthViewLayoutOptions
@@ -11807,6 +11964,7 @@ HUGridServiceCellLayoutOptions
 HUGridPlaceholderServiceCellLayoutOptions
 HUGridBannerCellLayoutOptions
 HUGridStatusBannerCellLayoutOptions
+HUGridWelcomeUIBannerCellLayoutOptions
 HUNavigationBarLayoutOptions
 HUNavigationButtonLayoutOptions
 HUDynamicAlignmentTitleValueCellLayoutOptions
@@ -11869,7 +12027,6 @@ HUCameraUsageOptionItemProvider
 HUNearbyAccessoriesItemManager
 HUAvailableTriggerItem
 HUAccessoryDiagnosticsViewController
-HUPrimaryUserItem
 HUMediaSystemEditorItemManager
 HUStepperControlView
 HUFaceRecognitionAddPersonItemManager
@@ -12003,6 +12160,7 @@ HUStatusBannerCell
 HUTVViewingProfilesCustomizeViewController
 HUQuickControlMultiStateViewController
 HUNetworkRouterManualReconfigurationItemManager
+HUHomeTheaterSimpleSetupViewController
 HUColorPickerView
 HUQuickControlMagnifierView
 HUSoftwareUpdateLicenseViewController
@@ -12265,6 +12423,10 @@ _selectedRecurrences
 _buttons
 _buttonStackView
 weakToWeakObjectsMapTable
+_shouldAllowCellSelection
+allowsCellSelection
+setAccessoryType:
+setDisabled:
 cellToItemMap
 setObject:forKey:
 alarm
@@ -12275,8 +12437,13 @@ setEnabled:
 module
 mobileTimerAdapterForAlarmItem:
 updateAlarm:
+sharedInstance
+hostProcess
+isDeviceUnlocked
 setAlarmEnabled:forCell:
 didSelectItem:
+canSelectItem:
+_allowsCellSelection
 _cellToItemMap
 initWithContext:delegate:
 initWithItemManager:collectionViewLayout:
@@ -12285,7 +12452,6 @@ wallpaperView
 setWallpaperView:
 defaultCenter
 mainQueue
-sharedInstance
 dismissService
 addObserverForName:object:queue:usingBlock:
 firstFastUpdateFuture
@@ -12516,6 +12682,7 @@ _hasDetailViewControllerForItem:
 headlineItem
 statusBannerItem
 multiUserTokenFixBannerItem
+welcomeUIBannerItem
 editItem
 deselectItemAtIndexPath:animated:
 collectionView:didSelectItemAtIndexPath:
@@ -12533,6 +12700,7 @@ performTask
 setForceHideMultiUserTokenFixBannerItem:
 boolValue
 addFinishBlock:
+welcomeUISelected:
 _startEditing:
 statusListItem
 sceneListItem
@@ -12550,6 +12718,7 @@ setShouldShowRoomName:
 serviceCellOptions
 headlineCellOptions
 statusBannerCellOptions
+welcomeUIBannerCellOptions
 dashboardButtonCellOptions
 arrayWithObjects:
 mainThreadScheduler
@@ -12603,12 +12772,12 @@ pointWidthForCurrentViewSizeSubclass
 traitCollection
 preferredContentSizeCategory
 statusBannerCellHeightForWidth:title:description:forContentSizeCategory:
+pointWidthForWelcomeUIBanner
 statusListCellHeight
 requiredHeightWithLayoutOptions:numberOfItems:
 dashboardButtonCellSizeForTitle:forContentSizeCategory:
 pointWidthForNumberOfColumns:
 indexPathForRow:inSection:
-pointWidthForWelcomeUIBanner
 sectionLeadingMargin
 sectionTopMargin
 sectionBottomMargin
@@ -12680,17 +12849,18 @@ sliceFromWallpaper:variant:
 navigationAddButton
 _updateLeftBarButtons
 _updateRightBarButtons
+allowsAnnounce
+allowsAdding
 setNavigationButtons:forEdge:
 leftDashboardNavigationButtons
 setNavigationAddButton:
 navigationEditDoneButton
 setNavigationEditDoneButton:
-allowsAdding
 dashboardHasPlaceholderServiceOrSceneItems
 setLeftDashboardNavigationButtons:
 setRightDashboardNavigationButtons:
-preferredContentSize
 _setAllowedNavigationOverlapAmount:
+preferredContentSize
 sectionIndexForDisplayedSectionIdentifier:
 indexPathForItem:inSection:
 layoutAttributesForSupplementaryViewOfKind:atIndexPath:
@@ -12765,6 +12935,8 @@ accessory:didAddSymptomsHandler:
 accessoryDidRemoveSymptomsHandler:
 accessoryDidUpdateMultiUserSupport:
 accessoryDidUpdateSupportsCompanionInitiatedRestart:
+accessoryDidUpdateSupportsMusicAlarm:
+accessoryDidUpdateSupportsAnnounce:
 accessoryDidUpdateSupportsThirdPartyMusic:
 accessoryDidUpdateSupportsDoorbellChime:
 accessory:didUpdateLastKnownSleepDiscoveryModeForService:
@@ -12772,10 +12944,10 @@ accessory:didUpdateLastKnownOperatingStateResponseForService:
 accessoryDidUpdateReachableTransports:
 accessory:didUpdateDevice:
 accessoryDidUpdatePairingIdentity:
+accessoryDidUpdateAudioDestinationController:
+accessoryDidUpdateAudioDestination:
 accessoryDidUpdateDiagnosticsTransferSupport:
 accessoryDidSetHasOnboardedForNaturalLighting:
-accessoryDidUpdateSupportsPreferredMediaUser:
-accessoryDidUpdatePreferredMediaUser:
 didUpdateDemoModeStateForAccessory:
 itemManager:didUpdateResultsForItem:atIndexPath:
 itemManager:didRemoveItem:atIndexPath:
@@ -12952,6 +13124,8 @@ setIsHomeViewShown:
 setDashboardNavigator:
 setDashboardItemManager:
 dynamicScrollingOptions
+navigationAnnounceButton
+setNavigationAnnounceButton:
 setNavigationHomesAndRoomsButton:
 setStatusAnimationController:
 setHeadlineAnimationController:
@@ -12980,6 +13154,7 @@ _emptyHomeView
 _largeTitleButton
 _dynamicScrollingOptions
 _navigationAddButton
+_navigationAnnounceButton
 _navigationHomesAndRoomsButton
 _navigationEditDoneButton
 _statusAnimationController
@@ -13227,7 +13402,6 @@ _queue
 _deleteSiriHistoryItem
 selectionType
 setAccessoryView:
-setAccessoryType:
 setSelectionStyle:
 integerValue
 na_filter:
@@ -13710,7 +13884,6 @@ hf_appleMusicCurrentLoggedInAccount
 hf_homePodSupportsMultiUser
 ams_altDSID
 numberWithInt:
-hf_supportsPreferredMediaUser
 layoutDescription
 itemType
 setHomeItem:
@@ -13813,14 +13986,6 @@ _badgeContainerView
 _badgeImageView
 _badgeLabel
 _disclosureImageView
-allocWithZone:
-initWithMediaProfileContainer:
-copyLatestResultsFromItem:
-isControllable
-hf_preferredMediaUser
-numberWithLong:
-hf_dependentHomeKitObjectsForDownstreamItems
-_mediaProfileContainer
 initWithHome:
 initWithHome:delegate:
 bridgeItemForAccessory:
@@ -14057,6 +14222,7 @@ removeObjectForKey:
 domain
 code
 errorWithDomain:code:userInfo:
+isControllable
 numberOfAccessoriesWithAvailableUpdates:
 startUpdatesForAccessories:presentationDelegate:
 anyObject
@@ -14204,7 +14370,6 @@ isEnabled
 labelColor
 useLargeCell
 isDisabled
-setDisabled:
 setHighlighted:animated:
 title
 _showValue
@@ -14314,7 +14479,6 @@ fakeNetworkProfileInstallSymptomItem
 setFakeNetworkProfileInstallSymptom:
 fakeNetworkNotShareableSymptomItem
 setFakeNetworkNotShareableSymptom:
-canSelectItem:
 setCellToItemMap:
 transform
 setTransform:
@@ -14343,6 +14507,7 @@ initWithSettings:
 avatarViewController
 defaultMetrics
 setContentMetrics:
+setLineBreakMode:
 setUserHandle:
 descriptorForRequiredKeys
 contactForUserHandle:withKeys:
@@ -14567,7 +14732,6 @@ _presentationDelegate
 _serviceContainerItem
 _serviceGridDelegate
 initWithFrame:activityIndicatorStyle:
-setLineBreakMode:
 textContent
 _textContentWithDefaultAttributes
 textView
@@ -14780,6 +14944,8 @@ imageNamed:
 imageWithRenderingMode:
 staticPreferredFontForTextStyle:traits:
 configurationWithFont:scale:
+configurationWithPointSize:weight:
+imageWithTintColor:renderingMode:
 blackColor
 _initWithFilledSystemImageNamed:fillColor:symbolColor:
 hu_standardSymbolConfiguration
@@ -14789,9 +14955,15 @@ hu_smallQRBadgeTemplateImage
 hu_cameraErrorImage
 hu_cellCheckmarkImage
 hu_closeButtonImage
+hu_waveformImage
+hu_recordingButtonWaveformImage
+hu_recordingButtonStopImage
+hu_recordingButtonSendImage
+hu_fastForwardButtonImage
 hu_playButton
 hu_pauseButton
 hu_stopButtonImage
+hu_playButtonImageForAnnouncementPlaybackButton
 hu_recordingDeleteButton
 hu_microphoneGlyphForTalkingState:usingStandardSymbolConfiguration:
 hu_settingsImageUsingStandardSymbolConfiguration:
@@ -14852,6 +15024,18 @@ _showActionEditorForActionSetSuggestionItem:
 _showActionEditorForNewCustomScene
 _sceneEditorDelegate
 _suggestionsItemManager
+hf_appleTVsSupportingHomeTheater
+home:canShowHomeTheaterOnboardingWithUsageOptions:
+appleTVs
+viewControllerForAccessory:
+audioDestinationController
+availableDestinations
+initWithAppleTVAccessory:destination:inHome:
+initWithAppleTVAccessory:inHome:
+indexOfObject:
+initWithUsageOptions:home:
+setAppleTVs:
+_appleTVs
 setHandleEndpointView:
 handleEndpointView
 setZPosition:
@@ -15026,7 +15210,6 @@ canPerformAction:withSender:
 hf_isMultiServiceAccessory
 presentationController
 _setPreferredCornerRadius:
-hostProcess
 registerItemForTypeIdentifier:loadHandler:
 initWithItemProvider:
 setLocalObject:
@@ -15153,6 +15336,7 @@ parentServiceDescriptor
 writePrimaryState:
 initWithProfile:
 initWithControlView:delegate:
+numberWithLong:
 setControlView:
 _controlView
 setContentCompressionResistancePriority:forAxis:
@@ -15289,7 +15473,6 @@ setNumberOfWallpapersFittingInWidth:
 selectedWallpaper
 customWallpaper
 namedWallpapers
-indexOfObject:
 setSelectedIndexPath:animated:
 showBorder:animated:
 isScrollEnabled
@@ -15307,7 +15490,6 @@ wallpaperPicker:didSelectWallpaper:withImage:
 setImagePicker:
 imagePicker
 setSourceType:
-_setForcePresentationInPresenterScene:
 setSelectedWallpaper:animated:
 setCustomWallpaper:
 wallpaperPicker:didReceiveDroppedImage:
@@ -15501,6 +15683,7 @@ setFaceRecognitionCellItem:
 faceRecognitionCellItem
 initWithItemUpdater:home:
 _faceRecognitionCellItem
+initWithMediaProfileContainer:
 logoutItem
 loginItem
 loggedInUsernameItem
@@ -15519,6 +15702,7 @@ explicitAccountSignedInMessage
 setState:
 dispatcher:appleMusicAccountsDidUpdate:
 setStateChangeObserver:
+_mediaProfileContainer
 _appleMusicAccountItemProvider
 _loggedInUsernameItem
 _logoutItem
@@ -16041,7 +16225,6 @@ _applierBlocks
 _completionBlocks
 _progress
 _createGradientLayer
-configurationWithPointSize:weight:
 _systemImageNamed:withConfiguration:
 _updateLayout
 truetoneIcon
@@ -16762,6 +16945,7 @@ hf_isValidObject
 isItemGroup
 isContainedWithinItemGroup
 numberOfItemsContainedWithinGroup
+hf_dependentHomeKitObjectsForDownstreamItems
 hf_settingsAdapterManager
 hf_settingsValueManager
 hf_stateDumpBuilderWithContext:
@@ -16780,6 +16964,7 @@ hf_homePodMediaAccountIsMismatchedWithHomeMediaAccount
 hf_fetchLogListWithTimeout:
 hf_fetchLog:timeout:
 hf_idsDeviceIdentifierWithError:
+hf_destination
 hf_isCurrentAccessory
 hf_isAccessorySettingsReachable
 hf_isAppleMusicReachable
@@ -16787,12 +16972,14 @@ hf_isReachable
 hf_supportsSoftwareUpdate
 hf_supportsStereoPairing
 hf_showsAudioSettings
+hf_supportsMusicAlarm
 hf_categoryLocalizedDescription
 hf_backingAccessory
 hf_homePodIsCapableOfShowingSplitAccountError
 hf_fakeDebugSymptoms
 hf_deviceIdentifiers
 hf_mediaRouteIdentifier
+hf_supportsHomeTheater
 accessControl
 sourceMediaProfileContainer
 isCurrentIOSDeviceOnSameVoiceRecognitionLanguageAsPersonalRequestsDeviceForItem:
@@ -16845,13 +17032,6 @@ dequeueContentView
 reapContentView:
 _contentViewClass
 _reuseStack
-automaticItem
-primaryUserSettingsHeaderItem
-otherAccountItem
-initWithType:userID:
-_updatePrimaryUserSetting:
-updatePrimaryUser:
-primaryUserModuleController:didSelectPrimaryUser:
 setMinimumInteritemSpacing:
 selectedIconDescriptor
 setSelectedIconDescriptor:
@@ -16868,7 +17048,6 @@ hf_allCameraProfilesSupportingRecording
 initWithItemUpdater:cameraProfiles:displayStyle:
 initWithTableViewStyle:moduleCreator:moduleControllerBuilder:
 initWithTitle:detailText:icon:itemTableViewController:home:
-initWithUsageOptions:home:
 setUserItem:
 _userItem
 initWithRoomBuilder:delegate:
@@ -17417,6 +17596,11 @@ home:onboardAllFeaturesFromPresentingViewController:usageOptions:
 groupedFeaturesForOnboardingFlowKeyPaths:
 availableLanguageOptions
 hasCompletedNonOwnerUserHomeSwitchingUI
+hf_shouldShowAnnounceFeatureForThisHome
+home:canShowAnnounceOnboardingWithUsageOptions:
+hasDismissedAnnounceOnboarding
+destination
+hasDismissedHomeTheaterOnboarding
 hf_accessoriesSupportingNaturalLighting
 hasOnboardedForNaturalLighting
 hf_enabledResidentsSupportsNaturalLight
@@ -17429,6 +17613,8 @@ setEnableIdentifyVoice:
 setPlaybackInfluencesForYou:
 homeOnboardingFlowInvoked:completion:
 setDismissIdentifyVoiceOnboarding:
+setDismissAnnounceOnboarding:
+setDismissHomeTheaterOnboarding:
 setDismissNaturalLightingOnboarding:
 setDismissTVViewingProfilesReminderBanner:
 setDismissTVViewingProfilesOnboarding:
@@ -17590,6 +17776,8 @@ initWithSystemImageNamed:
 automationItemIsLoading
 setAddAutomationItem:
 showNaturalLightingItem
+fetchSettingsWithCompletion:
+immediateScheduler
 enableNaturalLighting
 setNaturalLightingItem:
 setRelatedItems:
@@ -17945,6 +18133,8 @@ _accessoryArrowViewTitle
 _flexibleSpaceBarButtonStyle
 _learnMoreBarButtonStyle
 _learnMoreButtonTitle
+initWithItemUpdater:mediaProfileContainer:includeLocalDestinations:
+initWithMediaAccessoryItem:
 setUseNaturalLightingButton:
 useNaturalLightingButton
 _continueToSetup:
@@ -17955,6 +18145,9 @@ _useNaturalLightingButton
 _notNowButton
 initWithMediaSystemBuilder:sourceItem:delegate:
 audioSettingsItem
+homePodVariant
+setHomePodVariant:
+finishSetupWithDelegate:selectionStyle:homePodVariant:
 _updateSwapperCell:
 mediaSystemRole
 accessoryIdentifyFuture
@@ -18123,7 +18316,7 @@ unitNameLabel
 setMonogramString:
 isAnimatingPop
 setIsAnimatingPop:
-initWithRole:
+initWithRole:variant:
 unitName
 _isAnimatingPop
 _mediaSystemRole
@@ -19272,6 +19465,7 @@ initWithServiceType:homeIdentifier:roomIdentifier:
 _initWithUserInfo:
 homeIdentifier
 roomIdentifier
+defaultActionURL
 unsignedIntValue
 initWithServiceType:home:room:
 initWithAlertConfigurationContext:
@@ -19281,12 +19475,14 @@ setHomeIdentifier:
 setRoomIdentifier:
 setServiceType:
 setHomeName:
+setDefaultActionURL:
 _remoteViewControllerProxy
 _homeIdentifier
 _roomIdentifier
 _serviceType
 _homeName
 _roomName
+_defaultActionURL
 _theseAreNotTheIvarsYouAreLookingFor
 bundleForClass:
 imageNamed:inBundle:compatibleWithTraitCollection:
@@ -19420,6 +19616,8 @@ requireAuthenticationForSecureRequestsItem
 neverRequireAuthenticationItem
 setPersonalRequestsAuthenticationRequired:
 hu_configureCheckmarkForImageView:checked:
+allocWithZone:
+copyLatestResultsFromItem:
 _setupBackgroundView:
 _setupMonogramLabel:
 setNeedsComputeLayoutMetrics
@@ -19969,9 +20167,16 @@ setHidesBackButton:
 accessoryProtectionGroups
 _updateNetworkProtection:andFinishWithActionResult:
 initWithProfile:configurationDelegate:
+_isMusicAlarmSupportedInAccessory
 setSelectedCustomVolumeLevel:
+accessorySupportsMusicAlarm
+_checkAndPrepareEditingAlarmForMediaTypeAlarm
 _cancelButtonClicked:
 _doneButtonClicked:
+_isNewAlarm
+_hasUserSelectedToneAlarm
+_updateEnableStateForDoneButton:
+_isAlarmTypeMedia
 desiredContentSize
 timePicker
 _handlePickerChanged
@@ -19980,31 +20185,39 @@ willTransitionToTraitCollection:withTransitionCoordinator:
 horizontalSizeClass
 saveAlarmOnlyIfEdited:
 tapGestureRecognizer
+initWithFrame:supportsMusicAlarm:
 settingsTable
 _setDisplaysCellContentStringsOnTapAndHold:
 setTableFooterView:
+_updateAppleMusicSubscriptionStatus
 editedAlarm
 setHour:
 setMinute:
 viewDidUnload
-_isNewAlarm
+_hasUserSelectedCustomVolume
 _isDeviceSpecificAlarm
 _datePickerCellForTableView:atIndexPath:
 selectedMediaProfile
-_hasUserSelectedToneAlarm
 hfPlaybackArchive
-_isAlarmTypeMedia
 mediaPlayerPlaybackArchive
 displayProperties
 _configureMediaIconView:withImage:
 _deleteAlarmButtonCellForTableView:atIndexPath:
 _mediaPropertiesTypeCellForTableView:atIndexpath:
 _volumeTypeCellForTableView:atIndexpath:
-_hasUserSelectedCustomVolume
 _volumeSliderCellForTableView:atIndexPath:
+_setupCell:forTableView:indexPath:
+setIsPlayMediaSelected:
+setIsCustomVolumeSelected:
+editAlarmView
 startEditingSetting:
+_updateCellForTableView:indexPath:
 originalAlarm
 alarmEditController:didDeleteAlarm:forMediaProfile:
+_chooseMediaTapped
+setAdjustsImageSizeForAccessibilityContentSizeCategory:
+appleMusicSubcriptionResult
+_presentMediaPickerWithOptionsShowsLibraryContent:
 _volumeIconMinimum
 _volumeIconMaximum
 _volumeSettingForCurrentEditingAlarm
@@ -20018,6 +20231,10 @@ isShuffleSupported
 isCustomVolumeSelected
 isPlayMediaSelected
 isEdited
+currentDatePickerTimeComponents
+_configureSoundForMediaTypeAlarm:
+setSound:
+sound
 alarmEditController:didAddAlarm:forMediaProfile:
 originalSelectedMediaProfile
 hmf_isEqualToUUID:
@@ -20026,46 +20243,40 @@ alarmEditController:didEditAlarm:forMediaProfile:
 alarmEditControllerDidCancel:
 loggedInAppleMusicAccountDSID
 initWithAlarm:setting:mediaProfileContainer:selectedMediaProfile:loggedInAppleMusicAccountDSID:
-sound
+setIsDatePickerWheelScrolled:
+hf_homePodMediaProfiles
+setDictionary:
 toneIdentifier
 sharedToneManager
 _underlyingPlaybackArchiveForToneIdentifier:
 soundVolume
-setIsCustomVolumeSelected:
-setIsPlayMediaSelected:
 _toneIdentifierWithUnderlyingPlaybackArchive:
 toneSoundWithIdentifier:vibrationIdentifer:volume:
 setOriginalSelectedMediaProfile:
 setSelectedMediaProfile:
 setEditedAlarm:
+setAllowsSnooze:
+setRepeatEnabled:
+setShuffleEnabled:
+setHfPlaybackArchive:
+setAutoPlayEnabled:
+selectedCustomVolumeLevel
 alarmEditSettingController:didEditAlarm:
 initWithAlarmItem:mediaProfileContainer:
 supportedInterfaceOrientations
-_setupCell:forTableView:indexPath:
-_updateCellForTableView:indexPath:
-_chooseMediaTapped
-_updateEnableStateForDoneButton:
-_updateAppleMusicSubscriptionStatus
-_checkAndPrepareEditingAlarmForMediaTypeAlarm
-_configureSoundForMediaTypeAlarm:
-_presentMediaPickerWithOptionsShowsLibraryContent:
 setLoggedInAppleMusicAccountDSID:
 selectedActionSets
-editAlarmView
 setEditAlarmView:
 editingAlarmSetting
 setEditingAlarmSetting:
 setOriginalAlarm:
-selectedCustomVolumeLevel
-setHfPlaybackArchive:
+setAccessorySupportsMusicAlarm:
 setMediaProfileContainer:
-appleMusicSubcriptionResult
 setAppleMusicSubcriptionResult:
-setIsDatePickerWheelScrolled:
-currentDatePickerTimeComponents
 setTapGestureRecognizer:
 _isCustomVolumeSelected
 _isPlayMediaSelected
+_accessorySupportsMusicAlarm
 _isDatePickerWheelScrolled
 _loggedInAppleMusicAccountDSID
 _selectedActionSets
@@ -20665,11 +20876,6 @@ setSelectedDashboard:
 _indexPathForDashboardContext:
 _selectedDashboard
 _selectedBackgroundView
-initWithHome:mediaProfileContainer:
-initWithHome:mediaProfileContainer:user:
-userItems
-setUserItems:
-_userItems
 initWithUserItemManager:home:
 initWithUser:
 editUserItemManager
@@ -20741,9 +20947,7 @@ setLastSelectedVolume:
 setTargetVolume:
 _volumeForMediaAction
 shuffleItem
-setShuffleEnabled:
 repeatItem
-setRepeatEnabled:
 setPlaybackStateAdjustVolumeOnlyItem:
 setPlaybackStatePauseItem:
 setPlaybackStateResumeItem:
@@ -20751,7 +20955,6 @@ setPlaybackStatePlayItem:
 setPlaybackStateItems:
 selectedPlaybackStateItemBasedOnActionBuilderState
 hf_appleTVMediaProfiles
-hf_homePodMediaProfiles
 hf_linkedAccessory
 setMediaPickerItem:
 setChosenMediaItem:
@@ -21083,7 +21286,12 @@ setNumberOfValues:
 _numberOfValues
 setDisableContinuousAnimation:
 setVibrancyEffect:animated:
+vibrancyEffectAnimationDuration
+effectForBlurEffect:style:
 updateWithIconDescriptor:animated:
+setIconTintColor:
+setBackgroundVisualEffect:animated:
+setBackgroundVisualEffectViewCornerRaduis:
 cameraRecordingItemModule
 setCameraRecordingItemModule:
 cameraRecordingSettingsModule:didUpdateItem:
@@ -21102,6 +21310,8 @@ shouldHideStatusBanner
 setStatusBannerItem:
 needsiTunesMultiUserRepair
 setMultiUserTokenFixBannerItem:
+shouldShowWelcomeUIBanner
+setWelcomeUIBannerItem:
 setStatusListItem:
 setSceneListItem:
 setPlaceholderSceneListItem:
@@ -21135,6 +21345,8 @@ shouldHideHomeKitObject:
 shouldHideHomeKitObject:limitedByServiceTypes:
 setClientInvalidationReasons:
 isStatusListVisible
+hasDismissedWelcomeUIBanner
+getAvailabilityDictionary
 hf_visibleAccessories
 settingsDidUpdate:
 settings:didWriteValueForSettings:failedSettings:
@@ -21143,6 +21355,7 @@ _forceHideMultiUserTokenFixBannerItem
 _headlineItem
 _statusBannerItem
 _multiUserTokenFixBannerItem
+_welcomeUIBannerItem
 _statusListItem
 _sceneListItem
 _placeholderSceneListItem
@@ -21464,7 +21677,6 @@ actionSetType
 _showCancelButton
 _navigationBarTitleView
 _actionGridViewControllersByEditorType
-destination
 initWithURL:resolvingAgainstBaseURL:
 queryItems
 symptomWithType:
@@ -21477,6 +21689,23 @@ materialViewWithRecipe:configuration:
 contraption
 initWithViewController:profile:
 _contraption
+includeLocalDestinations
+initWithDestination:withModule:
+selectedUncommittedItem
+_updateDestinationToIdentifier:
+disableAutomaticCommit
+setTappedDestinationIdentifier:
+tappedDestinationIdentifier
+homeTheaterItemModuleDidChangeSelectedDestination:
+audioDestinationIdentifier
+updateDestination:completionHandler:
+commitConfiguration
+selectItem:
+setDisableAutomaticCommit:
+_includeLocalDestinations
+_disableAutomaticCommit
+_tappedDestinationIdentifier
+_selectedUncommittedItem
 tableCellGroupedBackgroundColor
 footerView
 footerViewLabel
@@ -21835,13 +22064,13 @@ headerItem
 _primaryStatusTextForLatestResults:showingSecondaryStatus:
 _secondaryStatusTextForLatestResults:
 shouldIncludeRoomNameInHeaderTitle
+setNameItemModuleController:
 sceneAndTriggerModule
 setSceneAndTriggerModuleController:
 sceneAndTriggerModuleController
 relatedTriggerItemModule
 setAssociatedTriggerModuleController:
 associatedTriggerModuleController
-setNameItemModuleController:
 accessorySettingsItemModuleController
 accessorySettingsItemModule
 setAccessorySettingsItemModuleController:
@@ -21886,6 +22115,7 @@ didSelectHeaderWarningAction:
 expandedControlPanelItems
 setWheelViewVisible:
 accessoryInfoItemProvider
+homeTheaterAudioOutputItem
 setAllowCopyValueToPasteboard:
 _shouldShowDetailDisclosureForItem:
 _updateCheckedStateForAssociatedServiceTypeCell:item:
@@ -21935,6 +22165,7 @@ shouldDisplayItem:
 shouldShowSectionTitleForItem:
 sectionTitleForItem:forSourceItem:
 sectionFooterForItem:forSourceItem:
+_roomForItem:
 resetServiceLikeItemBuilder
 isPresentingRoomsList
 _characteristicsAffectedByControlItem:
@@ -21950,6 +22181,7 @@ setViewControllers:animated:
 setShouldHideAccessoryItem:
 setShouldHideSeparateTileItem:
 selectRoom:
+_notifyOfHomeTheaterReconfigurationIfNecessary:
 indexPathForRowAtPoint:
 allowCopyValueToPasteboard
 existingRoomItemProvider
@@ -21961,6 +22193,7 @@ hf_needsReprovisioningCheck
 startSearchForAccessoriesNeedingReprovisioning
 _restartHomePod
 hf_requiresWiFiReconfiguration
+hf_relatedHomeTheaterMediaProfileContainerFor:
 _shouldPresentRemoveRouterConfirmation
 _presentRemoveRouterConfirmation
 hf_accessoriesRequiringManualWiFiReconfiguration
@@ -21984,12 +22217,16 @@ hf_setShowAsIndividualServices:
 dispatchAccessoryObserverMessage:sender:
 requestDismissal
 _notifyOfHomePodPairingIfNecessary:
+_offerToCreateHomeTheaterIfPossible:
 availableHomePodsSupportingStereoPairingVersions:
 hf_needsSoftwareUpdateToSupportBeingAddedToMediaSystem
 wouldPairingAccessoriesNecessitateConfiguration:
 mediaSystemEditor:didCreateMediaSystem:
 setViewControllers:
 createMediaSystemWithAccessory:
+isAppleTV:
+availableHomeTheaterMediaPartnerFor:
+updateDestination:options:completionHandler:
 hf_startReprovisioningAccessory:
 _didRemoveHomeKitObject:
 sourceItemIsHomePod
@@ -22149,21 +22386,6 @@ actionSetItems
 setActionSetItems:
 _actionSetItemStyle
 _actionSetItems
-primaryUserItemProvider
-_updatePrimaryUser:
-setPrimaryUserItemProvider:
-setPrimaryUserSettingsHeaderItem:
-setAutomaticItem:
-setOtherAccountItem:
-supportsPreferredMediaUser
-updatePreferredMediaUser:completionHandler:
-_currentPrimaryUser
-initWithItemUpdater:home:mediaProfileContainer:
-_isAutomaticSettingEnabled
-_primaryUserSettingsHeaderItem
-_automaticItem
-_otherAccountItem
-_primaryUserItemProvider
 initWithItemUpdater:cameraProfiles:presenceEventType:
 presenceEventType
 hf_cameraAccessModeSelectedOptionForCameraProfiles:presenceType:
@@ -22509,17 +22731,18 @@ _profileList
 _alarm
 presenceModules
 isOptionItem:
+useProxSetupPresentationStyle
+setUseVerticalLayoutOnly:
 longestCameraPresenceItemTitle
 initWithCellSizeSubclass:longestPossibleValueText:longestPossibleTitleText:
-cellContentViewBackgroundColor
 updateInProgress
 recordingOptionsItem
 cameraPresenceItems
 isShowOptionsItem:
 shouldExpandModuleForShowOptionsItem:
 setModuleExpanded:forItem:
-setCellContentViewBackgroundColor:
-_cellContentViewBackgroundColor
+setUseProxSetupPresentationStyle:
+_useProxSetupPresentationStyle
 buttonViews
 _clearButtonConstraints
 setAlwaysBounceHorizontal:
@@ -22798,6 +23021,13 @@ _dateString
 _circleView
 _dateLabel
 _dayMonthLabel
+homeTheaterAudioItemModule
+thisDestination
+audioDestinationName
+initWithSystemImageNamed:configuration:
+audioDestinationType
+_homeTheaterAudioItemModule
+_thisDestination
 hf_homeKitObjectsSupportingNaturalLighting
 homeKitObjectFilter
 sourceItemForHomeKitObject:
@@ -22830,7 +23060,6 @@ _selectOptionItem:
 updateItem:withValue:
 _updateSwitchSettingItem:withValue:
 imageNamed:inBundle:
-deviceAirDropIdentifier
 handleButtonPressForEntity:
 supportButtonPressForEntity:
 inProgressButtonPressFutureForEntity:
@@ -22881,7 +23110,6 @@ sliderConstraints
 setSliderConstraints:
 _sliderView
 _sliderConstraints
-setUseVerticalLayoutOnly:
 userSwitchCell:didTurnOn:
 labelSpacing
 isLoading
@@ -23342,7 +23570,6 @@ canReplaceMapContent
 circleRect
 _coordinate
 hu_emptyCheckmarkPlaceholderImage
-imageWithTintColor:renderingMode:
 setHighlightedImage:
 initWithAnimationApplier:relativeStart:relativeDuration:
 applier
@@ -23487,9 +23714,6 @@ _modelValue
 appleMusicAccountModule
 setAppleMusicAccountModuleController:
 appleMusicAccountModuleController
-primaryUserSettingsItemModule
-setPrimaryUserModuleController:
-primaryUserModuleController
 _appleMusicFooterMessage
 _accessorySupportsMultiUser
 _appleMusicFooterView
@@ -23508,7 +23732,6 @@ setAppleMusicLoadingViewControllerDeallocationSentinel:
 initWithTargetObject:finalizer:
 appleMusicLoadingViewControllerDeallocationSentinel
 _appleMusicAccountModuleController
-_primaryUserModuleController
 _accountArbitrationFuture
 _appleMusicLoadingViewControllerDeallocationSentinel
 _appleMusicLoadingViewController
@@ -23849,7 +24072,6 @@ isDisplayingRoomLevelStatus
 _separateSectionIdentifierForItem:
 _shouldUseSoftwareUpdateSectionForItem:
 _shouldUseLowBatterySectionForItem:
-_roomForItem:
 shouldHideItem:
 representedHomeKitObjects
 setRepresentedHomeKitObjects:
@@ -24383,6 +24605,7 @@ mediaSystem:didUpdateName:
 mediaSystem:didUpdateConfiguredName:
 mediaSystem:didUpdateComponents:
 mediaSystem:didUpdateApplicationData:
+mediaSystemDidUpdateAudioDestination:
 initWithItemUpdater:mediaAccessoryItem:
 updateItems:matchingDependency:
 updateItemsForKeyPath:
@@ -24595,8 +24818,12 @@ _userScrubbing
 _hasUserInteractedWithScrubber
 _lastContentWidth
 _targetScrollOffset
+setLeftHomePod:
+setRightHomePod:
+setSwapButton:
 _swap
 _swapButton
+_homePodVariant
 _leftHomePod
 _rightHomePod
 initWithContentSource:serviceLikeItem:home:
@@ -24858,6 +25085,7 @@ _homePodImageView
 _homeHubTextLabel
 _iPadImageView
 _iPadTextLabel
+_setForcePresentationInPresenterScene:
 accessControlEditorItemModule
 accessControlEditorModuleController
 _updateFooterView:forSection:
@@ -24873,7 +25101,7 @@ _photoView
 loadCameraClip
 toggleMicrophoneState
 updateMicrophone
-fixedCoordinateSpace
+numberOfAssociatedAccessoriesDisplayed
 miniScrubberViewController
 initWithPlaybackEngine:currentClip:startDate:
 setMiniScrubberViewController:
@@ -24895,10 +25123,34 @@ shouldDisplayMicrophoneControl
 removeChildViewController:
 initWithCameraProfile:notificationUUID:clipUUID:imageURL:
 reloadAfterNotificationUpdate
+setNumberOfAssociatedAccessoriesDisplayed:
 setClipUUID:
+_numberOfAssociatedAccessoriesDisplayed
 _miniScrubberViewController
 _currentClip
 _playbackStartDateFromSignificantEvent
+setUseHomeTheaterButton:
+useHomeTheaterButton
+_activateHomeTheater:
+_doNotActivateHomeTheater:
+setContentImageView:
+setTableViewControllerModule:
+setTableViewController:
+tableViewController
+hu_constraintWithPriority:
+constraintEqualToSystemSpacingBelowAnchor:multiplier:
+contentViewHeightConstraint
+tableViewHeightConstraint
+_updateHeightConstraints
+tableViewControllerModule
+setAccessory:
+setTableViewHeightConstraint:
+setContentViewHeightConstraint:
+_useHomeTheaterButton
+_tableViewController
+_tableViewControllerModule
+_tableViewHeightConstraint
+_contentViewHeightConstraint
 defaultItemProviderCreatorWithOptions:accessoryProfileItem:
 transformationBlockWithOptions:
 itemProvidersForPrimaryAccessory:inHome:
@@ -24945,6 +25197,30 @@ committedActionBuildersByActionSetID
 hasSameTargetAsAction:
 _transformedUpdateOutcomeForItem:proposedOutcome:
 _committedActionBuildersByActionSetID
+dismissButton
+willRemoveSubview:
+setFooterView:
+welcomeUIBannerLayoutOptions
+titleLabelColor
+descriptionLabelColor
+footerLabelColor
+continueButtonColor
+backgroundImageView
+dismissButtonTopInset
+dismissButtonTrailingInset
+dismissButtonHeightAndWidth
+leadingInset
+titleTopInset
+iconHeight
+verticalSpacingForLipElements
+verticalLabelSpacing
+trailingInset
+verticalSpacingForLineView
+footerViewLabelFont
+setBackgroundImageView:
+setWelcomeUIBannerLayoutOptions:
+_backgroundImageView
+_welcomeUIBannerLayoutOptions
 initWithRoom:maxStatusItems:delegate:
 verticalContainerStackViewWithArrangedSubviews:
 setBaselineRelativeArrangement:
@@ -25416,6 +25692,37 @@ _addShortcutItem
 _gridItem
 _addShortcutHeader
 initWithCameraProfiles:displayStyle:
+accessibilitySetIdentification:
+_playRecording:
+setWaveformImageView:
+waveformImageView
+playRecordingButton
+waveformImage
+_waveFormImageForWidth:havingColor:
+setWaveformImage:
+initWithAudioFileURL:audioSessionOptions:delegate:
+setAudioPlayer:
+audioPlayer
+prepareToPlay:
+stop
+isPlaying
+imageWithAlignmentRectInsets:
+_updateProgressForPlaybackTime:
+audioPlayer:didPausePlaybackWithReason:
+audioPlayerDidStopPlayback:
+audioPlayerDidResumePlayback:
+audioPlayer:didUpdatePlaybackTime:
+audioPlayer:didUpdateAveragePower:
+audioPlayerDidFinishPlayback:withError:
+initWithFrame:waveformColor:backgroundColor:tintColor:
+setAudioFileURL:
+audioFileURL
+setPlayRecordingButton:
+_audioFileURL
+_waveformImageView
+_playRecordingButton
+_waveformImage
+_audioPlayer
 defaultOptionsForViewSize:columnStyle:
 initWithViewSize:columnStyle:overrideSizeSubclass:
 cellSizeSubclass
@@ -25427,6 +25734,7 @@ setServiceCellOptions:
 setPlaceholderServiceCellOptions:
 setBannerCellOptions:
 setStatusBannerCellOptions:
+setWelcomeUIBannerCellOptions:
 setHeadlineFont:
 setStatusItemFont:
 setStatusDetailsFont:
@@ -25510,10 +25818,10 @@ _navigationBarOptions
 _dashboardButtonCellOptions
 _bannerCellOptions
 _statusBannerCellOptions
+_welcomeUIBannerCellOptions
 _numberOfCameraCellsPerRow
 _overrideViewSizeSubclass
 _sectionTitleMargin
-effectForBlurEffect:style:
 initWithCellSizeSubclass:
 setBackgroundDisplayOptions:
 setSecondaryVibrancyEffect:
@@ -25581,22 +25889,11 @@ _iconToTitleSpacing
 setDismissButtonTrailingInset:
 setDismissButtonTopInset:
 setDismissButtonHeightAndWidth:
-dismissButtonTrailingInset
-dismissButtonTopInset
-dismissButtonHeightAndWidth
 _dismissButtonTrailingInset
 _dismissButtonTopInset
 _dismissButtonHeightAndWidth
-leadingInset
-trailingInset
 iconWidth
 horizontalItemSpacing
-verticalLabelSpacing
-iconHeight
-titleTopInset
-verticalSpacingForLipElements
-verticalSpacingForLineView
-footerViewLabelFont
 setLeadingInset:
 setIconTopInset:
 setIconWidth:
@@ -25625,6 +25922,14 @@ _verticalLabelSpacing
 _verticalSpacingForLineView
 _verticalSpacingForLipElements
 _footerViewLabelFont
+setFooterLabelColor:
+setTitleLabelColor:
+setDescriptionLabelColor:
+setContinueButtonColor:
+_titleLabelColor
+_descriptionLabelColor
+_footerLabelColor
+_continueButtonColor
 initWithViewSizeSubclass:
 setTopMargin:
 setContainerLeadingMargin:
@@ -25959,6 +26264,8 @@ _shouldShowAccessoryInfoItems
 initWithHome:accessory:
 setAccessoryInfoItemProvider:
 setInternalDebuggingItem:
+_getHomeTheaterAppleTVForSourceItem
+setHomeTheaterAudioOutputItem:
 initWithServiceBuilder:
 initWithAccessoryBuilder:valueSource:
 setHeaderItem:
@@ -26012,6 +26319,7 @@ setSceneAndTriggerSections:
 setInputSourceEditorSections:
 setTelevisionSettingsSections:
 setAdvancedCameraSettingsSection:
+setHomeTheaterAudioSections:
 setCameraActivityZonesSections:
 setCameraStatusLightSections:
 setCameraNightModeSections:
@@ -26033,6 +26341,7 @@ cameraActivityZonesSections
 cameraStatusLightSections
 cameraNightModeSections
 lockAuthenticatedNFCSections
+homeTheaterAudioSections
 shouldHideAccessoryItem
 accessorySettingsSections
 _shouldShowLinkedApplicationSection
@@ -26050,17 +26359,16 @@ _restartAccessory
 _hasDismissedHomePodHasNonMemberMediaAccountWarning
 sourceItemIsHomePodConfiguredForMultiUser
 _areHomePodMediaAccountsMismatched
+hf_MediaAccessoryItem
 sourceItemIsSingleServiceAccessory
 isRoomItem:
 isAccessoryInfoItem:
-hf_MediaAccessoryItem
 accessoryReachableOverRapport:
 _shouldShowSplitAccountUI
 builderItem
 setRelatedTriggerItemModule:
 serviceDetailsRemoteControlItemModule
 selectedRoomItem
-primaryUserItem
 setLockAuthenticatedNFCSections:
 groupedAccessoryReachableOverRapport
 setGroupedAccessoryReachableOverRapport:
@@ -26099,7 +26407,7 @@ _associatedServiceTypeItem
 _alarmItem
 _statusAndNotificationItem
 _separateTileItem
-_primaryUserItem
+_homeTheaterAudioOutputItem
 _resetItem
 _accessoryItem
 _audioSettingsItem
@@ -26132,6 +26440,7 @@ _cameraActivityZonesSections
 _doorbellMuteSections
 _collectDiagnosticsSections
 _lockAuthenticatedNFCSections
+_homeTheaterAudioSections
 _associatedServiceTypeOptionItemProvider
 _linkedApplicationItemProvider
 _serviceDetailsDelegate
@@ -26524,7 +26833,6 @@ _childServiceItemModule
 _activelyEditingNameServiceBuilder
 _identifyButtonMap
 _allCheckmarksDisabled
-hu_constraintWithPriority:
 hu_constraintsLessThanOrEqualToConstant:equalityPriority:
 _storeID
 _libraryResultForRequests:
@@ -26612,10 +26920,8 @@ _updateBlurredWallpaperContentsScale
 _dismissButtonTapped:
 tableSeparatorLightColor
 _footerViewTapped:
-dismissButton
 setDismissButton:
 setIconImageView:
-setFooterView:
 setFooterViewLabel:
 _dismissButton
 _footerView
@@ -26648,10 +26954,13 @@ initWithType:home:room:
 setShouldHideHeadline:
 setShouldIncludeRoomInAccessoryNames:
 setAllowsAdding:
+setAllowsAnnounce:
 setShouldHideStatus:
 setShouldHideStatusBanner:
 setShouldHideCameras:
 setShouldHidePlaceholderButtons:
+hf_shouldShowAnnounceButtonForThisHome
+hf_shouldShowAnnounceButtonForThisRoom
 _hasOnlySensorServices:
 dashboardType
 _shouldHideService:limitedByServiceTypes:
@@ -26660,6 +26969,7 @@ _shouldHideAccessory:limitedByServiceTypes:
 _shouldHideMediaProfileContainer:
 hf_isSensorAccessory
 _allowsAdding
+_allowsAnnounce
 _shouldHideHeadline
 _shouldHideStatus
 _shouldHideStatusBanner
@@ -26787,13 +27097,10 @@ _fillColorMatchesTintColor
 _pathLayoutBlock
 setAppleMusicAccountModule:
 _moduleStateDidChangeFrom:to:
-_showPrimaryUserSettings
-setPrimaryUserSettingsItemModule:
 setShouldDisableUpdates:
 shouldDisableUpdates
 _shouldDisableUpdates
 _appleMusicAccountModule
-_primaryUserSettingsItemModule
 maximumDuration
 setMaximumDuration:
 updateTimeScaleIfNeeded
@@ -27202,6 +27509,8 @@ _updateVisualEffectStateForVibrancyEffectChange:animated:
 _defaultVibrancyEffect
 _effectForBlurEffect:vibrancyStyle:
 effect
+setVibrancyEffectAnimationDuration:
+_vibrancyEffectAnimationDuration
 _currentIconContentView
 _handleIconButtonTap:
 setTextField:
@@ -27266,6 +27575,16 @@ _useOverrideStatusText
 _shouldUseWheelPickerView
 multiStateCharacteristicType
 hf_requiresManualWiFiReconfiguration
+_confirm:
+_skip:
+confirmButton
+setDestination:
+setConfirmButton:
+skipButton
+setSkipButton:
+_destination
+_confirmButton
+_skipButton
 colorPickerMode
 _colorWheelSpaceForMode:
 setColorWheelView:
@@ -27901,7 +28220,6 @@ v24@0:8@"<HUConfigurationViewControllerDelegate>"16
 @"<HUConfigurationViewControllerDelegate>"
 @"OBTrayButton"
 @"OBLinkTrayButton"
-@"<HFMediaProfileContainer>"
 @"HUNetworkConfigurationSettingsModuleController"
 v32@0:8@"HFCameraPlaybackEngine"16Q24
 v28@0:8@"HFCameraPlaybackEngine"16B24
@@ -28149,6 +28467,7 @@ d32@0:8Q16@24
 @"HUQuickControlCollectionViewControllerLayoutOptions"
 @"HFItemManager<HUQuickControlCollectionItemManaging>"
 @"UICollectionView"
+@"<HFMediaProfileContainer>"
 @"HUAppleMusicAccountItemProvider"
 @"HUAppleMusicItem"
 @56@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16q48
@@ -28318,14 +28637,13 @@ v24@0:8@"<HMMediaObjectDelegate>"16
 @"NAFuture"24@0:8d16
 @"NAFuture"32@0:8@"NSString"16d24
 @"NSString"24@0:8^@16
-@"HMUser"16@0:8
+@"<HMMediaDestination>"16@0:8
 @"HMAccessory"16@0:8
 @"<HFMediaValueSource>"16@0:8
 v32@0:8@"HULocationDeviceManager"16@"HULocationDevice"24
 v32@0:8@"HULocationDeviceManager"16@"NSSet"24
 @"HFUserItem"
 @"HULocationDeviceManager"
-@"<HUPrimaryUserSettingsItemModuleControllerDelegate>"
 @"<HFIconDescriptor>"
 @"<HUIconPickerViewControllerDelegate>"
 @"HFZoneModule"
@@ -28794,6 +29112,7 @@ v24@0:8@"HUSceneServicePickerViewController"16
 @"HUQuickControlViewProfile"
 @"MTMaterialView"
 @"UIView<HUQuickControlInteractiveView>"16@0:8
+@"<HUHomeTheaterAudioItemModuleDelegate>"
 @"HFItem<HFHomeKitItemProtocol>"
 v24@0:8@"SBSRemoteAlertHandle"16
 v32@0:8@"SBSRemoteAlertHandle"16@"NSError"24
@@ -28863,7 +29182,6 @@ v32@0:8#16@24
 d48@0:8{CGSize=dd}16d32Q40
 @48@0:8{CGSize=dd}16d32Q40
 @40@0:8@16{_NSRange=QQ}24
-@"HUPrimaryUserItemProvider"
 v24@0:8@"ICQUpgradeFlowManager"16
 v32@0:8@"ICQUpgradeFlowManager"16@"UIViewController"24
 @"HUCameraUsageOptionItemProvider"
@@ -28888,6 +29206,7 @@ v32@0:8@"HUControlPanelCell"16@"HFControlPanelItem"24
 @"<HUControlPanelRule>"16@0:8
 @"HFValueTransformer"24@0:8@"HFControlItem"16
 @"NSString"32@0:8@"HFControlPanelItem"16@"HFServiceItem"24
+@52@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16B48
 @"HURecommendationListContentItemManager"
 @"HURecommendationItemModuleController"
 @"HURecommendationItemProvider"
@@ -28929,6 +29248,8 @@ v32@0:8@"HFAccessorySettingSiriLanguageAdapter"16@"HFSiriLanguageOption"24
 @"<HUSignificantEventOffsetPickerDelegate>"
 @"HMSoftwareUpdate"
 v40@0:8@16:24@32
+@"HUHomeTheaterAudioItemModule"
+@"<HMMediaDestination>"
 @"HUColorSwatchView"
 @"NAFuture"24@0:8@"HFAccessorySettingsEntity"16
 B24@0:8@"HFAccessorySettingsEntity"16
@@ -29003,9 +29324,7 @@ v24@0:8@"HUQuickControlSliderGestureTransformer"16
 @"HUDisplayLinkApplier"
 v24@0:8@"HUAppleMusicAccountModuleController"16
 v40@0:8@"HUAppleMusicAccountModuleController"16@"AKAppleIDAuthenticationInAppContext"24@"ACAccount"32
-v32@0:8@"HUPrimaryUserSettingsItemModuleController"16@"HMUser"24
 @"HUAppleMusicAccountModuleController"
-@"HUPrimaryUserSettingsItemModuleController"
 @"NADeallocationSentinel"
 @"UIAlertController"
 @"NSLayoutYAxisAnchor"
@@ -29106,6 +29425,7 @@ v32@0:8@"<HMMediaObject>"16@"HMAccessorySettings"24
 v32@0:8@"HMMediaSystem"16@"NSString"24
 v32@0:8@"HMMediaSystem"16@"NSArray"24
 v32@0:8@"HMMediaSystem"16@"HMApplicationData"24
+v24@0:8@"HMMediaSystem"16
 @"HFAccessorySettingsItemProvider"
 @"HMSettings"
 @"NATreeNode"
@@ -29124,6 +29444,7 @@ v28@0:8@"HUFeedbackConsentViewController"16B24
 @"<HFDynamicFormattingValue>"
 @28@0:8@16f24
 @68@0:8@16@24{CGRect={CGPoint=dd}{CGSize=dd}}32f64
+v40@0:8@16q24Q32
 @"HUHomePodDetailView"
 @"<HUHomePodStereoSwapperCellDelegate>"
 @"<HUCameraRecordingSettingsModuleDelegate>"
@@ -29162,6 +29483,8 @@ v32@0:8@"HUMediaAccessControlEditorModuleController"16@"HFMediaAccessControlDesc
 @"HUMediaAccessControlEditorModuleController"
 @"HUNCCameraScrubberViewController"
 @"HUNCCameraPlayerPlaceholderContentViewController"
+v24@0:8@"HUHomeTheaterAudioItemModule"16
+@"HUSimpleItemModuleTableViewController"
 @?32@0:8Q16@24
 @"UIViewController<HUQuickControlInteractiveViewController>"
 @"HUCameraAccessLevelOptionItemProvider"
@@ -29169,6 +29492,8 @@ v32@0:8@"HUMediaAccessControlEditorModuleController"16@"HFMediaAccessControlDesc
 @"HUTriggerDurationPickerValue"
 @44@0:8Q16@24@32B40
 @"<HUTimerTriggerOffsetEditorDelegate>"
+@"HUGridStatusBannerCellLayoutOptions"
+@"HUGridWelcomeUIBannerCellLayoutOptions"
 v24@0:8@"HUHomeStatusDetailsViewController"16
 @"HFHomeStatusItemManager"
 @"NUIContainerStackView"
@@ -29221,6 +29546,12 @@ v24@0:8@"HFAccessorySettingMobileTimerAdapter"16
 @"HUButtonItem"
 @"HUViewControllerTableViewItem"
 @"HUTriggerHeaderItem"
+v32@0:8@"HFAudioPlayer"16@"NSString"24
+v24@0:8@"HFAudioPlayer"16
+v32@0:8@"HFAudioPlayer"16d24
+v32@0:8@"HFAudioPlayer"16@"NSError"24
+@32@0:8d16@24
+@"HFAudioPlayer"
 d44@0:8d16q24d32B40
 d32@0:8Q16Q24
 d32@0:8Q16d24
@@ -29230,7 +29561,6 @@ d32@0:8Q16d24
 @"HUNavigationBarLayoutOptions"
 @"HUDashboardButtonCellLayoutOptions"
 @"HUGridBannerCellLayoutOptions"
-@"HUGridStatusBannerCellLayoutOptions"
 @64@0:8q16q24d32d40d48d56
 {CGPoint=dd}24@0:8q16
 d48@0:8d16@24@32@40
@@ -29376,7 +29706,6 @@ v32@0:8@"<HUQuickControlContentCharacteristicWriting>"16@"NSSet"24
 @"_HUQuickControlContentCharacteristicWriteQueuedUpdate"
 v32@0:8Q16Q24
 @"HUAppleMusicAccountModule"
-@"HUPrimaryUserSettingsItemModule"
 d32@0:8d16d24
 B32@0:8@16^@24
 @"CNMonogrammer"

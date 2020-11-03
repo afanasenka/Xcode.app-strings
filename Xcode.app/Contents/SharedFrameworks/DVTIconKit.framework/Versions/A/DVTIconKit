@@ -1,4 +1,5 @@
-@(#)PROGRAM:DVTIconKit  PROJECT:DVTFrameworks-17511
+@(#)PROGRAM:DVTIconKit  PROJECT:DVTFrameworks-17515.1
+ffff
 DVTIconKit
 GeneratedIconReference
 CGRect
@@ -314,6 +315,10 @@ SS5macro_SS7contextt
 _pSg
 $s10DVTIconKit22GeneratedIconSetVendorP
 SDySS
+ySbG
+ySay
+ySsG
+_pXpG
 SDySS
 ySSGGSg
 SDySS
@@ -345,18 +350,13 @@ SDySS
 yxGGSg
 yxGG
 $s10DVTIconKit25GeneratedIconSetReferenceP
-ySo12DVTExtensionC_SStG
-ySbG
-ySnySiGG
-ySay
 SDySS
-ySsG
-_pXpG
 ySSGG
 _pSg
 SDySS
 SS3key_
 _p5valuetSg
+ySo12DVTExtensionC_SStG
 So12DVTExtensionC_SSt
 SS_SSSgt
 So7NSImageC
@@ -366,6 +366,7 @@ So18NSAttributedStringC
 So12NSBezierPathC
 So7NSColorCSg
 SbSg
+ySnySiGG
 So7NSColorC
 So8CIFilterC
 Sayy

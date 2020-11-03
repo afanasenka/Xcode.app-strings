@@ -921,7 +921,7 @@ useRemoteBuiltInMic
 -[CSAudioRecorder voiceControllerDidSetAudioSessionActive:isActivated:]
 -[CSAudioRecorder voiceControllerMediaServicesWereLost:]
 -[CSAudioRecorder voiceControllerMediaServicesWereReset:]
--[CSAudioRecorder _deinterleaveBufferIfNeeded:]
+-[CSAudioRecorder _deinterleaveBufferIfNeeded:force:]
 -[CSAudioRecorder _createDeInterleaverIfNeeded]
 -[CSAudioRecorder _getRecordSettingsWithRequest:]
 voiceControllerCreationQueue
@@ -1979,6 +1979,7 @@ SpeechLogs
 -[CSPreferences assistantAudioFileLogDirectory]
 siriBC
 Second Pass Audio Logging Enabled
+Speaker Recognition Audio Logging Enabled
 Jarvis Audio Logging Enabled
 Jarvis Trigger Mode
 Enable SoS Audio Logging
@@ -3532,7 +3533,7 @@ setNumChannels:
 streamDescription
 setAudioFormat:
 setStreamHandleID:
-_deinterleaveBufferIfNeeded:
+_deinterleaveBufferIfNeeded:force:
 _compensateChannelDataIfNeeded:receivedNumChannels:
 timeStamp
 _processAudioChain:audioStreamHandleId:remoteVAD:atTime:
@@ -4776,6 +4777,7 @@ getSSVLogFilePathWithSessionIdentifier:
 trialBaseAssetDirectory
 getCatAdBlockerAssetUpdateDirectory
 secondPassAudioLoggingEnabled
+speakerRecognitionAudioLoggingEnabled
 jarvisAudioLoggingEnabled
 setJarvisTriggerMode:
 getJarvisTriggerMode
@@ -4849,6 +4851,7 @@ _maxFingerprintBufferSize
 _shouldResetAdsDictionary
 _payloadData
 _startAudioFeedingTimer
+_deinterleaveBufferIfNeeded:
 setFileOption:
 _defaultOutASBD
 fileOption
@@ -6674,7 +6677,7 @@ v48@0:8@16@24@32Q40
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18K35x</string>
+<string>18K5047c</string>
 <key>DTSDKName</key>
 <string>appletvsimulator14.2.internal</string>
 <key>DTXcode</key>

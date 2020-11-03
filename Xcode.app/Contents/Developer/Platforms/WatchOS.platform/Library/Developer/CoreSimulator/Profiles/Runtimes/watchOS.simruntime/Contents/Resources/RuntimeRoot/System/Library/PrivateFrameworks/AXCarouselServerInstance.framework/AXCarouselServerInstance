@@ -266,6 +266,7 @@ _performScreenCoverGesture:
 _overrideNativeFocusWithPid:
 _clockFaceIsFrontMost:
 _registerCarouselActionHandling:
+_activeInterfaceOrientation:
 startServerWithError:
 setClientInvalidationCallback:
 setServer:
@@ -309,6 +310,7 @@ intValue
 overrideNativeFocusWithPid:
 stopOverrideNativeFocus
 clockFaceIsFrontMost
+activeInterfaceOrientation
 objectForKey:
 clientPort
 _hasCarouselActionHandlerForClientPort:
@@ -381,11 +383,13 @@ setDebugBuild:
 installSafeCategory:canInteractWithTargetClass:
 performValidations:withPreValidationHandler:postValidationHandler:safeCategoryInstallationHandler:
 _ringerStateChanged
+_deviceOrientationInvertedDidChangeNotification:
 _accessibilityCarouselMainUICurrentState
 isNotificationVisible
 processInfo
 processIdentifier
-activeInterfaceOrientation
+sharedDeviceOrientation
+isInverted
 safeValueForKey:
 safeBoolForKey:
 areSystemGesturesDisabledForSuspendAssertionsOnEdge:

@@ -40636,7 +40636,6 @@ getMaximumAllocatedCoeffRegisterBytes
 hasCoefficientRegisterAllocations
 hasSharedRegisterAllocations
 setCommonStoreRegisterForGlobal
-getLiteralConstantOf32BitSharedRegister
 getSharedRegisterLiteralConstantBase
 hasReadLiteralConstantLocation
 setAmpIdCount
@@ -40657,9 +40656,7 @@ setVIRemap
 getVIRemap
 setVIDMAList
 getVIDMAList
-hasGlobalResource
 global_resource_clear
-removeGlobalResource
 getModule
 hasMember
 getNumMembers
@@ -49787,7 +49784,7 @@ $parent_frame_offset
 __ehtable$
 .group
 inconsistent use of embedded source
-llvm-mc (based on LLVM 31001.40)
+llvm-mc (based on LLVM 31001.43)
 A Bundle can only have one Subtarget.
 Fragment can't be larger than a bundle size
 Padding cannot exceed 255 bytes
@@ -54345,7 +54342,7 @@ Display the version of this program
 LLVM (http://llvm.org/):
 LLVM
  version 
-31001.40
+31001.43
 Optimized build
 (unknown)
   Default target: 
@@ -57920,4 +57917,4 @@ Read preference %s: %d
 fallback report generated (but might not be delivered)
 fallback report suppressed (unknown error %d)
 fallback report suppressed (%s)
-31001.40
+31001.43

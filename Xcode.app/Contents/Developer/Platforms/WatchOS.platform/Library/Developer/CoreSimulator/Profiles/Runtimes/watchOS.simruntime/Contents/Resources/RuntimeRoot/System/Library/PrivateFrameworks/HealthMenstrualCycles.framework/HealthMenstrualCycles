@@ -29,6 +29,7 @@ DaysStart
 DaysDuration
 <%@:%p type:%@ days:%@>
 <%@:%p>
+hk_redactedDescription
 supportsSecureCoding
 TB,R
 type
@@ -434,6 +435,7 @@ NSObject
 HDMenstrualCyclesPluginServerInterface
 HKMCUserCharacteristicsNotificationObserver
 HKMCCycleSegment
+HKRedactedDescription
 NSSecureCoding
 NSCoding
 HKMCCycle
@@ -522,9 +524,9 @@ days
 _menstruationSegmentWithDays:
 _fertileWindowSegmentWithDays:
 supportsSecureCoding
+hk_redactedDescription
 encodeWithCoder:
 initWithCoder:
-redactedDescription
 _days
 _type
 _initWithMenstruationSegment:fertileWindowSegment:lastDayIndex:

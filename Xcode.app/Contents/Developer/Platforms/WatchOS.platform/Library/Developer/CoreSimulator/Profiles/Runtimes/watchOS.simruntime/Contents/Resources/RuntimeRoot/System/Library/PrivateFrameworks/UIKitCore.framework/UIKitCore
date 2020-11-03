@@ -1,4 +1,5 @@
-@(#)PROGRAM:UIKitCore  PROJECT:UIKit-3994
+@(#)PROGRAM:UIKitCore  PROJECT:UIKit-3998.1
+33333<
 pw@333333
 ?333333
 MbP?
@@ -2828,7 +2829,6 @@ v24@?0@"UIVisualEffect"8^B16
 <%@: %p> combinedEffects = %@
 v32@?0@"CAFilter"8Q16^B24
 filters.%@.%@
- style=%li
  zoom=%f%@
  underlay
  zoomAmount=%f
@@ -2939,7 +2939,6 @@ Cannot construct a content host with a nil content view
 v16@?0@"UIView<_UIVisualEffectViewParticipating>"8
 B16@?0@"UIView"8
 filters.%@.
-ProxyContents are not supported on this platform
 Unable to allocate a view necessary for implementing the requested effect (viewClass=%@, entry=%@)
  contentView=%@
  contentViewRequired
@@ -13654,13 +13653,15 @@ _UIHorizontalIndexTitleBarCell
 T@"UICollectionView",&,N,V_collectionView
 flowLayout
 T@"UICollectionViewFlowLayout",&,N,V_flowLayout
+horizontalIndexTitleBarFocusGuide
+T@"UIFocusGuide",&,N,V_horizontalIndexTitleBarFocusGuide
 entries
 T@"NSArray",&,N,V_entries
+selectedEntry
+T@"_UIFocusFastScrollingIndexBarEntry",&,N,V_selectedEntry
 T@"_UIHorizontalIndexTitleBarCell",W,N,V_focusedCell
 selectedCell
 T@"_UIHorizontalIndexTitleBarCell",W,N,V_selectedCell
-horizontalIndexTitleBarFocusGuide
-T@"UIFocusGuide",&,N,V_horizontalIndexTitleBarFocusGuide
 T@"<_UIHorizontalIndexTitleBarDelegate>",W,N,V_delegate
 parentContentInset
 T{UIEdgeInsets=dddd},N,G_parentContentInset,S_setParentContentInset:,V_parentContentInset
@@ -23520,6 +23521,8 @@ beforeElements
 T@"NSArray",R,N,V_beforeElements
 afterElements
 T@"NSArray",R,N,V_afterElements
+replacementElements
+T@"NSArray",R,N,V_replacementElements
 _UICommandInternalDiff.m
 at start elements already set
 at end elements already set
@@ -23534,12 +23537,16 @@ fallbackBeforeElements
 T@"NSArray",R,N,V_fallbackBeforeElements
 fallbackAfterElements
 T@"NSArray",R,N,V_fallbackAfterElements
+child replacements already set
+childReplacements
+T@"NSDictionary",R,N,V_childReplacements
 menuDeletes
 T@"NSSet",R,N,V_menuDeletes
 itemDeletes
 T@"NSDictionary",R,N,V_itemDeletes
 inserts
 T@"NSDictionary",R,N,V_inserts
+T@"NSDictionary",R,N,V_replacements
 drawsContent
 , based on traits
 TB,N,V_drawsContent
@@ -25507,6 +25514,7 @@ _UIWindowHostDidPromoteFirstResponderUserInfoKey
 Incorrect code path when app does not use UIScene lifecycle API
 B20@?0@"UIWindow"8B16
 B24@?0@"<_UIViewSubtreeMonitor>"8^B16
+B24@?0@"UIViewController"8@"UIViewController"16
 _UIWindow+
 _rootViewConstraints
 T@"NSArray",C,N,S_setRootViewConstraints:,V_rootViewConstraints
@@ -28030,6 +28038,7 @@ Manually modifyng the offset is only allowed while in .tracking state.
 .cancelled
 Transitioning from %@ to %@ is not a valid transition. This usually happens when a UIContextualAction's handler was executed without calling its completionHandler.
 Transitioning from %@ to %@ is not a valid transition.
+SwipeActions
 A UIContextualAction's completionHandler was called multiple times.
 The completionHandler of an outdated UIContextualAction was called. Another action was executed in the meantime.
 Actions view not removed from view hierarchy after calling -%@ on %@
@@ -28300,6 +28309,7 @@ UISectionStartStrings
 UIIndexTitles
 UIIndexMapping
 UITransform
+zh-Hant
 UITableViewLocalizedSectionIndex
 plist
 sectionTitles
@@ -32820,6 +32830,8 @@ UIEnableParallaxEffects
 B40@?0@"UIViewAnimationState"8@"CAAnimation"16@"CALayer"24@"NSString"32
 Requesting the window of a view (%@) with a nil layer. This view probably hasn't received initWithFrame: or initWithCoder:.
 %@ (%p)
+CGFloat GetCurrentScreenScaleForView(UIView *__strong)
+GetCurrentScreenScaleForView() must always return a valid scale (%g > 0.0)
 UIDetectClippedViews
 UILogClippedViews
 UIStrokeClippedViews
@@ -33903,12 +33915,6 @@ TB,R,N,GisClassicViewportMode,V_classicViewportMode
 avoidsUnsafeArea
 rawViewConfiguration
 T{_UIWebViewportConfiguration={CGSize=dd}fffBBB},R,N
- material=
- emphasized=
-materialName
-T@"NSString",C,N,V_materialName
-emphasized
-TB,N,GisEmphasized,V_emphasized
 willReorderHandler
 T@?,C,N,V_willReorderHandler
 didReorderHandler
@@ -34096,7 +34102,9 @@ kCGImageSourceSkipCRC
 /Applications/
 ipod
 UIKitDecorateFallbackImagesFromScale
-}D8_
+}L\_
+}P[_
+} 0_
 softlink:o:path:/System/Library/Frameworks/AVFoundation.framework/AVFoundation
 softlink:r:path:/System/Library/Frameworks/Accessibility.framework/Accessibility
 softlink:r:path:/System/Library/PrivateFrameworks/AccessibilityUIUtilities.framework/AccessibilityUIUtilities
@@ -35073,6 +35081,7 @@ Hiding the status bar instance directly is not supported anymore, please update 
 UIKit internal inconsistency: preparingSwipeOccurrence was unexpectedly changed to a different occurrence
 No current swipe occurrence.
 UIKit internal inconsistency: -%@ was called with a swipe direction of %@.
+ExecuteSwipeActionHandler
 Attempted to request the pull view for an unsupported swipe direction (%ld)
 Attempted to request the swipe direction for an unknown pull view: %@
 The pullView is not in a view hierarchy. This is a UIKit bug.
@@ -38339,7 +38348,9 @@ _UICollectionViewAnimationContext
 _UICollectionViewAnimator
 _UIPreviewInteractionStateRecognizer
 _UICommandChildInserts
+_UICommandChildReplacements
 _UICommandParentInserts
+_UICommandParentReplacements
 _UICommandInternalDiff
 _UITextFieldDrawingBackgroundProvider
 UIForcePresentationHelper
@@ -39860,8 +39871,6 @@ _UIStatusBarIndicatorLocationItem
 UIWebPaginationInfo
 _UIWebHighlightLongPressGestureRecognizer
 _UIWebViewportHandler
-_UICoreUI
-_UIBlurEffectCoreUIImpl
 _UICoreUIEffect
 UICollectionViewDiffableDataSourceReorderingHandlers
 UISceneConnectionOptions
@@ -44146,6 +44155,7 @@ _saveReferenceToActivePropertyAnimator:
 _removeReferenceToActivePropertyAnimator:
 _setAnimations:
 observedsOfAnimatorWithTrackingId:
+removeAllObservedForObservingAnimatorWithId:
 removeObserved:forObservingAnimatorWithId:
 _isStarting
 _isPausedOnCompletion
@@ -45606,8 +45616,8 @@ _effectCopyingFromCaptureGroup:
 _allEffects
 _enumerateEffects:
 _effects
-initWithMaterialName:blurStyle:emphasized:
 _blurThroughWithStyle:
+_indicatesMacSidebarBackground
 zoomEffectWithMagnitude:
 setRequirements:
 setZoomAmount:
@@ -49984,6 +49994,7 @@ topCapHeight
 stretchableImageWithLeftCapWidth:topCapHeight:
 setDisabledBackground:
 cleanUpDictationMicsWithSearchField:
+updateDictationButtonActiveState
 dismissSoftwareKeyboardIfNeeded
 isKeyWindow
 selectAll:
@@ -49993,6 +50004,7 @@ showSoftwareKeyboardIfNeeded
 switchToDictationInputMode
 dictationButtonPressed:withEvent:
 dictationControllerDidFinish:
+dictationDisabledDueToTelephonyActivity
 dictationSearchFieldUISupportsTraitCollection:
 dictationSearchFieldUIEnabled
 setUpSearchBarSearchContainerIfNecessary
@@ -51686,6 +51698,7 @@ invalidateLayoutWithContext:
 initWithSection:sectionProvider:configuration:
 setScrollDirection:
 _setCollectionView:
+_prepareForTransitionToLayout:
 prepareLayout
 _viewBoundsPermitsLayout:
 _solveForPinnedSupplementaryItemsIfNeededWithContext:
@@ -54008,7 +54021,6 @@ _resetContentScrollableAxes
 _stopScrollingAndZoomingAnimations
 cleanupEmbeddedOrthogonalScrollViews
 initWithCollectionView:layout:
-_prepareForTransitionToLayout:
 _prepareForTransitionFromLayout:
 _prepareToLoadData
 setTransitionProgress:
@@ -54626,6 +54638,7 @@ focusRingAvailable
 _updateActiveFocusLayers
 _effectiveMaskedCornersForSystemBackgroundView
 _layoutContentView
+_appliesLayoutAttributesMaskingToBackgroundConfiguration
 _usingBackgroundViewConfiguration
 _stateForUpdatingBackgroundConfigurationWithState:
 _resetBackgroundViewsAndColor
@@ -65466,10 +65479,11 @@ flowLayout
 setHorizontalIndexTitleBarFocusGuide:
 horizontalIndexTitleBarFocusGuide
 _flipIfRightToLeft
+_clearSelectedCell
+setSelectedEntry:
 setSelectedCell:
 selectedCell
 focusedCell
-entry
 _updateSectionInset
 _selectFocusedCell
 _parentContentInset
@@ -65478,8 +65492,9 @@ updateForEntry:
 cellFont
 _entries
 _flowLayout
-_selectedCell
 _horizontalIndexTitleBarFocusGuide
+_selectedEntry
+_selectedCell
 _locationInSceneReferenceSpace
 updateWeightedPointWithGestureState:location:
 initWithDepth:
@@ -65511,6 +65526,7 @@ _updateColors
 setEntry:
 roundedCornersBackground
 _isAnotherIndexTitleCellFocused
+entry
 setRoundedCornersBackground:
 _entry
 _roundedCornersBackground
@@ -67523,6 +67539,7 @@ edgeRegionSize
 _hasDoneTest
 _touchedEdges
 hysteresis
+_initialFromEdgeTip
 initWithItemRenderers:associatedSectionIdentifiers:snapshotsMap:dataSource:
 _configureForDataSource:
 _configureForItemRenderersIfNeeded:
@@ -69992,6 +70009,7 @@ _handleForcedUserInterfaceLayoutDirectionChanged:
 _endObservingBacklightLevelNotifications
 _setSoftwareDimmingWindow:
 _setScreen:
+_capturedStateUpdated:
 isCaptured
 _setCaptured:
 availableModes
@@ -74169,6 +74187,7 @@ _enumerateLongCharactersInRange:usingBlock:
 _stringContainsCurrencyCharacters:
 updateCurrencySymbolForKey:withCurrencyString:
 keyWithRepresentedString:
+dictationIsFunctional
 supportStyling
 canToggleBoldface
 canToggleItalics
@@ -74989,7 +75008,6 @@ siriPreferencesChanged
 keyboardDismissed:
 keyboardInputModeChanged:
 preferencesChanged:
-dictationIsFunctional
 dictationUIState
 serializedInterpretationFromTokens:transform:autocapitalization:capitalization:
 serializedInterpretationFromTokens:transform:
@@ -75002,7 +75020,6 @@ smartPunctuationResultsForString:
 replacementString
 checkTraitsSupportDictation:
 supportsDictationLanguage:error:
-disabledDueToTelephonyActivity
 metadataDictionariesForDictationResults
 connectionForStatisticsLogging
 logDidAcceptDictationResult:reasonType:
@@ -78139,6 +78156,7 @@ _remoteAssociatedDomains
 _passwordRules
 _deactiveActiveKeys
 _ensureRTIConnection
+restartCurrentRemoteTextInputSession
 isRTIClient
 clearTextAlternativesRange
 presentEditingIntroductionView
@@ -78383,7 +78401,6 @@ __creationStack
 initForInputModeWithScreen:
 initWithScreen:orientation:allowFloating:ignoreRemoteKeyboard:
 _activeKeyboardWindowForScreen:
-keyboardWidthForCurrentDevice
 keyboardScreenReferenceSize
 setMockIdiom:
 setKeyboardWidth:
@@ -78671,6 +78688,7 @@ insertSectionAtIndex:
 insertRowAtIndexPath:
 swipedViewMaskWasRemoved
 animatorForCollapseWithAdditivelyAnimatedViews:
+animatorForGenericUpdates
 swipeActionController:insertActionsView:forItemAtIndexPath:
 swipeActionController:cleanupActionsView:forItemAtIndexPath:
 swipeViewManipulatorForSwipeActionController:
@@ -78762,6 +78780,7 @@ _keyboardSceneLayer
 _activeScene
 _resetRequired
 _orientationForSceneTransform
+keyboardWidthForCurrentDevice
 fixedSize
 setFixedSize:
 _mirroredView
@@ -78785,6 +78804,7 @@ setDidSignalKeyboardChangedForCurrentKeyboard:
 proxy
 signalKeyboardChanged:onCompletion:
 _systemAnimationFenceExemptQueue
+setWindowEnabled:force:
 performAsync:
 interruptionHandler
 setInterruptionHandler:
@@ -78823,7 +78843,6 @@ disableBecomeFirstResponder
 allowedToShowKeyboard
 reloadForSnapshotting
 _updateRootViewConstraintsForInterfaceOrientationAndStatusBarHeight
-setWindowEnabled:force:
 setWindowContextID:sceneIdentity:windowState:withLevel:
 wantsToShowKeyboardForWindow:
 _updateProxySceneIdentity
@@ -80075,6 +80094,7 @@ _intersectionOfRange:andRange:
 _shouldPerformUICalloutBarButtonReplaceAction:forText:checkAutocorrection:
 _isInteractiveTextSelectionDisabled
 _shouldSuppressSelectionHandles
+_shouldShowEditMenu
 _textInteraction
 initWithView:textInteractionMode:
 _asTextSelection
@@ -81529,6 +81549,9 @@ beforeElements
 afterElements
 _beforeElements
 _afterElements
+_setReplacementElements:
+replacementElements
+_replacementElements
 _setAtStartElements:atEndElements:
 _setBeforeElements:afterElements:aroundElement:
 _addFallbackBeforeElements:fallbackAfterElements:
@@ -81542,10 +81565,15 @@ _fallbackBeforeElements
 _fallbackAfterElements
 _atStartElements
 _atEndElements
+_setReplacementElements:forElement:
+childReplacements
+_childReplacements
 _deletesForMenu:
+_replacementsForMenu:
 _parentInsertsForMenu:
 deleteMenu:
 deleteItem:inMenu:
+replaceItem:inMenu:withElements:
 insertAtStartElements:atEndElements:inMenu:
 insertBeforeElements:afterElements:aroundElement:inMenu:
 insertFallbackBeforeElements:fallbackAfterElements:inMenu:
@@ -81555,6 +81583,7 @@ inserts
 _menuDeletes
 _itemDeletes
 _inserts
+_replacements
 _setDrawsContent:
 setDrawsContent:
 setDrawsContentBasedOnTraitsIfNeeded
@@ -88546,7 +88575,7 @@ _showMenuFromLongPressGesture
 _swipeContainerView
 _shouldMaskToBoundsWhileAnimating
 _roundedGroupCornerRadius
-_appliesMaskingToCellWhenUsingBackgroundConfiguration
+_appliesMaskingToBackgroundConfiguration
 _setContentClipCorners:updateCorners:
 contentClipCornersForCell:inTableView:
 _updateSeparatorContent
@@ -89033,9 +89062,10 @@ _doneTapped
 _sectionIndexChangedToIndex:title:
 _transitionIndexOverlaySelectionViewToVisible:
 _setIndexColor:
-compare:options:range:locale:
 _containsJapaneseOnly
 _stringByTranscribingUsingTokenizer:
+compare:options:range:locale:
+_kanaTranscriptionForString:
 collationWithDictionary:
 transformedCollationStringForString:
 currentCollation
@@ -89051,6 +89081,8 @@ _sectionIndexMapping
 _firstSectionStartString
 _lastSectionStartString
 _tokenizer
+_primaryLanguageIsJapanese
+_preferJapaneseRomajiTranscriptions
 invalidationRequestHandler
 _invalidationRequestHandler
 _manuallyManagesSwipeUI
@@ -89175,9 +89207,7 @@ _restoreOrAdjustContentOffsetWithRowCount:initialContentInsetTop:
 _endUpdatingVisibleCells:originalContentOffset:focusedView:focusedViewType:
 _updateFocusAfterLoadingCellsWithFocusedView:viewType:
 tableViewDidFinishReload:
-_visibleHeaderViewsContainsView:
-_visibleFooterViewsContainsView:
-_reuseTableViewSubview:viewType:
+_shouldReusePreviouslyFocusedTableViewSubview:viewType:
 _defaultMarginWidth
 _shouldIncludeRowInMultipleSelectionGroupWithCell:atIndexPath:
 globalRowForRowAtIndexPath:
@@ -89196,6 +89226,7 @@ _cellReuseMapForType:
 minimumRowHeight
 shouldDeferReuseOfCell:
 cellReadyForReuse:withIndexPath:didEndDisplaying:
+_reuseTableViewSubview:viewType:
 _setClearBlendingViewCompositingFilter
 _adjustPreReloadStateForRestoringContentOffsetWithUpdateItems:updateSupport:
 _resignFirstResponderInDeletedSectionOrRow:
@@ -89222,6 +89253,8 @@ _animateScanlineViewForCell:occurrence:actionsView:
 shouldResetGroupOpacityAfterAnimation
 shouldAllowGroupOpacityAfterAnimation
 shouldClipToBoundsAfterAnimation
+_visibleHeaderViewsContainsView:
+_visibleFooterViewsContainsView:
 swipeToDeleteCell
 _endAnimatingCells
 _visibleCellsUsingPresentationValues:
@@ -92342,6 +92375,7 @@ _linkTextAttributes
 _recentsAccessoryView
 _textFieldFlags
 _lastBaselineOffsetFromBottom
+_didInvalidateBaselineConstraintsOnHeightChange
 _deferringBecomeFirstResponder
 _preferredBorderStyle
 initWithVariant:color:
@@ -92645,6 +92679,7 @@ initWithFrame:textContainer:delegate:
 setVerticallyResizable:
 setMaxSize:
 setSelectable:
+_setShowsEditMenu:
 _setTypingAttributesTextColor:
 _updateContainerTileAndSizingFlags
 _textContainerSizeDidChange:
@@ -92706,6 +92741,7 @@ _startDataDetectorsIfNeeded
 textViewDidEndEditing:
 setUsesTiledViews:
 setHorizontallyResizable:
+_showsEditMenu
 lineFragmentPadding
 enumerateLineFragmentsForGlyphRange:usingBlock:
 extractWordArrayFromTokensArray:
@@ -96118,7 +96154,7 @@ _dividerLine
 _shouldInsetButtonsForIndex
 _upButton
 _downButton
-initWithDefaultBuilder:shouldAutomaticallyRebuild:adaptBuilderToResponder:
+initWithDefaultBuilder:shouldAutomaticallyRebuild:adaptBuilderToResponderPre:adaptBuilderToResponderPost:
 _automaticallyRebuildIfNeeded
 _newBuilderFromResponderChain:atLocation:inCoordinateSpace:
 defaultQueue
@@ -96131,7 +96167,8 @@ setNeedsRevalidate
 shouldAutomaticallyRebuild
 _defaultBuilder
 _automaticallyRebuildingBuilder
-_adaptBuilderToResponder
+_adaptBuilderToResponderPre
+_adaptBuilderToResponderPost
 _shouldAutomaticallyRebuild
 setShouldRecomputeText:
 _recomputeTextIfNecessary
@@ -99587,16 +99624,7 @@ _heightIsDeviceHeight
 _isInUpdateBlock
 _classicViewportMode
 _coreUIImplementationForStyle:
-setMaterialName:
-setEmphasized:
-initWithMaterial:style:emphasized:
-materialName
-isEmphasized
-_emphasized
-_materialName
 coreUIEffectForBlurStyle:
-initWithMaterialName:
-_configureMaterialLayer:inEnvironment:
 initWithCanReorderItemHandler:willReorderItemHandler:didReorderItemHandler:
 setWillReorderHandler:
 setDidReorderHandler:
@@ -105156,7 +105184,7 @@ v40@0:8@?16{CGSize=dd}24
 @"_UITextContainerView"
 @"_UITextLayoutView"
 @"<UITextInputTokenizer>"
-{?="needsScrollToSelectionAfterLayout"b1"editable"b1"reentrancyGuard"b1"usesExplicitPreferredMaxLayoutWidth"b1"interactiveSelectionDisabled"b1"selectable"b1"shouldPresentSheetsInAWindowLayeredAboveTheKeyboard"b1"shouldAutoscrollAboveBottom"b1"containerViewSizeInvalid"b1"isAnimatingPaste"b1"textSizeCacheEnabled"b1}
+{?="needsScrollToSelectionAfterLayout"b1"editable"b1"reentrancyGuard"b1"usesExplicitPreferredMaxLayoutWidth"b1"interactiveSelectionDisabled"b1"selectable"b1"shouldPresentSheetsInAWindowLayeredAboveTheKeyboard"b1"shouldAutoscrollAboveBottom"b1"containerViewSizeInvalid"b1"isAnimatingPaste"b1"textSizeCacheEnabled"b1"showsEditMenu"b1}
 @"_UITextViewRestorableScrollPosition"
 @"_UICharacterStreamingManager"
 @"_UITextSizeCache"
@@ -105609,7 +105637,7 @@ v48@0:8d16d24@?32@?40
 @104@0:8{CGPoint=dd}16{CGVector=dd}32{CGRect={CGPoint=dd}{CGSize=dd}}48{CGSize=dd}80d96
 {CGVector=dd}24@0:8d16
 v144@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16{UIEdgeInsets=dddd}48{UIEdgeInsets=dddd}80{UIEdgeInsets=dddd}112
-@36@0:8@16B24@?28
+@44@0:8@16B24@?28@?36
 @"_UIMenuBuilder"
 @"<UIDimmingViewDelegate>"
 @64@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16q48B56B60
@@ -105973,21 +106001,22 @@ v36@0:8i16@"FBSSceneIdentityToken"20@?<v@?B>28
 v36@0:8B16@"BKSAnimationFenceHandle"20@?<v@?@"NSError">28
 @48@0:8@16#24@?32@40
 @40@0:8@16#24@?32
+?;#
+Y?S#
+L?J!
 333?
-Q8>S
-333?g<
-ff&?S
-333?S
-ff&?S
-33s?W
+L?*&
+#<3-
+333?
+#=S)
+ff&?
+333?
+ff&?
+33s?
 fff?
-Ga>S
 B`e>
-fff?S
-Q8>S
-fff?S
-lg>S
-Qx?S
+fff?
+fff?
 ffffff
 %" *
 333333

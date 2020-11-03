@@ -32,6 +32,7 @@ SetAllMulticastModeEnable_Impl
 SetMulticastAddresses_Impl
 SelectMediaType_Impl
 TxPacketsAvailable_Impl
+ivars->isEnabled
 RxPacketsAvailable_Impl
 TxComplete_Impl
 RxComplete_Impl

@@ -533,14 +533,18 @@ urn:com:apple:photo:2018:aux:portraiteffectsmatte
 urn:com:apple:photo:2019:aux:semanticskinmatte
 urn:com:apple:photo:2019:aux:semantichairmatte
 urn:com:apple:photo:2019:aux:semanticteethmatte
+urn:com:apple:photo:2020:aux:semanticglassesmatte
+urn:com:apple:photo:2020:aux:hdrgainmap
 urn:mpeg:hevc:2015:auxid:1
 urn:mpeg:hevc:2015:auxid:2
+urn:com:apple:photo:internal:disparityInternal
+urn:com:apple:photo:internal:disparityMIAFInternal
 urn:mpeg:mpegB:cicp:systems:auxiliary:alpha
 urn:mpeg:mpegB:cicp:systems:auxiliary:depth
 kFigPhotoError_InvalidParameter
 Source and options must not be NULL
 FigPhotoGetSourceDimensions
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Photo/FigPhotoTypes.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Photo/FigPhotoTypes.c
 kFigPhotoError_UnsupportedImageType
 SampleBuffer must be backed by ImageBuffer.
 Unsupported image type.
@@ -1031,6 +1035,7 @@ _decodeThumbnailForIndexAsync
 _decodeAuxiliaryImageForIndexAsync
 Invalid auxiliary image index
 Unsupported option key in options dictionary
+applyTransform for Aux images is allowed only for monochrome buffers
 applyTransform for Aux images not allowed with this configuration
 _decoder_plugin_callback
 _getAuxiliaryImageCountForIndex
@@ -2055,13 +2060,12 @@ FigCaptionRendererCaption <FigCaptionRendererIntervalProtocol> on <%p>
 FigCaptionRendererCaption <FigCaptionRendererNodeProtocol> on <%p>
 FigCaptionRendererCaption_FigCaptionRendererNodeProtocol_Draw
 FigCaptionRendererNodeGetImageBuffer() failed
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.24.7/Prototypes/Captions/FigCaptionRenderer/FigCaptionRendererCaption.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.34.2/Prototypes/Captions/FigCaptionRenderer/FigCaptionRendererCaption.c
 CGColorSpaceCreateWithName failed
 kFigCaptionRendererError_DrawFailed
 CGBitmapContextCreateImage failed
 ckCaptionGetFontSize
 kFCRSubtitleRenderer_FontSizeToUse
-getFontSizeInPointsUnit
 ckCaptionFindFitForString
 Couldn't create mutable copy of attributed string.
 kFCRSubtitleRenderer_SuggestLineHeight
@@ -2072,6 +2076,7 @@ CourierNewPSMT
 kFCRSubtitleRenderer_CommonSetupDone
 kFCRSubtitleRenderer_LanguageCategory
 markCJKCharacters
+getFontSizeInPointsUnit
 zh-Hans
 zh-Hant
 ckCaptionCreateCTFontWithOptions
@@ -2184,6 +2189,7 @@ com.apple.avfoundation
 com.apple.MediaToolbox
 AVAssetExportPresetsBase.plist
 AVAssetExportPresets.plist
+dvvC
 BitsPerComponent
 FigExportSettings_GetMaximumBitsPerComponent
 Audio
@@ -4360,7 +4366,7 @@ subaq_startStopListener
 subaq_stopListener
 subaq_removeIfObsolete
 [FigSubAudioQueue %p (rc=%d)
-(SubAQ %p retainCount:%d -> AQ %p %.0f Hz '%.4s')
+(SubAQ %p retainCount:%d -> AQTS %p %.0f Hz '%.4s')
 kAudioFormatUnsupportedDataFormatError
 CMAudioFormatDescriptionGetRichestDecodableFormatAndChannelLayout returned NULL ASBD
 subaq_setupForRichestDecode
@@ -4504,6 +4510,7 @@ DecoderPriority
 QualityOfServiceTier
 DecoderThreadCount
 VideoDecoderIsSecondary
+PropagatePerFrameHDRDisplayMetadata
 ForceFullPowerDecode
 EnableIOFenceDecode
 DisplayLayerSize
@@ -4515,6 +4522,7 @@ SharePixelBufferPool
 RealTime
 MaximizePowerEfficiency
 InhibitPixelFormatConversion
+InhibitCompressedBufferUse
 AllowClientProcessDecode
 DecodeError
 OSStatus
@@ -6142,6 +6150,7 @@ bad VideoCompositor
 VideoCompositorChanged
 BlendsVideoFramesChanged
 not CFBoolean for kFigPlaybackItemProperty_BlendsVideoFrames
+not CFBoolean for kFigPlaybackItemProperty_PropagatePerFrameHDRDisplayMetadata
 not CFString for kFigPlaybackItemProperty_ApertureMode
 IQInterpolationCurveChanged
 not CFArray for kFigPlaybackItemProperty_ImageQueueInterpolationCurve
@@ -11615,9 +11624,10 @@ DDPlusCheckAtmos
 metadataoutput_trace
 NULL storage
 FPSupport_InitMetadataStorage
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.24.7/Prototypes/Player/FigPlayerMetadataOutputSupport.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.34.2/Prototypes/Player/FigPlayerMetadataOutputSupport.c
 Could not create outputs dictionary
 Could not create outputs array
+Could not create invalidationLock
 FPSupport_UpdateMetadataOutputs
 no newOutputs
 fpsupport_createMetadataOutputsFromDictionary
@@ -13937,10 +13947,13 @@ SupportedAudioFormats
 AudioSourceAudioFormat
 BufferedClientAudioSessionID
 ZeroBasedTimebase
+MaximumNumberOfOutputChannels
+AtmosIsSupported
 ClientID
 IsPiPMuted
 EndOfTrackReached
 OutputPresentationTimestamp
+MaximumNumberOfOutputChannelsDidChange
 bufferingPriorityChanged
 bufferingPriority
 urgent
@@ -13958,6 +13971,12 @@ fbapo_amIActiveEndpointStreamClient
 fbapo_setAndCacheAudioSessionID
 fbapo_removeNotificationListeners
 com.apple.airplay.bufferedAVAudioSessionOverrideChanged
+fbapo_endpointStreamSupportedAudioFormatsChangedCallback
+fbapo_updateMaxAudioFormatSupported
+kFigBufferedAirPlayOutputError_SupportedFormatNotFound
+Must have at least one supported audio format
+fbapo_findMaxChannelAudioFormatFromEndpointStream
+fbapo_postNotificationInternal_block_invoke
 fbapo_finalize
 <FigBufferedAirPlayOutput %p; endpointStream=%@>
 fbapo_copyProperty
@@ -13995,7 +14014,6 @@ BAO cant create createSampleBufferConsumer without proper audioSource format.
 Failed to create audio source
 fbapo_prepareAndResumeAudioEngineForBecomeActiveEndpointStreamClient
 BAO cant prepare audioEngine because audioSource ASBD is invalid
-kFigBufferedAirPlayOutputError_SupportedFormatNotFound
 Supported format for samplerate not found.
 Audio source cannot be NULL when resuming the audio engine.
 fbapo_applyCachedPropertiesForBecomeActiveIterator
@@ -14009,7 +14027,9 @@ fbapo_legacyAPFlushInternal
 fbapo_flushWithinTimeRangeInternal
 fbapo_endRenderPipelinePlaybackInternal
 fbapo_setConnectionActive
-fbapo_postNotificationInternal_block_invoke
+fbapo_supportsMaxChannelCountWithoutReconfiguration
+AudioEngine returned zero supported format.
+fbapo_stopAndReconfigureForOutputChannelCountInternal
 com.apple.coremedia.FigBufferedAirPlayOutput.notificationqueue
 fbapo_addNotificationListeners
 fig_nw_util_trace
@@ -15058,7 +15078,7 @@ downloadStartDate is NULL
 dworch_ensureDownloadStartDate
 dworch_downloadMedia_gotAccessToDestinationURLCallback
 dworch_downloadMedia_startNextMediaSelectionDownload
-dworch_downloadMedia_ensureAndSetupCurrentMediaDownloaders
+dworch_downloadMedia_ensureCurrentMediaDownloadersAndMatchStatus
 dworch_downloadMedia_createMediaDownloaderOptions
 dworch_downloadMedia_downloadSucceededCallback
 mediaDownloader is  not in currentMediaDownloaders
@@ -15074,6 +15094,7 @@ dworch_downloadMedia_downloadFailedCallback
 dworch_downloadMedia_loadedTimeRangesChanged
 dworch_createDownloadMediaProgressItem
 item is NULL
+dworch_downloadMedia_matchMediaDownloaderToOrchestratorStatus
 dworch_downloadMedia_pause
 dworch_downloadMedia_stop
 dworch_downloadMedia_pauseForInteractivePlayback
@@ -15939,6 +15960,7 @@ MediaAndSubtypes
 VideoDynamicRangeUnknown
 VideoDynamicRangeSDR
 VideoDynamicRangeHLG
+VideoDynamicRangeDolbyVision8p4
 VideoDynamicRangeHDR10
 VideoDynamicRangeDolbyVision
 3gpp
@@ -15949,6 +15971,7 @@ com.apple.itunes.audible
 %c%c%c
 FigCopyMediaTypeString
 Could not create mediaTypeAsKey
+MediaAndSubtypes-dv84
 PAL 
 Dolby Vision 
 (%d-%d-%d)
@@ -20196,26 +20219,18 @@ figdng_trace
 kFigDNGError_Parameters
 DNG writer with compressed preview data does not support cropping.
 FigDNGCompressorSetCompressedPreviewImage
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Photo/DNG/FigDNGUtilities.m
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMedia_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Photo/DNG/FigDNGUtilities.m
 DNG writer with compressed preview supports only CFData and IOSurfaces.
 kFigDNGError_NotYetImplemented
 Unsupported pixelformat
 FigDNGCompressorSetPreviewImage
 'previewBuffer' may not have Linear transfer function
 'previewBuffer' must have 601 YCbCr matrix
+CoreImage not available on this platform
+FigDNGCompressorSetPreviewImageFromRAW
 kFigDNGError_RequiredInfoMissing
 No main image added
 FigDNGCompressorFinalizeAndCreateData
-kCGImageSourceShouldUseRawDataForFullSize
-com.adobe.raw-image
-kFigDNGError_DataIsCorrupt
-Multiple Preview IFDs not supported
-FigDNGUnpack
-Multiple Raw image IFDs not supported
-kFigDNGError_Internal
-Too many aux images. Current limit set to 16
-No tileOffsets
-No tileByteCounts
 [FigDNGCompressor]
 <FigDNGCompressor %p> {
 mainBuffer: {
@@ -20223,6 +20238,7 @@ mainOptions: {
 jpegPreview: {
 %p (size %zd)
 auxImages: {
+previewAuxImages: {
 Invalid quality value. must be [0,1]
 _dngInfoInit
 Invalid number of max threads
@@ -20244,13 +20260,15 @@ Unable to parse ActiveArea
 Unable to parse DefaultCropOrigin
 Unable to parse DefaultCropSize
 yyyy:MM:dd HH:mm:ss
+kFigDNGError_Internal
 kFigDNGError_NoMemory
 Failed to allocate data
 Auxiliary image is NULL
 _compressAuxiliaryImage
 Auxiliary type is NULL
 Auxiliary metadata is NULL
-Unexpected bit depth
+Unexpected auxPixelFormat for auxiliary image
+Unknown auxiliary image type
 Only depth/disparity auxiliary images supported
 Starting a new code without finishing the previous
 _figDNGOPCodeWriterStartOPCode
@@ -20264,6 +20282,16 @@ Invalid tag ID
 _figDNGWriterIFDGetTagDataOffset
 Unexpected backing type
 _createJPEGFromPixelBuffer
+_addAuxiliaryImagesToJPEGData
+kCGImageSourceShouldUseRawDataForFullSize
+com.adobe.raw-image
+kFigDNGError_DataIsCorrupt
+Multiple Preview IFDs not supported
+_dngUnpackInternal
+Multiple Raw image IFDs not supported
+Too many aux images. Current limit set to 16
+No tileOffsets
+No tileByteCounts
 _figDNGReaderInit
 Internal
 Unsupported SubFileType
@@ -21169,17 +21197,17 @@ frame size %zux%zu
 <<<< FigCaptionRendererCaption >>>> %s: redraw: captionBackgroundWindowArea(w=%lf, h=%lf)
 <<<< FigCaptionRendererCaption >>>> %s: redraw: ckCaptionDrawString() finished.
 <<<< FigCaptionRendererCaption >>>> %s: CGContextDrawImage(): _cgBounds(x=%f, y=%f, w=%f, h=%f)
-<<<< FigCaptionRendererCaption >>>> %s: fontSizeToUse=%f(%d:%d)
-<<<< FigCaptionRendererCaption >>>> %s: no kCMTextMarkupAttribute_FontSize.
+<<<< FigCaptionRendererCaption >>>> %s: unsupported kCMTextMarkupAttribute_FontSize in percentage.
+<<<< FigCaptionRendererCaption >>>> %s: unsupported units type: %d
+<<<< FigCaptionRendererCaption >>>> %s: passed in default font size (original) = %f.
+<<<< FigCaptionRendererCaption >>>> %s: defaultFontSize font size(after transfrom) = %f.
+<<<< FigCaptionRendererCaption >>>> %s: passed in kFigGeometryUnitsType_ViewportHeight = %f.
 <<<< FigCaptionRendererCaption >>>> %s: default font size(%f), content font size(%f).
 <<<< FigCaptionRendererCaption >>>> %s: using content font size(after transfrom) = %f.
 <<<< FigCaptionRendererCaption >>>> %s: using default font size(after characterScale %f) = %f.
 <<<< FigCaptionRendererCaption >>>> %s: using default font size = %f.
-<<<< FigCaptionRendererCaption >>>> %s: No videoPresentationBounds height for font size calculation!
-<<<< FigCaptionRendererCaption >>>> %s: No videoPresentationBounds width for font size calculation!
 <<<< FigCaptionRendererCaption >>>> %s: Couldn't set up the text attributed string.
 <<<< FigCaptionRendererCaption >>>> %s: textBoxSizeConstraint(w=%f, h=%f)
-<<<< FigCaptionRendererCaption >>>> %s: unsupported units type: %d
 <<<< FigCaptionRendererCaption >>>> %s: Couldn't Create Core Text frame setter
 <<<< FigCaptionRendererCaption >>>> %s: vertical layout?(%d), textBoxSizeConstraint(w=%f, h=%f), fontSize(%f), suggestedSize(w=%f, h=%f)
 <<<< FigCaptionRendererCaption >>>> %s: CTParagraphStyleSetCompositionLanguage(compositionLanguage=%d)
@@ -21187,6 +21215,7 @@ frame size %zux%zu
 <<<< FigCaptionRendererCaption >>>> %s: Couldn't create stringUniBuf(length=%d).
 <<<< FigCaptionRendererCaption >>>> %s: Exceeding the text combine digits limit(foundNonDigit=%d, max=%d, length=%d)
 <<<< FigCaptionRendererCaption >>>> %s: kCMTextMarkupAttribute_HorizontalInVerticalForms: range(loc=%ld, len=%ld), %d
+<<<< FigCaptionRendererCaption >>>> %s: fontSizeToUse=%f(%d:%d)
 <<<< FigCaptionRendererCaption >>>> %s: no font size update
 <<<< FigCaptionRendererCaption >>>> %s: found kCMTextMarkupAttribute_FontFamilyName(%@) at location %ld, length %ld.
 <<<< FigCaptionRendererCaption >>>> %s: found kCMTextMarkupAttribute_GenericFontFamilyName(%@) at location %ld, length %ld.
@@ -21202,6 +21231,8 @@ frame size %zux%zu
 <<<< FigCaptionRendererCaption >>>> %s: Couldn't create CTFont for text
 <<<< FigCaptionRendererCaption >>>> %s: index: %i, range: %i - %i, longest: %i - %i
 <<<< FigCaptionRendererCaption >>>> %s: CJK substring at (loc=%ld, len=%ld)
+<<<< FigCaptionRendererCaption >>>> %s: No videoPresentationBounds height for font size calculation!
+<<<< FigCaptionRendererCaption >>>> %s: No videoPresentationBounds width for font size calculation!
 <<<< FigCaptionRendererCaption >>>> %s: fontName is NULL.
 <<<< FigCaptionRendererCaption >>>> %s: font descriptor could not be created with italic feature and bold trait so returning italic descriptor %@
 <<<< FigCaptionRendererCaption >>>> %s: font name is %@, font is %@
@@ -22020,7 +22051,7 @@ SIO_CRABS %s: [%p] New scheduled req(%d): %lld-%lld (%ld)
 <<<< FAQ >>>> %s: FigAudioQueueTimingShimSetProperty('$ins') to %d
 <<<< FAQ >>>> %s: [%p:%p] %s Sweep Filter %s
 <<<< FAQ >>>> %s: [%p:%p] Set Sweep Filter Config. MinFreq: %1.3f; MaxFreq: %1.3f; bypassThreshold: %1.3f
-<<<< FAQ >>>> %s: [%p:%p] set cryptor on audio queue %p to %@, err=%d('%.4s')
+<<<< FAQ >>>> %s: [%p:%p] set cryptor on AQTS %p to %@, err=%d('%.4s')
 <<<< FAQ >>>> %s: couldn't get kAudioQueueParam_PlayRate2, err=%d ('%.4s')
 <<<< FAQ >>>> %s: [%p:%p] Tracking AudioDevice UID '%@'
 <<<< FAQ >>>> %s: Called subaq_performStartupSync before FigAudioQueueTimingShimStart.
@@ -22172,6 +22203,7 @@ SIO_CRABS %s: [%p] New scheduled req(%d): %lld-%lld (%ld)
 <<<< VMC >>>> %s: %p stopping
 <<<< VMC >>>> %s: (%p) flushOutput %d
 <<<< VMC >>>> %s: (%p) requestID %@
+<<<< VMC >>>> %s: kVideoMediaConverter2Property_PropagatePerFrameHDRDisplayMetadata set to %s
 <<<< VMC >>>> %s: decompression session %s have SuggestedQualityOfServiceTiers
 <<<< VMC >>>> %s: kVTDecompressionPropertyKey_MaximizePowerEfficiency to true
 <<<< VMC >>>> %s: %p: got a saveForFuture sample buffer
@@ -22672,7 +22704,7 @@ SIO_CRABS %s: [%p] New scheduled req(%d): %lld-%lld (%ld)
 <<<< FigStreamPlayer >>>> %s: discontinuity detected; must reset render chain - doing so by setting seek
 <<<< FigStreamPlayer >>>> %s: substream %d has not responded; clearing it as well
 <<<< FigStreamPlayer >>>> %s: after pause, no discontinuity - continuing
-<<<< FigStreamPlayer >>>> %s: <%p|%{public}s> end of stream %d
+<<<< FigStreamPlayer >>>> %s: <%p|%{public}s> end of stream %d duration %f
 <<<< FigStreamPlayer >>>> %s: <%p|%{public}s> At end of all streams; result = %d, end flag %{public}s
 <<<< FigStreamPlayer >>>> %s: <%p|%{public}s> NewAlternate subStream %d role %d - resetting manifold
 <<<< FigStreamPlayer >>>> %s: Trial!
@@ -23725,6 +23757,7 @@ SIO_CRABS %s: [%p] New scheduled req(%d): %lld-%lld (%ld)
 <<<< FigFilePlayer >>>> %s: Couldn't create layerArray. Continuing on without layer synchronization
 <<<< FigFilePlayer >>>> %s: setting BlendsVideoFrames while this item is current or lame => will disturb playback
 <<<< FigFilePlayer >>>> %s: Same value for kFigPlaybackItemProperty_BlendsVideoFrames so ignoring
+<<<< FigFilePlayer >>>> %s: setting PropagatePerFrameHDRDisplayMetadata while this item is current or lame => will disturb playback
 <<<< FigFilePlayer >>>> %s: (%p:%p) Posting kFigPlaybackItemNotification_DimensionsChanged due to aperture mode(%@) changing dimensions (%1.1f x %1.1f)->(%1.1f x %1.1f)
 <<<< FigFilePlayer >>>> %s: setting ImageQueueInterpolationCurve while this item is current or lame => will disturb playback
 <<<< FigFilePlayer >>>> %s: Same value for kFigPlaybackItemProperty_ImageQueueInterpolationCurve so ignoring
@@ -24874,7 +24907,7 @@ options == %@;
 <<<< FigEndpointAudioSource >>>> %s: [%p] Trying to pull on an empty buffer queue.
 <<<< FigEndpointAudioSource >>>> %s: [%p] Pulling sample buffer with mediaTime: %1.3f
 <<<< FigEndpointAudioSource >>>> %s: [%p] Start pulling @ %1.3f
-<<<< FigEndpointAudioSource >>>> %s: [%p] Gap between expected sbuf and actual sbuf: %1.3f #bytes=%zu
+<<<< FigEndpointAudioSource >>>> %s: [%p] Gap between expected sbuf and actual sbuf: %1.3f #bytes=%zu, nextSBuf=%1.3f, currentSBUF=%1.3f
 <<<< FigEndpointAudioSource >>>> %s: [%p] Adjusted nextSbufStartTime: %1.3f
 <<<< FigEndpointAudioSource >>>> %s: [%p] Fill %zu zero bytes
 <<<< FigSubtitleCALayer >>>> %s: captionRenderMode is %d
@@ -25663,8 +25696,14 @@ mpeg2parser %s: emitting Dolby with time discontinuity
 <<<< FAQ TIMING SHIM >>>> %s: called
 <<<< FAQ TIMING SHIM >>>> %s: [%p] created
 <<<< FAQ TIMING SHIM >>>> %s: [%p] called
+<<<< FAQ TIMING SHIM >>>> %s: [%p] Calling AudioQueueDispose(%p, immediate:%d)
+<<<< FAQ TIMING SHIM >>>> %s: [%p] Calling AudioQueueFlush(%p)
+<<<< FAQ TIMING SHIM >>>> %s: [%p] Calling AudioQueueReset(%p)
+<<<< FAQ TIMING SHIM >>>> %s: [%p] Calling AudioQueuePause(%p)
+<<<< FAQ TIMING SHIM >>>> %s: [%p] Calling AudioQueuePrime(%p)
 <<<< FAQ TIMING SHIM >>>> %s: [%p] incremented sampleTime %1.3f to %1.3f
 <<<< FAQ TIMING SHIM >>>> %s: [%p] converted %1.3f to %1.3f
+<<<< FAQ TIMING SHIM >>>> %s: [%p] Calling AudioQueueStop(%p, immediate:%d)
 <<<< FAQ TIMING SHIM >>>> %s: [%p] called for property '%c%c%c%c' (%u) 
 <<<< FAQ TIMING SHIM >>>> %s: [%p] Wait for any pending AQStart
 <<<< FAQ TIMING SHIM >>>> %s: [%p] Converted duration for paramID %u: DVT: %.3f to AQT: %.3f
@@ -25673,6 +25712,7 @@ mpeg2parser %s: emitting Dolby with time discontinuity
 <<<< FAQ TIMING SHIM >>>> %s: Returning audio device latency as %1.3f sec
 <<<< FAQ TIMING SHIM >>>> %s: [%p] asyncStartQueue is NULL. Assuming audio queue didn't start
 <<<< FAQ TIMING SHIM >>>> %s: Error convering to scaled sample time: %d
+<<<< FAQ TIMING SHIM >>>> %s: [%p] Calling AudioQueueStart(%p)
 <<<< FAQ TIMING SHIM >>>> %s: [%p:%p] Error starting audio queue: %d = '%c%c%c%c'
 <<<< FAQ TIMING SHIM >>>> %s: [%p] audio queue started
 <<<< FAQ TIMING SHIM >>>> %s: AudioQueueDeviceGetCurrentTime -> timeStamp.mSampleTime %lld, timeStamp.mHostTime %lld
@@ -25778,6 +25818,7 @@ mpeg2parser %s: track %x - found sample freq %u
 <<<< Remaker >>>> %s: called, offline mixer path
 <<<< Remaker >>>> %s: (%p) id %d -> %dx%d %.4s
 <<<< Remaker >>>> %s: %@
+<<<< Remaker >>>> %s: scaling property is %@
 <<<< Remaker >>>> %s: (%p) %{public}.4s width %d height %d dataRate %g
 <<<< Remaker >>>> %s: (%p) source id %d -> dest id %d
 <<<< Remaker >>>> %s: (%p) [%1.3f,%1.3f]
@@ -26204,6 +26245,10 @@ HTTPRequestSessionNS %s: No such property %@
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] I am NOT the current EndpointStream (%p) client; dont commit audioSessionID=%@
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) Remove endpointStream %p weak listener failed %d
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) Remove audioEngine %p synchronous weak listener failed %d
+<<<< FigBufferedAirPlayOutput >>>> %s: (%p) called
+<<<< FigBufferedAirPlayOutput >>>> %s: (%p) updateMaxNumberOfChannelsSupported
+<<<< FigBufferedAirPlayOutput >>>> %s: (%p) current max channels supported=%u, new max channels supported=%u, current sampleRate=%f, new sampleRate=%f
+<<<< FigBufferedAirPlayOutput >>>> %s: [%p] Post Notificaton: %@
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] called
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] called; propertyKey: %@
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] propertyKey not handled: %@
@@ -26221,7 +26266,7 @@ HTTPRequestSessionNS %s: No such property %@
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] reset output
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) asked to set current renderPipeline [%p].  current = [%p]
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) asked to set current consumer [%p]. current = [%p]
-<<<< FigBufferedAirPlayOutput >>>> %s: (%p) inBufferedAirPlayOutput. isActive=%s, inConsumerFromRP=%p, renderPipeline=%p, rate=%f
+<<<< FigBufferedAirPlayOutput >>>> %s: (%p) inBufferedAirPlayOutput. isActive=%s, inConsumerFromRP=%p, renderPipeline=%p, rate=%f, inMediaTime=%f
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] I'm already the current EndpointStream client; Engine is ready.
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] I'm PiPMuted and engine is resumed; Engine is ready.
 <<<< FigBufferedAirPlayOutput >>>> %s: [%p] Becoming Active: audio source is null. AudioEngine %p.
@@ -26253,7 +26298,9 @@ HTTPRequestSessionNS %s: No such property %@
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) Activating FigBufferedAirpPlayOutput with endpoint stream %p. Was deactivated? %d.
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) Deactivating FigBufferedAirpPlayOutput. Deactivate with endpoint stream %p, Was deactivated? %d
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) [EXIT] inActive %d storage->isActive %d endpoint stream %p. storage->deactivated %d.
-<<<< FigBufferedAirPlayOutput >>>> %s: [%p] Post Notificaton: %@
+<<<< FigBufferedAirPlayOutput >>>> %s: [%p] AudioEngine is not resumed. Does require reconfigure.
+<<<< FigBufferedAirPlayOutput >>>> %s: [%p] ASBD for active(supportedFormats). format=%c%c%c%c(%c%c%c%c), mSampleRate=%f(%f), mChannelsPerFrame=%u(%u), mBytesPerPacket=%u(%u), mFramesPerPacket=%u(%u), mBytesPerFrame=%u(%u), mBitsPerChannel=%u(%u), mFormatFlags=0x%x(0x%x) 
+<<<< FigBufferedAirPlayOutput >>>> %s: [%p] SupportsMaxChannelCountWithoutReconfiguration=%s
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) Add endpointStream %p weak listener failed %d
 <<<< FigBufferedAirPlayOutput >>>> %s: (%p) Add audioEngine %p synchronous weak listener failed %d
 << FigNwPathEval >> %s: nw_interface_type_other
@@ -26594,7 +26641,6 @@ AVI_INDEX_OF_INDEXES
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: persisting metadata started
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: transferring data from memoryOnlyStreamingCache %p to persistentStreamingCache %p
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: persisting metadata is complete.
-<<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media is starting for mediaDownloader %p
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading alternate %@ downloading selected media %@
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: created media downloader: %p
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media is complete for mediaDownloader %@
@@ -26604,6 +26650,9 @@ newlyLoadedTimeRange:%@ currentLoadedTimeRanges:%@ timeRangeExpectedToLoad:%@
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: download is complete for all mediaselections/alternates.
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media failed validation check for
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media failed for mediaDownloader %@ with %@
+<<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media is starting for mediaDownloader %p
+<<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media is pausing for mediaDownloader %p
+<<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media is stopping for mediaDownloader %p
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media is paused for mediaDownloader %@
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media is stopped for mediaDownloader %@
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: downloading media resuming after playback
@@ -26622,7 +26671,6 @@ newlyLoadedTimeRange:%@ currentLoadedTimeRanges:%@ timeRangeExpectedToLoad:%@
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: cannot resume after playback. current state is already completed, failed or stopped.
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: not paused for playback  - ignoring
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: loading metadata. media download will not start until explicit client start.
-<<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p: currently paused for interactive playback. ignoring.
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: selected media %ld of %ld %@
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: selected media for multichannel %ld of %ld %@
 <<<< FigStreamingAssetDownloadOrchestrator >>>> %s: %p %{public}@: selected media for multichannel is same as stereo
@@ -29378,6 +29426,7 @@ notificationBarrier
 arrayWithObjects:count:
 numberWithUnsignedInt:
 dictionaryWithObjects:forKeys:count:
+numberWithUnsignedChar:
 initRequiringSecureCoding:
 encodeObject:forKey:
 encodedData
@@ -29566,11 +29615,11 @@ vomc
 atem
 mocd
 dvmc
-FFIR IVAT
-TSILlrdhv
+FFIR IVA\
+TSILlrdh~
 TSILivom
 1xdi
-TSILlrts
+TSILlrts#
 hiva
 hrts
 frts

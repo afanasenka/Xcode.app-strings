@@ -45,6 +45,7 @@ SpeechLogs
 VoiceTrigger
 siriBC
 Second Pass Audio Logging Enabled
+Speaker Recognition Audio Logging Enabled
 Jarvis Audio Logging Enabled
 Jarvis Trigger Mode
 Enable SoS Audio Logging
@@ -231,6 +232,7 @@ getCatAdBlockerAssetUpdateDirectory
 assistantAudioFileLogDirectory
 myriadHashFilePath
 secondPassAudioLoggingEnabled
+speakerRecognitionAudioLoggingEnabled
 jarvisAudioLoggingEnabled
 setJarvisTriggerMode:
 getJarvisTriggerMode

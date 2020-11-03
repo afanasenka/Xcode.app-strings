@@ -1,150 +1,3 @@
-%@"
-% @"
-%"@"
-%$@"
-%&@"
-%(@"
-%*@"
-%,@"
-%.@"
-%0@"
-%2@"
-%4@"
-%6@"
-%8@"
-%:@"
-%<@"
-%>@"
-%@@"
-%B@"
-%D@"
-%F@"
-%H@"
-%J@"
-%L@"
-%N@"
-%P@"
-%R@"
-%T@"
-%V@"
-%X@"
-%Z@"
-%\@"
-%^@"
-%`@"
-%b@"
-%d@"
-%f@"
-%h@"
-%j@"
-%l@"
-%n@"
-%p@"
-%r@"
-%t@"
-%v@"
-%x@"
-%z@"
-%|@"
-%~@"
-%A"
-% A"
-%"A"
-%$A"
-%&A"
-%(A"
-%*A"
-%,A"
-%.A"
-%0A"
-%2A"
-%4A"
-%6A"
-%8A"
-%:A"
-%<A"
-%>A"
-%@A"
-%BA"
-%DA"
-%FA"
-%HA"
-%JA"
-%LA"
-%NA"
-%PA"
-%RA"
-%TA"
-%VA"
-%XA"
-%ZA"
-%\A"
-%^A"
-%`A"
-%bA"
-%dA"
-%fA"
-%hA"
-%jA"
-%lA"
-%nA"
-%pA"
-%rA"
-%tA"
-%vA"
-%xA"
-%zA"
-%|A"
-%~A"
-%B"
-% B"
-%"B"
-%$B"
-%&B"
-%(B"
-%*B"
-%,B"
-%.B"
-%0B"
-%2B"
-%4B"
-%6B"
-%8B"
-%:B"
-%<B"
-%>B"
-%@B"
-%BB"
-%DB"
-%FB"
-%HB"
-%JB"
-%LB"
-%NB"
-%PB"
-%RB"
-%TB"
-%VB"
-%XB"
-%ZB"
-%\B"
-%^B"
-%`B"
-%bB"
-%dB"
-%fB"
-%hB"
-%jB"
-%lB"
-%nB"
-%pB"
-%rB"
-%tB"
-%vB"
-%xB"
-%zB"
-%|B"
-%~B"
 %C"
 % C"
 %"C"
@@ -203,7 +56,154 @@
 %*D"
 %,D"
 %.D"
-%u3"
+%0D"
+%2D"
+%4D"
+%6D"
+%8D"
+%:D"
+%<D"
+%>D"
+%@D"
+%BD"
+%DD"
+%FD"
+%HD"
+%JD"
+%LD"
+%ND"
+%PD"
+%RD"
+%TD"
+%VD"
+%XD"
+%ZD"
+%\D"
+%^D"
+%`D"
+%bD"
+%dD"
+%fD"
+%hD"
+%jD"
+%lD"
+%nD"
+%pD"
+%rD"
+%tD"
+%vD"
+%xD"
+%zD"
+%|D"
+%~D"
+%E"
+% E"
+%"E"
+%$E"
+%&E"
+%(E"
+%*E"
+%,E"
+%.E"
+%0E"
+%2E"
+%4E"
+%6E"
+%8E"
+%:E"
+%<E"
+%>E"
+%@E"
+%BE"
+%DE"
+%FE"
+%HE"
+%JE"
+%LE"
+%NE"
+%PE"
+%RE"
+%TE"
+%VE"
+%XE"
+%ZE"
+%\E"
+%^E"
+%`E"
+%bE"
+%dE"
+%fE"
+%hE"
+%jE"
+%lE"
+%nE"
+%pE"
+%rE"
+%tE"
+%vE"
+%xE"
+%zE"
+%|E"
+%~E"
+%F"
+% F"
+%"F"
+%$F"
+%&F"
+%(F"
+%*F"
+%,F"
+%.F"
+%0F"
+%2F"
+%4F"
+%6F"
+%8F"
+%:F"
+%<F"
+%>F"
+%@F"
+%BF"
+%DF"
+%FF"
+%HF"
+%JF"
+%LF"
+%NF"
+%PF"
+%RF"
+%TF"
+%VF"
+%XF"
+%ZF"
+%\F"
+%^F"
+%`F"
+%bF"
+%dF"
+%fF"
+%hF"
+%jF"
+%lF"
+%nF"
+%pF"
+%rF"
+%tF"
+%vF"
+%xF"
+%zF"
+%|F"
+%~F"
+%G"
+% G"
+%"G"
+%$G"
+%&G"
+%(G"
+%*G"
+%,G"
+%.G"
+%u6"
 delegate
 T@"<NTKRemoteComplicationBudgetManagerDelegate>",W,N,V_delegate
 hash
@@ -3037,6 +3037,36 @@ com.apple.ntk.NTKPhotoAnalysisCacheEntry
 q24@?0@"NTKPhotoAnalysisCacheEntry"8@"NTKPhotoAnalysisCacheEntry"16
 v32@?0@"<NTKComplicationSectionInfo>"8Q16^B24
 T@"NTKFaceSlotComplicationTopLevelListProvider",R,D,N
+.SF Compact Soft
+.SFCompactSoft-Bold
+__TritiumFontSB
+.SFCompactSoft-Light
+__TritiumFontSL
+.SFCompactSoft-Medium
+__TritiumFontSM
+.SFCompactSoft-Regular
+__TritiumFontSR
+.SFCompactSoft-Semibold
+__TritiumFontSS
+__TritiumFontRB
+__TritiumFontRL
+__TritiumFontRM
+__TritiumFontRR
+__TritiumFontRS
+__TritiumFontB
+__TritiumFontL
+__TritiumFontM
+__TritiumFontR
+__TritiumFontS
+.AppleSystemUIFontCompactRounded-Bold
+.AppleSystemUIFontCompactRounded-Light
+.AppleSystemUIFontCompactRounded-Medium
+.AppleSystemUIFontCompactRounded-Regular
+.AppleSystemUIFontCompactRounded-Semibold
+@"UIFont"8@?0
+@?<@"UIFont"@?>24@?0@"NSString"8@"NSNumber"16
+originalFont
+T@"UIFont",R,N
 v32@?0@"<NTKFaceViewComplicationFactory>"8Q16^B24
 factoriesBySlot
 T@"NSMutableDictionary",&,N,V_factoriesBySlot
@@ -3068,32 +3098,6 @@ tritium_snapshots
 AOTPrivacyEnabled
 com.apple.system.prefs
 AOTEnabled
-.SF Compact Soft
-.SFCompactSoft-Bold
-__TritiumFontSB
-.SFCompactSoft-Light
-__TritiumFontSL
-.SFCompactSoft-Medium
-__TritiumFontSM
-.SFCompactSoft-Regular
-__TritiumFontSR
-.SFCompactSoft-Semibold
-__TritiumFontSS
-__TritiumFontRB
-__TritiumFontRL
-__TritiumFontRM
-__TritiumFontRR
-__TritiumFontRS
-__TritiumFontB
-__TritiumFontL
-__TritiumFontM
-__TritiumFontR
-__TritiumFontS
-.AppleSystemUIFontCompactRounded-Bold
-.AppleSystemUIFontCompactRounded-Light
-.AppleSystemUIFontCompactRounded-Medium
-.AppleSystemUIFontCompactRounded-Regular
-.AppleSystemUIFontCompactRounded-Semibold
 timeView
 T@"NTKDigitalTimeLabel",R,D,N
 viewMode
@@ -7346,7 +7350,6 @@ Ti,R,N,V_pathLength
 startRotation
 Tf,R,N,V_startRotation
 __TokyoFont%@%@
-T@"UIFont",R,N
 TQ,N,V_typeface
 HH:mm:ss.SSS
 Flipbook
@@ -9251,6 +9254,8 @@ Cancelling face completion callback called for %@
 Fetch request for %@
 Attempting to service face requests if idle
 Skipping service request because already servicing face %@
+High/Low Priority Requests: %lu/%lu
+Skipping face %@ - too many failures
 Asking face client to snapshot %@ (%@)
 Client face snapshotted %@ - %@
 Aborting callbacks because it's not the servicing face request %@ - %@
@@ -9503,6 +9508,7 @@ complicationControllerTimelineEntriesDidChange: Ignoring 1st party complication 
 [photo analysis file cache] found %@
 [photo analysis file cache] not found %@
 [photo analysis file cache] add %@
+Failed to find the bold version of the tritium font. Original weight: %f heavier weight: %f
 NTK-REM: using cached entry FOR date: %@
 NTK-REM: Entry not in cache. Enqueueing load operation FOR date: %@
 NTK-REM: Returning loading entry FOR date: %@ and family: %@
@@ -9519,7 +9525,6 @@ NTK-REM: Received NRKReminderStoreDataChangedNotification notification. Flushing
 NTK-REM: Received UIApplicationSignificantTimeChangeNotification notification. Flushing cache.
 NTK-REM: Enqueueing load operation FOR date: %@
 Forcing the digital time label scale to be %@
-Failed to find the bold version of the tritium font. Original weight: %f heavier weight: %f
 [WorldClock] Building signature rectangular template for %{public}@: %{public}@ <%f, %f>.
 sleep mode options - hideDate: %d, hideTime: %d, hideAlarm: %d
 sleep lock face viewWillAppear
@@ -10226,10 +10231,12 @@ NTKHeartRateQueryManager: updated latest heart rate sample: %{public}@
 [kaleidoscope pathfinder cache] nil pathfinder for image %@ (%d x %d), returning early
 [kaleidoscope pathfinder cache] poor quality pathfinder for image %@ (%d x %d)
 [kaleidoscope pathfinder cache] nil path generated by pathfinder for image %@, returning early
+[kaleidoscope pathfinder cache] path %@ has the wrong protection class (%@)
 [kaleidoscope pathfinder cache] using %@
 [kaleidoscope pathfinder cache] unknown error %@
 [kaleidoscope pathfinder cache] error during load: %@
 [kaleidoscope pathfinder cache] unable to unarchive: %@ due to %@
+[kaleidoscope pathfinder cache] skip writing %@ before first unlock
 [kaleidoscope pathfinder cache] writing %@
 [kaleidoscope pathfinder cache] cannot set class D on file %@: error %@
 [kaleidoscope pathfinder cache] error writing archive %@: %@
@@ -11150,6 +11157,7 @@ NTKPhotoAnalysisFileCache
 NTKPickerAdditions
 NTKComplicationPickerTopLevelViewConfiguration
 NTKRichComplicationCornerCircularImageView
+NTKTritiumFont
 NTKCompositeComplicationFactory
 NTKComplicationPickerNoImageHeaderView
 NTKComplicationPickerHeaderView
@@ -14708,6 +14716,9 @@ _overrideImage
 _compositingFilter
 insertSubview:belowSubview:
 _selectedContentView
+_complicationDisplayWrapperForTouch:
+tapEnabled
+touchUpInsideHandler
 defaultStyleForBounds:withRightSideMargin:applyAdvanceFudge:forDevice:
 threeDigitFont
 CLKFontWithMonospacedNumbers
@@ -14748,6 +14759,7 @@ animateWithDuration:animations:completion:
 showContentForUnadornedSnapshot
 subviews
 makeObjectsPerformSelector:
+touchesMoved:withEvent:
 _digitalTimeLabelStyleFromViewMode:faceBounds:
 _updateFontInStyle:monospace:
 _parallaxScaleFactor
@@ -14768,6 +14780,7 @@ _editOptionTo
 _transitionViewTo
 _zoomingContainerView
 _timeTravelDimmingOverlayView
+_touchWrapper
 _backgroundContainerView
 _zoomMaskView
 _zoomVignette
@@ -18909,6 +18922,13 @@ sectionForObject:collationStringSelector:
 sectionIndexTitles
 sectionImageProvider
 initWithTopLevelListProvider:
+fontName
+tritiumFontForFont:
+originalFont
+fontForStyle:
+_originalFont
+_fontLoaders
+_fonts
 factoriesBySlot
 factories
 deregisterFactoryAtSlot:
@@ -18953,7 +18973,6 @@ setYear:
 setMonth:
 month
 fileExistsAtPath:isDirectory:
-fontName
 _createTimeViewIfNecessary
 setViewMode:updateTimeViewStyle:
 invalidateComplicationLayout
@@ -21527,7 +21546,6 @@ _logNotificationReceiptWithName:
 _handleNotification:
 beginLogging
 animateToStyle:duration:timingFunction:endFrameCalculation:additionalAnimation:completion:
-_cachedTritiumFont:
 _enumerateUnderlyingLabelsWithBlock:
 _labelColorFromFaceColor:device:
 _createTritiumLabelWithStyle:
@@ -21549,8 +21567,7 @@ _tritiumOutlineColor
 _isDigitalTimeLabelInLatin
 componentsFromLocaleIdentifier:
 defaultNumberingSystemForLocaleID:
-_tritiumReferenceFont
-_tritiumFonts
+_tritiumFont
 _tritiumContainerView
 _tritiumInnerLabel
 _tritiumOuterLabel
@@ -21956,7 +21973,6 @@ arrayForKey:
 willChangeValueForKey:
 didChangeValueForKey:
 detachedComplicationDisplayWrapperForSlot:
-touchUpInsideHandler
 _applyFraction:fromFaceColor:toFaceColor:onCell:
 enumerateContentsLayersWithBlock:
 sharedDeviceOrientation
@@ -22919,7 +22935,6 @@ _playPhoto
 _playStill
 _animateIn
 _invalidatePreloadedPhoto
-_handleLongPress:
 screenWillGoDark
 _scheduleSleepPreloadTask
 shadowHue
@@ -22928,8 +22943,6 @@ shadowBrightness
 _applyComplicationContentSpecificAttributesAnimated:
 _applyScrubbingForegroundColor:shadowColor:
 updatePhotoContentIfNeededInInactiveView:
-_longPressGesture
-_lastLongPressGestureWasCancelled
 _shouldPlayIntro
 _isStartingPlaybackOnSingleTap
 _preLoadingPhotoOnSleep
@@ -23206,7 +23219,6 @@ _budgetResetTimer
 _complicationVendorBundleIDs
 _setHysteresis:
 topBottomMargin
-touchesMoved:withEvent:
 sourceView
 targetGestureRecognizer
 _startingPoint
@@ -23501,18 +23513,14 @@ _posterImageViewForStyle:
 posterImageForStyle:
 complicationColorForStyle:
 _currentPosterImageView
-_complicationDisplayWrapperForTouch:
-tapEnabled
 prepareUserTapAction
 updateReviewDirection:
 setSequentialDirection:
 currentReviewIndex
 totalReviewListings
 _adjustmentForBottomTimeLayout
-_tapToPlayGestureEnabled
 _tapPromptedVideoChange
 _reviewLabel
-_touchWrapper
 _controller
 _currentQueueListing
 _currentComplicationColor
@@ -27765,6 +27773,7 @@ d24@0:8Q16
 @"CLKImageProvider"
 @56@0:8q16{CGRect={CGPoint=dd}{CGSize=dd}}24
 v32@0:8{CGPoint=dd}16
+@"NTKComplicationDisplayWrapperView"
 v24@0:8@"CLKTimeFormatter"16
 v32@0:8@"NSDate"16d24
 v24@0:8@"NTKTritiumFrameSpecifier"16
@@ -28231,6 +28240,9 @@ v56@0:8@16@24@32@40d48
 @"NSCountedSet"
 @"<NTKTritiumViewControllerDelegate>"
 @"NTKPhotoAnalysis"
+@"UIFont"
+[4@?]
+[4@"UIFont"]
 @"UIView<NTKComplicationDisplay>"40@0:8@"NTKComplication"16q24@"NSString"32
 v32@0:8@"UIView"16@"NSString"24
 @"UIView<NTKKeylineView>"24@0:8@"NSString"16
@@ -28512,8 +28524,7 @@ v40@0:8@16d24Q32
 [2@"NTKCharacterRenderer"]
 v56@0:8@16d24@32@?40@?48
 v44@0:8Q16Q24f32@36
-@"UIFont"
-[2@"UIFont"]
+@"NTKTritiumFont"
 v40@0:8r^{NTKLabelPosition={CGPoint=dd}qq}16@24@32
 v56@0:8r^{NTKLabelPosition={CGPoint=dd}qq}16{CGPoint=dd}24@40@48
 r^{NTKLabelPosition={CGPoint=dd}qq}16@0:8
@@ -28739,7 +28750,6 @@ q40@0:8@16Q24@32
 @"CLKComplicationPreviewTimelineEntry"
 @"CLKCBundleComplication"
 @"NTKFaceViewComplicationFactory"
-@"NTKComplicationDisplayWrapperView"
 @"NTKInfinityController"
 @"NTKInfinityListing"
 B48@0:8@16@24Q32Q40

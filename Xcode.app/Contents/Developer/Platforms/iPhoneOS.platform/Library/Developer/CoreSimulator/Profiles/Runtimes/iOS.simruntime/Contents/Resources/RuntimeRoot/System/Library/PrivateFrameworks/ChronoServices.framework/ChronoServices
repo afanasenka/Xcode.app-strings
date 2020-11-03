@@ -74,13 +74,15 @@ com.apple.widgetkit-extension
 CHSLocalizableStringCodingKeyKey
 CHSLocalizableStringCodingKeyTableName
 CHSLocalizableStringCodingKeyBundlePath
+CHSLocalizableStringCodingKeyBundleBookmark
 CHSLocalizableStringCodingKeyIsVerbatim
 tableName
-bundlePath
-vebatim
+bundleBookmark
+verbatim
 T@"NSString",R,C,N,V_key
 T@"NSString",R,C,N,V_tableName
-T@"NSString",R,C,N,V_bundlePath
+T@"NSData",R,C,N,V_bundleBookmark
+bundlePath
 isVerbatim
 TB,R,N,V_isVerbatim
 displayName
@@ -240,7 +242,11 @@ chrono tool service (service-side) connection activated
 chrono widget service (service-side) connection interrupted
 chrono widget service (service-side) connection invalidated
 CHSLocalizable string deserialized with a nil `key`. Bailing
-CHSLocalizable string deserialized with a nil bundle path. Forcing `verbatim`
+CHSLocalizable string deserialized as non-verbatim with a nil bundle path. Forcing `verbatim`. Key: %@
+Failed to generate URL from path: %@
+Error creating bookmark for bundle at path: %@
+error:%@
+Error creating URL from bookmark for key: %@
 widget descriptors changed: %@
 notifying server to flush powerlog failed; unable to obtain the remote target
 notifying server to expire location grace periods failed; unable to obtain the remote target
@@ -444,20 +450,31 @@ _server
 isEqualToString:
 string
 stringWithFormat:
+_bookmarkForPath:
+_initWithKey:tableName:bundleBookmark:isVerbatim:
 encodeBool:forKey:
 decodeBoolForKey:
-initWithKey:tableName:bundlePath:isVerbatim:
-initWithPath:
+_URLForBookmark:isStale:
+path
+initWithURL:
 localizedStringForKey:value:table:
+appendObject:
+appendBool:
 tableName
-bundlePath
-appendBool:withName:
-localizedString
+bundleBookmark
 isVerbatim
+appendBool:withName:
+fileURLWithPath:
+bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:
+localizedDescription
+URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:
+initWithKey:tableName:bundlePath:isVerbatim:
+bundlePath
+localizedString
 _isVerbatim
 _key
 _tableName
-_bundlePath
+_bundleBookmark
 initWithExtensionBundleIdentifier:containerBundleIdentifier:kind:displayName:intentType:userActivityType:supportedSizeClasses:widgetDescription:
 initWithExtensionBundleIdentifier:containerBundleIdentifier:kind:localizableDisplayName:intentType:supportedSizeClasses:localizableWidgetDescription:
 supportedSizeClasses
@@ -476,7 +493,6 @@ localizableDisplayName
 appendObject:counterpart:
 userActivityType
 localizableWidgetDescription
-appendObject:
 appendString:withName:skipIfEmpty:
 initWithExtensionBundleIdentifier:containerBundleIdentifier:kind:displayName:supportedSizeClasses:widgetDescription:
 widgetForFamily:intent:
@@ -555,7 +571,6 @@ isInStack
 appendBool:counterpart:
 isOnTop
 appendUnsignedInteger:
-appendBool:
 appendUnsignedInteger:withName:
 unsignedIntegerValue
 initWithWidget:uniqueIdentifier:location:page:widgetMetrics:inStack:onTop:
@@ -583,7 +598,6 @@ initWithDirectory:fileType:fileManager:
 preferredFilenameExtension
 initWithDirectory:fileUTI:fileExtension:fileManager:
 removeItemAtURL:error:
-path
 createDirectoryAtPath:withIntermediateDirectories:attributes:error:
 URLForWidget:metrics:inColorScheme:createIntermediateDirectories:
 fileManager
@@ -725,6 +739,8 @@ v32@0:8@"CHSWidgetKey"16@?<v@?@"NSURL"@"NSError">24
 @"NSObject<OS_dispatch_queue>"
 @"<CHSChronoWidgetServiceServer>"
 @44@0:8@16@24@32B40
+@32@0:8@16^B24
+@"NSData"
 @64@0:8@16@24@32@40Q48@56
 @80@0:8@16@24@32@40@48@56Q64@72
 @72@0:8@16@24@32@40@48Q56@64

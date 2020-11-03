@@ -3456,7 +3456,9 @@ $ss21_ObjectiveCBridgeableP
 So34DVTAnalyticsLogBinaryImageProtocol_p
 So13IDEStackFrameCSg
 yypG
+ySaySiGG
 SaySiG
+ySi6offset_SJ7elementtG
 Si6offset_SJ7elementt
 So6NSViewCSgXw
 SdSg
@@ -3476,7 +3478,6 @@ So11NSImageViewCSgXw
 So18NSLayoutConstraintCSgXw
 So5NSBoxCSgXw
 So18NSLayoutConstraintCSg
-ySi6offset_SJ7elementtG
 So8NSObjectC
 So12NSScrollViewC
 SgXw
@@ -3524,7 +3525,6 @@ So7NSErrorCSg
 So18NSAnimationContextCIgg_
 So33DVTAnalyticsPointSourceCollectionC
 SgXw
-ySaySiGG
 diskWriteLogViewController
 isUserFrame
 frameDescription

@@ -3498,6 +3498,8 @@ layoutParametersManager
 T@"SXLayoutParametersManager",R,N,V_layoutParametersManager
 layoutPolicyManager
 T@"<SXLayoutPolicyManager>",R,N,V_layoutPolicyManager
+debouncer
+T@"SXDelayed",&,N,V_debouncer
 T@"<SXLayoutCoordinatorDelegate>",W,N,Vdelegate
 <SXLayoutOptionsDiff: 
 Equal
@@ -4340,6 +4342,8 @@ showDescriptorLabels
 T@?,C,N,V_block
 cancelled
 TB,N,V_cancelled
+strongReference
+T@"SXDelayed",&,N,V_strongReference
 bolder
 lighter
 compact
@@ -9561,7 +9565,7 @@ colorForAppearState:
 _dynamicBoundsView
 _appearStateIndicator
 handleAuthenticationChallenge:completion:
-initWithDOMObjectProvider:viewport:presentationDelegate:componentStyleRendererFactory:analyticsReporting:appStateMonitor:actionHandler:websiteDataStore:proxyAuthenticationHandler:
+initWithDOMObjectProvider:viewport:presentationDelegate:componentStyleRendererFactory:analyticsReporting:appStateMonitor:sceneStateMonitor:actionHandler:websiteDataStore:proxyAuthenticationHandler:
 initWithError:
 even
 evenWithValue:withType:
@@ -11407,7 +11411,7 @@ errorLabelFrame
 _thumbnailFrame
 _errorLabelFrame
 _accessibilityUnregister
-initWithDOMObjectProvider:viewport:presentationDelegate:componentStyleRendererFactory:reachabilityProvider:embedDataProvider:actionHandler:layoutInvalidator:websiteDataStore:relatedWebViewCache:proxyAuthenticationHandler:
+initWithDOMObjectProvider:viewport:presentationDelegate:componentStyleRendererFactory:reachabilityProvider:embedDataProvider:actionHandler:layoutInvalidator:websiteDataStore:relatedWebViewCache:proxyAuthenticationHandler:sceneStateMonitor:
 initWithDOMObjectProvider:embedDataProvider:
 createWebsiteDataStore
 initWithProxyConfiguration:
@@ -11469,9 +11473,11 @@ initWithContext:url:
 blueprintProvider
 pipeline
 layoutPolicyManager
+debouncer
 instructionFactory
 taskWithOptions:layoutBlueprint:instructions:
 startTask:
+setDebouncer:
 updateBlueprint:
 layoutParametersManager
 layoutFinishedForTask:result:
@@ -11486,6 +11492,7 @@ _invalidationManager
 _blueprintProvider
 _layoutParametersManager
 _layoutPolicyManager
+_debouncer
 scrollViewDelegate
 _accessibilityScrollingEnabled
 isBouncing
@@ -11510,10 +11517,11 @@ family
 _family
 userContentController:didReceiveScriptMessage:
 initWithDelegate:delegateProtocol:
+webView
+_stopAllMediaPlayback
 removeScriptMessageHandlers
 prewarmWebView
 loadEmbedIfNeeded
-webView
 webViewPresentingInFullscreen
 shouldLayoutWebView
 hasLoadedEmbedData
@@ -11568,7 +11576,6 @@ HTMLByEnclosingHTML:withHTML:
 setInitialNavigation:
 setCurrentLayoutSize:
 setCurrentViewportSize:
-_stopAllMediaPlayback
 body
 expectedMessages
 finalizeLayoutForSize:
@@ -12608,11 +12615,14 @@ repeatWithValue:withType:
 dataOrientationWithValue:withType:
 showDescriptorLabelsWithValue:withType:
 initWithBlock:delay:
+strongReference
 invoke
+setStrongReference:
 setBlock:
 cancelled
 setCancelled:
 _cancelled
+_strongReference
 weightLabelWithValue:withType:
 interfaceSizeClassFromJSONSizeClass:
 contentSizeCategoryFromJSONContentSizeCategory:
@@ -14315,7 +14325,7 @@ v32@0:8@"WKWebView"16@"UIViewController"24
 v40@0:8@"WKWebView"16@"WKContextMenuElementInfo"24@?<v@?@"UIContextMenuConfiguration">32
 v32@0:8@"WKWebView"16@"WKContextMenuElementInfo"24
 v40@0:8@"WKWebView"16@"WKContextMenuElementInfo"24@"<UIContextMenuInteractionCommitAnimating>"32
-@104@0:8@16@24@32@40@48@56@64@72@80@88@96
+@112@0:8@16@24@32@40@48@56@64@72@80@88@96@104
 @"<SXEmbedType>"
 @"SXEmbedResource"
 @"WKWebView"

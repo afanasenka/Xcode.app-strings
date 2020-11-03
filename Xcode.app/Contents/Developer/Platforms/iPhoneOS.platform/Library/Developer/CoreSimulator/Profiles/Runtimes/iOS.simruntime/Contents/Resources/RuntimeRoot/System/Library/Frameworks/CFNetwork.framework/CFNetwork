@@ -1,3 +1,4 @@
+%D#
 % D#
 %"D#
 %$D#
@@ -487,7 +488,7 @@
 %zM#
 %|M#
 %~M#
-%Y&#
+%M&#
 _ATSHasAppleBundleException
 NSAllowsArbitraryLoads
 NSAllowsArbitraryLoadsForMedia

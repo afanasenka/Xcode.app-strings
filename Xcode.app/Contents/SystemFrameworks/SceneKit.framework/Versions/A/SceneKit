@@ -2654,7 +2654,7 @@ Warning: C3DUnifyNormalsFromGeometry empty indices
 Error: inconsistency in lru list
 Error: inconsistency in lru list (2)
 Error: [SCNAction sequence:] invoked with nil
-Welcome to SceneKit 556 (Sep 22 2020 16:04:25)
+Welcome to SceneKit 556 (Oct  7 2020 10:59:55)
 Error: Could not create texture with descriptor : %@
 Error: object %@ doesn't conform to the copying protocol
 Error: invalid ref count for entity %@

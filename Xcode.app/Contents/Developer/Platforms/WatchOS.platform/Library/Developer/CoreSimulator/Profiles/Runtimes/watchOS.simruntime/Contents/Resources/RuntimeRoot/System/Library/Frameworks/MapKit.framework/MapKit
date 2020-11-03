@@ -1790,6 +1790,8 @@ ShowInfo.png
 ShowInfoPressed.png
 _MKPopoverEmbeddingView
 A custom transform was applied to '%@' and is not supported with MKUserTrackingModeFollowWithHeading.
+wantsViewBasedPositioning
+TB,R,G_wantsViewBasedPositioning
 _calloutView
 T@"MKCalloutView",&,N,G_calloutView,S_setCalloutView:,V_calloutView
 pendingSelectionAnimated
@@ -3707,6 +3709,8 @@ Debug_AllowOverridingPhotoSlideshowCounts
 Debug_PhotoSlideshowOverrideCount
 MKCollectionCoverPhotoCacheMemoryCapacity
 MKCollectionCoverPhotoCacheDiskCapacity
+MKWebContentDefaultHeight
+MKWebContentMaxHeight
 __invalid__
 accuracyOpacity
 show/hide
@@ -10342,6 +10346,7 @@ automaticallyNotifiesObserversForKey:
 _mapkit_instanceImplementationOfSelector:isFromSubclassOfClass:
 _defaultZPriority
 _defaultSelectedZPriority
+_wantsViewBasedPositioning
 removeObserverForObject:forKeyPath:context:
 setAnnotationView:
 _removePopover

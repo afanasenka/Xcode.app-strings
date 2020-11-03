@@ -5717,6 +5717,7 @@ $__lazy_storage_$_titleLayout
 _TtC8VideosUI19SearchHintsFragment
 searchHints
 v16@?0@"<UIViewControllerTransitionCoordinatorContext>"8
+FlowcaseViewController::didUpdateFocus dispatch a TVElementEventHighlight on 
 _TtC8VideosUI22CarouselViewController
 v40@0:8{CGSize=dd}16@32
 viewImpressioner
@@ -6345,6 +6346,7 @@ _TtC8VideosUI16CastBannerLayout
 $__lazy_storage_$_descriptionLayout
 $__lazy_storage_$_attributionTextLayout
 $__lazy_storage_$_monogramLayout
+EpicInlineViewController::didUpdateFocus dispatch a TVElementEventHighlight on 
 _TtC8VideosUI24EpicInlineViewController
 v16@0:8
 collectionImpressioner
@@ -9012,13 +9014,13 @@ GIegg_
 ySDySSypG
 GIegg_
 _pSg
+So13IKViewElementCSg
 ySo18UIFocusEnvironment_pG
 SS3key_yp5valuet
 SS3key_yp5valuetSg
 SS_yptSg
 ySDy
 ypGG
-So13IKViewElementCSg
 _ypt
 _pSg
 _pSg

@@ -1,4 +1,5 @@
-@(#)PROGRAM:Xcode3UI  PROJECT:Xcode3ProjectSupport-17508
+@(#)PROGRAM:Xcode3UI  PROJECT:Xcode3ProjectSupport-17511.1
+ffff
  @UUUUUU
 Xcode3UI
 Xcode3BuildPropertyDefinitionSDKRootNodeAdapter
@@ -5329,11 +5330,16 @@ uiShouldStripMacroDefinition
 configureMenuItem:forDefinitionString:
 _commonMenuItem
 _commonMenu
+architectureSetting
+platformsForRowContext:
 expandedValueForString:forRowContext:
+dvt_arrayByParsingAsStringList
+architectureDisplayNamesByCanonicalName
+dvt_arrayByRemovingDuplicates
 platformSpecificArchitecturesForRowContext:
 isShownInPopup
 sortNumber
-architectureSetting
+titleForArchitectureSpec:
 platformFamiliesSortedByName
 platforms
 _platformNamesSortDescriptors
@@ -6067,6 +6073,7 @@ valueForMacroName:conditionSet:
 expandedValueForPropertyNamed:withConditionSet:
 setValue:forPropertyName:conditionSet:
 removePropertyName:conditionSet:
+dvt_addObjectIfNonNil:
 propertyDomains
 allPropertyDefinitions
 setWithSet:
@@ -9931,6 +9938,8 @@ Initial-common-menu-item-title
 Xcode3NodeAdapterFor14761228
 Missing column context. tableColumn = %@
 Still no column context. tableColumn = %@, editor = %@
+macos
+@16@?0@"NSString"8
 $(SDKROOT)
 sortNumber
 self
@@ -11300,15 +11309,14 @@ ySo13Xcode3ProjectCG
 ySo19Xcode3TargetWrapperCG
 ySo34IDESourcePackagePreflightedProductCG
 ySo30XCCommandLineToolSpecificationCG
-ySnySiGG
 ySo11PBXFileTypeCG
 yypG
-So20IDEBlueprintProvider_p
 ySo20IDEBlueprintProvider_pG
+So20IDEBlueprintProvider_p
 ySSG
 ySS_SStG
-SaySS_SStG
 ySaySS_SStGG
+SaySS_SStG
 ySo6DVTSDKC_G
 ySo6DVTSDKCG
 $sSY
@@ -11331,6 +11339,9 @@ So15DVTStackView_MLCSg
 SSSg
 ypSg
 ySo6NSViewCG
+SaySo30XCCommandLineToolSpecificationCG
+ySnySiGG
+SaySo11PBXFileTypeCG
 ySS_yptG
 SS_ypt
 SS3key_yp5valuet

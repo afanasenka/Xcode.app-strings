@@ -29,6 +29,7 @@ BLEAdv
 (ChFl
 +Attr
 ,Passive
+-ProxControl
 ApplePay
 AppleTVSetup
 AppSignIn
@@ -59,17 +60,17 @@ BLEAdv
 (ChFl
 +Attr
 ,Passive
+-ProxControl
 AACP
 MagP
-ShrA
+ShAu
 SWVo
 Tipi
-AOwn
-SameAccount
-Family
-SharedHome
-Friend
-SysPair
+AuOw
+SmAc
+ShHm
+Frnd
+SyPr
 Phone
 Remote
 A2DP
@@ -482,8 +483,9 @@ irkD
 idsI
 idTy
 CBIdentity %s
-, ID '%@'
-, IDS '%@'
+, ID %@
+, IDS %@
+, BT %@
 , Nm '%@'
 , Md '%@'
 , AcID '%@'
@@ -1150,6 +1152,7 @@ NearbyAction
 NearbyInfo
 PointToShare
 RemoteDisplay
+ProxControl
 ProxRepair
 ShareAudio
 TVLatencySetup
@@ -1377,6 +1380,7 @@ Invalid state
 Peer failed to respond to ATT value indication
 Peer LEA connection stalled
 Page timeout
+Too many LE devices are paired to this device
 Unknown ATT error.
 kCBInitOptionRestoreIdentifier
 kCBInitOptionReceiveSystemEvents
@@ -1516,7 +1520,6 @@ CBDevice %@
 , AMfD <%@>
 , AcID %@
 , CnID %@
-, IDS %@
 , IntF %#{flags}
 audioStreamState
 Ti,N,V_audioStreamState
@@ -1609,6 +1612,7 @@ AirPodsPro1,1
 PowerBeats3,1
 BeatsSolo3,1
 Powerbeats4,1
+Device1,8208
 Device1,8196
 BeatsSoloPro1,1
 ATVRemote1,2
@@ -1816,7 +1820,7 @@ ptsScore
 Td,N,V_ptsScore
 timestampTicks
 TQ,N,V_timestampTicks
-CBSpatialInteractionSession
+CBSpatial
 MediumHigh
 errO
 errC
@@ -3377,6 +3381,7 @@ _parseProximityPairingObjectSetupPtr:end:
 initWithBytes:length:encoding:
 removeInternalFlags:
 updateWithCBDevice:
+updateWithCBIdentity:
 updateWithRPIdentity:
 setAudioStreamState:
 setBleAddressData:

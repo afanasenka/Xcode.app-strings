@@ -56,7 +56,7 @@ allValues
 count
 initWithSuiteName:
 stringForKey:
-_useInternalDiagnostics
+hasInternalContent
 _testModeSentinelURL
 writeToURL:atomically:encoding:error:
 removeItemAtURL:error:
@@ -87,6 +87,7 @@ reScanInternalApps
 alternateThinningModelIdentifier
 migrationPlistURL
 lastBuildInfoFileURL
+allowsInternalSecurityPolicy
 isRunningInTestMode:outError:
 setIsRunningInTestMode:
 clearIsRunningInTestMode:
@@ -113,7 +114,7 @@ initWithBundle:
 bundle
 identifier
 executableURL
-initWithSignerIdentity:signerOrganization:codeInfoIdentifier:teamIdentifier:entitlements:validatedByProfile:validatedByUPP:isAdHocSigned:validatedByFreeProfile:signingInfoSource:
+initWithSignerIdentity:signerOrganization:codeInfoIdentifier:teamIdentifier:signatureVersion:entitlements:validatedByProfile:validatedByUPP:isAdHocSigned:validatedByFreeProfile:signingInfoSource:
 codeSigningVerifierForBundle:
 performValidationWithError:
 allowAdhocSigning
@@ -325,6 +326,7 @@ signerIdentity
 signerOrganization
 codeInfoIdentifier
 teamIdentifier
+signatureVersion
 validatedByProfile
 numberWithBool:
 validatedByUPP
@@ -342,6 +344,7 @@ _signerIdentity
 _signerOrganization
 _codeInfoIdentifier
 _teamIdentifier
+_signatureVersion
 _entitlements
 _signingInfoSource
 objectAtIndexedSubscript:
@@ -386,7 +389,6 @@ _watchKitAppExecutableHash
 _autoInstallOverride
 boolForKey:
 integerForKey:
-isInternalImageType
 synchronize
 setBool:forKey:
 dictionary
@@ -401,7 +403,6 @@ skipDeviceFamilyCheck
 skipThinningCheck
 allowPatchWithoutSinf
 nSimultaneousInstallations
-_isInternalImageType
 _skipDeviceFamilyCheck
 _skipThinningCheck
 _allowPatchWithoutSinf
@@ -501,8 +502,8 @@ _pluginKitBundles
 _frameworkBundles
 _xpcServiceBundles
 executableName
-installTypeForBundle:error:
-setInstallType:onBundle:error:
+bundleContainer
+installTypeFromExtendedAttributeOnBundle:error:
 wk1AppBundle
 wk2AppBundle
 installationIdentity
@@ -552,7 +553,6 @@ watchKitVersionWithError:
 setWk2AppBundle:
 setWk2AppBundleError:
 lsInstallTypeWithError:
-setLSInstallType:error:
 watchKitAppExecutableHashWithError:
 installationIdentitySettingIfNotSet:withError:
 transferInstallationIdentityFromBundle:error:
@@ -571,11 +571,10 @@ counterpartIdentifiers
 minimumWatchOSVersionIsPreV6
 minimumWatchOSVersionIsV6OrLater
 hasOnlyAllowedWatchKitAppInfoPlistKeysForWatchKitVersion:error:
-bundleContainer
 lsInstallType
+setLsInstallType:
 _cfBundle
 _bundleContainer
-_lsInstallType
 _codeSignatureVerificationState
 _installationIdentity
 _wk1AppBundleError
@@ -585,6 +584,7 @@ _wk2AppBundle
 _codeSigningInfo
 _codeSigningInfoError
 _watchKitPlugin
+_lsInstallType
 containerWithIdentifier:createIfNecessary:existed:error:
 destinationOfSymbolicLinkAtURL:error:
 _compatibilityLinkDestinationForBundleContainer:
@@ -666,6 +666,7 @@ setAppClipAppIdentifier:insecurelyCachedOnBundle:error:
 insecureCachedAppIdentifierIfAppClipForBundle:error:
 setValidatedByFreeProfileAppIdentifier:insecurelyCachedOnBundle:error:
 insecureCachedAppIdentifierIfValidatedByFreeProfileForBundle:error:
+setInstallType:inExtendedAttributeOnBundle:error:
 setData:forExtendedAttributeNamed:onURL:error:
 dataForExtendedAttributeNamed:length:fromURL:error:
 setModificationDateToNowForURL:error:
@@ -787,9 +788,8 @@ LastBuildInfo.plist
 Failed to create URL for last build info file.
 sMITestMode
 com.apple.MobileInstallation
--[MIGlobalConfiguration isRunningInTestMode:outError:]
-Missing required internal diagnostics variant
 -[MIGlobalConfiguration setIsRunningInTestMode:]
+Missing required internal content variant
 Failed to create sentinel file at %@ for running in test mode: %@
 Successfully created the sentinel file for running in test mode: %@
 -[MIGlobalConfiguration clearIsRunningInTestMode:]
@@ -855,6 +855,9 @@ alternateThinningModelIdentifier
 T@"NSString",R,C,N
 migrationPlistURL
 lastBuildInfoFileURL
+allowsInternalSecurityPolicy
+TB,R,N
+hasInternalContent
 Unvalidated
 None
 bundle
@@ -1078,7 +1081,6 @@ Can't create symlink %s: %s
 isPlaceholder
 TB,R,N,V_isPlaceholder
 isApplicableToKnownWatchOSVersion
-TB,R,N
 _CreateAndPushContinuation
 Failed to allocate a continuation!
 Failed to allocate an attribute buffer!
@@ -1336,6 +1338,7 @@ SignerIdentity
 SignerOrganization
 CodeInfoIdentifier
 TeamIdentifier
+SignatureVersion
 com.apple.MobileContainerManager.Entitlements
 ValidatedByProfile
 ValidatedByUPP
@@ -1349,6 +1352,8 @@ codeInfoIdentifier
 T@"NSString",R,C,N,V_codeInfoIdentifier
 teamIdentifier
 T@"NSString",R,C,N,V_teamIdentifier
+signatureVersion
+T@"NSNumber",R,C,N,V_signatureVersion
 entitlements
 T@"NSDictionary",R,C,N,V_entitlements
 validatedByProfile
@@ -1441,8 +1446,6 @@ allowPatchWithoutSinf
 TB,R,N,V_allowPatchWithoutSinf
 codeSigningEnforcementIsDisabled
 TB,R,D,N
-isInternalImageType
-TB,R,N,V_isInternalImageType
 nSimultaneousInstallations
 Tq,R,N,V_nSimultaneousInstallations
 haveUpdatedPluginContainersWithParentID
@@ -1648,6 +1651,10 @@ sdkBuildVersion
 -[MIExecutableBundle _validateWithError:]
 MissingBundleExecutable
 Bundle at path %@ has missing or invalid CFBundleExecutable in its Info.plist
+-[MIExecutableBundle lsInstallTypeWithError:]
+Could not get install type because no bundle container relation is set on %@
+Could not get install type because bundle metadata could not be read from %@
+Install type not set in bundle metadata for %@
 -[MIExecutableBundle watchKitAppExecutableHashWithError:]
 %@ contains a placeholder watch app, so an executable hash is not possible.
 %@ is not expected to contain watch app executables
@@ -1820,6 +1827,8 @@ watchKitPlugin
 T@"MIPluginKitPluginBundle",&,N,V_watchKitPlugin
 installationIdentity
 T@"MIInstallationIdentity",C,N,V_installationIdentity
+lsInstallType
+TQ,N,V_lsInstallType
 bundleContainer
 T@"MIBundleContainer",W,N,V_bundleContainer
 executableName
@@ -1836,8 +1845,6 @@ Tq,R,N
 maxLinkedSDKVersion
 counterpartIdentifiers
 T@"NSArray",R,C,D,N
-lsInstallType
-TQ,R,N,V_lsInstallType
 hasWatchGlance
 hasWatchCustomNotification
 isExtensionBasedWatchKitApp
@@ -2096,9 +2103,10 @@ Failed to convert app identifier EA data (%@) to string from "%s"
 com.apple.installd.appclip
 com.apple.installd.validatedByFreeProfile
 com.apple.installd.installType
--[MIFileManager setInstallType:onBundle:error:]
+-[MIFileManager setInstallType:inExtendedAttributeOnBundle:error:]
 Couldn't set installType EA on "%s": %s
--[MIFileManager installTypeForBundle:error:]
+-[MIFileManager installTypeFromExtendedAttributeOnBundle:error:]
+Install type extended attribute not found on %@
 Couldn't get installType EA from "%s": %s
 getxattr for installType EA on %s returned %zd (expected %zu)
 -[MIFileManager _setData:forExtendedAttributeNamed:onURL:orFD:error:]
@@ -2163,8 +2171,8 @@ com.apple.MobileInstallationHelperService
 Failed to set up rotating logs at path %s
 main
 %@ built at %s %s started
-Sep 19 2020
-23:14:32
+Oct  7 2020
+01:59:54
 main_block_invoke
 Got SIGTERM; Exiting...
 Unknown client
@@ -2315,8 +2323,9 @@ v40@0:8@16^i24^i32
 i16@0:8
 v20@0:8i16
 v20@0:8I16
-@80@0:8@16@24@32@40@48B56B60B64B68Q72
+@88@0:8@16@24@32@40@48@56B64B68B72B76Q80
 @32@0:8@16Q24
+@"NSNumber"
 @40@0:8@16@24^@32
 v24@0:8@"NSCoder"16
 @24@0:8@"NSCoder"16

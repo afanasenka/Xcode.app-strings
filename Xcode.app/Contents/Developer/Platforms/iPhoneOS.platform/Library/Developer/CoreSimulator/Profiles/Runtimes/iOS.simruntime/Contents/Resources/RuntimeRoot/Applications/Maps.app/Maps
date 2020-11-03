@@ -12,8 +12,8 @@ YYYYYY
 ?XXXXXX
 ?666666
 yE>:
-Xniu
 333333
+Xniu
 yp\D?
 @33#@
 ?[[[[[[
@@ -2584,7 +2584,7 @@ integerForKey:
 launchedToTest
 isMultiUser
 hasDisplayedCurrentWelcomeScreen
-welcomeController
+welcomeControllerWithBlock:
 sharedConfiguration
 countryCode
 configurationForCountryCode:
@@ -2601,7 +2601,6 @@ setPrivacyLinkForBundles:
 setInteger:forKey:
 presentWelcomeScreenIfNecessary:
 _canShowWhileLocked
-initWithBlock:
 ticketForMapItemToRefine:traits:
 submitWithHandler:networkActivity:
 initWithMuninViewState:
@@ -3773,6 +3772,7 @@ _trafficAlertCardController
 _compressionTestCardController
 _currentRoute
 path
+initWithBundleIdentifier:allowPlaceholder:error:
 dataContainerURL
 initWithContainee:
 setLayout:forStyle:
@@ -4614,6 +4614,9 @@ setBackgroundInsets:
 _setBackgroundViewConfigurationProvider:
 _maps_setCollectionViewCellBackgroundConfiguration
 _maps_setTableViewCellBackgroundConfiguration
+remembersLastFocusedIndexPath
+setRemembersLastFocusedIndexPath:
+_maps_reloadDataWithoutFocus
 updateFontsAndSizes
 contentSizeDidChange
 regularBackgroundColor
@@ -5954,6 +5957,7 @@ _initializedEmailAddress
 _contactItems
 _guestDisplayPreferences
 _requirements
+initWithBlock:
 addressAutocompleteFilter
 poiAutocompleteFilterWithExcludedMUIDs:
 shouldFilterItem:
@@ -7833,9 +7837,13 @@ _stopObserving
 userDefaults
 _localeMetricDidChange:
 _volumeFromDefaults
+voiceVolume
 setVoiceVolume:
+distanceUnits
 setDistanceUnits:
+pauseSpokenAudio
 setPauseSpokenAudio:
+beepBeforeInstruction
 setBeepBeforeInstruction:
 setVoiceLanguage:
 isCarPlay
@@ -8002,15 +8010,16 @@ titleForQuestionType:
 _localizedName
 searchSessionManager
 _updateCurrentSearchSession
+isInVenueBrowseMode
 venueCardItem
 _searchSessionErrorString
 _orderedCurrentSearchResults
+_notifyObservers
 resultDisplayHeader
 substitutes
 dymSuggestionVisibleTime
 showDymSuggestionCloseButton
 initWithResultDisplayHeader:substitutes:visibleTime:showCloseButton:
-_notifyObservers
 homeDataProvidingObjectDidUpdate:
 initWithAlphabeticallySortableObject:
 orderedObjects
@@ -8711,6 +8720,7 @@ selectNextIncomingDeparture
 selectedTripRoute
 showRouteOnMap
 _stopObservingDepartureProvider
+restoreInitialMapState
 updateDeparturesSectionForNetworkState:
 indexOfSectionIdentifier:
 _clearSection:inSnapshot:
@@ -8819,7 +8829,6 @@ initWithTransitMapItem:departureSequence:
 initWithTransitRouteStep:
 _startEndDatesForOperatingHoursTimeRanges:
 shouldShowChangeDateButton
-restoreInitialMapState
 departureCellProvider:selectDeparture:withIndex:
 setPlaceCardDelegate:
 setVehicleUpdater:
@@ -9233,7 +9242,6 @@ _emailLabel
 shareTrip
 _shareTrip
 configurationWithPointSize:
-initWithBundleIdentifier:allowPlaceholder:error:
 _containingAppIdentifer
 shortVersionString
 extension
@@ -10410,6 +10418,7 @@ _updateDebugLabel
 _updateNumberOfLines
 _updateHeightConstraint
 _updateViewsWithViewModel:
+_updateVibrantColor
 _imageToTextSpacing
 numberOfLines
 subtitleText
@@ -11005,12 +11014,14 @@ _navigationDelegate
 _prepareContentBlock
 _navigationDestinationTitle
 _headerAndFooterViewsFloat
-_hoverGestureRecognizerStateDidChange:
 shouldShowNoResultsCell
 shouldShowLoadingIndicator
 indexPathForRowAtPoint:
 selectRowAtIndexPath:animated:scrollPosition:
 _invalidateFilteredContent
+enableHoverGesture
+_hoverGestureRecognizer
+_hoverGestureRecognizerStateDidChange:
 objectAtIndexPath:
 _contentFilteredIfNeeded
 rowHeight
@@ -11018,6 +11029,8 @@ flattenedIndexPath:
 flattenedArray
 _sendAnalyticsForDataSelectedAtIndexPath:fromContent:childPlaceIndexPath:childItem:tappedAccessoryViewType:
 _sendSessionlessAnalyticsForSelectedAtFlattenedIndexPath:indexPathInSection:sections:context:subactionMetaData:indexOfResultWithSubactionMetadata:
+analyticsResultsInfoArrayFromAutoCompleteResultsArray:selectedIndex:
+updateSuggestionSearchInformation:searchText:searchIndex:searchfieldType:suggestionsAcsequencenumber:
 placeContextSingleCollectionTappedWithMuid:isCurrentlySaved:verticalIndex:
 placeContextMultipleCollectionsTappedWithMuids:verticalIndex:
 initWithTitle:isFirstNonEmptySection:
@@ -11068,8 +11081,6 @@ autocompleteObjectAtIndexPath:
 sendMapsSuggestionsInsightsAnalyticsWithEntry:
 _sendAnalyticsForDataSelectedAtIndexPath:fromContent:
 subactionMetaDataWithChildItem:atChildItemIndexPath:
-analyticsResultsInfoArrayFromAutoCompleteResultsArray:selectedIndex:
-updateSuggestionSearchInformation:searchText:searchIndex:searchfieldType:suggestionsAcsequencenumber:
 childItemPlace
 sendAnalyticsForDataAtIndexPath:object:childPlaceIndexPath:childPlaceObject:action:eventValue:
 publisherChildItemButtonTappedWithPublisherMuid:verticalIndex:
@@ -11090,6 +11101,7 @@ didTapChildItem:atChildItemIndexPath:forCell:
 didTapOnAccessoryView:withType:object:
 invalidateDataForFilterChange
 shouldReloadOnHeightChange
+setEnableHoverGesture:
 analyticsContext
 searchTextForAnalyics
 targetForDragAnalytics
@@ -11100,6 +11112,7 @@ _filteredContent
 _originalHeaderAndFooterViewsFloat
 _lastSelectedIndexPath
 _isLoadingData
+_enableHoverGesture
 _showAddAccessory
 _showPlaceContext
 _searchDataProvider
@@ -11558,6 +11571,10 @@ drawRouteLineInRect:zoomLevel:
 drawPinInRect:zoomLevel:
 _stepIndex
 _routeOutlinePrintColor
+setCanResizeToFitContent:
+sizeRestrictions
+setMinimumSize:
+setMaximumSize:
 initWithNoBlurRightSideButtonsOfType:
 rightButton
 setProgressTitle:
@@ -13451,9 +13468,6 @@ initWithActivityType:
 setEligibleForHandoff:
 requestSceneSessionActivation:userActivity:options:errorHandler:
 requestSceneSessionDestruction:options:errorHandler:
-sizeRestrictions
-setMinimumSize:
-setMaximumSize:
 teardownCurrentScene
 openPhotoGalleryWithGalleryViewController:mapItem:sceneDelegate:delegate:
 _window
@@ -13767,7 +13781,7 @@ bannerPresentableForBannerItem:inTarget:
 requestIdentifier
 postPresentable:options:userInfo:error:
 _revokeBanner:animated:
-revokePresentableWithRequestIdentifier:animated:reason:userInfo:error:
+revokePresentableWithRequestIdentifier:reason:animated:userInfo:error:
 presentableDidDisappearAsBanner:withReason:
 _maps_isAnySceneConnectedForRole:
 carPlaySource
@@ -14709,6 +14723,9 @@ _refreshRouteSearchFields
 _refreshDesiredTransportType
 virtualGarageSetAssumesFullCharge:
 hasExpandedSteps
+animationWithDuration:curve:delay:
+pushCardHeightAnimation:
+popCardHeightAnimation
 _showManeuverArrowsForStep:
 _updateCurrentRouteDisplayedMapRect:forRoute:
 updateCurrentRouteDisplayedMapRect:
@@ -14735,7 +14752,6 @@ setSummaryText:
 headerStackView
 summaryText
 setRouteSearchSuggestionsTableViewController:
-setRemembersLastFocusedIndexPath:
 initWithExternalSearchFields:resultsTableView:
 setRouteSearchViewController:
 setSuggestionsTableDidReloadHandler:
@@ -14814,6 +14830,7 @@ initWithCollectionIdentifier:
 fakeHeaderView
 cardHeaderView
 _attachLoadingView
+startResolvingCollection
 loadingView
 setShouldOverrideStatusBarStyle:
 logPullUpCuratedCollectionView
@@ -15118,9 +15135,9 @@ _iso3166SubdivisionCode
 mapItemStorageForGEOMapItem:
 numberOfPassengers
 rideStatusMapDidChange:
+_broadcastRideStatusDidChange
 _updateRideStatusMapForApplication:
 isValidRide
-_broadcastRideStatusDidChange
 rideStatusMap
 rideStatusObservers
 setUserValues:
@@ -15216,11 +15233,12 @@ _opacity
 _rimOpacity
 _cornerRadius
 invalidateCachedShadow
+buttonCard
 shouldCropBottomEdge
 setButtonCard:
 setShouldCropBottomEdge:
-buttonCard
 _shadowImageView
+_invalidatedShadow
 _buttonCard
 _shouldCropBottomEdge
 valueWithBytes:objCType:
@@ -16381,6 +16399,8 @@ URLSession:task:needNewBodyStream:
 URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:
 URLSession:task:didFinishCollectingMetrics:
 URLSession:task:didCompleteWithError:
+presentRatingsAndPhotosPrivacyScreen
+preferencesPrivacyControllerDidDismiss:
 applicationDidFinishLaunching:
 application:willFinishLaunchingWithOptions:
 application:didFinishLaunchingWithOptions:
@@ -16451,6 +16471,7 @@ allVisibleMapViewsButNotCarPlay
 visibleMapViewFromCarPlay
 buildMenuWithBuilder:
 appKitBundleClass
+loadAppKitBundle
 isCoreRoutineEnabled
 favoritesSpotlightIndexingClient
 cloudSynchronizer
@@ -16473,6 +16494,7 @@ _cloudSynchronizer
 _syncMigrator
 _carDisplayController
 _placeholderGridCache
+_ugcPrivacyController
 _navigationIdleTimerProvider
 _thermalWarningController
 _doubleHeightStatusBarAssertion
@@ -16898,7 +16920,11 @@ _localSearchViewController
 _yawPriorToHeadingTracking
 additionalCompassEdgeInsets
 initWithVenueFloorViewDelegate:venueBrowseDelegate:venuesManager:
+floatingControlsLayoutGuide
+setupLocalSearchViewController
 setAdditionalCompassEdgeInsets:
+setFloatingControlsLayoutGuide:
+_floatingControlsLayoutGuide
 _additionalCompassEdgeInsets
 incidentTypeForGeoRouteIncident:
 restrictionTitle
@@ -17029,6 +17055,7 @@ hasSelection
 _didTapStatusIndicatorView:
 _captureStatusIndicatorViewTapAction:
 setStatusIndicatorAlertController:
+_appearState
 setStatusBarSupplementaryView:animated:
 _topBannerViewHorizontalConstraints
 _topBannerMaxHeight
@@ -17304,6 +17331,7 @@ viewController:presentVenueWithVenueCardItem:source:
 setAnalyticsDelegate:
 collectionForFavoritesType:
 viewControllerShowCollections:
+collectionWithIdentifier:
 setShouldPresentSecondaryActionWhenReady:
 presentPlaceCard:
 informCoreRoutineOfEngagementWithParkedCar:
@@ -17457,6 +17485,7 @@ viewController:editShortcut:sourceView:sourceRect:
 viewController:openTransitLineCard:sourceView:sourceRect:
 viewControllerShowMyShortcuts:
 viewController:showFavoritesType:
+viewController:showCollectionWithID:
 viewController:presentCluster:
 presentSharedTrips
 presentSharedTrip:
@@ -17706,7 +17735,6 @@ _shouldShowPrivacyFooter
 linkWithBundleIdentifier:
 setPrivacyLinkView:
 privacyLinkView
-setPrivacyContainerView:
 privacyContainerView
 beginEditingCommentIfPossible
 _sendRAP
@@ -17725,6 +17753,7 @@ updateRemainingCharacters
 setTextDidChange:
 rapSearchAutocompleteViewController:finishedPickingAutocompleteResult:isAutocompleteResult:
 valueForCorrectableItemKind:changedTo:
+setPrivacyContainerView:
 _commentCell
 _addressCell
 _commentHeaderView
@@ -18657,6 +18686,7 @@ mapsDragDestinationHandler
 contentAlpha
 shouldShowTopHairline
 homeActionCoordinator
+makeMapViewFirstResponder
 quickActionMenuPresenter:isPopularNearbyAtIndexPath:
 uiTargetForQuickActionMenu
 homeContentDidUpdate
@@ -19144,7 +19174,9 @@ setIndentationLevel:
 _sectionControllerForIndexPath:
 _initWithActivityItems:applicationActivities:
 _setExcludedActivityTypes:
+_focusCellAtIdentifierPath:
 _notifyCellHoverObservers
+indexPathsForVisibleItems
 _selectedIdentifierPaths
 keyCode
 upArrowPressed:
@@ -19173,9 +19205,10 @@ _sectionControllersByIdentifier
 _draggingSectionController
 _dropTargetSectionController
 _hasDropSession
-_hoverGestureRecognizer
 _hoverChangeObservers
 _keyboardSelectionTimer
+_focusSelectionTimer
+_focusAfterScrollingIndentifierPath
 _keyboardProxy
 backgroundSessionConfigurationWithIdentifier:
 set_allowsExpensiveAccess:
@@ -19457,20 +19490,16 @@ setHost:
 stepsListDelegate
 isCurrentRoute
 reloadExistingCell
-indexPathsForVisibleItems
 _showPersistentHighlight
 _showDetailButton
 setShowDetailButton:
 routeCellDelegate
 setLastRoute:
 performWhileSuppressingCellReloads:
-_performScheduledReloadOfVisibleSections
 _createRouteSectionsForCurrentRoutes
 performBatchSectionUpdates:
 routeSelectionDelegate
 setHasSelectedStep:
-_scheduleReloadOfVisibleSections
-_cancelScheduledReloadOfVisibleSections
 setRouteCollection:
 _featureDiscoverySection
 _routeOverviewSections
@@ -19714,6 +19743,8 @@ injectedCollection
 checkForInternetError:
 setErrorString:
 refreshTitle
+setCurrentInteractionDidDeselect:
+isCurrentInteractionDidDeselect
 clearPreviouslySelected
 handleMapViewTapToDeselect
 setSelectedLabelMarker:
@@ -19733,6 +19764,7 @@ setPreviouslySelectedItemSource:
 mapLoadedWithoutError
 setMapLoadedWithoutError:
 _mapLoadedWithoutError
+_currentInteractionDidDeselect
 _splitViewController
 _detailViewController
 _masterViewController
@@ -20360,8 +20392,6 @@ _topBannerViewConstraints
 cardDismissalHelperEnabled
 convertRect:toCoordinateSpace:
 animationUsingDefaultSpringWithInitialVelocity:delay:
-pushCardHeightAnimation:
-popCardHeightAnimation
 cardDismissalHelperShouldObserveGestures:
 dismissalRectTopEdgeForCardDismissalHelper:coordinateSpace:
 cardDismissalHelper:requestedDismissalWithVelocity:
@@ -20918,14 +20948,10 @@ _labelToTopConstraint
 _setNeedsUpdate
 _update
 currentlyConnectedAuxiliaryControls
-voiceVolume
-distanceUnits
-pauseSpokenAudio
 speechEnabled
 setSpeechEnabled:
 maxAlternateRoutesCount
 setMaxAlternateRouteCount:
-beepBeforeInstruction
 shouldUseGuidanceEventManager
 setShouldUseGuidanceEventManager:
 setUserPreferredTransportType:
@@ -21886,6 +21912,7 @@ _initialSuggestionsTimerDidFire
 _allObjects
 removeAnalyticsBookedSessionsFromProactiveTrayIfNotInListOfMuids:
 _captureCuratedCollectionAction:withCollectionHandler:verticalIndex:
+captureCuratedCollectionAction:withCollectionHandler:verticalIndex:
 cellModelForRecentContact:
 setLookupIdentifier:
 setCustomAccessoryView:
@@ -22208,6 +22235,10 @@ recordTapToNextSignWithRouteDetails:
 recordTapToPreviousSignWithRouteDetails:
 recordEnterGuidanceWithRouteDetails:
 recordSignAutoAdvanceWithRouteDetails:
+tableViewFooter
+initWithStyle:withTableViewFooter:
+setTableViewFooter:
+_tableViewFooter
 menuForPublisher
 createButtons
 didTapWebsiteButton:
@@ -23025,23 +23056,22 @@ _laneGuidanceViewMajorLabelConstraint
 _invalidateConstraints
 setHovering:
 _updateAccessoryVisibility
+setUseLightForegroundColors:
 backgroundModel
 setBackgroundModel:
 contentModel
 _updateAccessoryFromModel
 _updateActionViewFromModel
-collectionViewProxyFocused
-dropStyle
-_useSelectedColors
+useLightForegroundColors
 accessoryModels
 _accessoryButtonTapped:
 createAccessoryConfigurationWithTarget:action:
 _updateDisclosureAccessoryInteraction
 visibility
 isHovering
+actionModel
 _toggleDisclosureAccessory:
 setDelaysTouchesEnded:
-actionModel
 initWithFrame:twoLinesOutlineCell:
 _accessoryModels
 _accessoryConfigurations
@@ -23680,6 +23710,7 @@ _handleTapOnPhoto:
 capturePlaceCardUserAction:onTarget:eventValue:mapItem:timestamp:resultIndex:targetID:providerID:animationID:actionURL:photoID:placeCardType:localizedMapItemCategory:availableActions:unactionableUIElements:
 removeParkedCar
 _locationApprovalDidChange:
+_updateButtonsLayout
 _updateHeaderSubtitle
 _scheduleTimestampUpdateTimerIfNecessary
 setOverridingBackgroundColor:
@@ -23690,6 +23721,7 @@ _hidePhotoView
 addParkedCarObserver:
 removeParkedCarObserver:
 _updateFromParkedCar
+_shouldStackButtons
 _showCamera
 _showLocationRefinement
 _imagePickerDidRetake:
@@ -24163,7 +24195,6 @@ _component
 _radarTitle
 _descriptionText
 eventDebugDescription
-setCanResizeToFitContent:
 _maps_defaultFavoritesTitle
 _cancel
 initWithMapItem:saveHandler:cancelHandler:
@@ -24662,6 +24693,7 @@ sectionInset
 _buildModels
 _modelAtIndexPath:
 _captureTapActionWithModel:
+captureTapActionWithEntry:
 _cellModels
 _traitCollection
 setDetailsLabel:
@@ -25922,6 +25954,8 @@ clearAllCollectionsData
 didTapTryAgainOnErrorView
 presentFirstCollection
 _apiController
+_createAndSaveHistoryEntryFromOutgoingSession:
+_createAndSaveHistoryEntryFromUpdatedSession:
 _createAndSaveHistoryEntryFromSession:
 initWithHandler:
 _currentRouteHistoryEntry
@@ -26587,6 +26621,9 @@ observedEntry
 _observedEntry
 prepareContentView
 leadingSpacing
+initWithCollection:selectedMapItem:
+selectedSearchResult
+_selectedSearchResult
 filePath
 switchIndex
 setSwitchIndex:
@@ -27029,6 +27066,12 @@ _maps_intentsRestaurant
 editButton
 setMainText:
 mainText
+_dismissSplashScreen
+splashPageWithBundleIdentifier:
+initWithSetupBlock:
+dismissScene
+_presentationController
+_obkSplashController
 _send
 _initPhotoPicker
 clearSelectedPhoto
@@ -27092,12 +27135,14 @@ timeDidChangeSignificantly
 scheduleTimeCheck
 setTimeCheckTimer:
 setAstronomicalCondition:
+_computeOnQueueAstronomicalConditionForTime:currentLocation:
 calculateAstronomicalTimeForLocation:time:altitudeInDegrees:
 isDayLightForTime:
 transit
 timeCheckTimer
 _daylightAlmanac
 _twilightAlmanac
+_computeQueue
 _astronomicalCondition
 _timeCheckTimer
 totalNumberOfItems
@@ -27254,9 +27299,9 @@ _accessoryVisiblityForEntry:
 _shouldShowAddButtonForItemSnapshots:
 initWithStyle:title:image:hoverImage:delegate:
 _editEntrySnapshot:
-_copyEntrySnapshot:
 _openSnapshot:inNewTab:
 _startEditSessionForShortcut:sourceView:sourceRect:
+setPresentedMapItem:
 _addFavorite
 _endEditSession
 itemSnapshot
@@ -27273,6 +27318,7 @@ _performMoveWithDropCoordinator:
 _performCopyWithDropCoordinator:
 sectionHeaderOutlineCell:accessoryTypeTapped:
 smallButtonOutlineCellTapped:
+_copyEntrySnapshot:
 _meCardDataProvider
 _dropShortcutEditSessions
 _deleteShortcutEditSessions
@@ -29216,15 +29262,18 @@ initWithLaneInfoId:lanes:forManeuver:midStepTitles:details:
 setShieldID:
 setShieldStringID:
 setShieldText:
+_loadPOIImage
 itemImageView
 itemDescriptionLabel
 reviewTextView
+poiIconImageView
 placeSummaryView
 menuForAddButton
 addToUserCollectionsButton
 setCellContentLayoutGuide:
 cellContentLayoutGuide
 setItemImageView:
+setPoiIconImageView:
 setPlaceSummaryContainerStackView:
 placeSummaryContainerStackView
 setPlaceSummaryView:
@@ -29240,6 +29289,7 @@ willPunchOutToPublisherWebpageForPlaceCollectionItem:
 _needsImageLoad
 _cellContentLayoutGuide
 _itemImageView
+_poiIconImageView
 _placeSummaryContainerStackView
 _placeSummaryView
 _addToUserCollectionsButton
@@ -29854,7 +29904,6 @@ collectionAtIndex:
 updateCollectionsWithoutPreparingSnapshot:usingBatchedIdentifiers:usingCollectionFetcher:usingGuideConsumer:usingBatchSize:
 updateSnapshotUsingCollections:
 geoCollectionAtIndex:
-didEndDisplayingCellAtIndexpath:usingSnapShot:
 willDisplayCellAtIndexpath:
 setSelectedFilterIndexPath:
 filterDataFetchStarted
@@ -29939,8 +29988,7 @@ discardLogs
 _performLogDiscardWithQueue:completion:
 captureUgcDeleteWithSignature:certificates:queue:completion:
 _fakeProgress
-initWithTransitLine:accessoryModels:backgroundModel:
-initWithHistoryEntryRecentsItem:backgroundModel:
+initWithHistoryEntryRecentsItem:accessoryModels:backgroundModel:
 initWithRecentContact:backgroundModel:
 initWithSearchResult:backgroundModel:
 _shouldShowClearButtonForItemSnapshots:
@@ -30392,7 +30440,6 @@ initWithMass:stiffness:damping:initialVelocity:delay:calculateCoordinatedAnimati
 initWithDuration:curve:delay:
 initWithMass:stiffness:damping:initialVelocity:delay:
 initUsingDefaultSpringWithInitialVelocity:delay:
-animationWithDuration:curve:delay:
 _typeParameters
 _duration
 _delay
@@ -31412,8 +31459,10 @@ placeFavoritesQuerySource
 initWithFavoritePlace:
 placeFavoritesSearchResultsQuerySource
 placeSearchResultAndTransitLineFavoritesQuerySource
+dropStyle
 grouping
 collectionViewFocused
+collectionViewProxyFocused
 collectionViewHasDropSession
 _collectionViewFocused
 _collectionViewProxyFocused
@@ -31424,6 +31473,8 @@ _updateBackgroundGrouping
 outlineCellConfiguration
 _currentBackgroundColorMode
 backgroundColorMode
+_updateForegroundColors
+_useLightForegroundColors
 applyLayoutAttributes:
 _updateHoverStateIfNeeded
 isDecelerating
@@ -32789,7 +32840,6 @@ setIsDroppedPinPresented:
 setIsDroppedPinSelected:
 isPresentingSelectedPlace
 isDroppedPinPresented
-setPresentedMapItem:
 directionsPlanWithFidelity:
 resetDisplayedFloorOrdinalForAllVenues
 resetNonActivityStateForMapView:
@@ -32801,6 +32851,7 @@ selectedTransitFeatureID
 selectedTransitLineName
 isDroppedPinSelected
 setDirectionsPlan:source:
+userCreatedCollectionID
 transitData
 openSearchWithQuery:
 openMapsSuggestion:
@@ -32811,6 +32862,7 @@ imageForMapItem:forScale:
 _identifierForItem:
 _accessoryVisibilityForCollection:withAccessoryType:
 _childItemsInCollection:excludeDeletions:
+initWithTransitLine:accessoryModels:backgroundModel:
 _collectionContainingIdentifierPath:
 _contextMenuForCollectionSnapshot:
 _contextMenuForMapItemSnapshot:
@@ -32818,7 +32870,6 @@ _contextMenuForTransitLineSnapshot:
 _editCollectionSnapshot:
 _addPlacesToCollectionSnapshot:
 _duplicateCollectionSnapshot:
-_copyMapItemSnapshot:
 _moveMapItemSnapshot:toCollection:
 _renameMapItemSnapshot:
 _addMapItemSnapshotToFavorites:
@@ -32826,6 +32877,8 @@ _removeMapItemSnapshotFromFavorites:shortcut:
 _duplicateCollection:
 _moveMapItem:fromCollection:toCollection:
 lastIdentifier
+setWebpageURL:
+setUserCreatedCollectionID:
 _createCollection
 _collectionContainingIndexPath:
 _deleteCollectionItemSnapshot:
@@ -32834,6 +32887,7 @@ _didConfirmDeleteCollection:deletion:
 _isMoveOperationWithDropSession:destinationIndexPath:
 _isCopyOperationWithDropSession:destinationIndexPath:
 _pasteIntoCollectionSnapshot:
+_copyMapItemSnapshot:
 _dropCollectionEditSessions
 _deleteCollectionEditSessions
 _moveCollectionEditSessions
@@ -32849,6 +32903,7 @@ _systemName
 _tipLabel
 _other
 styleAttributesForSearchResultWithAttributes:
+isTransitItem
 _previouslySelectedLabelMarkerItem
 _clearPreviousDebounceStartTime
 overrideProblemSubmissionURL
@@ -32910,6 +32965,7 @@ setHasIsDroppedPinPresented:
 hasIsDroppedPinPresented
 setHasSelectedTransitFeatureID:
 hasSelectedTransitLineName
+hasUserCreatedCollectionID
 _selectedPlaceIndex
 _selectedTransitFeatureID
 _collectionsMode
@@ -32919,6 +32975,7 @@ _presentedMapItem
 _searchCategoryStorage
 _searchPlaces
 _selectedTransitLineName
+_userCreatedCollectionID
 _isDroppedPinPresented
 _isDroppedPinSelected
 _isPresentingSelectedPlace
@@ -33322,7 +33379,6 @@ _searchResultCellCategoryImage
 _searchResultLabelContext
 _seeMoreButtonPressed
 seeMoreDelegate
-_poiIconImageView
 _poiTitleLabel
 _localityDescriptionLabel
 _seePlaceButton
@@ -37455,6 +37511,7 @@ T@"UITableView",&,N,V_tableView
 tableParts
 T@"NSArray",C,N,V_tableParts
 NavigationSettingsMonitorDidUpdateSettings
+@"MNMutableSettings"8@?0
 MNDefaultBeepBeforeInstruction
 VoiceGuidanceLanguage
 Low Volume
@@ -39979,6 +40036,8 @@ accessoryViewObject
 T@"<ACDataSourceDelegate>",W,D,N
 searchDataProvider
 T@"SearchDataProvider",R,N,V_searchDataProvider
+enableHoverGesture
+TB,N,V_enableHoverGesture
 showAddAccessory
 TB,N,V_showAddAccessory
 showPlaceContext
@@ -42160,6 +42219,7 @@ Requires non-nil RideBookingDataCoordinatorRideStatusObserver to be removed
 -[RideBookingDataCoordinator removeRideBookingDataCoordinatorRideStatusObserver:]_block_invoke
 Removed RideStatus observer: %@
 -[RideBookingDataCoordinator updateRideStatusMap]_block_invoke
+No Ridebooking applications exist on this device. Broadcasting so and returning.
 %@, Application %@ is not enabled
 -[RideBookingDataCoordinator _updateRideStatusMapForApplication:]_block_invoke_2
 %@, Got ride status: %@
@@ -42257,7 +42317,6 @@ rimOpacity
 Td,R,N,V_rimOpacity
 cornerRadius
 Td,R,N,V_cornerRadius
-T@"CardShadowSettings",&,N,V_settings
 buttonCard
 TB,N,V_buttonCard
 shouldCropBottomEdge
@@ -43188,6 +43247,8 @@ T@"LocalSearchViewController",&,N,V_localSearchViewController
 yawPriorToHeadingTracking
 Td,N,V_yawPriorToHeadingTracking
 T@"MacVenueControlsViewController",&,N,V_venueFloorViewController
+floatingControlsLayoutGuide
+T@"UILayoutGuide",&,N,V_floatingControlsLayoutGuide
 additionalCompassEdgeInsets
 T{UIEdgeInsets=dddd},N,V_additionalCompassEdgeInsets
 NavTrafficIncidentViewComposer
@@ -44807,6 +44868,8 @@ previouslySelectedItemSource
 T@"PreviouslySelectedLabelMarkerItemSource",&,N,V_previouslySelectedItemSource
 mapLoadedWithoutError
 TB,N,V_mapLoadedWithoutError
+currentInteractionDidDeselect
+TB,N,GisCurrentInteractionDidDeselect,V_currentInteractionDidDeselect
 __internal__PlaceCardHardCodedMUID
 T@"NSSet",R,C,N
 T@"GEOCountryConfiguration",&,N
@@ -46153,6 +46216,8 @@ INTERNAL UI ONLY
 View internal report status
 https://feedback.geo.apple.com
 T@"RAPAcknowledgementOptions",&,N,V_options
+tableViewFooter
+T@"UIView",N,V_tableViewFooter
 Publisher's Website
 All Guides
 safari.fill
@@ -49187,6 +49252,8 @@ observedEntry
 T@"MapsSuggestionsEntry",&,N,V_observedEntry
 T@"CollectionHandler",&,N,V_collection
 NEAR_AUTOCOMPLETE_ROW
+T@"SearchResult",R,N,V_selectedSearchResult
+T@"MKMapItem",R,N,V_selectedMapItem
 Alert
 Unable to migrate trace file!
 switchIndex
@@ -49286,8 +49353,7 @@ allowsFullscreenLayoutInStandardStyle
 TB,N,V_allowsFullscreenLayoutInStandardStyle
 transitionController
 T@"<ContaineeLayoutTransitioningContext>",W,N,V_transitionController
-[Maps Home] Copy
-[Maps Home] Paste
+T@"CardAnimationManager",R,N
 [Maps Home] Delete
 [Maps Home] Open in New Tab
 [Maps Home] Open in New Window
@@ -49478,6 +49544,9 @@ T@"UILabel",R,N,V_subLabel
 mainText
 editButton
 T@"UIButton",R,N,V_editButton
+MacSceneHostingPreferencesPresentationController
+v16@?0@"UIWindowScene"8
+T@"<UGCAppKitPreferencesPrivacyControllerDelegate>",W,N,V_delegate
 v24@?0@"RAPPhotoPickerController"8@"RAPPersonalPlaceAdvancedEditorViewController"16
 preciseLocationEnabled
 TB,N,GisPreciseLocationEnabled,V_preciseLocationEnabled
@@ -49504,6 +49573,7 @@ T@"NSTimer",&,N,V_invalidationTimer
 shareItemSource
 T@"NSObject<ShareItemSource>",&,N,V_shareItemSource
 MapsDebugAstronomicalLightLevelKey
+com.apple.Maps.AstronomicalConditionMonitor.compute
 astronomicalCondition
 Tq,N,V_astronomicalCondition
 T@"CLLocation",&,N,V_currentLocation
@@ -50917,6 +50987,8 @@ cellContentLayoutGuide
 T@"UILayoutGuide",&,N,V_cellContentLayoutGuide
 itemImageView
 T@"CuratedCollectionItemImageWithAttributionView",&,N,V_itemImageView
+poiIconImageView
+T@"CuratedCollectionItemPOIIconImageView",&,N,V_poiIconImageView
 placeSummaryContainerStackView
 T@"UIStackView",&,N,V_placeSummaryContainerStackView
 placeSummaryView
@@ -52321,6 +52393,8 @@ hoverSource
 T@"<SidebarOutlineCellHoverSource>",W,N,V_hoverSource
 hovering
 TB,N,GisHovering,V_hovering
+useLightForegroundColors
+TB,N,V_useLightForegroundColors
 viewModelConfigurationHandler
 T@?,R,N,V_viewModelConfigurationHandler
 SharedTrip.List
@@ -53294,6 +53368,7 @@ presentedMapItem
 searchCategoryStorage
 selectedTransitFeatureID
 selectedTransitLineName
+userCreatedCollectionID
 hasDisplayOptions
 T@"GEOURLOptions",&,N,V_displayOptions
 hasCollectionsMode
@@ -53321,6 +53396,8 @@ hasSelectedTransitLineName
 T@"NSString",&,N,V_selectedTransitLineName
 hasLineItem
 T@"MSPTransitStorageLineItem",&,N,V_lineItem
+hasUserCreatedCollectionID
+T@"NSString",&,N,V_userCreatedCollectionID
 SBBannerMapsIcon
 gutterWidth
 imageWidth
@@ -55088,6 +55165,7 @@ MapsSimpleAlertPresenter
 SimpleAlertPresenter
 OutlineViewExtras
 MapsSelectionStyle
+MapsFocusDodging
 ActionButtonCollectionReusableView
 NavSpeedLimitViewController
 LightLevelObserver
@@ -55627,6 +55705,7 @@ CompanionDaemonExtras
 AdvertisementTableViewCell
 CyclingRequestInfoProvider
 RouteStepCell
+MacFixedSizeContentView
 MacUGCPOIEnrichmentEditorViewController
 RAPPlacecardImageryLayoutManager
 RoutePlanningUpdater
@@ -55992,6 +56071,7 @@ GuidanceSearchResultsCategoryDataProvider
 GuidanceSearchResultsDataProviding
 UGCPOIEnrichmentEditorCell
 EditShortcutTitleCell
+CuratedCollectionItemPOIIconImageView
 MapCachedPageRenderer
 RAPProblemNotListedQuestion
 MapsLightLevelController
@@ -56023,6 +56103,8 @@ AppKitBundleMenuBarActionHandling
 UNUserNotificationCenterDelegate
 NSURLSessionTaskDelegate
 NSURLSessionDelegate
+AppKitPreferencesDelegate
+UGCAppKitPreferencesPrivacyControllerDelegate
 UIApplicationDelegate
 UIApplicationDelegatePrivate
 BackgroundNavigationDelegate
@@ -57124,6 +57206,7 @@ MapsMaximumSideScaling
 CarCardTestModeController
 ExtensionHelper
 ReservationSuccessViewController
+UGCAppKitPreferencesPrivacyController
 RAPPersonalPlaceAdvancedEditorViewController
 CarRouteGeniusManager
 HorizontallyFlippingCollectionViewFlowLayout
@@ -58017,6 +58100,7 @@ SiriRestorationAction
 RAPReportComposerPlaceSnippetTableViewCell
 IPCTrafficIncidentAlertMessage
 AirQualityConditionsDataProvider
+HomeAnalyticsManager
 TransitPreferencesText
 MapsHashing
 TransitDirectionsOperatorInfoStepView
@@ -59844,6 +59928,7 @@ v40@0:8@"UITableViewCell"16q24@32
 v56@0:8@16@24@32@40q48
 v64@0:8@16@24@32@40@48@56
 @"AutocompleteAnalyticsManager"
+@"UIHoverGestureRecognizer"
 @"SearchDataProvider"
 v32@0:8@"RouteSearchTextField"16@"UITextRange"24
 v24@0:8@"RouteSearchTextField"16
@@ -60609,6 +60694,7 @@ v40@0:8@"NSURLSession"16@"NSURLSessionTask"24@?<v@?@"NSInputStream">32
 v56@0:8@"NSURLSession"16@"NSURLSessionTask"24q32q40q48
 v40@0:8@"NSURLSession"16@"NSURLSessionTask"24@"NSURLSessionTaskMetrics"32
 v40@0:8@"NSURLSession"16@"NSURLSessionTask"24@"NSError"32
+v24@0:8@"UGCAppKitPreferencesPrivacyController"16
 v40@0:8@16q24d32
 v56@0:8@16{CGRect={CGPoint=dd}{CGSize=dd}}24
 B40@0:8@16@24@?32
@@ -60663,6 +60749,7 @@ v24@0:8@"IPCGuidanceStateReply"16
 @"MapsSyncDataMigrator"
 @"CarDisplayController"
 @"MKPlaceholderGridCache"
+@"UGCAppKitPreferencesPrivacyController"
 @"NavigationIdleTimerProvider"
 @"NavigationThermalWarningController"
 @"SBSStatusBarStyleOverridesAssertion"
@@ -61145,7 +61232,6 @@ v40@0:8@"KeyboardProxyingView"16@"NSSet"24@"UIPressesEvent"32
 @"HomeOutlineSearchResultsSectionController"
 @"HomeOutlineFeatureDiscoverySectionController"
 @"HomeOutlineSectionController<HomeOutlineSectionControllerSubclassing>"
-@"UIHoverGestureRecognizer"
 @"HomeOutlineRootControllerConfiguration"
 v48@0:8@"NSURLSession"16@"NSURLSessionDataTask"24@"NSURLResponse"32@?<v@?q>40
 v40@0:8@"NSURLSession"16@"NSURLSessionDataTask"24@"NSURLSessionDownloadTask"32
@@ -62160,6 +62246,9 @@ v36@0:8@"UIViewController"16B24@"MKMuninView"28
 @"<MuninPIPDataCoordinator>"16@0:8
 @"<MuninPIPDataCoordinator>"
 @"MuninPIPAnalyticsController"
+@"MacSceneHostingPreferencesPresentationController"
+@"OBPrivacySplashController"
+@"<UGCAppKitPreferencesPrivacyControllerDelegate>"
 @"RAPPersonalPlaceCorrectionsQuestion"
 @"RAPPhotoPickerController"
 v48@0:8Q16@24@32@?40
@@ -62176,6 +62265,7 @@ B24@0:8@"NSString"16
 @"NSItemProvider"48@0:8q16@"NSString"24{CGSize=dd}32
 @"NSObject<ShareItemSource>"
 @"UIActivityItemsConfiguration"
+q32@0:8d16@24
 @"GEOAlmanac"
 @40@0:8@16d24@32
 v20@0:8s16
@@ -62438,6 +62528,7 @@ B40@0:8@"UIViewController"16@"GEOComposedRouteStep"24@"TransitDirectionsListItem
 @"<CuratedCollectionItemTableViewCellDelegate>"
 @"CuratedCollectionItemCellModel"
 @"CuratedCollectionItemImageWithAttributionView"
+@"CuratedCollectionItemPOIIconImageView"
 @"PlaceSummaryView"
 v32@0:8@"<VenueCardStack>"16@"NSArray"24
 s16@0:8
@@ -63970,6 +64061,7 @@ Will invalidate priority assertion for Turn-by-Turn Navigation in %#.1lfs
 Removing priority assertion for Turn-by-Turn Navigation.
 Skipping showing notification since app in FG - %@
 Will present notification - %@
+Assertion failed: _ugcPrivacyController == ((void *)0)
 Failed to create timer to update WeatherStackViewController visibility
 Blocking sender handle %{private}@
 Unable to create filter item to block sender
@@ -64869,6 +64961,7 @@ updateSuggestionEntries
 Maps is in Coarse Location
 Suspended, so no need to update
 _updateRideBookingRideStatuses
+Returning from %@ because we are suspended
 Trying to show the iconForOnboardingMultipleVehicles
 Could not fetch the icon for onboarding with multiple vehicles
 Trying to show the EV Charging Icon %u

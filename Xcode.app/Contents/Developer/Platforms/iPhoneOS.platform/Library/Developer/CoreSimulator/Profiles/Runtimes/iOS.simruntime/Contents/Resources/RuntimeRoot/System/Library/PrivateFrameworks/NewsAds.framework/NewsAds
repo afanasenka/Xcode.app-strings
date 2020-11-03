@@ -11,8 +11,8 @@ NNSMatchingFlags
 Foundation
 BannerAdLayoutStoreType
 BannerAdLayoutStore
-NewsAds
 AdsModuleStartupTask
+Environment
 DebugBannerAdView
 Errors
 AdPolicyFailureType
@@ -30,6 +30,7 @@ SegmentValue
 Assembly
 DebugAds
 BannerAdLayout
+NewsAds
 FeedBannerAdProviderFactory
 AdRequestManager
 Result
@@ -59,6 +60,7 @@ InterstitialAdProvider
 NativeAdInfo
 Fulfilled
 Unfilled
+Discarded
 AdSegmentValueType
 DebugCommandHandler
 ANFDocumentAdData
@@ -102,6 +104,7 @@ FeedBannerAdContext
 CodingKeys
 JournalEntryProcessorType
 Context Placement
+AdHostDescription
 BannerAdViewStylerType
 BannerAdViewStyler
 AdContextBuilderType
@@ -191,6 +194,7 @@ BannerType
 DebugBanner
 NativeOverride
 DesiredPosition
+FeedPrefetchDistance
 AdPolicyLayoutEnvironmentProviderType
 AdPolicyLayoutEnvironmentProvider
 Errors
@@ -210,6 +214,8 @@ DebugJournalSummaryView
 ANFComponentAdData
 CodingKeys
 InterstitialAdViewManager
+AdConfiguration
+Framework
 CampaignAdData
 CodingKeys
 ArticleBannerAdProvider
@@ -284,8 +290,8 @@ DebugJournalViewController
 PresentationOptions
 DebugJournalValueTableViewCell
 DebugJournalSubtitleTableViewCell
-Tracker
 Section
+Tracker
 leading
 trailing
 private
@@ -324,31 +330,14 @@ playerAspectRatio
 NFAssembly
 v24@0:8@"<NFContainerRegistry>"16
 v24@0:8@"<NFResolver>"16
-FCNewsAppConfigurationManager
-v32@0:8@16@?24
-appConfiguration
-T@"<FCNewsAppConfiguration>",N,R
-possiblyUnfetchedAppConfiguration
-treatmentIDs
-segmentSetIDs
-feldsparID
-T@"NSString",N,R
-fetchedAppConfiguration
-jsonEncodableAppConfiguration
-T@"<FCJSONEncodableObjectProviding><FCNewsAppConfiguration>",N,R
-@"<FCNewsAppConfiguration>"16@0:8
-v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSError">16
-v32@0:8@"OS_dispatch_queue"16@?<v@?@"<FCNewsAppConfiguration>"@"NSError">24
-v24@0:8@"<FCNewsAppConfigurationObserving>"16
-v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSDictionary"@"NSError">16
-@"NSArray"16@0:8
-@"NSString"16@0:8
-@"<FCNewsAppConfiguration><FCJSONEncodableObjectProviding>"16@0:8
 FCHeadlineProviding
+@16@0:8
 {CGRect={CGPoint=dd}{CGSize=dd}}16@0:8
 d16@0:8
 versionIdentifier
+T@"NSString",N,R
 identifier
+articleID
 referencedArticleID
 clusterID
 contentType
@@ -377,6 +366,7 @@ T@"NSURL",N,R
 lastModifiedDate
 lastFetchedDate
 topics
+T@"NSArray",N,R
 topicIDs
 videoURL
 videoDuration
@@ -455,10 +445,11 @@ narrativeTrackTextRanges
 surfacedByArticleListID
 layeredThumbnailJSON
 layeredThumbnailAspectRatio
-@"NSDate"16@0:8
+@"NSString"16@0:8
 @"<FCChannelProviding>"16@0:8
 @"FCHeadlineThumbnail"16@0:8
 @"NSURL"16@0:8
+@"NSArray"16@0:8
 @"FCCoverArt"16@0:8
 @"NSSet"16@0:8
 @"FCFeedPersonalizedItemScoreProfile"16@0:8
@@ -471,6 +462,23 @@ layeredThumbnailAspectRatio
 @"FCArticleAudioTrack"16@0:8
 APPCLifecycleMetricsHelping
 v16@0:8
+FCNewsAppConfigurationManager
+v32@0:8@16@?24
+appConfiguration
+T@"<FCNewsAppConfiguration>",N,R
+possiblyUnfetchedAppConfiguration
+treatmentIDs
+segmentSetIDs
+feldsparID
+fetchedAppConfiguration
+jsonEncodableAppConfiguration
+T@"<FCJSONEncodableObjectProviding><FCNewsAppConfiguration>",N,R
+@"<FCNewsAppConfiguration>"16@0:8
+v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSError">16
+v32@0:8@"OS_dispatch_queue"16@?<v@?@"<FCNewsAppConfiguration>"@"NSError">24
+v24@0:8@"<FCNewsAppConfigurationObserving>"16
+v24@0:8@?<v@?@"<FCNewsAppConfiguration>"@"NSDictionary"@"NSError">16
+@"<FCNewsAppConfiguration><FCJSONEncodableObjectProviding>"16@0:8
 FCTagProviding
 userFacingTagType
 hideAccessoryText
@@ -593,6 +601,7 @@ Removing all layouts from store
 _TtC7NewsAds19BannerAdLayoutStore
 layouts
 _TtC7NewsAds20AdsModuleStartupTask
+environment
 v24@?0@"<FCNewsAppConfiguration>"8@"NSError"16
 Running ad module startup task
 Q16@0:8
@@ -627,13 +636,16 @@ Title for presenting an ad debugging utility
 speaker.wave.2.circle
 newsads.debug_ads.debugger
 _TtC7NewsAds27FeedBannerAdProviderFactory
-Failed to create context, placement=%{public}@, ad=%{public}@, error=%{public}@
-Failed to create request, placement=%{public}@, ad=%{public}@, error=%{public}@
+Initiating ad request, placement=%{public}@, ad=%{public}@, host=%{public}@
+Failed to create context, placement=%{public}@, ad=%{public}@, error=%{public}@, host=%{public}@
+Failed to create request, placement=%{public}@, ad=%{public}@, error=%{public}@, host=%{public}@
 request journal 
-Existing request for placement=%{public}@, ad=%{public}@
+Existing request for placement=%{public}@, ad=%{public}@, host=%{public}@
 contextBuilder
+adManager
 requestStore
 journal
+host
 Adding journal processor=%{public}@
 processors
 entries
@@ -684,10 +696,10 @@ Missing environment with error:
 Missing prewarmed request
 Missing provider factory for ad
 _TtC7NewsAds13StoreAssembly
-@16@0:8
 _TtC7NewsAds24InterstitialAdViewStyler
 _TtC7NewsAds35BannerAdViewLayoutAttributesFactory
 debugViewLayoutAttributesFactory
+layoutStore
 key value 
 Waiting for ad response
 Prewarming ad request
@@ -718,6 +730,7 @@ v24@0:8@16
 TB,N,R
 language
 primaryAudience
+@"NSDate"16@0:8
 @"NSData"16@0:8
 title
 titleCompact
@@ -807,6 +820,7 @@ advertisement.native_override.advertiser_name
 advertisement.native_override.desired_position
 More From Publisher
 Related Articles
+advertisement.debugging.feed_prefetch_screenfuls
 _TtCVVE7NewsAdsC11TeaSettings8Settings3Ads9Debugging13AutoPlacement
 frequency
 bannerType
@@ -818,6 +832,10 @@ successRate
 _TtCVVE7NewsAdsC11TeaSettings8Settings3Ads9Debugging14NativeOverride
 advertiserName
 desiredPosition
+_TtCVVE7NewsAdsC11TeaSettings8Settings3Ads9Debugging20FeedPrefetchDistance
+numberOfScreenfuls
+news.features.feed30
+advertisement.debugging.feed_prefetch_distance
 advertisement.debugging.native_override
 advertisement.debugging.debug_banner.enabled
 advertisement.debugging.auto_placement.enabled
@@ -832,7 +850,8 @@ Article Identifier
 End Of Article Section
 Ad policies prevent multiple ads from showing in the same screen or expand when visible to the user
 Policy Enforcement
-news.features.feed30
+Feed Prefetch Distance
+How far in advance to prefetch ads in the feed
 _TtC7NewsAds33AdPolicyLayoutEnvironmentProvider
 _environment
 interstitialData
@@ -845,8 +864,6 @@ PaidSubscription
 AudioDailyBriefing
 channelIdentifier
 adjacentArticles
-articleID
-T@"NSArray",N,R
 _TtC7NewsAds15ManagerAssembly
 newsads.segments
 _TtC7NewsAds23DebugJournalSummaryView
@@ -881,21 +898,19 @@ Request Identifier
 Content Identifier
 Context Reuse Identifier
 Preview Identifier
-Attempting to retrieve ad request for placement=%{public}@, ad=%{public}@
-Attempting to create banner ad view for placement=%{public}@, ad=%{public}@
-Failed to provide banner ad view for placement=%{public}@, ad=%{public}@, error=%{public}@
-Returning banner ad view for placement=%{public}@, ad=%{public}@, request=%{public}@
-Returning cached view for placement=%{public}@, ad=%{public}@
-adManager
-layoutStore
+Attempting to retrieve ad request for placement=%{public}@, ad=%{public}@, host=%{public}@
+Attempting to create banner ad view for placement=%{public}@, ad=%{public}@, host=%{public}@
+Failed to provide banner ad view for placement=%{public}@, ad=%{public}@, error=%{public}@, host=%{public}@
+Returning banner ad view for placement=%{public}@, ad=%{public}@, request=%{public}@, host=%{public}@
+Returning cached view for placement=%{public}@, ad=%{public}@, host=%{public}@
 observers
 adViews
 observer
 keepAliveObject
-Banner ad not filled by Ad Platforms for placement=%{public}@, ad=%{public}@, error=%{public}@
-Banner ad ready for display, placement=%{public}@, ad=%{public}@, request=%{public}@, size=%{public}@, duration=%fm
+Banner ad not filled by Ad Platforms for placement=%{public}@, ad=%{public}@, error=%{public}@, host=%{public}@
+Banner ad ready for display, placement=%{public}@, ad=%{public}@, request=%{public}@, size=%{public}@, duration=%fm, host=%{public}@
 Banner ad marked filled without valid PromotedContentInfo placement=%{public}@, ad=%{public}@
-Notifying observers of state change, placement=%{public}@, state=%{public}@
+Notifying observers of state change, placement=%{public}@, state=%{public}@, host=%{public}@
 _TtC7NewsAds29PromotedContentContextFactory
 Prewarming advertisement for placement=%{public}@, ad=%{public}@
 Creating request for placement=%{public}@, ad=%{public}@, request=%{public}@
@@ -948,6 +963,7 @@ Validation failed for placement=%{public}@, policies=%{public}@
 Validation passed for placement=%{public}@
 Validation failed for placement=%{public}@, error=%{public}@
 NewsAds.DebugJournalViewController
+Context Builder Snapshot
 View context builder snapshot
 _TtC7NewsAds26DebugJournalViewController
 v20@0:8B16
@@ -964,7 +980,6 @@ _TtC7NewsAdsP33_A99154E0B157F7AABBF809DECDAD491233DebugJournalSubtitleTableViewC
 NewsAds/DebugJournalViewController.swift
 init(coder:) has not been implemented
 Additional Details
-Context Builder Snapshot
 UITableViewDelegate
 v40@0:8@16@24@32
 v40@0:8@16@24q32
@@ -1090,8 +1105,8 @@ _So6UIViewCXc
 yxq_G
 yxq_G
 $s11TeaTemplate16EmbedFactoryTypeP
-SDySS
 SDyS2SG
+SDySS
 $s7NewsAds18AdPreviewQueueTypeP
 SDySSSay
 Sbypc
@@ -1164,9 +1179,11 @@ yxq_q0_q1_GSgXwz_x_q_q0_q1_
 R1_r2_lXX
 yxq_q0_G
 _So6UIViewCXc
+yxq_q0_q1_G
 G0R5_
 G1R5_
 G2R5_
+G3R8_
 yq1_xq0_GG
 SDySS
 _So6UIViewCXcG
@@ -1220,6 +1237,9 @@ RawValue
 _ObjectiveCType
 layouts
 resolver
+environment
+production
+test
 contentIdentifier
 contentInfo
 state
@@ -1259,6 +1279,7 @@ contextBuilder
 adManager
 requestStore
 journal
+host
 success
 failure
 processors
@@ -1296,6 +1317,7 @@ RawValue
 contextWrapper
 fulfilled
 unfilled
+discarded
 placementIdentifier
 advertiserName
 articleID
@@ -1372,6 +1394,8 @@ sectionData
 leadingGroupData
 trailingGroupData
 referralData
+name
+identifier
 parent
 name
 lock
@@ -1402,6 +1426,7 @@ insertionType
 reuseIdentifier
 headline
 unfilled
+discarded
 debug
 identifier
 info
@@ -1423,6 +1448,7 @@ viewportSize
 contentOffset
 bounds
 contentSize
+adjustedContentInset
 frame
 adViewFrame
 debugViewLayoutAttributes
@@ -1524,11 +1550,13 @@ desiredPosition
 none
 publisher
 related
+numberOfScreenfuls
 RawValue
 _environment
 missingEnvironment
 appData
 userData
+referralData
 feedData
 issueData
 sectionData
@@ -1587,6 +1615,9 @@ adManager
 adRequestStore
 journal
 loadingProviders
+framework
+adLib
+promotedContent
 campaignData
 contextWrapper
 debugBannerProvider
@@ -1616,6 +1647,7 @@ adManager
 requestStore
 layoutStore
 journal
+host
 observers
 adViews
 observer
@@ -1728,19 +1760,6 @@ AllCases
 RawValue
 loadInRegistry:
 loadedContainer:
-appConfiguration
-possiblyUnfetchedAppConfiguration
-fetchAppConfigurationIfNeededWithCompletion:
-fetchAppConfigurationIfNeededWithCompletionQueue:completion:
-refreshAppConfigurationIfNeededWithCompletionQueue:refreshCompletion:
-addAppConfigObserver:
-removeAppConfigObserver:
-fetchAppWidgetConfigurationWithCompletion:
-treatmentIDs
-segmentSetIDs
-feldsparID
-fetchedAppConfiguration
-jsonEncodableAppConfiguration
 versionIdentifier
 identifier
 articleID
@@ -1846,6 +1865,19 @@ layeredThumbnailAspectRatio
 missedOpportunity
 discarded
 contentLoadFailure
+appConfiguration
+possiblyUnfetchedAppConfiguration
+fetchAppConfigurationIfNeededWithCompletion:
+fetchAppConfigurationIfNeededWithCompletionQueue:completion:
+refreshAppConfigurationIfNeededWithCompletionQueue:refreshCompletion:
+addAppConfigObserver:
+removeAppConfigObserver:
+fetchAppWidgetConfigurationWithCompletion:
+treatmentIDs
+segmentSetIDs
+feldsparID
+fetchedAppConfiguration
+jsonEncodableAppConfiguration
 tagType
 userFacingTagType
 hideAccessoryText
@@ -1954,13 +1986,15 @@ hasAudioTrack
 isEvergreen
 personalizationVector
 personalizationVectorAlt
-rateLimitRequests:
-adRequestThrottle
-currentDevice
-userInterfaceIdiom
-newAdsEnabled
-mainBundle
-bundleIdentifier
+rateLimitRequestsInFeed:inArticle:betweenArticle:videoInArticle:nativeInFeed:nativeInArticle:
+sharedInstance
+setServerToTest:
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
 initWithCoder:
 layoutSubviews
 initWithFrame:
@@ -2033,6 +2067,8 @@ setPromotedContentInfo:
 invalidate
 scheduledTimerWithTimeInterval:repeats:block:
 promotedContentViewOfType:size:startsCollapsed:
+mainBundle
+bundleIdentifier
 systemBackgroundColor
 greenColor
 setCornerRadius:
@@ -2066,6 +2102,7 @@ setRightBarButtonItem:
 viewDidAppear:
 indexPathForSelectedRow
 deselectRowAtIndexPath:animated:
+showViewController:sender:
 setAccessoryType:
 setSelectionStyle:
 textLabel
@@ -2077,7 +2114,7 @@ tableView:titleForHeaderInSection:
 tableView:cellForRowAtIndexPath:
 initWithStyle:reuseIdentifier:
 dismissViewControllerAnimated:completion:
-showViewController:sender:
+initWithActivityItems:applicationActivities:
 tableView:willDisplayCell:forRowAtIndexPath:
 tableView:willDisplayHeaderView:forSection:
 tableView:willDisplayFooterView:forSection:

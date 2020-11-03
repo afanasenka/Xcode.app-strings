@@ -1,4 +1,5 @@
-@(#)PROGRAM:cloudphotod  PROJECT:CloudPhotoLibrary-310.1.190
+@(#)PROGRAM:cloudphotod  PROJECT:CloudPhotoLibrary-310.2.160
+33333cs@
 CPLCKResourceDownloadOperation
 CloudKitImplementation
 URLResourceKey
@@ -4965,6 +4966,7 @@ resOriginalVidCompl
 resVidCompl
 resAdjBaseVid
 resAdjBaseNormalVid
+resVidHDRMed
 resOriginalSpatialOverCapture
 resOriginalVidComplOverCapture
 recordName
@@ -7271,17 +7273,17 @@ AllCases
 <string>WatchSimulator</string>
 </array>
 <key>CFBundleVersion</key>
-<string>310.1.190</string>
+<string>310.2.160</string>
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18R5560x</string>
+<string>18R5569x</string>
 <key>DTPlatformName</key>
 <string>watchsimulator</string>
 <key>DTPlatformVersion</key>
 <string>7.1</string>
 <key>DTSDKBuild</key>
-<string>18R5560x</string>
+<string>18R5569x</string>
 <key>DTSDKName</key>
 <string>watchsimulator7.1.internal</string>
 <key>DTXcode</key>

@@ -307,7 +307,6 @@ EnableDebugVisualization
 EnableDebugPhysics
 ShowStatistics
 WantsStatusPillHidden
-WantsUsageOfSingleMTLEventSPI
 TriggerAffordanceShowDuration
 TriggerAffordanceShouldReshowAfterArReset
 ForceShowAnimationScrubber
@@ -1462,7 +1461,6 @@ wantsDebugVisualizationEnabled
 wantsDebugPhysicsEnabled
 wantsStatisticsShown
 wantsStatusPillHidden
-wantsUsageOfSingleMTLEventSPI
 triggerAffordanceShowDuration
 triggerAffordanceShouldReshowAfterArReset
 forceShowAnimationScrubber

@@ -3387,6 +3387,7 @@ Truncating a list of bindings to max %lu known-good ones.
 %llu bindings found
 Skipping weak binding due to options
 Adding weak binding
+Weak Binding (%@)
 Weak Binding
 No weak binding found
 Bundle in binding map 

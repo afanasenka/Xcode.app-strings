@@ -609,12 +609,12 @@ isAtrialFibrillationEnabledWithAvailabilityManager:
 irregularHeartRhythmTitleDescription
 preferenceSpecifierNamed:target:set:get:detail:cell:edit:
 setIdentifier:
+setProperty:forKey:
 groupSpecifierWithID:
 irregularHeartRhythmFooterDescription
 irregularHeartRhythmFooterLinkTitle
 initWithString:
 localizedStandardRangeOfString:
-setProperty:forKey:
 valueWithNonretainedObject:
 pairedDevicesDidUpdate
 observeValueForKeyPath:ofObject:change:context:

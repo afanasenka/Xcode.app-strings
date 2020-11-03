@@ -1,4 +1,5 @@
-@(#)PROGRAM:DebuggerLLDB  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:DebuggerLLDB  PROJECT:IDEPlugIns-17510.1
+ffff
 summary
 description
 is_fatal
@@ -305,7 +306,14 @@ RawLLDBErrorMessage
 unable to attach
 root
 the user
+no such process
 internal error
+c8@?0
+/var/db
+3AC94139-8D9A-4470-830B-C71063AAED49
+com.apple.dt.Xcode
+[Internal Only] Ensure that your device has been defanged with boot-args or defaults to allow internal software to run. Refer to https://at.apple.com/kBxoK for details.
+If you think this launch failure is due to a bug in Xcode or macOS, please file a radar and attach a sysdiagnose.
 error: attach by name '%@' failed
 error: attach by pid '%llu' failed
 LLDB provided no error string.
@@ -1649,6 +1657,8 @@ runnableDisplayName
 debugProcessAsUID
 debugSession
 RPCServerCrashedOrExitedMessage
+stringByAppendingPathComponent:
+fileExistsAtPath:isDirectory:
 launchStyle
 _logSetUID:
 debugAsAService
@@ -1687,7 +1697,6 @@ additionalDeviceSubstitutionPaths
 dvt_stringByQuotingOnlyIfNeeded:quoteTabsAndEOLs:quoteHighBitUnichars:
 enumerateKeysAndObjectsUsingBlock:
 sdkPath
-stringByAppendingPathComponent:
 remoteInstallPath
 pathExtension
 stringByDeletingLastPathComponent

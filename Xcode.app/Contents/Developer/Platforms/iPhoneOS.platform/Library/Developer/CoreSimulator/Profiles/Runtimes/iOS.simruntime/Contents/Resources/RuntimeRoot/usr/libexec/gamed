@@ -4559,13 +4559,14 @@ notifyClient:authenticationDidChangeWithError:handler:
 _constructAuthenticationResponseWithError:handler:
 _initGameWithHandler:
 updateClientSettings:
-_loadProfileWithGroup:
+loadProfileForPlayer:pieces:context:handler:
 _appInitWithGroup:
 _primeCacheWithGroup:
 _authenticatedLocalPlayerWithUsername:inContext:isValid:
 postNotificationName:object:
 _notifyAllClientsPlayerAuthenticatedFromClient:withCredential:replyGroup:
 _preloadDataForGameCenterTabs
+_loadProfileWithGroup:
 serverTimeScope
 serverPlayerScope
 serverRequestWithService:
@@ -9924,6 +9925,7 @@ Error attempting to init game: %@
 -[GKAccountServicePrivate _continueAuthenticationWithHandler:]
 %@ (credential.playerInternal.playerID)
 [%s (%s:%d)]
+Encountered error when attempting to load profile: %@
 authLoad
 authenticated LocalPlayerInternal:%@
 %@ profileIsValid:%@ PlayerIsAuthorized:%@
@@ -10002,6 +10004,7 @@ getTermsAndConditionsWithHandler - server returned invalid url
 getTermsAndConditionsWithHandler - server error: %@
 getFriendSupportPageURLWithHandler - no friend support page url in bag, error = %@
 gk-set-profile-settings
+Profile is still valid for: %@
 GKDatabaseErrorDomain
 sqlite3 error: %s
 Asked to read friend recommendations for more than a single player. This is not supported.
@@ -10066,6 +10069,7 @@ expirationDate > %@ && storePiecesExpirationDate > %@ && name != nil && bundleID
 expirationDate != nil && storePiecesExpirationDate != nil && name != nil && bundleID in %@
 Cache Validity Error! Missing Results
 GKGameService: loadGameMetadataForBundleIDs:
+bundleID in %@
 gk-get-game-metadata
 GKGameService: getGameMetadataForBundleIDs:
 -[GKGameServicePrivate getGameMetadataForBundleIDs:handler:]_block_invoke_2
@@ -10463,6 +10467,12 @@ AddCreator
 RemoveCreator
 Accept
 Decline
+com.apple.GameKit.AccessPoint
+HighlightedAccessPointTapped
+AccessPointButtonTapped
+AccessPointEnabled
+AccessPointDisabled
+HighlightedAccessPointDisplayed
 GKReporter: report domain: %@, payload: %@
 authenticateResponseTimestamp
 Td,N,V_authenticateResponseTimestamp
@@ -11960,13 +11970,13 @@ softlink:r:path:/System/Library/Frameworks/MobileCoreServices.framework/MobileCo
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18B5060x</string>
+<string>12A8179f</string>
 <key>DTPlatformName</key>
 <string>iphonesimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B5060x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

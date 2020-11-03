@@ -188,9 +188,11 @@ supportedInterfaceOrientations
 deviceFamilies
 B24@?0Q8@"NSObject<OS_xpc_object>"16
 requiresFullScreen
+supportsMultiwindow
 TQ,N,V_supportedInterfaceOrientations
 T@"NSArray",C,N,V_deviceFamilies
 TB,N,V_requiresFullScreen
+TB,N,V_supportsMultiwindow
 UISApplicationSupportDisplayEdgeInsetsWrapperTop
 UISApplicationSupportDisplayEdgeInsetsWrapperLeft
 UISApplicationSupportDisplayEdgeInsetsWrapperBottom
@@ -574,9 +576,12 @@ deviceFamilies
 setDeviceFamilies:
 requiresFullScreen
 setRequiresFullScreen:
+supportsMultiwindow
+setSupportsMultiwindow:
 _supportedInterfaceOrientations
 _deviceFamilies
 _requiresFullScreen
+_supportsMultiwindow
 initWithTop:left:bottom:right:
 topInset
 setTopInset:

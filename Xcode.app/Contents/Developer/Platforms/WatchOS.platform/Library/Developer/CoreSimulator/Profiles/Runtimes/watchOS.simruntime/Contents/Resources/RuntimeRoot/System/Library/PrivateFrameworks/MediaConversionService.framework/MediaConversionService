@@ -1,4 +1,5 @@
-@(#)PROGRAM:MediaConversionService  PROJECT:MediaConversionService-310.1.190
+@(#)PROGRAM:MediaConversionService  PROJECT:MediaConversionService-310.2.160
+33333cs@
 serviceConnection
 T@"NSXPCConnection",&,V_serviceConnection
 pendingRequestIdentifierToProgressMap
@@ -60,6 +61,7 @@ PAMediaConversionServiceOptionFormatConversionOnlyKey
 PAMediaConversionServiceOptionRasterizationDPIKey
 PAMediaConversionServiceOptionPowerEfficiencyKey
 PAMediaConversionServiceOptionPowerEfficiencyMinimumDurationKey
+PAMediaConversionServiceOptionUseEmbeddedImageAsSourceKey
 PAMediaConversionServiceOptionAdjustmentInformationKey
 PAMediaConversionServiceAdjustmentDataKey
 PAMediaConversionServiceAdjustmentFormatIdentifierKey
@@ -336,6 +338,7 @@ init
 setupServiceConnection
 convertVideoAtSourceURL:toDestinationURL:options:completionHandler:
 convertVideoAtSourceURLCollection:toDestinationURLCollection:options:completionHandler:
+canMarkPendingRequestAsOptionalForProgress:
 markPendingRequestAsOptionalForProgress:
 modifyRequestWithIdentifier:modifications:
 extractStillImageFromVideoAtSourceURL:toDestinationURL:options:completionHandler:

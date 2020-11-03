@@ -78,11 +78,11 @@ UNIMPLEMENTED
 FigBaseClass
 unrecognised callbacks->version (expected 0)
 FigRuntimeRegisterAttachmentBearerWithTypeID
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Core/FigAttachmentBearer/FigAttachmentBearer.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Core/FigAttachmentBearer/FigAttachmentBearer.c
 missing callback
-CFDictionaryCreateMutable failed
+Expected to be called with sFigAttachmentBearerCallbacksPerTypeID created
 typeID already registered
-typeID not registered
+FigRuntimeUnregisterAttachmentBearerWithTypeID() is a no-op
 FigRuntimeUnregisterAttachmentBearerWithTypeID
 NULL key
 CMSetAttachment
@@ -90,10 +90,12 @@ attachmentMode out of range
 CMGetAttachment
 CMRemoveAttachment
 CMCopyDictionaryOfAttachments
+CFDictionaryCreateMutable failed
+FigAttachmentsRegisterInternalBearersOnce
 NULL initialStylePropertyValue
 FigCaptionDynamicStyle
 FigCaptionDynamicStyleCreateMutable
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Core/FigCaption/FigCaptionDynamicStyle.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Core/FigCaption/FigCaptionDynamicStyle.c
 NULL newCaptionDynamicStyleOut
 Failed to allocate keyFrameValues
 FigCaptionDynamicStyleCreate
@@ -567,6 +569,7 @@ No CMVideoFormatDescriptionRef
 FigVideoFormatDescriptionContainsDolbyVisionMetadata
 No SampleDescriptionExtensionAtoms CFDictionary
 dvcC
+dvvC
 No format description
 FigVideoCreateBlockBufferAndFormatDescriptionForHoistingInStreamParameterSets
 No blockBuffer
@@ -580,10 +583,13 @@ FigMalloc failed
 codecType: %d
 codecType: '%c%c%c%c'
 dimensions: %d x %d
+dvvC < 9 bytes
+FigVideoFormatDescriptionIsHLGActuallyDolby8p4
+Unsupported Dolby version
 kCMNotificationInvalidParameterError
 Cannot use RetainPostingObjectWhenDeferring when not deferring.
 FigNotificationCenterAddWeakListener
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Core/FigNotificationCenter/FigNotificationCenterCF.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Core/FigNotificationCenter/FigNotificationCenterCF.c
 weak--%p--%p--%@--%p--listener
 kFigNotificationAllocationFailedError
 no hash
@@ -1264,6 +1270,7 @@ Screen
 BufferedAudio
 Control
 OutOfBandData
+LowLatencyAudio
 ScreenMain
 ScreenAlt
 AudioGeneral
@@ -1882,6 +1889,8 @@ no alpha hvcC
 FigHEVCBridge_CreateMuxedAlphaDataBuffer
 nuh_layer_id was not 0
 did not land exactly at end
+NULL ambientViewingEnvironmentSEIOut
+FigHEVCBridge_CreateAmbientViewingEnvironmentSEINAL
 FigHEVCBridge_CreateHLSfMP4ParsingInfoFromHVCCData
 parsingInfoOut is NULL
 no SPS in hvcCData
@@ -1900,6 +1909,14 @@ Pre-parse error, trying to read past blockBuffer
 no slice data found
 encryptableNALIndex >= slice_count
 Error found: %d
+FigHEVCBridge_CreateDolbyRPUNAL
+Allocation failure RPU
+NULL dataPtr
+FigHEVCBridge_WritePaddingNALU
+NALU length must be 1,2 or 4 bytes
+Buffer too small
+NALU length size too small 
+NALU length size too small
 end of bitstream
 hevcbridgeAdvanceInBitstream
 hevcbridgeGetSPS_VUI_AspectRatioCallbackFlag
@@ -1965,6 +1982,50 @@ no spsDigest found
 {hevcbridgeParseSliceSegmentLayer} ERROR: currRpsPtr is NULL
 {hevcbridgeParseSliceSegmentLayer} ERROR: Wrong alignment_bit_equal_to_one in slice segment header
 {hevcbridgeParseSliceSegmentLayer} ERROR: Wrong alignment_bit_equal_to_zero in slice segment header
+invalid vdr_rpu_nal_type
+hevcbridgeParseDolbyRPUDataRBSP
+unsupported rpu_type
+BL_bit_depth_minus8 must be in the range of 0 to 8
+EL_bit_depth_minus8 must be in the range of 0 to 8
+reserved_zero_3bits must be in the range of 0 to 7
+There should be no display management metadata compression - reserved_zero_3bits should be 0
+num_pivots_minus2 must be in the range of 0 to 15
+nlq_num_pivots_minus2 must be in the range of 0 to 15
+{hevcbridgeParseDolbyRPUDataRBSP} ERROR: Wrong alignment_bit_equal_to_zero
+BigDolbyTables failed
+hevcbridgeParseVDRRPUDataPayload
+num_pivots_minus2 must be in the range of 0 to MAX_NUM_MAPPING_PIVOTS
+hevcbridgeParseRPUDataMapping
+mapping_idc must not exceed 15
+kFigBridgeUnsupportedSampleDescriptionFlavorErr
+mapping_idc MAPPING_POWER is not supported
+mapping_idc MAPPING_LUT is not supported
+hevcbridgeParseRPUDataMappingParamPolynomial
+hevcbridgeParseRPUDataMappingParamMMR
+hevcbridgeParseRPUDataChromaResampling is not yet supported
+hevcbridgeParseRPUDataChromaResampling
+hevcbridgeParseRPUDataSpatialResampling is not yet supported
+hevcbridgeParseRPUDataSpatialResampling
+hevcbridgeParseRPUDataNlq is not yet supported
+hevcbridgeParseRPUDataNlq
+hevcbridgeParseElChromaResampling is not yet supported
+hevcbridgeParseElChromaResampling
+hevcbridgeParseVdrDmDataPayload
+num_ext_blocks must not exceed 254
+{hevcbridgeParseVdrDmDataPayload} ERROR: Wrong alignment_bit_equal_to_zero
+num_ext_blocks2 must not exceed 254
+{hevcbridgeParseVdrDmDataPayload} ERROR: Wrong alignment_bit_equal_to_zero in VdrDmDataPayload2
+The total number of extended metadata blocks exceeds 255.
+hevcbridgeSPullLong
+S_PULLlong should: numBits>0
+S_PULLlong should: numBits<=32
+hevcbridgeSPull
+S_PULL should: (numBits)>1
+S_PULL should: (numBits)<=25
+hevcbridgeParseVdrDmDataPayloadExMetadatatBlocks
+Extension block length exceeds MAX_UNKNOWN_MD_SIZE.
+Extension block level must not exceed 255.
+Extension block exceeds input RPU buffer.
 hevcbridgeGetSPS_VUI_ChromaLocationCallbackFlag
 hevcbridgeGetSPS_VUI_ChromaLocationCallbackUnsigned
 hevcbridgeGetSPS_VUI_NCLCCallbackFlag
@@ -2034,12 +2095,13 @@ UNSPEC58
 UNSPEC59
 UNSPEC60
 UNSPEC61
-UNSPEC62
+Dolby62
 UNSPEC63
 hevcbridgeGetVPSAlphaChannelNuhLayerIdCallbackFlag
 hevcbridgeGetVPSAlphaChannelNuhLayerIdCallbackUnsigned
 hevcbridgeGetSEIAlphaChannelInfoCallbackFlag
 hevcbridgeGetSEIAlphaChannelInfoCallbackUnsigned
+hevcbridgeGetSEIAmbientViewingEnvironmentCallbackUnsigned
 hevcbridgeGetSPSProfileTierLevelCallbackFlag
 hevcbridgeGetSPSProfileTierLevelCallbackUnsigned
 hevcbridgeGetSPSChromaFormatAndBitDepthsCallbackUnsigned
@@ -2062,6 +2124,8 @@ nalUnitHeader length should be greater than or equal to 2
 hevcbridgeCreateNALUnitFromRBSP
 no nalUnitBytePtr
 hevcbridgeUPush
+U_PUSH should: (numBits)>0
+U_PUSH should: (numBits)<=25
 Buffer got overrun while writing
 alpha hvcCData too short
 hevcbridge_copyModifedAlphaSPSAndPPSFromHVCC
@@ -2335,6 +2399,191 @@ alpha_opaque_value
 alpha_channel_incr_flag
 alpha_channel_clip_flag
 alpha_channel_clip_type_flag
+ambient_illuminance
+ambient_light_x
+ambient_light_y
+rpu_type
+rpu_format
+vdr_rpu_profile
+vdr_rpu_level
+vdr_seq_info_present_flag
+chroma_sample_loc_type
+chroma_resampling_explicit_filter_flag
+coefficient_data_type
+coefficient_log2_denom
+chroma_filter_exp_coef_log2_denom_minus6
+vdr_rpu_normalized_idc
+BL_video_full_range_flag
+BL_bit_depth_minus8
+EL_bit_depth_minus8
+vdr_bit_depth_minus8
+spatial_resampling_filter_flag
+spatial_resampling_explicit_filter_flag
+spatial_filter_exp_coef_log2_denom_minus6
+reserved_zero_3bits
+el_spatial_resampling_filter_flag
+disable_residual_flag
+el_chroma_filter_exp_coef_log2_denom_minus10
+vdr_dm_metadata_present_flag
+use_prev_vdr_rpu_flag
+prev_vdr_rpu_id
+vdr_rpu_id
+mapping_color_space
+mapping_chroma_format_idc
+chroma_resampling_filter_idc
+chroma_filter_1D_exp_length_ver_div2_minus2
+chroma_filter_1D_exp_length_hor_div2_minus2
+chroma_filter_2D_exp_phase0_length_ver_minus1
+chroma_filter_2D_exp_phase0_length_hor_minus1
+chroma_filter_2D_exp_phase1_length_ver_minus1
+chroma_filter_2D_exp_phase1_length_hor_minus1
+num_pivots_minus2
+pred_pivot_value
+spatial_resampling_mode_hor_idc
+spatial_resampling_filter_hor_idc
+spatial_resampling_mode_ver_idc
+spatial_resampling_filter_ver_idc
+nlq_method_idc
+nlq_num_pivots_minus2
+nlq_pred_pivot_value
+el_chroma_resampling_filter_idc
+num_x_partitions_minus1
+num_y_partitions_minus1
+overlapped_prediction_method
+affected_dm_metadata_id
+current_dm_metadata_id
+scene_refresh_flag
+YCCtoRGB_coef0
+YCCtoRGB_coef1
+YCCtoRGB_coef2
+YCCtoRGB_coef3
+YCCtoRGB_coef4
+YCCtoRGB_coef5
+YCCtoRGB_coef6
+YCCtoRGB_coef7
+YCCtoRGB_coef8
+YCCtoRGB_offset0
+YCCtoRGB_offset1
+YCCtoRGB_offset2
+RGBtoLMS_coef0
+RGBtoLMS_coef1
+RGBtoLMS_coef2
+RGBtoLMS_coef3
+RGBtoLMS_coef4
+RGBtoLMS_coef5
+RGBtoLMS_coef6
+RGBtoLMS_coef7
+RGBtoLMS_coef8
+signal_eotf
+signal_eotf_param0
+signal_eotf_param1
+signal_eotf_param2
+signal_bit_depth
+signal_color_space
+signal_chroma_format
+signal_full_range_flag
+source_min_PQ
+source_max_PQ
+source_diagonal
+num_ext_blocks
+mapping_idc
+mapping_param_pred_flag
+diff_pred_part_idx_mapping_minus1
+poly_order_minus1
+linear_interp_flag
+pred_linear_interp_value_int
+pred_linear_interp_value
+poly_coef_int
+poly_coef
+mmr_order_minus1
+mmr_constant_int
+mmr_constant
+mmr_coef_int
+mmr_coef
+pow_coef_int
+pow_coef
+ext_block_length
+ext_block_level
+level_1_min_PQ
+level_1_max_PQ
+level_1_avg_PQ
+level_2_target_max_PQ
+level_2_trim_slope
+level_2_trim_offset
+level_2_trim_power
+level_2_trim_chroma_weight
+level_2_trim_saturation_gain
+level_2_ms_weight
+level_3_min_PQ_offset
+level_3_max_PQ_offset
+level_3_avg_PQ_offset
+level_4_anchor_PQ
+level_4_anchor_power
+level_5_active_area_left_offset
+level_5_active_area_right_offset
+level_5_active_area_top_offset
+level_5_active_area_bottom_offset
+level_6_max_display_mastering_luminance
+level_6_min_display_mastering_luminance
+level_6_max_content_light_level
+level_6_max_frame_average_light_level
+level_8_target_display_index
+level_8_trim_slope
+level_8_trim_offset
+level_8_trim_power
+level_8_trim_chroma_weight
+level_8_trim_saturation_gain
+level_8_ms_weight
+level_8_target_mid_contrast
+level_8_clip_trim
+level_8_saturation_vector_field0
+level_8_saturation_vector_field1
+level_8_saturation_vector_field2
+level_8_saturation_vector_field3
+level_8_saturation_vector_field4
+level_8_saturation_vector_field5
+level_8_hue_vector_field0
+level_8_hue_vector_field1
+level_8_hue_vector_field2
+level_8_hue_vector_field3
+level_8_hue_vector_field4
+level_8_hue_vector_field5
+level_9_source_primary_index
+level_9_source_primary_red_x
+level_9_source_primary_red_y
+level_9_source_primary_green_x
+level_9_source_primary_green_y
+level_9_source_primary_blue_x
+level_9_source_primary_blue_y
+level_9_source_primary_white_x
+level_9_source_primary_white_y
+level_10_target_display_index
+level_10_target_max_PQ
+level_10_target_min_PQ
+level_10_target_primary_index
+level_10_target_primary_red_x
+level_10_target_primary_red_y
+level_10_target_primary_green_x
+level_10_target_primary_green_y
+level_10_target_primary_blue_x
+level_10_target_primary_blue_y
+level_10_target_primary_white_x
+level_10_target_primary_white_y
+level_11_content_type
+level_11_white_point
+level_11_byte2
+level_11_byte3
+level_254_dm_mode
+level_254_dm_version_index
+level_255_dm_run_mode
+level_255_dm_run_version
+level_255_dm_debug0
+level_255_dm_debug1
+level_255_dm_debug2
+level_255_dm_debug3
+num_ext_blocks2
+ext_block_length2
+ext_block_level2
 %s: %s (%u)
 %s: %u (%f)
 monochrome
@@ -2363,9 +2612,13 @@ alpha_channel_info
 %02x%02x%02x%02x
  ... 
 %02x
+hevcbridgeGetL1RPUMetadataCallbackUnsigned
+hevcbridgeUEPush
+hevcbridgeSEPush
+hevcbridgeIPush
 NULL mapping
 FigGeometryMappingGetSourceUnits
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Core/FigGeometry/FigGeometryMapping.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Core/FigGeometry/FigGeometryMapping.c
 FigGeometryMappingGetDestinationUnits
 NULL source coordinate space
 FigGeometryMappingCreate
@@ -3440,7 +3693,6 @@ Missing default style dict
 Missing default style font color dict
 too short to get dataFormat
 copyTextExtensions
-kFigBridgeUnsupportedSampleDescriptionFlavorErr
 unrecognized text format
 input len too small
 copyQTTextExtensions
@@ -5587,6 +5839,13 @@ clientID %lld %ld collectedReads %ld requests
 <<<< HEVCBridge >>>> %s: called unexpectedly for field %d
 <<<< HEVCBridge >>>> %s: called unexpectedly for nal unit type %d
 <<<< HEVCBridge >>>> %s: HEVC SPS VUI Sample Aspect Ratio value %d unrecognized, will use square pixels
+<<<< HEVCBridge >>>> %s: coefficient_data_type must be in the range of 0 to 3
+<<<< HEVCBridge >>>> %s: Data size is unknown when coefficient_data_type is reserved (2 or 3)
+<<<< HEVCBridge >>>> %s: pred_part_idx mapping %d is out of range 0 to %d
+<<<< HEVCBridge >>>> %s: poly_order_minus1 %d, expected to be 0 or 1
+<<<< HEVCBridge >>>> %s: mmr_order_minus1 %d, must not exceed 2
+<<<< HEVCBridge >>>> %s: Invalid ext_block_level %d in payload 1
+<<<< HEVCBridge >>>> %s: Invalid ext_block_level2 %d in payload 2
 <<<< HEVCBridge >>>> %s: sei_alpha_channel_info.cancel_flag == 1 not supported
 <<<< HEVCBridge >>>> %s: Unsupported alpha_channel_incr_flag (%d), expected 0
 <<<< HEVCBridge >>>> %s: Unsupported alpha_channel_clip_flag (%d), expected 0
@@ -5594,6 +5853,10 @@ clientID %lld %ld collectedReads %ld requests
 <<<< HEVCBridge >>>> %s: Unsupported alpha bit-depth_minus_8 (%d), expected 0
 <<<< HEVCBridge >>>> %s: Unsupported alpha transparent_value (%d), expected 0
 <<<< HEVCBridge >>>> %s: Unsupported alpha opaque_value (%d), expected 255
+<<<< HEVCBridge >>>> %s: Unsupported illuminance (%u), expected non-zero
+<<<< HEVCBridge >>>> %s: Unsupported light_x (%u), expected non-zero
+<<<< HEVCBridge >>>> %s: Unsupported light_y (%u), expected non-zero
+<<<< HEVCBridge >>>> %s: called unexpectedly for field %u
 <<<< HEVCBridge >>>> %s: called unexpectedly for general_profile_space %d
 <<<< HEVCBridge >>>> %s: Unknown chroma_format_idc %d
 <<<< HEVCBridge >>>> %s: parsed alpha nal_unit %d/%d of type %d (%d/%d): offset %d, length %d: %02x %02x ...
@@ -6010,15 +6273,18 @@ Posting %@ on %s object %p
 <<<< FigTextMarkup >>>> %s: mapping generic font name to MACaptionAppearanceFontStyle font style failed to map to a number
 <<<< FigTextMarkup >>>> %s: unknown generic font name '%@' could not be mapped to a MACaptionAppearanceFontStyle
 <<<< FigTextMarkup >>>> %s: unrecognized FigGeometryDimension units (0x%x)
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Utilities/FigDispatchUtilities.c %s: IMPORTANT NOTE TO FIG ENGINEERING: don't use DISPATCH_QUEUE_CONCURRENT with FigDispatchQueueCreateWithPriority; please migrate to FigDispatchQueueCreateTargetingPThreadRootQueueWithPriority
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Utilities/FigDispatchUtilities.c %s: Couldn't create pthread root queue for priority %d
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Utilities/FigDispatchUtilities.c %s: FigDispatchAsyncSetPropertyImplementation callback returned %d; this async error will be discarded
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.24.7/Sources/Core/FigFormatDescription/HapticDescriptionBridge.c %s: Warning: HapticFormatDescription has ignored a "%@" extension when converting to the sample description.
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Utilities/FigDispatchUtilities.c %s: IMPORTANT NOTE TO FIG ENGINEERING: don't use DISPATCH_QUEUE_CONCURRENT with FigDispatchQueueCreateWithPriority; please migrate to FigDispatchQueueCreateTargetingPThreadRootQueueWithPriority
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Utilities/FigDispatchUtilities.c %s: Couldn't create pthread root queue for priority %d
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Utilities/FigDispatchUtilities.c %s: FigDispatchAsyncSetPropertyImplementation callback returned %d; this async error will be discarded
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreMediaFramework_Sim/EmbeddedCoreMedia-2755.34.2/Sources/Core/FigFormatDescription/HapticDescriptionBridge.c %s: Warning: HapticFormatDescription has ignored a "%@" extension when converting to the sample description.
 bolg
 niog****
 tuOdbolg
 diudbolg
 cdiubolg
+US]CQ
+^(BM
+kZ;&
 &wave
 frma
 frmaalac

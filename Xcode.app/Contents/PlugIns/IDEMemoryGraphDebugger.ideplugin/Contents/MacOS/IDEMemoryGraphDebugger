@@ -1,10 +1,11 @@
-@(#)PROGRAM:IDEMemoryGraphDebugger  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:IDEMemoryGraphDebugger  PROJECT:IDEPlugIns-17510.1
+ffff
 Xcode.XRMemoryGraphDebugger.GeniusCategory.Definition
 ideTopLevelStructureObjects
 v32@?0@8@"NSDictionary"16^c24
 c16@?0@?<c@?>8
 -[XRMemoryGraphDebuggerGeniusResultsFinder _getUpdateGeniusResultsPhase1Block:phase2Block:phase3Block:]_block_invoke
-/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17507/IDEDebugger/IDEMemoryGraphDebugger/XRMemoryGraphDebuggerGeniusResultsFinder.m
+/Library/Caches/com.apple.xbs/Sources/IDEPlugins/IDEPlugins-17510.1/IDEDebugger/IDEMemoryGraphDebugger/XRMemoryGraphDebuggerGeniusResultsFinder.m
 ((index)) != nil
 %@ should not be nil.
 (index)

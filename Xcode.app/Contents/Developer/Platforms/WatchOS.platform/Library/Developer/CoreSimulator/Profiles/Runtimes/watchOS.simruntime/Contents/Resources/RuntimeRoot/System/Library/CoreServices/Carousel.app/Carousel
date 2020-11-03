@@ -84,6 +84,10 @@ Carousel
 <true/>
 <key>com.apple.accounts.appleidauthentication.defaultaccess</key>
 <true/>
+<key>com.apple.announced.client</key>
+<true/>
+<key>com.apple.announced.clientid</key>
+<string>com.apple.NanoHome</string>
 <key>com.apple.aop.haptics.set-mapping.access</key>
 <true/>
 <key>com.apple.assistant.client</key>
@@ -474,6 +478,8 @@ Carousel
 <true/>
 <key>com.apple.private.ppm.superclient</key>
 <true/>
+<key>com.apple.private.rtcreportingd</key>
+<true/>
 <key>com.apple.private.safari.safebrowsing.useallproviders</key>
 <true/>
 <key>com.apple.private.screen-time</key>
@@ -570,6 +576,7 @@ Carousel
 <string>com.apple.triald</string>
 <string>com.apple.proactive.experiments.responses</string>
 <string>com.apple.icloud.FMF.FMFMapXPCService</string>
+<string>com.apple.announced.server</string>
 <string>com.apple.itunescloud.music-subscription-status-service</string>
 </array>
 <key>com.apple.security.exception.shared-preference.read-only</key>

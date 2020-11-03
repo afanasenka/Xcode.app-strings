@@ -524,6 +524,7 @@ publisherArticleVersion
 isVideoInFeedEligible
 v24@0:8@"<NFContainerRegistry>"16
 v24@0:8@"<NFResolver>"16
+@16@0:8
 T@"NSURL",N,R
 name
 T@"NSString",N,R
@@ -568,20 +569,16 @@ hostArticleChannelData
 galleryImageCount
 StocksAnalytics
 v24@0:8@16
-v40@0:8@16@24@32
+v32@0:8@16@24
 v16@?0@"FCBundleSubscription"8
 StocksAnalytics/BundleSubscriptionStatus+NewsAnalytics.swift
 Unknown enum case encountered.  Please update this switch statement to handle the new case.
-/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-669/StocksAnalytics/Session/SessionObserver+UserBundleSubscriptionContextData.swift
+/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-678.1/StocksAnalytics/Session/SessionObserver+UserBundleSubscriptionContextData.swift
 userBundleSubscriptionContextData
 FCBundleSubscriptionChangeObserver
 v24@0:8@"FCBundleSubscription"16
-v40@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24@"FCBundleSubscriptionChangeSet"32
-NSObject
-q16@0:8
-@16@0:8
-@24@0:8:16
-/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-669/StocksAnalytics/Session/SessionObserver+AppData.swift
+v32@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24
+/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-678.1/StocksAnalytics/Session/SessionObserver+AppData.swift
 articleScienceData
 userArticleContextData
 symbolChartDisplayErrorCode
@@ -637,18 +634,21 @@ v16@0:8
 assemblies
 T@"NSArray",N,R
 NFFrameworkAssembly
+NSObject
+q16@0:8
 #16@0:8
+@24@0:8:16
 NFBundleAssembly
 @"NSArray"16@0:8
 paidSubscriberToSourceChannelType
 paidSubscriberToSourceChannelMethod
 adEngagementData
 adJournalEntryData
-/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-669/StocksAnalytics/Session/SessionObserver+SessionData.swift
+/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-678.1/StocksAnalytics/Session/SessionObserver+SessionData.swift
 com.apple.stocks
 symbolPositionData
 contentEnvironmentData
-/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-669/StocksAnalytics/Session/SessionObserver+ContentEnvironmentData.swift
+/Library/Caches/com.apple.xbs/Sources/Stocks_Sim/Stocks-678.1/StocksAnalytics/Session/SessionObserver+ContentEnvironmentData.swift
 _TtC15StocksAnalytics31ExternalAnalyticsEventProcessor
 uploader
 panelIdProvider
@@ -725,6 +725,7 @@ videoAdEngagementData
 unexpected results while parsing the demographics data
 $sSY
 SSSg
+SbSg
 So8NSObjectC
 SgXw
 SgXwz_Xx
@@ -1559,7 +1560,7 @@ debugDescription
 dealloc
 bundleSubscriptionDidExpire:
 bundleSubscriptionDidSubscribe:
-bundleSubscriptionDidChange:previousBundleSubscription:changeSet:
+bundleSubscriptionDidChange:previousBundleSubscription:
 bundleSubscriptionManager
 cachedSubscription
 addObserver:
@@ -1578,6 +1579,8 @@ standardUserDefaults
 valueForKey:
 setObject:forKey:
 assemblies
+sharedConnection
+isDiagnosticSubmissionAllowed
 endGeneratingDeviceOrientationNotifications
 pushOrientationData
 beginGeneratingDeviceOrientationNotifications

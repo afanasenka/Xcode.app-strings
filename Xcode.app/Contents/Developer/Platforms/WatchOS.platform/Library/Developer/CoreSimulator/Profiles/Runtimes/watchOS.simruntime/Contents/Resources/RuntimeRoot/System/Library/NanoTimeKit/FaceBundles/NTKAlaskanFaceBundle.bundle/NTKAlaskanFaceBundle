@@ -156,6 +156,7 @@ timescale
 NTKAlaskanGMTStyleController minute updates
 q24@?0@"NTKAlaskanGMTTimezoneLocation"8@"NTKAlaskanGMTTimezoneLocation"16
 %@, %@
+v24@?0@"WorldClockCity"8^B16
 gmtView
 T@"NTKAlaskanGMTStyleView",W,N,V_gmtView
 transitInfoByCity
@@ -164,6 +165,8 @@ currentSelectedTimezoneLocation
 T@"NTKAlaskanGMTTimezoneLocation",&,N,V_currentSelectedTimezoneLocation
 currentTimezoneLocations
 T@"NSArray",&,N,V_currentTimezoneLocations
+currentWorldClockCities
+T@"NSSet",&,N,V_currentWorldClockCities
 defaultCityIdentifiers
 T@"NSSet",&,N,V_defaultCityIdentifiers
 v32@?0@8Q16^B24
@@ -1020,7 +1023,6 @@ setOffsetPerRevolution:
 setUseWideIdleCheck:
 faceView
 dealloc
-updateView
 setDate:
 setChronometerHandsParentView:
 view
@@ -1032,6 +1034,7 @@ setIsChronoMode:
 registerForStopwatchNotifications
 tritiumAnimationInProgress
 setOverrideDate:animatingAnalogHands:
+updateView
 setIsEditing:
 defaultCenter
 _handleStopwatchChangedNotification
@@ -1082,7 +1085,6 @@ crownInputHandler:didChangeProgress:
 crownInputHandlerDidBecomeIdle:
 crownInputHandlerDidPressCrown:
 crownInputHandlerDidPressSideButton:
-updateViewState
 initWithContentView:crownInputHandler:
 prepareForEditing
 cleanupAfterEditing
@@ -1257,16 +1259,15 @@ stopListeningForSignificantTimeChangeNotification
 stopListeningForLocalTimeZoneChangeNotification
 stopListeningForLocationChangeNotification
 stopListeningForTimezoneChangeNotification
-updateWorldClockCities
 startListeningForLocalTimeZoneChangeNotification
 startListeningTimezoneChangeNotification
-updateSelectionInViewAnimated:completionBlock:
 gmtView
 animateWithDuration:animations:
 selectHourOffset:
 cityIdentifier
 locationName
 _saveReferenceTimezoneLocation
+updateSelectionInView
 intValue
 timezoneLocationFromCityIdentifier:
 hourOffset
@@ -1275,6 +1276,7 @@ compare:
 sortedArrayUsingComparator:
 setDefaultLocations:
 worldClockCities
+isEqualToSet:
 arrayWithCapacity:
 alCityId
 timezoneLocationFromCity:
@@ -1316,6 +1318,9 @@ localTimeZone
 coordinate
 classicIdentifier
 transitInfoForDate:city:
+enumerateObjectsUsingBlock:
+updateSelectionInViewAnimated:completionBlock:
+containsCityIdentifier:
 selectTimezoneLocation:animated:completionBlock:
 isEqualToTimeZone:
 referenceTimezoneLocation
@@ -1336,24 +1341,27 @@ alaskanGMTStyleViewDidCancelEditing:
 alaskanGMTStyleView:didSelectTimezoneLocation:
 alaskanGMTStyleViewDidResetHourOffset:
 resetGMTSunsetSunriseInformation
+updateWorldClockCities
 setGmtView:
 transitInfoByCity
 currentSelectedTimezoneLocation
 setCurrentSelectedTimezoneLocation:
 currentTimezoneLocations
 setCurrentTimezoneLocations:
+currentWorldClockCities
+setCurrentWorldClockCities:
 defaultCityIdentifiers
 setDefaultCityIdentifiers:
 _gmtView
 _transitInfoByCity
 _currentSelectedTimezoneLocation
 _currentTimezoneLocations
+_currentWorldClockCities
 _defaultCityIdentifiers
 setDiameter:
 layoutMarkers
 setObject:atIndexedSubscript:
 null
-enumerateObjectsUsingBlock:
 totalDiameter
 setNeedsLayout
 contentDiameter

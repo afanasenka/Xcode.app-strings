@@ -1365,8 +1365,10 @@ groupsAfterGroup
 T@"NSMutableDictionary",&,N,V_groupsAfterGroup
 cachedLabelWidths
 T@"NSMapTable",&,N,V_cachedLabelWidths
-extraBarButtonItems
-T@"NSArray",&,N,V_extraBarButtonItems
+extraRightBarButtonItems
+T@"NSArray",&,N,V_extraRightBarButtonItems
+extraLeftBarButtonItems
+T@"NSArray",&,N,V_extraLeftBarButtonItems
 cardTopGroup
 T@"CNCardGroup",&,N,V_cardTopGroup
 cardBottomGroup
@@ -1843,7 +1845,7 @@ dismissHandler
 T@?,C,N,V_dismissHandler
 permittedArrowDirections
 TQ,N,V_permittedArrowDirections
-checkmark.circle
+circle
 checkmark.circle.fill
 likenessViews
 T@"NSArray",C,N,V_likenessViews
@@ -4523,10 +4525,11 @@ identityNameTextField
 T@"CNPhotoPickerHeaderViewTextField",&,N,V_identityNameTextField
 clearIdentityNameButton
 T@"UIButton",&,N,V_clearIdentityNameButton
+T@"UIGestureRecognizer",&,N,V_tapGestureRecognizer
 T@"<CNPhotoPickerHeaderViewDelegate>",W,N,V_delegate
 placeholderProviderItem
 T@"CNPhotoPickerProviderItem",&,N,V_placeholderProviderItem
-/Library/Caches/com.apple.xbs/Sources/ContactsUI_Sim/ContactsUI-1101.4/Framework/CNPhotoPickerHeaderView.m
+/Library/Caches/com.apple.xbs/Sources/ContactsUI_Sim/ContactsUI-1107/Framework/CNPhotoPickerHeaderView.m
 Unable to copy data for photo picker header photo drop operation: %@
 kUTTypeJPEG
 /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
@@ -5436,8 +5439,6 @@ CNPhotoPickerMonogramProvider
 CNContactFilter
 CNFeatureDefaults
 CNSharingProfileOnboardingAudienceCatalystViewController
-UIPickerViewDelegate
-UIPickerViewDataSource
 CNPropertyPlaceholderItem
 CNMeCardSharingResult
 CNContactActionProvider
@@ -7444,6 +7445,7 @@ setActionsViewTopMargin:
 actionsViewController
 setActionsViewController:
 setTitle:forState:
+descender
 ascender
 boundingRectWithSize:options:attributes:context:
 setMaximumNumberOfLines:
@@ -8531,6 +8533,11 @@ setShouldOverrideEnabledState:
 overrideEnabledState
 shouldPresentDisambiguationUI
 setShouldPresentDisambiguationUI:
+imageForSystemImageNamed:
+imageForSystemImageNamed:withTextStyle:
+imageForSystemImageNamed:withPointSize:
+systemImageNamed:withConfiguration:
+configurationWithPointSize:weight:scale:
 _displaysUnavailableActionTypes
 _supportedActionTypes
 _actionsPerType
@@ -8849,7 +8856,8 @@ _editingGroups
 _nameEditingGroups
 _groupsAfterGroup
 _cachedLabelWidths
-_extraBarButtonItems
+_extraRightBarButtonItems
+_extraLeftBarButtonItems
 _cardActionsGroup
 _cardShareLocationGroup
 _cardMedicalIDGroup
@@ -9210,8 +9218,10 @@ groupsAfterGroup
 setGroupsAfterGroup:
 cachedLabelWidths
 setCachedLabelWidths:
-extraBarButtonItems
-setExtraBarButtonItems:
+extraRightBarButtonItems
+setExtraRightBarButtonItems:
+extraLeftBarButtonItems
+setExtraLeftBarButtonItems:
 cardActionsGroup
 setCardActionsGroup:
 cardShareLocationGroup
@@ -9920,6 +9930,7 @@ cellConfigurationForSelectedState:
 cellBackgroundViewConfigurationProvider
 parentCellTrailingAccessoryConfigurations
 initWithCellSelectionTogglesExpansionState:
+tertiaryLabelColor
 systemImageNamed:
 outlineRootParentCellConfiguration
 initWithConfiguration:layoutEnvironment:
@@ -10429,7 +10440,6 @@ externalDevice
 setExternalDevice:
 activateWithContext:
 initWithPayload:
-systemImageNamed:withConfiguration:
 configurationWithFont:scale:
 limitedUIElements
 currentCarPlayExternalDevice
@@ -12050,6 +12060,7 @@ collectionView:layout:referenceSizeForFooterInSection:
 initWithPhotosDataSource:style:allowRotation:
 pendingVisualIdentity
 confirmCancelAction
+collectionViewPaddingForCatalyst
 buildCollectionView
 buildHeaderView
 initializeHeaderView
@@ -12059,6 +12070,7 @@ updateActiveIndexPath:
 updateVisualIdentityWithProviderItem:
 updateInjectedItemsSectionForProviderItem:
 updateDoneButtonEnabledState
+updateDoneButtonEnabledStateForEditingProviderItem:
 updateHeaderViewAvatar
 insertNewItem:toGroupType:updateActive:
 insertNewItem:toGroupType:updateActive:scrollToItem:
@@ -12177,7 +12189,6 @@ selectionStrokeLayer
 setSelectionStrokeLayer:
 originalSize
 setOriginalSize:
-tertiaryLabelColor
 imageWithTintColor:renderingMode:
 tertiarySystemFillColor
 geminiItem
@@ -12392,13 +12403,13 @@ _domain
 initWithRecentContactID:domain:
 recentContactID
 domain
-refreshControl
 _cnui_beginRefreshingWithDuration:
 isRefreshing
 beginRefreshing
 endRefreshing
-setRefreshControl:
 _cnui_updateAccountsRefreshControl
+refreshControl
+setRefreshControl:
 refreshAccountsNow:
 cnui_bodyFont
 cnui_footnoteFont
@@ -12806,14 +12817,6 @@ _customContentView
 _audienceLabel
 _audiencePickerButton
 _audienceDescriptionLabel
-pickerView:widthForComponent:
-pickerView:rowHeightForComponent:
-pickerView:titleForRow:forComponent:
-pickerView:attributedTitleForRow:forComponent:
-pickerView:viewForRow:forComponent:reusingView:
-pickerView:didSelectRow:inComponent:
-numberOfComponentsInPickerView:
-pickerView:numberOfRowsInComponent:
 createAvatarView
 createNameLabel
 createNameTextFields
@@ -14923,7 +14926,6 @@ initWithContainerSize:insets:buttonCount:
 actionButtonsViewFrameForButtonCount:
 heightForButtonsViewWithButtonCount:
 buttonHeight
-descender
 cnui_imageNamed:
 imageNamed:inBundle:
 _initWithData:preserveScale:
@@ -14936,7 +14938,6 @@ cnui_userActionSymbolImageForActionType:scale:withColor:compatibleWithTextStyle:
 symbolImageNameForActionType:
 traitCollectionWithPreferredContentSizeCategory:
 preferredFontForTextStyle:compatibleWithTraitCollection:
-configurationWithPointSize:weight:scale:
 _systemImageNamed:withConfiguration:
 cnui_templateImageNamed:withTint:
 cnui_tintedImageNamed:withTint:
@@ -16025,16 +16026,6 @@ d32@0:8{CGSize=dd}16
 @44@0:8@16{CGSize=dd}24B40
 @60@0:8@16{CGSize=dd}24d40B48@52
 @64@0:8@16{CGSize=dd}24d40B48B52@56
-d32@0:8@"UIPickerView"16q24
-@"NSString"40@0:8@"UIPickerView"16q24q32
-@"NSAttributedString"40@0:8@"UIPickerView"16q24q32
-@"UIView"48@0:8@"UIPickerView"16q24q32@"UIView"40
-v40@0:8@"UIPickerView"16q24q32
-@40@0:8@16q24q32
-@48@0:8@16q24q32@40
-v40@0:8@16q24q32
-q24@0:8@"UIPickerView"16
-q32@0:8@"UIPickerView"16q24
 @"CNPostalAddressEditorView"
 @"CNContactPickerHostViewController"
 @"<CNAvatarImageRenderingScope>"

@@ -794,7 +794,7 @@ sharedPreferencesController
 preferencesActions
 setPredictionEnabled:
 chatItemForCell:
-transcriptCollectionViewController:balloonView:tappedForChatItem:isQuickLook:
+transcriptCollectionViewController:balloonView:tappedForChatItem:
 _audioBalloonPlaybackWillStart:
 _audioBalloonPlaybackDidFinish:
 __setCurrentTestName:

@@ -71,9 +71,11 @@ UploadServiceType
 UploadService
 ProcessError
 0.1.0
+noSession
 AppAnalytics
 BridgedAccessTracker
 SessionObserver
+SessionObserverChange
 DelayedToken
 LoggingEventProcessor
 GZIPError
@@ -171,6 +173,8 @@ DataEventTrait
 BridgedSessionData
 BridgedEventProperty
 SequenceEntry
+Sequence
+Kind
 AppAnalytics
 BridgedSessionManager
 BridgedAccessSessionManager
@@ -459,6 +463,9 @@ v40@0:8#16@24@?32
 v44@0:8#16B24@28@?36
 v44@0:8@16B24@28@?36
 v48@0:8@16@24@32q40
+Failed to create event from available data events, event=%{public}@, error=%{public}@
+Failed to gracefully create event sequence from available data events, event=%{public}@, error=%{public}@
+Failed to gracefully create event from available data events, event=%{public}@, error=%{public}@
 _TtC12AppAnalytics15SessionObserver
 object
 sessionChangeTracker
@@ -534,7 +541,8 @@ previousActionSequence
 willSubmitObservers
 _TtC12AppAnalytics13AccessTracker
 _TtCFFC12AppAnalytics7Tracker11whenSessionFT5blockFCS_13AccessTrackerT__T_U_FT_T_L_5Token
-/Library/Caches/com.apple.xbs/Sources/AppAnalytics_Sim/AppAnalytics-82/AppAnalytics/Tracker.swift
+__PPT_ForTesting
+/Library/Caches/com.apple.xbs/Sources/AppAnalytics_Sim/AppAnalytics-83.1/AppAnalytics/Tracker.swift
 AppAnalytics.UploadBatchEventConfig
 AAUploadBatchEventConfig
 default
@@ -779,6 +787,9 @@ _pIegrzo_
 SgSo7NSErrorCSgIeyByy_
 _pSgIeggg_
 So8NSObjectCSg
+SgXw
+SgXwz_Xx
+z_Xx
 GIegn_Sg
 So8NSObjectCSgz_Xx
 yXlSgXw
@@ -805,9 +816,8 @@ $s12AppAnalytics31ProxyEventProcessorProviderTypeP
 $s12AppAnalytics12ResourceTypeP
 SS9sessionID_t
 SS9sessionID_SS05groupB0t
+Ieggy_
 Iegg_
-SgXw
-SgXwz_Xx
 xXMT
 yxGIegn_Sg
 $s12AppAnalytics15TrackerDelegateP
@@ -1004,6 +1014,10 @@ eventMirrorStore
 object
 sessionChangeTracker
 block
+didStart
+willEnd
+didEnd
+willStart
 block
 sealed
 logFormatter
@@ -1187,6 +1201,12 @@ requirement
 dataKey
 name
 data
+kind
+entries
+timestampGranularity
+timedData
+eventData
+userDefined
 tracker
 processorManager
 sessionManager
@@ -1417,6 +1437,7 @@ endDate
 duration
 initWithName:properties:
 initWithURL:name:sharedContainerIdentifier:
+environment
 default
 maxEventsPerSessionBatch
 maxByteSizePerSessionBatch

@@ -1043,6 +1043,7 @@ windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:
 windowScene:userDidAcceptCloudKitShareWithMetadata:
 windows
 rootViewController
+activationState
 centerXAnchor
 constraintEqualToAnchor:
 centerYAnchor

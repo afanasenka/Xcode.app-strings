@@ -694,7 +694,7 @@ void *PhotosUILibrary(void)
 /System/Library/Frameworks/PhotosUI.framework/Contents/MacOS/PhotosUI
 @"AVCaptureDeviceFormat"16@?0@"NSString"8
 @"NSString"16@?0@"NSString"8
-videoConfiguration=%lu, encoding=%lu
+videoConfiguration=%lu, encoding=%lu, wantsHDR10BitBVideo=%@
 _captureEngine
 T@"CAMCaptureEngine",R,W,N,V__captureEngine
 _videoDeviceFormatForVideoConfiguration
@@ -973,15 +973,18 @@ Tq,N,V_lowLightMode
 lowLightDisabled
 TB,N,GisLowLightDisabled,V_lowLightDisabled
 CAMPanoramaRetainedBufferHintCommandEnabled
+CAMContentAwareDistortionCorrectionKey
 PORTRAIT_MODE_SUBJECT_TOO_CLOSE
 PORTRAIT_MODE_SUBJECT_TOO_FAR_SINGLE_CAMERA
 PORTRAIT_MODE_SUBJECT_TOO_FAR_HIGH_KEY
 PORTRAIT_MODE_SUBJECT_TOO_FAR_STAGE
 PORTRAIT_MODE_SUBJECT_TOO_FAR
+PORTRAIT_MODE_LOW_LIGHT_NIGHT_MODE_DISABLED_FLASH_DISABLED
 PORTRAIT_MODE_LOW_LIGHT_FLASH_DISABLED
 PORTRAIT_MODE_LOW_LIGHT
 PORTRAIT_MODE_TOO_MUCH_LIGHT
 PORTRAIT_MODE_BACKGROUND_TOO_FAR
+PORTRAIT_MODE_LOW_LIGHT_NIGHT_MODE_AVAILABLE
 flashMode
 Tq,N,V_flashMode
 numberOfPeopleFound
@@ -990,6 +993,8 @@ devicePosition
 Tq,N,V_devicePosition
 lightingType
 Tq,N,V_lightingType
+lowLightStatus
+Tq,N,V_lowLightStatus
 CAMPanoramaEncodingCommandPhotoEncodingBehavior
 _photoEncodingBehavior
 Tq,R,N,V__photoEncodingBehavior
@@ -1005,6 +1010,10 @@ lowLightCaptureTime
 Td,R,N,V_lowLightCaptureTime
 lowLightPreviewColorEstimate
 T^{CGColor=},R,N,V_lowLightPreviewColorEstimate
+lowLightCaptureHasInitialPreviewFeedbackSensitivity
+TB,R,N,V_lowLightCaptureHasInitialPreviewFeedbackSensitivity
+lowLightCaptureHasConstantPreviewFeedbackSensitivity
+TB,R,N,V_lowLightCaptureHasConstantPreviewFeedbackSensitivity
 captureBeforeResolvingSettingsEnabled
 TB,R,N,GisCaptureBeforeResolvingSettingsEnabled,V_captureBeforeResolvingSettingsEnabled
 request
@@ -1205,8 +1214,12 @@ CAMUserPreferencePortraitModeDidAcknowledgeDescription_12
 CAMUserPreferenceModernHDRKeepNormalPhoto
 CAMUserPreferenceModernHDRBehavior
 CAMUserPreferenceAutoLowLightVideoEnabled
+CAMUserPreferenceVFRMode
+CAMUserPreferenceDidPerformVFRUpgrade
 CAMUserPreferenceForceMonoAudioRecording
 CAMUserPreferenceEnableVideoConfigurationControl
+CAMUserPreferenceHDR10BitVideoEnabled
+CAMUserPreferencesDidConfirmHDR10BitVideoMostCompatiblePreference
 CAMUserPreferenceEnableViewOutsideTheFrame
 CAMUserPreferenceEnableResponsiveShutter
 CAMUserPreferenceEnableResponsiveShutterMigrationFromCoreMedia
@@ -1237,6 +1250,7 @@ CAMUserPreferencePreserveCaptureMode
 CAMUserPreferencePreserveEffectFilter
 CAMUserPreferencePreserveLivePhoto
 CAMUserPreferencePreserveExposure
+CAMUserPreferenceContentAwareDistortionCorrection
 CAMUserPreferenceDidMigrate
 CAMUserPreferenceForcedLivePhotoOnTenTwo
 CAMUserPreferenceDidPerformAutoLivePhotoUpgrade
@@ -1251,6 +1265,7 @@ CAMDebugResetTimeoutSeconds
 CAMInternalPreferenceOverriddenBackBurstCaptureInterval
 CAMInternalPreferenceOverriddenFrontBurstCaptureInterval
 CAMInternalPreferenceOverridenPreferredStorageThreshold
+CAMUserPreferenceEnableSemanticDevelopment
 CAMUserPreferencePreserveAllSettings
 CAMUserPreferenceLastCoreAnalyticsPublishDate
 Performing one-time upgrade of HDRMode from Off to On for Smart HDR!
@@ -1258,6 +1273,9 @@ Leaving HDRMode On for Smart HDR check
 Performing one-time upgrade of HDRMode from Auto to On for Smart HDR!
 CAMUserPreferencesDidConfirmVideo4k60MostCompatible
 CAMUserPreferencesDidConfirmSlomo1080p240MostCompatible
+Performing one-time upgrade of auto low light from On to VFR 30 for variable frame rate video
+Performing one-time upgrade of auto low light from Off to VFR OFF for variable frame rate video
+Attemped one-time upgrade of auto low light. Key doesn't exist. Using VFR 30 for variable frame rate video
 responsiveShutter.adaptiveQuality.enabled
 com.apple.coremedia
 preferences
@@ -1295,6 +1313,8 @@ shouldMirrorFrontCameraCaptures
 TB,N,V_shouldMirrorFrontCameraCaptures
 shouldUseVolumeUpBurst
 TB,R,N,V_shouldUseVolumeUpBurst
+shouldUseContentAwareDistortionCorrection
+TB,R,N,V_shouldUseContentAwareDistortionCorrection
 didAcknowledgePortraitModeDescription
 TB,N,V_didAcknowledgePortraitModeDescription
 usingMostCompatibleEncoding
@@ -1306,10 +1326,14 @@ slomoConfiguration
 Tq,R,N,V_slomoConfiguration
 videoConfigurationControlEnabled
 TB,R,N,GisVideoConfigurationControlEnabled,V_videoConfigurationControlEnabled
+VFRMode
+Tq,R,N,V_VFRMode
 lowLightVideoEnabled
 TB,R,N,GisLowLightVideoEnabled,V_lowLightVideoEnabled
 shouldForceMonoAudioRecording
 TB,R,N,V_shouldForceMonoAudioRecording
+HDR10BitVideoEnabled
+TB,R,N,V_HDR10BitVideoEnabled
 photoOverCaptureEnabled
 TB,R,N,GisPhotoOverCaptureEnabled,V_photoOverCaptureEnabled
 videoOverCaptureEnabled
@@ -1329,6 +1353,8 @@ squareModeLastCapturedEffectFilterType
 Tq,N,V_squareModeLastCapturedEffectFilterType
 portraitModeLastCapturedEffectFilterType
 Tq,N,V_portraitModeLastCapturedEffectFilterType
+semanticDevelopmentEnabled
+TB,R,N,V_semanticDevelopmentEnabled
 preserveEffectFilter
 TB,R,N,V_preserveEffectFilter
 preserveCaptureMode
@@ -2507,9 +2533,10 @@ VideoConfiguration
 SlomoConfiguration
 4k60MostCompatible
 1080p240MostCompatible
+HDR10Video
+AutoFPS
 AutoLowLightVideoOn
 AutoLowLightVideoOff
-AutoFPS
 VideoConfigurationControl
 LockCamera
 StereoAudio
@@ -2522,7 +2549,9 @@ ScanQRCodes
 Grid
 MirrorFrontCamera
 OvercapturePreview
+SemanticDevelopment
 DynamicShutter
+LensCorrection
 SmartHDR
 HDRKeepNormalPhoto
 Auto
@@ -2532,6 +2561,9 @@ ImagePickerLow
 ImagePickerVGA
 ImagePickeriFrame720p
 ImagePickeriFrame540p
+VFRModeOff
+VFRMode30
+VFRMode30And60
 CAMPanoramaDirectionCommandDirection
 _direction
 Tq,R,N,V__direction
@@ -3440,6 +3472,8 @@ modulationFilter
 interfaceModulationAnimation
 _modulationFilterLayer
 T@"CALayer",&,N,S_setModulationFilterLayer:,V__modulationFilterLayer
+_inFlightAnimationCount
+TQ,N,S_setInFlightAnimationCount:,V__inFlightAnimationCount
 hostingView
 T@"UIView",R,W,N,V_hostingView
 TQ,N,V_interfaceModulation
@@ -3573,9 +3607,14 @@ CAMFeatureDevelopmentUseTransientImageWellForCTM
 CAMFeatureDevelopmentAllowFullscreenModeSelector
 CAMFeatureDevelopmentAllowV2PortraitEffects
 CAMFeatureDevelopmentEmulateSuperWide
+CAMFeatureDevelopmentAllowPortraitLowLight
 CAMFeatureDevelopmentAllowWideBravo
+CAMFeatureDevelopmentAllowFFCLowLight
+CAMFeatureDevelopmentAllowVFR
 CAMFeatureDevelopmentAllowDeferredPortraitRendering
 CAMFeatureDevelopmentForceShotBuffer
+CAMFeatureDevelopmentAllowSemanticDevelopment
+CAMFeatureDevelopmentDebugSemanticDevelopmentFilters
 CAMFeatureDevelopmentAllowExposureClippingIndicator
 CAMFeatureDevelopmentForceSingleCamera
 CAMFeatureDevelopmentAllowSuperBravo
@@ -3647,6 +3686,7 @@ FrontFacingCameraMaxVideoZoomFactor
 JLP/IinyzetEPztvoNUNKg
 IweaHIDpz+rknAcb3+xg9g
 8S7ydMJ4DlCUF38/hI/fJA
+RearFacingCameraTimeOfFlightCameraCapability
 SjQQ07G8UacM7E69G7dPbg
 FymLPtOEy6FdE7TmKeoTdg
 FrontFacingCameraSingleCameraPortrait
@@ -3713,6 +3753,8 @@ _backStageLightPortaitEffectsSupported
 TB,R,N,V__backStageLightPortaitEffectsSupported
 _frontStageLightPortaitEffectsSupported
 TB,R,N,V__frontStageLightPortaitEffectsSupported
+_wideDualPortraitLowLightSupported
+TB,R,N,V__wideDualPortraitLowLightSupported
 _forcedBackCamera
 Tq,R,N,V__forcedBackCamera
 _forcedInitialZoomDisplayFactor
@@ -3783,6 +3825,10 @@ frontSmartHDRSupported
 TB,R,N,GisFrontSmartHDRSupported,V_frontSmartHDRSupported
 HDREV0CaptureSupported
 TB,R,N,GisHDREV0CaptureSupported,V_HDREV0CaptureSupported
+HDR10BitVideoSupported
+TB,R,N,GisHDR10BitVideoSupported,V_HDR10BitVideoSupported
+HDR10BitVideoSupports60FPS
+TB,R,N,GisHDR10BitVideoSupports60FPS,V_HDR10BitVideoSupports60FPS
 livePhotoSupported
 TB,R,N,GisLivePhotoSupported
 backLivePhotoSupported
@@ -3839,6 +3885,8 @@ HEVCEncodingSupported
 TB,R,N,GisHEVCEncodingSupported,V_HEVCEncodingSupported
 autoLowLightVideoSupported
 TB,R,N,GisAutoLowLightVideoSupported,V_autoLowLightVideoSupported
+variableFramerateVideoSupported
+TB,R,N,GisVariableFramerateVideoSupported,V_variableFramerateVideoSupported
 stereoAudioRecordingSupported
 TB,R,N,GisStereoAudioRecordingSupported,V_stereoAudioRecordingSupported
 backSlomoSupported
@@ -3905,10 +3953,14 @@ backLowLightSupported
 TB,R,N,GisBackLowLightSupported,V_backLowLightSupported
 frontLowLightSupported
 TB,R,N,GisFrontLowLightSupported,V_frontLowLightSupported
-lowLightPreviewOverlayStyle
-TQ,R,N,V_lowLightPreviewOverlayStyle
-lowLightPreviewOverlayColor
-T@"UIColor",R,N,V_lowLightPreviewOverlayColor
+backLowLightPreviewOverlayStyle
+TQ,R,N,V_backLowLightPreviewOverlayStyle
+frontLowLightPreviewOverlayStyle
+TQ,R,N,V_frontLowLightPreviewOverlayStyle
+backLowLightPreviewOverlayColor
+T@"UIColor",R,N,V_backLowLightPreviewOverlayColor
+frontLowLightPreviewOverlayColor
+T@"UIColor",R,N,V_frontLowLightPreviewOverlayColor
 backSingleCameraPortraitModeSupported
 TB,R,N,GisBackSingleCameraPortraitModeSupported,V_backSingleCameraPortraitModeSupported
 frontSingleCameraPortraitModeSupported
@@ -3926,6 +3978,8 @@ deepFusionSupported
 TB,R,N,GisDeepFusionSupported,V_deepFusionSupported
 deferredProcessingSupported
 TB,R,N,GisDeferredProcessingSupported,V_deferredProcessingSupported
+contentAwareDistortionCorrectionSupported
+TB,R,N,V_contentAwareDistortionCorrectionSupported
 hasSystemTelephonyOfAnyKind
 TB,R,N,V_hasSystemTelephonyOfAnyKind
 forceTouchSupported
@@ -3972,6 +4026,12 @@ backPearlSupported
 TB,R,N,GisBackPearlSupported,V_backPearlSupported
 frontPearlSupported
 TB,R,N,GisFrontPearlSupported,V_frontPearlSupported
+timeOfFlightSupported
+TB,R,N,GisTimeOfFlightSupported
+backTimeOfFlightSupported
+TB,R,N,GisBackTimeOfFlightSupported,V_backTimeOfFlightSupported
+frontTimeOfFlightSupported
+TB,R,N,GisFrontTimeOfFlightSupported,V_frontTimeOfFlightSupported
 depthEffectApertureSupported
 TB,R,N,GisDepthEffectApertureSupported,V_depthEffectApertureSupported
 portraitEffectIntensitySupported
@@ -3981,6 +4041,10 @@ maximumPortraitEffectIntensity
 defaultPortraitEffectIntensity
 neuralEngineSupported
 TB,R,N,GisNeuralEngineSupported,V_neuralEngineSupported
+semanticDevelopmentSupported
+TB,R,N,V_semanticDevelopmentSupported
+enableSemanticDevelopmentFilterDebugging
+TB,R,N,V_enableSemanticDevelopmentFilterDebugging
 hostProcess
 Tq,R,N,V_hostProcess
 internalInstall
@@ -4073,7 +4137,6 @@ torchActive
 TB,N,GisTorchActive,S_setTorchActive:,V_torchActive
 HDRSuggested
 TB,N,GisHDRSuggested,S_setHDRSuggested:,V_HDRSuggested
-lowLightStatus
 Tq,N,S_setLowLightStatus:,V_lowLightStatus
 _numberOfInflightRequestsByType
 T@"NSCountedSet",R,N,V__numberOfInflightRequestsByType
@@ -4238,6 +4301,7 @@ com.apple.camera.zoom-dial-image-generation
 28mm
 26mm
 52mm
+65mm
 %@-landscape
 v32@?0@"UIImageView"8Q16^B24
 v32@?0@"CAMZoomFactorLabel"8Q16^B24
@@ -4438,6 +4502,8 @@ representsDeferredFilteredProxy
 TB,R,N,V_representsDeferredFilteredProxy
 imageGroupIdentifier
 TB,R,N,GisExpectingPairedVideo,V_expectingPairedVideo
+semanticEnhancement
+Tq,R,N,V_semanticEnhancement
 CAMERA_APPLY_CUSTOM_KERNING
 CAMERA_SUPPORTS_VERTICAL_TEXT
 wantsCustomKerning
@@ -4550,6 +4616,8 @@ TQ,R,N,V_burstRepresentedCount
 flashFired
 captureID
 Tq,R,N,V_captureID
+semanticEnhanceScene
+Tq,R,N,V_semanticEnhanceScene
 com.apple.camera.burst-controller.analysis-queue
 com.apple.camera.burst-controller.mutex-queue
 CAMBurstController.m
@@ -4774,6 +4842,8 @@ originalFilters
 T@"NSArray",R,N,V_originalFilters
 wantsAutoDualCameraFusion
 TB,R,N,V_wantsAutoDualCameraFusion
+wantsSemanticSceneFilter
+TB,R,N,V_wantsSemanticSceneFilter
 wantsAudioForCapture
 TB,R,N,V_wantsAudioForCapture
 wantsSquareCrop
@@ -5159,6 +5229,8 @@ captureID:%lld
 captureID:%lld received final callback. 
 v16@?0^{__CVBuffer=}8
 v16@?0@"CIFilter"8
+inputSaturation
+inputStrength
 Live Photo movie
 Invalid
 Zero
@@ -5268,6 +5340,8 @@ FRAME_
 q24@?0@"CAMTimelapseState"8@"CAMTimelapseState"16
 RESERVED_SPACE.BIN
 %@/%@
+_HDR10BitVideoDisabled
+_HDR10BitVideo
 _AutoFPSDisabled
 _AutoFPS
 _OverCapture
@@ -5275,6 +5349,8 @@ _OverCapture
 v32@?0@"CIFilter"8Q16^B24
 %@/%@(%@,%@,%@,%@
 ,Mirrored
+,ContentAwareDistortion
+,ContentAwareDistortionDisabled
 ,filters=%@
 ,ResponsiveShutter
 ,ResponsiveShutterDisabled
@@ -5292,6 +5368,10 @@ videoThumbnailOutputConfiguration
 T@"CAMVideoThumbnailOutputConfiguration",R,N,V_videoThumbnailOutputConfiguration
 enableAutoFPSVideo
 TB,R,N,V_enableAutoFPSVideo
+enableHDR10BitVideoIfSupported
+TB,R,N,V_enableHDR10BitVideoIfSupported
+enableContentAwareDistortionCorrection
+TB,R,N,V_enableContentAwareDistortionCorrection
 enableResponsiveShutter
 TB,R,N,V_enableResponsiveShutter
 Disabled
@@ -5338,6 +5418,8 @@ UIScreen
 com.apple.springboard.opensensitiveurl
 CameraUI
 CameraUI-Azul
+CameraUI-AzulHW
+CameraUI-AzulC
 com.apple.backboardd.orientationlock
 CAMViewfinderViewController
 SecTaskRef CAMSecTaskCreateFromSelf(CFAllocatorRef)
@@ -5776,6 +5858,9 @@ LeftToRight
 RightToLeft
 ChangedDirection
 ReachedMaximumSize
+PlatedFood
+SunriseSunset
+GenericLandscape
 Short
 Long
 Unsupported
@@ -5786,6 +5871,8 @@ NotEnoughLight
 DeviceTooHot
 TooMuchLight
 BackgroundTooFar
+EnabledWideDualLowLightAvailable
+NotEnoughLightWideDualLowLightAvailable
 com.apple.camera.observable.internal-queue
 CAMObservable.m
 changeBlock != nil
@@ -6924,7 +7011,6 @@ softlink:r:path:/System/Library/PrivateFrameworks/CacheDelete.framework/CacheDel
 softlink:r:path:/System/Library/Frameworks/Photos.framework/Photos
 softlink:r:path:/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
 softlink:r:path:/System/Library/PrivateFrameworks/MediaConversionService.framework/MediaConversionService
-QXf)
 CAMFullscreenViewfinder
 CAMAdditiveAnimatorDelegate
 NSObject
@@ -7011,6 +7097,7 @@ CAMTransientPairedVideo
 CAMLedger
 CAMLowLightStatusIndicator
 CAMPanoramaRetainedBufferHintCommand
+CAMContentAwareDistortionCorrectionCommand
 CAMPortraitModeInstructionLabel
 CAMPanoramaEncodingCommand
 CAMCTMInitiateCaptureCommand
@@ -8095,6 +8182,8 @@ setHdrMode:
 isBackAutomaticHDRSupported
 shouldCaptureHDREV0
 failedTest:withFailure:
+semanticDevelopmentEnabled
+setWantsSemanticSceneFilter:
 setIrisMode:
 currentCaptureMode
 maxSupportedPhotoQualityPrioritizationForMode:
@@ -8107,7 +8196,8 @@ setAdjustmentFilters:
 setFlashMode:
 setWantsAudioForCapture:
 photoEncodingBehavior
-videoEncodingBehaviorForConfiguration:
+HDR10BitVideoEnabled
+videoEncodingBehaviorForConfiguration:wantsHDR10BitVideo:
 setPhotoEncodingBehavior:
 setVideoEncodingBehavior:
 runTakePictureFrontPortraitTest:options:prototype:
@@ -8177,6 +8267,7 @@ _updatingIdleTimer
 isCaptureMirrored
 captureOrientation
 imageOrientationForVideoRequest:
+videoTrackOrientationForVideoRequest:
 imageOrientationOfResult:withCaptureDevice:captureOrientation:
 panoramaCaptureOrientationFromCaptureOrientation:
 captureOrientationFromPanoramaCaptureOrientation:
@@ -8688,8 +8779,8 @@ position
 prewarmedVideoDeviceInput:position:device:
 deviceInputWithDevice:error:
 _videoDeviceFormatForVideoConfiguration
-_keyForVideoConfiguration:videoEncodingBehavior:
-cameraVideoFormat:orPreset:forVideoConfiguration:videoEncodingBehavior:
+_keyForVideoConfiguration:videoEncodingBehavior:enableHDR10BitVideo:
+cameraVideoFormat:orPreset:forVideoConfiguration:videoEncodingBehavior:enableHDR10BitVideoIfSupported:
 objectForKey:memoizationBlock:
 _videoSessionPresetForVideoConfiguration
 cameraPanoramaFormatForConfiguration:
@@ -8699,9 +8790,10 @@ cam_formatForPortraitFrontFacingZoomed
 mode
 videoConfiguration
 videoEncodingBehavior
-_highestQualityDeviceFormatForVideoConfiguration:videoEncodingBehavior:
+enableHDR10BitVideoIfSupported
+_highestQualityDeviceFormatForVideoConfiguration:videoEncodingBehavior:enableHDR10BitVideo:
 _panoramaDeviceFormatForConfiguration:
-_highestQualitySessionPresetForVideoConfiguration:videoEncodingBehavior:
+_highestQualitySessionPresetForVideoConfiguration:videoEncodingBehavior:enableHDR10BitVideo:
 _timelapseSessionPreset
 _portraitModeSessionPreset
 initWithEngine:captureDevice:
@@ -8801,6 +8893,9 @@ availableLivePhotoVideoCodecTypes
 setLivePhotoVideoCodecType:
 isDeferredProcessingEnabled
 setAutoDeferredProcessingEnabled:
+isAutoContentAwareDistortionCorrectionEnabled
+isContentAwareDistortionCorrectionEnabled
+setAutoContentAwareDistortionCorrectionEnabled:
 registerStillImageCaptureRequest:withSettings:
 digitalFlashMode
 lowLightMode
@@ -9200,11 +9295,15 @@ isVideoRetainedBufferCountHintSupported
 currentPanoramaConfiguration
 setVideoRetainedBufferCountHint:
 initWithPanoramaRetainedBufferHintEnabled:
+initWithContentAwareDistortionCorrectionEnabled:
+isContentAwareDistortionCorrectionSupported
+setContentAwareDistortionCorrectionEnabled:
 _updateTextWithPriorStatus:
 numberOfPeopleFound
 devicePosition
 lightingType
-_textForShallowDepthOfFieldStatus:numberOfPeopleFound:flashMode:devicePosition:lightingType:
+lowLightStatus
+_textForShallowDepthOfFieldStatus:numberOfPeopleFound:flashMode:devicePosition:lightingType:lowlightMode:lowLightStatus:
 setUnitOptions:
 setUnitStyle:
 numberFormatter
@@ -9222,10 +9321,12 @@ localizedStringWithFormat:
 setNumberOfPeopleFound:
 setDevicePosition:
 setLightingType:
+setLowLightStatus:
 _flashMode
 _numberOfPeopleFound
 _devicePosition
 _lightingType
+_lowLightStatus
 _photoEncodingBehavior
 changeToEncodingBehavior:
 initWithPhotoEncodingBehavior:
@@ -9239,14 +9340,18 @@ initWithSettings:
 __settings
 sizeWithAttributes:
 drawInRect:withAttributes:
-initWithHDREnabled:portraitEffectEnabled:lowLightCaptureTime:lowLightPreviewColorEstimate:captureBeforeResolvingSettingsEnabled:
+initWithHDREnabled:portraitEffectEnabled:lowLightCaptureTime:lowLightPreviewColorEstimate:lowLightCaptureHasInitialPreviewFeedbackSensitivity:lowLightCaptureHasConstantPreviewFeedbackSensitivity:captureBeforeResolvingSettingsEnabled:
 isHDREnabled
 isPortraitEffectEnabled
 lowLightCaptureTime
 lowLightPreviewColorEstimate
+lowLightCaptureHasInitialPreviewFeedbackSensitivity
+lowLightCaptureHasConstantPreviewFeedbackSensitivity
 isCaptureBeforeResolvingSettingsEnabled
 _HDREnabled
 _portraitEffectEnabled
+_lowLightCaptureHasInitialPreviewFeedbackSensitivity
+_lowLightCaptureHasConstantPreviewFeedbackSensitivity
 _captureBeforeResolvingSettingsEnabled
 _lowLightCaptureTime
 _lowLightPreviewColorEstimate
@@ -9590,6 +9695,7 @@ portraitModeIntensityValue
 isSpatialOverCaptureSupportedForCTMCaptureType:
 isSpatialOverCaptureSupported
 mirrorFrontCameraCaptures
+semanticDevelopmentSupported
 initWithObjectsAndKeys:
 isLivePhotoSupported
 irisMode
@@ -9621,10 +9727,13 @@ initWithPreferences:
 publish
 boolForKey:
 migrateLegacyPreferences
+isVariableFramerateVideoSupported
+performLowLightVideoMigration
 responsiveShutterSupported
 performResponsiveShutterMigration
 isStereoAudioRecordingSupported
 isMirroredFrontCapturesSupported
+contentAwareDistortionCorrectionSupported
 isFrontHDRSupported
 isBackHDRSupported
 isModernHDRSupported
@@ -9647,6 +9756,7 @@ isSupportedMode:withDevice:
 isFrontTorchSupported
 isBackTorchSupported
 setNewFormatsConfiguration:fromSource:
+shouldEnableHDR10BitVideoForHEVCEnabled:capabilities:
 _sanitizeEffectFilterType:forMode:
 slomoConfiguration
 shouldForceMonoAudioRecording
@@ -9676,13 +9786,16 @@ _setResetTimeoutDate:
 QRBannersEnabledInSettings
 forceEnableQRBanners
 isHEVCEncodingSupported
+isHDR10BitVideoSupportedForVideoConfiguration:videoEncodingBehavior:
 _preferHEVCWhenAvailable
+isHDR10BitVideoSupported
 _shouldDisableCameraSwitchingDuringVideoRecording
 isDeepFusionSupported
 isPhotoOverCaptureEnabled
 newFormatsConfiguration
 isAutoFPSVideoSupportedForMode:videoConfiguration:
 resolvedVideoConfigurationForMode:device:videoEncodingBehavior:videoConfiguration:
+VFRMode
 isLowLightVideoEnabled
 isVideoOverCaptureEnabled
 readPreferencesWithOverrides:emulationMode:callActive:
@@ -9705,6 +9818,7 @@ setForceEnableQRBanners:
 responsiveShutterEnabled
 setShouldMirrorFrontCameraCaptures:
 shouldUseVolumeUpBurst
+shouldUseContentAwareDistortionCorrection
 didAcknowledgePortraitModeDescription
 isVideoConfigurationControlEnabled
 isAutoAdjustmentsEnabled
@@ -9733,15 +9847,18 @@ _shouldCaptureHDREV0
 _shouldUseModernHDRBehavior
 _shouldMirrorFrontCameraCaptures
 _shouldUseVolumeUpBurst
+_shouldUseContentAwareDistortionCorrection
 _didAcknowledgePortraitModeDescription
 _videoConfigurationControlEnabled
 _lowLightVideoEnabled
 _shouldForceMonoAudioRecording
+_HDR10BitVideoEnabled
 _photoOverCaptureEnabled
 _videoOverCaptureEnabled
 _autoAdjustmentsEnabled
 _didAcknowledgeCTMDescription
 _overCapturePreviewEnabled
+_semanticDevelopmentEnabled
 _preserveEffectFilter
 _preserveCaptureMode
 _preserveLivePhoto
@@ -9755,6 +9872,7 @@ _captureConfiguration
 _conflictingControlConfiguration
 _videoConfiguration
 _slomoConfiguration
+_VFRMode
 _previewViewAspectMode
 _photoModeLastCapturedEffectFilterType
 _squareModeLastCapturedEffectFilterType
@@ -10100,8 +10218,9 @@ alignmentModel
 _updateShutterButtonForEndOfLowLightCapture
 performCaptureAnimationWithDuration:completion:
 _setLowLightCaptureUIVisible:
-lowLightPreviewOverlayStyle
-lowLightPreviewOverlayColor
+lowLightPreviewOverlayStyleForDevicePosition:sensitiveToChangingDisplayFeedback:
+colorWithCGColor:
+lowLightPreviewOverlayColorForDevicePosition:
 _performCaptureAnimationWithDuration:curve:color:fadeOut:
 incrementCounter
 incrementWithCaptureAnimation:
@@ -10154,6 +10273,7 @@ sendThumbnailImage:isVideo:
 setTorchMode:
 setCaptureVideoConfiguration:
 setUserInitationTimestamp:
+isHDR10BitVideoSupportedForMode:
 maximumVideoRecordingDuration
 setMaximumRecordedDuration:
 startCapturingVideoWithRequest:error:
@@ -10645,7 +10765,6 @@ _shouldHideLivePhotoBadgeForGraphConfiguration:
 isTimerSupportedForMode:
 shouldHideTimerButtonForGraphConfiguration:
 _shouldHideTimerButtonForGraphConfiguration:
-lowLightStatus
 _shouldHideControlStatusIndicatorsForGraphConfiguration:
 _isExposureBiasNonDefault:
 _shouldShowLowLightControlForGraphConfiguration:
@@ -10985,8 +11104,9 @@ sanitizeDesiredDevice:forMode:
 _sanitizedVideoConfigurationForMode:device:
 isCallActive
 initWithMode:
+isContentAwareDistortionCorrectionSupportedForMode:
 isResponsiveShutterSupportedForMode:
-initWithCaptureMode:captureDevice:videoConfiguration:audioConfiguration:previewConfiguration:previewSampleBufferVideoFormat:previewFilters:videoThumbnailOutputConfiguration:photoEncodingBehavior:videoEncodingBehavior:enableAutoFPSVideo:videoHDRSuspended:aspectRatioCrop:photoQualityPrioritization:captureMirrored:enableResponsiveShutter:
+initWithCaptureMode:captureDevice:videoConfiguration:audioConfiguration:previewConfiguration:previewSampleBufferVideoFormat:previewFilters:videoThumbnailOutputConfiguration:photoEncodingBehavior:videoEncodingBehavior:enableAutoFPSVideo:videoHDRSuspended:aspectRatioCrop:photoQualityPrioritization:enableHDR10BitVideoIfSupported:captureMirrored:enableContentAwareDistortionCorrection:enableResponsiveShutter:
 imagePickerVideoConfiguration
 _videoConfigurationOverride
 sanitizeVideoConfigurationForDesiredConfiguration:mode:device:
@@ -11783,6 +11903,7 @@ previewFilters
 videoThumbnailOutputConfiguration
 enableAutoFPSVideo
 isVideoHDRSuspended
+enableContentAwareDistortionCorrection
 enableResponsiveShutter
 _setResolvedGraphConfiguration:
 _sanitizeDeviceUsingContext:
@@ -12605,6 +12726,7 @@ captureHDRModeForHDRMode:
 AVCapturePhotoQualityPrioritizationForCAMPhotoQualityPrioritization:
 bravoCameraSelectionBehaviorForRecording
 _eventMap
+isVariableFramerateVideoSupportedForMode:videoConfiguration:
 isAutoLowLightVideoSupportedForMode:videoConfiguration:
 interactiveVideoFormatControlSupported
 isTelephotoSupported
@@ -12895,6 +13017,8 @@ cam_supportsFrameDuration:
 __videoConfiguration
 setContentEdgeInsets:
 isAutoFPSVideoEnabled
+isVariableFrameRateVideoCaptureSupported
+setVariableFrameRateVideoCaptureEnabled:
 isLowLightVideoCaptureSupported
 setLowLightVideoCaptureEnabled:
 _autoFPSVideoEnabled
@@ -13005,9 +13129,9 @@ startingCaptureMode
 registerHandler:forChangeToMode:devicePosition:
 _desiredDevicePosition
 _startingCaptureMode
-cam_highestQualityFormatForConfiguration:colorSpace:
+cam_highestQualityFormatForConfiguration:colorSpace:enableHDR10BitVideo:
 formats
-cam_supportsVideoConfiguration:colorSpace:
+cam_supportsVideoConfiguration:colorSpace:enableHDR10BitVideo:
 cam_compareUsingQuality:
 cam_supportsPortraitFrontFacingZoomed
 _setAlignmentTransform:
@@ -13994,15 +14118,21 @@ _reviewView
 _modulationFilterLayer
 hostingView
 removeFromSuperlayer
+_addOrRemoveModulationLayer
 null
 setActions:
 _setModulationFilterLayer:
 setName:
 setFilters:
+_inFlightAnimationCount
+_setInFlightAnimationCount:
+modulationAnimationDidStop:
+superlayer
 didAddSubview:
 _hostingView
 _interfaceModulation
 __modulationFilterLayer
+__inFlightAnimationCount
 setCircleBaseFrame:animated:
 _animateAppearing
 _circleGeometryForState:
@@ -14234,11 +14364,18 @@ _isSpatialOverCaptureSupportedForMode:
 isSpatialOverCaptureSupportedForDevice:
 isBackLowLightSupported
 isFrontLowLightSupported
+_wideDualPortraitLowLightSupported
+backLowLightPreviewOverlayStyle
+frontLowLightPreviewOverlayStyle
+backLowLightPreviewOverlayColor
+frontLowLightPreviewOverlayColor
 isBackTorchPatternSupported
 isFrontTorchPatternSupported
 isFlashSupportedForMode:devicePosition:
 isTorchSupportedForMode:devicePosition:
+_isVariableFramerateVideoSupportedForResolvedVideoConfiguration:
 isSupportedVideoConfiguration:forVideoEncodingBehavior:
+isHDR10BitVideoSupports60FPS
 isWideSupportedForDevicePosition:
 isFrontTelephotoSupported
 _forcedBackCamera
@@ -14253,6 +14390,8 @@ _frontWideDualCameraSwitchOverZoomFactor
 isFrontTripleCameraSupported
 isTripleCameraSupportedForDevicePosition:
 isPearlSupportedForDevicePosition:
+isFrontTimeOfFlightSupported
+isBackTimeOfFlightSupported
 isPortraitModeSupported
 _forceDisableExposureClippingIndicator
 _forceEnableExposureClippingIndicator
@@ -14275,7 +14414,10 @@ isSmartHDRSupportedForMode:devicePosition:
 isLivePreviewSupportedForLightingType:devicePosition:
 isAspectRatioCropSupported
 _shouldUseTripleCameraForMode:device:videoConfiguration:
+isTimeOfFlightSupported
+isTimeOfFlightSupportedForDevicePosition:
 isTapAndBiasSupportedForMode:
+isSemanticDevelopmentSupportedForMode:
 maximumNumberOfInflightRequests
 isPreviewDuringHDRSupported
 timelapseFirstShotDelay
@@ -14285,6 +14427,7 @@ isPipelinedStillImageProcessingSupported
 hasSystemTelephonyOfAnyKind
 isForceTouchSupported
 isNeuralEngineSupported
+enableSemanticDevelopmentFilterDebugging
 isShotBufferSupported
 isCTMSupportSupressed
 _interactiveVideoFormatControlSupported
@@ -14309,6 +14452,8 @@ _modernHDRSupported
 _backSmartHDRSupported
 _frontSmartHDRSupported
 _HDREV0CaptureSupported
+_HDR10BitVideoSupported
+_HDR10BitVideoSupports60FPS
 _backLivePhotoSupported
 _frontLivePhotoSupported
 _livePhotoAutoModeSupported
@@ -14330,6 +14475,7 @@ _back4k60VideoSupported
 _front4k60VideoSupported
 _HEVCEncodingSupported
 _autoLowLightVideoSupported
+_variableFramerateVideoSupported
 _stereoAudioRecordingSupported
 _backSlomoSupported
 _frontSlomoSupported
@@ -14365,6 +14511,7 @@ _frontTorchPatternSupported
 _pipelinedStillImageProcessingSupported
 _deepFusionSupported
 _deferredProcessingSupported
+_contentAwareDistortionCorrectionSupported
 _hasSystemTelephonyOfAnyKind
 _forceTouchSupported
 _splitScreenSupported
@@ -14380,9 +14527,13 @@ _backTripleCameraSupported
 _frontTripleCameraSupported
 _backPearlSupported
 _frontPearlSupported
+_backTimeOfFlightSupported
+_frontTimeOfFlightSupported
 _depthEffectApertureSupported
 _portraitEffectIntensitySupported
 _neuralEngineSupported
+_semanticDevelopmentSupported
+_enableSemanticDevelopmentFilterDebugging
 _internalInstall
 _lockButtonAppropriateForShutter
 _lowEndHardware
@@ -14392,6 +14543,7 @@ _shotBufferSupported
 _exposureSliderSupported
 __backStageLightPortaitEffectsSupported
 __frontStageLightPortaitEffectsSupported
+__wideDualPortraitLowLightSupported
 __tripleCamera1080p60Supported
 __forceEnableExposureClippingIndicator
 __forceDisableExposureClippingIndicator
@@ -14409,8 +14561,10 @@ _front720pMaxFPS
 _back1080pMaxFPS
 _front1080pMaxFPS
 _timelapseFirstShotDelay
-_lowLightPreviewOverlayStyle
-_lowLightPreviewOverlayColor
+_backLowLightPreviewOverlayStyle
+_frontLowLightPreviewOverlayStyle
+_backLowLightPreviewOverlayColor
+_frontLowLightPreviewOverlayColor
 _zoomDialStyle
 _wideDisplayZoomFactor
 _superWideDisplayZoomFactor
@@ -14505,7 +14659,8 @@ _capturingLowLightStillImageRequest
 _responseQueue
 _thumbnailImageFromStillImageCaptureResult:imageOrientation:
 resolvedSettings
-initWithUUID:captureSession:captureDate:metadata:burstIdentifier:burstRepresentedCount:imageWellImage:coordinationInfo:finalExpectedPixelSize:expectingPairedVideo:captureID:
+semanticEnhancement
+initWithUUID:captureSession:captureDate:metadata:burstIdentifier:burstRepresentedCount:imageWellImage:coordinationInfo:finalExpectedPixelSize:expectingPairedVideo:captureID:semanticEnhanceScene:
 _endTrackingLivePhotoVideoRecordingForIdentifier:
 _resetFocusAndExposureAfterCapture
 _endTrackingCTMVideoRecordingForIdentifier:
@@ -14690,7 +14845,6 @@ _failedConfigurationPreventingCapture
 __isVideoCaptureAvailable
 _previewLayerOverCaptureStatusDelegate
 _stillImageCapturingVideoDelegate
-_lowLightStatus
 _panoramaChangeDelegate
 _burstDelegate
 _suggestionDelegate
@@ -15041,7 +15195,6 @@ __captureRate
 autoFocusSystem
 _frameForSubviewsAccountForSquare:
 _updateAspectModeForSublayers
-superlayer
 setSquare:animated:
 animateLayer:toFrame:fromCurrentState:
 previewLayerVideoGravityForPreviewViewAspectMode:
@@ -15069,6 +15222,7 @@ _capturePhoto
 _deferredPhotoIdentifier
 _metadata
 _adjustmentFilters
+_semanticEnhancement
 caseInsensitiveCompare:
 _commonCAMFormattingManagerInitialization
 supportsVerticalText
@@ -15135,8 +15289,10 @@ setContentsScale:
 imageNamed:inBundle:compatibleWithTraitCollection:
 _commonCAMFaceIndicatorViewInitialization
 burstRepresentedCount
+semanticEnhanceScene
 _burstRepresentedCount
 _captureID
+_semanticEnhanceScene
 initWithProtectionController:powerController:remoteShutterController:
 _activeSession
 _setActiveSession:
@@ -15440,6 +15596,7 @@ _previewViewAspectModeForLegacyAspectMode:
 synchronize
 originalFilters
 wantsAutoDualCameraFusion
+wantsSemanticSceneFilter
 wantsAudioForCapture
 wantsSquareCrop
 wantsHighResolutionStills
@@ -15456,6 +15613,7 @@ _wantsSpatialOverCapture
 _wantsPortraitEffect
 _originalFilters
 _wantsAutoDualCameraFusion
+_wantsSemanticSceneFilter
 _wantsAudioForCapture
 _wantsSquareCrop
 _wantsHighResolutionStills
@@ -15987,6 +16145,8 @@ _sessionQueueCachedPhotoInitiationSettings
 cam_isRecordingMovieForLivePhoto
 isAdjustedPhotoFilterRenderingEnabled
 photoProcessingTimeRange
+digitalFlashUserInterfaceRGBEstimate
+digitalFlashUserInterfaceHints
 photoManifest
 _expectedResultSpecifiersForResolvedPhotoSettings:
 expectedPhotoProcessingFlags
@@ -16007,6 +16167,10 @@ _resultsQueueLastCompletedVideoZoomFactor
 movieDimensions
 movieMetadata
 previewDimensions
+privateClientMetadata
+semanticEnhanceSceneForPrivateClientMetadata:
+filterForSemanticEnhanceScene:
+filterWithName:withInputParameters:
 _resultsQueueLastCompletedVideoURL
 currentQueue
 recordedDuration
@@ -16152,6 +16316,8 @@ CAMDevicePositionForAVDevicePosition:
 CAMPhotoQualityPrioritizationForAVCapturePhotoQualityPrioritization:
 completeDescription
 _enableAutoFPSVideo
+_enableHDR10BitVideoIfSupported
+_enableContentAwareDistortionCorrection
 _enableResponsiveShutter
 _audioConfiguration
 _previewConfiguration
@@ -16658,7 +16824,7 @@ __previousHorizontalLabelOffset
 __decimalFormatter
 cam_frameRateForVideoConfiguration:
 _expectedVideoDimensionsForVideoConfiguration:
-cam_supportsFrameRate:width:height:colorSpace:
+cam_supportsFrameRate:width:height:colorSpace:enableHDR10BitVideo:
 cam_supportsFrameRate:
 videoSupportedFrameRateRanges
 minFrameRate
@@ -17460,7 +17626,7 @@ v48@0:8d16@24d32@40
 @"CAMAdditiveAnimation"
 @52@0:8@16@24B32B36B40d44
 @"CAMViewfinderViewController"
-@32@0:8q16q24
+@36@0:8q16q24B32
 @"AVCaptureDeviceInput"
 @"AVCaptureDevice"
 @"CAMCaptureEngine"
@@ -17519,9 +17685,9 @@ v32@0:8{CGPoint=dd}16
 @"CAAnimationGroup"
 @56@0:8@16{?=qiIq}24q48
 ^{ledger_entry_info=qqqQQQ}
-@56@0:8q16Q24q32q40q48
+@72@0:8q16Q24q32q40q48q56q64
 @"CAMMomentCaptureSettings"
-@44@0:8B16B20d24^{CGColor=}32B40
+@52@0:8B16B20d24^{CGColor=}32B40B44B48
 ^{CGColor=}
 @40@0:8@16@24@?32
 @"CAMCaptureRequest"
@@ -17556,8 +17722,10 @@ q24@0:8d16
 @"CAMFeedbackController"
 @"NSSet"
 @40@0:8@16@24Q32
+B28@0:8B16@20
 q32@0:8q16q24
 B36@0:8@16q24B32
+q28@0:8q16B24
 B32@0:8q16q24
 B48@0:8q16q24q32q40
 @"CAMCaptureConfiguration"
@@ -17663,7 +17831,6 @@ B28@0:8@16B24
 B32@0:8Q16@24
 B32@0:8q16@24
 B24@0:8Q16
-q28@0:8q16B24
 v32@0:8q16B24B28
 v56@0:8q16q24^q32^q40^q48
 q32@0:8q16o^B24
@@ -17675,6 +17842,7 @@ v40@0:8@16d24@32
 d32@0:8@16@24
 {?=qqqqBqqq}24@0:8q16
 Q28@0:8q16B24
+@32@0:8q16q24
 B24@0:8d16
 Q24@0:8Q16
 q44@0:8q16q24q32B40
@@ -17900,7 +18068,7 @@ q32@0:8{CGPoint=dd}16
 @"CAGradientLayer"
 @52@0:8@16@24q32B40q44
 v40@0:8q16q24@?32
-v48@0:8^@16^@24q32q40
+v52@0:8^@16^@24q32q40B48
 {CATransform3D=dddddddddddddddd}16@0:8
 v144@0:8{CATransform3D=dddddddddddddddd}16
 @"<CAMPreviewAlignmentModelObserver>"
@@ -18175,9 +18343,8 @@ v32@0:8@"NSString"16@?<v@?@"NSURL"@"NSDictionary">24
 @32@0:8^v16Q24
 @32@0:8@16@?24
 @"<CAMVideoPersistenceCoordinationDelegate>"
-@36@0:8q16q24B32
 @36@0:8q16S24@28
-@104@0:8@16S24@28@36@44Q52@60@68{CGSize=dd}76B92q96
+@112@0:8@16S24@28@36@44Q52@60@68{CGSize=dd}76B92q96q104
 @"CAMBurstSession"
 @"CAMTorchPattern"
 v112@0:8{?={CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}{CGAffineTransform=dddddd}}16
@@ -18316,9 +18483,9 @@ v32@0:8@?16@?24
 v40@0:8q16d24d32
 @44@0:8@16@24@32B40
 v96@0:8@16@24{?=qiIq}32{?=qiIq}56@80@88
-{?=qq{CGSize=dd}}32@0:8@16@24
-{?=qq{CGSize=dd}}40@0:8@16{CGSize=dd}24
-@48@0:8{?=qq{CGSize=dd}}16
+{?=qq{CGSize=dd}q}32@0:8@16@24
+{?=qq{CGSize=dd}q}40@0:8@16{CGSize=dd}24
+@56@0:8{?=qq{CGSize=dd}q}16
 v64@0:8@16@24@32@40d48@56
 @108@0:8@16q24@32B40{?=qiIq}44{?=qiIq}68^{?=qiIq}92^q100
 v40@0:8@16^{opaqueCMSampleBuffer=}24@32
@@ -18327,7 +18494,7 @@ v40@0:8@16^{opaqueCMSampleBuffer=}24@32
 @"CAMPanoramaProcessor"
 @"CIContext"
 B44@0:8@16q24q32B40
-@128@0:8q16q24q32q40Q48q56@64@72q80q88B96B100q104q112B120B124
+@136@0:8q16q24q32q40Q48q56@64@72q80q88B96B100q104q112B120B124B128B132
 B124@0:8@16q24q32^{opaqueCMFormatDescription=}40{CGAffineTransform=dddddd}48q96q104B112@116
 @"NSOperationQueue"
 v32@0:8@"CUCaptureController"16@"CAMFocusResult"24
@@ -18387,7 +18554,8 @@ Q24@0:8d16
 @"NSNumberFormatter"
 {?=qiIq}24@0:8q16
 {?=ii}24@0:8q16
-B48@0:8d16q24q32q40
+B36@0:8q16q24B32
+B52@0:8d16q24q32q40B48
 B40@0:8{?=qiIq}16
 @"<NSCopying>"
 @"AVMetadataBodyObject"

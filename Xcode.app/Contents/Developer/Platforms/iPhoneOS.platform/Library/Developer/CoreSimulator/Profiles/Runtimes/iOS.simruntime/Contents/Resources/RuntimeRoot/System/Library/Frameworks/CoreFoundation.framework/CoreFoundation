@@ -1,3 +1,52 @@
+%5&
+% 5&
+%"5&
+%$5&
+%&5&
+%(5&
+%*5&
+%,5&
+%.5&
+%05&
+%25&
+%45&
+%65&
+%85&
+%:5&
+%<5&
+%>5&
+%@5&
+%B5&
+%D5&
+%F5&
+%H5&
+%J5&
+%L5&
+%N5&
+%P5&
+%R5&
+%T5&
+%V5&
+%X5&
+%Z5&
+%\5&
+%^5&
+%`5&
+%b5&
+%d5&
+%f5&
+%h5&
+%j5&
+%l5&
+%n5&
+%p5&
+%r5&
+%t5&
+%v5&
+%x5&
+%z5&
+%|5&
+%~5&
 %6&
 % 6&
 %"6&
@@ -243,52 +292,7 @@
 %z:&
 %|:&
 %~:&
-%;&
-% ;&
-%";&
-%$;&
-%&;&
-%(;&
-%*;&
-%,;&
-%.;&
-%0;&
-%2;&
-%4;&
-%6;&
-%8;&
-%:;&
-%<;&
-%>;&
-%@;&
-%B;&
-%D;&
-%F;&
-%H;&
-%J;&
-%L;&
-%N;&
-%P;&
-%R;&
-%T;&
-%V;&
-%X;&
-%Z;&
-%\;&
-%^;&
-%`;&
-%b;&
-%d;&
-%f;&
-%h;&
-%j;&
-%l;&
-%n;&
-%p;&
-%r;&
-%t;&
-%v;&
-@(#)PROGRAM:CoreFoundation  PROJECT:CoreFoundation-1770.102
+@(#)PROGRAM:CoreFoundation  PROJECT:CoreFoundation-1770.105
 *  8
 I)$`
 J!DP
@@ -16419,13 +16423,13 @@ com.apple.pboard.proposedFileName
 com.apple.pboard.locale-identifier
 com.apple.pboard.url
 com.apple.pboard.sandboxExtension
+__kCFPasteboardPrivateMode
 com.apple.pboard.make-generation-local
 com.apple.pboard.set-expiration-date
 com.apple.pboard.date
 C40@?0^{__CFPasteboard={__CFRuntimeBase=QAQ}^{__CFString}@^{__CFUUID}^{__CFArray}C@@AQCCCC}8q16q24^{__CFString=}32
 v16@?0^{__CFDictionary=}8
 com.apple.pboard.resolve-pboard-promises
-__kCFPasteboardPrivateMode
 com.apple.pboard.resolve-all-promises
 com.apple.pboard.inprocess
 com.apple.CFPasteboard.client-messages
@@ -19764,8 +19768,9 @@ SetPasteFileType('%{public}@' (%{public}@) gen: %ld itemIndex: %lu typeName: '%{
 Invalid typename '%{public}@' - result: %d generation: %ld
 result: %d gen: %ld
 CreateUniquePromiseFileURL('%{public}@' (%{public}@) gen: %ld dropLocationItemIdentifier: %lu proposedFileName: '%{private}@')
-Failed to rebuild cache before uniquing promise file url: %d
 An error occurred while attempting to get a unique promise file URL. Error: %{public}s
+Failed to rebuild cache before uniquing promise file url: %d
+result: %{private}@
 MakeGenerationLocalOnly('%{public}@' (%{public}@) gen: %ld')
 Unable to specify current generation for MakeGenerationLocalOnly - result: %d
 CFPasteboardSetExpirationDate('%{public}@' (%{public}@) gen: %ld date:%{public}@')
@@ -19776,7 +19781,7 @@ Replacing cached data/promise with new promise for '%{public}@' gen: %ld item: %
 Successfully promised data (cache)
 Successfully promised data (new-entry)
 ResolvePromisedData('%{public}@' %{public}@ gen: %ld) cache-gen: %d
-ResolveAllPromisedData called
+ResolveAllPromisedData called, has active connection? %{bool}d
 Unable to specify current generation for RestrictSandboxExtensionAccess - result: %d
 Unable to specify current generation for AllowSandboxExtensionAccessForPID - result: %d
 Unable to specify current generation for AllowSandboxExtensionAccessForProcess - result: %d
@@ -19832,8 +19837,9 @@ Failed to get XPC reply to fulfill message: %{public}s
 Client asked to fulfill pasteboard promise %{public}@ that no longer exists
 Will request data from local promisor
 Will request data from daemon
-Finished waiting for promise because client got a reply from daemon
 Finished waiting for promise because an error occurred
+Finished waiting for promise because client got a reply from daemon
+Finished waiting for promise because timed out
 writing key %{public}@ in cloud domain %{public}@
 writing key %{public}@ in cloud domain %{public}@ failed with exception %{public}@
 cloud preferences changed for %{public}@
@@ -19841,6 +19847,8 @@ _CFCopyHomeDirURLForUser failed to create a proper home directory. Falling back 
 %{public}@
 Cannot find factory %{public}@
 Factory %{public}@ does not support type %{public}@
+Cannot find function pointer %{public}@ for factory %{public}@ in %{public}@
+Attempted to create instance, but factory %{public}@ is disabled
 Created instance of plugin for factory %{public}@ type %{public}@
 UnregisterFactory: No factory registered for id %{public}@
 UnregisterPlugInType: No factory registered for id %{public}@ type %{public}@
@@ -19860,8 +19868,6 @@ Registering static factory %{public}@ %{public}@ bundle %{public}p
 Registering factory %{public}@ type %{public}@
 Unregistered factory %{public}@ (%{public}@)
 Registered factory %{public}@ (%{public}@)
-Cannot find function pointer %{public}@ for factory %{public}@ in %{public}@
-Atempted to create instance, but factory %{public}@ is disabled
 Factory %{public}@ has been disabled
 Type %{public}@ removed from factory %{public}@
 PlugIn %{public}@ is now scheduled for unloading
@@ -37594,6 +37600,7 @@ NSObject
  @@"NSFileHandle"
 @@?<v@?@"<QLThumbnailGenerationRequest>">
  @@"NSString"
+c-BHjW
 1300
 )1$N*-Q
 UUUUUUU

@@ -38,6 +38,7 @@ sender
 attribute
 dateTimeRange
 com.apple.siri.directInvocation.phone.startPhoneCall
+com.apple.siri.SiriAnnounceExtensions.AnnounceIntentExtension
 com.apple.siri.DirectInvocation.PlaybackControls.StopMedia
 SKIDirectInvocationContext
 SKIMessagesGatekeeperPayload
@@ -148,6 +149,11 @@ composeNewMessageRequestInApp:
 composeNewMessageRequestToContact:phoneNumber:emailAddress:inApp:
 composeReplyRequestToConversationIdentifier:inApp:
 beginSiriRequestForApp:
+setSystemExtensionBundleId:
+initWithReadType:startAnnouncementIdentifier:userNotificationType:
+announceHomeAnnouncementRequestFromApp:
+announceHomeAnnouncementRequestFromApp:withAnnouncementIdentifier:withUserNotificationType:
+readHomeAnnouncementRequestFromApp:
 startPhoneCallRequestFromApp:
 stopMediaDirectInvocationPayload
 @16@0:8
@@ -162,3 +168,4 @@ B24@0:8@16
 @32@0:8@16@24
 @48@0:8@16@24@32@40
 @"NSDictionary"
+@40@0:8@16@24q32

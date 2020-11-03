@@ -248,12 +248,14 @@ DUPTYPE
 WRMLTS
 WRMLTCRC
 WRMLTCWRSSI
+WRMLTCWRSSITH
 WRMLTCWSNR
 WRMLTCWCCA
 WRMLTCWPL
 WRMLTCCSS
 WRMLTCCSB
 WRMLTCCSCT
+RWRMLTCWRSSITH
 FECFC
 AFECET
 VRXLP
@@ -542,6 +544,8 @@ wrmLinkTypeChangeReasonCode
 T@"NSNumber",V_wrmLinkTypeChangeReasonCode
 wrmLinkTypeWifiRSSI
 T@"NSNumber",V_wrmLinkTypeWifiRSSI
+wrmLinkTypeWifiRSSIThreshold
+T@"NSNumber",V_wrmLinkTypeWifiRSSIThreshold
 wrmLinkTypeWifiSNR
 T@"NSNumber",V_wrmLinkTypeWifiSNR
 wrmLinkTypeWifiCCA
@@ -554,6 +558,8 @@ wrmLinkTypeCellSignalBar
 T@"NSNumber",V_wrmLinkTypeCellSignalBar
 wrmLinkTypeCellServingCellType
 T@"NSNumber",V_wrmLinkTypeCellServingCellType
+wrmLinkTypeWifiRemoteRSSIThreshold
+T@"NSNumber",V_wrmLinkTypeWifiRemoteRSSIThreshold
 primaryConnHealthAllowedDelay
 Td,V_primaryConnHealthAllowedDelay
 averageJitterQueueSize
@@ -616,6 +622,8 @@ VPCENBD
 LASTCONFIG
 NUMSEGS
 DUPSWCNT
+WRMDUPSWCNT
+RWRMDUPSWCNT
 PCONMAX
 PCONFQ
 PCONP
@@ -743,9 +751,11 @@ lnkPrbVers
 remLnkPrbVers
 WRMLocAlrtUpdate
 WRMRemAlrtUpdate
+WRMCoexIsLocal
 WRMLinkType
 WRMReasonCode
 WRMwRSSI
+WRMwRSSIThreshold
 WRMwSNR
 WRMwCCA
 WRMwPacketLoss
@@ -1966,6 +1976,8 @@ wrmLinkTypeChangeReasonCode
 setWrmLinkTypeChangeReasonCode:
 wrmLinkTypeWifiRSSI
 setWrmLinkTypeWifiRSSI:
+wrmLinkTypeWifiRSSIThreshold
+setWrmLinkTypeWifiRSSIThreshold:
 wrmLinkTypeWifiSNR
 setWrmLinkTypeWifiSNR:
 wrmLinkTypeWifiCCA
@@ -1978,6 +1990,8 @@ wrmLinkTypeCellSignalBar
 setWrmLinkTypeCellSignalBar:
 wrmLinkTypeCellServingCellType
 setWrmLinkTypeCellServingCellType:
+wrmLinkTypeWifiRemoteRSSIThreshold
+setWrmLinkTypeWifiRemoteRSSIThreshold:
 primaryConnHealthAllowedDelay
 setPrimaryConnHealthAllowedDelay:
 averageJitterQueueSize
@@ -2118,12 +2132,14 @@ _lastReportedTotalWifiRxDataBytes
 _wrmLinkTypeSuggestion
 _wrmLinkTypeChangeReasonCode
 _wrmLinkTypeWifiRSSI
+_wrmLinkTypeWifiRSSIThreshold
 _wrmLinkTypeWifiSNR
 _wrmLinkTypeWifiCCA
 _wrmLinkTypeWifiPacketLoss
 _wrmLinkTypeCellSignalStrength
 _wrmLinkTypeCellSignalBar
 _wrmLinkTypeCellServingCellType
+_wrmLinkTypeWifiRemoteRSSIThreshold
 _delegate
 _suggestedLinkTypeCombo
 fieldSize
@@ -2305,6 +2321,8 @@ _averageVPCProcessingTimeSum
 _averageVPCProcessingTimeCounter
 _callVideoSwitchPeriodHistogram
 _adaptiveLearning
+_localWRMDuplicationSwitchCount
+_remoteWRMDuplicationSwitchCount
 initWithUTF8String:
 sendMessageWithCategory:type:payload:error:
 startTimingForKey:

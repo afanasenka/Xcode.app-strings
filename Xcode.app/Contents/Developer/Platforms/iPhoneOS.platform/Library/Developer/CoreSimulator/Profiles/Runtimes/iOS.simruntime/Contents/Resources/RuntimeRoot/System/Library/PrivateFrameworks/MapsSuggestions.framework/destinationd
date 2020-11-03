@@ -817,7 +817,6 @@ dateValue
 bundleWithIdentifier:
 letterCharacterSet
 rangeOfCharacterFromSet:
-queue
 dateWithTimeIntervalSinceNow:
 setEarliestBookingDateForResults:
 isSuspended
@@ -835,7 +834,6 @@ handleIntent:withCompletion:
 beginTransactionWithIntentIdentifier:completion:
 beginExtensionRequestWithInputItems:completion:
 userCurrentBookings
-_createEntryForBooking:vendorID:bundleID:completion:
 restaurantIdentifier
 vendorIdentifier
 sharedService
@@ -859,6 +857,7 @@ pluginKitProxyForUUID:
 containingBundle
 bundleIdentifier
 setSuspended:
+_mapItemCache
 _suspended
 _updateExternalAccessory:
 removeObserver:name:object:
@@ -1267,6 +1266,8 @@ MapsSyncPolicyMinimumDeletesForDataLoss
 MapsSyncPolicyMinimumDeteleRatioForDataLoss
 ClimateShowAirQualityIndex
 ClimateShowWeatherConditions
+MSPShareETAUserEnabledKey
+ShareETAUserEnabled
 MSPClientRegistrationFetchPeriodKey
 MSPClientRegistrationUpdatePeriodKey
 MSPCloudSynchronizerDefaultDelayAfterErrorKey
@@ -1287,7 +1288,6 @@ MSPSenderLiveStrategyETAUpdateIntervalThrottleKey
 MSPSenderMinimalStrategyETANearArrivalIntervalKey
 MSPSenderMinimalStrategyETAUpdateIntervalThrottleKey
 MSPSenderMinimalStrategyETAUpdateNearArrivalIntervalThrottleKey
-MSPShareETAUserEnabledKey
 MSPSharedETASenderIdentifierKey
 MSPSharedTripServerEnabledKey
 MSPUpNextMaximumAllowableHorizontalAccuracyInMetersKey
@@ -1638,21 +1638,29 @@ expectResponseClass
 v40@?0@"INIntentResponse"8@"NSData"16@"NSSet"24@"NSError"32
 v16@?0@"NSError"8
 v24@?0@"NSUUID"8@"NSError"16
+%@ at %@
 v16@?0@"MapsSuggestionsEntry"8
 ticketForExternalBusinessID
--[MapsSuggestionsReservationsSource _createEntryForBooking:vendorID:bundleID:completion:]_block_invoke_2
 -[MapsSuggestionsReservationsSource _createEntryForBooking:vendorID:bundleID:completion:]_block_invoke
+v16@?0@"GEOMapItemStorage"8
+-[MapsSuggestionsReservationsSource _createEntryForBooking:vendorID:bundleID:completion:]_block_invoke_2
+Could not convert MapItem
 keysForSchemas
--[MapsSuggestionsReservationsSource _handleTicketResponse:booking:bundleID:completion:]_block_invoke
+-[MapsSuggestionsReservationsSource _handleTicketResponseWithMapItem:booking:bundleID:completion:]_block_invoke
 com.
 uuid
 -[MapsSuggestionsReservationsSource initFromResourceDepot:name:]
 MapsSuggestionsReservationsSourceQueue
 -[MapsSuggestionsReservationsSource updateSuggestionEntriesWithHandler:]_block_invoke
-queue
-T@"NSObject<OS_dispatch_queue>",R,N,V_queue
 suspended
 TB,N,GisSuspended,V_suspended
+BOOL _isDenied(INRestaurantReservationUserBooking *__strong)
+nil == (booking)
+Requires a booking
+BOOL _isOlderThanEarliestBookingDate(NSDate *__strong)
+nil == (date)
+Requires a data
+%@-%@
 MapsSuggestionsTransportTypeKey
 MapsSuggestionsNeedsETATrackingKey
 MapsSuggestionsNeedsDistanceTrackingKey
@@ -1729,8 +1737,8 @@ reservation_tomorrow_key
 Tomorrow<unlocalized>
 EEEE
 MMMdd
-Sep 21 2020
-21:44:18
+Oct  7 2020
+22:18:24
 com.apple.Maps.destinationd.launch
 EAVehicleInfoRangeGasolineKey
 EAVehicleInfoRangeDieselKey
@@ -1940,8 +1948,17 @@ _getAllUserCurrentBookingsWithHandler
 %@ received error: %@
 managerWithExtensionLookupPolicy
 expectResponseClass
+Treating reservation %@
+This one was actually denied! Skipping.
+Is before the earliest booking date! Skipping.
+Too far in the future. Skipping.
 ticketForExternalBusinessID
 Looking for business '%{private}@' as known to '%{private}@'
+Suspended
+Could not get a MapItem
+Found %@ in our cache!
+Didn't find %@ in our cache. Asking GeoServices...
+%s could not get MapItem: %@
 Could not create an entry for restaurant reservation %@ because the name of the restaurant is nil
 keysForSchemas
 keysForSchemas received error: %@

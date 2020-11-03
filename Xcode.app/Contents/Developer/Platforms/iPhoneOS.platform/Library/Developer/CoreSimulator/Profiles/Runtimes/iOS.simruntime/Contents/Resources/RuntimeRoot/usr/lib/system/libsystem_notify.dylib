@@ -24,7 +24,7 @@ notify_post
 self.
 Libnotify: %s failed with code %d (%d) on line %d
 com.apple.notify.root_access
-notify_register_dispatch
+_notify_register_dispatch_with_extra_mp
 notify_register_coalesced_registration
 globals
 name

@@ -100,6 +100,7 @@ Td,N
 avatar_data_key
 -(nil)
 -(%@)
+-(nosnap)
 COLLIE_FACE_NAME_IN_ALL_CAPS
 COLLIE_FACE_NAME_IN_TITLE_CASE
 v16@?0@"NTKFace"8
@@ -120,6 +121,7 @@ manifest.json
 identifier
 sha1
 NTKCollieFaceCloudSyncManager
+init
 com.apple.Avatars
 v24@?0@"CKAccountInfo"8@"NSError"16
 memoji-%@
@@ -213,7 +215,7 @@ stats load: %.3f render: %.3f total: %.3f average: %.3f/%lu
 %s: loading NTKCollieStyleEditOption cache
 %s: done loading NTKCollieStyleEditOption cache
 %s: done
-Refreshing Collie Face cloud sync status
+Refreshing Collie Face cloud sync status for %@
 Collie Face cloud sync status updating to %lu
 User not logged in
 User needs iCloud security upgrade
@@ -742,6 +744,7 @@ dailySnapshotKey
 selectedOptionForCustomEditMode:slot:
 avatarSha1StringForOption:resourceDirectory:
 stringByAppendingString:
+hasSnapshotForOption:
 localizedStringForKey:comment:
 endCache
 optionWithAvatarRecordIdentifier:forDevice:
@@ -809,10 +812,13 @@ storeDemoFacesForDevice:
 _sharedInstance
 _status
 _currentProcessNeedsToMonitorCloudSyncStatus
-_async_refreshStatus
+_async_refreshStatus:
 addObserver:selector:name:object:
 removeObserver:name:object:
+name
 _fetchStatus
+memojiIdentifiers
+cloudSyncStatusInvalidatingIdentifiers:
 isTinker
 aa_primaryAppleAccount
 containerWithIdentifier:
@@ -845,7 +851,7 @@ dataWithContentsOfFile:
 createDirectoryAtPath:withIntermediateDirectories:attributes:error:
 writeToFile:options:error:
 sharedMemojiDataRepresentationForResourceDirectory:
-avatarWithDataRepresentation:error:
+avatarWithDataRepresentation:usageIntent:error:
 _configurationNameForCharacterPoseType:
 _snapshotImageIdentifierForStyle:
 _snapshotPathForCharacterStyle:resourceDirectory:poseType:size:
@@ -862,7 +868,6 @@ sleepPoseForCharacterStyle:
 posesForAnimojiNamed:inPosePack:
 stickerConfigurationsForAnimojiNamed:inStickerPack:
 stickerConfigurationsForMemojiInStickerPack:
-name
 na_firstObjectPassingTest:
 loadIfNeeded
 physicalizedPose
@@ -886,13 +891,13 @@ _image:scaledToFit:poseType:useVerticalScaling:vShift:
 _ensureAnimojiIdentifiers
 _preserveListWithManifest:oldManifest:
 memojiSha1StringAtIndex:
-memojiIdentifiers
 indexForRecordIdentifier:
 loadAvatarForCharacterStyle:resourceDirectory:oldAvatar:completion:
 memojiDataRepresentationAtIndex:
 avatarOrderedValues
 snapshotKeyForValue:
 valueToFaceBundleStringDict
+defaultSnapshotFileExistsForStyle:resourceDirectory:size:
 _poseOfType:characterStyle:
 _makeAnimojiToyBoxSnapshotImageWithSize:
 _makeMemojiToyBoxSnapshotImageWithSize:
@@ -929,6 +934,7 @@ numberWithUnsignedInteger:
 initWithDictionaryRepresentation:
 _randomizeToyBoxWithResourceDirectory:
 _toyBoxCharacterStyleWithResourceDirectory:
+string
 initWithConfigurationAtPath:
 _watchConfigurationAvatarNameForCharacterStyle:
 watchfaceConfigurationsForAnimojiNamed:
@@ -1085,6 +1091,7 @@ v48@0:8Q16@24@32@?40
 @56@0:8Q16@24Q32{CGSize=dd}40
 r^Q32@0:8^Q16Q24
 @48@0:8Q16@24{CGSize=dd}32
+B48@0:8Q16@24{CGSize=dd}32
 @48@0:8{CGSize=dd}16^@32Q40
 @32@0:8Q16Q24
 @32@0:8{CGSize=dd}16

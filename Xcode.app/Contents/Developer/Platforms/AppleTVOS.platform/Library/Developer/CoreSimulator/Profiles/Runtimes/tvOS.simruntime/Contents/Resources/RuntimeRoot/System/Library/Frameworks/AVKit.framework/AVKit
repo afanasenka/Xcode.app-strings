@@ -2563,6 +2563,9 @@ anyPictureInPictureActive
 TB,R,N,GisAnyPictureInPictureActive,V_anyPictureInPictureActive
 recognizedPress
 T@"UIPress",R,N,V_recognizedPress
+/System/Library/PrivateFrameworks/ZoomServices.framework/ZoomServices
+/System/Library/PrivateFrameworks/ZoomServices.framework/Contents/MacOS/ZoomServices
+ZoomServices
 interactiveCollectionViewControllerDelegate
 T@"<AVxCollectionViewControllerDelegate>",W,N,V_interactiveCollectionViewControllerDelegate
 Tq,N,V_initialFocus
@@ -3131,6 +3134,7 @@ softlink:r:path:/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 softlink:r:path:/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 softlink:r:path:/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 softlink:r:path:/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+softlink:r:path:/System/Library/PrivateFrameworks/ZoomServices.framework/ZoomServices
 softlink:r:path:/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 AVContentProposal
 NSCopying
@@ -8069,6 +8073,7 @@ setRecognizedPress:
 _senderOfSelectPressHasTouchSurface:withEvent:
 pressesChanged:withEvent:
 recognizedPress
+inStandbyMode
 _hidEvent
 pressType:withTarget:action:
 arrowsRecognizerWithTarget:action:

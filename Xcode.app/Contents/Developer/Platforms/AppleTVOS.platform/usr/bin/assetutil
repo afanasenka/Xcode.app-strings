@@ -6645,6 +6645,7 @@ URLByDeletingLastPathComponent
 URLByAppendingPathExtension:
 setValue:forKey:
 numberWithLong:
+UUIDString
 numberWithBool:
 edgeInsets
 allObjects
@@ -6799,6 +6800,9 @@ systemGrayColor
 systemTealColor
 systemIndigoColor
 labelColor
+secondaryLabelColor
+tertiaryLabelColor
+quaternaryLabelColor
 controlAccentColor
 tintColor
 knockout
@@ -6816,6 +6820,9 @@ knockout-systemGrayColor
 knockout-systemTealColor
 knockout-systemIndigoColor
 knockout-labelColor
+knockout-secondaryLabelColor
+knockout-tertiaryLabelColor
+knockout-quaternaryLabelColor
 knockout-controlAccentColor
 knockout-tintColor
 fontMatchingScaleFactor
@@ -7744,6 +7751,38 @@ kCUIRenditionTypeModelSubMesh
 Model I/O Submesh RenditionType
 kCUIRenditionTypeVectorGlyph
 Vector Glyph RenditionType
+kCoreThemeOnePartFixedSize
+10 - One Part Fixed Size
+kCoreThemeOnePartTile
+11 - One Part Tiled
+kCoreThemeOnePartScale
+12 - One Part Scaled
+kCoreThemeThreePartHTile
+20 - Three Part Horizontal Tiled
+kCoreThemeThreePartVTile
+23 - Three Part Vertical Tiled
+kCoreThemeThreePartHScale
+21 - Three Part Horizontal Scaled
+kCoreThemeThreePartVScale
+24 - Three Part Vertical Scaled
+kCoreThemeThreePartHUniform
+22 - Three Part Horizontal Uniform
+kCoreThemeThreePartVUniform
+25 - Three Part Vertical Uniform
+kCoreThemeNinePartTile
+30 - Nine Part Tiled
+kCoreThemeNinePartScale
+31 - Nine Part Scaled
+kCoreThemeNinePartHorizontalUniformVerticalScale
+32 - Nine Part Horizontal Uniform Vertical Scaled
+kCoreThemeNinePartHorizontalScaleVerticalUniform
+33 - Nine Part Horizontal Scaled Vertical Uniform
+kCoreThemeNinePartEdgesOnly
+34 - Nine Part Edges Only
+kCoreThemeManyPartLayoutUnknown
+40 - Many Part Layout Unknown
+kCoreThemeAnimationFilmstrip
+50 - Animation Filmstrip
 CoreUI: Unable to decompress stream for CSI image block data. '%s'
 CoreUI: Unable to copy imagedata for rawbytes block data data. '%s'
 CoreUI: Unable to decompress 2.0 stream for CSI image block data. '%s'
@@ -8124,6 +8163,9 @@ Localizations
 Timestamp
 MainVersion
 AssetStorageVersion
+Rendition Count
+Checksum
+UUID
 carutil: couldn't materialize rendition '%s' skipping
 <N/A>
 Name
@@ -8143,6 +8185,9 @@ LayerBlendMode
 %.2f,%.2f
 Physical Size
 PackedImage
+InternalLink
+InternalAssetType
+Internal Frame
 Recognition Image
 Image
 PixelWidth
@@ -8153,6 +8198,9 @@ Opaque
 AlignmentEdgeInsets
 Template Mode
 EdgeInsets
+RenditionType
+RenditionSubType
+Rowbytes
 Monochrome
 ColorModel
 Width
@@ -8165,7 +8213,6 @@ Icon Image
 Asset Parent Image Missing
 Asset Error
 Asset Image Missing
-InternalLink
 AlphaCroppedRect
 Destination Name
 Data Length
@@ -8185,7 +8232,6 @@ MipMapCount
 Texture Interpretation
 MipLevel
 FaceCount
-Rowbytes
 Colorspace Hint
 Texture Data
 Faces

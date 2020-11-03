@@ -38,6 +38,7 @@ v16@?0@"MPIdentifierSet<MPMutableIdentifierSet>"8
 76,8204
 76,8201
 76,8203
+76,8208
 %u,%u
 <%@:%p name: %@, address: %@, type: %@, connected: %@>
 hasSystemRoute
@@ -599,6 +600,7 @@ isAirpodsRoute
 isB298Route
 isPowerbeatsRoute
 isB364Route
+isB372Route
 isB444Route
 isBeatsSoloRoute
 isB419Route
@@ -730,6 +732,8 @@ numberWithInteger:
 userInfo
 sharedNetworkObserver
 isMusicCellularStreamingAllowed
+sharedRestrictionsMonitor
+allowsExplicitContent
 playbackControllerDidPauseForLeaseEnd:
 playbackController:didFailToActivateWithError:resolution:
 _playbackErrorTypeFromTopLevelError:

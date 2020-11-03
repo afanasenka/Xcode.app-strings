@@ -5563,7 +5563,7 @@ IsAndroid() || isNvidia
 isAMD || isIntel
 IsNexus5X(vendor, device)
 IsAndroid() || (IsWindows() && isIntel)
-(IsWindows() && (isIntel || isAMD)) || (IsLinux() && isNvidia)
+(IsWindows() && (isIntel || isAMD)) || (IsLinux() && isNvidia) || IsIOS()
 IsAndroid() || limitMaxTextureSize
 IsAndroid() || (IsApple() && (isIntel || isAMD || isNvidia))
 limitMaxTextureSize

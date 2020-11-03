@@ -26,8 +26,6 @@ ringtoneIdentifier
 T@"NSString",&,N,V_ringtoneIdentifier
 _audioSession
 T@"AVAudioSession",&,N,V__audioSession
-_systemController
-T@"AVSystemController",&,N,V__systemController
 _queuePlayer
 T@"AVQueuePlayer",&,N,V__queuePlayer
 _playerLooper
@@ -36,8 +34,6 @@ _currentItem
 T@"AVPlayerItem",&,N,V__currentItem
 _serverConnectionDiedToken
 T@,&,N,V__serverConnectionDiedToken
-systemController
-T@"AVSystemController",R,N
 com.apple.preferences.sounds
 effects-haptic
 buttons-can-change-ringer-volume
@@ -45,9 +41,10 @@ buttons-can-change-ringer-volume-springboard
 /System/Library/PrivateFrameworks/Settings/SoundsAndHapticsSettings.framework
 Sounds
 SHSLogForCategory
-/Library/Caches/com.apple.xbs/Sources/SoundsAndHapticsSettings_Sim/SoundsAndHapticsSettings-1022/SoundsAndHapticsSettings/Utility/SHSLogging.m
+/Library/Caches/com.apple.xbs/Sources/SoundsAndHapticsSettings_Sim/SoundsAndHapticsSettings-1023/SoundsAndHapticsSettings/Utility/SHSLogging.m
 category < SHSLoggingCategoryCount
 Base
+Volume
 com.apple.settings.SoundsAndHaptics
 titleLabelMargin, descriptionLabelMargin
 V:|-(titleLabelMargin)-[_titleLabel]-(descriptionLabelMargin)-[_descriptionLabel]-[_learnMoreButton]-|
@@ -69,7 +66,6 @@ ipad
 ringer-switch
 gqDnklGQnpv5ilgh5uHckw
 AirDropCapability
-Ringtone
 PSNewCarrierNotification
 DeviceName
 iphone
@@ -77,6 +73,7 @@ iphone
 -[SHSSoundsPrefController willHideSlider]
 -[SHSSoundsPrefController setVolumeHUDsuppression:]
 RingtonePreview
+Ringtone
 Audio/Video
 RING_VOLUME_SLIDER
 com.apple.carrier
@@ -110,20 +107,58 @@ sound-effects-headphones
 com.apple.springboard.sound-effects-speaker.changed
 com.apple.springboard.sound-effects-headphones.changed
 -[SHSSoundsPrefController startRingtonePreview]
--[SHSSoundsPrefController volumeChangedExternally:]
-ExplicitVolumeChange
 VIBRATE_ONLY
-com.apple.preferences.sounds.buttons-can-change-ringer-volume.changed
+-[SHSSoundsPrefController ringerControlDidObserveEffectiveSystemVolumeChange:]
+-[SHSSoundsPrefController ringerControl:volumeValueDidChange:]
 numberFormatter
 T@"NSNumberFormatter",&,N,V_numberFormatter
 _audioPlayback
 T@"SHSAudioPlayback",&,N,V__audioPlayback
-_volumeDataSource
-T@"MPVolumeControllerSystemDataSource",&,N,V__volumeDataSource
-_volumeController
-T@"MPVolumeController",&,N,V__volumeController
 _volumeSliderVisible
 TB,N,G_isVolumeSliderVisible,V__volumeSliderVisible
+_ringerControl
+T@"SHSRingerControl",&,N,V__ringerControl
+-[SHSRingerControl dealloc]
+-[SHSRingerControl dealloc]_block_invoke
+-[SHSRingerControl _setup]
+-[SHSRingerControl _setup]_block_invoke
+-[SHSRingerControl _tearDown]
+-[SHSRingerControl _tearDown]_block_invoke
+-[SHSRingerControl canChangeRingtoneWithButtons]
+-[SHSRingerControl canChangeRingtoneWithButtons]_block_invoke
+-[SHSRingerControl setCanChangeRingtoneWithButtons:]
+-[SHSRingerControl setCanChangeRingtoneWithButtons:]_block_invoke
+com.apple.preferences.sounds.buttons-can-change-ringer-volume.changed
+-[SHSRingerControl reload]
+-[SHSRingerControl reload]_block_invoke
+-[SHSRingerControl setVolume:]
+-[SHSRingerControl setVolume:]_block_invoke
+-[SHSRingerControl setVolume:]_block_invoke_2
+-[SHSRingerControl _updateVolume:]
+-[SHSRingerControl _updateVolume:]_block_invoke
+-[SHSRingerControl _handleEffectiveVolumeDidChangeNotification:]
+-[SHSRingerControl _handleEffectiveVolumeDidChangeNotification:]_block_invoke
+ExplicitVolumeChange
+-[SHSRingerControl _handleServerConnectionDiedNotification:]
+-[SHSRingerControl _handleServerConnectionDiedNotification:]_block_invoke
+_systemController
+T@"AVSystemController",&,N,V__systemController
+_volumeChangeCoalescingCount
+Tq,N,V__volumeChangeCoalescingCount
+_volumeInitialized
+TB,N,V__volumeInitialized
+_logFaultCalledForInactive
+TB,N,V__logFaultCalledForInactive
+_logFaultCalledForBackground
+TB,N,V__logFaultCalledForBackground
+delegate
+T@"<SHSRingerControlDelegate>",W,N,V_delegate
+volume
+Tf,N,V_volume
+canChangeRingtoneWithButtons
+TB,N
+appWantsVolumeChangeEvents
+TB,N,V_appWantsVolumeChangeEvents
 NotificationDataKey
 @sum.count
 _titleLabel, _countLabel
@@ -265,23 +300,34 @@ B(knN
 %s: current: '%{public}@', proposed: '%{public}@'.
 %s: Requesting ringtone playback to end.
 %s: Requesting plaback of current ringtone for alert type '%{public}@'.
-%s: App is not active, ignoring.
 %s: View is not on screen, ignoring.
-%s: 'Change with Buttons' is not active, ignoring.
 %s: Volume slider not on screen, ignoring.
 %s: Volume slider is active and in use, ignoring.
+%s: Start.
+%s: Finish.
+%s: Retrieved AVSystemController volume: %f.
+%s: (current: %f, newVolume: %f, coalescingCount: %ld).
+%s: Called while application state is 'Inactive' (current: %f, newVolume: %f, coalescingCount: %ld).
+%s: Called while application state is 'Background' (current: %f, newVolume: %f, coalescingCount: %ld).
+%s: Setting AVSystemController volume to: %f.
+%s: Calling delegate %{public}@ with new volume value: %f.
+%s: Start (volume %f).
+%s Start.
+%s: App is not active, ignoring.
+%s: 'Change with Buttons' is not active, ignoring.
 %s: Is volume change '%{public}@', is ringtone related category '%{public}@', category '%{public}@'.
+%s: Calling '%{public}@' delegate %{public}@.
 SHSToneController
 TKTonePickerViewControllerDelegate
 NSObject
 TKVibrationPickerViewControllerDelegate
 SHSAudioPlayback
 SHSHeadphoneLevelLimitDescriptionCell
-SHSVolumeControllerSystemDataSource
 SHSHeadphoneNotificationsController
 SHSSoundsPrefController
-MPVolumeControllerDelegate
+SHSRingerControlDelegate
 PSListControllerTestableSpecifiers
+SHSRingerControl
 SHSHeadphoneLevelLimitSliderCell
 SHSHeadphoneNotificationTableCell
 SHSHeadphoneHearingProtectionController
@@ -379,7 +425,6 @@ vibrationPickerViewController:selectedVibrationWithIdentifier:
 .cxx_destruct
 _tonePickerViewController
 _vibrationPickerViewController
-sharedAVSystemController
 sharedInstance
 _playerLooper
 disableLooping
@@ -389,11 +434,9 @@ removeAllItems
 set_queuePlayer:
 set_currentItem:
 setRingtoneIdentifier:
-set_systemController:
 set_audioSession:
 addObserverForName:object:queue:usingBlock:
 removeObserver:
-_systemController
 _audioSession
 setCategory:error:
 rate
@@ -417,14 +460,12 @@ play
 numberWithFloat:
 setRate:withVolumeRampDuration:
 playRingtoneWithIdentifier:loop:
-systemController
 isPlayingRingtone
 stopRingtoneWithFadeOut:
 _serverConnectionDiedToken
 set_serverConnectionDiedToken:
 _ringtoneIdentifier
 __audioSession
-__systemController
 __queuePlayer
 __playerLooper
 __currentItem
@@ -437,7 +478,6 @@ setNumberOfLines:
 setLineBreakMode:
 setSeparatorStyle:
 cellStyle
-_volumeDidChangeNotification:
 bundleWithPath:
 localizedStringForKey:value:table:
 loadView
@@ -502,11 +542,7 @@ _scrollView
 _titleLabel
 _descriptionLabel
 _learnMoreButton
-_volumeDataSource
-initWithDataSource:
-setVolumeAudioCategory:
-updateVolumeValue
-volumeChangedExternally:
+_ringerControl
 updateVoiceMailVisibility
 didBackground
 willForeground
@@ -517,10 +553,9 @@ stringFromNumber:
 setNotANumberSymbol:
 setNumberFormatter:
 lowercaseString
-_canChangeRingtoneWithButtons
+canChangeRingtoneWithButtons
 setVolumeHUDsuppression:
-_audioPlayback
-setAttribute:forKey:error:
+setAppWantsVolumeChangeEvents:
 numberWithBool:
 sharedApplication
 setSystemVolumeHUDEnabled:
@@ -565,7 +600,8 @@ incrementKey:
 setPreferenceValue:specifier:
 postNotificationName:object:
 readPreferenceValue:
-_volumeController
+_audioPlayback
+reload
 viewWillAppear:
 _isVolumeSliderVisible
 updateVolume
@@ -577,35 +613,26 @@ showController:animate:
 intValue
 performSelector:withObject:afterDelay:
 volume
-applicationState
-window
-_volumeSliderCell
-isTracking
-userInfo
-objectForKeyedSubscript:
-startRingtonePreview
-volumeValue
 floatValue
-setVolume:withNoticationDelay:
+setVolume:
+startRingtonePreview
 currentVibrationIdentifierForAlertType:topic:
 nameForToneIdentifier:
 standardUserDefaults
+setCanChangeRingtoneWithButtons:
 reloadSpecifiers
+_volumeSliderCell
 indexPathForSpecifier:
 table
 cellForRowAtIndexPath:
 isMainThread
+window
+isTracking
+ringerControlDidObserveEffectiveSystemVolumeChange:
 setValue:
 reloadSpecifierID:
-volumeController:volumeValueDidChange:
+ringerControl:volumeValueDidChange:
 booleanCapabilitiesToTest
-volumeController:volumeControlAvailableDidChange:
-volumeController:volumeControlCapabilitiesDidChange:
-volumeController:volumeControlLabelDidChange:
-volumeController:mutedStateDidChange:
-volumeController:volumeWarningStateDidChange:
-volumeController:EUVolumeLimitDidChange:
-volumeController:EUVolumeLimitEnforcedDidChange:
 specifiers
 didLock
 willResignActive
@@ -622,9 +649,8 @@ setCanChangeRingtoneWithButtons:specifier:
 getHeadphoneLevelLimitSetting
 numberFormatter
 set_audioPlayback:
-set_volumeDataSource:
-set_volumeController:
 set_volumeSliderVisible:
+set_ringerControl:
 _hasTelephony
 _volumeHUDsuppressed
 _voiceMailSpecifier
@@ -632,8 +658,40 @@ _voiceMailSpecifierIndex
 __volumeSliderVisible
 _numberFormatter
 __audioPlayback
-__volumeDataSource
-__volumeController
+__ringerControl
+_setup
+_tearDown
+sharedAVSystemController
+_handleEffectiveVolumeDidChangeNotification:
+_systemController
+_handleServerConnectionDiedNotification:
+set_volumeInitialized:
+setAttribute:forKey:error:
+getVolume:forCategory:
+_volumeInitialized
+_updateVolume:
+applicationState
+_volumeChangeCoalescingCount
+_logFaultCalledForInactive
+set_logFaultCalledForInactive:
+_logFaultCalledForBackground
+set_logFaultCalledForBackground:
+set_volumeChangeCoalescingCount:
+setVolumeTo:forCategory:
+delegate
+userInfo
+objectForKeyedSubscript:
+objectForKey:
+appWantsVolumeChangeEvents
+set_systemController:
+_appWantsVolumeChangeEvents
+__volumeInitialized
+__logFaultCalledForInactive
+__logFaultCalledForBackground
+_volume
+_delegate
+__systemController
+__volumeChangeCoalescingCount
 layoutSubviews
 contentView
 sizeThatFits:
@@ -807,7 +865,6 @@ v24@0:8@16
 v20@0:8f16
 @"NSString"
 @"AVAudioSession"
-@"AVSystemController"
 @"AVQueuePlayer"
 @"AVPlayerLooper"
 @"AVPlayerItem"
@@ -816,14 +873,9 @@ v24@0:8q16
 @"UIScrollView"
 @"UILabel"
 @"UIButton"
-v28@0:8@16I24
 v28@0:8@16f24
-v32@0:8@16q24
-v28@0:8@"MPVolumeController"16B24
-v28@0:8@"MPVolumeController"16I24
-v32@0:8@"MPVolumeController"16@"NSString"24
-v28@0:8@"MPVolumeController"16f24
-v32@0:8@"MPVolumeController"16q24
+v24@0:8@"SHSRingerControl"16
+v28@0:8@"SHSRingerControl"16f24
 @"NSArray"16@0:8
 i16@0:8
 v20@0:8B16
@@ -833,8 +885,10 @@ v40@0:8@16@24@32
 @"PSSpecifier"
 @"NSNumberFormatter"
 @"SHSAudioPlayback"
-@"MPVolumeControllerSystemDataSource"
-@"MPVolumeController"
+@"SHSRingerControl"
+f16@0:8
+@"<SHSRingerControlDelegate>"
+@"AVSystemController"
 @40@0:8q16@24@32
 @36@0:8@16@24B32
 @"NSArray"

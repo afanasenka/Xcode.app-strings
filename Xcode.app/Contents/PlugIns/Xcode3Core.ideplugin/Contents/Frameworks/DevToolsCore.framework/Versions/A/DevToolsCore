@@ -1,4 +1,5 @@
-@(#)PROGRAM:DevToolsCore  PROJECT:DevToolsCore-17508
+@(#)PROGRAM:DevToolsCore  PROJECT:DevToolsCore-17511.1
+ffff
  !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 ?????****????****
 Y@Undefined symbols:
@@ -6904,7 +6905,7 @@ longDateTimeFormatter
 T@"NSDateFormatter",R,V_longDateTimeFormatter
 fullDateTimeFormatter
 T@"NSDateFormatter",R,V_fullDateTimeFormatter
-18:24:31
+23:44:32
 +[XCSpecificationCache createCacheFileAtPath:fromSpecificationsInSearchPaths:error:]
 creating cache file at %@ with search paths:
    [%2ld] %@
@@ -9057,16 +9058,17 @@ IDEBuildOperationDependencies
 IDEImplicitDependenciesDebug
 <%@:%p:%@ blueprint:%@>
 -[Xcode3TargetBuildable evaluatedStringValueForBuildSetting:withBuildParameters:]
-/Library/Caches/com.apple.xbs/Sources/IDEXcode3ProjectSupport/IDEXcode3ProjectSupport-17508/Xcode3Core/LegacyProjects/Frameworks/DevToolsCore/DevToolsCore/ProjectModel/Xcode3Model/Xcode3TargetBuildable.m
+/Library/Caches/com.apple.xbs/Sources/IDEXcode3ProjectSupport/IDEXcode3ProjectSupport-17511.1/Xcode3Core/LegacyProjects/Frameworks/DevToolsCore/DevToolsCore/ProjectModel/Xcode3Model/Xcode3TargetBuildable.m
 -[Xcode3TargetBuildable evaluatedStringListValueForBuildSetting:withBuildParameters:]
 -[Xcode3TargetBuildable stringByEvaluatingBuildSettingExpressionString:withBuildParameters:]
 -[Xcode3TargetBuildable absolutePathByEvaluatingBuildSettingExpressionString:withBuildParameters:]
 -[Xcode3TargetBuildable allBuildSettingNamesWithBuildParameters:]
 -[Xcode3TargetBuildable toolSearchPathWithBuildParameters:]
 -[Xcode3TargetBuildable orderedRecursiveDependenciesIncludingSelf:includingPackages:]
-missing IDE target for %@'s dependency: %@
 c16@?0@"<IDESourcePackage>"8
 c16@?0@"<IDESourcePackageProduct>"8
+v16@?0@"PBXTarget"8
+missing IDE target for %@'s dependency: %@
 -[Xcode3TargetBuildable directDependencies]
 -[Xcode3TargetBuildable calculateImplicitDependenciesForBuildParameters:executionEnvironment:returningMessages:]
 (executionEnvironment) == nil || [(id)(executionEnvironment) isKindOfClass:[IDEExecutionEnvironment class]]
@@ -9778,8 +9780,8 @@ result && result->_baseNode == [result nodeWithPath:basePath createIfNeeded:__ob
 ![(buildDirPath) isEqualToString:@""]
 read dependency graph %@
 couldn't read dependency graph from '%@': %@
-Sep 22 2020
-18:24:37
+Oct  7 2020
+23:44:37
 -[XCDependencyGraph writeToByteStream:error:]
 it.second == ~0U
 it != inputNodeStatesMap.end() && it->second != ~0U
@@ -16536,7 +16538,7 @@ runsDirectlyOnProxy
 provisioningProfileSupport
 _backingSpecification
 dvt_stringWithANSITextBoldCyan
-fullDisplayName
+fullDisplayNameWithScheme:
 initWithName:buildParameters:
 hostsOnlyXcode3Project
 callbackDelegate

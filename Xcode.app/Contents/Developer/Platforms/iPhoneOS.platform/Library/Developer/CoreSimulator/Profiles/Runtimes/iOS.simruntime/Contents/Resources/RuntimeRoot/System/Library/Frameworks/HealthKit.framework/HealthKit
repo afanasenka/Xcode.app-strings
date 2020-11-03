@@ -2228,8 +2228,6 @@ Only range collection should be used to create a reference range
 T@"NSString",R,N,V_referenceRangeIdentifier
 T@"HKInspectableValueCollection",R,N,V_valueRange
 Sleep
-ListeningExperience
-HAELiveNotification
 HeartRateNotifications
 heartRateNotificationsByDefault
 FriendUUID
@@ -3725,6 +3723,7 @@ HKKeyValueDomainServerIdentifier
 DomainName
 <%@:%p>
 <sensitive>
+hk_redactedDescription
 hkqd_id
 hkqd_dt
 hkqd_qt
@@ -6368,6 +6367,8 @@ Failed to remove first onboarding completed dates: %{public}@
 [%{public}@ %{public}@] -> 1 (HKElectrocardiogramWatchAppInstallIsAllowed is set to True
 [%{public}@ %{public}@] -> 1 (Onboarding has been completed (From Cached Value))
 [%{public}@ %{public}@] -> 0 (device supported (%{public}d), app install allowed (%{public}d), Current onboarding version completed (%{public}d))
+[%{public}@ %{public}@] -> Locale contained a nil country code
+[%{public}@ %{public}@] -> Locale: %{public}@), Country Code: %{public}@)
 [%{public}@ %{public}@] -> Triggered NanoPreferencesSync (key: %{public}@; value: %{public}d)
 [%{public}@ %{public}@"%{public}@"] -> %{public}d (Device supported: %{public}d; Alt Account: %{public}d; Region supported: %{public}d;)
 [%{public}@ %{public}@] -> %{public}d
@@ -6544,7 +6545,7 @@ softlink:r:path:/System/Library/PrivateFrameworks/GeoServices.framework/GeoServi
 softlink:r:path:/System/Library/PrivateFrameworks/NanoRegistry.framework/NanoRegistry
 softlink:r:path:/System/Library/PrivateFrameworks/SOS.framework/SOS
 softlink:r:path:/System/Library/PrivateFrameworks/NanoRegistry.framework/NanoRegistry
-Q`!&
+Q`1&
 HKConceptIdentifier
 NSObject
 NSCopying
@@ -6982,6 +6983,7 @@ HKKeyValueDomainServerInterface
 HKKeyValueDomainClientInterface
 HKKeyValueDomain
 HKKeyValueDomainServerConfiguration
+HKRedactedDescription
 HKQuantityDatum
 _HKCDADocumentSampleComparisonFilter
 HKSeriesSample
@@ -7324,6 +7326,7 @@ hk_dictionaryByAddingEntriesFromDictionary:
 initWithDomain:code:userInfo:
 hk_isDatabaseAccessibilityError
 hk_isDatabaseTransactionError
+hk_isHealthStoreUnavailableError
 hk_isDatabaseSchemaRolledBackError
 hk_isTransactionInterruptedError
 hk_isServiceDeviceNotFoundError
@@ -7331,6 +7334,7 @@ hk_isAuthorizationDeniedError
 hk_isAuthorizationNotDeterminedError
 hk_isInvalidArgumentError
 hk_isInternalFailureError
+hk_isFeatureDisabledError
 hk_isRequiredAuthorizationError
 hk_isStreamFailureError
 hk_isTimeoutError
@@ -11616,7 +11620,7 @@ allValuesWithCompletion:
 domainName
 _domainName
 showSensitiveLogItems
-redactedDescription
+hk_redactedDescription
 initWithIdentifier:dateInterval:quantity:resumeContext:
 resumeContext
 saveCompletion
@@ -12639,11 +12643,14 @@ currentDeviceRegionCode
 _isOnboardingCompletedForKey:version:useCache:
 heartRhythmUserDefaults
 onboardingKeysReadSet
+_getOnboardingVersionForKey:
+_updateOnboardingCompletionForKey:andVersion:
 keyValueDomain
 setInteger:forKey:
 featureAvailabilityUserDefaults
 newestAvailableVersion
 _isOnboardingCompletedForKey:version:
+electrocardiogramOnboardingCompletedVersionNoCache
 _setOnboardingVersionCompleted:forKey:additionalValues:completion:
 _setFirstOnboardingCompletedDate:forKey:completion:
 _setElectrocardiogramOnboardingCompletedForVersion:inCountryCode:
@@ -12694,6 +12701,7 @@ isHeartRateEnabledInPrivacy
 isCompanionRegionCheckEnabledForActiveWatch
 isCompanionRegionCheckEnabledOnPairedPhone
 shouldInstallWatchApp
+isElectrocardiogramAppInstallableForLocale:
 isElectrocardiogramSupportedOnAnyWatch
 isElectrocardiogramSupportedOnActiveWatch
 isElectrocardiogramSupportedOnAllWatches
@@ -12721,6 +12729,7 @@ isElectrocardiogramAvailableOnWatch:countryCode:
 isElectrocardiogramAvailableForOnboardingCountryCode:
 isElectrocardiogramOnboardingCompleted
 isElectrocardiogramOnboardingCompletedNoCache
+updateOnboardingCompletionVersionCache
 setElectrocardiogramOnboardingCompleted
 setElectrocardiogramFirstOnboardingCompletedDate:
 setElectrocardiogramOnboardingCompletedForCountryCode:
@@ -13160,6 +13169,7 @@ remote_createProfileOfType:displayName:completion:
 remote_deleteProfile:completion:
 remote_getAllProfilesWithCompletion:
 remote_profileIdentifierForNRDeviceUUID:completion:
+remote_profileIdentifierForNRDeviceUUID:ownerAppleID:completion:
 remote_fetchDisplayNameWithCompletion:
 remote_setDisplayFirstName:lastName:completion:
 remote_fetchDisplayImageData:
@@ -13172,6 +13182,7 @@ client_remoteDidUpdateProfileList
 createProfileOfType:displayName:completion:
 deleteProfile:completion:
 fetchAllProfilesWithCompletion:
+fetchProfileIdentifierForNRDeviceUUID:ownerAppleID:completion:
 fetchDisplayName:
 setDisplayFirstName:lastName:completion:
 fetchDisplayImageData:
@@ -15051,6 +15062,7 @@ v24@0:8@"NSExtensionContext"16
 @64@0:8@16@24@32{?=qqq}40
 v40@0:8q16@"NSString"24@?<v@?@"HKProfileIdentifier"@"NSError">32
 v32@0:8@"NSUUID"16@?<v@?@"HKProfileIdentifier"@"NSError">24
+v40@0:8@"NSUUID"16@"NSString"24@?<v@?@"HKProfileIdentifier"@"NSError">32
 v24@0:8@?<v@?@"NSString"@"NSString"@"NSError">16
 v24@0:8@?<v@?@"NSData"@"NSError">16
 v32@0:8@"NSData"16@?<v@?B@"NSError">24
@@ -15066,8 +15078,8 @@ v64@0:8{Electrocardiogram=^^?d{PtrVector<binarysample::ElectrocardiogramLead>={v
 @"NSProgress"56@0:8Q16@"NSUUID"24@"NSURL"32Q40@?<v@?B@"NSError">48
 @"NSProgress"48@0:8Q16@"NSUUID"24@"NSURL"32@?<v@?B@"NSError">40
 MbP?
-:@XX(
-D@xX(
+:@Xh(
+D@xh(
 XzY<@
 XzY|@
 ?fffff

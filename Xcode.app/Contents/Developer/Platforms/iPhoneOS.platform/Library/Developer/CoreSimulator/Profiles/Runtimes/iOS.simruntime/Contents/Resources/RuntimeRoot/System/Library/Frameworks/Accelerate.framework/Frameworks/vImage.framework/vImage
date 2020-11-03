@@ -2409,9 +2409,10 @@ vImageConverter_Print: <converter = NULL>
 *** Error: vImageConverter_PrintPasses truncated. ***
 /System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/Libraries/libCGInterfaces.dylib
 Init_CGInterfaces
+541.1
 <dladdr failed!>
 *** vImage Internal error. vImage has version %s but libCGInterfaces.dylib loaded at %s has version %s
-/Library/Caches/com.apple.xbs/Sources/vImage_Sim/vImage-540/Source/Conversion_YUV.c
+/Library/Caches/com.apple.xbs/Sources/vImage_Sim/vImage-541.1/Source/Conversion_YUV.c
 kvImagePrintDiagnosticsToConsole: vImageConvert_YpCbCrToARGB_GenerateConversion: One of the vImage_YpCbCrToARGBMatrix inputs seems well out of expected range.
 {Yp = %f, Cr_R = %f, Cr_G = %f, Cb_G = %f, Cb_B = %f}
 If you feel this message is in error, please file a bug report.

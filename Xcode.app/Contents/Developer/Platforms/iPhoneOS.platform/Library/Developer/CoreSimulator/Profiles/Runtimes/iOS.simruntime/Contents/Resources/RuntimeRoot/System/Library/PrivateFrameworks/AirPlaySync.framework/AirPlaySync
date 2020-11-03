@@ -370,6 +370,7 @@ SpeakerIDToGroupID
 createSpeaker
 RoomID
 OwnedGroupID
+HomeTheaterCluster
 setSpeakerName: Deleted speaker ID: 
 setSpeakerName: Invalid speaker ID: 
 setSpeakerName

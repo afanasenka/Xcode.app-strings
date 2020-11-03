@@ -4866,7 +4866,6 @@ ExperimentalPeerConnectionEnabled
 WebCoreLogging
 WebKit2Logging
 WebKitLogCookieInformation
-com.apple.AGXCompilerService
 com.apple.containermanagerd
 com.apple.cfprefsd.agent
 com.apple.cfprefsd.daemon
@@ -4897,6 +4896,8 @@ SecretWebView is cleaned.
 SecretWebView is created.
 <script>location = '
 '</script>
+com.apple.AGXCompilerService
+com.apple.AGXCompilerService-S2A8
 com.apple.lsd.open
 com.apple.mobileassetd
 com.apple.iconservices
@@ -7892,6 +7893,8 @@ StorageAreaMap::ensureMap failed to load from network process because storage ma
 Unable to find source %llu for storageChanged
 Unable to find source %llu for audioSamplesAvailable
 Unable to create shared memory for audio source %llu
+buffer for audio source %llu is null
+Unable to support description with given number of frames for audio source %llu
 %p - [webPageID=%llu] WebPage::WebPage: Created context with ID %d for visibility propagation from UIProcess
 %p - [webPageID=%llu] WebPage::freezeLayerTree: Adding a reason to freeze layer tree (reason=%d, new=%d, old=%d)
 %p - [webPageID=%llu] WebPage::unfreezeLayerTree: Removing a reason to freeze layer tree (reason=%d, new=%d, old=%d)

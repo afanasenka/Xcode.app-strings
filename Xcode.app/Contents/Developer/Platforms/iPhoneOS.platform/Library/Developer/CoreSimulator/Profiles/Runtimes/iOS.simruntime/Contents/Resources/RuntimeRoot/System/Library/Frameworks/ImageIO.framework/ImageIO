@@ -2996,6 +2996,7 @@ initThumbnail
 *** CGImagePlusCreateWithSession failed
 *** _reader->initImage[%d] failed err=%d
 copyAuxiliaryDataInfoAtIndex
+*** ERROR: copyAuxiliaryDataInfoAtIndex - MediaToolbox symbol not found [%d]
 *** ERROR: unsupported auxiliaryDataType: '%s'
 setImagePlusAtIndex
 setImagePlusAtIndex index (%d) larger than arrayCount (%d) and image count (%d
@@ -4092,6 +4093,9 @@ kCGImageAuxiliaryDataTypePortraitEffectsMatte
 kCGImageAuxiliaryDataTypeSemanticSegmentationSkinMatte
 kCGImageAuxiliaryDataTypeSemanticSegmentationHairMatte
 kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte
+kCGImageAuxiliaryDataTypeSemanticSegmentationGlassesMatte
+kCGImageAuxiliaryDataTypeHDRGainMap
+kCGImageSourceApplyHDRGainMap
 kCGImageSourceNeutralX
 kCGImageSourceNeutralY
 kCGImageSourceBlackDespeckleEnabled
@@ -4134,6 +4138,7 @@ kCGImageMetadataShouldExcludeICC
 kCGImageDestinationDateTime
 kCGImageDestinationOrientation
 kCGImageDestinationICCProfile
+kCGImageDestinationPreserveGainMap
 kCGImageComponentTypeRequest
 kCGImageSkipCIF10SRGBCheck
 kCGImagePreferGPUForColorConversion
@@ -5521,6 +5526,8 @@ Caught unknown exception.
 Threw error #%d (%s).
 SerializeMetadataForXMP
 Error #%d while serializing XMP: %s
+SerializeMetadataForJPEGXMP
+XMP Error: %s
 serializeArrayPropertyValue
 Array element has unsupported type, skipping.
 serializeStructPropertyValue
@@ -6158,6 +6165,8 @@ addImageFromSource
 *** ERROR: cannot add image from source - invalid image destination
 *** ERROR: image destination format unknown
 *** ERROR: CGImageDestinationAddImageFromSource call is not allowed for this image destination (destination was updated with CGImageDestinationCopyImageSource)
+not-a-jpeg
+public.jpeg
 *** ERROR: image %ld of source is nil
 *** ERROR: image %ld properies of source is nil
 addImageAndMetadata
@@ -6187,6 +6196,7 @@ getSourceImageAtIndex index (%d) larger than vector size (%d)
 setSourceImageAtIndex
 setSourceImageAtIndex index (%d) larger than vectorCount (%d) and image count (%d
 addAuxiliaryDataInfo
+*** ERROR: addAuxiliaryDataInfo - MediaToolbox symbol not found [%d]
 *** ERROR: depth/disparity is not supported on this platform
 *** ERROR: can't add depth/disparity to '%s'
 *** ERROR: please add an image before calling CGImageDestinationAddAuxiliaryDataInfo
@@ -6377,7 +6387,6 @@ public.heif
 com.apple.icns
 com.microsoft.ico
 public.jpeg-2000
-public.jpeg
 org.khronos.ktx
 public.mpo-image
 com.ilm.openexr-image
@@ -6725,7 +6734,6 @@ getCGDataProviderBytesAtOffset
 getCFDataBytesAtOffset
 : *** ERROR *** CGImageSource was created with data size: %ld - current size is only: %ld
 : *** ERROR *** requested range: %ld-%lld - is outside input CFData range (0-%ld)
-ImageIO: CFDataGetBytes: data: %p size: %zu  offset: %zu count: %zu  dst: %p
     %s:%d:  file: %p  [%8ld]  offset: 0x%08lX   size: %8ld
 getFileBytesAtOffset
     %s:   file-buffer: [%10lld - %10lld] (%10lld bytes)   request: [%10ld - %10ld] (%10ld bytes)  size/boundary pread
@@ -6796,6 +6804,7 @@ _CGImagePluginWriteGIF - imageCount: %ld
 ImageIOXPCReadPlugin_Data_HEIF
 *** globalHEIFInfo was not set in IIO_Reader_HEIF::updateSourceProperties or IIO_Reader_HEIF::getImageCount
 *** no main image??? (globalHEIFInfo->getNumberOfMainImages() is 0)
+*** ignoring 'kCGImageSourceApplyHDRGainMap' - image contains no aux image...
 tiff:TileWidth
 tiff:TileLength
 *** mainImage) is NULL
@@ -6813,8 +6822,9 @@ failed to alloc imageData (%ld bytes)
 *** FigPhotoDecompressionSessionCreateContainer[sequence] err = %s [%d]
 *** 'BGRA' request returned planar data - not handled '%c%c%c%c'
     vImagePermuteChannels_ARGB8888:   BGRX -> RGBX
-copyAuxiliaryDataInfo
+copyGainMapInfo
 *** FigPhotoDecompressionContainerCreateAuxiliaryImageDictionaryRepresentation[%d]  err = %s [%d]
+copyAuxiliaryDataInfo
 IIORecodeHEIF_to_JPEG
 *** could not create FigPhotoDecompressionSession err = %s [%d]
 *** could not read input (HEIC) data
@@ -7176,9 +7186,6 @@ allValues
         subsampling[%zu]: %s
         baseAddress[%zu]: %p
            dataSize[%zu]: %zu
-IIOMetadata_Tag::~IIOMetadata_Tag: before calling CFGetTypeID(_value)  <%p>
-IIOMetadata_Tag::~IIOMetadata_Tag: before calling CFRelease <%s:%p>
-IIOMetadata_Tag::~IIOMetadata_Tag: (could not get typeDesc) before calling CFRelease <%p>
 copyValue
 'tag' has an unrecognized value type
 setValue
@@ -7194,7 +7201,6 @@ CGImageMetadataTagCopyPrefix
 CGImageMetadataTagCopyValue
 CGImageMetadataTagCopyQualifiers
 CGImageMetadataTag
-MobileSlideShow
 %@:%@ = %@, Qualifiers = %@
 %@:%@ = %@
 <CGImageMetadataTag %p> %@:%@ = %@, Qualifiers = %@
@@ -7686,6 +7692,7 @@ CVPixelBufferGetDataSize
 CVPixelBufferIsPlanar
 CVBufferSetAttachment
 CVPixelBufferCreateWithIOSurface
+kCVImageBufferCGColorSpaceKey
 kCVPixelBufferPixelFormatDescriptionKey
 kCVPixelFormatConstant
 kCVPixelFormatBitsPerBlock
@@ -7736,7 +7743,6 @@ FigPhotoDecompressionSessionCreateContainer
 FigPhotoDecompressionSessionDiscardCachedBuffers
 FigPhotoDecompressionSessionReleaseHardwareResources
 FigPhotoDecompressionSupportedForContainerAndCodec
-kCVImageBufferCGColorSpaceKey
 kFigPhotoCompressionContainerDescription_Orientation
 kFigPhotoCompressionContainerOption_BackingType
 kFigPhotoCompressionContainerOption_Format
@@ -7791,9 +7797,6 @@ kFigPhotoDecompressionContainerDescription_SequenceSampleDuration
 kFigPhotoDecompressionContainerDescription_SequenceSamplePTS
 kFigPhotoDecompressionContainerDescription_SequenceSampleDependsOnOthers
 kFigPhotoDecompressionContainerDescription_SequenceSampleIsDependedOnByOthers
-kFigPhotoJPEGCustomLumaQuantTable
-kFigPhotoJPEGCustomChromaQuantTable
-kFigPhotoJPEGSoftwareEncode
 kFigPhotoQualityControllerParameter_QualityValue
 kFigPhotoTranscodeOption_IncludeAuxiliaryImages
 kFigPhotoTranscodeOption_IncludeMetadata
@@ -7807,6 +7810,8 @@ kFigPhotoAuxiliaryImageTypeURN_PortraitEffectsMatte
 kFigPhotoAuxiliaryImageTypeURN_SemanticSkinMatte
 kFigPhotoAuxiliaryImageTypeURN_SemanticHairMatte
 kFigPhotoAuxiliaryImageTypeURN_SemanticTeethMatte
+kFigPhotoAuxiliaryImageTypeURN_SemanticGlassesMatte
+kFigPhotoAuxiliaryImageTypeURN_HDRGainMap
 IIOLoadMediaToolboxSymbols
 *** Failed to load 'MediaToolbox' symbols ***
 /System/Library/Frameworks/CoreMedia.framework/CoreMedia
@@ -8084,7 +8089,6 @@ i16@?0^{__CFDictionary=}8
 *** ERROR: FigPhotoCompressionSessionCloseContainerAndCopyBacking returned %d (%s)
 *** ERROR: FigPhotoCompressionSessionCloseContainerAndCopyBacking returned noErr, but data is NULL
 ModifyTIFF
-XMP Error: %s
 Could not open file for metadata editing
 yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ
 yyyyMMdd

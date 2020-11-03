@@ -1,5 +1,5 @@
 "}
-}\Z#
+}lZ#
 "}
 hash
 TQ,R
@@ -2369,6 +2369,7 @@ WebProcess_DestroyAutomationSessionProxy
 WebProcess_DidAddPlugInAutoStartOriginHash
 WebProcess_DidWriteToPasteboardAsynchronously
 WebProcess_DisplayConfigurationChanged
+WebProcess_DisplayWasRefreshed
 WebProcess_EnableRemoteWebInspector
 WebProcess_EnsureAutomationSessionProxy
 WebProcess_EstablishWorkerContextConnectionToNetworkProcess
@@ -3274,20 +3275,19 @@ localhost
 [ITP] Turned Debug Mode off.
 [ITP] 
  to: [
-/Library/Caches/com.apple.xbs/Sources/WebKit2_Sim/WebKit2-7610.2.4.0.1/NetworkProcess/Classifier/WebResourceLoadStatisticsStore.cpp
+/Library/Caches/com.apple.xbs/Sources/WebKit2_Sim/WebKit2-7610.2.8/NetworkProcess/Classifier/WebResourceLoadStatisticsStore.cpp
 WebKit::WebResourceLoadStatisticsStore::WebResourceLoadStatisticsStore(WebKit::NetworkSession &, const WTF::String &, WebKit::ShouldIncludeLocalhost, ResourceLoadStatistics::IsEphemeral)
 WebKit::WebResourceLoadStatisticsStore::~WebResourceLoadStatisticsStore()
 void WebKit::WebResourceLoadStatisticsStore::destroyResourceLoadStatisticsStore(CompletionHandler<void ()> &&)
 void WebKit::WebResourceLoadStatisticsStore::flushAndDestroyPersistentStore(CompletionHandler<void ()> &&)
 WebCookieManager
 LegacyCustomProtocolManager
-/Library/Caches/com.apple.xbs/Sources/WebKit2_Sim/WebKit2-7610.2.4.0.1/NetworkProcess/Downloads/Download.cpp
+/Library/Caches/com.apple.xbs/Sources/WebKit2_Sim/WebKit2-7610.2.8/NetworkProcess/Downloads/Download.cpp
 void WebKit::Download::cancel()
 nullOrigin
 (all data)
 (all but HttpOnly cookies)
 (all but cookies)
-yahoo.co.jp
 WebResourceLoadStatisticsStore Process Data Queue
 void WebKit::WebResourceLoadStatisticsStore::postTask(WTF::Function<void ()> &&)
 kinja.com
@@ -6767,7 +6767,7 @@ ccccccccc
 ]]]]]]ggg222220000000000000000000000000
 000000UUUU
 UUUUUUU
-UUUUUUU
+UUUUUUUU
 UUUUU
 UUUUU
 UUUUU
@@ -9902,6 +9902,7 @@ _denyNextUserMediaRequest
 _doAfterProcessingAllPendingMouseEvents:
 _hasSleepDisabler
 _audioRoutingArbitrationStatus
+_audioRoutingArbitrationUpdateTime
 _setApplicationBundleIdentifier:
 _clearApplicationBundleIdentifierTestingOverride
 _setContentBlockersEnabled:

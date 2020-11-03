@@ -3780,11 +3780,15 @@ Xcode.Debug
 Xcode.DaemonDebug
 Xcode.Preview
 Xcode.Install
+343469
+855031
+113722
+968756
 -[IDERunDeviceService operationWorkerWithLaunchSession:error:]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Execution/LaunchSystem/IDERunDeviceService.m
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Execution/LaunchSystem/IDERunDeviceService.m
 coordinator.appIDFeatures
 -[IDEAppIDAbstractFlightCheck expectedFeaturesWithError:]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Provisioning/Capabilities Infrastructure/IDEAppIDFeatureFlightCheck.m
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Provisioning/Capabilities Infrastructure/IDEAppIDFeatureFlightCheck.m
 coordinator.communicatingWithPortal
 coordinator.provisioningStyle
 -[IDEAppIDAbstractFlightCheck title]
@@ -5300,16 +5304,16 @@ proxiedAction
 T@"IDEExecutionAction",R,V_proxiedAction
 com.apple.dt.playground
 DVTFileDataType * _Nonnull IDEPlaygroundContainerFileDataType()_block_invoke
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Playgrounds/IDEPlaygroundSupport.m
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Playgrounds/IDEPlaygroundSupport.m
 [DVTFileDataType fileDataTypeWithIdentifier:@"com.apple.dt.playground"]
-targetDevice.deviceType.identifier
+@"NSArray"16@?0@"IDERunDestination"8
 @16@?0@"NSArray"8
 @24@?0@"NSDictionary"8@"NSDictionary"16
 @16@?0@"IDERunDestination"8
 %@, %@
 @16@?0@"IDERunDestinationWithNameAddition"8
-+[IDERunDestinationDisambiguator disambiguatedRunDestinationsWithNameAdditionsForRunDestinations:]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Execution/RunDestinations/IDERunDestinationDisambiguator.m
++[IDERunDestinationDisambiguator disambiguatedRunDestinationsWithNameAdditionsForRunDestinations:scheme:]
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Execution/RunDestinations/IDERunDestinationDisambiguator.m
 [runDestinations dvt_setByApplyingBlock:^id(id obj) { return [obj fullDisplayName] ?: [NSNull null]; }].count == 1
 @24@?0@"IDERunDestination"8@"IDERunDestinationDisambiguationInfo"16
 +[IDERunDestinationDisambiguator disambiguationAdditionsForDisambiguationInfos:]
@@ -5339,7 +5343,7 @@ infosToAdditions: %@
 disambiguationInfos.count == infosToAdditions.count
 Expected additions for each item %@, but got %@.
 DVTDeviceWatchDisplayType
--[IDERunDestinationWithNameAddition initWithRunDestination:nameAddition:isWatchDestination:]
+-[IDERunDestinationWithNameAddition initWithRunDestination:nameAddition:isWatchDestination:scheme:]
 (runDestination) != nil
 [(id)(runDestination) isKindOfClass:[IDERunDestination class]]
 Any 
@@ -5348,11 +5352,13 @@ DVTDeviceWatchSimDisplayType
 %@ <paired with %@>
 %@ via %@
 runDestination.targetDevice.activeProxiedDevice
-runDestination.fullDisplayName
+runDestination.displayName
 isWatchDestination
 nameAddition
 T@"NSString",R,V_nameAddition
 fullDisplayName
+scheme
+T@"<IDERunDestinationScheme>",R,V_scheme
 T@"IDERunDestination",R,V_runDestination
 Tc,R,V_isWatchDestination
 deviceOperatingSystemVersion
@@ -5370,7 +5376,7 @@ targetSDK
 T@"DVTSDK",R,V_targetSDK
 targetSDKVariant
 T@"DVTSDKVariant",R,V_targetSDKVariant
-@16@?0@"IDESchemeCommand<IDEPrimitiveSchemeCommand>"8
+v32@?0@"IDEBuildableContext"8@"IDEBuildParameters"16^c24
 IDEDistributionStrictTeamIDMatch
 IDEDistributionDirectory
 XcodeDistPipeline.
@@ -6022,6 +6028,7 @@ supportedVariants
 T@"NSMutableDictionary",&,N,V_supportedVariants
 buildablePlatformsImpliedByVariants
 T@"NSMutableDictionary",&,N,V_buildablePlatformsImpliedByVariants
+T@"NSMutableDictionary",&,N,V_targetedDeviceFamilies
 supportedPlatforms
 T@"NSMutableDictionary",&,N,V_supportedPlatforms
 buildableArchitectures
@@ -6036,7 +6043,6 @@ fullLog.timeStoppedRecording
 fullLog
 T@"<IDELogStoreManageable>",&,V_fullLog
 schemes
-scheme
 buildConfigurations
 timeTaken
 sdks
@@ -8323,8 +8329,9 @@ T@"IDEBreakpointBucket",R,V_sharedWorkspaceBucket
 T@"NSArray",R,V_allBucketsWithBreakpoints
 Tc,N,V_breakpointsActivated
 IDEIPAProcessorErrorDomain
+IDEIPAToolAppStoreToolsPath
 -[IDEIPAProcessorDevice initWithModelIdentifier:displayName:]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Distribution/IDEIPAProcessor.m
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Distribution/IDEIPAProcessor.m
 (modelIdent) != nil
 modelIdent
 CFGetTypeID((CFStringRef)modelIdent) == CFStringGetTypeID()
@@ -8342,10 +8349,10 @@ T@"NSSet",R,V_devices
 TQ,R,V_sortOrder
 traits
 T@"NSDictionary",R,V_traits
+usr/bin
 __XCODE_BUILT_PRODUCTS_DIR_PATHS
 usr/local/bin
-usr/bin
--[IDEIPAProcessor runIPAToolWithInputPath:outputPath:arguments:logAspect:standardOutput:standardError:json:outError:]
+-[IDEIPAProcessor runIPAToolWithInputPath:outputPath:arguments:appStoreToolsImagePath:logAspect:standardOutput:standardError:json:outError:]
 (inputPath) != nil
 inputPath
 [(id)(inputPath) isKindOfClass:[DVTFilePath class]]
@@ -8363,6 +8370,8 @@ ipatool-json-filepath-
 --toolchain
 --platforms
 --app-store-tools-build-version
+LD_LIBRARY_PATH
+XCODE_DEVELOPER_DIR_PATH
 JSON is malformed (expected a dictionary, got %@)
 ipatool JSON: %@
 alerts
@@ -9826,6 +9835,7 @@ v24@?0@"IDEITunesConnectVersionsResponse"8@"NSError"16
 Auto layout constraint error
 Constraint Error
 LAYOUT_CONSTRAINTS_NOT_SATISFIABLE
+UIViewAlertForUnsatisfiableConstraints
 @"<IDETestingTouchBarManager>"8@?0
 Xcode.IDEFoundation.IDETestingPlatformSupport
 touchBarManagerClass
@@ -11024,6 +11034,7 @@ There are multiple run destinations that support deployment for the current sche
 Multiple run destinations support deployment for the current scheme. Only one must be specified or allowMultipleRunDestinationMatches must be true.
 No run destinations support deployment for the current scheme
 -[IDERunDestinationManager genericDeploymentRunDestinationForRunDestination:scheme:schemeCommands:executionEnvironment:allowNonConcreteDevices:]
+@16@?0@"IDESchemeCommand<IDEPrimitiveSchemeCommand>"8
 sharedRunDestinationManager
 T@"IDERunDestinationManager",R
 T@"NSSet",C,D
@@ -12849,10 +12860,9 @@ IDERunDestinationConsiderAllBuildables
 IDERunDestination
 IDERunDestinationPerformance
 -[IDERunDestination initWithTargetDevice:architecture:SDK:SDKVariant:]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Execution/RunDestinations/IDERunDestination.m
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Execution/RunDestinations/IDERunDestination.m
 The SDK at %@ has two or more variants (specified in either 'Variants' or 'SupportedTargets') without designating one of them as the default (using 'DefaultVariant').
 targetDevice.name
-displayNameAdditions
 <%@:%p:'%@' sdk:%@ variant:%@ arch:%@>
 Rejecting device %@ (%@) because it does not match the buildable's platform(s)
 Rejecting device %@ (%@) because it is not presentable for this buildable given the current build parameters (%@)
@@ -12887,9 +12897,10 @@ Tc,R,V_isTargetDeviceEligible
 displayableIneligibilityMessage
 displayableIneligibilityLongDescription
 isMacDesignedForiPad
+isMacCatalyst
 Copying In-App Purchase content into place
 -[IDEDistributionCopyInAppPurchaseContentStep runWithError:]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Distribution/Processing Pipeline/IDEDistributionCopyInAppPurchaseContentStep.m
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Distribution/Processing Pipeline/IDEDistributionCopyInAppPurchaseContentStep.m
 IDETemplateTextSubstitutionFactory background queue
 c52@?0@"NSURL"8@"NSURL"16@"_TtC13IDEFoundation22IDETemplateMacroEngine"24c32^c36^@44
 c28@?0@"NSArray"8c16^@20
@@ -16382,15 +16393,15 @@ T@,&,V_key
 collection
 T@,&,V_collection
 -[IDESchemeWrapper scriptingID]
-+[IDERunDestinationWrapper wrapItem:withDisambiguatedName:forContainer:andAccessor:]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Misc/IDEScripting.m
++[IDERunDestinationWithNameAdditionWrapper wrapItem:withDisambiguatedName:forContainer:andAccessor:]
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Misc/IDEScripting.m
 (wrapper) != nil
 wrapper
-[(id)(wrapper) isKindOfClass:[IDERunDestinationWrapper class]]
--[IDERunDestinationWrapper scriptingID]
+[(id)(wrapper) isKindOfClass:[IDERunDestinationWithNameAdditionWrapper class]]
+-[IDERunDestinationWithNameAdditionWrapper scriptingID]
 Run destinations do not support id specifiers
 IDEScriptingLog File=%s Line=%d Function=%s name = %@
--[IDERunDestinationWrapper name]
+-[IDERunDestinationWithNameAdditionWrapper name]
 targetCompanionDevice
 +[IDEDeviceWrapper deviceWrapperForDevice:forContainer:andAccessor:]
 ((accessor)) != nil
@@ -19080,6 +19091,7 @@ CFGetTypeID((CFStringRef)sessionIdentifier) == CFStringGetTypeID()
 -[IDEContainer _removeSubcontainer:]
 [Load] %@ Remove: %@
 Failed to find a container class for the provided file data type: "%@"
+Cannot open "%@" as a "%@" because it is already open as a "%@".
 Cannot open "%@" because it is already open in another workspace.
 +[IDEContainer _retainedContainerAtFilePath:fileDataType:workspace:options:error:]
 Could not find container class for container extension %@
@@ -19087,7 +19099,6 @@ Could not find container class for container extension %@
 +[IDEContainer _retainedContainerAtFilePath:fileDataType:workspace:options:error:]_block_invoke_2
 container == ((void *)0)
 Multiple open containers found for file path %@ and workspace %@
-(existingContainer->_extension == containerExtension)
 >>> Will Create Container: %@, %@
 <<< Did Create Container:  %@, %@
 +[IDEContainer retainedContainerForFilePath:workspace:]
@@ -20359,11 +20370,16 @@ IDELSLauncher - start/stop serializer lock
 IDELSLauncher - _targetReallyDead lock
 /dev/null
 -[IDELaunchServicesLauncher _launch]
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Execution/LaunchSystem/IDELaunchServicesLauncher.m
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Execution/LaunchSystem/IDELaunchServicesLauncher.m
 No pty name, sending stdin/out/err of %@ to /dev/null.
 Unable to generate URL for pty: %@. Standard IO redirection may not be available.
 xcodebuild
 IDEDisableXcodeBuildEnvPassing
+The app is incompatible with the current version of macOS. Please check the app's deployment target.
+RBSRequestErrorDomain
+The LaunchServices launcher has return an error. Please check the system logs for the underlying cause of the error.
+[Internal only] Please verify that your project is codesigned properly. If the app is signed with private entitlements or otherwise runs in a privileged position, you may need to defang macOS. See https://at.apple.com/kBxoK for details.
+If you think this launch failure is due to a bug in Xcode or macOS, please file a radar and attach a sysdiagnose.
 IDEEnableLocalComputerWatchdog
 v24@?0c8i12@"NSError"16
 IDELaunchServicesLauncher
@@ -20618,7 +20634,7 @@ c16@?0@"IDEProvisioningRepair"8
 T@"IDEProvisioningMechanicContext",R,N,V_context
 T@"<IDEProvisioningMechanicDelegate>",R,N,V_delegate
 VuGdqp8UBpi9vPWHlPluVQ
-Designed for iPad
+Designed for %@
 Signature
 __entitlements
 @"IDEOverridingPropertiesDeviceCache"8@?0
@@ -22914,14 +22930,14 @@ i16@0:8
 v20@0:8i16
 buildSystemType
 Ti,N
-IDEAppIdentifierPrefixedEntitlementsProcessorTeamIDPrefixOverride
 $(AppIdentifierPrefix)
 Distribution item "%@" has a %@ entitlement with a non-string or non-array of strings value. Skipping the app identifier prefixed entitlements processor.
-/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17518/IDEFoundation/Distribution/Entitlements Processors/IDEAppIdentifierPrefixedEntitlementsProcessor.swift
+/Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-17529.2/IDEFoundation/Distribution/Entitlements Processors/IDEAppIdentifierPrefixedEntitlementsProcessor.swift
 _TtC13IDEFoundation45IDEAppIdentifierPrefixedEntitlementsProcessor
 @60@0:8@16@24@32@40c48@52
 appIdentifierPrefixedEntitlements
 needsInteraction
+IDEAppIdentifierPrefixedEntitlementsProcessorTeamIDPrefixOverride
 IDEAppIdentifierPrefixedEntitlements
 state
 requestHandler
@@ -23812,7 +23828,8 @@ passDeploymentTargetToAssetutil
 operatingSystemVersion
 thinnableAssetCatalogs
 sourceToDestinationMap
-Swift/x86_64-apple-macos.swiftinterface
+Swift/Dictionary.swift
+Swift/NativeDictionary.swift
 Duplicate values for key: '
 artworkDisplayGamut
 artworkDynamicDisplayMode
@@ -25068,7 +25085,7 @@ dictionaryWithObjectsAndKeys:
 operationWithWorkingDirectory:workspaceFilePath:projectFilePath:packagesPaths:outError:
 canBeRunDestination
 displayNameWhenUsingArchitecture:withSDK:
-displayNameAdditionsWhenUsingArchitecture:withSDK:
+displayNameAdditionsForRunDestination:scheme:
 canBeDefaultDeviceForBuildable:buildParameters:
 deviceSupportsBuildable:buildParameters:error:
 shouldPresentDeviceForPathRunnableWithArchitecture:
@@ -29794,18 +29811,19 @@ _actionExtensionID
 _proxiedAction
 dvt_arrayByRemovingObjectsInArray:
 dvt_arrayByRemovingNSNull
-dvt_unorderedArrayByGroupingObjectsUsingKeyPaths:
-disambiguatedRunDestinationsWithNameAdditionsForRunDestinations:
+deviceType
+fullDisplayNameWithScheme:
+dvt_unorderedArrayByGroupingObjectsUsingKeys:
+disambiguatedRunDestinationsWithNameAdditionsForRunDestinations:scheme:
 dvt_objectByFoldingWithBlock:
 schemeRunnableRequiresPairedProxyDevice
-initWithRunDestination:nameAddition:isWatchDestination:
+initWithRunDestination:nameAddition:isWatchDestination:scheme:
 nameAddition
 isWatchDestination
 fullDisplayName
 initWithRunDestination:
 dictionaryWithObjects:forKeys:
 disambiguationAdditionsForDisambiguationInfos:
-initWithRunDestination:nameAddition:
 dvt_dictionaryByApplyingBlock:
 deviceOperatingSystemVersion
 majorComponent
@@ -29821,14 +29839,16 @@ dvt_dictionaryWithTuples:
 dvt_areAllEntriesPassingTest:
 disambiguatedRunDestinationsWithNameAdditionForRunDestinations:scheme:runDestinationManager:
 _nameWithAddition
-displayNameAdditions
+displayNameAdditionsWithScheme:
 isSimulatorPlatform
 rangeOfString:options:
 _baseName
 adjustDisplayName:runDestination:
 displayableIneligibilityMessage
 keyPathsForValuesAffectingFullDisplayName
+initWithRunDestination:nameAddition:
 _isWatchDestination
+_scheme
 _nameAddition
 initWithDeviceOperatingSystemVersion:deviceOperatingSystemBuild:deviceModelName:deviceIdentifier:devicePlatform:targetArchitecture:targetSDK:targetSDKVariant:
 devicePlatform
@@ -29841,9 +29861,7 @@ _targetSDK
 _targetSDKVariant
 isGenericDevice
 isConcreteDevice
-primaryBuildablesForSchemeCommand:
-initWithBuildable:
-buildConfigurationForSchemeCommand:
+iteratePrimaryBuildablesSupportingRunDestination:scheme:block:
 initWithParent:stepClass:allowedInputs:allowedOutputs:
 dvt_arrayByAddingObjectIfNonNil:
 appStoreSubmissionConfiguration
@@ -30439,6 +30457,7 @@ stringByAbbreviatingWithTildeInPath
 setBuildable:
 setSupportedVariants:
 setBuildablePlatformsImpliedByVariants:
+setTargetedDeviceFamilies:
 setSupportedPlatforms:
 setBuildableArchitectures:
 SDKs
@@ -30447,10 +30466,13 @@ calculateSupportedVariants:andBuildablePlatformsImpliedByVariants:withBuildParam
 createAndCacheValuesForBuildParameters:
 supportedVariantsWithBuildParameters:
 buildablePlatformsImpliedByVariantsWithBuildParameters:
+initWithBuildable:
+targetedDeviceFamiliesWithBuildParameters:
 buildableArchitecturesWithBuildParameters:
 availableArchitecturesWithBuildParameters:
 supportedVariants
 buildablePlatformsImpliedByVariants
+targetedDeviceFamilies
 supportedPlatforms
 buildableArchitectures
 availableArchitectures
@@ -30459,6 +30481,7 @@ productTypes
 setProductTypes:
 _supportedVariants
 _buildablePlatformsImpliedByVariants
+_targetedDeviceFamilies
 _supportedPlatforms
 _buildableArchitectures
 _availableArchitectures
@@ -30500,14 +30523,13 @@ addLog:parameters:completionBlock:
 preserveOldLogs
 initWithWorkspaceArenaSnapshot:scheme:sortedRunDestinations:timeTaken:
 generateProfile
-deviceType
+buildConfigurationForSchemeCommand:
 initForBuildWithWorkspaceArenaSnapshot:configurationName:
 _runDestinationDictionaryFor:
 availableDevices
 _deviceDictionaryFor:
 generateProfileForWorkspaceArenaSnapshot:scheme:sortedRunDestinations:timeTaken:
 _workspaceArenaSnapshot
-_scheme
 _runDestinations
 _timeTaken
 initWithTeamID:teamName:
@@ -32627,7 +32649,8 @@ _sortOrder
 _traits
 dvt_addObjectIfAbsent:
 dvt_addObjectsFromArrayIfAbsent:
-binSearchPathForIPATool
+runIPAToolWithInputPath:outputPath:arguments:appStoreToolsImagePath:logAspect:standardOutput:standardError:json:outError:
+binSearchPathForIPAToolWithAppStoreToolsPath:
 preferredDirectoryPath
 developerPlatformsDirectory
 unixShellSearchPathRepresentation
@@ -34590,6 +34613,7 @@ provisioningContext
 _repairContext
 _repairLedgerEntry
 defaultVariant
+primaryBuildablesForSchemeCommand:
 stringByReplacingCharactersInRange:withString:
 runDestinationsForDevice:runDestinationManager:
 runDestinationsForScheme:executionEnvironment:runDestinationManager:deviceManager:
@@ -36099,6 +36123,7 @@ initForAction:workspaceArenaSnapshot:schemeCommand:configurationName:activeRunDe
 dvt_platformForBundleAtPath:error:
 _isValidRunDestinationForScheme:schemeTask:schemeCommand:executionEnvironment:overridingTestingSpecifiers:runDestinationManager:forPresentation:error:
 displayOrder
+isMacCatalyst
 canRunMultipleInstancesPerApp
 fallbackActiveArchitectureForBuildArchitectures:
 initWithTargetDevice:architecture:SDK:
@@ -38995,6 +39020,7 @@ initWithProvisioningContext:mechanic:
 newProvisionableManagerForProvisionable:provisioningManager:
 _mechanic
 setSharedUpdateController:
+needToInstallRosetta
 orderedSetWithObjects:
 _setupAnalysisToolService
 _setupQueueDebuggingState
@@ -39932,6 +39958,7 @@ _removeContainerLoadingTokenForContainer:
 _setContainerLoadingTokenForContainer:
 _retainedContainerAtFilePath:fileDataType:workspace:options:error:
 _noContainerClassForFileTypeError:
+_containerOpenAsAnotherContainerTypeErrorForPath:newContainerTypeName:oldContainerTypeName:
 _containerOpenInAnotherWorkspaceErrorForPath:
 _didTransitionToActivity:
 _resolveFileReference:
@@ -42427,7 +42454,7 @@ IDEScriptingElement
 IDEScriptingWrapper
 IDEScriptingProxy
 IDESchemeWrapper
-IDERunDestinationWrapper
+IDERunDestinationWithNameAdditionWrapper
 IDEDeviceWrapper
 IDEScriptingSchemeActionResult
 IDEScriptingSchemeActionIssue
@@ -42572,8 +42599,8 @@ IDEWorkspaceBasedCommandLineVerb
 IDESourceKitContainerSymbol
 IDEExtensionManager
 IDEBatchFindSCMStatusPredicate
-1 1A `
-1 2@ `
+1 1A!`
+1 2@!`
 IDEContainerErrorPresenter
 IDEContainerReloadingDelegate
 IDEContainerUnlockingDelegate
@@ -43443,6 +43470,8 @@ v36@0:8@16i24@?28
 @"IDEProvisioningTeamAccountPairManager"
 @"IDEProvisioningSessionManager"
 @"IDEExecutionAction"
+@44@0:8@16@24c32@36
+@"<IDERunDestinationScheme>"
 @"DVTSDKVariant"
 @32@0:8@16#24
 @48@0:8@16#24@32@40
@@ -43707,6 +43736,7 @@ v32@0:8@"NSArray"16@"NSArray"24
 @56@0:8@16@24@32Q40@48
 @"IDEIPAProcessorDevice"
 c80@0:8@16@24@32@40^@48^@56^@64^@72
+c88@0:8@16@24@32@40@48^@56^@64^@72^@80
 @36@0:8r*16i24Q28
 @24@0:8^{_sourcekit_object_s=}16
 ^{_sourcekit_object_s=}16@0:8
@@ -43951,7 +43981,6 @@ c40@0:8@16@24q32
 @56@0:8@16@24@32^@40^@48
 @60@0:8@16@24@32q40c48@52
 @"NSCharacterSet"
-@44@0:8@16@24c32@36
 @"IDEProvisionableStatusEvalutorInputs"
 @"DVTSemaphore"
 c48@0:8@16Q24@32^@40
@@ -44652,67 +44681,69 @@ So17IDETestCollection_p
 So17IDETestIdentifierC
 So23DVTTextDocumentLocationC
 SaySo7IDETestCG
-ySnySiGG
 ySo41IDEActivityLogAnalyzerControlFlowStepEdgeCG
 ySo21IDEActivityLogMessageCG
 ySo21IDEActivityLogSectionCG
 ySo33IDEActivityLogAnalyzerStepMessageCG
 ySo19IDEProjectItemModelCG
+SaySo19IDEProjectItemModelCG
+ySo24IDEBuildNoticeLogSection_pG
 So24IDEBuildNoticeLogSection_p
-So57IDESigningEditorCapabilityItemLibraryAssetContextProtocol_p
 ySo57IDESigningEditorCapabilityItemLibraryAssetContextProtocol_pG
+So57IDESigningEditorCapabilityItemLibraryAssetContextProtocol_p
+SaySo16IDEContainerItemCG
 ySo16IDEContainerItemCG
-SayABGG
+_AAt
 ySo38IDESchemeActionTestFailureIssueSummaryCG
 ySo27IDESchemeActionIssueSummaryCG
-SayABGG
 ySo39IDEContainerReferenceResolutionStrategyCG
-_AAt
 ySo18XCTSourceCodeFrameCG
 ySo29IDESchemeActionTestAttachmentCG
 ySo34IDESchemeActionTestActivitySummaryCG
 ySo8NSNumberCG
 ySo43IDESchemeActionTestPerformanceMetricSummaryCG
 ySo33IDESchemeActionTestFailureSummaryCG
-So31IDESchemeActionTestIdentifiable_p
 ySo31IDESchemeActionTestIdentifiable_pG
+So31IDESchemeActionTestIdentifiable_p
 ySo30IDESchemeActionTestableSummaryCG
 ySo21IDESchemeActionRecordCG
 ySdG
 ySo16IDEFileReferenceCG
 ySo19DVTDocumentLocationCG
-So27IDEEntitlementsCoordination_So8NSObjectCXc
+SaySo19DVTDocumentLocationCG
 ySo27IDEEntitlementsCoordination_So8NSObjectCXcG
-So14IDEIndexSymbol_p
+So27IDEEntitlementsCoordination_So8NSObjectCXc
 ySo14IDEIndexSymbol_pG
+So14IDEIndexSymbol_p
+SaySo14IDEIndexSymbol_pG
 ySo7NSErrorCG
 So37IDECapabilityItemLibraryAssetProtocol_p
+SaySo37IDECapabilityItemLibraryAssetProtocol_pG
 ySo37IDECapabilityItemLibraryAssetProtocol_pG
 ySo8NSStringCG
 ySo11DVTFilePathCG
-So9IDESchemeC_Sbt
 ySo9IDESchemeC_SbtG
-ySSSDySSSo19IDEProjectItemModelCGG
-ySSShy
-SS_Shy
+So9IDESchemeC_Sbt
 ySS_Shy
+SS_Shy
 _Shy
 _Shy
 ySay
-_AAt
 _ABtG
+_AAt
 ySiG
-SDyS2SG
+SaySo57IDESigningEditorCapabilityItemLibraryAssetContextProtocol_pG
 ySDyS2SGG
+SDyS2SG
 ySo8NSObjectCG
+SaySo8NSObjectCG
 ySo26IDEBatchFindAbstractResultCG
 ySo29DVTCodesignableDeviceSnapshotCG
 So40IDESigningEditorAssetSelectionDataSource_p
-ySSSDyS2SGG
 ySDy
 ypGG
-SDySSypG
 ySDySSypGG
+SDySSypG
 ySo24IDECoverageBuildableInfoCG
 ySo23IDETestRunSpecificationCG
 So33IDEDistributionArchiveReformatter_p
@@ -44720,34 +44751,33 @@ ySo33IDEDistributionArchiveReformatter_pG
 yySo23XCTDaemonControlSession_pSg_
 _pSgtcG
 ySo27IDESchemeBuildableReferenceCG
-So12IDEBuildable_p
 ySo12IDEBuildable_pG
-13IDEFoundation36IDETestPlanTestableReferenceProtocol_p
+So12IDEBuildable_p
 y13IDEFoundation36IDETestPlanTestableReferenceProtocol_pG
-13IDEFoundation24IDETestingSpecifierGroup_p
+13IDEFoundation36IDETestPlanTestableReferenceProtocol_p
 y13IDEFoundation24IDETestingSpecifierGroup_pG
-13IDEFoundation19IDETestingSpecifier_p
+13IDEFoundation24IDETestingSpecifierGroup_p
 y13IDEFoundation19IDETestingSpecifier_pG
+13IDEFoundation19IDETestingSpecifier_p
 ySo33IDESchemeActionTestPlanRunSummaryCG
-ySSSo27IDESchemeActionIssueSummaryCG
 ySo32DVTSourceControlRemoteRepositoryCG
-So23DVTSourceControlAccount_p
 ySo23DVTSourceControlAccount_pG
-So15DVTInvalidation_p
+So23DVTSourceControlAccount_p
+SaySo32DVTSourceControlRemoteRepositoryCG
+SaySo23DVTSourceControlAccount_pG
 ySo15DVTInvalidation_pG
-ySo17IDERunDestinationCG
-So16IDESourcePackage_p
+So15DVTInvalidation_p
 ySo16IDESourcePackage_pG
+So16IDESourcePackage_p
 So20IDEBlueprintProvider_p
 ySo20IDEBlueprintProvider_pG
 So12IDEBlueprint_p
 ySo12IDEBlueprint_pG
-ySo11DVTFilePathCSi11retainCount_So19IDEEntitlementsFileC012entitlementsF0tG
-So22IDEIndexCallableSymbol_p
 ySo22IDEIndexCallableSymbol_pG
+So22IDEIndexCallableSymbol_p
 ySo7IDETestCG
-So11IDETestable_p
 ySo11IDETestable_pG
+So11IDETestable_p
 SSSg
 _pSg
 $ss12CaseIterableP
@@ -44759,7 +44789,6 @@ So62IDESigningEditorCapabilityItemLibraryAssetLocallyDefinedSourceC
 13IDEFoundation54SigningEditorCapabilityItemLibraryAssetManagerDelegate_pSgXw
 So15DVTInvalidation_pSg
 So64IDESigningEditorCapabilityItemLibraryAssetManagerContextProvider_pSgXw
-SaySo37IDECapabilityItemLibraryAssetProtocol_pG
 So7NSErrorCSg
 SgXw
 13IDEFoundation26IDETestingDiagnosticReport_pSg
@@ -44810,7 +44839,6 @@ SDySo11DVTFilePathCSi11retainCount_So19IDEEntitlementsFileC012entitlementsF0tG
 ySo24IDEBuildNoticeLogSection_pG
 SSSg9component_
 6parentt
-ySo24IDEBuildNoticeLogSection_pG
 SDySo21IDEActivityLogSectionCSiG
 So8NSStringCIeyBy_
 IeyB_
@@ -44830,6 +44858,7 @@ SaySo37IDECapabilityItemLibraryAssetProtocol_pGSg
 So25IDELaunchTestSchemeActionC
 G22accumulatedCompletions_t
 G9completed_t
+ySo17IDERunDestinationCG
 SaySSGSg
 So24IDEInfoPlistCoordination_p
 SaySo27IDEEntitlementsCoordination_So8NSObjectCXcGSg
@@ -44850,6 +44879,7 @@ ySS_SStG
 SS_SSt
 $s13IDEFoundation36IDETestPlanTestableReferenceProtocolP
 ShySSG
+ySnySiGG
 SaySo23IDETestRunSpecificationCG
 SaySo24IDECoverageBuildableInfoCG
 So19DVTDocumentLocationCSg
@@ -44871,9 +44901,7 @@ So24IDESchemeActionSDKRecordCSg
 ypXmT_
 So22IDEBuildNoticeLogStore_pSg
 So24IDEBuildNoticeLogMessage_p
-SaySo32DVTSourceControlRemoteRepositoryCG
 SaySo32DVTSourceControlRemoteRepositoryCGz_Xx
-SaySo23DVTSourceControlAccount_pG
 SaySo23DVTSourceControlAccount_pGz_Xx
 SgXw
 SgXwz_Xx
@@ -44899,6 +44927,7 @@ SaySo23DVTSourceControlAccount_pGSg
 SaySo23DVTSourceControlAccount_pGSgz_Xx
 _pSg
 SaySo27IDESchemeActionIssueSummaryCG
+ySSSo27IDESchemeActionIssueSummaryCG
 So13IDETestRunner_p
 $s13IDEFoundation29IDETestWorkerProviderProtocolP
 So32IDESchemeActionsInvocationRecordC
@@ -44913,7 +44942,6 @@ SdSg
 So12IDEWorkspaceC
 $s13IDEFoundation17ProjectDescriptorP
 So16IDEFileReferenceCSg
-SaySo16IDEContainerItemCG
 ySaySo16IDEContainerItemCGSgcSg
 ytSg
 xSgz_yt_lXX
@@ -45076,7 +45104,6 @@ $s13IDEFoundation31IDETestPlanResolvedOptions_ObjCP
 $s13IDEFoundation26IDETestPlanResolvedOptionsP
 $s13IDEFoundation38IDESourceControlUserDefaultPersistableP
 $s13IDEFoundation41IDESourceControlAuthenticationPersistenceP
-SaySo19IDEProjectItemModelCG
 $s13IDEFoundation49SigningEditorCapabilityEditingItemManagerDelegateP
 So80IDESigningEditorCapabilityItemEditingConsolidatedContextDelegatingSourceProvider_So0ab20ConfigurationManagerJ8Protocolp
 _pSgXw
@@ -45095,7 +45122,6 @@ So37IDETargetEditorBundleIdentifierSource_p
 SgXw
 So36IDEProvisionableManagerConfigurationCSgXw
 So32IDEProvisionableStatusEvaluationC
-SaySo8NSObjectCG
 SaySo8NSObjectCGz_Xx
 So5NSSetC
 So5NSSetCz_Xx
@@ -45165,7 +45191,6 @@ $s13IDEFoundation34SigningEditorProvisionableDelegateP
 So46IDESigningEditorIOSMacAssetSelectionDataSource_So8NSObjectpSgSg
 13IDEFoundation34SigningEditorProvisionableDelegate_pSgXw
 So12NSOrderedSetC
-SaySo57IDESigningEditorCapabilityItemLibraryAssetContextProtocol_pG
 SaySo57IDESigningEditorCapabilityItemLibraryAssetContextProtocol_pGSg
 So25IDEPrimitiveSchemeCommand_So09IDESchemeC0CXc
 _pSg
@@ -45178,6 +45203,7 @@ _pIeggzo_
 So12DVTLogAspectCSg
 SaySay
 ySo19IDEEntityIdentifierCG
+ySSShy
 SaySaySDySSypGGG
 _AAtSg
 3key_AA5valuetSg
@@ -45210,6 +45236,11 @@ So75IDESigningEditorCapabilityItemProvisioningConsolidatedContextSourceDelegate_
 SDySSSo22IDECapabilitiesContextCGSg
 SDySSSaySo19IDEProjectItemModelCGGSg
 SDySSSDySSSo19IDEProjectItemModelCGGSg
+SayABGG
+SayABGG
+ySSSDySSSo19IDEProjectItemModelCGG
+ySSSDyS2SGG
+ySo11DVTFilePathCSi11retainCount_So19IDEEntitlementsFileC012entitlementsF0tG
 So52IDESigningEditorConfigurationManagerProviderProtocol_p
 So44IDESigningEditorConfigurationManagerProtocol_pSg
 SgXw
@@ -46300,6 +46331,8 @@ mallocStackLoggingOptions
 parentOptions
 overrides
 RawValue
+zPLR
+zPLR
 zPLR
 zPLR
 zPLR

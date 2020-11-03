@@ -758,6 +758,7 @@ Unlocked since boot: %{public}d
 %{public}@ setting mapped alarms to storage
 %{public}@ completed sleep onboarding check with result: %{public}@, error: %{public}@ 
 %{public}@ resetSleepAlarmSnoozeState
+%{public}@ needs sleep migration, fetching watchSleepFeaturesEnabled async
 %{public}@ failed to get sleep settings, error: %{public}@ 
 %{public}@ fetching sleep alarm from health
 %{public}@ failed to retrieve upcoming sleep occurrence with error: %{public}@
@@ -2254,11 +2255,13 @@ T@"<NAScheduler>",&,N,V_workScheduler
 internalHasBeenUnlockedSinceBoot
 TB,N,V_internalHasBeenUnlockedSinceBoot
 MTSleepManagerSettingsDidChange
+MTNeedsSleepMigration
 @"HKSPSleepStore"24@?0@"NSString"8@"HKHealthStore"16
 @"HKSPFeatureAvailabilityStore"16@?0@"HKSPSleepStore"8
 %@-updateSleepAlarms
 @16@?0@"HKSPSleepScheduleOccurrence"8
 v16@?0@"MTMutableAlarm"8
+v24@?0@"HKSPSleepSettings"8@"NSError"16
 sleepStoreProvider
 T@?,C,N,V_sleepStoreProvider
 sleepStore
@@ -3537,6 +3540,7 @@ copyTo:
 alarmProperties
 _alarmProperties
 initWithConnectionInfo:errorHandler:reconnectHandler:
+_withLock:
 invalidate
 info
 initWithMachServiceName:options:
@@ -3547,7 +3551,6 @@ setInvalidationHandler:
 setExportedInterface:
 resume
 _connectionRebuildingIfNecessary
-_withLock:
 errorHandler
 timeIntervalSinceDate:
 _retryConnectionWithRecover:
@@ -3579,6 +3582,7 @@ lastLifecycleNotification
 setLastLifecycleNotification:
 connectionLock
 _connection
+_alive
 _connectionLock
 _info
 _errorHandler
@@ -5366,12 +5370,13 @@ _internalHasBeenUnlockedSinceBoot
 _workScheduler
 initWithIdentifier:healthStore:
 initWithFeatureIdentifier:sleepStore:
-initWithAlarmStorage:sleepStoreProvider:featureStoreProvider:healthStore:
+initWithAlarmStorage:sleepStoreProvider:featureStoreProvider:healthStore:persistence:
 setSleepStoreProvider:
 sleepStoreProvider
 setSleepStore:
 sleepStore
 setFeatureStore:
+markSleepMigrationComplete
 sleepScheduleModelWithError:
 _didCompleteSleepOnboarding
 occurrences
@@ -5379,6 +5384,7 @@ sleepEventRecord
 wakeUpConfirmedUntilDate
 featureStore
 isCurrentOnboardingVersionCompletedWithError:
+currentSleepSettingsWithCompletion:
 currentSleepSettingsWithError:
 initWithHealthStore:
 upcomingScheduleOccurrenceAfterDate:error:
@@ -6076,7 +6082,7 @@ v32@0:8@"HKSPSleepStore"16@"HKSPSleepSettings"24
 v32@0:8@"HKSPSleepStore"16@"HKSPSleepEvent"24
 v32@0:8@"HKSPSleepStore"16Q24
 v28@0:8@"HKSPSleepStore"16B24
-@48@0:8@16@?24@?32@40
+@56@0:8@16@?24@?32@40@48
 @"HKSPSleepStore"
 @"HKSPFeatureAvailabilityStore"
 @"<MTSyncStatusProviderDelegate>"16@0:8

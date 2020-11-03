@@ -139,6 +139,9 @@ Failed to get click hold mode : %d
 click hold leftMode : %d rightMode : %d
 Set click hold leftMode : %d rightMode : %d
 Failed to set click hold mode : %d
+Failed to get auto answer mode : %d
+Set auto answer mode : %d
+Failed to set auto answer mode : %d
 Error in retrieving BTAccessorySettings Feature bitmask : %d
 Accessory feature bitmask : %x
 Magic paired device name updated to %@
@@ -333,6 +336,8 @@ doubleClickMode
 setDoubleClickMode:
 clickHoldMode:rightAction:
 setClickHoldMode:rightMode:
+autoAnswerMode
+setAutoAnswerMode:
 accessorySettingFeatureBitMask
 pairedDeviceNameUpdated
 accessoryInfo

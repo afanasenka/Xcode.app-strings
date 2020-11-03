@@ -1430,6 +1430,7 @@ setElementCommunity:
 pruneRootGroup:
 containsObject:
 isEqualToString:
+isEqualToArray:
 systemWideElement
 convertRect:fromContextId:
 allKeys
@@ -1802,7 +1803,6 @@ mlElementDetectorReceivedFrames:labels:uiClasses:
 triggerWithScreenCaptureRegion:interfaceOrientation:options:cacheKey:resultHandler:
 isProbablyEqual:
 mlGeneration
-isEqualToArray:
 mlElementDetectorUpdatedElements
 whitespaceAndNewlineCharacterSet
 UUID

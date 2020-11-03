@@ -14,6 +14,7 @@ HEART_AGE_GATING_GROUP_ID
 ELECTROCARDIOGRAM_GROUP_ID
 ELECTROCARDIOGRAM_ONBOARDING_BUTTON
 ELECTROCARDIOGRAM_HEALTH_ROOM_BUTTON
+ELECTROCARDIOGRAM_APP_INSTALL_BUTTON
 ATRIAL_FIBRILLATION_GROUP_ID
 ATRIAL_FIBRILLATION_ONBOARDING_BUTTON
 ATRIAL_FIBRILLATION_HEALTH_ROOM_BUTTON
@@ -54,6 +55,9 @@ descriptionText
 v24@?0@"HKProfileIdentifier"8@"NSError"16
 PANE_TITLE_BRADYCARDIA
 com.apple.HeartRate
+-[HPRFHeartRateSettingsController _updateECGAppInstallState]_block_invoke
+v24@?0q8@"NSError"16
+-[HPRFHeartRateSettingsController _updateECGOnboardingCompletionVersionCache]
 FEATURES_UNAVAILABLE_MESSAGE
 FEATURES_DISABLED_IN_PRIVACY_MESSAGE
 FEATURES_DISABLED_IN_PRIVACY_LINK
@@ -73,6 +77,10 @@ FEATURE_DISABLED_REMOTELY_LINK
 _electrocardiogramRecordingDisabledLinkTapped
 ELECTROCARDIOGRAM_ONBOARDING_BUTTON_TITLE
 ELECTROCARDIOGRAM_HEALTH_ROOM_BUTTON_TITLE
+ELECTROCARDIOGRAM_APP_INSTALL_BUTTON_TITLE
+-[HPRFHeartRateSettingsController _electrocardiogramAppInstallButtonTapped]
+v20@?0B8@"NSError"12
+-[HPRFHeartRateSettingsController _electrocardiogramAppInstallButtonTapped]_block_invoke
 FEATURE_DISABLED_REMOTELY_ANTIMONY
 _atrialFibrillationDetectionDisabledLinkTapped
 _atrialFibrillationDetectionAboutLinkTapped
@@ -84,10 +92,16 @@ HEART_NOTIFICATION_BRADYCARDIA_LABEL
 HEART_AGE_GATING_DESCRIPTION
 availabilityManager
 T@"HKHeartRhythmAvailability",&,N,V_availabilityManager
+appAvailability
+T@"HKWatchAppAvailability",&,N,V_appAvailability
 notificationDefaults
 T@"NSUserDefaults",&,N,V_notificationDefaults
+heartRhythmDefaults
+T@"NSUserDefaults",&,N,V_heartRhythmDefaults
 syncManager
 T@"NPSManager",&,N,V_syncManager
+installState
+Tq,N,V_installState
 v16@?0q8
 localizedStringWithFormat:
 alertControllerWithTitle:message:preferredStyle:
@@ -278,9 +292,14 @@ resume
 viewWillAppear:
 isBackgroundHeartRateEnabled
 numberWithBool:
+_updateECGAppInstallState
+availabilityManager
+_setECGAppInstallState:
+electrocardiogramAppInstallStateOnActiveWatch:
+updateOnboardingCompletionVersionCache
+setWithObject:
 isElectrocardiogramSupportedOnActiveWatch
 isElectrocardiogramSupportedOnAllWatches
-availabilityManager
 isElectrocardiogramRecordingDisabled
 isAtrialFibrillationDetectionStateSupportedOrNeedsGeolocationOnActiveWatch
 isAtrialFibrillationDetectionStateSupportedOrNeedsGeolocationOnAllWatches
@@ -299,6 +318,7 @@ copy
 _electrocardiogramGroupSpecifier
 isElectrocardiogramOnboardingCompleted
 _electrocardiogramHealthRoomSpecifier
+_electrocardiogramAppInstallSpecifier
 _electrocardiogramOnboardingSpecifier
 numberWithInt:
 _atrialFibrillationDetectionGroupSpecifier
@@ -326,7 +346,11 @@ electrocardiogramFooterDescriptionWithAvailabilityManager:
 _electrocardiogramOnboardingButtonTapped
 setButtonAction:
 _electrocardiogramHealthRoomButtonTapped
+_electrocardiogramAppInstallButtonTapped
 _hk_urlForElectrocardiogramType
+installElectrocardiogramAppOnActiveWatch:
+setBool:forKey:
+setWithObjects:
 irregularHeartRhythmFooterDescription
 irregularHeartRhythmFooterLinkTitle
 irregularHeartRhythmFooterLinkURL
@@ -341,6 +365,7 @@ isAtrialFibrillationEnabledWithAvailabilityManager:
 heartRhythmAvailabilityDidUpdate
 traitCollectionDidChange:
 suppressSendToNotificationCenterOption
+_updateECGOnboardingCompletionVersionCache
 _privacySettingsLinkTapped
 notificationCoalescingTitles
 notificationCoalescingValues
@@ -348,12 +373,21 @@ _electrocardiogramRecordingDisabledLinkTapped
 _atrialFibrillationDetectionDisabledLinkTapped
 _atrialFibrillationDetectionAboutLinkTapped
 setAvailabilityManager:
+appAvailability
+setAppAvailability:
 notificationDefaults
 setNotificationDefaults:
+heartRhythmDefaults
+setHeartRhythmDefaults:
 syncManager
 setSyncManager:
+installState
+setInstallState:
 _availabilityManager
+_appAvailability
 _notificationDefaults
+_heartRhythmDefaults
+_installState
 isTachycardiaDetectionEnabled
 tachycardiaThresholdHeartRate
 tachycardiaHeartRateOptions
@@ -432,8 +466,16 @@ B48@0:8@"UITextView"16@"NSURL"24{_NSRange=QQ}32
 B48@0:8@"UITextView"16@"NSTextAttachment"24{_NSRange=QQ}32
 d16@0:8
 v20@0:8B16
+v24@0:8q16
 @"HKHeartRhythmAvailability"
+@"HKWatchAppAvailability"
 @"NSUserDefaults"
 [%{public}s]: Profile identifier is nil for NRDevice UUID %{public}@, Error: %{public}@
+[%{public}s]: Checking watch app install state: %ld]
+[%{public}s]: Checking watch app install state resulted in error: %{public}@
+[%{public}s]: Heart rhythm onboarding was updated
+[%{public}s]: App install button tapped
+[%{public}s]: ECG app installation successfully triggered
+[%{public}s]: Triggering app install failed with error %{public}@
 [%{public}s]: Heart rhythm availability update notification received.
 [%{public}s]: Protected data did become available.

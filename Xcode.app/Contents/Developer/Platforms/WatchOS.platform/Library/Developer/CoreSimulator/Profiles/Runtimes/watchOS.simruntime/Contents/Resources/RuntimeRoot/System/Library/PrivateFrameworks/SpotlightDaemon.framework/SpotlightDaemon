@@ -866,6 +866,7 @@ Done performing job:%@ with the indexing extensions
 Failed to fetch the storage size for bundleId:%@, error:%@
 creating dictionary for %@
 Failure for %@ / %@
+~~~ Unexpected input!
 %@ stopped
 %@ start
 %@ %llu complete
@@ -975,6 +976,7 @@ SPCoreSpotlightIndexer
 MDIndexer
 CSSearchableIndexInterface
 NSObject
+SPCoreSpotlightContactsUpdater
 SDDirtyIdleTimer
 SDEventMonitor
 SDMigrationMonitor
@@ -1581,6 +1583,7 @@ arrayWithContentsOfURL:
 _reindexAllItemsOnPrefsChanges
 allProtectionClasses
 setConcreteIndexers:
+revokeExpiredItems:protected:
 issueDefrag:group:
 reindexAllItemsSource
 registerHandler:forEventName:
@@ -1613,7 +1616,7 @@ _openIndex:
 writeData:
 reason
 closeFile
-blacklistCheck:withOptions:
+blocklistCheck:withOptions:
 initWithDomain:code:userInfo:
 fileProviderAppToExtensionBundleMap
 deleteAllSearchableItemsWithBundleID:protectionClass:shouldGC:completionHandler:
@@ -1781,6 +1784,8 @@ localizedStrings
 customAttributeDictionary
 numberWithUnsignedInteger:
 stringByExpandingTildeInPath
+unsignedIntegerValue
+updatedCountsFromExisting:result:shouldUpdateMonth:
 block
 _stop
 initWithQueue:timeoutBlock:
@@ -2172,6 +2177,7 @@ v56@0:8@16@24@32@40@?48
 @"<SPCoreSpotlightIndexerDelegate>"
 @"<NSObject>"
 @"SPCoreSpotlightTask"
+@36@0:8@16^q24B32
 @32@0:8@16@?24
 v20@0:8I16
 v32@0:8@?16@24

@@ -102,7 +102,6 @@ com.apple.Carousel.control-center.manual-toggle
 com.apple.private.ControlCenter.DND.state.queue
 dndEnabled
 TB,N,GisDndEnabled,V_dndEnabled
-delegate
 T@"<NPRFGlanceMuteModelDelegate>",W,N,V_delegate
 muted
 TB,N,GisMuted
@@ -208,6 +207,7 @@ v16@?0@"NSString"8
 /System/Library/LocationBundles/ExposureNotificationBundle.bundle
 /System/Library/LocationBundles/Traffic.bundle
 /System/Library/LocationBundles/AltimeterHarvest.bundle
+/System/Library/LocationBundles/IonosphereHarvest.bundle
 /System/Library/LocationBundles/TraceHarvest.bundle
 /System/Library/PrivateFrameworks/HomeKitDaemon.framework
 /System/Library/LocationBundles/CarPlayHomeLocation.bundle
@@ -968,8 +968,6 @@ OXYGEN_SATURATION_ENABLE_TITLE
 Localizable-scandium
 OXYGEN_SATURATION_SWITCH_ON_TEXT
 OXYGEN_SATURATION_SWITCH_OFF_TEXT
-ListeningExperience
-HAELiveNotification
 HeadphoneRequiredSettings
 B16@?0@"NSString"8
 HEADPHONE_AUDIO_LEVELS_TRANSIENT_ON_TEXT
@@ -1053,7 +1051,6 @@ T@"NPRFAppleAccountHeaderView",&,N,V_header
 organizer
 T@"FAFamilyMember",&,N,V_organizer
 didShowLocationWarningDialog
-LOCATION_SWITCH_GROUP_ID
 LOCATION_SWITCH_ID
 SHARE_MY_LOCATION_SWITCH_GROUP_ID
 SML_SWITCH_ID
@@ -1062,15 +1059,13 @@ OFFLINE_FINDING_SWITCH_ID
 LOADING_APPLICATIONS_GROUP_ID
 LOADING_APPLICATIONS_ID
 APPLICATIONS_GROUP_ID
+LocationPrivacyFooter
+location:privacy
 FMFAllowed
 com.apple.NanoSettings.LocationPrivacy
 v24@?0@"ACAccount"8@"NSError"16
 v24@?0@"NSDictionary"8@"NSDictionary"16
 General
-LOCATION_DESC_WLAN_TEXT
-LOCATION_DESC_WIFI_TEXT
-LOCATION_DESC_WLAN_TEXT_TINKER
-LOCATION_DESC_WIFI_TEXT_TINKER
 OFFLINE_FINDING_TEXT
 BundleId
 LOCATION_DISABLE_WARNING_MSG
@@ -1211,7 +1206,6 @@ VOLUME_LIMIT_SWITCH_ID
 VOLUME_LIMIT_SLIDER_ID
 HAPTIC_ALERTS_GROUP_ID
 HAPTIC_ALERTS_SWITCH_ID
-HEADPHONE_HEARING_PROTECTION_ID
 STATUS_BAR_TITLE_VOLUME
 RingtonePreview
 HAPTIC_ALERTS_DEFAULT_LABEL
@@ -2329,9 +2323,8 @@ T@"<NSObject>",W,V_selectedItem
 T@"UILabel",R
 textView
 T@"UITextView",&,N,V_textView
-attributedText
 T@"NSAttributedString",C,N
-T@"<NPRFTextLinkHeaderFooterViewDelegate>",W,N,V_delegate
+T@"<NPRFTextLinkTableViewHeaderFooterViewDelegate>",W,N,V_delegate
 T@"NPRFSlider",&,N,V_slider
 SiriLanguage
 LANGUAGE_GROUP
@@ -2363,6 +2356,8 @@ sharedLoader
 T@"NPRFIconLoader",N,R
 scale
 com.apple.AssistantServices
+NPRFTextLinkListFooterViewDelegate
+v24@0:8@"NSURL"16
 NPRFAirplaneModeViewServiceExportedInterface
 @40@0:8:16@24@32
 B24@0:8#16
@@ -2404,6 +2399,34 @@ NSObject
 @32@0:8:16@24
 Q16@0:8
 T#,N,R
+NPRFTextLinkListFooterView
+B56@0:8@16@24{_NSRange=QQ}32q48
+v16@0:8
+attributedText
+delegate
+T@"NSAttributedString",N,&,VattributedText
+T@"<NPRFTextLinkListFooterViewDelegate>",N,W,Vdelegate
+NanoSettings/TextLinkListFooterView.swift
+UITextViewDelegate
+B48@0:8@16@24{_NSRange=QQ}32
+B24@0:8@"UITextView"16
+v24@0:8@"UITextView"16
+B48@0:8@"UITextView"16{_NSRange=QQ}24@"NSString"40
+B56@0:8@"UITextView"16@"NSURL"24{_NSRange=QQ}32q48
+B56@0:8@"UITextView"16@"NSTextAttachment"24{_NSRange=QQ}32q48
+B48@0:8@"UITextView"16@"NSURL"24{_NSRange=QQ}32
+B48@0:8@"UITextView"16@"NSTextAttachment"24{_NSRange=QQ}32
+UIScrollViewDelegate
+v48@0:8@16{CGPoint=dd}24N^{CGPoint=dd}40
+v28@0:8@16B24
+v40@0:8@16@24d32
+v24@0:8@"UIScrollView"16
+v48@0:8@"UIScrollView"16{CGPoint=dd}24N^{CGPoint=dd}40
+v28@0:8@"UIScrollView"16B24
+@"UIView"24@0:8@"UIScrollView"16
+v32@0:8@"UIScrollView"16@"UIView"24
+v40@0:8@"UIScrollView"16@"UIView"24d32
+B24@0:8@"UIScrollView"16
 NPRFIconCache
 d16@0:8
 sharedCache
@@ -2440,7 +2463,6 @@ PrivacyViewController.handleURL: %{public}@
 Privacy specifiers are not expected to end in _ID. Including _ID in a URL component is likely to not work as intended.
 PRIVACY_GROUP_ID
 NPRFURLHandling
-v24@0:8@"NSURL"16
 #16@0:8
 @24@0:8:16
 _TtC12NanoSettings28AppleAccountModelMonogrammer
@@ -2519,7 +2541,6 @@ Saved Apple account full name is too old. Not restoring it.
 ACMonitoredAccountStoreDelegateProtocol
 v24@0:8@"ACAccount"16
 NPRFAirplaneModeNavigationController
-v16@0:8
 @32@0:8#16#24
 @32@0:8@16@24
 NanoSettings.AirplaneModeNavigationController
@@ -4393,6 +4414,7 @@ locationAuthorizationController
 stopAppStatusUpdateObservation
 locationSystemServicesViewController
 initWithLocationSystemServicesViewController:
+registerClass:forSupplementaryViewOfKind:withReuseIdentifier:
 _loadLocationAuthorizations
 loadLocationAuthorizations
 refreshLocationSharingStatus
@@ -4446,6 +4468,8 @@ updateAuthorizationDescriptionFromEntity:specifier:
 enumerateKeysAndObjectsUsingBlock:
 locationServicesEnabled
 setPlatterStyle:
+collectionView:viewForSupplementaryElementOfKind:atIndexPath:
+collectionView:layout:estimatedHeightForFooterInSection:
 entityAuthorizationForLocationDictionary:
 numberOfSections
 _replaceAppSpecifiersInSpecifierSet:
@@ -4456,6 +4480,8 @@ _descriptionOfAuthorizationForEntity:
 bundleIdentifierContainsWebClipIdentifier:
 _localizedDisplayNameForBundleID:
 setChangedRestrictionsEnabledStateListener:
+absoluteString
+_aboutLocationAndPrivacy
 didReceiveLocation:
 didFailToFetchLocationForHandle:withError:
 connectionError:
@@ -4483,6 +4509,7 @@ locationAuthorizationController:observedAppsInstalled:
 locationAuthorizationController:observedAppsUninstalled:
 locationAuthorizationController:didLoadLocationEntities:
 locationAuthorizationController:didReloadLocationEntities:
+textLinkListFooterViewDidSelectURL:
 locationServicesSwitchChanged:
 shareMyLocationSwitchChanged:
 offlineFindingSwitchChanged:
@@ -4655,7 +4682,6 @@ setAttribute:forKey:error:
 volumeLimitLocked
 setHapticState:
 performGetter
-absoluteString
 volumeControllerDidUpdateVolumeValue:
 volumeControllerDidUpdateVolumeControlAvailibility:
 volumeControllerDidUpdateSystemMutedState:
@@ -6374,7 +6400,6 @@ heightForGlobalHeaderInCollectionView:layout:
 heightForGlobalFooterInCollectionView:layout:
 collectionView:layout:estimatedHeightForItemAtIndexPath:
 collectionView:layout:estimatedHeightForHeaderInSection:
-collectionView:layout:estimatedHeightForFooterInSection:
 estimatedHeightForGlobalHeaderInCollectionView:layout:
 estimatedHeightForGlobalFooterInCollectionView:layout:
 setDNDEnabled:
@@ -6554,6 +6579,7 @@ AIDAAccountManagerDelegate
 NPRFLocationViewController
 FMFSessionDelegate
 NPRFLocationAuthorizationControllerDelegate
+NPRFTextLinkListFooterViewDelegate
 BTSHealthDeviceLE
 NPRFAccessibilityPreferenceListController
 NPRFRegulatoryTaiwanManufacturedDateCell
@@ -6652,7 +6678,7 @@ NPRFTimePickerDelegate
 NPRFWOTViewControllerDelegate
 AXCharacterVoiceLoaderObserver
 NPRFSOSViewController
-NPRFTextLinkHeaderFooterViewDelegate
+NPRFTextLinkTableViewHeaderFooterViewDelegate
 NPRFAirplaneModeViewController
 RadiosPreferencesDelegate
 NPRFApplicationInfo
@@ -6673,7 +6699,7 @@ NPRFInternalSettingsModel
 NPRFSetAlwaysOnIntentHandler
 NPRFSetAlwaysOnIntentHandling
 NPRFPicker
-NPRFTextLinkHeaderFooterView
+NPRFTextLinkTableViewHeaderFooterView
 UITextViewDelegate
 UIScrollViewDelegate
 NPRFSegmentedSliderCell
@@ -6975,6 +7001,8 @@ v24@0:8@"NSDictionary"16
 v24@0:8@"NPRFLocationAuthorizationController"16
 v32@0:8@"NPRFLocationAuthorizationController"16@"NSDictionary"24
 v32@0:8@"NPRFLocationAuthorizationController"16@"NSArray"24
+v24@0:8@"NSURL"16
+d40@0:8@16@24q32
 @"NSObject<SPSettingsConfigurating>"
 @"NPRFLocationSystemServicesViewController"
 @"NPRFLocationAuthorizationController"
@@ -7003,7 +7031,6 @@ q24@0:8q16
 v24@0:8@"<NACVolumeController>"16
 v32@0:8@"<NACVolumeController>"16@"NSError"24
 v24@0:8@"NPRFGlanceMuteModel"16
-v24@0:8@"NSURL"16
 @"NPRFGlanceMuteModel"
 @"<NACVolumeController>"
 @"NPRFVolumeControlsView"
@@ -7168,7 +7195,7 @@ B56@0:8@"UITextView"16@"NSURL"24{_NSRange=QQ}32q48
 B56@0:8@"UITextView"16@"NSTextAttachment"24{_NSRange=QQ}32q48
 B48@0:8@"UITextView"16@"NSURL"24{_NSRange=QQ}32
 B48@0:8@"UITextView"16@"NSTextAttachment"24{_NSRange=QQ}32
-@"<NPRFTextLinkHeaderFooterViewDelegate>"
+@"<NPRFTextLinkTableViewHeaderFooterViewDelegate>"
 @"NPRFSlider"
 B48@0:8@16:24@32@40
 v48@0:8@16:24@32@40
@@ -7196,7 +7223,6 @@ v40@0:8@"UICollectionView"16@"UIContextMenuConfiguration"24@"<UIContextMenuInter
 v32@0:8@"PUICListCollectionView"16@"NSIndexPath"24
 d40@0:8@16@24@32
 B40@0:8@16@24q32
-d40@0:8@16@24q32
 d32@0:8@16@24
 d40@0:8@"UICollectionView"16@"PUICListCollectionViewLayout"24@"NSIndexPath"32
 B40@0:8@"UICollectionView"16@"PUICListCollectionViewLayout"24q32
@@ -7208,12 +7234,13 @@ d32@0:8@"UICollectionView"16@"PUICListCollectionViewLayout"24
 @40@0:8^{CGImage=}16d24d32
 @24@0:8d16
 A^^^^^^
-NanoSettings
+@NanoSettings
 IconLoader
 NSKeyValueObservingOptions
 NSKeyValueChangeKey
 Foundation
 TimeTitleObservingCell
+TextLinkListFooterView
 IconCache
 AppDispatchQueues
 TimeValue1Cell
@@ -7550,6 +7577,12 @@ So25PUICListDetailPlatterCellC
 So11PSSpecifierCSg
 ypSg
 ySSG
+So24UICollectionReusableViewC
+So18NSAttributedStringCSg
+So34NPRFTextLinkListFooterViewDelegate_pSgXw
+So10UITextViewC
+$s12NanoSettings30TextLinkListFooterViewDelegateP
+ySo18NSLayoutConstraintCG
 So10NSMapTableCySo8NSStringCSo7UIImageCG
 SaySo7UIImageCG
 So17OS_dispatch_queueC
@@ -7566,7 +7599,6 @@ So7UIImageCSgIeyBy_
 So7UIImageCSgIegg_
 So19PUICListPlatterCellC
 So7UILabelC
-ySo18NSLayoutConstraintCG
 So38NPRFPreferenceCollectionViewControllerC
 So19NSMutableDictionaryC
 So15NCABMonogrammerCSg
@@ -7598,6 +7630,9 @@ _ObjectiveCType
 ArrayLiteralElement
 Element
 displayedSpecifier
+attributedText
+delegate
+textView
 scale
 cacheTable
 cacheArrayWorkingHalf

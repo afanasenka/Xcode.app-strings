@@ -4811,6 +4811,7 @@ ic_isBeingRevealedFromPoppingViewController
 ic_dismissViewControllerOfClass:animated:completion:
 ic_performBlockAfterActiveTransition:
 imageNamed:
+mainScreen
 genericListThumbnailCreator
 initWithFrame:showMovieDuration:
 setThumbnailView:
@@ -5334,7 +5335,6 @@ span
 previewUpdateDate
 deleteAttachmentPreviewImages
 hasContextOptions:
-mainScreen
 setRegion:
 setMapType:
 mapCamera
@@ -9263,6 +9263,7 @@ rebuildPersonsWithContext:reply:
 requestOnDemandFaceCropsForFaceLocalIdentifiers:context:reply:
 reloadWidgetTimelineWithContext:reply:
 recordFeatureUsageFromCounts:context:reply:
+cacheCPAnalyticsPropertiesWithContext:reply:
 dumpAnalysisStatusWithContext:reply:
 cancelOperationsWithIdentifiers:context:reply:
 notifyLibraryAvailableAtURL:

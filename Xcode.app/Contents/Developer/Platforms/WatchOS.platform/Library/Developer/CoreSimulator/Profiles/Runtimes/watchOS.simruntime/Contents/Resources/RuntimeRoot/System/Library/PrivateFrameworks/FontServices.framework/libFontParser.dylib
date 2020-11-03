@@ -6670,6 +6670,7 @@ aABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
 AACENOUaaaaaaceeeeiiiinooooouuuu
 com.apple.FontParser
 HVFEnabled
+/Library/Preferences/com.apple.FontParser
 {HVFPartRenderState=i}20@?0i8r^(HVFPartRenderParams={HVFPartInfo=Q*}{HVFPoint=dd}{HVFTransform=dddddd}{?={HVFPartInfo=Q*}{HVFTransform=dddddd}}{?={HVFPartInfo=Q*}}{?={HVFPoint=dd}}{?={HVFPoint=dd}{HVFPoint=dd}}{?={HVFPoint=dd}{HVFPoint=dd}{HVFPoint=dd}})12
 allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size
 %.15f

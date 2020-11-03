@@ -1648,6 +1648,7 @@ initWithName:
 initFromResourceDepot:
 setNeedsUpdate
 initWithMeCardReader:handler:
+removeAllObjects
 setNeedsUpdateWithCoalescing
 invalidate
 scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:
@@ -1737,7 +1738,6 @@ setAddressIdentifier:
 setAddressBookAttributes:
 strongToStrongObjectsMapTable
 _geocodedMapItemsByAddress
-removeAllObjects
 _updateMapItemClientAttributes
 geocodingError
 _completionQueue

@@ -271,8 +271,9 @@ inAppAdamID
 integerValue
 fc_firstObjectPassingTest:
 removePurchaseAdContextForPurchaseID:
+servicesBundlePurchaseID
 chargeCurrencyCode
-reportAdConversionForAppStorePurchaseWithTagID:purchaseID:arrivedFromAd:qToken:adCampaignID:price:currencyCode:purchaseInitiatedTime:
+reportAdConversionForAppStorePurchaseWithTagID:purchaseID:sbPurchaseID:arrivedFromAd:qToken:adCampaignID:price:currencyCode:purchaseInitiatedTime:
 getSubscriptionEntitlementsForSegment:ignoreCaches:withResultHandler:
 isEqualToString:
 addAppStorePurchaseWithTagID:purchaseID:
@@ -298,6 +299,7 @@ addToWebAccessOptedInListWithTagID:
 fc_safelySetObject:forKey:
 enumerateObjectsUsingBlock:
 purchaseAdContextEntriesByPurchaseID
+servicesBundleAdamID
 adCampaignID
 clearAllPurchaseAdContextEntries
 publisherPaidWebAccessOptIn
@@ -382,6 +384,20 @@ mutableCopy
 setLastPlacardShownTime:
 updateEntry:
 reportAdConversionForAlreadySubscriberWithPurchaseContext:
+sharedDelegate
+resolver
+appleMagazineContent
+allowSharingAlways
+useHistoryFeedModule
+useSavedFeedModule
+useTodayModule
+useTagFeedModule
+useSearchModule
+useNewAds
+useNewsUINotificationHandling
+useNewSearchEndpoint
+narrativeAudio
+resolveProtocol:
 fc_safelySetObjectAllowingNil:forKey:
 timeIntervalSince1970
 initWithType:withQToken:withSourceID:withEventTime:withInfo:
@@ -540,9 +556,6 @@ _presentingViewController
 _failedTransactionPurchaseContextsByTagID
 purchasedTagIDs
 unsignedIntegerValue
-currentDevice
-userInterfaceIdiom
-newAdsEnabled
 _sectionLabelFont
 initWithFrame:
 rightArrowButtonImage
@@ -734,7 +747,6 @@ _referralGroupSectionDescriptorClass
 _additionalReferralGroupCategories
 _additionalReferralGroupKeywords
 _aspectRatioOfVideoPlayer
-sharedDelegate
 appOpenedByUserActivity
 userActivityType
 referringURL
@@ -1300,6 +1312,7 @@ duration
 referringType
 referringSource
 isAppAnalyticsEvent
+currentDevice
 orientation
 interfaceOrientation
 sharedMonitor
@@ -1585,9 +1598,7 @@ fractionalCohortMembershipForHeadline:withSubscriptionList:completion:
 _removeNotificationForArticleID
 fullArticleStartDate
 excerptExposureEventWithArticleID:referencedArticleID:articleContext:startDate:endDate:articleSessionID:articleViewingSessionID:articleType:feedViewExposureID:viewFrameInScreen:topicIDs:surfacedByChannelID:surfacedBySectionID:surfacedByTopicID:surfacedByBinID:surfacedByTagIDs:isNewUserToArticle:iAdCategories:sourceChannelID:personalizationFeaturesBundle:storyType:topStoryType:maxVerticalScrollPositionEnding:isFreeArticle:isSubscribedToGroup:paidSubscriberToFeedType:nextArticleAffordanceType:nextArticleAffordanceTypeFeedID:favoritingSourceChannel:personalizationScore:experimentalTitleMetadata:language:articleRole:channelData:
-resolver
 removeDeliveredNotificationFor:
-resolveProtocol:
 initWithFeldsparContext:articleViewingSessionID:
 articleViewWillOpenArticleID:
 articleViewDidLoadHeadline:
@@ -1757,6 +1768,7 @@ runSubscriptionBlueprintModifier
 sceneDidEnterBackground
 markStateDiscarded
 isStateRestorationAllowed
+isStateRestorationFeatureEnabled
 hasStateDiscarded
 viewIsReadyForLayout
 viewControllerIsVisible
@@ -1966,10 +1978,11 @@ fr_scrollToTopAnimated:
 navigateBackToForYouFeed
 _updateSnapshotForBackgroundApplication:
 runPrefetchWithAppConfiguration:completion:
+_updateVisibilityStateForReason:
 appActivityMonitor
 isWindowForeground
 didBecomeVisible
-didBecomeNotVisible
+didBecomeNotVisibleForReason:
 setViewAppearDate:
 setViewControllerIsVisible:
 _prefetchVisibleCells
@@ -1993,7 +2006,7 @@ sourceApplication
 totalGroupExposureCount
 displayRank
 previousArticleVersion
-feedViewEventWithStartDate:endDate:feedType:feedID:feedViewExposureID:groupViewExposureID:isUserSubscribedToFeed:presentationReason:searchText:viewFrameInScreen:feedPickerSection:feedPickerType:sourceURL:sourceApplication:userActivityType:isPaidSubscriberToFeed:groupType:isSubscribedToGroupFeed:countOfTotalGroupExposures:adSupported:rankInToC:referral:previousArticleID:previousArticleVersion:
+feedViewEventWithStartDate:endDate:feedType:feedID:feedViewExposureID:groupViewExposureID:isUserSubscribedToFeed:presentationReason:searchText:viewFrameInScreen:feedPickerSection:feedPickerType:sourceURL:sourceApplication:userActivityType:isPaidSubscriberToFeed:groupType:isSubscribedToGroupFeed:countOfTotalGroupExposures:adSupported:rankInToC:referral:previousArticleID:previousArticleVersion:endReason:
 feedContextForReturnFromArticleView
 setFeedContext:
 viewController
@@ -2693,7 +2706,7 @@ reportArticleHostViewExposureWithContext:
 percentageOfVideoVisibleInFeed
 bundleSubscriptionDidSubscribe:
 bundleSubscriptionDidExpire:
-bundleSubscriptionDidChange:previousBundleSubscription:changeSet:
+bundleSubscriptionDidChange:previousBundleSubscription:
 pluginView
 tabBarSplitViewDidChangeTraitCollectionToTraitCollection:
 tabBarSplitViewWillChangeDisplayModeToDisplayMode:
@@ -3527,6 +3540,7 @@ displayTitle
 displaySubtitle
 setSubtitle:
 setPrefetchError:
+newAdsEnabled
 setSubscriptionAdFetcher:
 feedViewContext
 jsonRelayoutContextWithFeed:feedViewContext:requestContext:
@@ -3554,6 +3568,7 @@ setSubscribeNowText:
 _prefetchNeeded
 _prefetchError
 _prefetchLoading
+_newAdsEnabled
 _subscriptionPlacardCollectionViewCell
 _bundleSubscriptionPlacardCollectionViewCell
 _purchaseContext
@@ -3664,6 +3679,7 @@ setWebViewControllerFactory:
 withConfiguration:
 embedConfigurationManager
 loadEmbedDataWithCompletion:
+hasLoaded
 allowOpenInSafariForURL:
 allowCopyingOfURL:
 allowOpenInNewWindowForURL:
@@ -3792,8 +3808,9 @@ bodyHTML
 javaScript
 autoPlayMedia
 autoPlayMediaWithValue:withType:
-systemPurpleColor
 systemBlueColor
+systemPurpleColor
+getRed:green:blue:alpha:
 arrayOfColors
 colorForIdentifier:
 offensive
@@ -3988,6 +4005,7 @@ setFeedCellHostExposureId:
 setSourceChannelId:
 setPublisherArticleVersionInt64:
 scrollEventWithStartPosition:endPosition:velocity:startDate:endDate:articleID:referencedArticleID:articleSessionID:articleViewingSessionID:hostViewType:adSupported:experimentalTitleMetadata:issueData:issueViewData:
+feedLoadEventWithStartDate:endDate:feedType:feedID:feedViewExposureID:
 feedPickerCellHostViewExposureEventWithStartDate:endDate:feedPickerType:referral:
 feedPickerCellExposureEventWithStartDate:endDate:feedType:feedID:isUserSubscribedToFeed:feedPickerType:section:displayRankInSection:viewFrameInScreen:hostViewExposureID:personalizationFeaturesBundle:
 searchExposureEvent
@@ -4960,6 +4978,7 @@ setInflateHeadlinesOnce:
 fetchImageForRequest:expires:completion:
 fetchImageForRequest:
 setImage:forRequest:
+cancelAllRunningOperations
 resolveProtocol:name:
 tagColorFor:
 padding
@@ -5293,7 +5312,6 @@ initWithResolver:feldsparContext:feedContext:
 setResolver:
 _resolver
 actionForLayer:forKey:
-feldsparContextForProvider:
 setAppearDate:
 adControllerFactory
 createAdControllerForProvider:document:viewport:
@@ -5340,6 +5358,7 @@ identifiersOfSentAdEvents
 setIdentifiersOfSentAdEvents:
 visibleViewController
 articleSession
+feldsparContextForProvider:
 articleViewContextForProvider:
 silexContextForProvider:
 articlePageViewControllerForProvider:
@@ -6447,17 +6466,6 @@ setToolbarItems:
 isToolbarHidden
 backButton
 nextButton
-appleMagazineContent
-allowSharingAlways
-useHistoryFeedModule
-useSavedFeedModule
-useTodayModule
-useTagFeedModule
-useSearchModule
-useNewAds
-useNewsUINotificationHandling
-useNewSearchEndpoint
-narrativeAudio
 setAudioTrackDuration:
 setIssue:
 updateToolbarItems
@@ -7344,7 +7352,7 @@ sortItems:readonlyPersonalizationAggregateStore:personalizationWhitelist:configu
 sortItems:options:configurationSet:
 bestOfGroupFromFeedItems:scoreProfiles:configurationSet:
 deviceIsiPad
-rulesWithTreatment:configurationSet:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:
+rulesWithTreatment:configurationSet:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:todayFeedEnabled:
 initWithID:publisherID:accessible:evergreen:whitelistedTopicIDs:
 topicDiversityThreshold
 topicDiversityWindowSize
@@ -8303,7 +8311,6 @@ initWithVisibilityDetector:feedSettings:
 modifyBlueprintWithModifierAndBlockModifierUntilLifted:completion:
 runResetBlueprintModifierForSize:completion:
 debounce:
-cancelAllRunningOperations
 quietNext:
 hasPendingOperations
 initWithOnScreenAdManager:visibilityDetector:feedSettings:
@@ -8488,7 +8495,6 @@ application:didFinishLaunchingWithOptions:
 scheduleTasksWithOptions:
 setRunningPPTWithApplication:
 setupDestructiveDataAction
-prewarmAd
 registerForDeviceLockNotifications
 setupAnalyticsReferralWithOptions:
 prepareAppCacheSnapShot
@@ -8518,6 +8524,7 @@ prefetchForYouASAPWithFeedManager:highPriority:
 setAnalyticsReferralFactory:
 finishPPTSetupWithApplication:
 applicationWillFinishLaunching
+prewarmAd
 application:willFinishLaunchingWithOptions:
 createSceneResolver
 createCarPlaySceneResolver
@@ -9712,6 +9719,8 @@ fetchTagsForTagIDs:maximumCachedAge:qualityOfService:callbackQueue:completionHan
 sectionsView
 selectedIndex
 setForceNoAnimationForNextSwitch:
+toolbarItemManager
+configure
 _backingTag
 setViewIsTransitioning:
 _shouldHideMuteFavoriteControls
@@ -9724,7 +9733,6 @@ _layoutMuteFavoriteButtonsWithCurrentTraitCollection
 muteFavoriteView
 _updateButtonsForCurrentStateAnimated:
 _sharingActivityProvider
-shareToolbarItemManager
 initTSWithActivityItemSources:
 setApplicationActivitiesProvider:
 excludedActivityTypes
@@ -9733,12 +9741,11 @@ updateShareConfigurationFactory:
 deconfigure
 setSectionFeedMenuActions:
 sectionFeedMenuActions
-sectionToolbarItemManager
-updateMenu:
+updateSectionsMenu:
 selectSectionWithIdentifier:animated:completionBlock:
+removeSectionsMenu
 shouldShowSpinner
 deconfigure:
-tagDecorationToolbarItemManager
 _configureSectionsViewIfNeeded
 feedTitleView
 relayoutWithAnimation:
@@ -9772,8 +9779,10 @@ setSectionTransitionAnimationIsOccurring:
 forceNoAnimationForNextSwitch
 sectionsView:didSelectSectionAtIndex:
 viewControllerForFeed:theme:feldsparContext:feedContext:
+spinnerStartTimestamp
 setShouldShowSpinner:
 showSubscriptionAlertOnceIfNeeded
+setSpinnerStartTimestamp:
 subscribedAlertShownOnce
 showSubscribedAlertOnFinishedLoading
 setSubscribedAlertShownOnce:
@@ -9876,6 +9885,7 @@ _sectionsView
 _rootViewController
 _muteFavoriteView
 _logoImage
+_spinnerStartTimestamp
 _refreshSectionsGroup
 _restorationUUID
 _selectedSectionID
@@ -9883,9 +9893,7 @@ _feedSubscriptionManager
 _titleImageLoader
 _mastheadTapCoordinator
 _titleViewTapCoordinator
-_shareToolbarItemManager
-_tagDecorationToolbarItemManager
-_sectionToolbarItemManager
+_toolbarItemManager
 _sectionFeedMenuActions
 _nameImageViewSize
 setForYouLoadingGate:
@@ -10760,6 +10768,11 @@ _ignoreNavigationBarBackgroundOpacity
 _appliedBarStyle
 _toolbar
 _statusBarStyler
+setTimeout:
+featureAvailibility
+fetchConfigurationWithCompletion:
+initWithAppConfigurationManager:featureAvailibility:
+_featureAvailibility
 initWithBlockedReason:
 fr_animateKeyPath:fromValue:toValue:usingSpringWithStiffness:initialVelocity:completion:
 springAnimationWithKeyPath:toLayer:fromValue:toValue:
@@ -10957,7 +10970,6 @@ isActionDestructive:
 setSpinnerViewController:
 spinnerViewController
 destinationViewController
-hasLoaded
 hasLoadStarted
 setLoaded:
 initWithMass:stiffness:damping:initialVelocity:
@@ -11149,6 +11161,7 @@ CGContext
 imageWithActions:
 traitCollectionWithHorizontalSizeClass:
 containsTraitsInCollection:
+userInterfaceIdiom
 maxScreenSide
 _supportsForceTouch
 viewIsCompact:
@@ -11503,8 +11516,7 @@ containerTitleView
 setContainerTitleView:
 setHeadlineIDForAd:
 currentObjectGraphResolver:
-setShareToolbarItemManager:
-setTagDecorationToolbarItemManager:
+setToolbarItemManager:
 managePreviousAndNextViewController
 updateNextArticleButton
 setMagazineButtonNeedsUpdate:
@@ -11538,12 +11550,13 @@ setAccessibilityTitle:
 applyFeedTitleViewUpdate:animation:force:
 feedTitleViewUpdateForFeedName:
 feedTitleViewUpdateForFeedImage:accessibilityTitle:
-updateWithImage:tooltip:
-updateWithText:
+updateTitleWithImage:tooltip:
+updateTitleWithText:
 fetchPublisherTitleWithCompletion:
 setBarManagerScrollViewDelegate:
 updateTocButtonVisibilityForArticleViewContext:scrollView:animated:forceUpdate:
 _allowsSharing
+removeShareConfigurationFactory
 setGestureEnabled:
 submitArticleLikeDislikeEvent
 submitReadingListAddRemoveEvent
@@ -12990,6 +13003,7 @@ statusBarWindow
 loadedConfiguration
 operationForConfigurationManager:resourceManager:
 addCompletionHandler:
+_hasLoaded
 _loadedConfiguration
 removeStateObserver:
 addStateObserver:
@@ -13709,6 +13723,7 @@ isRunningInSupportedRegion
 showAppUnsupportedAlert
 enableFlushing
 addPreFlushTask:
+createPreFlushTask
 expressInterestInOfflineArticlesWithCompletionHandler:
 acquireHoldTokenOnUnderlyingAssets
 updateWithCompletionHandler:
@@ -14110,7 +14125,6 @@ resolvedColorWithTraitCollection:
 getHue:saturation:lightness:alpha:
 fr_colorWithHue:saturation:lightness:alpha:
 fr_offsetWithHue:saturation:lightness:alpha:
-getRed:green:blue:alpha:
 _luminance
 systemPinkColor
 secondarySystemBackgroundColor
@@ -14122,8 +14136,7 @@ fr_topicCardDividerColorForDarkBackground
 fr_topicCardDividerColorForLightBackground
 fr_topicCardTextColorForDarkBackground
 fr_topicCardTextColorForLightBackground
-traitCollectionWithUserInterfaceStyle:
-_dynamicColorWithColorsByTraitCollection:
+colorWithDynamicProvider:
 _getRGBA:
 _getHSBA:
 fr_plusLEffectWithForegroundColor:backgroundColor:
@@ -15328,6 +15341,7 @@ successWithResolvedTag:
 disambiguationWithTagsToDisambiguate:
 confirmationRequiredWithTagToConfirm:
 FRSaveButton
+TSFeatureAvailabilityType
 FRPurchaseManager
 FRAppActivityObserving
 FCAppActivityObserving
@@ -15677,7 +15691,6 @@ FRPurchaseViewController
 SKRequestDelegate
 FRPurchaseManagerFinishTransactionDelegate
 FRPPTTestOpenANFArticleResponsiveness
-TSFeatureAvailabilityType
 NAAudioButtonType
 NAArticleViewerAudioRendererType
 FRArticleBarButtonItemManager
@@ -16041,6 +16054,8 @@ FRFeedCollectionViewCellActivityIndicatorViewDelegate
 TUMotionManagerObserver
 FRFeedCollectionViewLayoutBlueprintModifierRunContext
 FRBarStyler
+FRAdManagerConfigurationProvider
+NUAdManagerConfigurationProvider
 FRArticleMarking
 FRFeedHeadlineCursor
 FRFeedHeadlineViewRenderer
@@ -16572,8 +16587,8 @@ TodayIntentResponse
 TagResolutionResult
 @16@0:8
 v20@0:8B16
-B24@0:8@16
 B16@0:8
+B24@0:8@16
 @24@0:8@16
 #16@0:8
 @24@0:8:16
@@ -16630,7 +16645,7 @@ v80@0:8@16@24@32@40@48@56@64@?72
 v40@0:8@16@24@?32
 v52@0:8@16@24B32@36@44
 v24@0:8B16B20
-v76@0:8@16@24B32@36@44@52@60@68
+v84@0:8@16@24@32B40@44@52@60@68@76
 v24@0:8@?16
 v52@0:8@16@24q32B40@?44
 @"<FRPurchaseManagerPurchaseViewControllerDelegate>"
@@ -16913,7 +16928,7 @@ v32@0:8@"FRFeedVideoManager"16@"NFLHeadlineTileInfo"24
 v24@0:8@"FRFeedVideoArticleHostViewExposureContext"16
 v32@0:8@"FRPurchaseManager"16@"FRPurchaseViewController"24
 v24@0:8@"FCBundleSubscription"16
-v40@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24@"FCBundleSubscriptionChangeSet"32
+v32@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24
 @"UIView"16@0:8
 v32@0:8q16q24
 v24@0:8@"UITraitCollection"16
@@ -17220,7 +17235,8 @@ Q28@0:8@16i24
 @"NTPBWidgetEngagement"
 @40@0:8@16B24B28@32
 @124@0:8d16d24d32@40@48@56@64@72@80q88B96@100@108@116
-@216@0:8@16@24q32@40@48@56B64q68@76{CGRect={CGPoint=dd}{CGSize=dd}}84q116q124@132@140@148B156q160B168q172B180q184@192@200q208
+@56@0:8@16@24q32@40@48
+@224@0:8@16@24q32@40@48@56B64q68@76{CGRect={CGPoint=dd}{CGSize=dd}}84q116q124@132@140@148B156q160B168q172B180q184@192@200q208q216
 @48@0:8@16@24q32@40
 @124@0:8@16@24q32@40B48q52q60Q68{CGRect={CGPoint=dd}{CGSize=dd}}76@108@116
 @96@0:8@16@24@32@40@48@56@64@72@80@88
@@ -18144,9 +18160,7 @@ B28@0:8B16q20
 @"FRFeedSubscriptionManager"
 @"FRMastheadTapCoordinator"
 @"FRFeedTitleViewTapCoordinator"
-@"TSShareToolbarItemManager"
-@"TSTitleToolbarItemManager"
-@"TSSectionsToolbarItemManager"
+@"TSToolbarItemManager"
 @"FCReadingList"
 @"FCFeedManager"
 @"FRScrollPositionController"
@@ -18257,6 +18271,7 @@ v28@0:8@"TUMotionManager"16B24
 @"<FRFeedCollectionViewLayoutBlueprintModifierType>"
 @"<FRBarStyle>"
 @"<FRStatusBarStyler>"
+v24@0:8@?<v@?@"<NUAdManagerConfiguration>"@"NSError">16
 v40@0:8d16d24@?32
 v64@0:8@16@24@32d40d48@?56
 @"FRArticlePageViewController"
@@ -18648,6 +18663,7 @@ v32@0:8@?16@?24
 B32@0:8@"NSString"16@"NSDictionary"24
 B40@0:8@"NSString"16@"NSDictionary"24@?<B@?>32
 v24@0:8@?<v@?@?<v@?>>16
+@"TSCachePreFlushTask"16@0:8
 v32@0:8@"FRNotificationManager"16@"FRAnalyticsReferral"24
 v32@0:8@"FRNotificationManager"16@"NSString"24
 @"FCArticleHeadlinesFetchOperation"32@0:8@"FRGizmoSyncManager"16@"NSArray"24
@@ -19005,7 +19021,20 @@ Purchase receipt should not be nil at this point of execution.
 %@%@%@%@
 http://
 :3000/authorize?redirect_uri=applenews://authentication_callback/
+appleMagazineContent
+TB,R,N
+allowSharingAlways
+useHistoryFeedModule
+useSavedFeedModule
+useTodayModule
+useTagFeedModule
+useSearchModule
+useNewAds
+useNewsUINotificationHandling
+useNewSearchEndpoint
+narrativeAudio
 campaignId
+sbPurchaseID
 v52@?0@"NSString"8@"NSString"16@"NSString"24@"NSString"32B40B44B48
 FRAlreadySubscribedWithPublisherNameAlertMessage
 FRAlreadySubscribedNoPublisherNameAlertMessage
@@ -19075,9 +19104,6 @@ familyStatusManager
 T@"NPFamilyStatusManager",&,N,V_familyStatusManager
 familyEligibilityProvider
 T@"<NPFamilyEligibilityProviderType>",&,N,V_familyEligibilityProvider
-news.features.feed30
-disabled
-enabled
 sectionLabel
 T@"UILabel",&,N,V_sectionLabel
 arrowImageView
@@ -19188,7 +19214,6 @@ T@"NSArray",R,C,N
 globalUserFeedback
 Td,R,N
 hasGlobalUserFeedback
-TB,R,N
 TB,R,N,GisANF
 paid
 TB,R,N,GisPaid
@@ -19480,12 +19505,14 @@ T@"<FCTagProviding>",&,N,V_tag
 purchaseButtonTextProvider
 T@"<FRPurchaseButtonTextProvider>",&,N,V_purchaseButtonTextProvider
 -[FRAppSessionCounter start]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRAnalyticsController.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRAnalyticsController.m
 WARNING: You have had 2 app sessions start in a row, please leave the debugger attached if possible.
 -[FRAppSessionCounter end]
 WARNING: You have had an app session end when one is not started, please leave the debugger attached if possible
 started
 TB,N,V_started
+news.features.feed30
+enabled
 default
 -[FRAnalyticsController init]
 -[FRAnalyticsController initWithCloudContext:progressivePersonalizationAnalyticsDataProvider:notificationManager:versionHelpers:preferredUserID:]
@@ -19695,6 +19722,7 @@ articleViewingSessionID
 T@"NSString",&,N,V_articleViewingSessionID
 articleSessionDuration
 isStateRestorationAllowed
+isStateRestorationFeatureEnabled
 hasStateDiscarded
 BlockRefresh
 prewarm
@@ -19714,13 +19742,13 @@ windowDidBecomeVisible
 accessibilityChanged
 v16@?0q8
 -[FRFeedCollectionViewController presentContentWithCompletionHandler:]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRFeedCollectionViewController.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRFeedCollectionViewController.m
 notificationBlock
 v16@?0Q8
 windowDidBecomeFrontmost
 -[FRFeedCollectionViewController didBecomeVisible]
 viewController must not be visible to become visible
--[FRFeedCollectionViewController didBecomeNotVisible]
+-[FRFeedCollectionViewController didBecomeNotVisibleForReason:]
 viewController must be visible to become not visible
 self.viewAppearDate
 Recover
@@ -20321,6 +20349,8 @@ subtitle
 T@"NSString",C,N,V_subtitle
 subscribeNowText
 T@"NSString",C,N,V_subscribeNowText
+newAdsEnabled
+TB,R,N,V_newAdsEnabled
 subscriptionPlacardCollectionViewCell
 T@"FRSubscriptionPlacardCollectionViewCell",W,N,V_subscriptionPlacardCollectionViewCell
 bundleSubscriptionPlacardCollectionViewCell
@@ -20394,6 +20424,7 @@ jsonEncodableAppConfiguration
 T@"<FCNewsAppConfiguration><FCJSONEncodableObjectProviding>",R,N
 v24@?0@"<NFResolver>"8@"NUURLHandler"16
 @"<SXEmbedDataProvider>"16@?0@"<NFResolver>"8
+hasLoaded
 @16@?0@"<NFResolver>"8
 @"<SXLinkActionURLQualifier>"16@?0@"<NFResolver>"8
 @"<SXMailPresenter>"16@?0@"<NFResolver>"8
@@ -21364,6 +21395,7 @@ bundleSubscriptionStatus
 bundlePurchaseId
 isBundlePurchaser
 isAmplifyUser
+sBundlePurchaseId
 isPaidSubscriberFromNewsDuringEvent
 isPaidSubscriberFromAppStoreDuringEvent
 isPaidSubscriberFromThirdPartyDuringEvent
@@ -22215,20 +22247,9 @@ presentingControllerBlock
 T@?,C,N,V_presentingControllerBlock
 OpenANFArticleResponsiveness
 -[FRArticleBarButtonItemManager positionBarButtonItemsWithVisibilityManager:traitCollection:]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRArticleBarButtonItemManager.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRArticleBarButtonItemManager.m
 self.shareBarButtonItem
 self.nextBarButtonItem
-appleMagazineContent
-allowSharingAlways
-useHistoryFeedModule
-useSavedFeedModule
-useTodayModule
-useTagFeedModule
-useSearchModule
-useNewAds
-useNewsUINotificationHandling
-useNewSearchEndpoint
-narrativeAudio
 Next
 Previous
 -[FRArticleBarButtonItemManager createCoverBarButtonItemWithIssue:]
@@ -22482,6 +22503,7 @@ v32@?0@"UIViewController"8@?<v@?@>16@?<v@?@"NSError">24
 v32@?0@"UISearchBar"8@?<v@?@>16@?<v@?@"NSError">24
 Search bar never reported becoming first responder: %@
 _UISearchControllerView
+@16@?0@"UIScrollView"8
 @"NFPromise"16@?0@"FRSearchResultsViewController"8
 @"NFPromise"16@?0@"FRSearchMoreResultsViewController"8
 @"UITableView"16@?0@"UITableView"8
@@ -24551,6 +24573,7 @@ feedCellSection
 displayRankInSection
 isUserSubscribedToFeed
 feedCellHostExposureId
+FeedLoadEventType
 FeedViewExposure
 feedViewExposureId
 presentationReasonSearchString
@@ -24872,8 +24895,9 @@ ArticleSessionResume
 ArticleFeedback
 topicId
 feedbackValue
+FeedLoad
 NSString *FRFeedIdentifierForFeed(FCFeedDescriptor *__strong)
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FREventConstants.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FREventConstants.m
 FRFeedType FRFeedTypeForTag(__strong id<FCTagProviding>)
 no feed subscribe type for unknown tag
 FRSearchResultType FRSearchResultTypeForTag(__strong id<FCTagProviding>)
@@ -25002,6 +25026,8 @@ shouldShowSpinner
 TB,N,V_shouldShowSpinner
 logoImage
 T@"UIImage",&,N,V_logoImage
+spinnerStartTimestamp
+T@"NSDate",&,N,V_spinnerStartTimestamp
 forceNoAnimationForNextSwitch
 TB,N,V_forceNoAnimationForNextSwitch
 TB,N,V_isSubscribable
@@ -25022,12 +25048,8 @@ mastheadTapCoordinator
 T@"FRMastheadTapCoordinator",&,N,V_mastheadTapCoordinator
 titleViewTapCoordinator
 T@"FRFeedTitleViewTapCoordinator",&,N,V_titleViewTapCoordinator
-shareToolbarItemManager
-T@"TSShareToolbarItemManager",R,N,V_shareToolbarItemManager
-tagDecorationToolbarItemManager
-T@"TSTitleToolbarItemManager",R,N,V_tagDecorationToolbarItemManager
-sectionToolbarItemManager
-T@"TSSectionsToolbarItemManager",R,N,V_sectionToolbarItemManager
+toolbarItemManager
+T@"TSToolbarItemManager",R,N,V_toolbarItemManager
 sectionFeedMenuActions
 T@"NSMutableArray",&,N,V_sectionFeedMenuActions
 showSubscribedAlertOnFinishedLoading
@@ -25641,31 +25663,36 @@ statusBarStyler
 T@"<FRStatusBarStyler>",R,W,N,V_statusBarStyler
 ignoreNavigationBarBackgroundOpacity
 TB,N,V_ignoreNavigationBarBackgroundOpacity
+-[FRAdManagerConfigurationProvider fetchConfigurationWithCompletion:]
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRAdManagerConfigurationProvider.m
+T@"<FCNewsAppConfigurationManager>",R,N,V_appConfigurationManager
+featureAvailibility
+T@"<TSFeatureAvailabilityType>",R,N,V_featureAvailibility
 -[FRArticleAccessStatusAlertPresenter init]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRArticleAccessStatusAlertPresenter.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRArticleAccessStatusAlertPresenter.m
 -[FRArticleAccessStatusAlertPresenter initWithExplicitContentRestrictionAlertPresenter:]
 -[FRArticleAccessStatusAlertPresenter presentAlertForArticleAccessStatus:withPresentingViewController:actionCompletion:]
 %@ArticleSwipeAnimation
 position.x
 -[FRFeedHeadlineCursor init]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRFeedHeadlineCursor.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRFeedHeadlineCursor.m
 -[FRFeedHeadlineCursor initWithHeadlineContext:pageViewController:]
 pageViewController
 T@"FRArticleViewHeadlineContext",C,N,V_headlineContext
 T@"FRArticlePageViewController",W,N,V_pageViewController
 -[FRFeedHeadlineViewRenderer initWithFontCache:scale:styleFactory:thumbnailImageCache:publisherLogoImageCache:headlineBadgeProvider:]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRFeedHeadlineViewRenderer.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRFeedHeadlineViewRenderer.m
 headlineBadgeProvider
 T@"<FRFeedHeadlineBadgeProviderType>",R,N,V_headlineBadgeProvider
 T@"<FRFeedHeadlineViewRendererDataSource>",W,N,V_dataSource
 @"FRPPTRunOption"16@?0@"UIScrollView"8
 -[FRFeedHeadlineViewImageOnSideAccessibilityRenderer renderView:withTileInfo:layoutAttributes:userInterfaceStyle:]_block_invoke
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRFeedHeadlineViewImageOnSideAccessibilityRenderer.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRFeedHeadlineViewImageOnSideAccessibilityRenderer.m
 -[FRFeedHeadlineViewImageOnSideAccessibilityRenderer renderView:withTileInfo:layoutAttributes:userInterfaceStyle:]
 If this range is invalid, please come find Brian Turner
 estimatedProgress
 -[FRWebLinkArticleContentViewController scrollPositionObjectWithCompletionBlock:]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRWebLinkArticleContentViewController.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRWebLinkArticleContentViewController.m
 v16@?0@"FRWebScrollPositionObject"8
 v16@?0@"FRWebLinkArticleContentViewController"8
 v16@?0@"NSURL"8
@@ -26230,8 +26257,7 @@ navigationBarCompressionAnimation
 T@"FRArticleNavigationBarCompressionAnimation",&,N,V_navigationBarCompressionAnimation
 pendingArticleLikingActionNotCompleted
 TB,N,V_pendingArticleLikingActionNotCompleted
-T@"TSShareToolbarItemManager",&,N,V_shareToolbarItemManager
-T@"TSTitleToolbarItemManager",&,N,V_tagDecorationToolbarItemManager
+T@"TSToolbarItemManager",&,N,V_toolbarItemManager
 deferredHardPaywallIsVisible
 TB,N,V_deferredHardPaywallIsVisible
 magazineButtonNeedsUpdate
@@ -26366,10 +26392,9 @@ Tq,N,V_lockCount
 TB,R,N,Vappeared
 has_user_been_presubscribed
 -[FRPresubscribeService init]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRPresubscribeService.m
-T@"<FCNewsAppConfigurationManager>",R,N,V_appConfigurationManager
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRPresubscribeService.m
 -[FRArticleEditorialItemDownloader initWithArticleController:dataProviderFactory:articleEditorialItemProvider:editorialItemEntryManager:thumbnailCreator:editorialItemCreator:]
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/FRArticleEditorialItemDownloader.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/FRArticleEditorialItemDownloader.m
 articleEditorialItemProvider
 v16@?0@"TSEditorialItem"8
 v16@?0@"FRArticleEditorialItemDownloader"8
@@ -27376,19 +27401,18 @@ TB,N,GisScrollViewCurrentlyAtTop,V_scrollViewCurrentlyAtTop
 compressing
 TB,N,GisCompressing,V_compressing
 +[NSString(FRFeedAdditions) fr_attributesLookup]_block_invoke
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/feldspar/Classes/UIFont+FRFeedAdditions.m
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/feldspar/Classes/UIFont+FRFeedAdditions.m
 +[NSString(FRFeedAdditions) fr_shouldTitlecaseForFeedHeaderType:]
 Unknown header type is not supported.
 +[NSString(FRFeedAdditions) fr_fontForFeedHeaderType:]
 +[NSString(FRFeedAdditions) fr_leadingForFeedHeaderType:]
 Unknown not handled.
 +[NSString(FRFeedAdditions) fr_trackingForFeedHeaderType:]
-com.apple.news.anf.embedconfiguration
 v32@?0@"NSData"8@"NSString"16@"NSError"24
 loadedConfiguration
 T@"FRFlintEmbedConfiguration",R,N,V_loadedConfiguration
-T@"NSObject<OS_dispatch_queue>",R,N,V_queue
 T@"FREmbedConfigurationOperation",&,N,V_operation
+TB,R,N,V_hasLoaded
 updateQueue
 T@"FCAsyncSerialQueue",&,N,V_updateQueue
 privateDataControllers
@@ -28031,6 +28055,7 @@ TB,N,V_hideTitleOnTop
 TB,R,N,VshouldCompressAtTop
 Td,N,VtopOffset
 TB,N,GisTitleViewUpdating,VtitleViewUpdating
+@"UIColor"16@?0@"UITraitCollection"8
 @"UIColor"16@?0@"UIColor"8
 R : %@ G : %@ B : %@ A : %@
 v40@?0d8d16d24d32
@@ -30219,6 +30244,8 @@ failed to load web article %{public}@ due to didFailProvisionalNavigation with e
 </dict>
 <key>com.apple.private.applemediaservices</key>
 <true/>
+<key>com.apple.private.appstorecomponents</key>
+<true/>
 <key>com.apple.private.appstored</key>
 <array>
 <string>IAPHistory</string>
@@ -30278,6 +30305,10 @@ failed to load web article %{public}@ due to didFailProvisionalNavigation with e
 <array>
 <string>kTCCServiceAddressBook</string>
 </array>
+<key>com.apple.private.ubiquity-additional-kvstore-identifiers</key>
+<array>
+<string>com.apple.weather</string>
+</array>
 <key>com.apple.private.webinspector.allow-remote-inspection</key>
 <true/>
 <key>com.apple.private.xpc.domain-extension</key>
@@ -30336,6 +30367,7 @@ failed to load web article %{public}@ due to didFailProvisionalNavigation with e
 <string>com.apple.passd.in-app-payment</string>
 <string>com.apple.xpc.amsaccountsd</string>
 <string>com.apple.itunescloud.in-app-message-service</string>
+<string>com.apple.appstorecomponentsd.xpc</string>
 </array>
 <key>com.apple.security.exception.process-info</key>
 <true/>
@@ -30348,6 +30380,7 @@ failed to load web article %{public}@ due to didFailProvisionalNavigation with e
 <string>com.apple.newscore</string>
 <string>com.apple.suggestions</string>
 <string>com.apple.newscore2</string>
+<string>com.apple.AppStoreComponents</string>
 </array>
 <key>com.apple.springboard.hardware-button-service.event-consumption</key>
 <true/>

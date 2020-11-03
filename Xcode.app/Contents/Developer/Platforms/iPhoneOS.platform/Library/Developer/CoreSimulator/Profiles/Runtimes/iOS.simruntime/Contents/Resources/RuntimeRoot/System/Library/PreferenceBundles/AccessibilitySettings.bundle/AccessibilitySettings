@@ -10,9 +10,9 @@ MbP?
 ?______
 ?ssssss
 ?<<<<<<
+333333
 MbP?
 333333
-?333333
 333333
 init
 isMainThread
@@ -1473,10 +1473,13 @@ stringByReplacingOccurrencesOfString:withString:
 setCustomAction:forButtonNumber:
 _updateMouse
 mouseEventListener
-endFilteringEvents
-beginFilteringEvents
+endFilteringButtonEvents
+beginFilteringButtonEvents
 isEqualToMouse:
 updateCustomizableMouse:
+actions
+safeBoolForKey:
+_enumerateDescendentViews:
 setDefaultActionForButtonNumber:
 homeActionType
 customActionsRequireAssistiveTouch
@@ -2459,6 +2462,8 @@ payWithAST:
 _updateAssistiveTouchControlItems:reload:
 assistiveTouchCustomGestures
 setAssistiveTouchCustomGestures:
+assistiveTouchMouseBehavesLikeFinger
+setAssistiveTouchMouseBehavesLikeFinger:
 allValues
 _presentASTAlwaysShowMenuDisabledConfirmationAlert
 setAssistiveTouchAlwaysShowMenuEnabled:
@@ -2495,6 +2500,8 @@ presentationControllerDidAttemptToDismiss:
 idleOpacitySummary:
 settingsSetter
 _handleAssistiveTouchHardwareToggled:
+mouseBehavesLikeFinger:
+setMouseBehavesLikeFinger:specifier:
 alwaysShowMenuEnabled:
 setAlwaysShowMenuEnabled:specifier:
 alwaysShowSoftwareKeyboard:
@@ -3765,6 +3772,14 @@ _voiceIds
 setPreferSDHEnabled:specifier:
 preferSDHEnabled:
 currentTheme:
+setShowAudioTranscriptions:specifier:
+showAudioTranscriptions:
+setGizmoPref:forKey:domain:
+dictationIsEnabled
+presenterForPrivacySplashWithIdentifier:
+setPresentingViewController:
+present
+presentDialogForType:withCompletionHandler:
 isCaptionProfile
 isEditableCaptionProfile
 _themeCountChanged:
@@ -4348,7 +4363,6 @@ fontWithName:size:traits:
 heightForFontName:
 initWithDomain:
 synchronizeNanoDomain:keys:
-setGizmoPref:forKey:domain:
 domainAccessor
 setDomainAccessor:
 _coalesceTimer
@@ -4582,7 +4596,6 @@ setAutoplayMessagesEffects:specifier:
 autoplayMessagesEffects:
 setAutoplayVideoPreviews:specifier:
 autoplayVideoPreviews:
-maximumFramesPerSecond
 setRefreshRateEnabled:specifier:
 refreshRateEnabled:
 _updateReduceSlideTransitionsSpecifiersAnimated:
@@ -4739,6 +4752,7 @@ inputs
 setInputs:
 setSwitchRegistrar:
 switchRegistrar
+endFilteringEvents
 systemGroupedBackgroundColor
 _labelOfType:text:
 setActive:
@@ -4746,6 +4760,7 @@ leftAnchor
 rightAnchor
 setVisible:
 _showSoftwareKeyboard:
+beginFilteringEvents
 isVisible
 sharedPreferencesController
 synchronizePreferences
@@ -5482,7 +5497,7 @@ DEFAULT_VOICE
 IsDialectCell
 DialectCell
 PRONUNCIATION_DICTIONARY
-PTICH
+PITCH
 PITCH_CHANGES_TITLE
 LANGUAGE_DETECTION
 LANGUAGE_ROTOR_ITEMS
@@ -5559,6 +5574,9 @@ NONE
 %@-%li
 AddNewButtonToCustomizeAlertTitle
 AddNewButtonToCustomizeAlertInstructions
+UIInterfaceActionRepresentationView
+isHighlighted
+v24@?0@"UIView"8^B16
 mouseEventListener
 T@"AXMouseEventListener",R,N,V_mouseEventListener
 customizableMouse
@@ -5822,7 +5840,6 @@ T:,R,N
 ControllerGesture
 LongPress
 SPEECH_CONTROLLER_ACTIONS
-PITCH
 BrailleStatusCellSettings
 StatusCellTextStyle
 StatusCellGeneral
@@ -6912,6 +6929,13 @@ Captioning
 PREFER_SDH
 CAPTION_THEME
 currentTheme
+Home
+JMjIql4w2ryl8XrRuebT
+SHOW_AUDIO_TRANSCRIPTIONS_FOOTER
+Captioning-dinnerbell
+SHOW_AUDIO_TRANSCRIPTIONS
+ShowAudioTranscriptionsEnabled
+com.apple.onboarding.siri
 IsCaptionProfile
 CaptionProfileID
 AXThemeCountChangedNotification
@@ -7424,6 +7448,7 @@ REDUCE_MOTION_AUTOPLAY_MESSAGES_EFFECTS
 ReduceMotionAutoplayMessagesEffects
 REDUCE_MOTION_AUTOPLAY_VIDEO_PREVIEWS
 ReduceMotionAutoplayVideoPreviews
+GdXjx1ixZYvN9Gg8iSf68A
 RefreshRateFooterText
 RefreshRateSlider
 REFRESH_RATE
@@ -7690,6 +7715,7 @@ Set apps: %@
 Saving TC option: value: %@, newOption:%d checked:%@
 Finding tables for locale %@ %@ %@
 Updated braille language rotor items: %@
+Unexpected alert shown in customize mouse buttons controller: %@
 we should not have other options with nothing
 Using peripheral name (%@) for customizableMouse (%@)
 Using device name (%@) for customizableMouse (%@)

@@ -226,6 +226,10 @@ SIMULATOR_MODEL_IDENTIFIER
 iPhone12,3
 iPhone12,5
 iPhone12,1
+iPhone13,1
+iPhone13,2
+iPhone13,3
+iPhone13,4
 Connection must be resumed before use.
 Connection cannot be used after invalidation.
 Invalid: mutating discovery token for session.

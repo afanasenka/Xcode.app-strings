@@ -34,13 +34,13 @@
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18B5060x</string>
+<string>12A8179f</string>
 <key>DTPlatformName</key>
 <string>iphonesimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B5060x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>
@@ -1832,6 +1832,7 @@ mainDisplayDigitizerService
 T@"BKIOHIDService",R,&
 mainDisplayPencilDigitizerService
 v16@?0@"BKDigitizerArbiterInfo"8
+EuwCLwMXh+X5LErHKwvuIw
 BKDigitizerInfoArbiterDispatchQueue
 scheduler
 T@"BKDigitizerEventSchedulerBase",&,N,V_scheduler

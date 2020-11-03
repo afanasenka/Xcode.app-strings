@@ -1039,6 +1039,7 @@ exploreArticleID
 externalAnalyticsConfigurations
 mediaSharingBlacklistedChannelIDs
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishDates
@@ -1074,7 +1075,13 @@ userVectorWhitelistResourceId
 userVectorModelResourceId
 articleReadCountThreshold
 forYouGroupShouldPromoteAccessibleHeadline
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 notificationEnableAssetPrefetching
 notificationAssetPrefetchingRequiresWatch
@@ -1834,6 +1841,7 @@ whitelist
 sourceFeedID
 _TtC10StocksCore20TestStockFeedService
 _TtC10StocksCore17YahooQuoteService
+pushNotificationsEnabled
 _TtC10StocksCore20LegacyStocksAssembly
 com.apple.stocks.private
 Library/Documents/PrivateData
@@ -1843,6 +1851,7 @@ merging Stocks private data as requested during iCloud sign-in
 deleting Stocks private data as requested during iCloud sign-out
 configuring database without syncing because there is no primary account
 configuring database without syncing because the stocks dataclass is disabled
+configuring database without pushes because notifications are disabled
 Library/Caches/PrivateData
 migrating database JSON store from %{public}@
 failed to database JSON store from %{public}@ with error: %{public}@
@@ -1936,6 +1945,7 @@ externalAnalyticsConfig
 articleScoringConfig
 isNewsPrivateDataEncryptionRequired
 endOfArticleMaxInaccessiblePaidArticles
+adRequestThrottle
 newAdsBEnabledLevel
 loaded app configuration with fallback values for keys: %@
 loaded app configuration with no need for fallback values
@@ -3345,6 +3355,7 @@ stockQuoteDetailCacheMaxAge
 forYouNewsCacheMaxAge
 symbolFeedNewsCacheMaxAge
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 backgroundRefreshMinimumInterval
 refreshStockPricesInBackground
 refreshForYouNewsInBackground
@@ -4132,6 +4143,7 @@ exploreArticleID
 externalAnalyticsConfigurations
 mediaSharingBlacklistedChannelIDs
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishDates
@@ -4169,7 +4181,13 @@ userVectorWhitelistResourceId
 userVectorModelResourceId
 articleReadCountThreshold
 forYouGroupShouldPromoteAccessibleHeadline
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 notificationEnableAssetPrefetching
 notificationAssetPrefetchingRequiresWatch

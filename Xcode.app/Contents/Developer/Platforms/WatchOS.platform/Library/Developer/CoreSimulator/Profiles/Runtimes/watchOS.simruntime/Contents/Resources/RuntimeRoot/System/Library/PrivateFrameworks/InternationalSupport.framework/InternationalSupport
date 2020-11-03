@@ -166,6 +166,7 @@ supportedRegions
 exemplarRegionForLanguage:
 availableContinents
 containingContinentOfRegion:
+containingRegionOfRegion:
 _generateMinimizedLanguages
 minimizedLanguagesFromLanguages:
 languagesByAddingRelatedLanguagesToLanguages:

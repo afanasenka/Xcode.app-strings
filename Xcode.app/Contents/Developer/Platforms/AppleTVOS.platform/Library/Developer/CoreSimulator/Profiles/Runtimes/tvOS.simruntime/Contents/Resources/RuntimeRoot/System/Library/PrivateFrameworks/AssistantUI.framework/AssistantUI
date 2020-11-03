@@ -196,6 +196,8 @@ refId
 Failed to play phatic prompt.
 v16@?0q8
 Unsupported Two-Shot prompt type %ld.
+v16@?0@"<AFSpeechRecordingAlertBehaviorMutating>"8
+v16@?0@"<AFSpeechRecordingAlertPolicyMutating>"8
 dictionary
 v16@?0@"NSArray"8
 -[AFUISiriSession _startSpeechRequestWithSpeechRequestOptions:isInitialBringUp:completion:]
@@ -2235,6 +2237,9 @@ setPresentationMode:
 startRecordingSoundId
 _startingRecordingAlertPolicyForSoundID:
 setRecordingAlertPolicy:
+setBeepSoundID:
+newWithBuilder:
+setStartingAlertBehavior:
 valueForKey:
 setOrderedContext:
 turnIdentifier

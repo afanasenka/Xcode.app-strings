@@ -1,322 +1,4 @@
-%jn!
-%ln!
-%nn!
-%pn!
-%rn!
-%tn!
-%vn!
-%xn!
-%zn!
-%|n!
-%~n!
-%o!
-% o!
-%"o!
-%$o!
-%&o!
-%(o!
-%*o!
-%,o!
-%.o!
-%0o!
-%2o!
-%4o!
-%6o!
-%8o!
-%:o!
-%<o!
-%>o!
-%@o!
-%Bo!
-%Do!
-%Fo!
-%Ho!
-%Jo!
-%Lo!
-%No!
-%Po!
-%Ro!
-%To!
-%Vo!
-%Xo!
-%Zo!
-%\o!
-%^o!
-%`o!
-%bo!
-%do!
-%fo!
-%ho!
-%jo!
-%lo!
-%no!
-%po!
-%ro!
-%to!
-%vo!
-%xo!
-%zo!
-%|o!
-%~o!
-%p!
-% p!
-%"p!
-%$p!
-%&p!
-%(p!
-%*p!
-%,p!
-%.p!
-%0p!
-%2p!
-%4p!
-%6p!
-%8p!
-%:p!
-%<p!
-%>p!
-%@p!
-%Bp!
-%Dp!
-%Fp!
-%Hp!
-%Jp!
-%Lp!
-%Np!
-%Pp!
-%Rp!
-%Tp!
-%Vp!
-%Xp!
-%Zp!
-%\p!
-%^p!
-%`p!
-%bp!
-%dp!
-%fp!
-%hp!
-%jp!
-%lp!
-%np!
-%pp!
-%rp!
-%tp!
-%vp!
-%xp!
-%zp!
-%|p!
-%~p!
-%q!
-% q!
-%"q!
-%$q!
-%&q!
-%(q!
-%*q!
-%,q!
-%.q!
-%0q!
-%2q!
-%4q!
-%6q!
-%8q!
-%:q!
-%<q!
-%>q!
-%@q!
-%Bq!
-%Dq!
-%Fq!
-%Hq!
-%Jq!
-%Lq!
-%Nq!
-%Pq!
-%Rq!
-%Tq!
-%Vq!
-%Xq!
-%Zq!
-%\q!
-%^q!
-%`q!
-%bq!
-%dq!
-%fq!
-%hq!
-%jq!
-%lq!
-%nq!
-%pq!
-%rq!
-%tq!
-%vq!
-%xq!
-%zq!
-%|q!
-%~q!
-%r!
-% r!
-%"r!
-%$r!
-%&r!
-%(r!
-%*r!
-%,r!
-%.r!
-%0r!
-%2r!
-%4r!
-%6r!
-%8r!
-%:r!
-%<r!
-%>r!
-%@r!
-%Br!
-%Dr!
-%Fr!
-%Hr!
-%Jr!
-%Lr!
-%Nr!
-%Pr!
-%Rr!
-%Tr!
-%Vr!
-%Xr!
-%Zr!
-%\r!
-%^r!
-%`r!
-%br!
-%dr!
-%fr!
-%hr!
-%jr!
-%lr!
-%nr!
-%pr!
-%rr!
-%tr!
-%vr!
-%xr!
-%zr!
-%|r!
-%~r!
-%s!
-% s!
-%"s!
-%$s!
-%&s!
-%(s!
-%*s!
-%,s!
-%.s!
-%0s!
-%2s!
-%4s!
-%6s!
-%8s!
-%:s!
-%<s!
-%>s!
-%@s!
-%Bs!
-%Ds!
-%Fs!
-%Hs!
-%Js!
-%Ls!
-%Ns!
-%Ps!
-%Rs!
-%Ts!
-%Vs!
-%Xs!
-%Zs!
-%\s!
-%^s!
-%`s!
-%bs!
-%ds!
-%fs!
-%hs!
-%js!
-%ls!
-%ns!
-%ps!
-%rs!
-%ts!
-%vs!
-%xs!
-%zs!
-%|s!
-%~s!
-%t!
-% t!
-%"t!
-%$t!
-%&t!
-%(t!
-%*t!
-%,t!
-%.t!
-%0t!
-%2t!
-%4t!
-%6t!
-%8t!
-%:t!
-%<t!
-%>t!
-%@t!
-%Bt!
-%Dt!
-%Ft!
-%Ht!
-%Jt!
-%Lt!
-%Nt!
-%Pt!
-%Rt!
-%Tt!
-%Vt!
-%Xt!
-%Zt!
-%\t!
-%^t!
-%`t!
-%bt!
-%dt!
-%ft!
-%ht!
-%jt!
-%lt!
-%nt!
-%pt!
-%rt!
-%tt!
-%vt!
-%xt!
-%zt!
-%|t!
-%~t!
-%u!
-% u!
-%"u!
-%$u!
-%&u!
-%(u!
-%*u!
-%,u!
-%.u!
-%0u!
-%2u!
-%4u!
-%6u!
-%8u!
+%=~!
 @(#)PROGRAM:SpringBoard  PROJECT:SpringBoard-1
 @333333
 ?333333
@@ -358,8 +40,11 @@ ffffff
 333333
 @333333
 ?ffffff
+*n@=
 p5l@=
 pUk@
+@`@D
+*p@1
 B@333333
 ?`vO
 L@sh
@@ -528,6 +213,8 @@ defaultClassicMode
 Tq,R,N,G_defaultClassicMode
 TB,N,S_setClassicAppZoomedIn:
 ProductVersion
+main-screen-width
+main-screen-height
 com.apple.springboard.reachability.dismissesByTouch
 com.apple.springboard.reachability.dismissesByHome
 com.apple.springboard.reachability.enabled
@@ -948,6 +635,11 @@ SBUIUnsupportedChargingAccessoryStatusChangedNotification
 SBUIApplicationIconLaunchEventLabel
 SBUIHomeScreenActiveContentRequirementReason
 SBUIControllerWallpaperOrientationSourceReason
+SBUIAccessoryAttachedNotification
+SBUIAccessoryDetachedNotification
+SBUIAccessoryAnimationStatusChangedNotification
+SBUIWindowedAccessoryDidAttachOrDetachNotification
+SBUIWindowedAccessoryAttachedKey
 (SBUIControllerRequireContentOptions none)
 SBUIControllerRequireContentOptionWithoutUpdatingStatusBar
 SBUIControllerRequireContentOptionWithoutCheckingAuthenticationState
@@ -978,8 +670,14 @@ onAC
 TB,R,N,GisOnAC
 connectedToExternalChargingSource
 TB,R,N,GisConnectedToExternalChargingSource
+connectedToWirelessInternalChargingAccessory
+TB,R,N,GisConnectedToWirelessInternalChargingAccessory
 connectedToQiPower
 TB,R,N,GisConnectedToQiPower
+lastAttachedAccessory
+T@"CSAccessory",R,N
+lastDetachedAccessory
+isAccessoryAnimationAllowed
 iconController
 T@"SBIconController",R,N,V_iconController
 chargingChimeEnabled
@@ -1944,6 +1642,7 @@ camera button
 Power Down dismiss
 mouse button
 accessibility
+accessory attached
 VolumeUp
 VolumeDown
 VolumeIncrease
@@ -2225,6 +1924,7 @@ SpringBoard can change the volume only if the current route has volume control, 
 ExplicitVolumeChange
 Audio/Video
 B16@?0@"NSNumber"8
+AudioAccessory5,1
 10507
 Headphone
 Headset
@@ -2887,6 +2587,7 @@ com.apple.springboard.disallowControlCenter
 com.apple.newsstand.content-notification-daily-limit
 com.apple.springboard.appbackgroundstyle
 com.apple.springboard.disablecompatibilitymode.forever
+com.apple.springboard.disablecompatibilitymode.fall2020
 com.apple.developer.openURL-source
 com.apple.springboard.deliveropenurlusingworkspace
 11.0
@@ -2895,6 +2596,7 @@ com.apple.springboard.deliveropenurlusingworkspace
 13.0
 13.2
 14.0
+14.1
 hidpi
 Documents/Inbox/
 LongFormVideo
@@ -2924,6 +2626,8 @@ yukonELinked
 TB,R,N,GisYukonELinked,V_isYukonELinked
 azulLinked
 TB,R,N,GisAzulLinked,V_isAzulLinked
+azulHWLinked
+TB,R,N,GisAzulHWLinked,V_isAzulHWLinked
 supportedTypes
 TQ,R,N,V_supportedTypes
 urlSchemes
@@ -5358,6 +5062,7 @@ CarPlay
 AppleTV
 MatchPointTV
 HomePod
+HomeTheater
 Splitter
 Beats
 BeatsX
@@ -5368,6 +5073,8 @@ PowerbeatsPro
 BeatsSoloPro
 AirPodsPro
 Powerbeats4
+BeatsX2
+HomePodMini
 VolumeRTL
 Volume
 In-Call
@@ -5391,6 +5098,8 @@ B419
 SpringBoard-B419
 B364
 SpringBoard-B364
+B372
+SpringBoard-B372
 MATCHPOINT_TV
 NSString *_CCUICAPackageDescriptionNameSuffixForAudioRouteTypeWithCount(SBAudioRouteType, NSUInteger)
 SBAudioRouteTypes.m
@@ -5399,6 +5108,9 @@ Headphones
 AirPlay-Audio
 MatchPoint
 HomePod-Pair
+HomePod-Pair-B520
+HomePod-B520
+AppleTV+HomePod-Odeon
 WirelessSplitter
 Beats-Generic
 B298
@@ -5499,6 +5211,7 @@ System Animation Deactivation Reasons
 SBInCallPresentationSession.m
 Attempting to -invalidate twice; this is unsupported.
 %@ should never be called
+{CGRect={CGPoint=dd}{CGSize=dd}}
 v20@?0B8@?<v@?B>12
 v16@?0@"UIApplicationSceneDeactivationAssertion"8
 SBInCallPresentationSessionEvent-%@
@@ -5517,7 +5230,6 @@ preferredBannerHeight
 Td,N,V_preferredBannerHeight
 supportsHandlingDeviceLock
 disallowsLockHardwareButtonDoublePress
-supportsBecomingVisibleWhenWakingDisplay
 shouldIgnoreHomeIndicatorAutoHiddenClientSettings
 TB,N,V_shouldIgnoreHomeIndicatorAutoHiddenClientSettings
 requestBuilder
@@ -7491,6 +7203,8 @@ _lastPresentationSession
 T@"SBInCallPresentationSession",R,N
 T@"<SBInCallPresentationManagerDelegate>",W,N,V_delegate
 T@"SBMainDisplaySceneManager",R,N,V_sceneManager
+supportsHandlingUILockForWindowedAccessoryAttach
+TB,R,N,V_supportsHandlingUILockForWindowedAccessoryAttach
 T@"<BNConsideringDelegate>",W,N
 T@"<BNConsideringDelegate>",W,N,V_delegate
 .invalid
@@ -7875,7 +7589,6 @@ v20@?0@"CAAnimation"8B16
 crossFade
 SBInteractiveScreenshotGestureRootViewController
 instanceTransform
-{CGRect={CGPoint=dd}{CGSize=dd}}
 {CGPoint=dd}
 contentProperties
 crops
@@ -7906,6 +7619,10 @@ Tq,N,V_completedTargetAnimations
 TB,N,V_invalidated
 sourceScaleAndPositionEnded
 TB,N,V_sourceScaleAndPositionEnded
+targetExternalPlaceholderAllEnded
+TB,N,V_targetExternalPlaceholderAllEnded
+sourceContentFrameWasAltered
+TB,N,V_sourceContentFrameWasAltered
 sourceAllAnimationsCompletionBlock
 T@?,C,N,V_sourceAllAnimationsCompletionBlock
 animationTimeoutTimer
@@ -7935,6 +7652,10 @@ targetContentView
 T@"UIView",W,N,V_targetContentView
 Tq,N,V_fromOrientation
 Tq,N,V_toOrientation
+sourceClipAnimationSettings
+T@"SBFFluidBehaviorSettings",&,N,V_sourceClipAnimationSettings
+targetClipAnimationSettings
+T@"SBFFluidBehaviorSettings",&,N,V_targetClipAnimationSettings
 targetDataSource
 T@"<SBViewMorphAnimatorDataSource>",W,N,V_targetDataSource
 automaticallyStartSourceAnimations
@@ -8710,6 +8431,11 @@ T@"<CSLegibilityProviding>",R,N
 powerStatusProvider
 T@"<CSPowerStatusProviding>",R,N
 powerStatusChangeNotificationName
+accessoryAttachedNotificationName
+accessoryDetachedNotificationName
+accessoryAnimationStatusChangedNotificationName
+accessoryStatusProvider
+T@"<CSAccessoryStatusProviding>",R,N
 resetRestoreStatusProvider
 T@"<CSResetRestoreStatusProviding>",R,N
 thermalStatusProvider
@@ -8770,6 +8496,10 @@ T@"<SBFDateProviding>",R,N,V_dateProvider
 T@"<CSLegibilityProviding>",R,N,V_legibilityProvider
 T@"<CSPowerStatusProviding>",R,N,V_powerStatusProvider
 T@"NSString",R,C,N,V_powerStatusChangeNotificationName
+T@"NSString",R,C,N,V_accessoryAttachedNotificationName
+T@"NSString",R,C,N,V_accessoryDetachedNotificationName
+T@"NSString",R,C,N,V_accessoryAnimationStatusChangedNotificationName
+T@"<CSAccessoryStatusProviding>",R,N,V_accessoryStatusProvider
 T@"<CSThermalStatusProviding>",R,N,V_thermalStatusProvider
 T@"<SBUIBiometricResource>",R,N,V_biometricResource
 T@"<CSScreenStateProviding>",R,N,V_screenStateProvider
@@ -8905,6 +8635,8 @@ T{CGPoint=dd},D,N
 SBChronoHomeScreenUsageObserver.m
 containers
 T@"CHSConfiguredWidgetContainerConsumer",R,N,V_chronoConsumer
+widgetDataGeneration
+TQ,N,V_widgetDataGeneration
 SBModalAlertPresenter.m
 modalAlertPresenterContentAssertion
 alertCount
@@ -9103,6 +8835,10 @@ TB,R,N,V_shouldDisableInteractiveScreenshotGesture
 TB,R,N,V_shouldDisableSiri
 shouldPendAlertItems
 TB,R,N,V_shouldPendAlertItems
+attachedToWindowedAccessory
+TB,R,N,GisAttachedToWindowedAccessory,V_attachedToWindowedAccessory
+windowedAccessoryCutoutFrameInScreen
+T{CGRect={CGPoint=dd}{CGSize=dd}},R,N,V_windowedAccessoryCutoutFrameInScreen
 -[SBPIPAnalytics pictureInPictureDidCreateAnalyticsSourceWithUUID:bundleIdentifier:contentType:]
 v24@?0@"SBPIPAnalyticsAssistant"8@"NSString"16
 -[SBPIPAnalytics pictureInPictureDidDestroyAnalyticsSourceWithUUID:]
@@ -11878,6 +11614,7 @@ T@"SBControlCenterController",R,N,V_controlCenterController
 com.apple.SpringBoard.buttons
 Accessory
 AppResize
+Charging
 SceneResize
 ScreenTime
 LockScreenHint
@@ -12562,12 +12299,13 @@ SBNotificationCarPlayDestinationAvailabilityDidChange
 SBBannerRevocationReasonCarPlayDestinationExplicitDismissal
 SBBannerRevocationReasonCarPlayDestinationUserAction
 com.apple.CarPlayApp
-PreventUserInteraction
 -[SBNotificationCarPlayDestination _policyForApp:]
 SBNotificationCarPlayDestination.m
 BANNER_ALERT_CLOSE
 CarDisplay
 @16@?0@"NCNotificationAction"8
+PresentingAlertController
+suspend
 carPlayBannerSource
 T@"NCCarPlayBannerSource",R,N,G_carPlayBannerSource,V_carPlayBannerSource
 TB,R,N,GisActive
@@ -13181,7 +12919,8 @@ viewMorphAnimator
 T@"SBViewMorphAnimator",R,N,V_viewMorphAnimator
 viewMorphAnimatorDataSource
 T@"SBPIPMorphAnimatorDataSource",R,N,V_viewMorphAnimatorDataSource
-T@"PGPictureInPictureViewController",W,N,V_pictureInPictureViewController
+pictureInPictureContainerViewController
+T@"SBPIPContainerViewController",W,N,V_pictureInPictureContainerViewController
 T@"<SBPIPMorphAnimatorControllerDelegate>",W,N,V_delegate
 setupCompletionBlock
 T@?,C,N,V_setupCompletionBlock
@@ -13828,6 +13567,7 @@ Edge
 UMTS
 LTEA
 LTE+
+5G UWB
 WiFi
 Hotspot
 draining
@@ -14110,6 +13850,13 @@ passed an invalid overscan compensation : %@
 -[SBExternalDisplayPresenter _enqueuePresentationUpdate]
 -[SBExternalDisplayPresenter _setPreventIdleSleepForApp:presenting:]
 idle-off
+com.apple.SpringBoard.MotionAlarmController
+com.apple.SpringBoard.MotionAlarmTypePickUp
+com.apple.SpringBoard.MotionAlarmTypeMoving
+T@"NSMutableArray",&,N,V_observers
+motionAlarmManager
+T@"CMMotionAlarmManager",&,N,V_motionAlarmManager
+T@"<SBFMotionAlarmDelegate>",W,N,V_delegate
 REORDER_INFO_BODY_NO_HOME_BUTTON
 siri-interface-window
 touchesPassThroughToSpringBoard
@@ -14277,6 +14024,7 @@ SBHomeGestureParticipantIdentifierBannerLongLook
 SBHomeGestureParticipantIdentifierAlertItems
 SBHomeGestureParticipantIdentifierReachability
 SBHomeGestureParticipantIdentifierAccessibility
+SBHomeGestureParticipantIdentifierWindowedAccessory
 SBHomeGestureParticipantIdentifierModal
 SBHomeGestureParticipantIdentifierTestHighestPriority
 SBHomeGestureParticipantIdentifierCoverSheetModal
@@ -14743,6 +14491,7 @@ SBUILockOptionsAnimateLockScreenActivationKey
 SBUILockOptionsLockAutomaticallyKey
 SBUILockOptionsUseScreenOffModeKey
 SBUILockOptionsIgnoreCallKey
+SBUILockOptionsPreserveTransientOverlaysKey
 SBUILockOptionsForceLockKey
 SBUILockOptionsAnimationTransactionProviderKey
 SBUILockOptionsForceBioLockoutKey
@@ -14769,6 +14518,7 @@ com.apple.springboard.toggleLockScreen
 SBLockScreenManager.m
 Unexpectedly created SBLockScreenManager before UIApplication instance was created.
 SpringBoard - SBLockScreenManager
+com.apple.springboard.lock-with-force-biolockout
 AttemptLock
 -[SBLockScreenManager lockUIFromSource:withOptions:completion:]
 @"SBCoverSheetToAppsWorkspaceTransaction"16@?0@"SBMainWorkspaceTransitionRequest"8
@@ -14826,6 +14576,7 @@ TB,R
 shouldPlayLockSound
 isLockScreenActive
 isLockScreenVisible
+isSupressingLockButton
 (%.f, %.f)
 <SBWindowHideRequest: range = %@; reason = %@>
 windowLevelRange
@@ -15134,6 +14885,7 @@ Ignoring request to end ignoring interaction events for inactive reason: %{publi
 sending screenshot action to scene: %{public}@
 Preventing interactive screenshot gesture due to lock screen environment suppressing screenshots
 Preventing interactive screenshot gesture due to ability check with reason: %{public}@
+isChimeDisabled: %{BOOL}u, isOnAC: %{BOOL}u
 Activating %@ from icon
 Unable to launch icon with app %@, trust state: %@
 Attempting restoreContentWithOptions:(%@)
@@ -15160,6 +14912,13 @@ End requiring home screen content for reason '%{public}@'
 %{public}@ result: activating app switcher
 volume event killed because SBSoundController handled it
 sending volume buttonDown event to %{public}@
+Should chime: %{BOOL}u, charging enabled: %{BOOL}u, _powerSourceWantsToPlayChime: %{BOOL}u
+Device motion detected
+Debounce wireless charging timer scheduled
+Debounce wireless charging timer fired
+Resetting wireless charging state
+Debounce wireless charging timer canceled
+Unlock UI for source: %@
 Using legibility settings: %@
 Unable to launch url %{public}@ due to restrictions on %{public}@
 Cannot launch nil SBApplication (workspace app:%{public}@ url:%@)
@@ -15259,6 +15018,7 @@ Transition request %{public}@ was declined: %{public}@
 %{public}@ result: ignoring lock down because a banner manager is handling it
 %{public}@ result: ignoring lock down because a transient overlay is handling it
 %{public}@ result: ignoring lock down because a lockscreen is handling it: %{public}@
+%{public}@ result: ignoring lock down because lock button is supressed
 %{public}@ result: ignoring lock down because main switcher is handling it
 %{public}@ result: registered app handled initial button down: %{public}@
 %{public}@ result: Siri handled it
@@ -15990,7 +15750,9 @@ Failed to authenticate %{public}@ in %{public}@: %{public}@
 failed to create display item from cmdtab plist rep -- aborting loading of items. failed plist rep: %@
 Invalidated: %{public}@
 Setting presentation mode on scene settings: %{public}@
+Setting device attachedToWindowedAccessory: %{BOOL}u windowedAccessoryCutoutFrameInScreen: %{public}@
 Setting analytics source on transition context: %{public}@
+Updating scene settings to attachedToWindowedAccessory: %{BOOL}u windowedAccessoryCutoutFrameInScreen: %{public}@
 Updated deactivation assertions for session %{public}@
 Handling SBSUIInCallRequestPresentationModeAction with presentation mode: %{public}@
 Handing device lock to %{public}@
@@ -16539,11 +16301,13 @@ gestureStateInfoForUnbalancedPressBeganCount:%d previousCount:%d outState:%{publ
 Visible UI change seen by Main Workspace Transaction: transition to %@ (SB interface orientation: %@, switcher interface orientation: %@,  app interface orientation: %@)
 [Layout][Morph Animator] Preflight check succeeded? %{bool}u, with sourceContentFrame: %@, targetFinalFrame: %@.
 [Layout][Morph Animator] Parameters update: _sourceContentFrame{%{public}@} _targetFinalFrame{%{public}@} _sourceFinalScale{%.2f} _sourceFinalCenter{%{public}@} _targetSourcePinningFrame{%{public}@} _sourceAppLayoutFrame{%{public}@} _targetCornerRadius{%.2f} isAnimationDirectionReversed{%{bool}u}
+[Layout][Morph Animator] Altering sourceContentFrame{%{public}@} to {%{public}@}
 [Morph Animator] Canceling morph animator since match move was requested to start with invalid frames _sourceContentFrame: %@ _targetFinalFrame:%@.
 [Morph Animator] Auto starting target unclip since target match move started.
 [Morph Animator] Hiding source view since source clip ended and match move started.
-[Morph Animator] Removing target match move since all source animations ended and match move was started.
+[Morph Animator] Removing source clipping view since source clip ended and match move started.
 [Morph Animator] Waiting for target external placeholder animations to complete before calling source scale and position ended continuation block.
+[Morph Animator] Removed target match move since all source animations ended and match move was started.
 [Morph Animator] Waiting for target match move animation to start before calling source scale and position ended continuation block.
 Presenting and expanding modal banner for notification %{public}@
 Destination %{public}@ can receive notification %{public}@: %{public}@ [ stickyVisible: %d isUserInteractionInProgress: %d inSetupMode: %d canReceiveNotificationRequestIfLocked: %d]
@@ -16766,6 +16530,7 @@ Widget icon stack changed active widget: %@ all widgets: %@
 Widget icon stack noted user dislike of suggestion: %@
 Widget icon tapped: %@
 Configured widgets changed: %@
+Found configured widget: %@
 Setting visible modal alert count to %zu
 Incremented visible modal alert count to %zu
 Decremented visible modal alert count to %zu
@@ -17413,9 +17178,9 @@ _primary is %@
 Error attempting to post presentable: presentable: %{public}@; error: %{public}@
 Error requesting presentation and container sizes: %{public}@
 Error attempting to revoke presentable: requestID: %{public}@; error: %{public}@
-Error attempting to suspend: %{public}@
 No presentables for requestID: %{public}@
 No presentable to remove: %{public}@
+Error attempting to %{public}@: %{public}@
 Updated widgets: %{public}@
 scenes expecting face contact:%{public}@
 SBStatusBarManager vending %@ Status Bar (cache size %lu) for reason: %@
@@ -17743,6 +17508,12 @@ external-presenter:%{public}@ changing power mode to %{public}@
 external-presenter:%{public}@ resetting power mode idle-off timer
 external-presenter:%{public}@ power mode did idle off
 external-presenter:%{public}@ did detect prefs change
+Notifying delegate: %@ of device motion
+Registering motion alarms
+Unregistering motion alarms
+Motion alarm detected
+Motion alarm registered: %@, error: %@
+Motion alarm unregistered: %@, error: %@
 <%@:%p>: blur view coordinator state changed to: %@
 _undimFromSource:(%{public}@): ignoring request because %{public}@
 _undimFromSource:(%{public}@): setting backlight factor to 1.0
@@ -17998,8 +17769,10 @@ SBWallpaperOrientationProvider
 SBReachabilityObserver
 SBHomeScreenBackdropViewBaseDelegate
 BCBatteryDeviceObserving
+SBFMotionAlarmDelegate
 UIWindowDelegate
 CSPowerStatusProviding
+CSAccessoryStatusProviding
 SBSceneStatusBarManager
 SBApplicationLaunchNotifyInCallWithoutDataSwitchingAlertItem
 SBApplicationIcon
@@ -19928,6 +19701,8 @@ SBApplicationShortcutStoreManager
 SBInteractiveScreenshotDomain
 SBDeviceApplicationSceneOverlayViewProvider
 SBExternalDisplayPresenter
+SBFMotionAlarmController
+CMMotionAlarmDelegateProtocol
 SBLowEndHardwareSwitcherModifier
 SBMedusaDecoratedDeviceApplicationSceneViewControllingAdditions
 SBReorderInfoAlert
@@ -20531,10 +20306,14 @@ isSystemApplication
 isInternalInstall
 isCarrierInstall
 isDeveloperInstall
+isAzulHWLinked
+isAppleApplication
 isTigrisLinked
 isPeaceLinked
 isYukonLinked
+KSDKJFHDSFSDFSKJLH3894adfajk
 _useSupportedTypesForSplashBoard
+doubleValue
 reachabilitySupported
 accessibilityDefaults
 allowReachability
@@ -22219,16 +21998,24 @@ decreaseVolume
 removeAllObjects
 setObject:forKeyedSubscript:
 _enumeratePowerSourcesWithBlock:
-chargingChimeEnabled
 _powerSourceWantsToPlayChime
+chargingChimeEnabled
+_resetWirelessChargingState
+_debounceWirelessChargingTimerFired
+initWithFireInterval:serviceIdentifier:queue:handler:
+schedule
+_isConnectedToWirelessCharging
+possiblyWakeForPowerStatusChangeWithUnlockSource:
+unregisterMotionAlarm
+_cancelDebounceWirelessChargingTimer
+cancel
+isAccessoryAnimationAllowed
 location
 setDisallowCursorInteraction:
 enumerateDisplayedIconViewsUsingBlock:
-possiblyWakeForPowerStatusChangeWithUnlockSource:
 isInternal
 isPowerSource
 deactivateAlertItem:
-doubleValue
 executeOrPrependEvent:
 descriptionWithMultilinePrefix:
 nudgeIconInterfaceOrientation:duration:
@@ -22248,6 +22035,10 @@ modifySettingsWithBlock:
 sharedInstanceForStyle:
 descriptionBuilderWithMultilinePrefix:
 appendBool:withName:
+setLastAttachedAccessory:
+endpointUUID
+setLastDetachedAccessory:
+removeObjectForKey:
 wallpaperWillChangeForVariant:
 wallpaperDidChangeForVariant:
 wallpaperLegibilitySettingsDidChange:forVariant:
@@ -22256,6 +22047,7 @@ interactionProgress:didEnd:
 interfaceOrientationForWallpaperController:
 homeScreenBackdropView:opaquenessDidChange:
 connectedDevicesDidChange:
+didDetectDeviceMotion
 window:willAnimateFromContentFrame:toContentFrame:
 window:shouldAutorotateToInterfaceOrientation:
 rotatingContentViewForWindow:
@@ -22271,7 +22063,10 @@ window:willAnimateRotationToInterfaceOrientation:duration:
 window:willAnimateFirstHalfOfRotationToInterfaceOrientation:duration:
 window:willAnimateSecondHalfOfRotationFromInterfaceOrientation:duration:
 isConnectedToExternalChargingSource
+isConnectedToWirelessInternalChargingAccessory
 isConnectedToQiPower
+lastAttachedAccessory
+lastDetachedAccessory
 configureFakeSpringBoardStatusBarWithDefaultStyleRequestForStyle:
 fakeStatusBarStyleRequestForStyle:
 animateFakeStatusBarWithParameters:transition:
@@ -22289,11 +22084,16 @@ disableAppSwitchForcePressDueToHomeButtonForce
 handleHomeButtonSinglePressUp
 handleHomeButtonDoublePressDown
 setChargingChimeEnabled:
+_setDebounceWirelessChargingTimerWithDuration:
+_playAccessoryAttachChimeIfAppropriateWithDelay:
 batteryCapacity
 batteryCapacityAsPercentage
 isBatteryCharging
 isFullyCharged
 isConnectedToChargeIncapablePowerSource
+isConnectedToWirelessInternalAccessory
+isConnectedToWindowedAccessory
+visibleScreenCoordinatesForWindowedAccessory
 setPointerInteractionsEnabled:
 ACPowerChanged
 setIsConnectedToUnsupportedChargingAccessory:
@@ -22304,6 +22104,9 @@ isHeadsetBatteryCharging
 headsetBatteryCapacity
 _accessibilityWillBeginAppSwitcherRevealAnimation
 _activateApplicationFromAccessibility:
+storeAttachedAccessory:
+removeDetachedAccessory:
+setIsAccessoryAnimationAllowed:
 _window
 _iconsView
 _contentView
@@ -22322,6 +22125,12 @@ _isOnAC
 _isConnectedToExternalChargingAccessory
 _isConnectedToUnsupportedChargingAccessory
 _isConnectedToChargeIncapablePowerSource
+_wasConnectedToWirelessChargingAccessory
+_isConnectedToWirelessInternalChargingAccessory
+_isConnectedToWirelessInternalAccessory
+_isConnectedToWindowedAccessory
+_visibleScreenCoordinatesForWindowedAccessory
+_suspendProximityForAttachedWindowedAccessoryAssertion
 _isConnectedToQiPower
 _HUDController
 _volumeControl
@@ -22335,6 +22144,14 @@ _unsupportedChargerAlert
 _contentRequiringReasons
 _appDirectoryClient
 _disallowsPointerInteraction
+_motionAlarmController
+_disableChimeForWirelessCharging
+_disableScreenWakeForWirelessCharging
+_debounceWirelessChargingTimer
+_isAccessoryAnimationAllowed
+_lastAttachedAccessory
+_lastDetachedAccessory
+_accessoriesAttachedByUUID
 _chargingChimeEnabled
 _iconController
 statusBarOrientation
@@ -22376,7 +22193,6 @@ registerService:
 unregisterService:
 registeredServicesSnapshot
 _services
-isAppleApplication
 hasSecureAppOfType:
 scheme
 lowercaseString
@@ -22479,7 +22295,7 @@ presentationOptions
 animateDismissal
 sceneManager
 keyboardFocusController
-initWithSceneHandle:screen:sceneManager:workspace:bannerManager:lockScreenManager:deactivationManager:mainSwitcherViewController:backlightController:keyboardFocusController:springBoard:setupManager:
+initWithSceneHandle:screen:sceneManager:workspace:bannerManager:lockScreenManager:deactivationManager:mainSwitcherViewController:backlightController:keyboardFocusController:springBoard:setupManager:uiController:
 defaultPreferredInterfaceOrientationForPresentationForTransientOverlayPresentationManager:
 hasIdleTimerBehaviors
 sharedInstanceIfLoaded
@@ -22595,7 +22411,6 @@ isTrusted
 options
 addEntriesFromDictionary:
 bs_safeNumberForKey:
-removeObjectForKey:
 bs_safeDictionaryForKey:
 handle
 _handleTrustedOpenRequestForApplication:options:activationSettings:origin:withResult:
@@ -23881,6 +23696,7 @@ setInitialPressDownTime:
 sendResetPlaybackTimeoutCommand
 consumeInitialPressDown
 setInhibitNextSinglePressUp:
+isSupressingLockButton
 _sendButtonDownToRegisteredApp
 consumeInitialPressUp
 consumeSecondPressDown
@@ -24112,7 +23928,6 @@ maxPressUpDuration
 maxPressDownDuration
 _fireEndTimerWithDelay:isButtonDown:
 initWithDurationDown:durationUp:
-cancel
 scheduledTimerWithFireInterval:queue:handler:
 pressCollector:didCollectSequence:
 _reset
@@ -24635,6 +24450,7 @@ supportsBluetoothSharing
 deviceType
 deviceSubType
 clusterType
+modelID
 _audioRouteTypeForTelephonyDeviceType:
 activateRingerHUDForVolumeChangeWithInitialVolume:
 setVolume:forKeyPress:
@@ -26573,6 +26389,7 @@ _isPeaceBLinked
 _isYukonLinked
 _isYukonELinked
 _isAzulLinked
+_isAzulHWLinked
 _prefersSavedSnapshots
 _wantsLaunchWithoutPNG
 _wantsFullScreen
@@ -27149,8 +26966,6 @@ setAutomaticallyStartSourceAnimations:
 setSourceView:
 contentOverlay
 setSourceContentView:
-isContentFromFillGravity
-setLastPictureInPictureContentWasFromFillGravity:
 targetView
 startTargetAnimations:
 startSourceAnimations:
@@ -27461,11 +27276,12 @@ isIndicatorVisible
 setIndicatorVisible:
 dataProviderDidUpdate:
 updateRecordingIndicatorForStatusBarChanges
-animateIndicatorVisible:
+updateIndicatorVisibility:
+updateIndicatorVisibility:skipFadeOutAnimation:
 updateStatusBarItem:
 isFrontmostStatusBarPartHidden:
 indicatorAnimationState
-animateIndicatorVisibleFastFade:
+updateIndicatorVisibilityWithFastFadeAnimation:
 _updateIndicatorStyleForSensorType:
 _indicatorStyleForSensorType:
 setIndicatorStyle:
@@ -27862,7 +27678,6 @@ setCurrentSOSInteractiveState:
 sosClawAutoCallInteractiveStateChanged:interacting:
 sosTriggerTimer
 isScheduled
-schedule
 sosClawDidBecomeActive:
 addObserver:queue:
 currentSOSInteractiveState
@@ -28661,11 +28476,7 @@ iconModel
 addIcon:
 removeWidgetIdentifiersFromToday:
 cacheDescriptorsForBundleIdentifier:completion:
-shouldPrepareDefaultTodayList
-resetTodayLayout
-setShouldPrepareDefaultTodayList:
-shouldPrepareStackForDefaultTodayList
-setShouldPrepareStackForDefaultTodayList:
+_prepareDefaultTodayLayoutIfNecessary
 setRootFolder:
 _newTodayViewControllerWithIconManager:iconListModel:rootFolder:location:
 setTodayViewController:
@@ -28673,6 +28484,13 @@ coverSheetTodayViewController
 setCoverSheetTodayViewController:
 setAvocadoViewController:
 setHomeScreenTodayViewController:
+_tryToPrepareNonDynamicDefaultTodayLayout
+_tryToPrepareDynamicDefaultTodayLayout
+shouldPrepareDefaultTodayList
+resetTodayLayout
+setShouldPrepareDefaultTodayList:
+shouldPrepareStackForDefaultTodayList
+setShouldPrepareStackForDefaultTodayList:
 importState:
 initWithSource:
 initWithCategoryMapProvider:
@@ -28937,7 +28755,6 @@ significantAnimationColorSamplingAssertion
 setSignificantAnimationColorSamplingAssertion:
 sb_updateInterfaceOrientationFromActiveInterfaceOrientation
 isPictureInPictureSupported
-defaultHeight
 animator:animationSettingsForOperation:childViewController:
 averageColorInRect:forVariant:
 presentAnimated:fromLeading:
@@ -29425,6 +29242,7 @@ transaction:performTransitionWithCompletion:
 transaction:didEndLayoutTransitionWithContinuation:
 willStartSourceAnimations:
 willStartTargetAnimations:
+willRemoveTargeMatchMoveAnimationAtFrame:withinSourceFrame:
 didEndSourceAnimations:finished:continueBlock:
 didEndTargetAnimations:finished:continueBlock:
 didEndAllAnimations
@@ -30799,6 +30617,7 @@ remoteTransientOverlayViewController:requestsActionForHandlingButtonEvents:
 isIgnoringContentOverlayInsetUpdates
 setShouldIgnoreContentOverlayInsetUpdates:
 isContentOpaque
+isAttachedToWindowedAccessory
 preferredLockedGestureDismissalStyle
 preferredSceneDeactivationReasonValue
 _needsWallpaperEffectView
@@ -30810,6 +30629,7 @@ preferredStatusBarStyleOverridesToCancel
 shouldDisableReachability
 shouldDisableOrientationUpdates
 shouldDisableInteractiveScreenshotGesture
+didTransitionToAttachedToWindowedAccessory:windowedAccessoryCutoutFrameInScreen:
 isActivatingForSiri
 shouldInvalidateWhenDeactivated
 configureWithContext:completion:
@@ -32318,11 +32138,15 @@ _applicationProcessDidExit:
 acquireAllowHiddenAppAssertionForBundleIdentifier:reason:
 _uiLockStateDidChange:
 acquireIgnoreSuspendedUnderLockAssertionForSceneIdentifier:reason:
+_windowedAccessoryDidAttachOrDetach:
 removeSceneUpdateContributer:
 removeActionConsumer:
 setShouldIgnoreHomeIndicatorAutoHiddenClientSettings:
 _currentPresentationModeForLayoutState:
 setInCallPresentationMode:
+valueWithBytes:objCType:
+setAttachedToWindowedAccessory:
+setWindowedAccessoryCutoutFrameInScreen:
 SBSUI_setInCallAnalyticsSource:
 _performBannerToFullScreenPresentationTransitionAnimated:analyticsSource:completion:
 _addSystemAnimationDeactivationReason:
@@ -32343,6 +32167,7 @@ setValidatorHandler:
 _performTransientOverlayDismissalTransitionAnimated:shouldInsertIntoSwitcherModel:analyticsSource:completion:
 _updateKeyboardFocusPreventionAssertionWithLayoutState:
 _shouldConsiderScenePrimaryForLayoutState:
+_performTransientOverlayPresentationTransitionAnimated:analyticsSource:completion:
 layoutManager
 useableContainerFrameInContainerBounds:onScreen:
 presentedFrameForContentWithPreferredSize:inUseableContainerFrame:containerBounds:scale:
@@ -32379,7 +32204,6 @@ _allowsBannerPresentation
 dismissAnimated:shouldFinalizeSceneDestruction:analyticsSource:completion:
 _performBannerPresentationTransitionWithAnalyticsSource:completion:
 _shouldUseTransientOverlayForFullScreenPresentation
-_performTransientOverlayPresentationTransitionAnimated:analyticsSource:completion:
 _performSwitcherPresentationTransitionAnimated:isUserInitiated:analyticsSource:completion:
 _performBannerToTransientOverlayPresentationTransitionAnimated:analyticsSource:completion:
 _updateSceneDeactivationAssertions
@@ -32391,6 +32215,7 @@ _sceneSupportsHandlingDeviceLock
 supportsHandlingDeviceLock
 _isCallConnectedForScene
 shouldBecomeVisibleWhenWakingDisplay
+_notifySceneOfDeviceLockFromSource:completion:
 initWithPID:flags:reason:name:
 deviceLockHandlingResult
 initWithSourceType:timeout:withResponseHandler:
@@ -32420,8 +32245,9 @@ inCallTransientOverlayViewController:didDisappearAnimated:
 inCallTransientOverlayViewControllerRequestsDismissal:
 inCallTransientOverlayViewController:viewWillTransitionSizeWithAnimationSettings:
 sceneHandle:didReceiveAction:
+handleAccessoryAttachWithCompletion:
 presentWithRequestedPresentationMode:isUserInitiated:animated:analyticsSource:completion:
-supportsBecomingVisibleWhenWakingDisplay
+supportsBecomingVisibleWhenUnlockingFromSource:wakingDisplay:
 handleDeviceLockFromSource:completion:
 _prepareForTransientOverlayPresentationTransactionWithAnimation:analyticsSource:completion:
 setPreferredBannerHeight:
@@ -32445,6 +32271,8 @@ _isTransientOverlayPresentationActive
 _hasAdoptedFullscreenOverlayAPI
 _isPerformingSwitcherPresentation
 _presentationModeRevisionID
+_isAttachedToWindowedAccessory
+_suppressHomeIndicatorWhileAttachedToWindowedAccessoryAssertion
 _deactivationManager
 _systemAnimationSceneDeactivationAssertion
 _systemGestureSceneDeactivationAssertion
@@ -36275,10 +36103,12 @@ handlePresentationForActivityContinuationIdentifier:
 handleDeviceLockFromSource:
 _lastPresentationSession
 _sessionForSceneWithIdentifier:
+supportsHandlingUILockForWindowedAccessoryAttach
 _presentationRequestServer
 _bannerAuthority
 _clientIdentifierToPresentationSession
 _pendingInvalidationSessions
+_supportsHandlingUILockForWindowedAccessoryAttach
 bannerAuthority:mayChangeDecisionForResponsiblePresentable:
 shouldPresentPresentable:withPresentedPresentables:responsiblePresentable:
 shouldOverlapPresentable:withPresentable:
@@ -36722,7 +36552,6 @@ _createScreenshotImageViewWithFrame:
 _contentTransformForCommitProgress:contentInsets:additionalContentTranslation:
 _inverseContentTransformForCommitProgress:contentInsets:additionalContentTranslation:
 _anchoredTransformForAnchorPoint:bounds:center:transform:
-valueWithBytes:objCType:
 setInstanceTransform:
 perform:finalCompletion:
 initWithSourceScene:
@@ -36775,33 +36604,31 @@ _noteAnimatorWasCanceled
 _continueSourceAnimationsCompletionPendingBlock
 _noteAnimatorWasInterrupted
 cancel:
+_removeBlackCurtainView
 _removeSourceClippingView
 _removeTargetClippingView
 _removeMatchMoveAnimation
-_removeBlackCurtainView
 sourceContentFrameForAnimator:
 targetFinalFrameForAnimator:
 _updateParameters
 noteTargetAnimationsDidEnd:finished:continueBlock:
-forcePictureInPictureContainerWithView:toFrame:
 _isReversed
 sourceCornerRadiusForAnimator:
 targetFinalCornerRadiusForAnimator:
 _sourceContentFrameForSourceView:withTargetDataSource:
 _sourceFinalScaleWithContentFrame:targetFinalFrame:
+_validatedSourceContentFrame:withinSourceView:withSourceFinalScale:
 _source:finalCenterWithFinalScale:contentFrame:targetFinalFrame:
 _targetSourcePinningFrameWithSourceContentFrame:targetFinalFrame:
 _sourceAppLayoutFrameForSourceView:withTargetDataSource:
 interrupt:
 sourceAppLayoutFrameForAnimator:
 noteSourceAnimationsWillStart:
-fluidTransitionsSettings
-sourceClippingFluidBehavior
-isContentFromFillGravityForAnimator:
+_isTargetSourcePinningFrameEquivalentToSourceViewFrame
 _targetInitialClippingBoundsWithSourceContentFrame:sourceFinalScale:targetViewBounds:
 noteTargetAnimationsWillStart:
-targetClippingFluidBehavior
 _checkAnimationsDependencies:
+noteWillRemoveTargeMatchMoveAnimationAtFrame:withinSourceFrame:
 setSourceAllAnimationsCompletionBlock:
 _noteDidEndAllAnimations
 _handleHandoffTimeout
@@ -36814,6 +36641,10 @@ sourceContentView
 targetContentView
 fromOrientation
 toOrientation
+sourceClipAnimationSettings
+setSourceClipAnimationSettings:
+targetClipAnimationSettings
+setTargetClipAnimationSettings:
 targetDataSource
 automaticallyStartSourceAnimations
 automaticallyStartTargetAnimations
@@ -36836,6 +36667,10 @@ invalidated
 setInvalidated:
 sourceScaleAndPositionEnded
 setSourceScaleAndPositionEnded:
+targetExternalPlaceholderAllEnded
+setTargetExternalPlaceholderAllEnded:
+sourceContentFrameWasAltered
+setSourceContentFrameWasAltered:
 sourceAllAnimationsCompletionBlock
 animationTimeoutTimer
 setAnimationTimeoutTimer:
@@ -36856,11 +36691,15 @@ setSourceAppLayoutFrame:
 _automaticallyStartSourceAnimations
 _automaticallyStartTargetAnimations
 _sourceScaleAndPositionEnded
+_targetExternalPlaceholderAllEnded
+_sourceContentFrameWasAltered
 _sourceContentView
 _targetView
 _targetContentView
 _fromOrientation
 _toOrientation
+_sourceClipAnimationSettings
+_targetClipAnimationSettings
 _targetDataSource
 _sourceFinalScale
 _targetCornerRadius
@@ -37256,9 +37095,9 @@ containerViewControllerStartReducingResourcesUsage:
 containerViewControllerStopReducingResourcesUsage:
 _contentViewFrameFromInterfaceOrientation:frameInFixedCoordinateSpace:
 _requireInterfaceOrientation:
-_isContentFromFillGravityWithInitialLayerFrame:
 containerViewController:didFinishStartAnimationWithInitialInterfaceOrientation:
 animateViewWithAnimationType:initialSpringVelocity:animations:completion:
+_performStopAnimationWithFinalInterfaceOrientation:finalLayerFrame:completionHandler:
 _acquireInterfaceOrientationLock
 _relinquishInterfaceOrientationLock
 _noteStashState:
@@ -37281,6 +37120,7 @@ setInteractionControllerEnabled:
 setContentViewPadding:
 displayLayoutElementLevel
 setDisplayLayoutElementLevel:
+setInteractionsEnabled:
 startResourcesUsageReductionAfterTimeout:
 stopResourcesUsageReduction
 forcePictureInPictureToFrame:
@@ -37296,6 +37136,8 @@ _interactionController
 _interactiveAnimationSettings
 _stashTabFluidBehavior
 _stashedStateReduceResourcesUsageTimer
+_inFlightAnimationCounter
+_waitInteractionAnimationsCompletionBlocks
 _displayLayoutElementLevel
 _animateSafeAreaInsetsChanges
 _pictureInPictureViewController
@@ -38241,6 +38083,7 @@ poseidonContainerViewController
 setPoseidonContainerViewController:
 _updatePrototypeSettings
 coachingActive
+showCoaching:
 resetForSuccessViaPasscode:
 resetForFailedPasscode
 handleFailedAuthenticationRequest:error:
@@ -38320,6 +38163,10 @@ lockOutStatusProvider
 dateProvider
 powerStatusProvider
 powerStatusChangeNotificationName
+accessoryAttachedNotificationName
+accessoryDetachedNotificationName
+accessoryAnimationStatusChangedNotificationName
+accessoryStatusProvider
 resetRestoreStatusProvider
 thermalStatusProvider
 biometricResource
@@ -38354,6 +38201,10 @@ _lockOutStatusProvider
 _legibilityProvider
 _powerStatusProvider
 _powerStatusChangeNotificationName
+_accessoryStatusProvider
+_accessoryAttachedNotificationName
+_accessoryDetachedNotificationName
+_accessoryAnimationStatusChangedNotificationName
 _thermalStatusProvider
 _screenStateProvider
 _screenWakeAnimationController
@@ -38459,6 +38310,7 @@ _uiLocked:
 _deviceBlocked:
 _remoteLocked:
 _restoreOrientation
+initWithDeactivationOptions:animated:dismissalReason:
 _noteDeviceLockedOrBlocked
 _createTapToDimissSiriGestureRecognizer
 _createPanToDismissSiriGestureRecognizer
@@ -38471,7 +38323,6 @@ shouldDismissForTapOutsideContent
 _commonHandlerForSiriDismissalGesture:
 _pannedToDismissSiri:
 shouldDismissForSwipesOutsideContent
-initWithDeactivationOptions:animated:dismissalReason:
 dismissAssistantViewIfNecessaryWithDismissalOptions:
 hasContentAtPoint:completion:
 canShareOwnershipWithNextParticipant
@@ -38596,14 +38447,18 @@ _unlockSettings
 _referenceCoordinateSpaceBounds
 _referenceVelocity
 _rebuildAndTransmitConfiguredWidgetData:
+widgetDataGeneration
+setWidgetDataGeneration:
 visibleIndexForIndex:
 isIconAtIndexPathInTodayList:
 _containerDescriptorForWidgetIcon:atLocation:page:
 _descriptionForArray:name:
 receiveConfiguredWidgetContainerDescriptors:
+performAfterCachingWidgetIntentsUsingBlock:
 initWithExtensionBundleIdentifier:containerBundleIdentifier:kind:family:intent:
 initWithWidget:uniqueIdentifier:location:page:widgetMetrics:inStack:onTop:
 initWithLocation:page:widgetFamily:widgets:
+_widgetDataGeneration
 _initWithModalAlertPresentationCoordinator:sceneManager:scene:
 _addOrRemoveModalAlertPresenterIfNecessary
 modifyProem:
@@ -38692,7 +38547,6 @@ fireInterval
 dateWithTimeInterval:sinceDate:
 _createPersistentTimerWithFireDate:handler:
 _createTimerWithFireDate:handler:
-initWithFireInterval:serviceIdentifier:queue:handler:
 _initWithLifecycleTracker:forApplication:
 suspensionDate
 _forceInvalidate
@@ -38885,6 +38739,7 @@ activityContinuationIdentifier
 allowsCustomPresentationDismissalAnimations
 preferredStatusBarLegibilitySettings
 shouldIgnoreContentOverlayInsetUpdates
+windowedAccessoryCutoutFrameInScreen
 _allowsHomeButtonDismissal
 _customIdleExpirationTimeout
 _dismissalAnimationStyle
@@ -38914,12 +38769,14 @@ _shouldDisableReachability
 _shouldDisableInteractiveScreenshotGesture
 _shouldDisableSiri
 _shouldPendAlertItems
+_attachedToWindowedAccessory
 _preferredStatusBarStyleOverridesToCancel
 _preferredLockedGestureDismissalStyle
 _preferredUnlockedGestureDismissalStyle
 _preferredBackgroundStyle
 _preferredSceneDeactivationReasonValue
 _preferredStatusBarLegibilitySettings
+_windowedAccessoryCutoutFrameInScreen
 pipDefaults
 allowAutoPIP
 generateAnalyticsPayload
@@ -41066,6 +40923,7 @@ behaviorOverrideReason
 _cameraSensorAttributionBundleIdentifier
 initWithWindowLevel:reason:identifier:invalidationBlock:
 _layoutCoordinator
+_environmentModeForLayoutState:
 _updateStateForTransitionWithContext:
 invalidatesEarly
 setInvalidatesEarly:
@@ -43298,9 +43156,9 @@ sharedConfiguration
 currentCountrySupportsCarIntegration
 setGeoSupported:
 _ignoreActionForNotificationRequest:
+_setSuspended:forPresentingAlertControllerForPresentable:
 _effectiveDefaultActionTypeForNotificationRequest:
 _notificationRequestShouldShowModalSubActions:
-setSuspended:forReason:revokingCurrent:error:
 _subActionLabelsForNotificationRequest:
 carPlayTitle
 carPlayMessage
@@ -43333,6 +43191,7 @@ _allNotificationActionsForNotificationRequest:
 invalidateDisplayProperties
 bulletin
 setSectionID:
+setSuspended:forReason:revokingCurrent:error:
 bannerHostDidBecomeAvailableForMonitorListener:
 bannerHostDidBecomeUnavailableForMonitorListener:
 presentableViewControllerClosesByDefault:
@@ -43341,7 +43200,7 @@ didCancelBannerOfPresentableViewController:reason:
 _bannerHostMonitorListener
 _presentables
 _appPolicyForBundleID
-_suspensionReasons
+_presentablePresentingAlertController
 sb_legacy_homeButtonDeviceDisplayEdgeInfo
 sb_legacy_roundCornerPadDisplayEdgeInfo
 setSafeAreaInsetsPortrait:
@@ -43659,6 +43518,7 @@ _keyboardWillShowNotification:
 setNeedsUpdateOfHomeIndicatorAutoHidden
 _updateHomeAffordance
 setNeedsUpdateOfScreenEdgesDeferringSystemGestures
+defaultHeight
 preferredScreenEdgesDeferringSystemGestures
 _updateKeyboardForHomeGesture
 _preserveInputViewsWithId:animated:
@@ -43990,7 +43850,6 @@ isLocationWithinGrabberActiveZone
 setGrabberActiveZoneWidth:
 _grabberActiveZoneWidth
 initialFrameForInteractivePictureInPictureAnimationEnteringBackgroundForApplicationWithProcessIdentifier:scenePersistenceIdentifier:
-isPictureInPictureContentInFillGravity
 preferredContentSizeForActivePictureInPictureWithApplicationWithProcessIdentifier:scenePersistenceIdentifier:
 preferredContentSizeForInteractivelyEnteringBackgroundForApplicationWithProcessIdentifier:scenePersistenceIdentifier:
 defaultHomeScreenInitialPiPFrame:withPreferredContentSize:fromOrientation:toOrientation:shouldUpdate:gestureInitiated:
@@ -43999,6 +43858,9 @@ targetProcessIdentifier
 scenePersistenceIdentifier
 _targetProcessIdentifier
 _scenePersistenceIdentifier
+fluidTransitionsSettings
+sourceClippingFluidBehavior
+targetClippingFluidBehavior
 setCanStartShowingChrome:
 contentContainerView
 _terminate
@@ -44007,14 +43869,16 @@ morphAnimatorControllerDidTerminate:
 canStartShowingChrome
 _isWaitingForExternalAnimationCompletion
 initWithTargetProcessIdentifier:uuid:scenePersistenceIdentifier:direction:gestureInitiated:
-setPictureInPictureViewController:
+setPictureInPictureContainerViewController:
 setAnimatorWaitingForExternalAnimationActionBlock:
 viewMorphAnimatorDataSource
+pictureInPictureContainerViewController
 setupCompletionBlock
 setSetupCompletionBlock:
 animatorWaitingForExternalAnimationActionBlock
 _viewMorphAnimator
 _viewMorphAnimatorDataSource
+_pictureInPictureContainerViewController
 _setupCompletionBlock
 _animatorWaitingForExternalAnimationActionBlock
 _defaultAuthorizedBundleIDs
@@ -44781,6 +44645,7 @@ pictureInPictureController:didRequestStopForPictureInPictureViewController:sourc
 pictureInPictureController:shouldCancelPictureInPictureForApplication:whenStartingPictureInPictureForApplication:
 pictureInPictureController:shouldDenyNewConnection:
 acquireInterruptionAssertionForReason:identifier:
+forcePictureInPictureContainerWithView:toFrame:
 _pictureInPictureController
 _isReducingResourcesUsage
 _hasIdleTimerBehaviors
@@ -44799,7 +44664,6 @@ _stashForInterruptionAssertion
 _interruptionEndDebouncingTimer
 _defaultToStashed
 _pictureInPictureMorphAnimatorControllers
-_fillGravity
 _keyboardInsetsVisualizerView
 _unlockedEnvironmentModeWhenKeyboardFocusChanged
 _displayLayoutMonitor
@@ -45348,6 +45212,18 @@ _preventIdleSleepApp
 _preventIdleSleepPresenting
 _powerMode
 _idleOffTimerInvalidation
+_unregisterMotionAlarm
+_registerMotionAlarm
+registerAlarmWithName:type:duration:repeats:error:
+unregisterAlarmWithName:error:
+alarmDidRegister:error:
+alarmDidUnregister:error:
+alarmDidFire:error:
+remoteAppLaunchedWithResult:error:
+registerMotionAlarm
+motionAlarmManager
+setMotionAlarmManager:
+_motionAlarmManager
 _shouldSimplifyForOpenFolder
 _shouldSimplifyForWidgetCenterAndLibrary
 _shouldResignActiveAppsUnderFloatingApp
@@ -46146,6 +46022,7 @@ forceLoginWindow
 _shouldLockAfterEndingTelephonyCall
 _shouldLockAfterEndingFaceTimeCall
 _tapToWakeController
+isAccessoryAnimationPresenting
 lockDidBegin
 _disconnectActiveCallIfNeededFromSource:
 _activateLockScreenAnimated:animationProvider:automatically:inScreenOffMode:dismissNotificationCenter:completion:
@@ -46162,6 +46039,7 @@ _sendUILockStateChangedNotification
 _runUnlockActionBlock:
 _unlockWithRequest:cancelPendingRequests:completion:
 _setWalletPreArmDisabled:forReason:
+setConnectedToWindowedAccessory:
 _wakeScreenForTapToWake
 _attemptUnlockWithPasscode:mesa:finishUIUnlock:
 _isPasscodeVisible
@@ -46212,6 +46090,7 @@ coverSheetViewControllerIrisPlayingDidFinish:
 coverSheetViewController:requestsTouchIDDisabled:forReason:
 coverSheetViewController:unlockWithRequest:completion:
 coverSheetViewControllerShouldDismissContextMenu:
+coverSheetWindowedAccessoryViewControllerDidDismiss:
 averageColorForCurrentWallpaper
 averageColorForCurrentWallpaperInScreenRect:
 contrastForCurrentWallpaper
@@ -46909,6 +46788,7 @@ v40@0:8@"UIWindow"16q24d32
 v32@0:8@"UIWindow"16q24
 B24@0:8@"UIWindow"16
 v32@0:8^{?=BBBBBdi}16@"UIWindow"24
+@"CSAccessory"16@0:8
 @24@0:8q16
 @32@0:8@16^Q24
 v56@0:8@16@24@32@40@48
@@ -46917,6 +46797,7 @@ v36@0:8B16d20@?28
 B24@0:8o^B16
 v28@0:8q16B24
 f16@0:8
+{CGRect={CGPoint=dd}{CGSize=dd}}16@0:8
 v32@0:8q16d24
 C16@0:8
 @"SBHomeScreenWindow"
@@ -46928,14 +46809,18 @@ C16@0:8
 @"SBWallpaperEffectView"
 @"UIForceStageInteractionProgress"
 @"BCBatteryDeviceController"
+{CGRect="origin"{CGPoint="x"d"y"d}"size"{CGSize="width"d"height"d}}
+@"SBHIDUILockAssertion"
 @"SBHUDController"
 @"SBVolumeControl"
 @"NSMutableDictionary"
 @"SBDismissOnlyAlertItem"
 @"ATXAppDirectoryClient"
+@"SBFMotionAlarmController"
+@"BSPersistentTimer"
+@"CSAccessory"
 @"SBIconController"
 {CGRect={CGPoint=dd}{CGSize=dd}}24@0:8d16
-{CGRect={CGPoint=dd}{CGSize=dd}}16@0:8
 @24@0:8^{_NSZone=}16
 v32@0:8Q16Q24
 @"SBAppSwitcherServiceSet"
@@ -47056,7 +46941,6 @@ v32@0:8{CGSize=dd}16
 @"UIView<SBAppSwitcherPageContentView>"
 {UIRectCornerRadii="topLeft"d"bottomLeft"d"bottomRight"d"topRight"d}
 @"SBAppSwitcherPageShadowView"
-{CGRect="origin"{CGPoint="x"d"y"d}"size"{CGSize="width"d"height"d}}
 @44@0:8@16B24@28@36
 v32@0:8@"SBSearchGesture"16d24
 v28@0:8@"SBSearchGesture"16B24
@@ -47217,7 +47101,6 @@ q28@0:8@"NSString"16B24
 @"SBHIDUILockAssertion"36@0:8q16B24@"NSString"28
 v32@0:8Q16q24
 @44@0:8B16B20B24q28@36
-@"SBHIDUILockAssertion"
 @24@0:8@?16
 @?16@0:8
 v24@0:8@"<SBHardwareButtonGestureParametersObserver>"16
@@ -47811,6 +47694,7 @@ v40@0:8^@16^@24@32
 v24@0:8@"SBSceneLayoutWorkspaceTransaction"16
 v32@0:8@"SBSceneLayoutWorkspaceTransaction"16@?<v@?>24
 v32@0:8@"SBSceneLayoutWorkspaceTransaction"16@?<v@?@"SBWorkspaceApplicationSceneTransitionContext"Q>24
+v80@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16{CGRect={CGPoint=dd}{CGSize=dd}}48
 v36@0:8Q16B24@?<v@?>28
 v24@0:8@"SBViewMorphAnimator"16
 @"SBFluidSwitcherViewController"
@@ -48026,6 +47910,7 @@ v32@0:8@"SBRemoteTransientOverlayHostViewController"16@"NSError"24
 v32@0:8@"SBRemoteTransientOverlayHostViewController"16@"BSAnimationSettings"24
 q24@0:8@"SBRemoteTransientOverlayHostViewController"16
 @"SBUIRemoteAlertButtonAction"32@0:8@"SBRemoteTransientOverlayHostViewController"16Q24
+v52@0:8B16{CGRect={CGPoint=dd}{CGSize=dd}}20
 @"SBRemoteTransientOverlayHostViewController"
 @"SBTransientOverlayWallpaperEffectView"
 @"<SBRemoteTransientOverlayViewControllerDelegate>"
@@ -48254,9 +48139,10 @@ v28@0:8@"SBInCallTransientOverlayViewController"16B24
 v24@0:8@"SBInCallTransientOverlayViewController"16
 v32@0:8@"SBInCallTransientOverlayViewController"16@"BSAnimationSettings"24
 B32@0:8@"SBSceneHandle"16@"BSAction"24
-@112@0:8@16@24@32@40@48@56@64@72@80@88@96@104
+@120@0:8@16@24@32@40@48@56@64@72@80@88@96@104@112
 v40@0:8B16B20@24@?32
 v48@0:8q16B24B28@32@?40
+B24@0:8i16B20
 @"SBInCallBannerPresentableViewController"
 @"SBMainDisplaySceneManager"
 @"SBInCallTransientOverlayViewController"
@@ -48898,6 +48784,7 @@ v64@0:8q16@24d32{CGPoint=dd}40@?56
 @"_SBInteractiveScreenshotGestureReplicatorView"
 @"UIView<UIScenePresentation>"
 @"<SBInteractiveScreenshotGestureRootViewControllerDelegate>"
+{CGRect={CGPoint=dd}{CGSize=dd}}64@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48d56
 d80@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16{CGRect={CGPoint=dd}{CGSize=dd}}48
 {CGPoint=dd}96@0:8@16d24{CGRect={CGPoint=dd}{CGSize=dd}}32{CGRect={CGPoint=dd}{CGSize=dd}}64
 {CGRect={CGPoint=dd}{CGSize=dd}}80@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16{CGRect={CGPoint=dd}{CGSize=dd}}48
@@ -48968,7 +48855,6 @@ v32@0:8@"SBPIPInteractionController"16d24
 v32@0:8@"SBPIPInteractionController"16B24B28
 v28@0:8@"SBPIPInteractionController"16B24
 v32@0:8@"SBPIPInteractionController"16@"UIGestureRecognizer"24
-B48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16
 {CGRect={CGPoint=dd}{CGSize=dd}}56@0:8q16{CGRect={CGPoint=dd}{CGSize=dd}}24
 @"SBPIPInteractionController"
 @"PGPictureInPictureViewController"
@@ -49167,6 +49053,7 @@ v24@0:8@"<CSProximitySensorProviderObserver>"16
 @"<SBFDateProviding>"16@0:8
 @"<CSLegibilityProviding>"16@0:8
 @"<CSPowerStatusProviding>"16@0:8
+@"<CSAccessoryStatusProviding>"16@0:8
 @"<CSResetRestoreStatusProviding>"16@0:8
 @"<CSThermalStatusProviding>"16@0:8
 @"<SBUIBiometricResource>"16@0:8
@@ -49198,6 +49085,7 @@ v24@0:8@"<CSProximitySensorProviderObserver>"16
 @"<SBFDateProviding>"
 @"<CSLegibilityProviding>"
 @"<CSPowerStatusProviding>"
+@"<CSAccessoryStatusProviding>"
 @"<CSThermalStatusProviding>"
 @"<CSScreenStateProviding>"
 @"<SBFScreenWakeAnimationControlling>"
@@ -49855,6 +49743,7 @@ v24@0:8@"BNBannerHostMonitorListener"16
 B24@0:8@"NCCarPlayBannerPresentableViewController"16
 v24@0:8@"NCCarPlayBannerPresentableViewController"16
 v32@0:8@"NCCarPlayBannerPresentableViewController"16@"NSString"24
+B28@0:8B16@20
 @"BNBannerHostMonitorListener"
 @"CRCarPlayAppPolicyEvaluator"
 @"NCCarPlayBannerSource"
@@ -49960,10 +49849,10 @@ v32@0:8^@16^B24
 @"SBScreenWakeAnimationController"
 {CGRect={CGPoint=dd}{CGSize=dd}}24@0:8@"SBViewMorphAnimator"16
 d24@0:8@"SBViewMorphAnimator"16
-B24@0:8@"SBViewMorphAnimator"16
 @32@0:8i16@20B28
 @48@0:8i16@20@28q36B44
 @"SBPIPMorphAnimatorDataSource"
+@"SBPIPContainerViewController"
 @"<SBPIPMorphAnimatorControllerDelegate>"
 B48@0:8@16Q24@32o^@40
 @56@0:8@16@24Q32@40o^@48
@@ -50144,7 +50033,6 @@ v108@0:8i16@20@28@36@?44@?52@?60@?68@?76@?84@?92@?100
 v48@0:8i16@20B28@?32@?40
 i24@0:8Q16
 v36@0:8i16Q20^Q28
-B24@0:8i16B20
 B40@0:8i16B20^B24^Q32
 @"SBStatusBarDefaults"
 [43Q]
@@ -50178,7 +50066,6 @@ v24@0:8@"<UIStatusBarStateObserver>"16
 B24@0:8r^{?=[43B][64c][64c][256c]iiii[100c][100c][100c][100c][2[100c]][1024c]IIb1b1iib1IIiI[150c]iib1b1b1[256c]b1b1b1b1b2b1Ib1b1b1[256c][256c][100c]b1b1b1b1db1b1[100c][100c]}16
 v24@0:8^i16
 @"SBStatusBarStateAggregator"
-B28@0:8B16@20
 v32@0:8@?16^B24
 @48@0:8B16B20Q24@32@?40
 @52@0:8d16B24Q28@36@?44
@@ -50208,6 +50095,11 @@ v80@0:8@16@24{CGRect={CGPoint=dd}{CGSize=dd}}32{CGPoint=dd}64
 @"CADisplayMode"
 @"_UIRootWindow"
 @"SBSExternalDisplayLayoutElement"
+v28@0:8I16@20
+v32@0:8@"CMMotionAlarm"16@"NSError"24
+v28@0:8I16@"NSError"20
+@"<SBFMotionAlarmDelegate>"
+@"CMMotionAlarmManager"
 v44@0:8f16d20q28@?36
 v48@0:8f16d20q28B36@?40
 @"<SBApplicationRestrictionDataSource>"

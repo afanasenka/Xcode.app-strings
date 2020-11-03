@@ -2368,7 +2368,6 @@ T@"NSObject<OS_dispatch_semaphore>",R,N,V_bannerSemaphore
 transform
 canTransitionToPlayerAvatar
 TB,N,V_canTransitionToPlayerAvatar
-imageView
 T@"UIImageView",&,N,V_imageView
 messageLabel
 T@"UILabel",&,N,V_messageLabel
@@ -2543,18 +2542,13 @@ Td,N,V_initialSectionHeaderHeight
 isInGame
 TB,N,V_isInGame
 T@"NSObject<GKTurnBasedMatchDetailViewControllerDelegate>",W,N,V_delegateWeak
-PLAYER_PICKER_NO_CONTENT_NEARBY_MESSAGE
-instructionCellImageView
-T@"UIImageView",&,N,V_instructionCellImageView
-instructionCellLabel
-T@"UILabel",&,N,V_instructionCellLabel
 %@%@: maxVis:%ld %@
 %@%@: maxVis:%ld {
 %@    sectionMetrics: %@
 %@ ([_metrics isKindOfClass:[GKSectionMetrics class]])
 [%s (%s:%d)]
 -[GKMetricData sectionMetrics]
-/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.8/GameCenterUI/iOS/Framework/GKGridLayoutPrivate.m
+/Library/Caches/com.apple.xbs/Sources/GameCenter_Sim/GameCenter-770.13/GameCenterUI/iOS/Framework/GKGridLayoutPrivate.m
 T@"GKSectionMetrics",R,N
 T@"GKGridLayoutMetrics",&,N,V_metrics
 currentMaxVisibleItemCount
@@ -4641,6 +4635,7 @@ Attempting to bootstrap without a ViewController or pre-existing objectGraph
 _TtC12GameCenterUI38AchievementHighlightCollectionViewCell
 decorationView
 subtitle
+wantsVerticalLayout
 GameCenterUI/AchievementHighlightCollectionViewCell.swift
 _TtC12GameCenterUI43RecentlyPlayedWithFriendsListProfileSection
 distance
@@ -4998,7 +4993,6 @@ secondaryLabel
 imageType
 GameCenterUI/EmptyStateView.swift
 _TtC12GameCenterUI23PlayerProfileComponents
-@24@0:8@16
 @48@0:8@16@24{CGPoint=dd}32
 content
 childPresenters
@@ -5058,6 +5052,11 @@ _TtC12GameCenterUI22NicknameProfileSection
 PLAYER_CARD_NICKNAME_HEADER
 NICKNAME_MESSAGE
 _TtC12GameCenterUI10ShadowView
+_TtC12GameCenterUI40GKMultiplayerPickerNearbyInstructionCell
+imageView
+textField
+GameCenterUI/GKMultiplayerPickerNearbyInstructionCell_iOS.swift
+PLAYER_PICKER_NO_CONTENT_NEARBY_MESSAGE
 _TtC12GameCenterUI34ProfilePrivacyActionImplementation
 currentAction
 GameCenterUI.ProfilePrivacyActionImplementation
@@ -5099,6 +5098,7 @@ _TtC12GameCenterUI30AchievementsLinkProfileSection
 PLAYER_CARD_ALL_ACHIEVEMENTS
 _TtC12GameCenterUI27PlayerProfileViewController
 v40@0:8@16@24@?32
+@24@0:8@16
 clippingLayer
 _rootController
 _specifier
@@ -5136,7 +5136,7 @@ A333333
 b@333333
 >`v??
 @TR'
-MbP?
+MbP?{
 @i@ffffff
 ^@ffffff
 0@GKMultiplayerCollectionViewCell
@@ -5417,6 +5417,9 @@ DiffableSnapshotPresenter
 RecentlyPlayedWithFriendsListProfileSection
 InfiniteScrollObserver
 TitleWithHighlightsCollectionViewCell
+AlignmentLayout
+Alignment
+Storage
 GKMultiplayerCollectionViewCellVerticalLayout
 Metrics
 SeeAllRecentlyPlayedGamesProfileSection
@@ -5472,7 +5475,7 @@ GKLocalPlayer
 GKAchievement
 GKAchievementInternal
 GKLeaderboard
-n@GameLayerMetadataLayoutBuilder
+n@GameLayerHighlightsLayoutBuilder
 ScrollViewDelegateObserver
 GameLayerTitleLayoutBuilder
 FriendsListProfileSection
@@ -5583,6 +5586,7 @@ ShadowView
 InfoItem
 Metrics
 PlayerProfileInfoBarLayout
+GKMultiplayerPickerNearbyInstructionCell
 ProfilePrivacyActionImplementation
 NoFriendsProfileSection
 GameLayerSection
@@ -6306,6 +6310,7 @@ So11UITextFieldC
 So7UIColorC10startColor_AB03endC0
 0B5PointAE0dE0t
 ySo32NSCollectionLayoutDecorationItemCG
+G0R1_
 4Item
 7Section
 _pGSg
@@ -7116,6 +7121,7 @@ linear
 decorationView
 title
 subtitle
+wantsVerticalLayout
 Component
 State
 playerHandle
@@ -7149,6 +7155,13 @@ title
 separator
 Component
 State
+storage
+leading
+center
+trailing
+view
+horizontal
+vertical
 topSpace
 titleSpace
 subtitleTopSpace
@@ -7689,6 +7702,8 @@ infoItemMaxWidth
 infoItemMinWidth
 valueLabel
 titleLabel
+imageView
+textField
 viewController
 currentAction
 Action
@@ -8031,7 +8046,6 @@ GKStoreKitSupport
 GKShowcaseCellView
 GKDashboardKeyboardAccessoryView
 GKTurnBasedMatchDetailViewController
-GKMultiplayerPickerNearbyInstructionCell
 GKGridLayoutPrivate
 GKMetricData
 GKMatchmakerViewController
@@ -11587,6 +11601,7 @@ actionWithTitle:image:identifier:handler:
 menuWithTitle:children:
 multiplayerPicker:didPickPlayers:
 multiplayerAllowedPlayerType
+handleSearchTextFieldReturn:
 isPlayerAtIndexPathCoreRecent:
 applyWithPlayer:isCoreRecent:
 cornerMaskForItemAtIndexPath:
@@ -12172,7 +12187,6 @@ updateStartGameButtonTitle
 setStartGameButtonEnabled:
 updateAddMessageButtonVisibility
 didChangeMode
-setAnimationsEnabled:
 indexPathsForVisibleItems
 haveNonGuestPlayers
 setPrimaryButtonTitle:
@@ -12383,6 +12397,7 @@ makeButtonHeaderView
 applyGame:
 setButtonHeaderView:
 setIsStepperHidden:
+updateStepperWithValue:
 setMinimumValue:
 handleNewParticipantCount:
 initWithMinimumValue:maximumValue:initialValue:titleChangedHandler:valueChangedHandler:cancelButtonHandler:
@@ -12494,7 +12509,6 @@ orderedPlayerIDList
 playerStatus
 updateDataStructuresForRemovedPlayer:
 shouldUpdateStatus:withNewStatus:
-notifyItemsRefreshedAtIndexPaths:animated:
 shouldRevertStatus:
 minusSet:
 refreshParticipantsStatuses
@@ -13112,12 +13126,6 @@ setInitialSectionHeaderHeight:
 _isInGame
 _participantsDataSource
 _initialSectionHeaderHeight
-instructionCellImageView
-instructionCellLabel
-setInstructionCellImageView:
-setInstructionCellLabel:
-_instructionCellImageView
-_instructionCellLabel
 _gkIsGlobal
 setHeaderPinnableAttributes:
 setFooterPinnableAttributes:
@@ -13239,7 +13247,6 @@ enumerateItemsAndIndexPathsUsingBlock:
 _finishUpdates:withCompletionHandler:
 _applyUpdates:withCompletionHandler:
 _loadDataWithCompletionHandlerAndError:
-dataSource:didRefreshItemsAtIndexPaths:animated:
 insertSections:
 deleteSections:
 moveItemAtIndexPath:toIndexPath:
@@ -15121,6 +15128,7 @@ resetUI
 authenticationPersonality
 isBeingDismissed
 columnCount
+initWithContainerSize:traitCollection:
 initWithWidth:columnSizeCategory:maxColumns:
 displayGamut
 firstBaselineFromTop
@@ -15907,7 +15915,6 @@ v24@0:8@"GKPlayer"16
 @"GKMatchmakerHostViewController"
 @"GKMatch"
 v32@0:8@"GKCollectionViewDataSource"16@"NSArray"24
-v36@0:8@"GKCollectionViewDataSource"16@"NSArray"24B32
 v40@0:8@"GKCollectionViewDataSource"16@"NSIndexPath"24@"NSIndexPath"32
 v32@0:8@"GKCollectionViewDataSource"16@"NSIndexSet"24
 v40@0:8@"GKCollectionViewDataSource"16q24q32

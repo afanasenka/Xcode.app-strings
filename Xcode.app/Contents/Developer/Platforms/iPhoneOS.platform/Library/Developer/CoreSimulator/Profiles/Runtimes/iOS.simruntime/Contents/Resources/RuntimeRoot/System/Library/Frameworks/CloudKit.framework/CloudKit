@@ -862,6 +862,7 @@ v16@?0@"NSObject<OS_xpc_object>"8
 ck_submitted_time
 Must register a handler for activity identifier "%@" before submitting it
 ckActivityIdentifier
+Illegal attempt to register a second handler for activity identifier %@
 v16@?0q8
 ck_scheduler_priority
 ck_scheduler_activity_identifier
@@ -872,6 +873,8 @@ ck_device_count_string
 ck_additional_xpc_activity_criteria
 %@.%@
 B24@?0r*8@"NSObject<OS_xpc_object>"16
+<redacted>
+ThirdPartyContainer
 single
 multiple
 xpcActivitiesByCKActivityIdentifier
@@ -4917,7 +4920,8 @@ Submitting activity %@
 Not modifying criteria of identical existing XPC activity for %@
 Modifying criteria of existing XPC activity for %@
 client/scheduler-register
-Registering CK activity %@
+Registering CK activity %{public}@
+BUG IN CLIENT OF CLOUDKIT: Registering a handler for a CKScheduler activity identifier that has already been registered (%@).
 client/scheduler-unregister
 Unregistering CK activity %@
 Registering for activity identifier %@ with XPC activity identifier %@
@@ -5064,6 +5068,7 @@ Engine deallocated while saving subscription
 Error saving subscriptions: %@
 Saved subscriptions: %@
 Scheduling fetch changes after saving subscription
+CKSyncEngine failed to register it's activities with the scheduler. This is likely because there are multiple instances of CKSyncEngine in this process attempting to sync the same data using these identifiers: %@, %@, %@: %@
 engine/sync-activity
 Performing sync activity
 Finished fetching changes, but we have disappeared into the abyss
@@ -7301,6 +7306,7 @@ setAdditionalXPCActivityCriteria:
 nullableContainer
 isUnitTestingAccount
 isTestContainer
+isAppleInternal
 fakeDeviceCount
 xpcActivityForActivityWithIdentifier:
 sharedScheduler
@@ -7426,7 +7432,6 @@ setSpecialContainerType:
 setIsTestContainer:
 setIsAppleInternal:
 representativeDataclass
-isAppleInternal
 _isTestContainer
 _isAppleInternal
 _containerIdentifier

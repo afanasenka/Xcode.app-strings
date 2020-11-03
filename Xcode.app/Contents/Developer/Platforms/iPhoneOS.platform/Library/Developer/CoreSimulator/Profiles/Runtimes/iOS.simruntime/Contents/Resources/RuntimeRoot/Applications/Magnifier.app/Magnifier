@@ -1,10 +1,10 @@
 333333
 ?333333
 ?333333
-?ffffff
 MbP?
 9@333333
 333333
+A@__C
 UIEdgeInsets
 UIContentSizeCategory
 CGPoint
@@ -195,7 +195,7 @@ ViewFilterer
 FilterSet
 ColorFilter
 DisplayFilter
-<33s?
+B33s?
 PerformCaptureDelegate
 ModifySettingsDelegate
 CameraTrayViewController
@@ -215,6 +215,7 @@ Section
 MFNavigationController
 MFSecureWindow
 SceneDelegate
+Magnifier
 ViewSnapshotsButton
 filterWithType:
 getRed:green:blue:alpha:
@@ -899,7 +900,7 @@ _position
 _minPosition
 _maxPosition
 _screenRect
-initWithCenterDetectionSize:labellingTolerance:significantAreaThresholdMM:
+initWithCenterDetectionSize:labellingTolerance:significantAreaThresholdMM:closeDetectionFactor:
 computePersonDetectionFromFrame:interfaceOrientation:
 technique
 setTechnique:
@@ -908,6 +909,7 @@ setIsCenterDetectionEnabled:
 centerDetectionSize
 labellingTolerance
 significantAreaThresholdMM
+closeDetectionFactor
 detectedPersonArray
 labelBuffer
 maxLabel
@@ -917,6 +919,7 @@ _isCenterDetectionEnabled
 _maxLabel
 _labellingTolerance
 _significantAreaThresholdMM
+_closeDetectionFactor
 _technique
 _detectedPersonArray
 _labelBuffer
@@ -975,9 +978,10 @@ initAndReturnError:
 startAndReturnError:
 hapticEngine
 setUseHapticFeedback:
-setResetHandler:
 setHapticEngineStarted:
+setResetHandler:
 setStoppedHandler:
+hapticEngineStarted
 stopWithCompletionHandler:
 mainBundle
 URLForResource:withExtension:
@@ -1046,7 +1050,6 @@ setBuffer:
 pulseDuration
 setPulseDuration:
 setHapticEngine:
-hapticEngineStarted
 timer
 setTimer:
 _useSoundFeedback
@@ -1656,7 +1659,6 @@ gestureRecognizerShouldBegin:
 setAccessibilityHint:
 initWithName:actionHandler:
 setAdjustsImageWhenHighlighted:
-secondarySystemBackgroundColor
 setCornerRadius:
 setCornerCurve:
 traitCollection
@@ -1735,6 +1737,8 @@ setModalPresentationStyle:
 presentationController
 isInterrupted
 userInfo
+configuration
+runWithConfiguration:options:
 initWithInteger:
 timestamp
 capturedImage
@@ -1821,7 +1825,6 @@ setMinimumInterval:
 supportedVideoFormats
 setVideoFormat:
 supportsFrameSemantics:
-runWithConfiguration:options:
 startDeviceMotionUpdates
 setFrameSemantics:
 setActive:withOptions:error:
@@ -1964,7 +1967,6 @@ setFillColor:
 setLineWidth:
 setLineCap:
 setLineJoin:
-setAllowsGroupBlending:
 _createTransformerWithInputAnimatableProperties:presentationValueChangedCallback:
 presentationValue
 sendSubviewToBack:
@@ -2007,6 +2009,7 @@ presentationIndexForPageViewController:
 pageViewController:spineLocationForInterfaceOrientation:
 pageViewControllerSupportedInterfaceOrientations:
 pageViewControllerPreferredInterfaceOrientationForPresentation:
+secondarySystemBackgroundColor
 defaultMetrics
 defaultFontSize
 scaledFontForFont:
@@ -2078,6 +2081,7 @@ continueAnimationWithTimingParameters:durationFactor:
 classForCoder
 _setHysteresis:
 setCancelsTouchesInView:
+resetSelectedPeopleDetectionFeedbacksToDefaultWithNotification:
 stringForKey:
 currentLocale
 drawTextInRect:
@@ -2104,17 +2108,14 @@ presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:
 presentationControllerShouldDismiss:
 presentationControllerWillDismiss:
 presentationControllerDidAttemptToDismiss:
-text
 attributedText
 setAttributedText:
 attributedSubstringFromRange:
 string
 symbol
+boundingRectWithSize:options:context:
 setUnitOptions:
 addAttribute:value:range:
-boundingRectWithSize:options:context:
-font
-boundingRectWithSize:options:attributes:context:
 supportedInterfaceOrientations
 viewDidLayoutSubviews
 doubleTap:
@@ -2238,7 +2239,6 @@ didTapDoneButton:
 didTapSnapshotButton:
 _setAccessibilityPathBlock:
 _accessibilityCirclePathBasedOnBoundsWidth
-constraintGreaterThanOrEqualToConstant:
 imageWithRenderingMode:
 imageWithTintColor:
 didSelectSegment:
@@ -2251,12 +2251,16 @@ updateTargetAnimation
 didTapRecordButton:
 didTapTapToRadarButton:
 didTapRestartButton:
+font
+boundingRectWithSize:options:attributes:context:
 setPaused:
 sublayers
 displayLinkWithTarget:selector:
 addToRunLoop:forMode:
 fontWithSize:
 secondaryLabelColor
+setAdjustsFontForContentSizeCategory:
+initWithPath:
 setBackgroundImage:forState:
 awakeFromNib
 grayColor
@@ -2289,16 +2293,26 @@ visibleViewController
 popViewControllerAnimated:
 _setBackgroundView:
 URLContexts
-_setContinuousCornerRadius:
+largeContentTitle
+setLargeContentTitle:
+largeContentImage
+setLargeContentImage:
+touchesBegan:withEvent:
+dragExited:
+dragReturned:
 darkTextColor
-setAdjustsFontForContentSizeCategory:
+textColor
+_setHyphenationFactor:
+_preferredFontForTextStyle:variant:maximumContentSizeCategory:
+setShowsLargeContentViewer:
+setScalesLargeContentImage:
 NORMAL_FILTER_NAME
 GRAYSCALE_FILTER_NAME
 YELLOW_ON_BLUE_FILTER_NAME
 YELLOW_ON_BLACK_FILTER_NAME
 WHITE_ON_BLUE_FILTER_NAME
 RED_ON_BLACK_FILTER_NAME
-/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-47/App/source/v1_legacy/legacy/MAGNamedFilterSet.m
+/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-49.1/App/source/v1_legacy/legacy/MAGNamedFilterSet.m
 -[MAGNamedFilterSet name]
 bogus filter set identifier %lu
 INVERTED_
@@ -2506,6 +2520,8 @@ labellingTolerance
 Tf,R,N,V_labellingTolerance
 significantAreaThresholdMM
 Tf,R,N,V_significantAreaThresholdMM
+closeDetectionFactor
+Tf,R,N,V_closeDetectionFactor
 detectedPersonArray
 T@"NSArray",R,N,V_detectedPersonArray
 labelBuffer
@@ -2526,6 +2542,7 @@ SNAPSHOT_CANVAS_LABEL
 SNAPSHOT_CONTROLS_SHOW_HIDE_HINT
 T@"NSObject<MAGSnapshotCanvasAccessibilityElementDelegate>",W,N,V_delegate
 MAGBrightnessQueue
+v16@?0@"NSError"8
 aiff
 audioEngine
 T@"AVAudioEngine",&,N,V_audioEngine
@@ -2828,7 +2845,6 @@ v40@0:8@"MTLTileRenderPipelineDescriptor"16Q24@?<v@?@"<MTLRenderPipelineState>"@
 @"<MTLAccelerationStructure>"24@0:8Q16
 @"<MTLAccelerationStructure>"24@0:8@"MTLAccelerationStructureDescriptor"16
 MTLCommandQueue
-label
 T@"NSString",N,C
 device
 T@"<MTLDevice>",N,R
@@ -3054,11 +3070,13 @@ $__lazy_storage_$_backCameraVideoPreviewView
 backCameraVideoPreviewLayer
 lastVideoOrientation
 liveLensInterruptionBlurView
+$__lazy_storage_$_doubleTapGesture
 kPersonLabelPoolSize
 metalOverlayView
 arSession
 arSessionIsInterrupted
 isARSessionStarted
+isPeopleDetectionTransitioning
 lastARFrameTimestamp
 deactivationReasons
 $__lazy_storage_$_personDetectionManager
@@ -3205,16 +3223,16 @@ end.navigation.button
 end.navigation.hint
 hapticParameters
 viewDidAppear(_:)
-control.name.peopleDetection.off
 control.name.peopleDetection.on
 startARSession(handler:)
 Starting ARSession
 Cannot deactivate audio session: 
 Cannot configure audio session: 
+exit.peopleDetection.hint
+control.name.peopleDetection.off
 stopARSession(handler:)
 Pausing ARSession
 Restarting capture session...
-exit.peopleDetection.hint
 CAAnimationDelegate
 v24@0:8@"CAAnimation"16
 v28@0:8@"CAAnimation"16B24
@@ -3403,7 +3421,6 @@ isLive
 name
 Experimental features
 Magnifier
-v24@0:8q16
 _TtC9Magnifier15ControlTrayView
 @24@0:8@16
 collectionView
@@ -3532,7 +3549,6 @@ Resolved shared injectable does not match requested type: '
 readAndCacheImage(at:documentFilter:)
 Read nil thumbnail from: 
 _TtC9Magnifier25MFCardContainerController
-containerView
 containerHeightConstraint
 containerTopConstraint
 draggingAnimator
@@ -3655,14 +3671,14 @@ B24@0:8@"UIPresentationController"16
 v24@0:8@"UIPresentationController"16
 _TtC9Magnifier16NoDetectionLabel
 kBottomInset
-_topInset
-_textHeight
-text
 _TtC9Magnifier10DepthLabel
+v24@0:8q16
 kDigitFont
 kUnitFont
 kSpaceFont
+_textHeight
 _rightInset
+_topInset
 _bottomInset
 attributedText
 T@"NSAttributedString",N,&
@@ -3770,14 +3786,14 @@ traitCollectionDidChange(_:)
 Magnifier.MFMainCardViewController
 Magnifier/MFMainCardViewController.swift
 _TtC9Magnifier33FilterCustomizationViewController
-q32@0:8@16q24
-/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-47/App/source/user defaults/FilterCustomizationViewController.swift
+B32@0:8@16@24
+/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-49.1/App/source/user defaults/FilterCustomizationViewController.swift
 edit.controls.filterCustomization.footer
 edit.controls.filterCustomization.header
 _TtC9Magnifier28MagnifierApplicationDelegate
 Q32@0:8@16@24
 _commandManager
-/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-47/App/source/app/MagnifierApplicationDelegate.swift
+/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-49.1/App/source/app/MagnifierApplicationDelegate.swift
 applicationWillResignActive(_:)
 applicationDidBecomeActive(_:)
 NoAnimationsForXCUITest
@@ -3944,6 +3960,7 @@ _tapToRadarButton
 _restartButton
 _rotationSubscription
 peopleDetectionUI.noOneDetected
+/AppleInternal/Library/PreferenceBundles/AccessibilityInternalSettings.bundle
 _TtC9Magnifier12RecordButton
 isRecording
 _buttonInnerLayer
@@ -3960,8 +3977,9 @@ _valueChangedHandler
 _TtC9Magnifier35PeopleDectionSettingsViewController
 availablePeopleDetectionFeedbacks
 $__lazy_storage_$_internalPeopleDetectionOptionsViewController
-B32@0:8@16@24
-/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-47/App/source/user defaults/PeopleDetectionSettingsViewController.swift
+selectedPeopleDetectionFeedbacksSubscription
+q32@0:8@16q24
+/Library/Caches/com.apple.xbs/Sources/Magnifier_Sim/Magnifier-49.1/App/source/user defaults/PeopleDetectionSettingsViewController.swift
 New people detection unit: 
 edit.controls.peopleDetectionCustomization.footer
 @"NSString"16@?0@"NSString"8
@@ -4004,15 +4022,19 @@ v32@0:8@"UIScene"16@"NSString"24
 v32@0:8@"UIScene"16@"NSUserActivity"24
 v40@0:8@"UIScene"16@"NSString"24@"NSError"32
 _TtC9Magnifier19ViewSnapshotsButton
+label
 icon
+containerView
 enabledColor
 disabledColor
-fontDescriptor
+dimmedColor
 snapshotCount
-Magnifier/ViewSnapshotsButton.swift
+largeContentTitle
+largeContentImage
+T@"UIImage",N,&
 camera.controls.tray.view.snapshots.button.format
+Magnifier/ViewSnapshotsButton.swift
 view.snapshots.button.label.format
-camera.controls.tray.view.snapshots.button.compact.format
 viewSnapshotsButtonLabel
 MAGNamedFilterSet
 NSCopying
@@ -4171,7 +4193,7 @@ v20@0:8S16
 16@0:8
 {CGRect={CGPoint=dd}{CGSize=dd}}16@0:8
 {CGRect="origin"{CGPoint="x"d"y"d}"size"{CGSize="width"d"height"d}}
-@40@0:8{CGSize=dd}16f32f36
+@44@0:8{CGSize=dd}16f32f36f40
 v32@0:8@16q24
 ^{__CVBuffer=}16@0:8
 ^{__CVBuffer=}
@@ -4280,6 +4302,7 @@ set bightness sample at index:%{public}@ to %{public}@. t:%{public}@
 Updating with brightness value: %{public}@. normalized: %{public}@
 Cannot start AVAudioEngine: %@
 Cannot configure AVAudioSession: %@
+Cannot initialize CHHapticEngine: %@
 Cannot start CHHapticEngine: %@
 Cannot restart CHHapticEngine: %@
 CHHapticEngine stopped: Audio Session Interrupt
@@ -4287,6 +4310,7 @@ CHHapticEngine stopped: Application Suspended
 CHHapticEngine stopped: Idle Timeout
 CHHapticEngine stopped: System Error
 CHHapticEngine stopped: Unknown reason
+Cannot stop CHHapticEngine: %@
 Cannot read audio file: %@
 Cannot read audio file into buffer: %@
 Cannot restart haptic engine: %@
@@ -4451,6 +4475,7 @@ $s9Magnifier29FreezeFrameThumbnailPresenterP
 So14AVCapturePhotoCSg
 So26AVCaptureVideoPreviewLayerCSgXw
 So18UIVisualEffectViewCSg
+So22UITapGestureRecognizerCSg
 So7MTKViewCSg
 So9ARSessionCSgXw
 So22PersonDetectionManagerCSg
@@ -4469,6 +4494,7 @@ So25UIImpactFeedbackGeneratorC
 So7NSTimerCSg
 SgSg
 So22UIViewPropertyAnimatorCSg
+SgXw
 SbIegy_Sg
 So7UILabelC
 So7UILabelCSg
@@ -4490,7 +4516,6 @@ SfSbIegyd_
 SfSSIegyo_
 GGSo17OS_dispatch_queueCG
 GGSo17OS_dispatch_queueCGG
-SgXw
 SSIegg_
 SgXwz_Xx
 ySo14AVCapturePhotoCSg
@@ -4529,10 +4554,10 @@ _GAdBy
 _GAeCy
 _GGSo17OS_dispatch_queueCG
 Iegyyy_
-SgXw
-SgXwz_Xx
 So7MTKViewC
 ySay
+SgXw
+SgXwz_Xx
 SaySbx_xtcG
 SayxG
 So11UIResponderC
@@ -4634,11 +4659,9 @@ SgXw
 SgXw
 So6UIFontC
 ySo12NSUnitLengthCGSg
-_yptG
 $s9Magnifier12PageProviderP
 $s9Magnifier32FreezeFramePageSelectionDelegateP
 _pSgXw
-So22UITapGestureRecognizerCSg
 So28UILongPressGestureRecognizerCSg
 ySo10UIMenuItemCG
 ySbG
@@ -4691,6 +4714,7 @@ _GSo17OS_dispatch_queueCGSbG
 $s9Magnifier26DetectedPersonViewDelegateP
 _pSgXw
 So13CADisplayLinkCSg
+_yptG
 So12CAShapeLayerCSgXw
 So12UIBezierPathCSg
 So15UITableViewCellC
@@ -4699,13 +4723,17 @@ ySdcSg
 So16UIViewControllerCSgSg
 ySiG
 SaySiG
+ySay
+ySay
+G_GSo9NSRunLoopCG
+So11UITableViewCSgXw
+GIegg_
 So22UINavigationControllerC
 So8UIWindowC
 So8UIWindowCSg
 SgXw
 SgXwz_Xx
 SgIegg_Sg
-So16UIFontDescriptorC
 SgXw
 SgXwz_Xx
 _rawValue
@@ -4803,11 +4831,13 @@ $__lazy_storage_$_backCameraVideoPreviewView
 backCameraVideoPreviewLayer
 lastVideoOrientation
 liveLensInterruptionBlurView
+$__lazy_storage_$_doubleTapGesture
 kPersonLabelPoolSize
 metalOverlayView
 arSession
 arSessionIsInterrupted
 isARSessionStarted
+isPeopleDetectionTransitioning
 lastARFrameTimestamp
 deactivationReasons
 $__lazy_storage_$_personDetectionManager
@@ -5102,12 +5132,12 @@ peopleDetectionControls
 AllCases
 RawValue
 kBottomInset
-_topInset
-_textHeight
 kDigitFont
 kUnitFont
 kSpaceFont
+_textHeight
 _rightInset
+_topInset
 _bottomInset
 pageSelectionDelegate
 imageView
@@ -5273,6 +5303,7 @@ _valueChangedHandler
 availablePeopleDetectionFeedbacks
 $__lazy_storage_$_internalPeopleDetectionOptionsViewController
 tableView
+selectedPeopleDetectionFeedbacksSubscription
 units
 distance
 feedback
@@ -5285,7 +5316,8 @@ icon
 containerView
 enabledColor
 disabledColor
-fontDescriptor
+dimmedColor
+isDimmed
 contentSizeCategorySubscription
 snapshotCount
 rotationSubscription

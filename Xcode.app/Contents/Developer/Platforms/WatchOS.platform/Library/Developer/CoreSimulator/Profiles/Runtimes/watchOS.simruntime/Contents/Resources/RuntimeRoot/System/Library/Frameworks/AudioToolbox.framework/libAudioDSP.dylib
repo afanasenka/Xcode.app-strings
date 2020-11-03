@@ -11070,12 +11070,12 @@ WARNING:
  details:  
  minutiae: 
            
-/Library/Caches/com.apple.xbs/Sources/AudioDSP_Sim/AudioDSP-432.32/CoreAudioUtility/Source/PublicUtility/AUOutputBL.cpp
+/Library/Caches/com.apple.xbs/Sources/AudioDSP_Sim/AudioDSP-432.35/CoreAudioUtility/Source/PublicUtility/AUOutputBL.cpp
 Prepare
 .austrip
 *** done.
 Error loading plist file 
-@@ Strips Sep 20 2020 07:01:30
+@@ Strips Oct  2 2020 07:51:28
 '%s' | <unknown type id: %d)>
 AUPreset
 '%s' | %sData{%d} | %d bytes

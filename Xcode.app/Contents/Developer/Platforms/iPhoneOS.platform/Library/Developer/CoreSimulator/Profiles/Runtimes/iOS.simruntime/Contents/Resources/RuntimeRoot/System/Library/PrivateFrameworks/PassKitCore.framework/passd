@@ -2643,7 +2643,8 @@ pushProvisioningSharingIdentifiersWithRequest:completion:
 encryptedPushProvisioningTarget
 initWithEncryptedProvisioningTarget:
 sharingInstanceIdentifier
-initWithProvisioningSharingIdentifier:
+cardConfigurationIdentifier
+initWithProvisioningSharingIdentifier:cardCardConfigurationIdentifer:
 sharingStatus
 pushProvisioningSharingStatusRequest:completion:
 initWithEncryptedPushProvisioningTarget:sharingInstanceIdentifier:
@@ -2667,7 +2668,6 @@ isParent
 dsid
 policyIdentifier
 provisioningCredentialIdentifier
-cardConfigurationIdentifier
 initWithAppleIdentifier:appleIdentifierType:pushProvisioningPolicyIdentifier:provisioningCredentialIdentifier:cardConfigurationIdentifier:sharingInstanceIdentifier:nonce:
 devSigned
 _encryptProvisioningTarget:devSigned:certificateChain:error:
@@ -16756,13 +16756,13 @@ Settings tags %@ for %@
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18B5060x</string>
+<string>18B5072d</string>
 <key>DTPlatformName</key>
 <string>iphonesimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B5060x</string>
+<string>18B5072d</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>
@@ -16896,6 +16896,8 @@ Settings tags %@ for %@
 <string>UniqueDeviceID</string>
 <string>UniqueChipID</string>
 </array>
+<key>com.apple.private.accessories.showallconnections</key>
+<true/>
 <key>com.apple.private.accounts.allaccounts</key>
 <true/>
 <key>com.apple.private.applesse.allow</key>

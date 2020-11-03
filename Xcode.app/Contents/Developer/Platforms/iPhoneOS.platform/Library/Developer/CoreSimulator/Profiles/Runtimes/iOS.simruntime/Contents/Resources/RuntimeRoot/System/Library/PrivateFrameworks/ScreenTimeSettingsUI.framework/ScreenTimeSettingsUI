@@ -229,7 +229,8 @@ DISALLOW
 ALLOW_GROUP
 LOCATION_EXPLANATION
 -[STAllowTCCRestrictionsController specifiers]
-/Library/Caches/com.apple.xbs/Sources/ScreenTimeSettingsUI_Sim/ScreenTime-492/ScreenTimeSettingsUI/Restrictions/iOS/STAllowTCCRestrictionsController.m
+/Library/Caches/com.apple.xbs/Sources/ScreenTimeSettingsUI_Sim/ScreenTime-493/ScreenTimeSettingsUI/Restrictions/iOS/STAllowTCCRestrictionsController.m
+-[STAllowPhotoRestrictionsController specifiers]
 PHOTOS_EXPLANATION
 com.apple.mobilephone
 AlwaysAllowTitle
@@ -1439,6 +1440,8 @@ givenName
 T@"NSString",R,C,N
 isParent
 isChild
+hasDeviceWithoutUsageReported
+TB,V_hasDeviceWithoutUsageReported
 T@"NSString",R,C,N,V_name
 T@"NSString",R,C,N,V_identifier
 platform
@@ -2286,11 +2289,11 @@ Failed to save managed user blueprint: %{public}@
 Failed to delete managed user blueprint: %{public}@
 Failed to save allowance: %{public}@
 failed to fetch local user: %{public}@
-Could not create an STCoreDevice from source device %{public}@ for user and device: %{public}@
 Error fetching installed bundle IDs: %{public}@
 Error fetching blueprints: %{public}@
 Failed to fetch categories for installed bundle identifiers: %{public}@
 Unable to load view model: %{public}@
+Could not create an STCoreDevice from source device %{public}@ for user and device: %{public}@
 failed to initiate family: %{public}@
 Error creating category declaration from plist: %{public}@
 failed to deserialize configuration plist: %{public}@
@@ -2330,6 +2333,7 @@ STAlwaysAllowListControllerDelegate
 STDeviceBedtimeListControllerDelegate
 STAllowLocationRestrictionsController
 STAllowTCCRestrictionsController
+STAllowPhotoRestrictionsController
 STAlwaysAllowListController
 STAppCell
 STAppStoreIconCell
@@ -3082,6 +3086,7 @@ specifierAtIndex:
 performSetterWithValue:
 updateSpecifiersForImposedSettings
 _allowedGroup
+explanation
 allowedContactsSpecifier
 setAllowsSelectionDuringEditing:
 type
@@ -3927,15 +3932,13 @@ totalChildUsageTime:
 showChildViewController:
 personImageWithDSID:fullName:
 preferredContentSizeCategory
-startOfDayForDate:
-dateByAddingUnit:value:toDate:options:
-lastFamilyCheckinDate
 children
-coordinatorForChild:deviceIdentifier:usageReportType:
-createSpecifierForUser:devices:
+hasDeviceWithoutUsageReported
+createSpecifierForUser:shouldWarn:
 predicateWithFormat:
 defaultDeviceIdentifierForChild:
 defaultUsageReportTypeForChild:
+coordinatorForChild:deviceIdentifier:usageReportType:
 _tableCellHeightDidChange:
 willChangeValueForKey:
 didChangeValueForKey:
@@ -4458,6 +4461,9 @@ setLocalDevice:
 _localDevice
 _noDataDetailTextLabel
 _devicesDidChange:
+startOfDayForDate:
+dateByAddingUnit:value:toDate:options:
+lastFamilyCheckinDate
 noUsageReportedAlertSpecifier
 setNoUsageReportedAlertSpecifier:
 _noUsageReportedAlertSpecifier
@@ -4668,11 +4674,13 @@ setManaged:
 setWebUsageEnabled:
 setRemoteUser:
 setHasAllowances:
+setHasDeviceWithoutUsageReported:
 _screenTimeEnabled
 _managed
 _webUsageEnabled
 _remoteUser
 _hasAllowances
+_hasDeviceWithoutUsageReported
 _source
 _name
 _dsid
@@ -4713,9 +4721,8 @@ fetchLocalUserInContext:error:
 organization
 settings
 user
-syncingEnabled
 userDeviceStates
-device
+syncingEnabled
 bundleIdentifiersInstalledForDSID:inContext:error:
 setPredicate:
 canonicalBundleIdentifier
@@ -4741,6 +4748,7 @@ _coordinatorsByChildDSID
 _deviceIdentifier
 _usageReportType
 _usageContext
+device
 defaultFontDescriptorWithTextStyle:
 configurationWithFont:scale:
 imageWithConfiguration:

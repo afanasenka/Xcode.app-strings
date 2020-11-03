@@ -1544,6 +1544,8 @@ spellChecker
 spellServer:findMisspelledWordInString:language:wordCount:countOnly:
 spellServer:suggestContextualGuessDictionariesForWordRange:inString:language:options:
 doubleValue
+addIndex:
+removeObjectsAtIndexes:
 expandedTokensForSearchString:language:
 queryStringForExpandedTokens:queryFields:matchType:
 queryStringForSearchString:queryFields:matchType:

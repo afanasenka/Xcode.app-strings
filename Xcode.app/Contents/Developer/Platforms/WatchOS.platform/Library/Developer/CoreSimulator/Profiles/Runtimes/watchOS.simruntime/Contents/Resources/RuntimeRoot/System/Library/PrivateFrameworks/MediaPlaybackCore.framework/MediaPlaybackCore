@@ -240,6 +240,8 @@ Wired Ethernet
 Other
 v32@?0^{__CFArray=}8^{__CFArray=}16^{__CFError=}24
 v32@?0^{__CFArray=}8^v16^{__CFError=}24
+waitForCompleteClusters
+TB,N,V_waitForCompleteClusters
 v24@?0@"ICUserIdentityProperties"8@"NSError"16
 identityProperties
 T@"ICUserIdentityProperties",C,N,V_identityProperties
@@ -542,19 +544,20 @@ MPCPlaybackIntent.m
 completion
 v24@?0@"MPRemotePlaybackQueue"8@"NSError"16
 com.apple.amp.MPCPlaybackIntent.MediaSuggestion
-Cannot provide representative metadata for a shuffled tracklist.
-Cannot handle unknown generic object metadata.
-Cannot handle unknown playlist entry when capturing metadata.
-com.apple.MediaPlayer
-SEASON_DISPLAY_FORMAT_%@
+Cannot provide representative metadata for content item returned by queue feeder.
+Failed to generate now playing info for shuffled container or model object.
+v32@?0@"MPModelGenericObject"8@"MPNowPlayingContentItem"16@"NSError"24
 original
 sessionID
 supplemental
 containsLiveStream
 containsTransportableContent
 <ARCHIVE LOADER>
-v32@?0@"MPModelGenericObject"8@"MPNowPlayingContentItem"16@"NSError"24
 v16@?0@"<MPMutableRadioIdentifiers>"8
+Cannot handle unknown generic object metadata.
+Cannot handle unknown playlist entry when capturing metadata.
+com.apple.MediaPlayer
+SEASON_DISPLAY_FORMAT_%@
 tracklistDataSource
 T@"<MPCPlaybackIntentDataSource>",R,N
 localizedTitle
@@ -3257,6 +3260,8 @@ Failed to set output devices on primary endpoint: %{public}@
 [MPCReportingPlaybackObserver] ReloadWithPlaybackContextNotification _isReloadingWithPlaybackContext (was=%{BOOL}u, is=%{BOOL}u), _hasPendingContainerChange=%{BOOL}u, shouldPostPlayEndEvent=%{BOOL}u
 [MPCReportingPlaybackObserver] ReloadWithPlaybackContextNotification ignoring notification - playback state=%d, _isReloadingWithPlaybackContext=%{BOOL}u
 [MPCReportingPlaybackObserver] ItemDidChangeWhenReloadingPlaybackContextNotification _isReloadingWithPlaybackContext=%{BOOL}u, _itemDidChangeWhenReloadingPlaybackContext=%{BOOL}u
+<MPCAudioSpectrumAnalyzer: %p> Skipping audio tap installation for: %{public}@
+<MPCAudioSpectrumAnalyzer: %p> Attached audio tap to: %{public}@
 MPCExplicitContentAuthorizationManager %p - Explicit content is allowed for: %{public}@
 MPCExplicitContentAuthorizationManager %p - Explicit content playback is not allowed for any item - %{public}@
 MPCExplicitContentAuthorizationManager %p - Explicit content is not allowed and failing silently in accordance with business rules for: %{public}@
@@ -4909,7 +4914,10 @@ discoverAirplayDevicesMatchingGroupID:completion:
 discoverAirplayDevicesMatchingLogicalDeviceIDs:expectedCount:completion:
 discoverAirplayDevicesMatchingUIDs:completion:
 discoverRemoteControlEndpointsMatchingUIDs:completion:
+waitForCompleteClusters
+setWaitForCompleteClusters:
 _reconSession
+_waitForCompleteClusters
 identityStore
 initWithIdentityProperties:delegatedIdentityProperties:
 getPropertiesForUserIdentity:completionHandler:
@@ -4954,7 +4962,7 @@ setReportingPlaybackObserver:
 _jinglePlayActivityReportingController
 _reportingPlaybackObserver
 executeWithUIDs:action:volumeValue:completion:
-containsObject:
+containsUID:
 connectToEndpoint:completion:
 setVolume:withUIDs:completion:
 increaseVolumeBy:withUIDs:completion:
@@ -5476,7 +5484,7 @@ _exportableSessionTypes
 setExportableSessionTypes:
 sessionManager
 stagedQueueControllerIdentifiers
-commitPlaybackSessionCommand
+setPriorityForPlaybackSessionCommand
 setPreloadedSessions:
 discardPlaybackSessionCommand
 stationAllowsItemLiking
@@ -5606,6 +5614,7 @@ substringToIndex:
 requestedProperties
 initWithRequestedProperties:
 properties
+containsObject:
 storePlatformMetadata
 genericObjectForStorePlatformMetadata:userIdentity:
 storeAdamID
@@ -5772,18 +5781,11 @@ setExpirationDate:
 sharedService
 addAssertion:
 queueFeederClass
-getRepresentativeMetadataForPlaybackContext:completion:
+nowPlayingInfo
 genericObjectRepresentation
-playlist
-tracksTiledArtworkCatalogWithRows:columns:
-number
-stringValue
-podcast
-author
-podcastEpisode
-curator
-editorialArtworkCatalog
-socialPerson
+generateNowPlayingContentItemWithMetadataObject:
+artworkCatalogForMetadataModelObject:
+getRepresentativeMetadataForPlaybackContext:completion:
 preferredArtworkSize
 supplementalPlaybackContextBehavior
 supplementalPlaybackContextWithReason:
@@ -5803,6 +5805,7 @@ loadAdditionalItemsWithRequest:forSection:completion:
 placeholderItemForLoadingAdditionalItemsInSection:
 firstItemIntersectingIdentifierSet:
 supportsAutoPlay
+subtitle
 initWithTitle:subtitle:artworkImageData:
 mainBundle
 bundleIdentifier
@@ -5816,6 +5819,17 @@ setRadioStation:
 setStationStringID:
 setRadioIdentifiersWithBlock:
 setRadioStationURL:
+setSubtitle:
+playlist
+number
+stringValue
+podcast
+author
+podcastEpisode
+curator
+socialPerson
+tracksTiledArtworkCatalogWithRows:columns:
+editorialArtworkCatalog
 intentFromQueueDescriptor:
 continueListeningRadioPlaybackIntent
 radioPlaybackIntentFromAlbum:
@@ -5824,7 +5838,7 @@ radioPlaybackIntentWithStation:
 radioPlaybackIntentWithStationStringID:
 getRemotePlaybackQueueRepresentationWithPlayerPath:completion:
 getRemotePlaybackQueueDataWithCompletion:
-getRepresentativeMetadataWithCompletion:
+getNowPlayingInfoWithArtworkCatalogConfiguration:artworkHandler:completion:
 getArchiveWithConfiguration:completion:
 localizedTitle
 tracklistSource
@@ -7257,9 +7271,11 @@ _itemInsertedNotification:
 _freeBuffers
 _destroyFFTSetup
 _destroyAudioTap
-audioMix
+_shouldAttachToPlayerItem:
 _attachAudioTapToPlayerItem:
 loadValuesAsynchronouslyForKeys:completionHandler:
+isAirPlayingToDevice
+audioMix
 audioMixInputParametersWithTrack:
 setAudioTapProcessor:
 setInputParameters:
@@ -8637,6 +8653,7 @@ q24@0:8@"NSString"16
 v40@0:8@"MPCQueueControllerDataSourceLoadRequest"16@"NSString"24@?<v@?@"NSError">32
 @"MPPlaceholderAVItem"24@0:8@"NSString"16
 @"NSString"24@0:8@"MPIdentifierSet"16
+v40@0:8@?16@?24@?32
 @"<MPCPlaybackIntentDataSource>"
 @"<NSSecureCoding>"
 {?="initialized"b1"beats1"b1"name"b1"editorNotes"b1"shortEditorNotes"b1"explicit"I"artwork"b1"allowsItemLiking"b1"attributionLabel"b1"type"b1"subtype"b1"subscriptionRequired"b1"providerUniversalLink"b1"providerBundleIdentifier"b1}
@@ -8764,7 +8781,7 @@ v48@0:8@16Q24Q32@?40
 v28@0:8Q16B24
 @"CPLRUDictionary"
 v44@0:8I16@20@28@?36
-v56@0:8@16@24^v32@40@?48
+v56@0:8@16@24@32@40@?48
 v52@0:8I16@20^v28@36@?44
 v52@0:8I16^v20@28@36@?44
 ^v32@0:8@16@24

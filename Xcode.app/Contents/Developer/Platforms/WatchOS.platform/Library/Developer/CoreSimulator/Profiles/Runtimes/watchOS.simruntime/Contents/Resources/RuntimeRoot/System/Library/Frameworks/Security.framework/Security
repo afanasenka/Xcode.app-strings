@@ -309,7 +309,6 @@ Invalid operation type.
 Invalid 'context' argument.
 Invalid 'ACL' argument.
 LAContext
-Unable to find class %s
 /System/Library/Frameworks/LocalAuthentication.framework/LocalAuthentication
 /System/Library/Frameworks/LocalAuthentication.framework/Contents/MacOS/LocalAuthentication
 T^{sqlite3=},N,V_db
@@ -400,9 +399,10 @@ normal
 Execution has encountered an unexpected state
 0123456789abcdef
 0123456789ABCDEF
-Td,N,V_samplingInterval
+samplingInterval
 T@"NSString",R,N,V_name
 oncePerReport
+TB,R,N,V_oncePerReport
 v32@?0@"NSString"8@"NSNumber"16^B24
 T@"NSString",&,N,V_protocolType
 T@"NSString",&,N,V_uniqueDeviceID
@@ -448,14 +448,14 @@ FleetSampleRate
 DeviceSampleRate
 ExpName
 ConfigData
-T@"NSString",R,C
+superclass
+description
 T@"NSString",&,V_name
 samplingDisabled
 TB,N,V_samplingDisabled
 cachedConfig
 T@"SecExperimentConfig",&,V_cachedConfig
 identifier
-T@"NSString",R
 T@"NSString",&,V_identifier
 config
 T@"NSDictionary",&,V_config
@@ -499,7 +499,6 @@ com.apple.lakitu
 com.apple.sbd
 com.apple.security.sos-usercredential
 com.apple.security.egoIdentities
-com.apple.security.octagon
 com.apple.security.ckks
 com.apple.security.sos
 com.apple.trustd
@@ -514,6 +513,8 @@ SFAnalyticsActivityTracker user called stop w/o calling start
 SFAnalyticsActivityTracker.m
 SFAnalyticsActivityTracker user called start twice
 SFAnalyticsActivityTracker queue
+synchronous
+TB,V_synchronous
 T@"NSObject<OS_xpc_object>",&,V_endpoint
 connection
 loggedout
@@ -527,8 +528,6 @@ keystate
 view
 ckkscontrol
 com.apple.securityd.ckks
-TQ,R
-T#,R
 defaultContext
 enable
 OctagonPairing
@@ -545,22 +544,19 @@ EnableSecureObjectSync
 OctagonOptimization
 OctagonEscrowRecordFetch
 KVSOnCloudKitForAll
+SecErrorNestedErrorCapping
 NTLMSSP
+T@"NSXPCConnection",&,V_connection
 com.apple.securityd.general
 callback
 T@?,C,V_callback
-superclass
-description
 Could not create SecuritydXPCClient
 success_count
 hard_failures
 soft_failures
-samples
 notes
 hard_failure_count
 soft_failure_count
-value
-name
 postTime
 eventTime
 eventType
@@ -627,6 +623,8 @@ database
 T@"SFAnalyticsSQLiteStore",&,N,V_database
 queue
 T@"NSObject<OS_dispatch_queue>",&,N,V_queue
+TQ,R
+T#,R
 com.apple.security.sfanalytics.samplerGC
 %@-%ld:
 v32@?0@"NSString"8@"SFAnalyticsSampler"16^B24
@@ -634,19 +632,17 @@ v32@?0@"NSString"8@"SFAnalyticsMultiSampler"16^B24
 v32@?0@"NSString"8@16^B24
 SFAnalytics data access queue
 databasePath
+T@"NSString",R
 SIMULATOR_MODEL_IDENTIFIER
 %@/%@.db
 sfanalytics
 Analytics/%@.db
 Analytics
 SFAnalyticsInstance
-T@"NSXPCConnection",&,V_connection
 TB,V_sync
-synchronous
-TB,V_synchronous
 v32@?0@"NSData"8@"NSData"16@"NSError"24
 v56@?0@"NSString"8@"NSData"16@"NSData"24@"NSData"32@"NSData"40@"NSError"48
-Couldn't create connection (no reason given)
+com.apple.security.octagon
 WORKSTATION
 have_prerecord
 pending_passcode
@@ -654,6 +650,7 @@ pending_certificate
 escrow
 v24@?0Q8@"NSError"16
 v24@?0@"NSDictionary"8@"NSError"16
+Couldn't create connection (no reason given)
 com.apple.security.escrow-update
 /usr/lib/libnetwork.dylib
 nw_protocol_options_access_handle
@@ -754,7 +751,6 @@ className
 T@"NSString",R,N,V_className
 size
 TQ,R,N,V_size
-flags
 TQ,R,N,V_flags
 number
 TB,R,N,GisNumber
@@ -790,7 +786,7 @@ char
 com.apple.security.padding
 B24@?0Q8@"NSObject<OS_xpc_object>"16
 com.apple.
-NSAppTransportSecurity
+value
 AnalyticsSendEventLazy
 void soft_AnalyticsSendEventLazy(NSString *__strong, NSDictionary<NSString *,NSObject *> *(^__strong)(void))
 SecCoreAnalytics.m
@@ -799,8 +795,8 @@ void *CoreAnalyticsLibrary(void)
 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Contents/MacOS/CoreAnalytics
 AnalyticsSendEvent
 void soft_AnalyticsSendEvent(NSString *__strong, NSDictionary<NSString *,NSObject *> *__strong)
-samplingInterval
-TB,R,N,V_oncePerReport
+Td,N,V_samplingInterval
+name
 SFAnalyticsSampler
 NSExceptionDomains
 NSExceptionRequiresForwardSecrecy
@@ -872,14 +868,14 @@ preferredBottleIDs
 T@"NSArray",&,V_preferredBottleIDs
 partialRecoveryBottleIDs
 T@"NSArray",&,V_partialRecoveryBottleIDs
-TQ,N,V_timeoutWaitForCKAccount
-qualityOfService
-Tq,N,V_qualityOfService
-TB,N,V_discretionaryNetwork
-useCachedAccountStatus
-TB,N,V_useCachedAccountStatus
-discretionaryNetwork
 timeoutWaitForCKAccount
+TQ,N,V_timeoutWaitForCKAccount
+Tq,N,V_qualityOfService
+discretionaryNetwork
+TB,N,V_discretionaryNetwork
+TB,N,V_useCachedAccountStatus
+useCachedAccountStatus
+qualityOfService
 cliqueMemberIdentifier
 T@"NSString",C,N,V_cliqueMemberIdentifier
 T@"OTConfigurationContext",&,N,V_ctx
@@ -929,6 +925,7 @@ v24@?0q8@"NSError"16
 void *KeychainCircleLibrary(void)
 KCPairingChannel
 Class getKCPairingChannelClass(void)_block_invoke
+Unable to find class %s
 OTClique.m
 clique-resetandestablish
 clique-establish
@@ -969,12 +966,12 @@ bottleID
 clique-newfriends
 event_type
 timestamp
-data
 upload_date
 hardFailures
 T@"NSArray",R
 softFailures
 allEvents
+samples
 uploadDate
 T@"NSDate",&
 id >= 0
@@ -991,7 +988,6 @@ hasOptionalParams
 optionalParams
 T@"NSData",&,N,V_optionalParams
 optional_params
-%@ %@
 lockedStates
 T@"NSMutableDictionary",R
 mutabilityQueue
@@ -1001,23 +997,24 @@ SecMockAKS
 keyData
 T@"NSData",&,V_keyData
 T@"_SFAESKey",&,V_key
-acmHandle
 T@"NSData",&,V_acmHandle
-externalData
 T@"NSData",&,V_externalData
 blob
 T@"NSData",&,V_blob
 hasAccessGroups
-accessGroups
 T@"NSData",&,N,V_accessGroups
 hasExternalData
+externalData
 T@"NSData",&,N,V_externalData
 hasAcmHandle
+acmHandle
 T@"NSData",&,N,V_acmHandle
 acm_handle
 external_data
 access_groups
+%@ %@
 Unknown OID
+SHA-1
 RC2-CBC
 DES-EDE3-CBC
 RC5-CBCPad
@@ -1103,6 +1100,7 @@ Certificate Policy Mappings
 Certificate Policy Constraints
 Certificate Authority Key Identifier
 Extended Key Usage
+Authority Information Access
 CRL Number
 CRL reason code
 Invalid Date
@@ -1199,7 +1197,6 @@ AES-256-CBC
 SDN.702 DSA Signature
 Microsoft S/MIME Encryption Key Preference
 SHA-224
-SHA-256
 SHA-384
 SHA-512
 PKCS #1 SHA-256 With RSA Encryption
@@ -1225,7 +1222,7 @@ appleCodesigningHashAgilityAttribute
 appleCodesigningHashAgilityAttributeV2
 appleExpirationTimeAttribute
 system-keychain
-status
+musr
 Warning: unable to build chain to self-signed root for signer "%s"
 CMSDecoder
 Unknown
@@ -1239,7 +1236,6 @@ SignatureAlgorithmUnknown
 SignatureAlgorithmUnsupported
 MalformedSignature
 ProcessingError
-sha1
 sha256
 CMSEncoder
 nullkey
@@ -1254,7 +1250,6 @@ Didn't consume all data supplied
 Unable to decode public key: %@
 Faild to create scratch
 bskb
-(null)
 SecRandom falied!
 Need peers
 Need aks bag
@@ -1267,7 +1262,6 @@ v24@?0^{ccec_full_ctx=^{ccec_cp}[8C][0{ccec_projective_point=[1Q]}]}8^{__CFStrin
 no recovery key found in %@
 Bad Circle Version
 Bad Circle DER
-don't know how to encode
 SOSCircle
 %@%@
 ], R:[
@@ -1334,6 +1328,7 @@ OctagonPublicEncryptionKey
 Failed to sign peerinfo for peer
 Failed to hash description for peer
 Unable to get public key
+Failed to export public bytes
 Unable to get public
 v16@?0^{__CFDictionary=}8
 CloudIdentity
@@ -1368,7 +1363,7 @@ EFRESH
 v24@?0^{__CFDictionary=}8^{__CFError=}16
 KVSStateCapture
 circleOps
-Failed to export public bytes
+don't know how to encode
 v32@?0@"NSData"8Q16^B24
 piggy
 Cloud Identity-piggy-%@
@@ -1378,6 +1373,7 @@ tlk-piggy
 tlks
 Manatee
 AutoUnlock
+Engram
 idents
 Didn't consume all bytes for pbblob
 Bad Blob DER
@@ -1431,6 +1427,7 @@ Deleting while purging
 com.apple.security.sos.error
 AccountDSID
 IDS2.0
+numberOfErrorsDeep
 GenerateECPair Temporary Key - Shouldn't be live
     '%@' %s %@
 <Changes: {
@@ -1469,6 +1466,7 @@ No PeerInfo to encode
 Signature doesn't validate
 gestalt key missing
 Expected (version) number got %@
+Expected dictionary got %@
 Bad Format of Peer Info DER
 V2DictionaryData
 Views
@@ -1479,7 +1477,6 @@ RingState
 BackupKey
 EscrowRecord
 Can't expand V2 Dictionary
-Expected dictionary got %@
 Bad Format of Dictionary DER
 Corrupted v2Data Item
 No V2 Data in description
@@ -1499,9 +1496,6 @@ iCloudIdentity
 BackupBagV0
 OtherSyncable
 ContinuityUnlock
-AppleTV
-HomeKit
-AccessoryPairing
 PCS-CloudKit
 PCS-Escrow
 PCS-FDE
@@ -1516,10 +1510,7 @@ PCS-iCloudDrive
 PCS-iMessage
 NanoRegistry
 WatchMigration
-Engram
-Health
 ApplePay
-Home
 LimitedPeersAllowed
 views
 unknownViewAction
@@ -1565,6 +1556,7 @@ SyncSet
 CoderDump
 ManifestHash
 com.apple.securityd.sos
+T@"NSString",R,C
 SOS Disabled for this platform
 SOSCCLoggedIntoAccount
 return=%d
@@ -1588,7 +1580,6 @@ SecErrorMessages
 SecAccessControl
 <SecAccessControlRef: %@>
 ...(%db)
-%02X
 prot
 allocate memory for SecAccessControl
 kSecAccessControlUserPresence can be combined only with kSecAccessControlApplicationPassword and kSecAccessControlPrivateKeyUsage
@@ -1675,6 +1666,7 @@ error
 success
 title
 section
+data
 string
 date
 SignatureDigestUnknown
@@ -1711,7 +1703,7 @@ Valid from
 Expired
 This certificate is valid
 Expires
-SHA-1
+SHA-256
 Fingerprints
 Data
 Object Signing CA
@@ -1722,7 +1714,6 @@ Object Signing
 S/MIME
 SSL server
 SSL client
-Authority Information Access
 Access Method
 Purpose
 Policy Constraints
@@ -1995,12 +1986,12 @@ crlt
 crle
 sync
 tomb
-musr
 nleg
 toid
 UUID
 persistref
 sysb
+sha1
 dspk
 pcss
 pcsk
@@ -2094,6 +2085,11 @@ u_AuthCtx
 com.apple.setoken
 com.apple.setoken:aks
 com.apple.secelemtoken
+AppleTV
+HomeKit
+AccessoryPairing
+Health
+Home
 kSecKeyWrapPGPSymAlg
 kSecKeyWrapPGPFingerprint
 kSecKeyWrapPGPWrapAlg
@@ -2246,6 +2242,7 @@ out of memory
 expecting RSA key
 algorithm %@ incompatible with %lubit RSA key
 SecOTRFullDHKey
+%02X
 v24@?0^{__CFString=}8^{__CFString=}16
 <SecOTRFullDHKeyRef@%p: x: %@ y: %@ [%@]>
 SecOTRPublicDHKey
@@ -2263,6 +2260,7 @@ SecOTRPublicIdentity
 <SecOTRPublicIdentity: %p %02x%02x%02x%02x%02x%02x%02x%02x>
 Unable to create public key bytes
 Error creating public identity from bytes
+(null)
 T^{__SecKey={__CFRuntimeBase=QAQ}^{__SecKeyDescriptor}^v},R,N
 T@"NSXPCListenerEndpoint",R,N
 debugDescription
@@ -2827,6 +2825,7 @@ MacAppStoreReceipt
 NSPinnedCAIdentities
 SPKI-SHA256-BASE64
 NSPinnedDomains
+NSAppTransportSecurity
 NSPinnedLeafIdentities
 SecTrustPinningRequired
 failed to create xpc_array for policy
@@ -3031,6 +3030,7 @@ otrrdy
 cfstring
 cfarray
 fileDescriptor
+accessGroups
 normIssuer
 serialNum
 backupKeybagID
@@ -3272,6 +3272,7 @@ changed-files
 designated-requirement
 entitlements
 entitlements-dict
+flags
 format
 digest-algorithm
 digest-algorithms
@@ -3282,6 +3283,7 @@ info-plist
 requirements
 requirement-data
 source
+status
 teamid
 signing-time
 signing-timestamp
@@ -3527,7 +3529,8 @@ Requesting a push for view %@
 Requesting a fetch(classA) for view %@
 Requesting a fetch for view %@
 Requesting a resync for view %@
-Requesting a CloudKit resync for view %@
+Requesting a local resync for view %@
+Requesting a CloudKit reset for view %@
 Requesting a local reset for view %@
 Octagon is %@ (overridden)
 Octagon is %@ (via feature flags)
@@ -3542,6 +3545,8 @@ Octagon Escrow Record Fetching is %@ (overridden)
 Octagon Escrow Record Fetching is %@ (via feature flags)
 KVS on CloudKit is %@ (overridden)
 KVS on CloudKit is %@ (via feature flags)
+SecError Nested Error Capping is %@ (overridden)
+SecError Nested Error Capping is %@ (via feature flags)
 Could not configure SecuritydXPCProtocol: %@
 OTSetupControlProtocol failed, continuing, but you might crash later: %@
 SFAnalytics: Need a valid result and name to log result
@@ -4048,6 +4053,7 @@ SecTrustGetTrustStoreVersionNumber
 SecTrustGetAssetVersionNumber
 SecTrustOTAPKIGetUpdatedAsset
 SecTrustOTASecExperimentGetUpdatedAsset
+SecTrustTriggerValidUpdate
 SecTrustReportTLSAnalytics
 CFStringCreateWithCString failed
 SecTrustReportNetworkingAnalytics failed with error: %d
@@ -4104,6 +4110,7 @@ unable to allocate data for ticket
 unable to read entire ticket from bundle
 unable to create cfdata for notarization
 successfully found stapled ticket for: %s
+successfully found stapled ticket in MachO
 Account Creation Date Cutoff: %@
 Account Creation date: %@
 Account creation date %@ is after cut-off %@
@@ -4713,6 +4720,7 @@ rpcStatus:reply:
 rpcFastStatus:reply:
 rpcResetLocal:reply:
 rpcResetCloudKit:reason:reply:
+rpcResyncLocal:reply:
 rpcResync:reply:
 rpcFetchAndProcessChanges:reply:
 rpcFetchAndProcessClassAChanges:reply:
@@ -4735,7 +4743,6 @@ CKKSControlObject:error:
 resume
 setRemoteObjectInterface:
 interfaceWithProtocol:
-rpcResyncLocal:reply:
 initWithMachServiceName:options:
 initWithInt:
 configureSecuritydXPCProtocol:

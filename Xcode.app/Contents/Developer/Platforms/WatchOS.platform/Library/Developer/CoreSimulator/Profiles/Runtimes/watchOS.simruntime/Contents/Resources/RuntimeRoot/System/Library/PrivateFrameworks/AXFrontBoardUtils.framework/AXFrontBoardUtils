@@ -35,6 +35,11 @@ UIAlertController
 CSLAlertRootViewController
 displayingAlert
 CUISAlertViewController
+SBApplicationController
+loginApplication
+processState
+taskState
+visibility
 GAXSpringboard
 sharedInstanceIfExists
 isInWorkspace
@@ -67,8 +72,6 @@ FBScene (AX) <%p>
 otherSettings
 searchScreen
 FBApplicationProcess
-taskState
-visibility
 isForeground
 settings
 persistenceIdentifier

@@ -61,6 +61,8 @@ isLegacyNowPlayingInfoRequest
 playbackSessionData
 identifier
 type
+revision
+metadata
 <%@: %p> %@
 protobuf
 T@"_MRPlaybackSessionProtobuf",R,N
@@ -69,6 +71,8 @@ T@"NSString",C,N,V_type
 T@"NSData",C,N,V_playbackSessionData
 data
 T@"NSData",R,C,N
+T@"NSString",R,C,N,V_revision
+T@"NSData",R,C,N,V_metadata
 controllerID
 properties
 @16@?0@"_MRNowPlayingPlayerPathProtobuf"8
@@ -130,7 +134,7 @@ Removing unfinished message. This is bad
 B16@?0Q8
 kMRPlaybackSessionDataUserInfoKey
 kMRPlaybackSessionUserInfoKey
-<%@:%p identifier=%@ type=%@, addingDevices=%@, removingDevices=%@ settingDevices=%@>
+<%@:%p identifier=%@ type=%@, addingDevices=%@, removingDevices=%@ settingDevices=%@ | cluster aware: addingDevices=%@, removingDevices=%@ settingDevices=%@>
 addingOutputDeviceUIDs
 T@"NSArray",R,N
 removingOutputDeviceUIDs
@@ -521,7 +525,7 @@ PlayItemInPlaybackQueue
 PrepareForSetQueue
 SetPlaybackSession
 PreloadPlaybackSession
-CommitPlaybackSession
+SetPriorityForPlaybackSession
 DiscardPlaybackSession
 ChangeQueueEndAction
 event
@@ -529,7 +533,6 @@ T@"_MRGameControllerMessageProtobuf",R,N
 TQ,R,N
 T@"_MRGameControllerPropertiesProtobuf",R,N
 inputMode
-metadata
 artworkData
 info
 availableLanguageOptions
@@ -942,6 +945,8 @@ pickedOnPairedDevice
 TB,R,N,GisPickedOnPairedDevice,V_pickedOnPairedDevice
 clusterComposition
 T@"NSArray",R,N,V_clusterComposition
+configuredClusterSize
+TQ,R,N,V_configuredClusterSize
 clusterType
 batteryLevel
 Tf,R,N,V_batteryLevel
@@ -1393,6 +1398,7 @@ Can only attempt to recover logical devices for shared audio presentation contex
 v32@?0@"NSString"8@"NSMutableArray"16^B24
 B32@?0@"MRAVConcreteOutputDevice"8Q16^B24
 v32@?0@"NSArray"8@"MRAVEndpoint"16@"NSError"24
+v24@?0@"MRAVEndpoint"8@"NSError"16
 B24@?0@"MRAVConcreteOutputDevice"8^B16
 com.apple.MRAVOutputContext.notificationQueue
 @"MRAVOutputContext"16@?0@"NSNotification"8
@@ -1451,6 +1457,9 @@ void MRAVOutputContextRemoveOutputDeviceWithInitiator(MRAVOutputContextRef, MRAV
 AVOutputContext
 /System/Library/Frameworks/AVFoundation.framework/AVFoundation
 AVOutputDevice
+AVOutputContextDestinationChangeReasonKey
+AVOutputContextDestinationChangeReasonIdleDisconnect
+AVOutputContextDestinationChangePreviousDeviceIDsKey
 AVOutputContextOutputDeviceDidChangeNotification
 AVOutputContextOutputDevicesDidChangeNotification
 AVOutputDeviceDiscoverySessionAvailableOutputDevicesDidChangeNotification
@@ -1490,6 +1499,7 @@ airPlayReceivers
 linkAgent
 clusterID
 clusterLeaderID
+clusterAware
 deviceClass
 protocolVersion
 groupedDeviceCount
@@ -1579,6 +1589,8 @@ T@"NSString",C,N,V_linkAgent
 T@"NSString",C,N,V_clusterID
 T@"NSString",C,N,V_clusterLeaderID
 TI,N,V_clusterType
+TB,N,GisClusterAware,V_clusterAware
+T@"NSString",C,N,V_modelID
 minimalDescription
 T@"NSString",R,C,N
 unsupportedMessage
@@ -1701,7 +1713,6 @@ requestType
 source=%@ destination=%@
 v40@?0^v8^v16^{__CFString=}24^{__CFError=}32
 migratePlaybackSessionForDevice
-v24@?0@"MRAVEndpoint"8@"NSError"16
 B16@?0@"MRAVOutputDevice"8
 @"NSString"24@?0@"NSArray"8@"NSArray"16
 MRNowPlayingPlayerPathRef MRPlaybackSessionMigrateCopyCorrespondingPlayerPath(MRNowPlayingPlayerPathRef, MROriginRef)
@@ -2004,6 +2015,12 @@ kMRMediaRemoteOptionCommandID
 kMRMediaRemoteOptionSenderID
 kMRMediaRemoteOptionPlaybackSessionData
 kMRMediaRemoteOptionPlaybackSessionIdentifier
+kMRMediaRemoteOptionPlaybackSessionType
+kMRMediaRemoteOptionPlaybackSessionPriority
+kMRMediaRemoteOptionPlaybackSessionFilePath
+kMRMediaRemoteOptionPlaybackSessionRevision
+kMRMediaRemoteOptionPlaybackSessionMetadata
+kMRMediaRemoteOptionSanboxExtensionToken
 kMRMediaRemoteOptionQueueEndAction
 kMRMediaRemoteCommandInfoPreservesQueueEndActionKey
 kMRMediaRemoteCommandInfoPreservesShuffleModeKey
@@ -2163,7 +2180,7 @@ MRExternalDeviceConnectionReasonUserInfoKey
 -[MRExternalDevice outputDeviceVolume:queue:completion:]
 -[MRExternalDevice setOutputDeviceVolume:outputDeviceUID:queue:completion:]
 -[MRExternalDevice outputDeviceVolumeControlCapabilities:queue:completion:]
--[MRExternalDevice modifyByAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:withReplyQueue:completion:]
+-[MRExternalDevice modifyByAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:addingClusterAwareDeviceUIDs:removingClusterAwareDeviceUIDs:settingClusterAwareDeviceUIDs:withReplyQueue:completion:]
 -[MRExternalDevice sendButtonEvent:]
 -[MRExternalDevice sendCustomData:withName:]
 -[MRExternalDevice ping:callback:withQueue:]
@@ -2364,6 +2381,9 @@ outputContextType
 addingOutputDeviceUID
 removingOutputDeviceUID
 settingOutputDeviceUID
+clusterAwareAddingOutputDeviceUID
+clusterAwareRemovingOutputDeviceUID
+clusterAwareSettingOutputDeviceUID
 MRLegacySendHIDEventMessage.m
 <Message Type: %@
 Timestamp: %llu
@@ -2639,6 +2659,7 @@ playbackSessionIdentifier
 currentQueueEndAction
 supportedQueueEndActions
 disabledReason
+supportedPlaybackSessionIdentifiers
 AutoPlay
 AdPlayback
 usagePage
@@ -2768,6 +2789,8 @@ T@"NSMutableArray",&,N,V_clusterCompositions
 hasClusterType
 hasPrimaryUID
 T@"NSString",&,N,V_primaryUID
+hasConfiguredClusterSize
+TI,N,V_configuredClusterSize
 AirPlay
 Bluetooth
 CarPlay
@@ -3007,8 +3030,9 @@ cce7c4ecef404121ae8971
 lockscreen_platter_headphones
 PersonalDevicesForLockScreenDisplay
 PersonalDeviceState
-identity_based_endpoint_switching_forced
 MaximumNumberOfMediaSuggestions
+support_proactive_suggestion
+visually_identify_proactive_suggestion
 usePeerToPeerExternalDeviceConnections
 useNoDelayOptionForExternalDeviceSockets
 useDebugAVRouteWithoutVolumeControl
@@ -3070,8 +3094,9 @@ supportLockscreenPlatterDisplayForPersonalDevice
 personalDeviceLockScreenTimeout
 personalDeviceState
 T@"NSDictionary",&,N
-forceIdentityBasedEndpointSwitchingForAllHomeDevices
 maximumNumberOfMediaSuggestions
+supportProactiveSuggestion
+visuallyIdentifyProactiveSuggestion
 activeSystemEndpointStartupDelayToAllowAllPreviousClientsTimeToInitializeInterval
 supportNanoLinkAgent
 jsonClientUIDs
@@ -3220,6 +3245,8 @@ hostname
 TB,R,N,V_requiresCustomPairing
 shouldUseSystemAuthenticationPrompt
 Tq,R,N,V_connectionType
+playbackSessionRevision
+playbackSessionPriority
 TVRemote
 nanomediaremoted
 nanomediaremotelinkagent
@@ -3401,7 +3428,6 @@ MRPairedDeviceRef MRMediaRemoteCopyCachedDeviceInfo(MROriginRef)
 packetData
 totalLength
 totalWritePosition
-revision
 kMRPlaybackSessionRequestDataUserInfoKey
 kMRPlaybackSessionRequestUserInfoKey
 Connecting
@@ -3462,6 +3488,9 @@ preservesShuffleMode
 preservesQueueEndAction
 homeKitUserIdentifier
 verifySupportedCommands
+playbackSessionFilePath
+playbackSessionMetadata
+playbackSessionType
 hasSourceID
 T@"NSString",&,N,V_sourceID
 T@"NSString",&,N,V_mediaType
@@ -3539,16 +3568,27 @@ hasVerifySupportedCommands
 TB,N,V_verifySupportedCommands
 hasPlaybackSessionIdentifier
 T@"NSString",&,N,V_playbackSessionIdentifier
+hasPlaybackSessionPriority
+Ti,N,V_playbackSessionPriority
+hasPlaybackSessionFilePath
+T@"NSString",&,N,V_playbackSessionFilePath
+hasPlaybackSessionRevision
+T@"NSString",&,N,V_playbackSessionRevision
+hasPlaybackSessionMetadata
+T@"NSData",&,N,V_playbackSessionMetadata
+hasPlaybackSessionType
+T@"NSString",&,N,V_playbackSessionType
 LaunchApplication
 NonDestructive
 ClearUpNext
 KeepUpNext
+High
+Immediate
 results
 startTimestamp
 endTimestamp
 v32@?0@"MRContentItem"8@"MRPlaybackQueueRequest"16^B24
 pairedDeviceSync
-Immediate
 Deferrable
 Guarded operation <%@> timed out after <%lf> seconds
 -[MRBlockGuard initWithTimeout:reason:handler:]_block_invoke
@@ -3624,6 +3664,9 @@ kMRMediaRemoteCommandInfoUpNextItemCount
 kMRMediaRemoteCommandInfoSupportedPlaybackSessionTypes
 kMRMediaRemoteCommandInfoCurrentPlaybackSessionTypes
 kMRMediaRemoteCommandInfoPlaybackSessionIdentifier
+kMRMediaRemoteCommandInfoSupportedPlaybackSessionIdentifiers
+kMRMediaRemoteCommandInfoPlaybackSessionRevision
+kMRMediaRemoteCommandInfoPlaybackSessionPriority
 kMRMediaRemoteCommandInfoCurrentQueueEndAction
 kMRMediaRemoteCommandInfoSupportedQueueEndActions
 kMRMediaRemoteCommandInfoDisabledReason
@@ -3853,6 +3896,7 @@ logicalDeviceCount
 tightlySyncedGroup
 isAirplayActive
 airplayReceivers
+isClusterAware
 Invalid
 iPhone
 iPod
@@ -4161,7 +4205,7 @@ createEndpointWithOutputDeviceUIDs
 leader UID: %@
 Missing devices in formed endpoint. Expected: %@, got: %@
 modifyOutputContext
-v24@?0@"NSArray"8@"NSMutableArray"16
+v32@?0@"NSArray"8@"NSMutableArray"16@"NSMutableArray"24
 v16@?0@"NSTimer"8
 localizedName
 T@"NSString",&,N,V_localizedName
@@ -4236,6 +4280,7 @@ headTrackedSpatialAudioActive
 TB,R,N,GisHeadTrackedSpatialAudioActive
 AVPairedDevice
 v32@?0@"AVOutputDevice"8Q16^B24
+B16@?0@"AVOutputDevice"8
 @16@?0@"AVOutputDevice"8
 memberOutputDevices
 T@"NSArray",R,N,V_memberOutputDevices
@@ -4248,7 +4293,7 @@ com.apple.MediaRemote.MRNowPlayingController:%@|queue
 v24@?0@"MRNowPlayingPlayerResponse"8@"NSError"16
 com.apple.MediaRemote.MRNowPlayingController.callbackQueue
 v24@?0@"MRPlaybackQueue"8@"NSError"16
-MRNowPlayingController requires endpoint
+MRNowPlayingController-search
 MRNowPlayingController
 @"NSString"16@?0@"MRContentItem"8
 T@"MRNowPlayingPlayerResponse",C,N,V_response
@@ -4256,6 +4301,8 @@ playerPathInvalidationObserver
 T@,&,N,V_playerPathInvalidationObserver
 endpointObserver
 T@"MRAVEndpointObserver",&,N,V_endpointObserver
+endpointObserverGroupUID
+T@"NSString",&,N,V_endpointObserverGroupUID
 deferredContentItemsToMerge
 T@"NSMutableArray",&,N,V_deferredContentItemsToMerge
 registeredForNotifications
@@ -4508,7 +4555,7 @@ inputStream
 T@"NSInputStream",R,N,V_inputStream
 outputStream
 T@"NSOutputStream",R,N,V_outputStream
-T@"MRSupportedProtocolMessages",&,N,V_supportedMessages
+T@"MRSupportedProtocolMessages",&,N
 T@"NSString",&,N,V_label
 streamsAreValid
 disconnected
@@ -4705,6 +4752,8 @@ useWeakMatching
 TB,N,V_useWeakMatching
 returnPartialResults
 TB,N,V_returnPartialResults
+waitForCompleteClusters
+TB,N,V_waitForCompleteClusters
 matchingLogicalDeviceIDs
 T@"NSArray",C,N,V_matchingLogicalDeviceIDs
 searchEndpointsForOutputDeviceUID
@@ -4933,6 +4982,8 @@ Didn't receive any pickable routes from the reply.
 Client XPC message with ID %lu not handled.
 Could not parse notification from xpc message
 No client module registered to receive message: %@
+Failed to consume sandbox extension.
+Failed to release sandbox extension.
 Client-side browsable content message with ID %lu not handled.
 No browsableContent endpoint registered to handle API: %@
 WARNING: Client endpoint returned nil when requesting now playing identifiers
@@ -4994,6 +5045,9 @@ Encountered unknown protobuf key (%@) while converting to a dictionary; skipping
 [AVOutputContext] Volume control is not available, ignoring setVolume request.
 [AVOutputContext] Received output context change initiated notification: %{public}@ for context: %{public}@
 [AVOutputContext] ProvidesVolumeFetaures did change to %{public}@ for context: %{public}@
+[AVOutputContext] AirPlay routes timed out: %{public}@
+[AVOutputContext] Failed to create endpoint for disconnected devices (%{public}@): %{public}@
+[AVOutputContext] Created endpoint for disconnected devices: %{public}@
 [AVOutputContext] Removed outputDevice %{public}@ for context: %{public}@
 [AVOutputContext] Added outputDevice %{public}@ for context: %{public}@
 [AVOutputContext] Updated outputDevice %{public}@ for context: %{public}@
@@ -5656,6 +5710,7 @@ NSNetServiceDelegate
 _MRPlaybackSessionMigrateRequestMessageProtobuf
 MRAVOutputContextTransport
 MRExternalDeviceTransport
+_MRPreloadedPlaybackSessionInfo
 _MRRegisterHIDDeviceResultMessageProtobuf
 MRNotificationServiceClient
 _MRPlaybackSessionMigrateEndMessageProtobuf
@@ -5901,7 +5956,7 @@ outputDeviceVolumeControlCapabilities:queue:completion:
 setOutputDeviceVolume:outputDeviceUID:queue:completion:
 disconnect:
 tearDown
-modifyByAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:withReplyQueue:completion:
+modifyByAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:addingClusterAwareDeviceUIDs:removingClusterAwareDeviceUIDs:settingClusterAwareDeviceUIDs:withReplyQueue:completion:
 setWantsVolumeNotifications:
 setWantsOutputDeviceNotifications:
 setWantsNowPlayingArtworkNotifications:
@@ -5985,10 +6040,12 @@ _includeMetadata
 _includeSections
 _isLegacyNowPlayingInfoRequest
 _returnContentItemAssetsInUserCompletion
-initWithIdentifier:type:playbackSessionData:
+initWithIdentifier:type:playbackSessionData:revision:metadata:
 initWithProtobuf:
 type
 playbackSessionData
+revision
+metadata
 protobuf
 setObject:forKeyedSubscript:
 isEqualToDictionary:
@@ -5998,6 +6055,8 @@ setPlaybackSessionData:
 _identifier
 _type
 _playbackSessionData
+_revision
+_metadata
 numberWithUnsignedLongLong:
 _controllerID
 _properties
@@ -6128,11 +6187,13 @@ setPlaybackSessionCallback:
 originClientForOrigin:
 setPlaybackSessionMigrateBeginCallback:
 setPlaybackSessionMigrateEndCallback:
+currentSettings
+useClusterDevices
+initWithAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:clusterAwareAddingOutputDeviceUIDs:clusterAwareRemovingOutputDeviceUIDs:clusterAwareSettingOutputDeviceUIDs:
+contextType
 addingOutputDeviceUIDs
 removingOutputDeviceUIDs
 settingOutputDeviceUIDs
-initWithAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:
-contextType
 clusterComposition
 initWithDescriptor:
 initWithOutputDevices:
@@ -6201,7 +6262,6 @@ client
 initWithPlayerPath:
 player
 setPlayer:
-metadata
 artworkURL
 title
 hasElapsedTime
@@ -6428,7 +6488,6 @@ _availableLanguageOptions
 _currentLanguageOptions
 _info
 _lyrics
-_metadata
 _parentIdentifier
 _queueIdentifier
 _requestIdentifier
@@ -6848,8 +6907,6 @@ volumeCapabilities
 setVolumeCapabilities:
 modelID
 firmwareVersion
-currentSettings
-useClusterDevices
 logicalDeviceID
 macAddress
 canAccessRemoteAssets
@@ -6875,6 +6932,7 @@ supportsHAP
 usingJSONProtocol
 clusterType
 primaryUID
+configuredClusterSize
 initWithSkeleton:
 MACAddress
 modelSpecificInfo
@@ -7004,6 +7062,7 @@ setSourceInfo:
 addClusterComposition:
 setClusterType:
 setPrimaryUID:
+setConfiguredClusterSize:
 jsonClientUIDs
 mr_any:
 companionDeviceUID
@@ -7056,6 +7115,7 @@ _firmwareVersion
 _groupID
 _MACAddress
 _playingPairedDeviceName
+_configuredClusterSize
 _parentGroupIdentifier
 _bluetoothID
 _primaryID
@@ -7094,7 +7154,7 @@ unpair
 outputDeviceVolume:withCompletion:
 setOutputDeviceVolume:forOutputDevice:withCompletion:
 outputDeviceVolumeControlCapabilities:withCompletion:
-modifyByAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:completion:
+modifyByAddingDeviceUIDs:removingDeviceUIDs:settingDeviceUIDs:addingClusterDeviceUIDs:removingClusterDeviceUIDs:settingClusterDeviceUIDs:completion:
 sendCustomData:withName:
 pingWithTimeout:callback:
 sendButtonEventWithUsagePage:usage:down:
@@ -7321,6 +7381,7 @@ sendMessage:queue:reply:
 initWithPlaybackSession:
 setError:
 playbackSession
+dataWithContentsOfFile:
 initWithVolume:outputDeviceUID:
 initWithVolume:
 _lastPlayingTimestamp
@@ -7497,7 +7558,6 @@ _hasPlaybackStateTimestamp
 initWithURL:
 appendData:
 initWithFileAtPath:
-dataWithContentsOfFile:
 hasBytesAvailable
 notifyDelegateOfStreamEvent:
 getBytes:length:
@@ -7550,6 +7610,7 @@ _handleDiscoverySessionOutputDevicesDidChangeNotification:
 _outputContextChangeInitiatedNotification:
 _handleOutputDeviceCanSetVolumeDidChangeNotification:
 _handleOutputDeviceSupportsVolumeDidChangeNotification:
+createEndpointWithOutputDeviceUIDs:queue:completion:
 objectsPassingTest:
 anyObject
 outputDevicesSnapshot
@@ -7570,6 +7631,7 @@ _postOutputDevicesChangedScheduled
 _handleOutputDeviceChangedScheduled
 _handleOutputDevicesChangedScheduled
 _handleDiscoverySessionOutputDevicesChangedScheduled
+_handlingAirPlayDevicesTimeOut
 _avOutputContext
 discoverySessionWithEndpointFeatures:
 auxiliarySession
@@ -7640,6 +7702,7 @@ airPlayReceivers
 linkAgent
 clusterID
 clusterLeaderID
+isClusterAware
 groupedDevices
 localReceiverPairingIdentity
 numberWithUnsignedInteger:
@@ -7674,6 +7737,7 @@ setAirPlayReceivers:
 setLinkAgent:
 setClusterID:
 setClusterLeaderID:
+setClusterAware:
 deltaDescriptionFromDeviceInfo:minimal:
 setHasDeviceClass:
 setHasProtocolVersion:
@@ -7719,6 +7783,7 @@ _hasConnected
 _hasGroupLeader
 _airPlayActive
 _hasAirPlayActive
+_clusterAware
 _clusterType
 _deviceClass
 _protocolVersion
@@ -8436,6 +8501,9 @@ removePlayer:
 _playerClients
 _touchDown
 _addingOutputDeviceUIDs
+_clusterAwareAddingOutputDeviceUIDs
+_clusterAwareRemovingOutputDeviceUIDs
+_clusterAwareSettingOutputDeviceUIDs
 _outputContextType
 _removingOutputDeviceUIDs
 _settingOutputDeviceUIDs
@@ -8627,6 +8695,7 @@ _presentationStyle
 _skipFrequency
 _skipInterval
 _supportedCustomQueueIdentifiers
+_supportedPlaybackSessionIdentifiers
 _supportedPlaybackSessionTypes
 _upNextItemCount
 _active
@@ -8728,6 +8797,8 @@ hasUsingJSONProtocol
 setHasClusterType:
 hasClusterType
 hasPrimaryUID
+setHasConfiguredClusterSize:
+hasConfiguredClusterSize
 shouldForceRemoteControlabillity
 setClusterCompositions:
 _clusterCompositions
@@ -8989,8 +9060,9 @@ supportLockscreenPlatterDisplayForPersonalDevice
 personalDeviceLockScreenTimeout
 personalDeviceState
 setPersonalDeviceState:
-forceIdentityBasedEndpointSwitchingForAllHomeDevices
 maximumNumberOfMediaSuggestions
+supportProactiveSuggestion
+visuallyIdentifyProactiveSuggestion
 isExternalDevicePairingAllowed
 setExternalDevicePairingAllowed:
 _userDefaults
@@ -9111,6 +9183,8 @@ initWithOutputContext:
 initWithOutputContext:connectionType:userInfo:error:
 removeOutputDevice:
 outputContextForControllingOutputDeviceGroupWithID:options:
+_playbackSessionPriority
+_playbackSessionRevision
 _deviceIdentifier
 registerCallbacks
 existingOriginClientRequestsForPlayerPath:
@@ -9178,6 +9252,7 @@ _removalCallback
 migrateToOrAddOutputDevices:initiator:withReplyQueue:completion:
 migrateToOrSetOutputDevices:initiator:withReplyQueue:completion:
 setReturnPartialResults:
+dictionaryWithDictionary:
 initWithPropertyListData:
 propertyListData
 _version
@@ -9224,7 +9299,6 @@ addMessage:
 _totalLength
 _totalWritePosition
 _packetData
-_revision
 _pickableRoutesDidChangeNotification:
 mediaRemoteService
 _mediaRemoteService
@@ -9277,6 +9351,10 @@ setUserIdentityData:
 setInsertBeforeContentItemID:
 setHomeKitUserIdentifier:
 setPlaybackSessionIdentifier:
+setPlaybackSessionFilePath:
+setPlaybackSessionRevision:
+setPlaybackSessionMetadata:
+setPlaybackSessionType:
 hasSourceID
 setExternalPlayerCommand:
 setHasExternalPlayerCommand:
@@ -9367,6 +9445,16 @@ setVerifySupportedCommands:
 setHasVerifySupportedCommands:
 hasVerifySupportedCommands
 hasPlaybackSessionIdentifier
+playbackSessionPriority
+setPlaybackSessionPriority:
+setHasPlaybackSessionPriority:
+hasPlaybackSessionPriority
+playbackSessionPriorityAsString:
+StringAsPlaybackSessionPriority:
+hasPlaybackSessionFilePath
+hasPlaybackSessionRevision
+hasPlaybackSessionMetadata
+hasPlaybackSessionType
 sourceID
 externalPlayerCommand
 skipInterval
@@ -9399,6 +9487,10 @@ preservesQueueEndAction
 homeKitUserIdentifier
 verifySupportedCommands
 playbackSessionIdentifier
+playbackSessionFilePath
+playbackSessionRevision
+playbackSessionMetadata
+playbackSessionType
 _radioStationID
 _trackID
 _contentItemID
@@ -9412,6 +9504,9 @@ _playbackQueueContext
 _playbackQueueDestinationOffset
 _playbackQueueInsertionPosition
 _playbackQueueOffset
+_playbackSessionFilePath
+_playbackSessionMetadata
+_playbackSessionType
 _queueEndAction
 _rating
 _remoteControlInterface
@@ -9552,6 +9647,7 @@ _managedConfigDeviceID
 _systemBuildVersion
 _allowsPairing
 _isAirplayActive
+_isClusterAware
 _tightlySyncedGroup
 isAbsolute
 isIntegratedDisplay
@@ -9655,6 +9751,7 @@ sortUsingSelector:
 addOperationWithBlock:
 _externalDeviceConnectionStateDidChangeNotification:
 _requestSharedAudioPresentationOutputContextModificationWithAddingDevices:removingDevices:settingDevices:replyQueue:completion:
+translateClusterUIDIfNeeded:
 _initiatorStringWithInitiator:uid:
 migrateToOutputDevices:request:initiator:queue:completion:
 logicalOutputDeviceCount
@@ -9667,7 +9764,6 @@ isEqualToOrderedSet:
 endpointDidDisconnect:
 endpointDidConnect:
 scheduledTimerWithTimeInterval:repeats:block:
-createEndpointWithOutputDeviceUIDs:queue:completion:
 addObserver:
 shortDescription
 isCompanionEndpoint
@@ -9735,10 +9831,11 @@ _notifyDelegateOfNewResponse:
 _loadNowPlayingStateForUID:client:player:completion:
 _unregisterForEndpointChanges
 _unregisterNotificationHandlers
-_clearState
+_onQueue_clearState
+setEndpointObserverGroupUID:
 _loadNowPlayingStateForEndpoint:client:player:completion:
 _registerForEndpointChangesIfNeeded
-_retrieveEndpointForUID:completion:
+_onQueue_retrieveEndpointForUID:completion:
 setResponse:
 setUnresolvedPlayerPath:
 _registerForPlayerPathInvalidationsIfNeeded
@@ -9750,6 +9847,8 @@ _requestSupportedCommandsForPlayerPath:queue:completion:
 _requestPlaybackQueueForPlayerPath:includeArtwork:queue:completion:
 setRequestingQueue:
 deferredContentItemsToMerge
+endpointObserverGroupUID
+searchEndpointsForGroupUID:timeout:reason:queue:completion:
 registeredForNotifications
 _handlePlaybackQueueChangedNotification:
 _handlePlaybackQueueContentItemsChangedNotification:
@@ -9792,6 +9891,7 @@ _updateLoadingEnabled
 _requestingQueue
 _playerPathInvalidationObserver
 _endpointObserver
+_endpointObserverGroupUID
 _deferredContentItemsToMerge
 _unresolvedPlayerPath
 _resolvedPlayerPath
@@ -10039,16 +10139,19 @@ cancelSearch
 pairWithFirst:second:
 mr_containsObjectUsingWeakMatching:
 intersectSet:
+waitForCompleteClusters
 matchingOutputDeviceUIDs
 matchingOutputDeviceGroupID
 useWeakMatching
 setUseWeakMatching:
 returnPartialResults
+setWaitForCompleteClusters:
 matchingLogicalDeviceIDs
 _timeoutTimerTimeout
 _localMatchingDevicesFound
 _useWeakMatching
 _returnPartialResults
+_waitForCompleteClusters
 _searchInProgress
 _shouldWaitForUnanimousEndpoints
 _matchingLogicalDeviceIDs
@@ -10067,7 +10170,6 @@ _lastProcessedOutputDevices
 _lastProcessedEndpoints
 _expectedLogicalDevices
 compare:options:
-searchEndpointsForGroupUID:timeout:reason:queue:completion:
 searchEndpointsForCompanionWithTimeout:reason:queue:completion:
 searchForOutputDeviceUID:timeout:reason:queue:completion:
 searchForLogicalOutputDeviceUID:timeout:reason:queue:completion:
@@ -10098,10 +10200,10 @@ retrieveSessionWithID:
 setTargetAudioSession:
 _scheduleAvailableOutputDevicesReload
 _onQueue_reloadAvailableOutputDevices
+_shouldCreateClusterOutputDevices
 setAvailableOutputDevices:
 daemonVirtualDevices
 setDaemonVirtualDevices:
-_shouldCreateClusterOutputDevices
 virtualOutputDevices
 _reloadQueue
 _avDiscoverySession
@@ -10211,7 +10313,7 @@ v48@0:8@16@24@32@?40
 @"_MRPlaybackQueueContextProtobuf"
 @"_MRNowPlayingPlayerPathProtobuf"
 {?="artworkHeight"b1"artworkWidth"b1"cachingPolicy"b1"length"b1"location"b1"includeInfo"b1"includeLanguageOptions"b1"includeLyrics"b1"includeMetadata"b1"includeSections"b1"isLegacyNowPlayingInfoRequest"b1"returnContentItemAssetsInUserCompletion"b1}
-@40@0:8@16@24@32
+@56@0:8@16@24@32@40@48
 @"NSData"
 @"_MRGameControllerPropertiesProtobuf"
 {?="controllerID"b1}
@@ -10237,6 +10339,7 @@ v48@0:8@16Q24@?32@40
 q16@0:8
 v24@0:8q16
 @"MRProtocolMessage"
+@64@0:8@16@24@32@40@48@56
 @"MRUpdateActiveSystemEndpointRequest"
 @28@0:8@16I24
 @"MRAVOutputDevice"
@@ -10302,6 +10405,7 @@ q32@0:8r*16Q24
 @"MRSupportedProtocolMessages"
 @"MRDeviceInfo"
 v28@0:8I16@20
+v72@0:8@16@24@32@40@48@56@?64
 v32@0:8d16@?24
 v28@0:8I16I20B24
 v24@0:8@?<v@?@"NSArray">16
@@ -10314,7 +10418,7 @@ v24@0:8@"NSError"16
 v32@0:8@"NSString"16@?<v@?f@"NSError">24
 v36@0:8f16@"NSString"20@?<v@?@"NSError">28
 v32@0:8@"NSString"16@?<v@?I@"NSError">24
-v48@0:8@"NSArray"16@"NSArray"24@"NSArray"32@?<v@?@"NSError">40
+v72@0:8@"NSArray"16@"NSArray"24@"NSArray"32@"NSArray"40@"NSArray"48@"NSArray"56@?<v@?@"NSError">64
 v32@0:8@"NSData"16@"NSString"24
 v32@0:8d16@?<v@?@"NSError">24
 @"NSArray"16@0:8
@@ -10327,7 +10431,7 @@ v36@0:8f16@"NSString"20@"NSString"28
 v24@0:8@"MRAVEndpoint"16
 v36@0:8I16@"NSString"20@"NSString"28
 v32@0:8@?16@24
-v56@0:8@16@24@32@40@?48
+v80@0:8@16@24@32@40@48@56@64@?72
 v40@0:8d16@?24@32
 v28@0:8{_MRHIDButtonEvent=IIB}16
 @"MRAVDistantExternalDeviceMetadata"
@@ -10416,6 +10520,7 @@ B32@0:8^*16^Q24
 @32@0:8*16Q24
 @"AVOutputContext"
 @32@0:8Q16@24
+@40@0:8@16@24@32
 @32@0:8#16@24
 @24@0:8I16I20
 {?="features"b1"mode"b1}
@@ -10526,7 +10631,7 @@ v32@0:8{?=dd}16
 @"_MRTextEditingAttributesProtobuf"
 {?="length"b1"location"b1}
 @"_MRAVOutputDeviceSourceInfoProtobuf"
-{?="batteryLevel"b1"clusterType"b1"deviceSubType"b1"deviceType"b1"volume"b1"volumeCapabilities"b1"canAccessAppleMusic"b1"canAccessRemoteAssets"b1"canAccessiCloudMusicLibrary"b1"canFetchMediaDataFromSender"b1"canPlayEncryptedProgressiveDownloadAssets"b1"canRelayCommunicationChannel"b1"groupContainsGroupLeader"b1"isAddedToHomeKit"b1"isAirPlayReceiverSessionActive"b1"isDeviceGroupable"b1"isGroupLeader"b1"isGroupable"b1"isLocalDevice"b1"isProxyGroupPlayer"b1"isRemoteControllable"b1"isVolumeControlAvailable"b1"parentGroupContainsDiscoverableLeader"b1"presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets"b1"requiresAuthorization"b1"shouldForceRemoteControlabillity"b1"supportsBufferedAirPlay"b1"supportsExternalScreen"b1"supportsHAP"b1"usingJSONProtocol"b1}
+{?="batteryLevel"b1"clusterType"b1"configuredClusterSize"b1"deviceSubType"b1"deviceType"b1"volume"b1"volumeCapabilities"b1"canAccessAppleMusic"b1"canAccessRemoteAssets"b1"canAccessiCloudMusicLibrary"b1"canFetchMediaDataFromSender"b1"canPlayEncryptedProgressiveDownloadAssets"b1"canRelayCommunicationChannel"b1"groupContainsGroupLeader"b1"isAddedToHomeKit"b1"isAirPlayReceiverSessionActive"b1"isDeviceGroupable"b1"isGroupLeader"b1"isGroupable"b1"isLocalDevice"b1"isProxyGroupPlayer"b1"isRemoteControllable"b1"isVolumeControlAvailable"b1"parentGroupContainsDiscoverableLeader"b1"presentsOptimizedUserInterfaceWhenPlayingFetchedAudioOnlyAssets"b1"requiresAuthorization"b1"shouldForceRemoteControlabillity"b1"supportsBufferedAirPlay"b1"supportsExternalScreen"b1"supportsHAP"b1"usingJSONProtocol"b1}
 @"_MRClientUpdatesConfigurationProtobuf"
 @"_MRSetConnectionStateMessageProtobuf"
 @"_MRCryptoPairingMessageProtobuf"
@@ -10634,6 +10739,7 @@ v40@0:8@"NSNetService"16@"NSInputStream"24@"NSOutputStream"32
 @40@0:8@16@24q32
 @"MRAVInputStream"
 @"MRAVOutputStream"
+{?="playbackSessionPriority"b1}
 {?="deviceIdentifier"b1"errorCode"b1}
 @"MRMediaRemoteServiceClient"
 {?="errorCode"b1}
@@ -10650,7 +10756,7 @@ v28@0:8@16I24
 {?="totalLength"b1"totalWritePosition"b1}
 @"MRProtocolClientConnection"
 @"MRConcreteEndpoint"
-{?="playbackPosition"b1"radioStationID"b1"trackID"b1"playbackQueueDestinationOffset"b1"playbackQueueInsertionPosition"b1"playbackQueueOffset"b1"playbackRate"b1"queueEndAction"b1"rating"b1"repeatMode"b1"replaceIntent"b1"sendOptions"b1"shuffleMode"b1"skipInterval"b1"beginSeek"b1"endSeek"b1"externalPlayerCommand"b1"negative"b1"preservesQueueEndAction"b1"preservesRepeatMode"b1"preservesShuffleMode"b1"requestDefermentToPlaybackQueuePosition"b1"shouldBeginRadioPlayback"b1"shouldOverrideManuallyCuratedQueue"b1"verifySupportedCommands"b1}
+{?="playbackPosition"b1"radioStationID"b1"trackID"b1"playbackQueueDestinationOffset"b1"playbackQueueInsertionPosition"b1"playbackQueueOffset"b1"playbackRate"b1"playbackSessionPriority"b1"queueEndAction"b1"rating"b1"repeatMode"b1"replaceIntent"b1"sendOptions"b1"shuffleMode"b1"skipInterval"b1"beginSeek"b1"endSeek"b1"externalPlayerCommand"b1"negative"b1"preservesQueueEndAction"b1"preservesRepeatMode"b1"preservesShuffleMode"b1"requestDefermentToPlaybackQueuePosition"b1"shouldBeginRadioPlayback"b1"shouldOverrideManuallyCuratedQueue"b1"verifySupportedCommands"b1}
 @36@0:8@16I24@28
 {?="duration"b1"endTimestamp"b1"errorCode"b1"startTimestamp"b1}
 @24@0:8q16
@@ -10678,13 +10784,14 @@ v40@0:8@16Q24@?32
 @"MSVMultiCallback"
 @"PBCodable"
 B24@0:8Q16
-{?="protocolVersion"b1"clusterType"b1"deviceClass"b1"lastSupportedMessageType"b1"logicalDeviceCount"b1"sharedQueueVersion"b1"allowsPairing"b1"connected"b1"isAirplayActive"b1"isGroupLeader"b1"isProxyGroupPlayer"b1"supportsACL"b1"supportsExtendedMotion"b1"supportsSharedQueue"b1"supportsSystemPairing"b1"tightlySyncedGroup"b1}
+{?="protocolVersion"b1"clusterType"b1"deviceClass"b1"lastSupportedMessageType"b1"logicalDeviceCount"b1"sharedQueueVersion"b1"allowsPairing"b1"connected"b1"isAirplayActive"b1"isClusterAware"b1"isGroupLeader"b1"isProxyGroupPlayer"b1"supportsACL"b1"supportsExtendedMotion"b1"supportsSharedQueue"b1"supportsSystemPairing"b1"tightlySyncedGroup"b1}
 @"MRVirtualTouchDeviceDescriptor"
 {?="list"^Q"count"Q"size"Q}
 {?="validTextRangeLength"b1"validTextRangeLocation"b1"autocapitalizationType"b1"keyboardType"b1"returnKeyType"b1"autocorrection"b1"enablesReturnKeyAutomatically"b1"secureTextEntry"b1"spellchecking"b1}
 @40@0:8@16@24@?32
 v24@0:8I16I20
 I20@0:8I16
+v56@0:8@16@24@32@40@?48
 @"NSOperationQueue"
 @"NSTimer"
 @"MSVMutableBidirectionalDictionary"

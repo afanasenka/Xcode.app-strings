@@ -1,4 +1,5 @@
-@(#)PROGRAM:DTDeviceKitBase  PROJECT:DVTiOSFrameworks-17509
+@(#)PROGRAM:DTDeviceKitBase  PROJECT:DVTiOSFrameworks-17511.1
+ffff
  unzip 1.01 Copyright 1998-2004 Gilles Vollant - http://www.winimage.com/zLibDll
  zip 1.01 Copyright 1998-2004 Gilles Vollant - http://www.winimage.com/zLibDll
 333333
@@ -2120,8 +2121,6 @@ text
 symbolicateLogData:callback:
 entityName
 keyPathsForValuesAffectingDisplayName
-keyPathsForValuesAffectingText
-keyPathsForValuesAffectingRawText
 keyPathsForValuesAffectingFilename
 keyPathsForValuesAffectingDateString
 filename

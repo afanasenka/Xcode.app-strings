@@ -38,13 +38,13 @@ realloc failed
 *** done.
 /tmp/plist-logger.log
 *** New Sesssion
-/Library/Caches/com.apple.xbs/Sources/CoreAudioServices_AudioToolboxCore_Sim/CoreAudioServices-1180.12/CoreAudioUtility/Source/Utility/TuningPListMgr.cpp
+/Library/Caches/com.apple.xbs/Sources/CoreAudioServices_AudioToolboxCore_Sim/CoreAudioServices-1180.14/CoreAudioUtility/Source/Utility/TuningPListMgr.cpp
 loadPListFile_
 Error loading plist file 
 TPLM
 com.apple.coreaudio.utility
 TuningPListMgr
-@@ Strips Sep 19 2020 13:33:35
+@@ Strips Oct  7 2020 01:10:27
 '%s' | <unknown type id: %d)>
 AUPreset
 '%s' | %sData{%d} | %d bytes

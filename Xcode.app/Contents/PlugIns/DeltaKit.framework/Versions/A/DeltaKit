@@ -784,8 +784,8 @@ So7CALayerC
 SDySi
 _ypt
 $ss25ExpressibleByArrayLiteralP
-$ss10SetAlgebraP
 $sSY
+$ss10SetAlgebraP
 $ss9OptionSetP
 $s8DeltaKit29ComparisonSwoopScrollDelegateP
 $s8DeltaKit28ComparisonSwoopEventDelegateP
@@ -849,7 +849,6 @@ Sg8inserted_AD7removedt5valuetG
 yypG
 ySny
 ySo22NSAccessibilityElementCG
-ySo12DEDescriptorC
 So17NSMutableIndexSetC
 GIgyy_
 ySiG
@@ -872,6 +871,7 @@ $s8DeltaKit27DiffDrawableFineGrainLayersP
 SgXw
 SgXw
 18modifiedTokenRange_AC08originalbC0tG
+ySo12DEDescriptorC
 Sg8inserted_AC7removedtG
 SaySo12CAShapeLayerCG
 $s8DeltaKit018DiffDrawableInlineC6LayersP
@@ -910,8 +910,8 @@ width
 height
 rawValue
 ArrayLiteralElement
-Element
 RawValue
+Element
 config
 swoops
 visualization

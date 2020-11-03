@@ -1791,7 +1791,13 @@ webEmbedContentBlockerOverrides
 anfRenderingConfiguration
 interstitialAdLoadDelay
 prerollLoadingTimeout
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 userSegmentationInWidgetAllowed
 tileProminenceScoreBalanceValue
@@ -1828,6 +1834,7 @@ externalAnalyticsConfig
 mediaSharingBlacklistedChannelIds
 news.demo.allow_long_state_restoration
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishTimeIntervals
@@ -2553,6 +2560,8 @@ curatedTagIDs
 T@"NSArray",R,N,V_curatedTagIDs
 bundlePurchaseID
 T@"NSString",R,N,V_bundlePurchaseID
+servicesBundlePurchaseID
+T@"NSString",R,N,V_servicesBundlePurchaseID
 inTrialPeriod
 TB,R,N,V_inTrialPeriod
 isPurchaser
@@ -3100,9 +3109,11 @@ appAdamID
 T@"NSNumber",C,N,V_appAdamID
 introOffer
 T@"FCIntroductoryOffer",&,N,V_introOffer
+com.apple.news.purchaseMetadataFetcher
 @16@?0@"FCPurchaseLookupResult"8
 @16@?0@"NSNumber"8
 @16@?0@"SKProduct"8
+@16@?0@"FCPurchase"8
 com.apple.news.purchaselookup
 v24@?0@"AMSLookupResult"8@"NSError"16
 v32@?0@"ASDIAPInfo"8Q16^B24
@@ -4318,12 +4329,12 @@ B16@?0@"CKSubscription"8
 @16@?0@"CKSubscription"8
 deleteAllZoneSubscriptionsCompletionBlock
 T@?,C,N,V_deleteAllZoneSubscriptionsCompletionBlock
--[FCBundleSubscriptionLookUpEntryManager addBundleChannelIDs:purchaseID:inTrialPeriod:isPurchaser:isAmplifyUser:]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCBundleSubscriptionLookUpEntryManager.m
+-[FCBundleSubscriptionLookUpEntryManager addBundleChannelIDs:purchaseID:inTrialPeriod:isPurchaser:servicesBundlePurchaseID:isAmplifyUser:]
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCBundleSubscriptionLookUpEntryManager.m
 bundleSubscriptionLookUpEntry
 T@"FCBundleSubscriptionLookUpEntry",&,N,V_bundleSubscriptionLookUpEntry
 -[FCPaywallConfiguration init]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCPaywallConfiguration.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCPaywallConfiguration.m
 subscriptionButton
 visualSpecification
 paywallType
@@ -4353,6 +4364,7 @@ PaywallTypeAudioFeedSoftPaywallLarge
 PaywallTypeAudioFeedVideoSoftPaywallSmall
 PaywallTypeAudioFeedVideoSoftPaywallLarge
 OffersLinkTargetTypeURL
+OffersLinkTargetTypeAMSURL
 Read ${channelName} and your favorite magazines and newspapers.
 Get your favorite magazines and newspapers.
 All for one price.
@@ -4403,6 +4415,8 @@ TQ,R,N,V_minIdealClusterSize
 maxIdealClusterSize
 TQ,R,N,V_maxIdealClusterSize
 TQ,R,N,V_maxPublisherOccurrences
+maxNativeAdCount
+TQ,R,N,V_maxNativeAdCount
 TQ,R,N,V_maxUnpaidArticles
 TQ,R,N,V_maxEvergreenArticles
 enableOptimizedLayout
@@ -4800,21 +4814,24 @@ Latest Stories
  subscriptionState: %lu 
  isPurchaser=%@ 
  isAmplifyUser=%@ 
+ servicesBundlePurchaseID=%@ 
 subscriptionState
 bundleChannelIDs
 T@"NSString",C,N,V_bundlePurchaseID
+T@"NSString",C,N,V_servicesBundlePurchaseID
 unprotectedSubscriptionState
 TQ,N,V_unprotectedSubscriptionState
 TB,N,V_isPurchaser
 TB,N,V_isAmplifyUser
 T@"NSSet",C,N,V_bundleChannelIDs
 isSubscribed
+isServicesBundleUser
 recordForOplockFailure
 hasRecordForOplockFailure
 T@"FCCKPRecord",&,N,V_recordForOplockFailure
 tag-record-source
 -[FCTagRecordSource initWithContentDatabase:contentDirectory:experimentalizableFieldsPostfix:activeTreatmentID:]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCTagRecordSource.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCTagRecordSource.m
 -[FCTagRecordSource initWithContentDatabase:contentDirectory:desiredTagRecordFieldOptions:]
 sectionFeedConfigurations
 -[FCTagRecordSource recordFromCKRecord:base:]
@@ -5695,11 +5712,12 @@ T@"NSArray",C,N,V_recordIDs
 fetchRecordsCompletionBlock
 T@?,C,N,V_fetchRecordsCompletionBlock
 -[FCCKPrivateDatabase(Additions) fetchAllDatabaseChangesWithServerChangeToken:qualityOfService:completionQueue:completionHandler:]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCCKPrivateDatabase+Additions.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCCKPrivateDatabase+Additions.m
 -[FCCKPrivateDatabase(Additions) fetchChangesForRecordZoneID:changeToken:desiredKeys:fetchAllChanges:qualityOfService:completionHandler:]
 -[FCCKPrivateDatabase(Additions) fetchChangesForRecordZoneID:changeToken:desiredKeys:fetchAllChanges:qualityOfService:completionHandler:]_block_invoke
 how did a nil change token expire?
 statusConditionType
+sBundleSubscription
 TQ,N,V_type
 foregroundMinimumUpdateInterval
 backgroundMinimumUpdateInterval
@@ -5819,6 +5837,7 @@ SubscriptionButtonTypeLandingPage
 SubscriptionButtonTypeIssueCover
 SubscriptionButtonTargetTypeLandingPage
 SubscriptionButtonTargetTypeOsloSheet
+SubscriptionButtonTargetTypeAMSSheet
 SubscriptionButtonPostPurchaseActionTypeNone
 SubscriptionButtonPostPurchaseActionTypeURL
 GET STARTED
@@ -6402,32 +6421,42 @@ T@"NSString",R,N,V_nameOverride
 Td,R,N,V_rankMultiplier
 B16@?0@"FCURLRequest"8
 -[FCURLRequestScheduler _resumeURLTaskForRequest:]_block_invoke
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCURLRequestScheduler.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCURLRequestScheduler.m
 a URL task has already been started for this request
 v32@?0@8@"NSURLResponse"16@"NSError"24
 -[FCURLRequestScheduler _suspendURLTaskForRequest:]_block_invoke
 task hasn't been started
-T@"NSMutableOrderedSet",&,N,V_requests
-inFlightURLTasks
-T@"NSMapTable",&,N,V_inFlightURLTasks
-T@"NFUnfairLock",&,N,V_lock
-URLRequest
-T@"NSURLRequest",R,C,N,V_URLRequest
 URLSession
 T@"NSURLSession",R,N,V_URLSession
+T@"NSMutableOrderedSet",R,N,V_requests
+inFlightURLTasks
+T@"NSMapTable",R,N,V_inFlightURLTasks
+maxInFlightURLTasks
+TQ,R,N,V_maxInFlightURLTasks
+maxInFlightLowPriorityURLTasks
+TQ,R,N,V_maxInFlightLowPriorityURLTasks
+dateOfLastProgress
+T@"NSDate",C,N,V_dateOfLastProgress
+q24@?0@"FCURLRequest"8@"FCURLRequest"16
+dateInitiated
+loggingKey
+URLRequest
+T@"NSURLRequest",R,C,N,V_URLRequest
 Tq,R,N,V_destination
 Tq,N,V_priority
-loggingKey
+T@"NSDate",R,C,N,V_dateInitiated
 T@"NSString",R,C,N,V_loggingKey
+remainingRetries
+Tq,N,V_remainingRetries
 -[NTPBFeedConfiguration(FCAdditions) feedIDForBin:paid:]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/NTPBFeedConfiguration+FCAdditions.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/NTPBFeedConfiguration+FCAdditions.m
 can't get feed ID for unknown bin
 protocolVersion
 minimumProtocolVersion
 protocolName
 com.apple.news.avasset
 -[FCAVAssetDownloadManager init]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCAVAssetDownloadManager.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCAVAssetDownloadManager.m
 movpkg
 B16@?0@"CacheManagementAsset"8
 AV asset downloads are not available in the simulator.
@@ -6495,11 +6524,13 @@ images
 T@"NSArray",R,N,V_images
 art-%@
 void FCMergeHistoryItemSeenFields(__strong id<FCMutableReadingHistoryItem>, __strong id<FCReadingHistoryItem>)
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCReadingHistoryUtilities.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCReadingHistoryUtilities.m
 @"NSDate"16@?0@"CKRecord"8
 T@"NSMutableArray",&,N
 widget-section-config-record-source
-{purchaseId=%@}
+{purchaseId=%@, servicesBundleAdamID=%@}
+servicesBundleAdamID
+T@"NSString",R,N,V_servicesBundleAdamID
 chargeCurrencyCode
 T@"NSString",R,N,V_chargeCurrencyCode
 inAppAdamID
@@ -6721,9 +6752,10 @@ T@"FCFetchOperation",&,N,V_headlineFetchOperation
 T@"<FCHeadlineProviding>",&,N,V_headline
 T@"NSString",R,N,V_articleID
 TB,N,V_finished
+T@"NFUnfairLock",&,N,V_lock
 @"<FCOperationCanceling><FCOperationPrioritizing>"16@?0@?<v@?B>8
 -[FCAsyncOnceOperation executeWithCallbackQueue:completionHandler:]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCOnce.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCOnce.m
 already have an active group
 already have an active operation
 workBlock
@@ -7292,7 +7324,15 @@ maxIdealClusterSizeIPhoneAutoFavorite
 maxPublisherOccurrencesIPhone
 maxPublisherOccurrencesIPhoneBestOfBundle
 maxPublisherOccurrencesIPhoneForYouGroup
+maxPublisherOccurrencesIPhoneGreatStoriesYouMissed
 maxUnpaidArticlesIPhone
+maxUnpaidArticlesIPhoneBestOfBundle
+maxUnpaidArticlesIPhoneForYouGroup
+maxUnpaidArticlesIPhoneGreatStoriesYouMissed
+maxNativeAdCountIPhone
+maxNativeAdCountIPhoneBestOfBundle
+maxNativeAdCountIPhoneForYouGroup
+maxNativeAdCountIPhoneGreatStoriesYouMissed
 enableOptimizedLayoutIPhone
 optimizedLayoutSizeThresholdIPhone
 optimizedLayoutIncrementUnitIPhone
@@ -7307,7 +7347,15 @@ maxIdealClusterSizeIPadAutoFavorite
 maxPublisherOccurrencesIPad
 maxPublisherOccurrencesIPadBestOfBundle
 maxPublisherOccurrencesIPadForYouGroup
+maxPublisherOccurrencesIPadGreatStoriesYouMissed
 maxUnpaidArticlesIPad
+maxUnpaidArticlesIPadBestOfBundle
+maxUnpaidArticlesIPadForYouGroup
+maxUnpaidArticlesIPadGreatStoriesYouMissed
+maxNativeAdCountIPad
+maxNativeAdCountIPadBestOfBundle
+maxNativeAdCountIPadForYouGroup
+maxNativeAdCountIPadGreatStoriesYouMissed
 enableOptimizedLayoutIPad
 optimizedLayoutSizeThresholdIPad
 optimizedLayoutIncrementUnitIPad
@@ -7564,7 +7612,15 @@ Tq,R,N,V_maxIdealClusterSizeIPhoneAutoFavorite
 Tq,R,N,V_maxPublisherOccurrencesIPhone
 Tq,R,N,V_maxPublisherOccurrencesIPhoneBestOfBundle
 Tq,R,N,V_maxPublisherOccurrencesIPhoneForYouGroup
+Tq,R,N,V_maxPublisherOccurrencesIPhoneGreatStoriesYouMissed
 Tq,R,N,V_maxUnpaidArticlesIPhone
+Tq,R,N,V_maxUnpaidArticlesIPhoneBestOfBundle
+Tq,R,N,V_maxUnpaidArticlesIPhoneForYouGroup
+Tq,R,N,V_maxUnpaidArticlesIPhoneGreatStoriesYouMissed
+Tq,R,N,V_maxNativeAdCountIPhone
+Tq,R,N,V_maxNativeAdCountIPhoneBestOfBundle
+Tq,R,N,V_maxNativeAdCountIPhoneForYouGroup
+Tq,R,N,V_maxNativeAdCountIPhoneGreatStoriesYouMissed
 TB,R,N,V_enableOptimizedLayoutIPhone
 TQ,R,N,V_optimizedLayoutSizeThresholdIPhone
 TQ,R,N,V_optimizedLayoutIncrementUnitIPhone
@@ -7590,7 +7646,15 @@ Tq,R,N,V_maxIdealClusterSizeIPadAutoFavorite
 Tq,R,N,V_maxPublisherOccurrencesIPad
 Tq,R,N,V_maxPublisherOccurrencesIPadBestOfBundle
 Tq,R,N,V_maxPublisherOccurrencesIPadForYouGroup
+Tq,R,N,V_maxPublisherOccurrencesIPadGreatStoriesYouMissed
 Tq,R,N,V_maxUnpaidArticlesIPad
+Tq,R,N,V_maxUnpaidArticlesIPadBestOfBundle
+Tq,R,N,V_maxUnpaidArticlesIPadForYouGroup
+Tq,R,N,V_maxUnpaidArticlesIPadGreatStoriesYouMissed
+Tq,R,N,V_maxNativeAdCountIPad
+Tq,R,N,V_maxNativeAdCountIPadBestOfBundle
+Tq,R,N,V_maxNativeAdCountIPadForYouGroup
+Tq,R,N,V_maxNativeAdCountIPadGreatStoriesYouMissed
 TB,R,N,V_enableOptimizedLayoutIPad
 TQ,R,N,V_optimizedLayoutSizeThresholdIPad
 TQ,R,N,V_optimizedLayoutIncrementUnitIPad
@@ -7786,6 +7850,7 @@ override_widgetsectionconfig_id
 simulate_bundle_subscription_state
 simulate_bundle_subscription_is_family_member
 simulate_bundle_subscription_is_amplify_user
+simulate_bundle_subscription_is_services_bundle
 enable_widget_config_user_segmentation
 disable_ab_testing_user_segmentation
 force_refresh_user_segmentation
@@ -8606,6 +8671,7 @@ audioMultiplier
 evergreenMultiplier
 seenPenalty
 readPenalty
+sparseTagsPenalty
 Td,N,V_featureCtr
 Td,N,V_subscribedChannelCtr
 paidNonpaidSubscriptionCtr
@@ -8625,6 +8691,7 @@ Td,N,V_audioMultiplier
 Td,N,V_evergreenMultiplier
 Td,N,V_seenPenalty
 Td,N,V_readPenalty
+Td,N,V_sparseTagsPenalty
 cohortMemberships
 T@"NSDictionary",&,N,V_cohortMemberships
 articleCohortMemberships
@@ -8738,14 +8805,16 @@ T@"NSDate",C,N,V_dateOfExpiration
 hasShownRenewalNotice
 TB,N,V_hasShownRenewalNotice
 -[FCPaidBundleConfiguration init]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCPaidBundleConfiguration.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCPaidBundleConfiguration.m
 paywallConfigs
 audioPaywallConfigs
 sbPaywallConfigs
 audioSbPaywallConfigs
 paywallConfigsOfferType
 subscriptionLinkTargetType
+maxDeltaThreshold
 subscriptionButtonConfigs
+sbSubscriptionButtonConfigs
 articleHardPaywallType
 audioFeedPaywallType
 magazineFeedPaywallType
@@ -8753,7 +8822,9 @@ magazineGenres
 deferredHardPaywallMinimumBodyTextLength
 enabledLevel
 familySharingSetupEnabled
+sbFigaroTopic
 deArticleID
+sbArticleID
 shArticleID
 endOfPurchaseFamilySharingSetupArticleID
 endOfPurchaseNoFamilySharingSetupArticleID
@@ -8839,6 +8910,11 @@ AvPUnt7dQSmGX_KaIUHC5kQ
 AfEzIPkyQTxC9g7atKJeVKw
 A1fFFI_OFTuWOCZBiz3nBkw
 ATV43D73KTPyTlJ-hlICZmA
+AdgSCAdtlS0P9UQhWGbPVRA
+AMNrflzD8TRirzxx_2tdqdA
+AM3SM6D1cSHG6iB9O-deE_A
+ASKOyErGaR3vAe6iqsxkekQ
+AiLdUCfKuR2C9hsKAryYVQw
 ATHi8wuYqRw6_2XiqVdBmRQ
 ABnZHWwYzQAOG4srVl6oJPw
 ADaPfwzFeS4Kqd7ynKkCGtA
@@ -8909,15 +8985,20 @@ TB,R,N,GisSharingIssuesEnabled
 magazinesEnabled
 TB,R,N,GareMagazinesEnabled
 TB,R,N,GisFamilySharingSetupEnabled
+servicesBundleMetricsTopicName
 defaultLandingPageArticleID
+defaultServicesBundleLandingPageArticleID
 renewalLandingPageArticleID
 familySharingLandingPageArticleID
 restorableBundlePurchaseIDs
 offeredBundlePurchaseIDs
 vanityURLMappingResourceID
 vanityURLMappingRefreshRate
+maxPriceDeltaThreshold
 paywallConfigurationsByType
+servicesBundlePaywallConfigurationsByType
 audioPaywallConfigurationsByType
+audioServicesBundlePaywallConfigurationsByType
 paidFeedID
 forYouMaxMagazineGroupsForFreeUsers
 forYouMaxMagazineGroupsForTrialUsers
@@ -8934,6 +9015,7 @@ TB,R,N,GisFreeBadgeEnabledForSubscribers
 paidBadgeEnabledForSubscribers
 TB,R,N,GisPaidBadgeEnabledForSubscribers
 subscriptionButtonConfigurationsByType
+servicesBundleSubscriptionButtonConfigurationsByType
 TB,R,N,GisCategoriesDownloadButtonEnabled
 narrativeAudioEnabled
 TB,R,N,GisNarrativeAudioEnabled
@@ -9619,13 +9701,8 @@ metrics/metricsUrl
 report_concern_user_id
 v24@?0@"NSURL"8@"NSError"16
 macOS
-@16@?0@"AKRemoteDevice"8
-operatingSystemName
-operatingSystemVersion
-model
-lastUpdatedDate
 -[FCAppleAccount checkAllDevicesRunningMinimumiOSVersion:macOSVersion:orInactiveForTimeInterval:completionHandler:]_block_invoke
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCAppleAccount.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCAppleAccount.m
 serialNumber
 B16@?0@"AKRemoteDevice"8
 AKAltDSID
@@ -10561,9 +10638,11 @@ T@"FCFeedRange",&,N,V_feedRange
 T@"<NFLocking>",&,N,V_underlyingLock
 @"<FCHeadlineProviding>"16@?0@"NTPBFeedViewportHeadline"8
 -[FCDeflatedFeedGroup bridgedGroup]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCDeflatedFeedGroup.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCDeflatedFeedGroup.m
 pbGroup
 T@"NTPBFeedViewportGroup",R,N,V_pbGroup
+normal
+veryHigh
 viewportIdentifier
 T@"NSString",R,C,N,V_viewportIdentifier
 insertedElementsIndices
@@ -10854,19 +10933,20 @@ queryParameterConfig
 usesProxyProfile
 proxyHostNames
 -[FCIssueAccessChecker init]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCIssueAccessChecker.m
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCIssueAccessChecker.m
 -[FCIssueAccessChecker initWithAccessCheckers:]
 -[FCIssueAccessChecker initWithPaidAccessChecker:privateChannelMembershipController:]
 BundleLookUpEntryBundleChannelIDsKey
 BundleLookUpEntryPurchaseIDKey
+BundleLookUpEntryServicesBundlePurchaseIDKey
 BundleLookUpEntryPurchaseValidationState
 BundleLookUpEntryHasShownRenewalNotice
 BundleLookUpEntryDateOfExpiration
 BundleLookUpEntryInTrialPeriod
 BundleLookUpEntryIsPurchaser
 BundleLookUpEntryIsAmplifyUser
--[FCBundleSubscriptionLookUpEntry initWithEntryID:bundleChannelIDs:purchaseID:purchaseValidationState:dateOfExpiration:hasShownRenewalNotice:inTrialPeriod:isPurchaser:isAmplifyUser:]
-/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2624.2/feldsparcore/Classes/FCBundleSubscriptionLookUpEntry.m
+-[FCBundleSubscriptionLookUpEntry initWithEntryID:bundleChannelIDs:purchaseID:purchaseValidationState:dateOfExpiration:hasShownRenewalNotice:inTrialPeriod:isPurchaser:servicesBundlePurchaseID:isAmplifyUser:]
+/Library/Caches/com.apple.xbs/Sources/FeldsparServices_Sim/Feldspar-2633.2/feldsparcore/Classes/FCBundleSubscriptionLookUpEntry.m
 bundle subscription lookup entry must have an identifier
 bundle subscription lookup entry must have an array of bundle tag IDs
 -[FCBundleSubscriptionLookUpEntry initWithEntryID:dictionaryRepresentation:]
@@ -11436,6 +11516,7 @@ T@"MLMultiArray",&,N,V_user_vector
 FCUserVectorModel
 mlmodelc
 v24@?0@"MLModel"8@"NSError"16
+model
 T@"MLModel",R,N,V_model
 *** Assertion failure (Identifier: catch-all) : %s %s:%d %{public}@
 AV asset key cache failed to save certificate with error: %{public}@
@@ -11462,6 +11543,7 @@ failed to recover known group for feed type %{public}@
 %{public}@ will attempt to fetch bridged Local News group via plugin manager
 %{public}@ will attempt to fetch bridged Spotlight group via plugin manager
 %{public}@ will attempt to fetch bridged Audio Daily Briefing group via plugin manager
+%{public}@ received error from plugin manager, error=%{public}@
 %{public}@ received %lu bridged groups from plugin manager
 %{public}@ discarding a bridged group because it contains duplicates
 will enable flushing %{public}@ records with %{public}@ threshold
@@ -11569,6 +11651,7 @@ unable to parse the widget configuration data with error: %{public}@
 *** Assertion failure (Identifier: IncompleteFetchedRecord) : %s %s:%d %{public}@
 *** Assertion failure (Identifier: IncompleteCachedRecord) : %s %s:%d %{public}@
 configuration manager received articleChangeTags: %lu articleListChangeTags: %lu tagChangeTags: %lu in the widgetConfigurationData
+Article ID is empty in payload
 Creating content manifest for article %{public}@ %{public}@ prefetched ANF JSON
 Invalid content type: %lu for article ID: %{public}@
 Cannot handle version due minimumRequiredVersion {Record: %@, readingVersion: %@}
@@ -11880,8 +11963,9 @@ Endpoint response: %@, error: %@
 article %{public}@ has a narrative track URL but no metadata
 failed to parse narrative track metadata for %{public}@ with error: %{public}@
 Didn't find narrativeTrackTextRanges on headline %{public}@
-%{public}@ did complete URL task %{public}@
 %{public}@ ignoring URL task completion due to prior cancellation %{public}@
+%{public}@ will retry URL task %{public}@
+%{public}@ did complete URL task %{public}@
 %{public}@ will start URL task %{public}@
 %{public}@ will cancel URL task %{public}@ to make way for higher-priority requests
 %{public}@ will cancel URL task %{public}@
@@ -12033,7 +12117,7 @@ fetching master playlist %{public}@ from network
 %{public}@ resulted in viewport with %lu internal elements and %lu external elements, and a diff with %lu insertions, %lu deletions, and %lu modifications
 Received nil storeFront ID. Falling back to U.S.
 failed to obtain metrics URL from bag with error: %{public}@
-fetched device list: %{public}@
+successfully fetched device list with %lu devices
 encountered error fetching device list: %{public}@
 Today content descriptor being created with content type FCPPTTodayContentTypeFeed and tagID %@
 Today content descriptor being created with content type FCPPTTodayContentTypeTodayWithFeed for you config id %{public}@ tagID %{public}@
@@ -12041,9 +12125,9 @@ Today content descriptor being created with content type FCPPTTodayContentTypeTo
 isUserEntitledToSubscriptionForPurchaseID: subscriptions: %{public}@
 isUserEntitledToSubscriptionForPurchaseID: subscriptionEntitlement: %{public}@ matched with purchaseID: %{public}@
 isUserEntitledToSubscriptionForPurchaseID: error:%{public}@
-Forming group with minIdealClusterSize: %ld; maxIdealClusterSize: %ld; maxPublisherOccurrences: %ld; maxUnpaidArticles: %ld; topicDiversityThreshold: %f; topicDiversityWindowSize: %ld;
+Forming group with minIdealClusterSize: %ld; maxIdealClusterSize: %ld; maxNativeAdCount: %ld; maxPublisherOccurrences: %ld; maxUnpaidArticles: %ld; topicDiversityThreshold: %f; topicDiversityWindowSize: %ld;
 Forming group with candidate pool of articles: %{public}@
-Reached the maxIdealClusterSize of %ld while forming group.
+Reached the max cluster size of %ld while forming group.
 Skipping due to articleCount (%ld) >= maxPublisherOccurrences (%ld) while considering article %{public}@ with publisher %{public}@.
 Skipping due to unpaidArticleCount (%ld) >= maxUnpaidArticles (%ld) while considering article %{public}@.
 Skipping due to evergreenArticleCount (%ld) >= maxEvergreenArticles (%ld) while considering article %{public}@.
@@ -12051,7 +12135,7 @@ Enforcing topic diversity for article %{public}@, all topics: %{public}@; Articl
 Skipping due to topicSimilarity (%f) > topicDiversityThreshold (%f) while considering article %{public}@.
 Accepting article %{public}@ while forming group.
 Created Best Of group with %ld top articles and %ld minIdealClusterSize.
-Created Best Of group by allowing unfiltered articles with %ld sorted articles and %ld maxIdealClusterSize.
+Created Best Of group by allowing unfiltered articles with %ld sorted articles and %ld max cluster size.
 Could not emit the Best Of group.
 %{public}@: Fetch failed. The tag with identifer %@ is not a valid channel.
 %{public}@: Fetch failed. The tag with identifer %@ is not a valid section.
@@ -14851,8 +14935,9 @@ inAppAdamID
 chargeCurrencyCode
 isTrialPeriod
 isPurchaser
+servicesBundlePurchaseID
 isOfferPeriod
-initWithAppAdamID:inAppAdamID:chargeCurrencyCode:newsAppPurchase:isTrialPeriod:isPurchaser:isAmplifyUser:
+initWithAppAdamID:inAppAdamID:chargeCurrencyCode:newsAppPurchase:isTrialPeriod:isPurchaser:servicesBundleAdamID:isAmplifyUser:
 entitlementsOverrideProvider
 entitlementsOverrideWithDefaultEntitlements:
 entitlements
@@ -15832,7 +15917,6 @@ widgetSystemReloadJitterMaxHoneymoon
 externalAnalyticsConfigWithDictionary:
 dateWithTimeIntervalSinceReferenceDate:
 defaultMagazinesConfigRecordIDByLocalizedStorefrontID
-null
 enabledForCurrentLevel:
 todayFeedEnabled
 newPersonalizationEnabled
@@ -15950,6 +16034,7 @@ exploreArticleID
 externalAnalyticsConfigurations
 mediaSharingBlacklistedChannelIDs
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishDates
@@ -15985,7 +16070,13 @@ tagFeedLayoutConfigurationResourceId
 userVectorWhitelistResourceId
 userVectorModelResourceId
 forYouGroupShouldPromoteAccessibleHeadline
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 notificationEnableAssetPrefetching
 notificationAssetPrefetchingRequiresWatch
@@ -16054,12 +16145,12 @@ hasRunEntitlementOnce
 bundlePurchaseID
 inTrialPeriod
 isAmplifyUser
-addBundleChannelIDs:purchaseID:inTrialPeriod:isPurchaser:isAmplifyUser:
+addBundleChannelIDs:purchaseID:inTrialPeriod:isPurchaser:servicesBundlePurchaseID:isAmplifyUser:
 notifyObserversForSubscribedStateWithSubscription:
-changeSetBetween:newSubscription:
 setInTrialPeriod:
 setIsPurchaser:
-notifyObserversForChangeStateWithNewSubscription:previousBundleSubscription:changeSet:
+setServicesBundlePurchaseID:
+notifyObserversForChangeStateWithNewSubscription:previousBundleSubscription:
 expireBundleSubscription
 updateHasRunEntitlementOnce:
 fetchEntitlementsWithIgnoreCache:completion:
@@ -16068,8 +16159,7 @@ notifyObserversForExpiredStateWithSubscription:
 accessLock
 bundleSubscriptionDidSubscribe:
 bundleSubscriptionDidExpire:
-bundleSubscriptionDidChange:previousBundleSubscription:changeSet:
-initWithTagIDsAdded:tagIDsRemoved:
+bundleSubscriptionDidChange:previousBundleSubscription:
 refreshBundleSubscriptionWithCachePolicy:completion:
 bundleChannelProvider:bundleChannelIDsDidChangeWithChannelIDs:
 bundleSubscriptionLookupEntry
@@ -16093,7 +16183,7 @@ _bundleSubscriptionLookupEntryManager
 _accessLock
 _bundleChannelProvider
 subscriptionWithSubscriptionState:bundleChannelIDs:
-initWithBundlePurchaseID:bundleChannelIDs:inTrialPeriod:isPurchaser:isAmplifyUser:
+initWithBundlePurchaseID:bundleChannelIDs:inTrialPeriod:isPurchaser:servicesBundlePurchaseID:isAmplifyUser:
 initWithQualityOfService:
 mainBundle
 initWithContextConfiguration:contentHostDirectoryFileURL:feldsparIDProvider:appShortVersionString:
@@ -16413,7 +16503,7 @@ _feedTransformation
 nonEditorialFeedItemsAfterTransformation:
 nonEditorialScoreProfiles
 deviceIsiPad
-rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:
+rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:todayFeedEnabled:
 minIdealClusterSizeAutoFavorite
 personalizationScore
 agedPersonalizationScore
@@ -16889,11 +16979,12 @@ _topicTagIDs
 _channelTagIDs
 _subcategories
 _curatedTagIDs
-initWithBundlePurchaseID:inTrialPeriod:isPurchaser:isAmplifyUser:
+initWithBundlePurchaseID:inTrialPeriod:isPurchaser:servicesBundlePurchaseID:isAmplifyUser:
 _inTrialPeriod
 _isPurchaser
 _isAmplifyUser
 _bundlePurchaseID
+_servicesBundlePurchaseID
 fetchAllChanges
 _configurationForDestination:
 setConfigurationsByRecordZoneID:
@@ -17177,6 +17268,7 @@ evergreenMultiplierForTrialUsers
 evergreenMultiplierForPaidUsers
 headlineSeenPenalty
 articleReadPenalty
+sparseTagsPenalty
 setFeatureCtr:
 setPaidNonpaidSubscriptionCtr:
 setSubscribedChannelCtr:
@@ -17198,6 +17290,7 @@ setAudioMultiplier:
 setEvergreenMultiplier:
 setSeenPenalty:
 setReadPenalty:
+setSparseTagsPenalty:
 firstPassDiversificationPenalty
 firstPassPersonalizationScore
 firstPassArticleFilter
@@ -17708,6 +17801,7 @@ _price
 _appAdamID
 _introOffer
 promisePurchaseLookupWithAppAdamID:
+thenOn
 setLookupResult:
 lookupResult
 promiseStoreExternalVersionWithLookupResult:
@@ -18543,7 +18637,7 @@ setDeleteAllZoneSubscriptionsCompletionBlock:
 _deleteAllZoneSubscriptionsCompletionBlock
 setBundleSubscriptionLookUpEntry:
 _bundleSubscriptionLookupEntryForPurchaseID:
-initWithEntryID:bundleChannelIDs:purchaseID:purchaseValidationState:dateOfExpiration:hasShownRenewalNotice:inTrialPeriod:isPurchaser:isAmplifyUser:
+initWithEntryID:bundleChannelIDs:purchaseID:purchaseValidationState:dateOfExpiration:hasShownRenewalNotice:inTrialPeriod:isPurchaser:servicesBundlePurchaseID:isAmplifyUser:
 _bundleSubscriptionLookUpEntry
 initWithPaywallType:title:descriptionTrial:descriptionNonTrial:learnMoreTitle:learnMoreURL:offersLinkTitle:offersLinkURL:offersLinkTargetType:externalOverridesEnabled:subscriptionButtonConfig:visualSpecConfig:paywallTopOffsetConfig:
 descriptionTrial
@@ -18624,15 +18718,31 @@ minClusterSizeIPhone
 maxClusterSizeIPhone
 minClusterSizeIPad
 maxClusterSizeIPad
-rulesWithTreatment:configurationSet:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:minClusterSizeiPhone:maxClusterSizeiPhone:minClusterSizeiPad:maxClusterSizeiPad:
+rulesWithTreatment:configurationSet:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:minClusterSizeiPhone:maxClusterSizeiPhone:minClusterSizeiPad:maxClusterSizeiPad:todayFeedEnabled:
 maxUnpaidArticlesIPad
 maxUnpaidArticlesIPhone
 maxPublisherOccurrencesIPad
 maxPublisherOccurrencesIPhone
+maxNativeAdCountIPad
+maxNativeAdCountIPhone
+maxUnpaidArticlesIPadBestOfBundle
+maxUnpaidArticlesIPhoneBestOfBundle
 maxPublisherOccurrencesIPadBestOfBundle
 maxPublisherOccurrencesIPhoneBestOfBundle
+maxNativeAdCountIPadBestOfBundle
+maxNativeAdCountIPhoneBestOfBundle
+maxUnpaidArticlesIPadForYouGroup
+maxUnpaidArticlesIPhoneForYouGroup
 maxPublisherOccurrencesIPadForYouGroup
 maxPublisherOccurrencesIPhoneForYouGroup
+maxNativeAdCountIPadForYouGroup
+maxNativeAdCountIPhoneForYouGroup
+maxUnpaidArticlesIPadGreatStoriesYouMissed
+maxUnpaidArticlesIPhoneGreatStoriesYouMissed
+maxPublisherOccurrencesIPadGreatStoriesYouMissed
+maxPublisherOccurrencesIPhoneGreatStoriesYouMissed
+maxNativeAdCountIPadGreatStoriesYouMissed
+maxNativeAdCountIPhoneGreatStoriesYouMissed
 minIdealClusterSizeIPad
 minIdealClusterSizeIPhone
 maxIdealClusterSizeIPad
@@ -18656,17 +18766,18 @@ uGroupMinimumSubscribedChannelSourceFeedArticleRatio
 maxExpandedAutofavoriteGroupCandidateRatio
 expandedAutofavoriteClusterMinSizeMultiplier
 expandedAutofavoriteClusterMaxSizeMultiplier
-initWithMinClusterSize:maxClusterSize:minIdealClusterSize:maxIdealClusterSize:minClusterSizeAutoFavorite:maxClusterSizeAutoFavorite:minIdealClusterSizeAutoFavorite:maxIdealClusterSizeAutoFavorite:maxPublisherOccurrences:enforcePublisherCap:maxUnpaidArticles:maxEvergreenArticles:enableOptimizedLayout:optimizedLayoutSizeThreshold:optimizedLayoutIncrementUnit:solConfiguration:minSubscribedChannelRatioForUGroup:maxExpandedAutofavoriteGroupCandidateRatio:expandedAutofavoriteClusterMinSizeMultiplier:expandedAutofavoriteClusterMaxSizeMultiplier:
+initWithMinClusterSize:maxClusterSize:minIdealClusterSize:maxIdealClusterSize:minClusterSizeAutoFavorite:maxClusterSizeAutoFavorite:minIdealClusterSizeAutoFavorite:maxIdealClusterSizeAutoFavorite:maxPublisherOccurrences:enforcePublisherCap:maxUnpaidArticles:maxEvergreenArticles:enableOptimizedLayout:optimizedLayoutSizeThreshold:optimizedLayoutIncrementUnit:solConfiguration:minSubscribedChannelRatioForUGroup:maxExpandedAutofavoriteGroupCandidateRatio:expandedAutofavoriteClusterMinSizeMultiplier:expandedAutofavoriteClusterMaxSizeMultiplier:maxNativeAdCount:
 autoFavoriteClusterMinSizeMultiplier
 autoFavoriteClusterMaxSizeMultiplier
-rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:minClusterSizeiPhone:maxClusterSizeiPhone:minClusterSizeiPad:maxClusterSizeiPad:
-rulesWithTreatment:configurationSet:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:
+rulesWithTreatment:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:minClusterSizeiPhone:maxClusterSizeiPhone:minClusterSizeiPad:maxClusterSizeiPad:todayFeedEnabled:
+rulesWithTreatment:configurationSet:deviceIsiPad:limitUnpaidArticles:enforcePublisherCap:todayFeedEnabled:
 minClusterSizeAutoFavorite
 maxClusterSizeAutoFavorite
 minClusterSize
 maxClusterSize
 minIdealClusterSize
 maxIdealClusterSize
+maxNativeAdCount
 enableOptimizedLayout
 optimizedLayoutSizeThreshold
 optimizedLayoutIncrementUnit
@@ -18683,6 +18794,7 @@ _minClusterSize
 _maxClusterSize
 _minIdealClusterSize
 _maxIdealClusterSize
+_maxNativeAdCount
 _optimizedLayoutSizeThreshold
 _optimizedLayoutIncrementUnit
 _minSubscribedChannelRatioForUGroup
@@ -19254,12 +19366,12 @@ _channelID
 resolveOn
 feedRangeFromDate:toDate:
 setFeedPersonalizationConfigurationSet:
-thenOn
 setUnprotectedSubscriptionState:
 setBundlePurchaseID:
 setIsAmplifyUser:
 fc_string:isEqualToString:
 subscriptionState
+isServicesBundleUser
 isSubscribed
 _bundleChannelIDs
 _unprotectedSubscriptionState
@@ -20401,6 +20513,7 @@ defaultSubscriptionButtonText
 defaultTrialText
 defaultNonTrialText
 defaultOsloSheetTargetSubscriptionButton
+defaultAmsSheetTargetSubscriptionButton
 defaultArticleSubscriptionButtonWithLandingPageArticleID:
 defaultLandingPageSubscriptionButtonWithLandingPageArticleID:
 defaultIssueCoverSubscriptionButtonWithLandingPageArticleID:
@@ -20911,26 +21024,44 @@ rankMultiplier
 _isEligible
 _nameOverride
 _rankMultiplier
-initWithURLRequest:session:destination:priority:loggingKey:completion:
+HTTPMaximumConnectionsPerHost
+initWithURLRequest:destination:priority:dateInitiated:loggingKey:completion:
+comparator
 _serviceRequests
 _cancelRequest:
 _applyPriority:toRequest:
 initWithCancelBlock:priorityBlock:shortDescription:longDescription:
+setDateOfLastProgress:
 _isLowPriority:
 inFlightURLTasks
 _suspendURLTaskForRequest:
+maxInFlightURLTasks
 _resumeURLTaskForRequest:
+maxInFlightLowPriorityURLTasks
+removeObserver:forKeyPath:
 loggingKey
+_shouldRetryRequest:withError:
+remainingRetries
+setRemainingRetries:
 URLRequest
 downloadTaskWithRequest:completionHandler:
-scheduleURLRequest:URLSession:destination:priority:loggingKey:completion:
-setInFlightURLTasks:
-setLock:
-_inFlightURLTasks
-_URLRequest
+dateOfLastProgress
+timeoutInterval
+initWithURLSession:
+scheduleURLRequest:destination:priority:loggingKey:completion:
 _URLSession
+_inFlightURLTasks
+_maxInFlightURLTasks
+_maxInFlightLowPriorityURLTasks
+_dateOfLastProgress
+dateInitiated
+initWithObject:
+addField:object:
+_URLRequest
 _priority
+_dateInitiated
 _loggingKey
+_remainingRetries
 setFreeAFeedID:
 setFreeBFeedID:
 setFreeCFeedID:
@@ -21042,9 +21173,12 @@ articleListIDs2
 setArticleListIDs2:
 articleIDs2
 setArticleIDs2:
+setConfiguration2:
 setSingleTagConfiguration:
+servicesBundleAdamID
 _newsAppPurchase
 _isTrialPeriod
+_servicesBundleAdamID
 _chargeCurrencyCode
 _inAppAdamID
 identifierFromArticleID:
@@ -21289,6 +21423,7 @@ finished
 setFinished:
 trigger
 hasBeenTriggered
+setLock:
 interest
 activeGroup
 activeOperation
@@ -21421,6 +21556,7 @@ setPublishDateMilliseconds:
 setFeedHalfLifeMilliseconds:
 compareOrder:
 mustShow
+initWithTagIDsAdded:tagIDsRemoved:
 tagIDsAdded
 setTagIDsAdded:
 tagIDsRemoved
@@ -22084,7 +22220,15 @@ _maxIdealClusterSizeIPhoneAutoFavorite
 _maxPublisherOccurrencesIPhone
 _maxPublisherOccurrencesIPhoneBestOfBundle
 _maxPublisherOccurrencesIPhoneForYouGroup
+_maxPublisherOccurrencesIPhoneGreatStoriesYouMissed
 _maxUnpaidArticlesIPhone
+_maxUnpaidArticlesIPhoneBestOfBundle
+_maxUnpaidArticlesIPhoneForYouGroup
+_maxUnpaidArticlesIPhoneGreatStoriesYouMissed
+_maxNativeAdCountIPhone
+_maxNativeAdCountIPhoneBestOfBundle
+_maxNativeAdCountIPhoneForYouGroup
+_maxNativeAdCountIPhoneGreatStoriesYouMissed
 _optimizedLayoutSizeThresholdIPhone
 _optimizedLayoutIncrementUnitIPhone
 _heuristicSampleSizeIPhone
@@ -22109,7 +22253,15 @@ _maxIdealClusterSizeIPadAutoFavorite
 _maxPublisherOccurrencesIPad
 _maxPublisherOccurrencesIPadBestOfBundle
 _maxPublisherOccurrencesIPadForYouGroup
+_maxPublisherOccurrencesIPadGreatStoriesYouMissed
 _maxUnpaidArticlesIPad
+_maxUnpaidArticlesIPadBestOfBundle
+_maxUnpaidArticlesIPadForYouGroup
+_maxUnpaidArticlesIPadGreatStoriesYouMissed
+_maxNativeAdCountIPad
+_maxNativeAdCountIPadBestOfBundle
+_maxNativeAdCountIPadForYouGroup
+_maxNativeAdCountIPadGreatStoriesYouMissed
 _optimizedLayoutSizeThresholdIPad
 _optimizedLayoutIncrementUnitIPad
 _heuristicSampleSizeIPad
@@ -22271,6 +22423,7 @@ histories
 historyForInstanceIdentifier:
 lastChangeNumberForInstanceIdentifier:
 offerID
+subscriptionBundleID
 setEnabledKeyboards:
 setActiveKeyboard:
 addEnabledKeyboards:
@@ -22704,6 +22857,7 @@ setPurchaseId:
 setAllowsPublisherWebSite:
 fc_errorWithCode:description:additionalUserInfo:
 fc_hasErrorCode:
+null
 fc_canaryDownError
 fc_missingAppConfigErrorWithUnderlyingError:
 fc_operationCancelledErrorWithAdditionalUserInfo:
@@ -22840,7 +22994,6 @@ _startOnce
 _finishedGroup
 requestSize
 responseMIMEType
-addField:object:
 fetchStartTime
 responseEndTime
 _URL
@@ -22913,6 +23066,7 @@ _audioMultiplier
 _evergreenMultiplier
 _seenPenalty
 _readPenalty
+_sparseTagsPenalty
 _cohortMemberships
 _articleCohortMemberships
 _conversionCohortMemberships
@@ -23066,11 +23220,13 @@ defaultPaywallConfigs
 defaultAudioPaywallConfigs
 subscriptionButtonConfigurationsByTypeForKey:
 defaultSubscriptionButtonConfigs
+defaultServicesBundleSubscriptionButtonConfigs
 audioPaywallConfigurationsByType
 paywallConfigurationsByType
 defaultMagazineGenres
 defaultSupportedStoreFronts
 defaultLandingPageByLocalizedStorefrontID
+defaultServicesBundleLandingPageByLocalizedStorefrontID
 defaultFamilySharingLandingPageByLocalizedStorefrontID
 defaultEndOfPurchaseFamilySharingSetupArticleIDByLocalizedStorefrontID
 defaultEndOfPurchaseNoFamilySharingSetupArticleIDByLocalizedStorefrontID
@@ -23079,10 +23235,15 @@ defaultTagListIDByLocalizedStorefrontID
 defaultVanityURLMappingResourceIDByLocalizedStorefrontID
 defaultPaidFeedIDByLocalizedStorefrontID
 defaultLandingPageArticleID
+defaultServicesBundleLandingPageArticleID
 defaultConfigurationForStorefrontID:
 initWithConfigDictionary:storefrontID:
 subscriptionLinkTargetType
+maxPriceDeltaThreshold
+servicesBundlePaywallConfigurationsByType
+audioServicesBundlePaywallConfigurationsByType
 subscriptionButtonConfigurationsByType
+servicesBundleSubscriptionButtonConfigurationsByType
 articleHardPaywallType
 audioFeedPaywallSubtype
 magazineFeedPaywallSubtype
@@ -23092,6 +23253,7 @@ isPaidBundleVisible
 isTemporaryAccessEnabled
 isSharingIssuesEnabled
 isFamilySharingSetupEnabled
+servicesBundleMetricsTopicName
 familySharingLandingPageArticleID
 endOfPurchaseFamilySharingSetupArticleID
 endOfPurchaseNoFamilySharingSetupArticleID
@@ -23814,9 +23976,9 @@ setIncludeUntrustedDevices:
 setServices:
 setOperatingSystems:
 serialNumber
-operatingSystemName
-operatingSystemVersion
 lastUpdatedDate
+operatingSystemVersion
+operatingSystemName
 fetchDeviceListWithContext:completion:
 getGSToken
 getNewGSTokenPromise
@@ -23943,9 +24105,10 @@ initWithContext:articleID:
 setCheckStatusCompletion:
 _checkStatusCompletion
 _resultStatus
+registerBagKeySet
+bagForProfile:profileVersion:
 bagKeySet
 registerBagKeySet:forProfile:profileVersion:
-bagForProfile:profileVersion:
 computeTopArticlesAndScore
 setHeuristicScore:
 heuristicScore
@@ -24032,7 +24195,6 @@ descriptionWithObject:class:format:
 descriptionWithObject:class:
 descriptionWithCFType:format:
 initWithObject:format:
-initWithObject:
 addSuperDescription
 setFieldOptionCommaSeparated
 _object
@@ -24664,7 +24826,7 @@ _groupDiffs
 feedRangeWithMaxOrder:minOrder:
 _top
 _bottom
-initWithArticleLengthAggregateWeight:articleReadPenalty:audioMultiplierForFreeUsers:audioMultiplierForTrialUsers:audioMultiplierForPaidUsers:autofavoritedVoteCoefficient:baselineRatePrior:bundleFreeMultiplierForFreeUsers:bundleFreeMultiplierForTrialUsers:bundleFreeMultiplierForPaidUsers:bundlePaidMultiplierForFreeUsers:bundlePaidMultiplierForTrialUsers:bundlePaidMultiplierForPaidUsers:channelTopicDiversificationInitialPenalty:channelTopicDiversificationPenalty:channelTopicDiversificationPenaltyHalfLife:conversionCoefficientForFreeUsers:conversionCoefficientForTrialUsers:conversionCoefficientForPaidUsers:conversionCohort:ctrWithOneAutofavorited:ctrWithOneSubscribed:ctrWithSubscribedChannel:ctrWithThreeAutofavorited:ctrWithThreeSubscribed:ctrWithTwoAutofavorited:ctrWithTwoSubscribed:ctrWithZeroAutofavorited:ctrWithZeroSubscribed:decayFactor:democratizationFactor:diversificationInitialPenalty:diversificationPenalty:diversificationPenaltyHalfLife:featuredMultiplierForFreeUsers:featuredMultiplierForTrialUsers:featuredMultiplierForPaidUsers:evergreenMultiplierForFreeUsers:evergreenMultiplierForTrialUsers:evergreenMultiplierForPaidUsers:firstPassHalfLifeCoefficient:firstPassEvergreenHalfLifeCoefficient:firstPassDiversificationPenalty:firstPassArticleFilter:globalScoreCoefficientFree:globalScoreCoefficientPaid:globalScoreCoefficientHalfLife:globalScoreCoefficientInitialMultiplier:headlineSeenPenalty:halfLifeCoefficient:evergreenHalfLifeCoefficient:mutedVoteCoefficient:personalizationCoefficient:publisherAggregateWeight:subscribedChannelScoreCoefficient:subscribedTopicsScoreCoefficient:userCohort:
+initWithArticleLengthAggregateWeight:articleReadPenalty:audioMultiplierForFreeUsers:audioMultiplierForTrialUsers:audioMultiplierForPaidUsers:autofavoritedVoteCoefficient:baselineRatePrior:bundleFreeMultiplierForFreeUsers:bundleFreeMultiplierForTrialUsers:bundleFreeMultiplierForPaidUsers:bundlePaidMultiplierForFreeUsers:bundlePaidMultiplierForTrialUsers:bundlePaidMultiplierForPaidUsers:channelTopicDiversificationInitialPenalty:channelTopicDiversificationPenalty:channelTopicDiversificationPenaltyHalfLife:conversionCoefficientForFreeUsers:conversionCoefficientForTrialUsers:conversionCoefficientForPaidUsers:conversionCohort:ctrWithOneAutofavorited:ctrWithOneSubscribed:ctrWithSubscribedChannel:ctrWithThreeAutofavorited:ctrWithThreeSubscribed:ctrWithTwoAutofavorited:ctrWithTwoSubscribed:ctrWithZeroAutofavorited:ctrWithZeroSubscribed:decayFactor:democratizationFactor:diversificationInitialPenalty:diversificationPenalty:diversificationPenaltyHalfLife:featuredMultiplierForFreeUsers:featuredMultiplierForTrialUsers:featuredMultiplierForPaidUsers:evergreenMultiplierForFreeUsers:evergreenMultiplierForTrialUsers:evergreenMultiplierForPaidUsers:firstPassHalfLifeCoefficient:firstPassEvergreenHalfLifeCoefficient:firstPassDiversificationPenalty:firstPassArticleFilter:globalScoreCoefficientFree:globalScoreCoefficientPaid:globalScoreCoefficientHalfLife:globalScoreCoefficientInitialMultiplier:headlineSeenPenalty:halfLifeCoefficient:evergreenHalfLifeCoefficient:mutedVoteCoefficient:personalizationCoefficient:publisherAggregateWeight:sparseTagsPenalty:subscribedChannelScoreCoefficient:subscribedTopicsScoreCoefficient:userCohort:
 channelTopicDiversificationInitialPenalty
 channelTopicDiversificationPenalty
 channelTopicDiversificationPenaltyHalfLife
@@ -24968,6 +25130,7 @@ setRemainingBatchesOfRecordIDsToDelete:
 _recordIDsToDelete
 _deleteRecordsCompletionBlock
 _remainingBatchesOfRecordIDsToDelete
+configuration2
 singleTagConfiguration
 setWidgetConfigID:
 _widgetConfigID
@@ -25822,7 +25985,7 @@ v32@0:8@"<FCFetchedValueManager>"16@"<NFCopying>"24
 @"<FCCardStyleProviding>"16@0:8
 @"FCFeedEdition"16@0:8
 @"<FCForYouBridgedFeedGroup>"16@0:8
-@36@0:8@16B24B28B32
+@44@0:8@16B24B28@32B40
 @"FCCKPrivateDatabaseServerChangeToken"
 @"FCReadingHistory"
 @"FCFeedEdition"24@0:8@"NSDate"16
@@ -25897,7 +26060,7 @@ v24@0:8@"NSObject<FCMutableTodayPrivateData>"16
 v24@0:8@"<FCAppActivityObserving>"16
 @"NSSet"24@0:8Q16
 B24@0:8@"<FCAssetKeyManagerType>"16
-v40@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24@"FCBundleSubscriptionChangeSet"32
+v32@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24
 v32@0:8Q16@24
 @"<FCCoreConfigurationManager><FCNewsAppConfigurationManager>"16@0:8
 @"<FCMagazinesConfigurationManager>"16@0:8
@@ -26005,17 +26168,17 @@ v24@0:8@?<v@?@"<FCLocalAreasProvider>"@"NSError">16
 v80@0:8@16@24@32@40Q48Q56B64@68B76
 @20@0:8B16
 B24@0:8o^@16
-v44@0:8@16@24B32B36B40
+v52@0:8@16@24B32B36@40B48
 @"FCBundleSubscriptionLookUpEntry"
 @116@0:8Q16@24@32@40@48@56@64@72Q80B88@92@100@108
 @"FCSubscriptionButtonConfiguration"
 @"FCPaywallVisualSpecConfiguration"
 @"FCPaywallTopOffsetConfiguration"
 @"<FCStreaming>"
-@68@0:8@16B24B28B32q36q44q52q60
-@44@0:8@16q24B32B36B40
-@76@0:8@16q24B32B36B40q44q52q60q68
-@168@0:8Q16Q24Q32Q40Q48Q56Q64Q72Q80B88Q92Q100B108Q112Q120@128d136d144d152d160
+@72@0:8@16B24B28B32q36q44q52q60B68
+@48@0:8@16q24B32B36B40B44
+@80@0:8@16q24B32B36B40q44q52q60q68B76
+@176@0:8Q16Q24Q32Q40Q48Q56Q64Q72Q80B88Q92Q100B108Q112Q120@128d136d144d152d160Q168
 @"FCSolConfiguration"
 @32@0:8@16^@24
 @32@0:8@16:24
@@ -26053,7 +26216,7 @@ B24@0:8@?<q@?@@>16
 @72@0:8@16@24Q32@40@48@56@64
 @48@0:8@16q24q32@40
 @32@0:8Q16@24
-@44@0:8@16@24B32B36B40
+@52@0:8@16@24B32B36@40B48
 @"FCCKPRecord"
 @52@0:8@16B24q28@36@?44
 @60@0:8@16B24q28q36@44@?52
@@ -26194,8 +26357,10 @@ v84@0:8@16@24@32@40@48f56B60B64@68@?76
 @"FCIssue"
 @"COMAPPLEFELDSPARPROTOCOLVersionedPersonalizationVector"
 @88@0:8@16@24@32@40@48q56q64@72@80
+@56@0:8@16q24q32@40@?48
 v32@0:8q16@24
 @"NSMutableOrderedSet"
+@64@0:8@16q24q32@40@48@?56
 @"NSURLRequest"
 @28@0:8q16B24
 v136@0:8@16@24{?={?=qiIq}{?=qiIq}}32@80{?={?=qiIq}{?=qiIq}}88
@@ -26214,7 +26379,7 @@ v144@0:8@"NSURLSession"16@"AVAggregateAssetDownloadTask"24{?={?=qiIq}{?=qiIq}}32
 @"FCCKPRequestedFields"
 {?="limit"b1}
 @"NTPBURLMapping"
-@56@0:8@16@24@32B40B44B48B52
+@64@0:8@16@24@32B40B44B48@52B60
 B24@0:8@"<FCTagProviding>"16
 @"FCPurchaseOfferableConfiguration"16@0:8
 @"NSString"24@0:8q16
@@ -26519,7 +26684,7 @@ v24@0:8@"<FCNetworkReachabilityObserving>"16
 @"<NFLocking>"
 @"NTPBFeedViewportGroup"
 @"FCFeedCursor"
-@472@0:8d16d24d32d40d48d56d64d72d80d88d96d104d112d120d128d136d144d152d160@168d176d184d192d200d208d216d224d232d240d248d256d264d272d280d288d296d304d312d320d328d336d344d352d360d368d376d384d392d400d408d416d424d432d440d448d456@464
+@480@0:8d16d24d32d40d48d56d64d72d80d88d96d104d112d120d128d136d144d152d160@168d176d184d192d200d208d216d224d232d240d248d256d264d272d280d288d296d304d312d320d328d336d344d352d360d368d376d384d392d400d408d416d424d432d440d448d456d464@472
 @"FCPersonalizationCohortConfig"
 v24@0:8@"<FCNetworkReachabilityRequirement>"16
 @96@0:8@16@24@32@40Q48q56@64@72q80@88
@@ -26559,7 +26724,7 @@ v24@0:8@"<FCNetworkReachabilityRequirement>"16
 @"FCIssueListRecordSource"
 @"FCAudioConfigRecordSource"
 @40@0:8@16B24q28i36
-@72@0:8@16@24@32Q40@48B56B60B64B68
+@80@0:8@16@24@32Q40@48B56B60B64@68B76
 @"FCSpotlightOperationResult"
 v40@0:8{_NSRange=QQ}16@?32
 v32@0:8:16:24

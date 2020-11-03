@@ -2,7 +2,6 @@
 ?333333
 ?ffffff
 >333?
-F@9r
 NewsArticles
 TitleViewArticleViewerFeatureProvider
 FCContentAccessBlockedReason
@@ -11,8 +10,6 @@ UIContentSizeCategory
 UIUserInterfaceLayoutDirection
 CGPoint
 CGRect
-Direction
-NTUPageViewControllerDirection
 UIStatusBarStyle
 UIBarStyle
 SXComponentRole
@@ -20,6 +17,8 @@ CGSize
 SXSubscriptionStatus
 UIEdgeInsets
 SXVideoQuartile
+Direction
+NTUPageViewControllerDirection
 TSAccessibilityInterfaceStyleIntent
 ActivityType
 NUIActivityType
@@ -262,14 +261,14 @@ ArticleEventHandler
 NewsArticles
 SubscriptionAssembly
 Localized
-Page
 IssuePages
-MIMEType
-PageType
-Keys
+Page
 CodingKeys
 ReplicaAdvertisement
 Article
+PageType
+Keys
+MIMEType
 TableOfContentsFeatureContext
 IssueContentPresentationContext
 TextViewProviderType
@@ -526,7 +525,6 @@ InterstitialAdEventHandlerTypeDelegate
 InterstitialAdEventHandler
 Preview
 Drafts
-Demo
 InterstitialAdvertisementHistoryRecorder
 URLPreviewViewControllerFactory
 ArticleViewerFeatureManagerType
@@ -1693,6 +1691,7 @@ exploreArticleID
 externalAnalyticsConfigurations
 mediaSharingBlacklistedChannelIDs
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishDates
@@ -1731,7 +1730,13 @@ userVectorWhitelistResourceId
 userVectorModelResourceId
 articleReadCountThreshold
 forYouGroupShouldPromoteAccessibleHeadline
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 notificationEnableAssetPrefetching
 notificationAssetPrefetchingRequiresWatch
@@ -1873,8 +1878,8 @@ T@"<SXAdvertisingSettings>",N,R
 NUArticleViewControllerFactory
 loadingListeners
 @"NSHashTable"16@0:8
-@"NUArticleViewController"24@0:8@"FCArticle"16
-@"NUArticleViewController"32@0:8@"FCArticle"16@"FCIssue"24
+@"NUArticleViewController"32@0:8@"FCArticle"16@"NUArticleContext"24
+@"NUArticleViewController"40@0:8@"FCArticle"16@"FCIssue"24@"NUArticleContext"32
 NUSettings
 shouldShowArticlesInExcerptMode
 NUAnalyticsReporting
@@ -2392,7 +2397,18 @@ articlePurchaseOffersProvider
 loadingIndicatorProvider
 articleLoadingStateMachine
 errorMessageFactory
+loggingIdentifier
+Article did start preparing for load, loggingID=%{public}@
+Article did enter error state, loggingID=%{public}@, duration=%f
 model style position 
+Article did enter loaded state, loggingID=%{public}@, duration=%f
+Article did enter loading state, loggingID=%{public}@, duration=%f
+Article did start retrieving paywall, loggingID=%{public}@, articleID=%{public}@
+Article did start refreshing offers, loggingID=%{public}@, articleID=%{public}@
+Article did not create paywall, loggingID=%{public}@, articleID=%{public}@
+Article did create soft paywall, loggingID=%{public}@, articleID=%{public}@
+Article did create hard paywall, loggingID=%{public}@, articleID=%{public}@
+Article did fail loading, loggingID=%{public}@, error=%{public}@
 Browse Back Catalog
 Open item's corresponding back catalog
 newsarticles.open_channel
@@ -2461,6 +2477,7 @@ insertAdvertisementBlueprintModifier
 pageTracker
 v72@0:8@16@24@32@40@48Q56q64
 NewsArticles.ArticleViewerInteractor
+ArticleViewer started prewarming blueprint
 FCSubscriptionObserving
 v32@0:8@16@24
 v72@0:8@"FCSubscriptionController"16@"NSSet"24@"NSSet"32@"NSSet"40@"NSSet"48Q56q64
@@ -2480,11 +2497,8 @@ _TtC12NewsArticles18EndOfArticleRouter
 _TtC12NewsArticles31InterstitialAdvertisementStyler
 com.apple.news.endOfArticle
 com.apple.news.interstitialAds
-NewsArticles.InterstitialAds
 com.apple.news.prerollAds
-NewsArticles.PrerollAds
 com.apple.news.bannerAds
-NewsArticles.BannerAds
 com.apple.news.newsArticles
 Section header for article
 Why don
@@ -2600,6 +2614,7 @@ Suppressing article footer because Related and More From are disabled in metadat
 Suppressing article footer due to article role, role=%{public}@, articleID=%{public}@
 Suppressing article footer because viewing within an issue, articleID=%{public}@
 _TtC12NewsArticles42MacTitleViewArticleViewerFeatureTransition
+toolbarItemProvider
 nextHeadline
 _TtC12NewsArticles40ArticleRecirculationConfigurationService
 _TtC12NewsArticles33EndOfArticlePublisherViewRenderer
@@ -2630,7 +2645,7 @@ NewsArticles1
 NewsArticles.SubscriptionStatusProvider
 FCBundleSubscriptionChangeObserver
 v24@0:8@"FCBundleSubscription"16
-v40@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24@"FCBundleSubscriptionChangeSet"32
+v32@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24
 _TtC12NewsArticles14VideoAdTracker
 _TtC12NewsArticles29ANFDebugLayoutOptionsProvider
 Q24@0:8Q16
@@ -2646,6 +2661,7 @@ _TtC12NewsArticles36SharingArticleTextActivityItemSource
 itemTitle
 headline observable 
 data
+filePath
 _TtC12NewsArticles26IssuePDFReplicaPageService
 _TtC12NewsArticles46ReportConcernDetailBlueprintViewHeaderProvider
 title layoutAttributes 
@@ -2920,7 +2936,6 @@ _TtC12NewsArticles21SharingCommandHandler
 defaultSharingActivityProviderFactory
 audioSharingActivityProviderFactory
 fallbackTracker
-sceneProvider
 Sharing did not return an activity type; skipping completion for %s
 _TtC12NewsArticles22AdComponentViewFactory
 integrator
@@ -3018,7 +3033,6 @@ _TtC12NewsArticles32SaveArticleViewerFeatureProvider
 visibilityProvider
 _TtC12NewsArticles21PDFReplicaDataManager
 fetchCancelHandler
-filePath
 _TtC12NewsArticles26InterstitialAdEventHandler
 news_articles.drafts.allow_remote_preview
 show_excerpt_mode
@@ -3449,7 +3463,7 @@ _TtC12NewsArticles48EndOfArticlePublisherViewLayoutAttributesFactory
 Following button on the article recirculation publisher header
 _TtC12NewsArticles38MacShareArticleViewerFeatureTransition
 nextContext
-windowScene
+sceneProvider
 sharingActivityProviderFactory
 _TtC12NewsArticles17AdSettingsFactory
 dynamic_ad_enabled
@@ -3932,6 +3946,7 @@ So30NULinkedArticleContentProvider_p
 $s12NewsArticles16IssueManagerTypeP
 So7FCIssueC
 _pIegggozo_
+SSSg
 _pIegggozo_
 _pIegggozo_
 GIegn_
@@ -3972,9 +3987,9 @@ ySo11UITableViewC
 yAeM
 yAEGAOGAOG
 $s5TeaUI35BlueprintViewControllerDelegateTypeP
-So14FCTagProviding_p
 SgXw
 SgXwz_Xx
+So14FCTagProviding_p
 $s12NewsArticles22EndOfArticleModuleTypeP
 $s12NewsArticles43TableOfContentsBlueprintModifierFactoryTypeP
 10Descriptor
@@ -4025,6 +4040,8 @@ So9FCArticleCSg
 So21NUErrorMessageFactory_p
 SgXw
 SgXwz_Xx
+SgXw
+SgXwz_Xx
 $s12NewsArticles032SharingIssueActivityTypeProviderF0P
 So16FCReadingHistoryC
 $s5TeaUI18CommandHandlerTypeP
@@ -4034,7 +4051,6 @@ yxGSgXwz_x_
 11LayoutModel
 AHRQ
 AHRQlXX
-SSSg
 16layoutAttributes_t
 $s12NewsArticles25TextSizeControlStylerTypeP
 So13NUURLHandling_p
@@ -4154,6 +4170,7 @@ So29FCNewsAppConfigurationManager_p
 $s12NewsArticles17ArticleFooterTypeP
 $s12NewsArticles25ArticleFooterProviderTypeP
 So24NAEndOfArticleModuleType_p
+yXlSgXw
 So19FCHeadlineProviding_pSg
 SgXw
 $s12NewsArticles27EndOfArticleCoordinatorTypeP
@@ -4161,7 +4178,10 @@ $s12NewsArticles44ArticleRecirculationConfigurationServiceTypeP
 $s12NewsArticles38ArticleErrorMessageFactoryProviderTypeP
 $s12NewsArticles37EndOfArticlePublisherViewRendererTypeP
 So16TSImageCacheType_p
-SS10identifier_SaySSG11identifierst
+SS10identifier_
+16navigationActiont
+SS10identifier_SaySSG11identifiers
+16navigationActiont
 So28APPCDiagnosticMetricsHelping_p
 So15SXVideoMetadata_p
 So23APPCMediaMetricsHelping_pSg
@@ -4213,7 +4233,6 @@ So8UIButtonC
 yytG
 SgXw
 SgXwz_Xx
-SgXw
 Iegn_
 So12UIScrollViewC
 ySo12UIScrollViewCSgG
@@ -4478,6 +4497,7 @@ $s12NewsArticles38PDFReplicaViewerInteractorTypeDelegateP
 _pSgXw
 _pSg
 $s12NewsArticles37ArticleViewerPageBlueprintFactoryTypeP
+SDySS
 $s12NewsArticles19BannerViewProvidingP
 $s12NewsArticles15AdDataModelTypeP
 So21NABannerViewProviding_pSg
@@ -4503,6 +4523,7 @@ So29NPSubscriptionAccessMeterType_p
 SS5title_
 16layoutAttributest
 $s12NewsArticles15IssueLoaderTypeP
+So7FCIssueC_SS18feedItemIdentifiert
 $s12NewsArticles44InterstitialAdvertisementCoordinatorDelegateP
 $s12NewsArticles40InterstitialAdvertisementCoordinatorTypeP
 So11UIImageViewC
@@ -4570,7 +4591,6 @@ SgXw
 SgXwz_Xx
 yXlSg
 $s12NewsArticles52EndOfArticlePublisherViewLayoutAttributesFactoryTypeP
-So13UIWindowSceneC
 SgXw
 SgXwz_Xx
 $s12NewsArticles33EndOfArticleSectionResultProviderP
@@ -4705,7 +4725,6 @@ So7FCIssueC5issue_
 16layoutAttributest
 $s12NewsArticles29EndOfArticleCountProviderTypeP
 $s12NewsArticles25TextInputViewRendererTypeP
-_pIegno_
 GSgXw
 $s12NewsArticles21ColorPaletteProvidingP
 $s12NewsArticles26EndOfArticleInteractorTypeP
@@ -4978,6 +4997,7 @@ articlePurchaseOffersProvider
 loadingIndicatorProvider
 articleLoadingStateMachine
 errorMessageFactory
+loggingIdentifier
 startedLoading
 articleDidLoad
 channel
@@ -5141,11 +5161,11 @@ articleIdentifier
 asset
 assetType
 clickthroughLink
+jpeg
 type
 cover
 feature
 endOfIssue
-jpeg
 RawValue
 issue
 presentationContext
@@ -5212,6 +5232,7 @@ appConfigurationManager
 tracker
 module
 toolbarManager
+toolbarItemProvider
 renderer
 nextHeadline
 styler
@@ -5239,12 +5260,14 @@ observers
 bundleSubscriptionStatus
 channelSubscriptionStatus
 identifier
+createdDate
+endDate
 trigger
 unknown
 swipe
 foreground
 requestNext
-identifier
+pageSession
 contentIdentifier
 placementIdentifier
 position
@@ -5774,6 +5797,7 @@ articleViewerImpressionManager
 interstitialAdManager
 paidAccessChecker
 featureManager
+toolbarManager
 featureTransitions
 hasPresentedFirstPage
 pageSheetPresentationObserver
@@ -5854,6 +5878,7 @@ options
 tracker
 contextBuilder
 articleAccessMap
+cache
 coverViewButton
 subscribeButton
 dateLabel
@@ -5921,6 +5946,7 @@ model
 issueManager
 issue
 identifier
+feedIssue
 titleLabel
 logoImageView
 logoNameLabel
@@ -6018,11 +6044,14 @@ pageIdentifier
 identifier
 headline
 metadata
+pluginIdentifier
+feedItemIdentifier
 styler
 cache
 nextContext
-windowScene
+sceneProvider
 toolbarManager
+toolbarItemProvider
 sharingActivityProviderFactory
 headline
 titleView
@@ -6176,6 +6205,7 @@ scrollViewContentOffset
 scrollViewBoundsSize
 traitCollection
 toolbarLayoutOptions
+toolbarItemProvider
 articleController
 articlePrefetcher
 articleAudioPrewarmer
@@ -6336,7 +6366,7 @@ bundlePurchasePrewarmer
 offerManager
 $__lazy_storage_$_title
 visibilityProvider
-windowScene
+sceneProvider
 toolbarManager
 sharingIntentFactory
 sharingActivityProviderFactory
@@ -6932,6 +6962,7 @@ fetchImageForRequest:completion:
 fetchImageForRequest:expires:completion:
 fetchImageForRequest:
 setImage:forRequest:
+cancelAllRunningOperations
 loadFailedWithReason:code:
 templateMetricWithName:argument:
 mediaPlaybackFailedWithReason:
@@ -7131,6 +7162,7 @@ exploreArticleID
 externalAnalyticsConfigurations
 mediaSharingBlacklistedChannelIDs
 stateRestorationAllowedTimeWindow
+stateRestorationOniPhoneEnabled
 autoRefreshMinimumInterval
 terminateAppOnBackgroundAfterJoiningOrLeavingExperiment
 topStoriesPublishDates
@@ -7168,7 +7200,13 @@ userVectorWhitelistResourceId
 userVectorModelResourceId
 articleReadCountThreshold
 forYouGroupShouldPromoteAccessibleHeadline
-adRequestThrottle
+feedBannerAdRequestThrottle
+articleBannerAdRequestThrottle
+interstitialAdRequestThrottle
+prerollAdRequestThrottle
+nativeInFeedAdRequestThrottle
+nativeInArticleAdRequestThrottle
+feedAdScreenfulsToPrefetch
 widgetContentPrefetchEnabled
 notificationEnableAssetPrefetching
 notificationAssetPrefetchingRequiresWatch
@@ -7276,8 +7314,8 @@ newAdsEnabled
 debugAdSlotsEnabled
 debugAdvertisementSettings
 loadingListeners
-createArticleViewControllerWithArticle:
-createArticleViewControllerWithArticle:issue:
+createArticleViewControllerWithArticle:context:
+createArticleViewControllerWithArticle:issue:context:
 shouldShowArticlesInExcerptMode
 reportEvent:
 contentSizeCategoryForArticle:
@@ -7600,10 +7638,6 @@ columnRange
 numberOfColumns
 reload
 headline
-initWithViewController:heightProvider:
-blueprintWithItems:
-next:
-setAccessibilityElementsHidden:
 feedType
 nss_NewsURLForArticleID:
 removeArticleFromHistory:
@@ -7730,7 +7764,7 @@ weakObjectsHashTable
 defaultCenter
 addObserver:selector:name:object:
 isFreeTrialEligible
-bundleSubscriptionDidChange:previousBundleSubscription:changeSet:
+bundleSubscriptionDidChange:previousBundleSubscription:
 campaignData
 NSDictionary
 archivedDataWithRootObject:requiringSecureCoding:error:
@@ -7807,6 +7841,9 @@ input
 responder
 scrollView
 documentBackgroundColor
+blueprintWithItems:
+next:
+setAccessibilityElementsHidden:
 contentOffset
 contentSizeCategory
 setContentSizeCategory:
@@ -7827,6 +7864,7 @@ accessibilityFrame
 setArticleContext:
 deselect
 startTraversingWithDirection:
+initWithViewController:heightProvider:
 value
 delegate
 initWithDelegate:delegateProtocol:
@@ -8027,6 +8065,7 @@ subscriptionButtonConfigurationsByType
 initWithUnsignedInteger:
 landingPageArticleID
 targetType
+servicesBundleSubscriptionButtonConfigurationsByType
 postPurchaseActionType
 postPurchaseURL
 openURL:options:completionHandler:
@@ -8223,6 +8262,7 @@ fc_isNewsIssueURL
 fc_isNewsSubscriptionURL
 fc_NewsIssueID
 fc_NewsArticleIDs
+fragment
 defaultWorkspace
 URLOverrideForURL:
 getAppLinksWithURL:completionHandler:

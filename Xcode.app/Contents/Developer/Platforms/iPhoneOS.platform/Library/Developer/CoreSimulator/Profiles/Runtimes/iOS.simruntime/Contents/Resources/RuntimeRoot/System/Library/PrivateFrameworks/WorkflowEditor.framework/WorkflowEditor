@@ -2179,8 +2179,8 @@ T@"<WFAppSearchViewControllerDelegate>",W,N,V_delegate
 App search view; no results
 No results.
 B16@?0@"LSApplicationProxy"8
-v24@?0@"LSBundleProxy"8^B16
 com.apple.maps.directionsrequest
+@"NSArray"16@?0@"LSClaimRecord"8
 App search view; search bar placeholder
 Search Apps
 App search view; navigation bar title
@@ -7222,10 +7222,12 @@ appWithIdentifier:
 sortUsingDescriptors:
 sortDescriptorWithKey:ascending:selector:
 caseInsensitiveCompare:
-enumerateBundlesOfType:block:
-claimedDocumentContentTypes
-wf_isUserFacing
-defaultWorkspace
+typeIdentifiers
+compatibilityObject
+if_flatMap:
+claimRecords
+wf_isAvailableInContext:
+enumeratorWithOptions:
 setTranslucent:
 navigationBar
 setHidesSearchBarWhenScrolling:
@@ -7740,7 +7742,6 @@ createActionWithIdentifier:serializedParameters:
 strings
 URLs
 unarchivedObjectOfClass:fromData:error:
-if_flatMap:
 dataForPasteboardType:inItemSet:
 hasURLs
 hasStrings

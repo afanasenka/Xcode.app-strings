@@ -268,7 +268,7 @@ feedItem
 T@"_TtC18HealthPlatformCore8FeedItem",N,D,&
 HealthPlatformCore/UserProfile+SourceProfile.swift
 Health App does not yet support attaching multiple profiles to an item
-08132020_rdar://67028649
+09142020_rdar://58534342
 Command exists with element(s) not present in data: 
 Unsupported input passed to decoder: 
 element event 

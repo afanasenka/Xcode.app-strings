@@ -371,10 +371,6 @@ multi_user_mode
 Primary
 com.apple.OSAnalytics
 /var/db/forceMultiUserMode
-macOS
-Mac OS X
-11.0
-10.16
 %@:%@
 %@ %@ (%@)
 %@-internal
@@ -693,6 +689,8 @@ com.apple.ReportCrash.syslogDumpQueue
 v16@?0@"NSDictionary"8
 -[OSAReport streamContentAtLevel:withBlock:]
 [section_stack count] == 1
+capture_time
+Td,R,N,V_capture_time
 T@"NSArray",R,N,V_notes
 logfile
 T@"NSString",R,N,V_logfile
@@ -1183,6 +1181,15 @@ ARM_THREAD_STATE32
 {%@}
 v32@?0@"NSTextCheckingResult"8Q16^B24
 template has illformed definition
+/var/root/Library/Logs/tailspin
+includeTailspinWithGPUEvents
+com.apple.ReportCrash.GPUEventTailspinQueue
+%@-%@.tailspin
+process_name
+gpuEvent-%@
+tailspin_pathname
+/usr/lib/libtailspin.dylib
+tailspin_dump_output_sync
 /System/Library/PrivateFrameworks/CoreAnalytics.framework/CoreAnalytics
 AnalyticsSendEvent
 userUUID
@@ -1487,6 +1494,14 @@ invoking %s %@
 found definition '%@':
 [EOD]
 invoking with %@ value %@
+GPURestartReport: event with %lu keys
+GPURestartReport: tailspin log disabled by default
+GPURestartReport: libtailspin not available
+GPURestartReport: tailspin_dump_output_sync not found
+GPURestartReport: Failed to create tailspin file (%s)
+GPURestartReport: Saving tailspin output to %s
+GPURestartReport: Succesfully saved tailspin output to %s
+GPURestartReport: Failed to save tailspin output to %s
 Unable to determine UUID for host. Error: %d %s
 Write failed to file %s - %zd of %d bytes written - uid: %d gid: %d, euid: %d egid: %d - error %d: %s
 Not sending Core Analytics events because snapshot is missing.
@@ -1529,6 +1544,7 @@ LogLineExtension
 OSACrashReport
 !q"b
 OSALegacyXform
+OSAGPUEventReport
 OSAJetsamReport
 MTClientHelpers
 OSALogCounterObject
@@ -1970,6 +1986,7 @@ isAppleTV
 captureTime
 symlink:
 saveWithOptions:
+capture_time
 notes
 logfile
 _incidentID
@@ -2239,6 +2256,8 @@ formatX86ThreadState:
 formatImages:withLegacyInfo:macosStyle:
 enumerateMatchesInString:options:range:usingBlock:
 _templates
+_event
+_tailspinPath
 instrumentEvents:
 fetchSnapshotWithFlags:error:
 acquireJetsamDataWithFlags:

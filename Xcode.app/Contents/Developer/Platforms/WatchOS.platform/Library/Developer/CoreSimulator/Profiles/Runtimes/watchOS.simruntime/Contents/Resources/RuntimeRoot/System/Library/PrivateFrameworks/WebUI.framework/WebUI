@@ -48,6 +48,8 @@ privateBrowsingAvailable
 TB,R,N,GisPrivateBrowsingAvailable
 inMemoryBookmarkChangeTrackingAvailable
 TB,R,N,GisInMemoryBookmarkChangeTrackingAvailable,V_inMemoryBookmarkChangeTrackingAvailable
+keychainSyncEnabled
+TB,R,N,GisKeychainSyncEnabled
 airDropPasswordsAvailable
 TB,R,N,GisAirDropPasswordsAvailable
 com.apple.WebUI
@@ -96,6 +98,7 @@ com.apple.mobilesafari
 AutoFill
 CookiePolicy
 CrowdsourcedAutoFill
+Keychain
 v16@?0@"PUICActionSheetItem"8
 v32@?0@"NSString"8Q16^B24
 WBUFormAutoFillPasswordGenerationAssistanceBecameAvailableNotification
@@ -164,6 +167,7 @@ Would you like to save this password to use with websites?
 shouldScheduleMaintenance
 TB,N,V_shouldScheduleMaintenance
 Profile connection had no effective value for safariAcceptCookies setting; using default cookie accept policy
+Failed to read keychain sync status with error: %{public}@
 Failed to find saved password. Skipping weak password warning.
 Failed to find persistent identifier for credential. Skipping weak password warning.
 WebView disappeared before presenting weak password warning.
@@ -385,6 +389,7 @@ _accountStoreDidChange:
 addObserver:selector:name:object:
 _setupAccountStore
 aa_primaryAppleAccount
+_updateKeychainSyncingStatus
 isCloudTabsAvailable
 isCloudKitBookmarksAvailable
 array
@@ -397,11 +402,18 @@ sharedWebFilterSettings
 isWebFilterEnabled
 aa_isUsingiCloud
 isPasswordSharingAllowed
+fetchUserControllableViewsSyncingEnabled:
+safari_privacyPreservingDescription
+setContext:
+aa_altDSID
+setAltDSID:
+initWithContextData:
 webui_sharedFeatureManager
 isCreditCardStorageAvailable
 isCloudHistorySyncAvailable
 isPrivateBrowsingAvailable
 isAirDropPasswordsAvailable
+isKeychainSyncEnabled
 isAutoFillAvailable
 isBookmarksAvailable
 isReadingListAvailable
@@ -410,6 +422,7 @@ isInMemoryBookmarkChangeTrackingAvailable
 _internalQueue
 _accountStore
 _account
+_keychainClique
 _autoFillAvailable
 _bookmarksAvailable
 _readingListAvailable
@@ -441,7 +454,6 @@ setActionHandler:
 type
 setHideAction:
 context
-setContext:
 _otherAction
 _indexOfSelectedIdentity
 _type
@@ -846,6 +858,7 @@ q16@0:8
 @"NSObject<OS_dispatch_queue>"
 @"ACAccountStore"
 @"ACAccount"
+@"OTClique"
 B32@0:8^{__SecTrust=}16@24
 @48@0:8i16@20@28i36i40i44
 @40@0:8i16@20i28i32i36

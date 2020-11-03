@@ -955,6 +955,8 @@ T@?,C,N
 TB,N,V_showsTimecodes
 T@"NSString",C,N
 T@"UIView",R,N
+canStartPictureInPictureAutomaticallyFromInline
+TB,N,V_canStartPictureInPictureAutomaticallyFromInline
 TB,N,V_entersFullScreenWhenPlaybackBegins
 exitsFullScreenWhenPlaybackEnds
 TB,N,V_exitsFullScreenWhenPlaybackEnds
@@ -3106,6 +3108,7 @@ AVPlayerController_AVPlayerControllerVolumeAnimatorAdditions
 AVHomeIPCameraActionButtonHandling
 AVHomeIPCameraBehavior
 AVPictureInPictureContentSource
+AVPictureInPictureContentSourceExtensions
 AVInteractiveTransitionGestureTracker
 AVTransitionDriver
 UIInteraction
@@ -4124,8 +4127,10 @@ avkit_willBeginStoppingPictureInPictureForPictureInPictureViewController:
 avkit_videoRectInWindow
 avkit_isVisible
 avkit_window
+isHidden
 superlayer
 convertRect:fromLayer:
+avkit_visibleRectForRect:inLayer:
 _enabled
 _pinchToDismissEnabled
 _pinchToPresentEnabled
@@ -4511,7 +4516,6 @@ debugInfoDisplay
 setDebugInfoDisplay:
 refreshRate
 videoDynamicRange
-isHidden
 setRootViewController:
 setWindowScene:
 _first
@@ -4903,6 +4907,7 @@ _canToggleVideoGravityWhenEmbeddedInline
 _playbackControlsShouldControlSystemVolume
 _showsTimecodes
 _readyForDisplay
+_canStartPictureInPictureAutomaticallyFromInline
 _entersFullScreenWhenPlaybackBegins
 _exitsFullScreenWhenPlaybackEnds
 _shouldUseNetworkingResourcesForLiveStreamingWhilePaused
@@ -5048,6 +5053,7 @@ _handleRewindKeyReleasedCommand:
 _handleFastForwardKeyPressedCommand:
 _handleFastForwardKeyReleasedCommand:
 _addObservers
+setCanStartPictureInPictureAutomaticallyFromInline:
 _isUnsupportedContent
 _updateUnsupportedContentIndicatorView
 isAudioOnlyContent
@@ -5088,6 +5094,7 @@ _modalPresentationStyleIsFullScreen
 showsTimecodes
 setReadyForDisplay:
 setVideoBounds:
+canStartPictureInPictureAutomaticallyFromInline
 entersFullScreenWhenPlaybackBegins
 exitsFullScreenWhenPlaybackEnds
 setExitsFullScreenWhenPlaybackEnds:
@@ -6188,7 +6195,9 @@ _baselineOffset
 _textLayer
 _imageLayer
 _customText
+layoutSublayersWithTextAndImageUsingInsetBounds:
 textBoundingRectWhenDrawnInRect:
+canRenderAttributedTextWithoutTruncationInsideRect:
 boundingRectWithSize:options:context:
 setString:
 initWithString:attributes:
@@ -8193,6 +8202,7 @@ v80@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16{CGSize=dd}48{CGSize=dd}64
 @"AVPictureInPictureViewController"16@0:8
 v32@0:8@"AVPictureInPictureViewController"16@"AVPlayerController"24
 @"UIWindow"16@0:8
+{CGRect={CGPoint=dd}{CGSize=dd}}56@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48
 @"UIPanGestureRecognizer"
 @"<AVTransitionDriverDelegate>"
 @"UIPinchGestureRecognizer"
@@ -8467,6 +8477,7 @@ v24@0:8@"AVRoutePickerView"16
 @"CATextLayer"
 @"CALayer"
 @36@0:8d16^{CGImage=}24B32
+B48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16
 @"<AVTimeControlling>"
 @"AVTimer"
 v40@0:8{CGSize=dd}16Q32

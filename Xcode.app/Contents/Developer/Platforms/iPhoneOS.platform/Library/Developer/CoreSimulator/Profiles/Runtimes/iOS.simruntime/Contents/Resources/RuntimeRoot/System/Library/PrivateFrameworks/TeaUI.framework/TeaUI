@@ -255,6 +255,7 @@ BlueprintInfiniteScrollBuilder
 Trigger
 ViewTransitionThroughColorAnimator
 Options
+Y@9i
 KeyCommandScrollProviderDelegate
 KeyCommandScrollProvider
 TabBarable
@@ -277,7 +278,7 @@ SingletonObjectManager
 JSONTextEncoder
 CommandRawStateType
 BlueprintInfiniteScroll
-BlueprintInfiniteScrollIdeTrigger
+BlueprintInfiniteScrollIdleTrigger
 Marker
 BlueprintLayoutCollectionSectionSupplementarySolverType
 ContextMenuGroupable
@@ -383,6 +384,9 @@ Highlightable
 ViewHighlightable
 SectionViewControllerDataSource
 BlueprintTraversalCollectionBuilder
+ScrollDirection
+Vertical
+Horizontal
 ______
 ?rrrrrr
 CoverView
@@ -507,11 +511,13 @@ RightArrow
 NavigationItemStylable
 BarView
 BlueprintPipelineError
+BlueprintPipelineToken
 BlueprintPipeline
 ContextMenuCancellable
 BlueprintModifierResult
 TeaUIModule
 Debug
+DebugContextMenuPosition
 CoverViewManager
 BlueprintLayoutSection
 BlueprintLayoutCollectionSectionCursor
@@ -573,12 +579,14 @@ HeightLayoutAttributes
 RadarComponent
 JSONText
 AppState
+AppWindowState
 AppEnvironment
 AppURLHandlerType
 AppType
 AppMonitorEvent
 AppMonitor
 WindowScene
+Prefetchable
 SceneResolverScope
 SceneResolverManager
 CommandStateObserver
@@ -673,6 +681,8 @@ State
 BridgedTransition
 BlueprintViewType
 BlueprintViewUpdateDeferring
+BlueprintPrefetcherType
+BlueprintPrefetcher
 NavigationItemStyle
 BarStyle
 TeaUI
@@ -802,6 +812,8 @@ MiniMastheadBarCompressionAnimator
 TeaUI
 Rec709Luma
 UIColor
+BlueprintCellPrefetcherType
+LayoutModel View
 Automation
 RunnerState
 StackNavigator
@@ -1091,6 +1103,7 @@ ButtonState
 AnimationState
 StateCommandContextTitle
 TeaUI
+ModalViewSession
 ModalHostable
 ModalHostViewControllerDelegate
 ModalHostViewController
@@ -1294,6 +1307,7 @@ T@"UITextField",R,N
 T@"UIToolbar",&,N,V_toolbar
 Td,N,V_topOffset
 ts_isScrolling
+ts_isVerticalBouncing
 ts_isAnimatingScroll
 ts_verticalVelocity
 T@"NSString",R,N
@@ -1387,6 +1401,9 @@ phone
 openURL
 userActivity
 sceneConnect
+hidden
+leading
+trailing
 header
 footer
 appearing
@@ -1639,7 +1656,6 @@ v36@0:8@16@24B32
 accessor
 TUSettingsAssembly
 Show All Bundles
-Show Context Menu
 superclass
 description
 TUCommandType
@@ -1687,7 +1703,6 @@ q16@0:8
 @24@0:8:16
 _TtC5TeaUI28PatternSectionDecorationView
 patternView
-token
 TeaUI/PatternSectionDecorationView.swift
 v24@?0@"UIImage"8@"NSError"16
 TSPluginManager
@@ -1914,6 +1929,7 @@ supplementarySolver
 fillStyle
 _TtC5TeaUI24BlueprintPipelineContext
 recorder
+token
 group
 _TtC5TeaUI26UserActivityHandlerManager
 v24@0:8q16
@@ -2053,6 +2069,7 @@ isToolbarVisible
 _toolbarEnabled
 lazyTemplate
 configurations
+currentProvider
 queuedUpdates
 dispatchedRebuild
 _TtC5TeaUI15ShineImageLayer
@@ -2457,11 +2474,12 @@ tintView
 separatorView
 TeaUI/BarView.swift
 visualEffectGroup
-delegate
+_TtC5TeaUI22BlueprintPipelineToken
 blueprintIntegrator
 queues
 accessGroup
 blueprintState
+_sessionToken
 draggedAndDropped
 viewActionWithAnimation
 changesNoAnimation
@@ -2470,6 +2488,7 @@ reloadNoAnimation
 reloadWithAnimation
 teaui.debug.menu_activation
 Tap activation requires a two finger tap along the status bar. Ensure your build supports this feature before turning it on.
+teaui.debug.enable_debug_context_menu_position
 teaui.debug.enable_debug_context_menu
 teaui.debug.show_all_bundles
 teaui.debug.enable_debug_menu
@@ -2587,10 +2606,11 @@ TeaUI/App.swift
 If a new application state exists we need to map that properly
 _TtC5TeaUI3App
 monitor
+sceneProvider
 environment
 TSAppMonitor
 isActive
-isWindowForeground
+isTracking
 onWindowDidBecomeBackgroundBlock
 onWindowWillBecomeForegroundBlock
 TB,N,VisActive
@@ -2673,7 +2693,6 @@ layoutStyle
 visibilityStyle
 isHighlighted
 isSelected
-hidden
 TB,N
 _TtC5TeaUI23SwipeActionSnapshotView
 TeaUI.SwipeActionSnapshotView
@@ -2736,11 +2755,14 @@ v36@0:8@16q24B32
 states
 Transition manager, begin, 
 Attempting to begin appearance from invalid state, 
+view
+prefetcher
+lastPrefetchBounds
+prefetched
 TUOverlayAlertAssembly
 _TtC5TeaUI41RawBlueprintLayoutCollectionSectionSolver
 _TtC5TeaUI14ImageProcessor
 navigator
-sceneProvider
 Failed to open in new tab, error=%{public}@
 layoutProvider
 layoutOptionsProvider
@@ -2933,6 +2955,11 @@ BlueprintInfiniteScrollRequest(identifier: "
 _TtC5TeaUI58StackedBlueprintLayoutCollectionSectionSupplementarySolver
 layoutOptions
 Failed to open in new window, error=%{public}@
+Did start session for page, identifier=%{public}@
+Did resign session for page, identifier=%{public}@
+Did resume session for page, identifier=%{public}@
+Did cancel session for page, identifier=%{public}@
+Did end session for page, identifier=%{public}@
 _TtC5TeaUI18PageSessionManager
 sessions
 TeaUI.EmptyStateView
@@ -2995,6 +3022,7 @@ tapGestureRecognizer
 deferGroup
 collectionView
 isSwipeActionEnabled
+delegate
 rubberbandFactor
 maximumSwipeVelocity
 springStiffness
@@ -3135,7 +3163,6 @@ stateObserverStore
 executionObserverStore
 contextStore
 observableBlueprint
-view
 viewDataSource
 viewDelegate
 viewDragDelegate
@@ -3149,8 +3176,9 @@ TUStateRestoreController
 @28@0:8d16B24
 timeWindow
 store
-isRunningPPT
+isStateRestorationFeatureEnabled
 hasStateDiscarded
+TB,N,R,VisStateRestorationFeatureEnabled
 isStateRestorationAllowed
 TB,N,VhasStateDiscarded
 _TtC5TeaUI31StateRestoreLastBackgroundStore
@@ -4082,6 +4110,7 @@ So16UICollectionViewCXoz_Xx
 So20UICollectionViewCellCSg
 _pSg
 _pSg
+_pSg
 So15NFMultiDelegateCySo016UICollectionViewB0_pGSg
 _pSg
 _pSg
@@ -4251,6 +4280,7 @@ $s5TeaUI14AppMonitorTypeP
 $s5TeaUI21AppMonitorManagerTypeP
 $s5TeaUI26AppContentSizeProviderTypeP
 So13UIWindowSceneC
+$s5TeaUI12PrefetchableP
 _p13swiftResolver_So10NFResolver_p04objcB0tSg
 _p13swiftResolver_So10NFResolver_p04objcB0t
 So19NSMutableDictionaryC
@@ -4362,8 +4392,18 @@ SbIegd_
 So16UIViewControllerC2vc_t
 Sg_ABt
 Sg_ABt
+Sg_ABt
 $s5TeaUI17BlueprintViewTypeP
 $s5TeaUI28BlueprintViewUpdateDeferringP
+yxq_GSgXw
+yxq_GSgXwz_x_q_
+11LayoutModel
+AIRQAG
+Qy_AIRSr0_lXX
+$s5TeaUI23BlueprintPrefetcherTypeP
+11LayoutModel
+4View
+Qy_Sg
 So7UIColorC15backgroundColor_ABSg04tintC0Sb11translucentt
 8barStyle_So7UIColorCSg9tintColort
 So7UIColorC12barTintColor_ABSg04tintD0Sb11translucentt
@@ -4511,6 +4551,9 @@ yxGG
 yxGG
 yxGG
 $s5TeaUI35BlueprintInfiniteScrollProviderTypeP
+$s5TeaUI27BlueprintCellPrefetcherTypeP
+11LayoutModel
+4View
 yx_xGG
 So14NSUserActivityCxKc
 yqd__Gc
@@ -4806,10 +4849,10 @@ So9UIControlC
 ySo11CAAnimationCG
 SSx_q_Sgtc
 SgXw
-_pSg
 $s5TeaUI13ModalHostableP
 $s5TeaUI31ModalHostViewControllerDelegateP
 _pSgXw
+_pSg
 SbSo7UIColorCIegyo_
 So7UIColorCxc
 So11UITableViewCSgXw
@@ -5119,6 +5162,7 @@ Page
 fromSize
 toSize
 visibleIndexPaths
+allVisibleIndexPaths
 contentOffset
 contentInset
 adjustedContentInset
@@ -5181,6 +5225,7 @@ none
 page
 runOptions
 recorder
+token
 group
 handlers
 viewController
@@ -5323,6 +5368,7 @@ commandCenter
 _toolbarEnabled
 lazyTemplate
 configurations
+currentProvider
 queuedUpdates
 dispatchedRebuild
 configuration
@@ -5399,6 +5445,9 @@ _lastBarCompressEvent
 shouldCompress
 animated
 identifier
+durationThreshold
+createdDate
+endDate
 trigger
 unknown
 swipe
@@ -5526,6 +5575,12 @@ none
 enabled
 askView
 collectionProvider
+horizontal
+vertical
+down
+none
+left
+right
 empty
 error
 error2
@@ -5696,6 +5751,7 @@ lastScrollTriggeredContentOffset
 transitionManager
 tracker
 keyboardInputMonitor
+prefetcher
 View
 ControllerDelegate
 items
@@ -5778,6 +5834,7 @@ tintView
 separatorView
 abandoned
 processorRejected
+cancelled
 delegate
 blueprintProvider
 blueprintIntegrator
@@ -5786,6 +5843,7 @@ accessGroup
 name
 blueprintState
 processors
+_sessionToken
 reload
 reloadWithAnimation
 reloadNoAnimation
@@ -5799,6 +5857,10 @@ draggedAndDropped
 bookmark
 failed
 noChanges
+hidden
+leading
+trailing
+RawValue
 viewController
 cover
 coverView
@@ -5947,12 +6009,17 @@ textEncoder
 active
 inactive
 background
+unknown
+foregroundActive
+foregroundInactive
+unattached
 normal
 monitor
+sceneProvider
 application
 environment
 isActive
-isWindowForeground
+isTracking
 onWindowDidBecomeBackgroundBlock
 onWindowWillBecomeForegroundBlock
 RawValue
@@ -6146,6 +6213,11 @@ disappearing
 appeared
 disappeared
 RawValue
+view
+blueprintLayoutProvider
+prefetcher
+lastPrefetchBounds
+prefetched
 navigationBar
 toolbar
 statusBarStyle
@@ -6797,7 +6869,7 @@ photoEffectTransfer
 sepiaTone
 timeWindow
 store
-isRunningPPT
+isStateRestorationFeatureEnabled
 hasStateDiscarded
 stateRestoreLastBackgroundDateKey
 childViewController
@@ -6817,6 +6889,7 @@ valueLabel
 stepper
 prefersSynchronous
 noDataMutations
+cancelIfPreempted
 block
 description
 traits
@@ -6990,12 +7063,16 @@ touch
 other
 titleBlock
 defaultTitle
+identifier
+createdDate
+endDate
 delegate
 style
 viewController
 closeButton
 transitionEffectView
 effect
+session
 colorBlock
 defaultColor
 dataSource
@@ -7464,6 +7541,7 @@ _toolbar
 isDecelerating
 _isAnimatingScrollTest
 _isAnimatingScroll
+_isVerticalBouncing
 _verticalVelocity
 scrollsToTop
 setScrollsToTop:
@@ -7472,6 +7550,7 @@ _setAutomaticContentOffsetAdjustmentEnabled:
 _isAutomaticContentOffsetAdjustmentEnabled
 _setIndicatorInsetAdjustmentBehavior:
 ts_isScrolling
+ts_isVerticalBouncing
 ts_isAnimatingScroll
 ts_verticalVelocity
 ts_scrollToTop:
@@ -7525,11 +7604,13 @@ ts_isCollapsedOrCollapsing
 ts_isCollapsing
 ts_setPrimaryBackgroundStyle:
 ts_columnSeparatorsExtendToTitlebar:
+_performWithoutDeferringTransitions:
 parentViewController
 appearanceTransitionsAreDisabled
 setAppearanceTransitionsAreDisabled:
 ts_parentVC
 ts_setAppearanceTransitionsAreDisabled:
+ts_performWithoutDeferringTransitions:
 mainScreen
 traitCollection
 _currentTraitCollection
@@ -7687,6 +7768,8 @@ setVisibleViewController:
 setPageGutter:
 pagingEnabled
 shouldAutomaticallyForwardAppearanceMethods
+reindexPreviousViewControllers
+reindexNextViewControllers
 isTransitioningToViewController
 childViewControllerForStatusBarHidden
 setDataSource:
@@ -7864,6 +7947,7 @@ fetchImageForRequest:completion:
 fetchImageForRequest:expires:completion:
 fetchImageForRequest:
 setImage:forRequest:
+cancelAllRunningOperations
 assetHandles
 cacheIdentifier
 pluginView
@@ -8142,6 +8226,7 @@ setPreviewing:
 isSearchResultsPane
 initWithRootViewController:identifier:
 tabBarSplitViewDidChangeTraitCollectionToTraitCollection:
+tabBarSplitViewWillChangeDisplayModeToDisplayMode:
 handleSidebarWithSender:
 handleDismiss
 splitViewController
@@ -8154,7 +8239,6 @@ setRightBarButtonItems:
 setTransitioningDelegate:
 initWithBarButtonSystemItem:target:action:
 previewInsets
-tabBarSplitViewWillChangeDisplayModeToDisplayMode:
 tabBarSplitViewDidChangeFocusToFocus:action:
 tabBarSplitViewWillObsureView
 tabBarSplitViewDidUnobsureView
@@ -8244,7 +8328,6 @@ blackColor
 windows
 isKeyWindow
 key_window
-cancelAllRunningOperations
 cancelAllOperations
 initWithUnderlyingCache:processor:downloader:
 main
@@ -8559,6 +8642,7 @@ textFieldDidChangeSelection:
 textFieldShouldClear:
 textFieldShouldReturn:
 snapshotViewAfterScreenUpdates:
+collectionViewContentSize
 selectedRowInComponent:
 numberOfComponentsInPickerView:
 pickerView:numberOfRowsInComponent:
@@ -8667,7 +8751,6 @@ invalidationContextForBoundsChange:
 representedElementKind
 invalidateItemsAtIndexPaths:
 invalidateSupplementaryElementsOfKind:atIndexPaths:
-collectionViewContentSize
 layoutAttributesForDecorationViewOfKind:atIndexPath:
 shouldInvalidateLayoutForBoundsChange:
 setStyle:
@@ -8891,9 +8974,11 @@ setValue:forKey:
 standardUserDefaults
 objectForKey:
 setObject:forKey:
+isStateRestorationFeatureEnabled
 isStateRestorationAllowed
 hasStateDiscarded
 setHasStateDiscarded:
+initWithTimeWindow:isStateRestorationEnabled:
 initWithTimeWindow:isRunningPPT:
 sceneDidEnterBackground
 markStateDiscarded

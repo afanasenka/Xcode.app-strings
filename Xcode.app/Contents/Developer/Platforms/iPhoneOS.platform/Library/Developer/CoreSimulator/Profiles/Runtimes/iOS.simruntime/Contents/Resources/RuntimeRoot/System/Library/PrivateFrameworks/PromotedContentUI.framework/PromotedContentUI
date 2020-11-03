@@ -61,6 +61,7 @@ WeakMetricsView
 PreloadedMetricViewHolder
 ready
 PrivacyMarkerType
+SynchronizedDictionary
 DimmerView
 $@PrivacyMarker
 PromotedContentUI
@@ -127,6 +128,7 @@ v24@0:8@"NSError"16
 @"NSDate"16@0:8
 @"<APPCPromotableContentRepresentation>"16@0:8
 v24@0:8@"<APPCPromotableContentRepresentation>"16
+v24@0:8@"<APPCJourneyMetricsHelping>"16
 APPCPromotableContentRepresentation
 {CGSize=dd}16@0:8
 privacyMarkerPosition
@@ -261,6 +263,7 @@ lastTrackedTouch
 mostRecentTapTimestamp
 pointIsInsideView
 preventedTouches
+$__lazy_storage_$_scrollableAncestor
 PromotedContentUI.TapGestureRecognizer
 init(target:action:)
 In touchesEnded with %d touches)
@@ -535,11 +538,15 @@ views
 vendedViews
 cleanupTimers
 viewsLock
+cleanupTimersLock
 v16@?0@"NSTimer"8
 [PCUI] Cleaning up all views for id (%@)
 [PCUI] Updating preloading metricsView (%@), cid: (%@), pcid: (%@)
 [PCUI] Updating to vending preloading metricsView (%@), cid: (%@), pcid: (%@)
 [PCUI] Vending preloading metricsView (%@), cid: (%@), pcid: (%@)
+_TtC17PromotedContentUI22SynchronizedDictionary
+synchronizedLock
+dict
 PromotedContentUI4
 handleTapWithRecognizer called without recent tap on the view, blocking any action.
 Error: No representation found for promotedContent
@@ -619,6 +626,7 @@ ySo8NSNumberCG
 So19UIGestureRecognizerC
 SdSg
 ShySo6UIViewCG
+So12UIScrollViewCSgSg
 ySo7UITouchC_G
 $s17PromotedContentUI14FrameWatchableP
 So6UIViewC
@@ -710,7 +718,6 @@ ySS_yptG
 SS_ypt
 ySo33APPCPromotableVideoRepresentation_pcSg
 $s17PromotedContentUI21MetricsViewReportableP
-SDySSSo21APUnfairRecursiveLockCG
 SDySSSDySS
 SDySSSDySS
 SDySSSo7NSTimerCG
@@ -718,6 +725,7 @@ SgXw
 SgXwz_Xx
 SgXw
 ySbGIeggn_
+SDySSSo21APUnfairRecursiveLockCG
 $s17PromotedContentUI0aB8ViewableP
 So7UILabelC
 So9WKWebViewC
@@ -774,6 +782,7 @@ mostRecentTapTimestamp
 location
 pointIsInsideView
 preventedTouches
+$__lazy_storage_$_scrollableAncestor
 recognizer
 point
 inside
@@ -866,10 +875,13 @@ views
 vendedViews
 cleanupTimers
 viewsLock
+cleanupTimersLock
 display
 native
 outstream
 preroll
+synchronizedLock
+dict
 dimmed
 titleLabelRegularFontSize
 markerLabel
@@ -913,6 +925,7 @@ isMRAID
 bestRepresentation
 setBestRepresentation:
 discarded
+replaceMetricsHelperWithNewMetricsHelper:
 desiredPosition
 privacyMarkerPosition
 adSize
@@ -1081,10 +1094,13 @@ canBePreventedByGestureRecognizer:
 canPreventGestureRecognizer:
 gestureRecognizer:shouldReceiveTouch:
 initWithTarget:action:
+superview
 locationInView:
 pointInside:withEvent:
 setState:
 phase
+isDragging
+isDecelerating
 previousLocationInView:
 setDelegate:
 gestureRecognizerShouldBegin:
@@ -1093,7 +1109,6 @@ gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:
 gestureRecognizer:shouldReceivePress:
 gestureRecognizer:shouldReceiveEvent:
 adjustedContentInset
-superview
 leadingAnchor
 constraintEqualToAnchor:constant:
 topAnchor
@@ -1119,6 +1134,8 @@ visibleWithPercent:starting:duration:scrollVelocity:collapsed:
 window
 ready
 notConsumedWithCode:placeholder:
+mainScreen
+nativeScale
 layer
 CGColor
 setBorderColor:
@@ -1252,8 +1269,7 @@ shouldProxyRequestToHost:
 proxyURLForVideoURL:adIdentifier:changeScheme:
 offScreenWithCollapsed:
 onScreenWithCollapsed:
-placedWithPlacement:wasNativeSlot:
-placement
+placedWithPlacementType:wasNativeSlot:
 supportedInterfaceOrientations
 productViewController:didFinishWithResult:
 setAutoresizingMask:
@@ -1263,8 +1279,8 @@ productViewControllerDidFinish:
 didAddSubview:
 privacyMarker
 beginAction
-scheduledTimerWithTimeInterval:repeats:block:
 invalidate
+scheduledTimerWithTimeInterval:repeats:block:
 interactedAtXPos:yPos:
 bundleIdentifier
 openURL:options:completionHandler:

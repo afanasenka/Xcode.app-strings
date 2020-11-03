@@ -2005,12 +2005,6 @@ inputMinComponents
 inputMaxComponents
 T@"CIVector",&,N,VinputMinComponents
 T@"CIVector",&,N,VinputMaxComponents
-CIColorMatrix
-inputRVector
-inputGVector
-inputBVector
-inputAVector
-inputBiasVector
 inputSaturation
 T@"NSNumber",&,N,VinputSaturation
 inputBrightness
@@ -2167,18 +2161,24 @@ kernel vec4 _ciExtractChannel(__sample s,float nF) __attribute__((outputFormat(k
  return vec4(n == 0 ? s.x : n == 1 ? s.y : n == 2 ? s.z : s.w, 0.0, 0.0, 1.0); 
 CISingleChannelColorMap_%d
 -[CISingleChannelColorMap outputImage]_block_invoke_2
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110/Framework/filters/CIColorMap.mm
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110.6/Framework/filters/CIColorMap.mm
 (x+width) <= CICOLORMAP_NUM_COLORS_PER_MAP
 -[CISingleChannelColorMap outputImage]
 CIAreaMinMaxRedNormalize
 T@"NSNumber",&,N,VinputChannelIndex
 T@"NSNumber",&,N,VinputShouldNormalize
 T@"NSNumber",&,N,VinputColorMapIndex
+inputRVector
+inputGVector
+inputBVector
+inputAVector
+inputBiasVector
 T@"CIVector",&,N,VinputRVector
 T@"CIVector",&,N,VinputGVector
 T@"CIVector",&,N,VinputBVector
 T@"CIVector",&,N,VinputAVector
 T@"CIVector",&,N,VinputBiasVector
+CIColorMatrix
 kernel vec4 _colorPolynomial (__sample c, vec4 cf0, vec4 cf1, vec4 cf2, vec4 cf3) 
  return cf0 + c * (cf1 + c * (cf2 + c * cf3)); 
 kernel vec4 _colorPolynomialRGB (__sample c, vec4 cf0, vec4 cf1, vec4 cf2, vec4 cf3) 
@@ -2421,6 +2421,7 @@ CoreUI
 %@    withCGContext: %p
 %@    withGLContext: %p
     name: %s
+    cache intermediates: %s
 %@    priority: default
 %@    priority: high
 %@    priority: low
@@ -2455,6 +2456,7 @@ create_cgimage
 v48@?0r^v8Q16Q24Q32Q40
 Could not access surface.
 Singular matrix cannot be inverted!
+com.apple.coreimage.deferred
 Cannot create a CGImageProvider for %s
 CGImageProviderCallbackQueue
 kCGImageProviderPrefersBandedDecoding
@@ -2462,6 +2464,7 @@ kCGImageProviderPreferedBandHeight
 failed mprotect
 kCGImageSurfaceFormatRequest
 kCGImageSurfaceBytesPerRowAlignmentRequest
+kCIImageRepresentationHDRGainMapImage
 -[CIContext(ImageRepresentation) TIFFRepresentationOfImage:format:colorSpace:options:]
 public.tiff
 -[CIContext(ImageRepresentation) PNGRepresentationOfImage:format:colorSpace:options:]
@@ -2475,6 +2478,7 @@ kCIImageRepresentationAVSemanticSegmentationMattes
 kCIImageRepresentationSemanticSegmentationSkinMatteImage
 kCIImageRepresentationSemanticSegmentationHairMatteImage
 kCIImageRepresentationSemanticSegmentationTeethMatteImage
+kCIImageRepresentationSemanticSegmentationGlassesMatteImage
 -[CIContext(ImageRepresentation) JPEGRepresentationOfImage:colorSpace:options:]
 public.jpeg
 -[CIContext(ImageRepresentation) HEIFRepresentationOfImage:format:colorSpace:options:]
@@ -2490,6 +2494,8 @@ failed to write HEIC data to file.
 kCGImageAuxiliaryDataTypeSemanticSegmentationSkinMatte
 kCGImageAuxiliaryDataTypeSemanticSegmentationHairMatte
 kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte
+kCGImageAuxiliaryDataTypeSemanticSegmentationGlassesMatte
+kCGImageAuxiliaryDataTypeHDRGainMap
 kCGImageAuxiliaryDataInfoData
 kCGImageAuxiliaryDataInfoDataDescription
 BytesPerRow
@@ -2515,16 +2521,18 @@ Orientation
 nose
 faceContour
 -[CIContext(CIDepthBlurEffect) _performFaceDetection:image:orientation:filter:]
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110/Framework/api/CIContext_SDOF.mm
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110.6/Framework/api/CIContext_SDOF.mm
 nGoodFaces <= DBE_MAX_NUM_GOOD_FACES
 inputLeftEyePositions
 inputRightEyePositions
 inputNosePositions
 inputChinPositions
--[CIContext(CIDepthBlurEffect) depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:]
+-[CIContext(CIDepthBlurEffect) depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:]
 CIDepthBlurEffect
 inputMatteImage
 inputHairImage
+inputGlassesImage
+inputGainMap
 inputAuxDataMetadata
 depthBlurEffect:SimulatedAperture
 inputAperture
@@ -5864,6 +5872,8 @@ kCIImageAuxiliaryPortraitEffectsMatte
 kCIImageAuxiliarySemanticSegmentationSkinMatte
 kCIImageAuxiliarySemanticSegmentationHairMatte
 kCIImageAuxiliarySemanticSegmentationTeethMatte
+kCIImageAuxiliarySemanticSegmentationGlassesMatte
+kCIImageAuxiliaryHDRGainMap
 kCIImageAVSemanticSegmentationMatte
 CIImageSurfaceFormat
 -[CIImage initWithCGImage:options:]
@@ -6082,6 +6092,18 @@ emptyNSData
 emptyNSString
 emptyNSArray
 emptyNSDictionary
+hash
+superclass
+T#,R
+description
+T@"NSString",R,C
+debugDescription
+label
+T@"<MTLDevice>",R
+maxTotalThreadsPerThreadgroup
+threadExecutionWidth
+staticThreadgroupMemoryLength
+supportIndirectCommandBuffers
 CIImageProcessorDigestObject
 tile_size
 kCIImageProviderContentDigest
@@ -6284,6 +6306,14 @@ CISampler
 CIVector
 CIVectorSize
 NSData
+    preservesRange
+    preservesAlpha
+    canReduceOutputChannels
+    arguments: (
+%s%s len%d %s
+unknown
+%s%s %s
+    output: %s
 perservesAlpha
 TB,N
 canReduceOutputChannels
@@ -10708,6 +10738,8 @@ CIBlurmapSmoothing
 inputShiftmapImage
 T@"CIImage",&,VinputShiftmapImage
 T@"CIImage",&,VinputHairImage
+T@"CIImage",&,VinputGlassesImage
+T@"CIImage",&,VinputGainMap
 T@"CIVector",&,VinputLeftEyePosition
 T@"CIVector",&,VinputRightEyePosition
 T@"CIVector",&,VinputChinPosition
@@ -10765,6 +10797,7 @@ inputImageChroma
 inputShiftMap
 inputSegmentation
 inputHair
+inputGlasses
 CCMakeBlurMapArgs
 Class getCCMakeBlurMapArgsClass(void)_block_invoke
 CCMakeBlurMap
@@ -10939,17 +10972,16 @@ kernel vec4 _redEyeGaborToYAndVF(sampler src) { vec2 dc = destCoord(); vec2 pt, 
 projectionRows_planar8UtoF
 projectionCols_planar8UtoF
 Projections_status Projections_projectionRowsCols_planar8UtoF(const uint8_t *, int, int, size_t, float *, float *)
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110/Framework/api/Burst/Projections/Projections_Core.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110.6/Framework/api/Burst/Projections/Projections_Core.c
 Projections_status Projections_computeProjectionDerivative(const float *, int, float *)
 function not implemented
 out of boundaries
 Projections_status Projections_computeShiftBruteForce(const float *, int, const Projections_meanStdTable *, const float *, int, const Projections_meanStdTable *, int, float, float *, float *, float *, float *)
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110/Framework/api/Burst/Projections/Projections_Optimizer.c
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110.6/Framework/api/Burst/Projections/Projections_Optimizer.c
 Projections_status Projections_computeCost(int, float, float, const float *, int, const Projections_meanStdTable *, const float *, int, const Projections_meanStdTable *, int, float *)
 FILTERNAME
-description
 +[CIFilter(SDOFOnlyPrewarmingPrivate) prewarmedFilterFromString:]
-/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110/Framework/api/CIFilter+Prewarming.m
+/Library/Caches/com.apple.xbs/Sources/EmbeddedCoreImage_Sim/EmbeddedCoreImage-1110.6/Framework/api/CIFilter+Prewarming.m
 [objectDescription[@"type"] isEqualToString:[[CIImage class] description]]
 isEqualTo:
 -[CIFilter(SDOFOnlyPrewarmingPrivate) verifyPrewarmedFilter:]
@@ -11271,11 +11303,14 @@ YCC420f
 YCC420v
 RGBA16
 ARGB16
+RGBX16
 ARGBf
 A2BGR10
 A2RGB10
 RGB10A2-WideGamut
 ARGB10-WideGamut
+RGB10A2-WideLinear
+ARGB10-WideLinear
 RGBA14
 CbYCrY8
 CbYCrY8f
@@ -11290,7 +11325,7 @@ unknown-format
 420f
 420v
 RGB10WideGamut
-need a %s swizzler so that %s can be read as %s
+CoreImage needs a %s swizzler so that %s can be read as %s.
 kSwizzleBGRAtoRRGG1
 kPixelFormatRG16
 kPixelFormatBGRA8
@@ -11306,12 +11341,13 @@ kPixelFormatXBGR8
 kSwizzleARGB10
 kPixelFormatARGB10WideGamut
 kPixelFormatRGBA16
+kPixelFormatARGB10WideLinear
 kSwizzleRGB14
 kPixelFormatRGBA14
 need a swizzler so that %s can be read.
 kSwizzleToARGB10
 kSwizzleToRGB14
-need a swizzler so that %s can be written.
+CoreImage needs a swizzler so that %s can be written.
 _i%d
 _u%d
 _t%d
@@ -11837,7 +11873,6 @@ provider
  tile %zu
 Render failed because a pixel format %s is not supported.
 samplemode %s
-unknown
 setprops
 srgb_to_linear
 linear_to_srgb
@@ -11898,6 +11933,7 @@ swizzle_to_rgb_as_r
 swizzle_to_a2bgr10_as_rgba8
 swizzle_to_a2rgb10_as_rgba8
 swizzle_to_rgb10_wide_as_rgba8
+swizzle_to_rgb10_wide_linear_as_rgba8
 combine_420
 swizzle_to_444_biplanar
 swizzle_ycc_to_rgb
@@ -11907,8 +11943,13 @@ swizzle_rgba8_to_a2bgr10
 swizzle_rgba8_to_rgb10_wide
 swizzle_rgb10_wide
 swizzle_bgr10_wide
+swizzle_rgba8_to_rgb10_wide_linear
+swizzle_rgb10_wide_linear
+swizzle_bgr10_wide_linear
 swizzle_to_rgb10_wide
 swizzle_to_bgr10_wide
+swizzle_to_rgb10_wide_linear
+swizzle_to_bgr10_wide_linear
 swizzle_to_rg_as_rgba
 swizzle_to_r16_as_rgba
 swizzle_to_a16_as_rgba
@@ -12198,6 +12239,16 @@ vec4 _ci_to_rgb10wide_as_rgba8 (vec4 s)
       pixel |= int(denorm.a) << 30;
   writePixel((pixel) & 0xFF, (pixel >> 8) & 0xFF, (pixel >> 16) & 0xFF, (pixel >> 24) & 0xFF, writeCoord());
   return s; 
+_ci_to_rgb10widelinear_as_rgba8
+vec4 _ci_to_rgb10widelinear_as_rgba8 (vec4 s)
+  s = vec4((s.rgb) * (511.0/1023.0) + (384.0/1023.0), 1.0);
+  vec4 denorm = clamp(s,vec4(0.0),vec4(1.0)) * vec4(vec3(1023.0), 3.0) + 0.5;
+  int pixel  = int(denorm.b);
+      pixel |= int(denorm.g) << 10;
+      pixel |= int(denorm.r) << 20;
+      pixel |= int(denorm.a) << 30;
+  writePixel((pixel) & 0xFF, (pixel >> 8) & 0xFF, (pixel >> 16) & 0xFF, (pixel >> 24) & 0xFF, writeCoord());
+  return s; 
 _ci_combine_420
 vec4 _ci_combine_420(vec4 s00, vec4 s10, vec4 s01, vec4 s11)
   float2 pc = writeCoord();
@@ -12234,6 +12285,16 @@ vec4 _ci_swizzle_rgba8_to_rgb10_wide(vec4 s)
   r.a = 1.0; 
   r.rgb = srgb_to_linear((r.rgb - 384.0/1023.0) * (1023.0/511.0)); 
   return r; 
+_ci_swizzle_rgba8_to_rgb10widelinear
+vec4 _ci_swizzle_rgba8_to_rgb10widelinear(vec4 s) 
+  s = floor(s * 255.0 + 0.5); 
+  vec4 r; 
+  r.b = (mod(s.g,  4.0) * 256.0 + s.r)              / 1023.0; 
+  r.g = (mod(s.b, 16.0) *  64.0 + floor(s.g/ 4.0))  / 1023.0; 
+  r.r = (mod(s.a, 64.0) *  16.0 + floor(s.b/16.0))  / 1023.0; 
+  r.a = 1.0; 
+  r.rgb = ((r.rgb - 384.0/1023.0) * (1023.0/511.0)); 
+  return r; 
 _ci_swizzle_rgba8_to_a2bgr10
 vec4 _ci_swizzle_rgba8_to_a2bgr10(vec4 s) 
   s = floor(s * 255.0 + 0.5); 
@@ -12245,12 +12306,20 @@ vec4 _ci_swizzle_rgba8_to_a2bgr10(vec4 s)
   return r; 
 _ci_rgb10wide
 vec4 _ci_rgb10wide(vec4 s) { return vec4(srgb_to_linear((s.rgb - 384.0/1023.0) * (1023.0/511.0)), 1.0); }
+_ci_rgb10widelinear
+vec4 _ci_rgb10widelinear(vec4 s) { return vec4(((s.rgb - 384.0/1023.0) * (1023.0/511.0)), 1.0); }
 _ci_bgr10wide
 vec4 _ci_bgr10wide(vec4 s) { return vec4(srgb_to_linear((s.bgr - 384.0/1023.0) * (1023.0/511.0)), 1.0); }
+_ci_bgr10widelinear
+vec4 _ci_bgr10widelinear(vec4 s) { return vec4(((s.bgr - 384.0/1023.0) * (1023.0/511.0)), 1.0); }
 _ci_to_rgb10wide
 vec4 _ci_to_rgb10wide(vec4 s) { return vec4(linear_to_srgb(s.rgb) * (511.0/1023.0) + (384.0/1023.0), 1.0); }
+_ci_to_rgb10widelinear
+vec4 _ci_to_rgb10widelinear(vec4 s) { return vec4((s.rgb) * (511.0/1023.0) + (384.0/1023.0), 1.0); }
 _ci_to_bgr10wide
 vec4 _ci_to_bgr10wide(vec4 s) { return vec4(linear_to_srgb(s.bgr) * (511.0/1023.0) + (384.0/1023.0), 1.0); }
+_ci_to_bgr10widelinear
+vec4 _ci_to_bgr10widelinear(vec4 s) { return vec4((s.bgr) * (511.0/1023.0) + (384.0/1023.0), 1.0); }
 _ci_ra01
 vec4 _ci_ra01(vec4 s) { return vec4(s.ra, 0.0, 1.0); }
 _ci_ycc_to_rgb
@@ -12459,7 +12528,10 @@ affine
 CGImageRef
 CGImageRef %p
 CGImageRef %d
+Destination surface is nil.
+Source image provider is nil.
 kCGImageBlockTileRequest
+Source provider block set is nil.
 Failed to access image block data.
 surface_for_roi_from_cg
 v24@?0^{roiData={CGRect={CGPoint=dd}{CGSize=dd}}{vector<CI::parentROI, std::__1::allocator<CI::parentROI> >=^{parentROI}^{parentROI}{__compressed_pair<CI::parentROI *, std::__1::allocator<CI::parentROI> >=^{parentROI}}}{vector<CI::parentROI, std::__1::allocator<CI::parentROI> >=^{parentROI}^{parentROI}{__compressed_pair<CI::parentROI *, std::__1::allocator<CI::parentROI> >=^{parentROI}}}iI{vector<unsigned int, std::__1::allocator<unsigned int> >=^I^I{__compressed_pair<unsigned int *, std::__1::allocator<unsigned int> >=^I}}}8r^{__wrap_iter<CI::parentROI *>=^{parentROI}}16
@@ -12602,6 +12674,7 @@ child is a kernel with ReturnTypeNone
 beyond max_texture_units
 child of a GeneralKernel is Affine that is not trivial
 child of a GeneralKernel is non-trivial Swizzle
+child of a GeneralKernel is Clamp
 this is a GeneralKernel
 child is non-trivial Swizzle
 child is GeneralKernel
@@ -12983,8 +13056,7 @@ Dfff?
 ?UUUUUU
 @UUUUUU
 ?UUUUUU
-@333333
-?333333
+Y>t$7?*
 ?333333
 <<*9%
 <S*m%
@@ -13059,7 +13131,7 @@ Mbp?q
 :gUU
 |?5^
 @ffffff
-?                
+                
 MbP?
 MbP?Q
 ;ZC:33
@@ -13552,7 +13624,7 @@ BundleLoad
 [CIImage initWithIOSurface:options:] kCIImageEdgeRepeat option not supported. Ignoring.
 [CIImage initWithCGImage:] kCIImageEdgeRepeat option not supported. Ignoring.
 %{public}s failed because the CGImage is nil.
-%{public}s CI_CONVERSION: Rendered to intermediate %{public}s CGImage because the CGImage passed to Core Image has a %{public}s.
+%{public}s CI_CONVERSION: Rendered to intermediate %{public}s CGImage because the CGImage (bpc:%zu bpp:%zu info:0x%X) passed to Core Image has a %{public}s.
 %{public}s failed because the CGImage format is not supported and we failed to create a CGBitmapContext.
 [CIImage initWithBitmapData:] failed because the format '%{public}s' is not supported.
 [CIImage initWithBitmapData:] failed because the format is not supported.
@@ -14046,6 +14118,7 @@ Internal
 QuicklookSupport
 CIContextCache
 createCGImage
+ImageRepresentationPrivate
 ImageRepresentation
 InpaintingExecutionContext
 CIDepthBlurEffect
@@ -14167,6 +14240,8 @@ CIImageProcessorOutput
 CIImageProcessorInput
 CIImageProcessor
 CIImageProcessorKernel
+MTLComputePipelineState
+NSObject
 CIImageProvider
 CIImageRowReader
 ImageRowReading
@@ -15318,6 +15393,7 @@ inputMinComponents
 setInputMinComponents:
 inputMaxComponents
 setInputMaxComponents:
+_imageByApplyingColorMatrixRed:green:blue:bias:
 inputSaturation
 setInputSaturation:
 inputBrightness
@@ -15550,7 +15626,7 @@ _lastModelResourceUsed
 _lastInpaintingModeUsed
 imageWithData:
 imageWithData:options:
-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:
+depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:
 imageWithContentsOfURL:
 imageWithContentsOfURL:options:
 detectorOfType:context:options:
@@ -15566,6 +15642,7 @@ _performFaceDetection:image:orientation:filter:
 depthBlurEffectFilterForImageData:options:
 depthBlurEffectFilterForImageURL:options:
 depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:orientation:options:
+depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:
 CGPointValue
 imageTransformForOrientation:
 _values
@@ -16925,6 +17002,21 @@ allowSRGBTranferFuntionOnOutput
 _digestForArgs:
 allowSRGBTranferFuntionOnInputAtIndex:
 lengthOfBytesUsingEncoding:
+class
+self
+isProxy
+isKindOfClass:
+respondsToSelector:
+retain
+release
+autorelease
+retainCount
+zone
+imageblockMemoryLengthForDimensions:
+label
+staticThreadgroupMemoryLength
+supportIndirectCommandBuffers
+uniqueIdentifier
 initWithImageProvider:userInfo:size:format:flipped:colorSpace:
 initWithImageProvider:size::format:colorSpace:options:
 provideImageData:bytesPerRow:origin::size::userInfo:
@@ -16980,6 +17072,9 @@ appendString:
 longValue
 _isValidOutputPixelFormat:
 _outputFormatUsingDictionary:andKernel:
+preservesRange
+perservesAlpha
+parameters
 kernelsWithString:fromMetalLibraryData:
 kernelsWithString:messageLog:
 kernelsWithString:
@@ -16990,12 +17085,9 @@ kernelWithFunctionName:fromMetalLibraryData:outputGroupSize:error:
 kernelWithFunctionName:fromMetalLibraryData:constants:error:
 kernelNamesFromMetalLibraryData:
 colorMatrixBiasKernel
-perservesAlpha
-preservesRange
 outputGroupSize
 setOutputGroupSize:
 setROISelector:
-parameters
 autogenerateROI:args:arguments:extent:
 applyWithExtent:roiCallback:inputImage:arguments:options:
 initWithString:extentType:
@@ -17099,7 +17191,6 @@ newCommandQueue
 setBackgroundGPUPriority:
 setGPUPriority:
 commandBufferWithUnretainedReferences
-label
 setSamplerState:atIndex:
 addScheduledHandler:
 status
@@ -17128,6 +17219,7 @@ copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:
 waitUntilCompleted
 GPUEndTime
 GPUStartTime
+setAdditionalCompilerArguments:
 newLibraryWithSource:options:error:
 allBundles
 bundleWithIdentifier:
@@ -17374,6 +17466,7 @@ _inputImage
 _nativeSize
 _isRawSource
 _calledDealloc
+_matteOption
 _baseImageProperties
 _rawDictionary
 _rawReconstructionDefaultsDictionary
@@ -17415,6 +17508,7 @@ inputHueMagBM
 inputLinearSpaceFilter
 inputEnableEDRMode
 inputReturnDemosaiced
+matteOptionNameFromOptions:
 rawReconstructionDefaultsDictionary
 rawOptions
 rawDictionary
@@ -17898,6 +17992,10 @@ inputShiftmapImage
 setInputShiftmapImage:
 inputHairImage
 setInputHairImage:
+inputGlassesImage
+setInputGlassesImage:
+inputGainMap
+setInputGainMap:
 setInputLeftEyePosition:
 setInputRightEyePosition:
 setInputChinPosition:
@@ -18455,6 +18553,7 @@ v28@0:8i16d20
 v44@0:8@16@24i32@36
 @52@0:8@16@24@32I40@44
 @60@0:8@16@24@32@40I48@52
+@76@0:8@16@24@32@40@48@56I64@68
 @"MLFeatureValue"24@0:8@"NSString"16
 @"NSSet"16@0:8
 B32@0:8@16@24
@@ -18546,6 +18645,7 @@ v32@0:8^{__CVBuffer=}16@24
 @64@0:8{CGAffineTransform=dddddd}16
 @24@0:8d16
 @24@0:8^{CGColorSpace=}16
+@80@0:816324864
 ^v16@0:8
 {CGRect={CGPoint=dd}{CGSize=dd}}56@0:8@16{CGRect={CGPoint=dd}{CGSize=dd}}24
 @60@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16i48@52
@@ -18565,6 +18665,17 @@ v112@0:8@16{CGAffineTransform=dddddd}24{CGRect={CGPoint=dd}{CGSize=dd}}72^{CGRec
 @96@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16@48Q56i64i68@72@?80@?88
 B20@0:8i16
 Q24@0:8@16
+#16@0:8
+@24@0:8:16
+@32@0:8:16@24
+@40@0:8:16@24@32
+B24@0:8:16
+Vv16@0:8
+^{_NSZone=}16@0:8
+B24@0:8@"Protocol"16
+@"NSString"16@0:8
+Q40@0:8{?=QQQ}16
+@"<MTLDevice>"16@0:8
 @64@0:8@16@24{CGSize=dd}32i48B52^{CGColorSpace=}56
 @60@0:8@16Q24Q32i40^{CGColorSpace=}44@52
 @60@0:8@?16Q24Q32i40^{CGColorSpace=}44@52
@@ -18661,7 +18772,7 @@ i52@0:8^v16Q24Q32Q40i48
 ^{CIRenderDestinationInternal=^{RenderDestination}QQii{?=[3d][3d][3d]dd}QBBiBBB@}16@0:8
 ^{RenderDestination=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}^{__CFString}^{CGColorSpace}}16@0:8
 @52@0:8^{RenderDestination=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}^{__CFString}^{CGColorSpace}}16Q24Q32i40^{CGColorSpace=}44
-^{RenderTask=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}***iBQi[64c]Q^{Node}{CGRect={CGPoint=dd}{CGSize=dd}}iQ^{__CFString}^{__CFString}{vector<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}{__compressed_pair<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > *, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}}}ddQQQQ}32@0:8^{Image=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}{CGRect={CGPoint=dd}{CGSize=dd}}^{__CFURL}^v^vIIQ}16^{Context=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}^{CGColorSpace}^{CGColorSpace}ifBBBBB^{CGContext}fB{CGRect={CGPoint=dd}{CGSize=dd}}{CGAffineTransform=dddddd}IQQi[64c]B^{ObjectCache<CI::MainProgram, false>}^{ObjectCache<CI::Node, false>}^{ObjectCache<CI::Node, false>}dd^{RenderTask}ii^{Context}Q}24
+^{RenderTask=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}**[128c]iBQi[64c]Q^{Node}{CGRect={CGPoint=dd}{CGSize=dd}}iQ^{__CFString}^{__CFString}{vector<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}{__compressed_pair<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > *, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}}}ddQQQQ}32@0:8^{Image=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}{CGRect={CGPoint=dd}{CGSize=dd}}^{__CFURL}^v^vIIQ}16^{Context=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}^{CGColorSpace}^{CGColorSpace}ifBBBBB^{CGContext}fB{CGRect={CGPoint=dd}{CGSize=dd}}{CGAffineTransform=dddddd}IQQi[64c]B^{ObjectCache<CI::MainProgram, false>}^{ObjectCache<CI::Node, false>}^{ObjectCache<CI::Node, false>}dd^{RenderTask}ii^{Context}Q}24
 v32@0:8i16B20B24f28
 @52@0:8Q16Q24I32^{CGColorSpace=}36@?44
 @56@0:8Q16Q24Q32@40@?48
@@ -18670,8 +18781,8 @@ v32@0:8i16B20B24f28
 v24@0:8Q16
 v24@0:8^{CGColorSpace=}16
 d24@0:8Q16
-@24@0:8^{RenderTask=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}***iBQi[64c]Q^{Node}{CGRect={CGPoint=dd}{CGSize=dd}}iQ^{__CFString}^{__CFString}{vector<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}{__compressed_pair<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > *, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}}}ddQQQQ}16
-^{RenderTask=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}***iBQi[64c]Q^{Node}{CGRect={CGPoint=dd}{CGSize=dd}}iQ^{__CFString}^{__CFString}{vector<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}{__compressed_pair<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > *, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}}}ddQQQQ}16@0:8
+@24@0:8^{RenderTask=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}**[128c]iBQi[64c]Q^{Node}{CGRect={CGPoint=dd}{CGSize=dd}}iQ^{__CFString}^{__CFString}{vector<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}{__compressed_pair<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > *, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}}}ddQQQQ}16
+^{RenderTask=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> >=AI}}**[128c]iBQi[64c]Q^{Node}{CGRect={CGPoint=dd}{CGSize=dd}}iQ^{__CFString}^{__CFString}{vector<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}{__compressed_pair<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > *, std::__1::allocator<std::__1::unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> > > >=^{unique_ptr<CI::TileTask, CI::ObjectDeleter<CI::TileTask> >}}}ddQQQQ}16@0:8
 @88@0:8@16{CGRect={CGPoint=dd}{CGSize=dd}}24@56{CGPoint=dd}64^@80
 @48@0:8@16@24B32B36^@40
 B88@0:8@16{CGRect={CGPoint=dd}{CGSize=dd}}24@56{CGPoint=dd}64^@80
@@ -18876,7 +18987,7 @@ MbP?
 :FL@
 MbP?
 ?P$
-?8E9
+?Xg9
 ?9EGr
 333?
 fff?

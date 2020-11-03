@@ -411,6 +411,9 @@ This song has an age restriction. Use your %@ to play it and follow the steps wh
 AGE_VERIFICATION_REQUIRED_MESSAGE_TINKER
 AGE_VERIFICATION_REQUIRED_TITLE
 Age Verification Required
+CONTENT_RESTRICTED_TITLE
+Explicit Content
+CONTENT_RESTRICTED_MESSAGE
 NR_DEMO_MODE_ERROR_TITLE
 Streaming Not Supported
 NR_DEMO_MODE_ERROR_MESSAGE
@@ -526,6 +529,7 @@ Routing-HomePodPair
 Routing-BeatsPowerbeats
 Routing-BeatsPowerbeatsPro
 Routing-Beats364
+Routing-B372
 Routing-BeatsSolo
 Routing-Beats419
 Routing-BeatsStudio
@@ -1223,6 +1227,7 @@ Playback Error: Unable to start playback due to no network [%ld]
 Playback Error: Unable to start playback due to cellular being disabled
 Playback Error: Unable to start playback due to cellular streaming being disabled
 Playback Error: Unable to start playback because this explicit track requires Age Verification
+Playback Error: Unable to start playback of an explicit track with restrictions enabled
 Playback Error: Unable to start playback due to %{public}@, type:%ld
 Streaming Error: Unable to start playback because user is not a subscriber
 Playback Error: Unable to start playback because this explicit station requires Age Verification
@@ -2143,6 +2148,7 @@ kindWithPlaylistEntryKind:options:
 setItemKind:
 setItemProperties:
 setAllowedItemIdentifiers:
+kindWithVariants:playlistEntryKind:options:
 sortDescriptorWithKey:ascending:
 setItemSortDescriptors:
 copy
@@ -2679,6 +2685,7 @@ routingTypeB298Image
 routingTypePowerbeatsImage
 routingTypePowerbeatsProImage
 routingTypeBeats364Image
+routingTypeB372Image
 routingTypeBeatsSoloImage
 routingTypeBeats419Image
 routingTypeBeatsStudioImage
@@ -2842,11 +2849,12 @@ beginAutomaticResponseLoading
 playerRequestResponseController
 viewDidDisappear:
 endAutomaticResponseLoading
+viewSafeAreaInsetsDidChange
+contentSectionedCollection
 visibleSections
 _collectionSectionNumberOfSections:
 _mapSection:indexPath:
 visibleItems
-contentSectionedCollection
 registerClass:forCellWithReuseIdentifier:
 dequeueReusableCellWithReuseIdentifier:forIndexPath:
 activityIndicatorView

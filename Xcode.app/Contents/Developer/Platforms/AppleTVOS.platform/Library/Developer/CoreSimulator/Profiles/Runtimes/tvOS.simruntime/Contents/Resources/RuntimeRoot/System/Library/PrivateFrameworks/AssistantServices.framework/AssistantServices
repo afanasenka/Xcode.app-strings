@@ -40,7 +40,7 @@ v16@?0@"<AFSpeechDelegate>"8
 -[AFConnection _markIsTwoShot]
 -[AFConnection _markSpeechRecognized]
 -[AFConnection _updateSpeechEndHostTime:]
--[AFConnection _completeRequestWithUUID:error:]
+-[AFConnection _completeRequestWithUUID:forReason:error:]
 success
 v32@?0d8d16@"NSError"24
 Speech delegate %@ is incapable of performing two-shot prompt.
@@ -341,6 +341,7 @@ Unknown
 INVALID
 unspecified
 message
+home
 (unknown)
 ar-SA
 en-GB
@@ -446,6 +447,8 @@ dt-begin
 dt-confirm
 dt-cancel
 announce-messages-tone
+home-announcement-recording-begin
+home-announcement-received
 AFFlowServiceConnection
 -[AFFlowServiceConnection invokeMethodOnRemoteWithBlock:onError:]_block_invoke
 -[AFFlowServiceConnection _clearConnection]
@@ -842,6 +845,7 @@ AFQuickStopActionDismissFiringAlarm
 AFQuickStopActionDismissFiringTimer
 AFQuickStopActionInterruptSiriVoiceOutput
 AFQuickStopActionStopMediaPlayback
+AFQuickStopActionStopHomeAnnouncementPlayback
 AFQuickStopActionCancelRunningTimer
 AFQuickSTopActionPromptForConfirmation
 isVoiceOverTouchEnabled
@@ -1599,6 +1603,8 @@ daemon.context.get-background-context.playback-devices.begin
 daemon.context.get-background-context.playback-devices.end
 daemon.context.get-cross-device-context.begin
 daemon.context.get-cross-device-context.end
+daemon.context.get-background-context.home-communication-announcement.begin
+daemon.context.get-background.context.home-communication-announcement.end
 daemon.context.cross-device-command.handled
 daemon.context.cross-device-command.nearby-devices
 daemon.context.context-collector.changed
@@ -2230,6 +2236,8 @@ dictationStart
 dictationFinish
 dictationCancel
 announceMessagesStart
+homeAnnouncementRecordingStart
+homeAnnouncementReceived
 v16@?0@"AFTreeNode"8
 B16@?0@"AFMutableConversationItem"8
 v32@?0@"AFTreeNode"8q16^B24
@@ -2537,12 +2545,19 @@ X-Dev-ConfigOverride-
 assistant.service.sms.nativeExecutor.enabled
 assistant.service.hal.enabled
 assistant.service.location-search.continuity.enabled
+assistant.service.announce.enabled
 true
+%@assistant.service.%@.%@.enabled
+JMjIql4w2ryl8XrRuebT
 %@%@
 com.apple.assistant.features
 +[AFFeatureFlags dump]
 false
 Siri
+HMFeatureDomain
+initHMFeatureDomain_block_invoke
+/Library/Caches/com.apple.xbs/Sources/MobileAssistantFramework_Sim/MobileAssistantFramework-2152.31.2/AFFeatureFlags.m
+/System/Library/Frameworks/HomeKit.framework/HomeKit
 None
 +IDS
 +Rapport
@@ -2571,6 +2586,7 @@ includeHeardVoiceTrigger
 includePlaybackState
 includeMyriadAdvertisement
 multiUserState
+includeHomeAnnouncement
 excludeDeviceInfo
 excludeIdentifier
 excludePrivacyClass
@@ -2675,11 +2691,7 @@ TQ,N,V_generation
 T@"NSDate",C,N,V_date
 itemsByID
 T@"NSDictionary",C,N,V_itemsByID
-alarm
-heardVoiceTrigger
-myriadAdvertisementContext
-location
-%@ (%@) (id = %@, deviceInfo = %@, fromLocalDevice = %d, alarm = %@, timer = %@, playbackState = %@, heardVoiceTrigger = %d, myriad advertisement context length = %ld, multiuser state = %@)
+%@ (%@) (id = %@, deviceInfo = %@, fromLocalDevice = %d, alarm = %@, timer = %@, playbackState = %@, homeAnnouncement = %@, heardVoiceTrigger = %d, myriad advertisement context length = %lu, multiuser state = %@)
 alarmSnapshot
 T@"AFClockAlarmSnapshot",R,N
 alarmSnapshotMetadata
@@ -2690,7 +2702,12 @@ timerSnapshotMetadata
 playbackStateSnapshot
 T@"AFMediaPlaybackStateSnapshot",R,N
 playbackStateMetadata
+homeAnnouncementSnapshot
+T@"AFHomeAnnouncementSnapshot",R,N
+homeAnnouncementSnapshotMetadata
+heardVoiceTrigger
 heardVoiceTriggerMetadata
+myriadAdvertisementContext
 T@"NSData",R,N
 multiUserStateSnapshot
 T@"AFMultiUserStateSnapshot",R,N
@@ -2999,6 +3016,7 @@ streamUID
 T@"NSString",R,C,N,V_streamUID
 dateCreated
 T@"NSDate",R,C,N,V_dateCreated
+@"NSDictionary"16@?0@"NSString"8
 com.apple.assistant.memory-pressure-observer
 -[AFMemoryPressureObserver _startObservingMemoryPressureWithOptions:]
 -[AFMemoryPressureObserver _stopObservingMemoryPressure]
@@ -3041,6 +3059,9 @@ AFDeviceContextPrivacyClassSharedWithHome
 left
 right
 AFFetchContextsKeyPlaybackStates
+alarm
+homeAnnouncement
+location
 kAFAccountInfoIdentifierKey
 kAFAccountInfoLabelKey
 kAFAccountInfoAssistantIdentifierKey
@@ -3250,6 +3271,8 @@ AFSiriUserNotificationRequestCapabilityManager
 com.apple.bluetooth.GuestConnected
 +[AFSiriUserNotificationRequestCapabilityManager supportedByApplicationWithBundleID:]
 +[AFSiriUserNotificationRequestCapabilityManager applicationWithBundleID:canAnnounceNotificationWithIntentIdentifiers:]
+com.apple.Home
+com.apple.NanoHome
 -[AFSiriUserNotificationRequestCapabilityManager fetchEligibleSetupStateWithCompletion:]
 -[AFSiriUserNotificationRequestCapabilityManager fetchEligibleSetupStateWithCompletion:]_block_invoke
 -[AFSiriUserNotificationRequestCapabilityManager hasEligibleSetup]
@@ -3280,6 +3303,8 @@ initINAppInfo_block_invoke
 classINAppInfo
 INSearchForMessagesIntentIdentifier
 initINSearchForMessagesIntentIdentifier_block_invoke
+INReadAnnouncementIntentIdentifier
+initINReadAnnouncementIntentIdentifier_block_invoke
 INSendMessageIntentIdentifier
 initINSendMessageIntentIdentifier_block_invoke
 SettingsVoices
@@ -3509,6 +3534,35 @@ AFClockAlarmSnapshot::notifiedFiringAlarmIDs
 T@"NSDate",R,C,N,V_date
 T@"NSDictionary",R,C,N,V_alarmsByID
 T@"NSOrderedSet",R,C,N,V_notifiedFiringAlarmIDs
+mediaSystemIdentifier
+mediaRouteIdentifier
+roomName
+proximity
+contextSnapshots
+serializedContextByKey
+metricsContext
+mediaSystemIdentifier = %@
+mediaRouteIdentifier = %@
+roomName = %@
+proximity = %@
+contextSnapshots = %@
+serializedContextByKey = %@
+metricsContext = %@
+AFServiceDeviceContext::identifier
+AFServiceDeviceContext::mediaSystemIdentifier
+AFServiceDeviceContext::mediaRouteIdentifier
+AFServiceDeviceContext::roomName
+AFServiceDeviceContext::proximity
+AFServiceDeviceContext::contextSnapshots
+AFServiceDeviceContext::serializedContextByKey
+AFServiceDeviceContext::metricsContext
+T@"NSString",R,C,N,V_mediaSystemIdentifier
+T@"NSString",R,C,N,V_mediaRouteIdentifier
+T@"NSString",R,C,N,V_roomName
+Tq,R,N,V_proximity
+T@"NSArray",R,C,N,V_contextSnapshots
+T@"NSDictionary",R,C,N,V_serializedContextByKey
+T@"NSDictionary",R,C,N,V_metricsContext
 followUpOne
 followUpTwo
 final
@@ -3736,6 +3790,13 @@ siri-message-internal
 voiceTriggerEnabled
 %@(voiceTriggerEnabled=%@)
 Tq,R,N,V_voiceTriggerEnabled
+lastPlayedAnnouncement
+state = %lu [%@]
+lastPlayedAnnouncement = %@
+AFHomeAnnouncementSnapshot::state
+AFHomeAnnouncementSnapshot::lastPlayedAnnouncement
+TQ,R,N,V_state
+T@"AFHomeAnnouncement",R,C,N,V_lastPlayedAnnouncement
 AFSiriTaskService.m
 com.apple.siri.task.app.
 Cannot create an app task service for a process without a bundle
@@ -3883,27 +3944,10 @@ Tq,R,N,V_source
 Tq,R,N,V_event
 TQ,R,N,V_options
 T@"NSString",R,C,N,V_deviceID
-id = %@, proximity: %@, mediaSystemIdentifier = %@, mediaRouteIdentifier = %@, productType = %@, roomName = %@, contextSnapshots = %@
-_mediaSystemIdentifier
-_mediaRouteIdentifier
-_productType
-_roomName
-_contextSnapshots
-_proximity
-proximity
-Tq,N,V_proximity
-T@"NSString",R,C,N,V_productType
-mediaSystemIdentifier
-T@"NSString",R,C,N,V_mediaSystemIdentifier
-mediaRouteIdentifier
-T@"NSString",R,C,N,V_mediaRouteIdentifier
-roomName
-T@"NSString",R,C,N,V_roomName
-contextSnapshots
-T@"NSArray",R,C,N,V_contextSnapshots
 (gen: %@, date: %@, notifiedFiringAlarmIDs: %@, isFiring: %@)
 (gen: %@, date: %@, notifiedFiringTimerIDs: %@, isFiring: %@)
 (playstate: %@, time: %@, mediaType: %@, group: %@)
+(state: %@, lastPlayed: {id = %@, start = %@, finish = %@})
 (IDSDeviceID: %@, MediaSystemId: %@, MediaRouteId: %@, Name: %@, Room: %@, Communal: %d)
 (vtSatScore = %@, hasConfidenceScores = %@)
 ([%d,%d], accuracy=%d)
@@ -3970,6 +4014,23 @@ _initiatorAddress
 _recipientAddress
 FaceTime Audio
 Telephony
+startedHostTime
+finishedHostTime
+startedDate
+finishedDate
+startedHostTime = %@
+finishedHostTime = %@
+startedDate = %@
+finishedDate = %@
+AFHomeAnnouncement::identifier
+AFHomeAnnouncement::startedHostTime
+AFHomeAnnouncement::finishedHostTime
+AFHomeAnnouncement::startedDate
+AFHomeAnnouncement::finishedDate
+TQ,R,N,V_startedHostTime
+TQ,R,N,V_finishedHostTime
+T@"NSDate",R,C,N,V_startedDate
+T@"NSDate",R,C,N,V_finishedDate
 T@,&,N,V_value
 %@, deliveryDate: %@
 _deliveryDate
@@ -4169,6 +4230,7 @@ Mach Service Task Delivery Completion Handler
 -[AFMachServiceSiriTaskDeliverer deliverSiriTask:completionHandler:]
 -[AFMachServiceSiriTaskDeliverer deliverSiriTask:completionHandler:]_block_invoke
 v32@?0@"AFAnalyticsEvent"8Q16^B24
+media
 hasTurnID
 T@"NSData",&,N,V_turnID
 -[AFClockAlarmObserver init]
@@ -4657,8 +4719,10 @@ context_type
 recency
 playstate
 media_type
+announce_state
 hasNotifyState
 hasAudioFileURL
+bargeInOverHomeAnnouncementPlayback
 bargeInOverSiriRequest
 bargeInOverSiriVoiceOutput
 bargeInOverFiringAlarm
@@ -4684,7 +4748,6 @@ targetDevices
 result
 refId
 -[SABaseAceObject(AnalyticsContextVending) af_addEntriesToAnalyticsContext:]
-metricsContext
 viewId
 domain
 utteranceView
@@ -4714,6 +4777,7 @@ weatherInitiate
 calendarInitiate
 newsInitiate
 spokenNotificationInitiate
+homeAnnouncementsRead
 runVoiceShortcut
 com.apple.siri.create
 com.apple.siri.load
@@ -4916,6 +4980,7 @@ AFDirectActionEventPhoneAmbiguous
 AFDirectActionEventPhoneCall
 AFDirectActionEventPhoneVoicemail
 AFDirectActionEventAppLaunch
+AFDirectActionEventHomeAnnouncementsRead
 AFDirectActionEventRunVoiceShortcut
 Invalid direct action event
 AFDirectActionSourceUnknown
@@ -4925,8 +4990,8 @@ AFDirectActionSourceStarkNotification
 Invalid direct action source
 SKIMessagesInvocation
 /System/Library/PrivateFrameworks/SiriKitInvocation.framework/SiriKitInvocation
-SKIVoiceShortcutsInvocation
 SKIPhoneInvocation
+SKIVoiceShortcutsInvocation
 x-sampmedentity
 x-sampmeditem
 x-sampcollection
@@ -5191,11 +5256,15 @@ v32@?0@"AFMyriadRecord"8Q16^B24
 -[AFMyriadCoordinator _updateRepliesWith:id:data:]
 -[AFMyriadCoordinator notifyCurrentDecisionResult]_block_invoke
 -[AFMyriadCoordinator _testAndUpdateWedgeFilter:]
+-[AFMyriadCoordinator _initializeWiProxReadinessTimer]
+-[AFMyriadCoordinator _suspendWiProxReadinessTimer]
+-[AFMyriadCoordinator _clearWiProxReadinessTimer]
+-[AFMyriadCoordinator _createWaitWiProxTimer:waitBlock:]_block_invoke
 -[AFMyriadCoordinator _waitWiProx:andExecute:]_block_invoke
 -[AFMyriadCoordinator _waitWiProx:andExecute:]
 -[AFMyriadCoordinator recentEventBump]
 -[AFMyriadCoordinator _signalEmergencyCallHandled]
-/Library/Caches/com.apple.xbs/Sources/MobileAssistantFramework_Sim/MobileAssistantFramework-2152.26/AFMyriadCoordinator.m
+/Library/Caches/com.apple.xbs/Sources/MobileAssistantFramework_Sim/MobileAssistantFramework-2152.31.2/AFMyriadCoordinator.m
 sharedUserId
 sharedUserId = %@
 confidenceScore = %@
@@ -5278,6 +5347,17 @@ activation_context
 notification
 source_app_id
 activation_result
+com.apple.assistant.home-announcement-observer
+v24@?0Q8@"AFHomeAnnouncement"16
+client request without cache
+-[AFHomeAnnouncementObserver _setUp]
+-[AFHomeAnnouncementObserver _tearDown]
+-[AFHomeAnnouncementObserver _fetchStateAndLastPlayedAnnouncementForReason:completion:]
+-[AFHomeAnnouncementObserver _handleNotifyStateChangeFrom:to:]
+-[AFHomeAnnouncementObserver _updateState:]
+v16@?0@"<AFHomeAnnouncementListening>"8
+-[AFHomeAnnouncementObserver _updateLastPlayedAnnouncement:]
+-[AFHomeAnnouncementObserver _updateSnapshot:]
 v32@?0@"NSString"8@"SASAcousticFeature"16^B24
 utterance
 beginTimestamp
@@ -5365,6 +5445,19 @@ AFSiriActivationResult::actionType
 AFSiriActivationResult::error
 Tq,R,N,V_actionType
 T@"NSError",R,C,N,V_error
+executionID
+requestID
+originPeerInfo
+executionID = %@
+requestID = %@
+originPeerInfo = %@
+AFCommandExecutionInfo::executionID
+AFCommandExecutionInfo::requestID
+AFCommandExecutionInfo::originPeerInfo
+AFCommandExecutionInfo::userInfo
+T@"NSString",R,C,N,V_executionID
+T@"NSString",R,C,N,V_requestID
+T@"AFPeerInfo",R,C,N,V_originPeerInfo
 hasEventType
 Ti,N,V_eventType
 hasEventData
@@ -5484,6 +5577,7 @@ AFMediaPlaybackStateSnapshot::playbackState
 AFMediaPlaybackStateSnapshot::nowPlayingTimestamp
 AFMediaPlaybackStateSnapshot::mediaType
 AFMediaPlaybackStateSnapshot::groupIdentifier
+isPlaying
 command
 T@"AceObject<SAAceCommand>",R,N,V_command
 defaultReply
@@ -5551,10 +5645,7 @@ isDeviceOwnedByCurrentUser = %@
 idsIdentifier = %@
 idsDeviceUniqueIdentifier = %@
 rapportEffectiveIdentifier = %@
-mediaSystemIdentifier = %@
-mediaRouteIdentifier = %@
 isCommunalDevice = %@
-roomName = %@
 productType = %@
 buildVersion = %@
 userInterfaceIdiom = %@
@@ -5577,6 +5668,7 @@ T@"NSString",R,C,N,V_idsIdentifier
 T@"NSString",R,C,N,V_idsDeviceUniqueIdentifier
 T@"NSString",R,C,N,V_rapportEffectiveIdentifier
 TB,R,N,V_isCommunalDevice
+T@"NSString",R,C,N,V_productType
 T@"NSString",R,C,N,V_buildVersion
 T@"NSString",R,C,N,V_userInterfaceIdiom
 T@"NSString",R,C,N,V_aceVersion
@@ -5648,8 +5740,10 @@ softLink_AXSVibrationDisabled
 %s Skipped timing adjustment because 1 interstitial has been presented.
 %s Skipped timing adjustment because %lu interstitials have been presented.
 %s Unable to update speech end host time. (_activeRequestType = %zd, _activeRequestUUID = %@)
+%s requestUUID = %@, reason %ld, error = %@
 %s Dropping delegate callback because request is complete
 %s Dropping delegate callback because request is different (_activeRequestUUID = %@, requestUUID = %@)
+%s Resetting isCapturingSpeech for %@ for reason: %ld
 %s Reporting speech error on connection tear down
 %s Connection invalidated
 %s Connection interrupted
@@ -6334,11 +6428,14 @@ softLink_AXSVibrationDisabled
 %s BTLE ignoring incoming event bad device class for Horseman %@
 %s BTLE ignoring as wedged suppress %@
 %s BTLE record %@  isSane: %d
+%s #myriad WiProx readiness timer initialized
+%s #myriad WiProx readiness timer suspended
+%s #myriad WiProx readiness timer wait block cleared
+%s #myriad BTLE WiProx readiness timer timed out, WiProx not called
+%s #myriad BTLE done waiting on WiProx to execute
 %s #myriad Method called on unexpected thread (curr:%{private}s expected:%{private}s)
 %s #myriad didRequestForBTLEAdvertisement: %s -> %s, didRequestForBTLEScan: %s -> %s
 %s #myriad BTLE not ready, waiting to execute for up to %ld msecs (current HeySiri WPState %ld)
-%s #myriad BTLE WiProx readiness timer timed out, WiProx not called
-%s #myriad BTLE done waiting on WiProx to execute
 %s #myriad check if bump needed
 %s #myriad ignoring recent event bump
 %s #myriad bumptoGoodness secsAgo=%f yields %d = %f(act) + %f(siri)
@@ -6365,6 +6462,8 @@ softLink_AXSVibrationDisabled
 %s Relinquished presentation transition assertion. (signal = %ld, duration = %f)
 %s Attempted to begin a presentation transition when there's already a current presentation transition.
 %s Attempted to end a presentation transition when there's no current presentation transition.
+%s lastPlayedAnnouncement: %@ -> %@
+%s snapshot: %@ -> %@
 %s TelephonyUtilities is not available on this platform.
 %s No connection.
 %s ErrorABCD:%@
@@ -6686,6 +6785,10 @@ AFClockAlarmSnapshot
 _AFClockAlarmSnapshotMutation
 AFClockAlarmSnapshotMutating
 AFClockAlarmSnapshotMutability
+AFServiceDeviceContext
+_AFServiceDeviceContextMutation
+AFServiceDeviceContextMutating
+AFServiceDeviceContextMutability
 AFSpeechRequestOptions
 AFAnalyticsObservationService
 AFPluginBundle
@@ -6702,6 +6805,10 @@ AFExperimentContextMutating
 AFExperimentContextMutability
 STSiriMessage
 AFDeviceCapabilities
+AFHomeAnnouncementSnapshot
+_AFHomeAnnouncementSnapshotMutation
+AFHomeAnnouncementSnapshotMutating
+AFHomeAnnouncementSnapshotMutability
 AFSiriTaskService
 AFSiriTaskDeliveryHandler
 AFSiriTaskDelivering
@@ -6729,7 +6836,6 @@ AFSiriActivationContext
 _AFSiriActivationContextMutation
 AFSiriActivationContextMutating
 AFSiriActivationContextMutability
-AFServiceDeviceContext
 ShortDescription
 AFSiriActivationListener
 SiriVOXTapToSiriBehavior
@@ -6738,6 +6844,10 @@ AFDeviceRingerSwitchObserver
 AFCreateMessageRequest
 AFUtteranceSuggestions
 STCall
+AFHomeAnnouncement
+_AFHomeAnnouncementMutation
+AFHomeAnnouncementMutating
+AFHomeAnnouncementMutability
 AFShowSettingRequest
 STSetting
 AFServiceContextSnapshot
@@ -6827,6 +6937,7 @@ AFSiriMusicSubscriptionLeaseTakenRequest
 AFSiriMusicSmartPlayRequest
 AFSiriAceRequest
 AFSiriActivationRequest
+AFHomeAnnouncementObserver
 AudioAnalytics
 AFSpeechSynthesisRecord
 _AFSpeechSynthesisRecordMutation
@@ -6845,6 +6956,10 @@ AFSiriActivationResult
 _AFSiriActivationResultMutation
 AFSiriActivationResultMutating
 AFSiriActivationResultMutability
+AFCommandExecutionInfo
+_AFCommandExecutionInfoMutation
+AFCommandExecutionInfoMutating
+AFCommandExecutionInfoMutability
 SISchemaClientAnyEvent
 AMOSExtensions
 AFConnectionEntitlementCache
@@ -7007,7 +7122,7 @@ setDeviceRingerSwitchState:
 _handleInterstitialPhase:fromProvider:displayText:speakableText:expectedDelay:context:completion:
 beginTransaction
 _tellSpeechDelegateRecordingDidFail:
-_completeRequestWithUUID:error:
+_completeRequestWithUUID:forReason:error:
 endTransaction
 initWithMachServiceName:options:
 setInvalidationHandler:
@@ -7607,7 +7722,7 @@ processData:usingProcedure:completion:
 processDataMap:usingProcedure:completion:
 _connectionQueue
 _callbackQueue
-doCommandForServicePath:className:infoDictionary:reply:
+doCommandForServicePath:className:infoDictionary:executionInfo:reply:
 beginSyncForServicePath:className:requestUUID:info:reply:
 fetchCurrentSyncSnapshotForServicePath:className:key:completion:
 clearDomainObjectsForServicePath:className:
@@ -7621,13 +7736,12 @@ dismissAssistant
 getLockStateWithReply:
 getCarDNDModeWithReply:
 getStarkModeWithReply:
-handleCommand:completion:
+handleCommand:executionInfo:completion:
 getTimeoutSuspendedWithReply:
 assistantServiceWillCrashForStuckSyncPluginAtPath:
-getPeerInfoForCommandId:completion:
 prepareForAudioHandoffWithCompletion:
 prepareForAudioHandoffFailedWithCompletion:
-fetchContextsForKeys:includesNearbyDevices:completion:
+fetchContextsForKeys:forRequestID:includesNearbyDevices:completion:
 setClasses:forSelector:argumentIndex:ofReply:
 addObject:
 unsignedIntegerValue
@@ -9371,6 +9485,7 @@ setSupportsListeningModeTransparency:
 _initWithOriginatingAceID:
 _originatingAceID
 _resultDescription
+isAnnounceEnabled
 isHALEnabled
 featureFlags
 isLocationSearchContinuityEnabled
@@ -9537,11 +9652,13 @@ fromLocalDevice
 alarmSnapshot
 timerSnapshot
 playbackStateSnapshot
+homeAnnouncementSnapshot
 af_didHearVoiceTrigger
 multiUserStateSnapshot
 alarmSnapshotMetadata
 timerSnapshotMetadata
 playbackStateMetadata
+homeAnnouncementSnapshotMetadata
 heardVoiceTrigger
 heardVoiceTriggerMetadata
 multiUserStateMetadata
@@ -9549,6 +9666,7 @@ locationSnapshot
 locationMetadata
 _handleCommand:afterCurrentRequest:isOneWay:completion:
 handleRemoteCommand:afterCurrentRequest:isOneWay:completion:
+handleCommand:completion:
 initAndHandleCommand:afterCurrentRequest:isOneWay:commandHandler:completion:
 _commandHandler
 _handleCommand:afterCurrentRequest:isOneWay:commandHandler:completion:
@@ -9875,7 +9993,7 @@ nowPlayingTimestamp
 mediaType
 initWithDeliveryDate:playbackState:nowPlayingTimestamp:mediaType:groupIdentifier:
 mediaSystemIdentifier
-initWithIdentifier:mediaSystemIdentifier:mediaRouteIdentifier:productType:roomName:contextSnapshots:
+initWithIdentifier:mediaSystemIdentifier:mediaRouteIdentifier:roomName:proximity:contextSnapshots:serializedContextByKey:metricsContext:
 af_serviceDeviceContextForKeys:
 _startObservingMemoryPressureWithOptions:
 _stopObservingMemoryPressure
@@ -10288,6 +10406,24 @@ _alarmsByID
 _notifiedFiringAlarmIDs
 setAlarmsByID:
 setNotifiedFiringAlarmIDs:
+proximity
+contextSnapshots
+serializedContextByKey
+metricsContext
+_mediaSystemIdentifier
+_mediaRouteIdentifier
+_roomName
+_proximity
+_contextSnapshots
+_serializedContextByKey
+_metricsContext
+setMediaSystemIdentifier:
+setMediaRouteIdentifier:
+setRoomName:
+setProximity:
+setContextSnapshots:
+setSerializedContextByKey:
+setMetricsContext:
 encodeFloat:forKey:
 decodeFloatForKey:
 setActivationDeviceIdentifier:
@@ -10523,6 +10659,10 @@ af_messageValue
 initWithVoiceTriggerEnabled:
 voiceTriggerEnabled
 _voiceTriggerEnabled
+lastPlayedAnnouncement
+initWithState:lastPlayedAnnouncement:
+_lastPlayedAnnouncement
+setLastPlayedAnnouncement:
 _machServiceNameForAppTaskServiceWithBundleIdentifier:
 initWithMachServiceName:
 setService:
@@ -10626,15 +10766,9 @@ setPeakResidentMemorySizeInBytes:
 setPhysicalMemoryFootprintInBytes:
 itemURL
 initWithTimestamp:source:event:options:deviceID:userInfo:
-contextSnapshots
-proximity
-setProximity:
-_proximity
-_mediaSystemIdentifier
-_mediaRouteIdentifier
-_roomName
-_contextSnapshots
 hasFiringTimers
+startedDate
+finishedDate
 isCommunalDevice
 logEventWithType:machAbsoluteTime:context:contextNoCopy:
 logEventWithType:machAbsoluteTime:contextProvider:contextProvidingQueue:
@@ -10680,6 +10814,17 @@ recipientAddress
 setRecipientAddress:
 _initiatorAddress
 _recipientAddress
+startedHostTime
+finishedHostTime
+initWithIdentifier:startedHostTime:finishedHostTime:startedDate:finishedDate:
+_startedHostTime
+_finishedHostTime
+_startedDate
+_finishedDate
+setStartedHostTime:
+setFinishedHostTime:
+setStartedDate:
+setFinishedDate:
 _initWithSettingType:
 _setUp
 _fetchTimersForReason:completion:
@@ -10904,7 +11049,6 @@ af_analyticsContext
 localizedCaseInsensitiveCompare:
 af_addEntriesToAnalyticsContext:
 af_dialogIdentifiersForAnalyticsContext
-metricsContext
 dialog
 dialogs
 hashedRouteUIDs
@@ -11008,6 +11152,7 @@ bulletin
 readMessagesRequestFromConversationIdentifier:inApp:
 readMessagesRequestFromNotificationIdentifier:fromApp:
 composeReplyRequestToConversationIdentifier:inApp:
+readHomeAnnouncementRequestFromApp:
 startVoiceShortcutInCarPlayUsingTriggerId:withTriggerName:fromApp:
 startPhoneCallRequestFromApp:
 setShuffleEnabled:
@@ -11092,8 +11237,11 @@ readDefaults
 notifyCurrentDecisionResult
 _initDeviceClassAndAdjustments
 _initializeTimer
+_initializeWiProxReadinessTimer
+_resetAdvertisementTimings
 stringWithCString:encoding:
 initWithName:queue:
+_clearWiProxReadinessTimer
 releasePowerAssertion
 _readDefaults
 startAdvertisingSlowdown:
@@ -11109,8 +11257,8 @@ _enterState:
 startAdvertisingFromVoiceTriggerAdjusted:withContext:
 startWatchAdvertisingFromVoiceTriggerWithContext:
 _inTaskTriggerWasTooSoon
-directTriggerRecord
 startWatchAdvertisingFromDirectTriggerWithContext:
+directTriggerRecord
 startAdvertisingFromDirectTriggerWithContext:
 startAdvertisingFromOutgoingTriggerWithContext:
 _duringNextWindowEnterState:
@@ -11205,6 +11353,9 @@ recentEventBump
 numberWithUnsignedShort:
 _sortedReplies:
 _isAPhone:
+_resumeWiProxReadinessTimer
+_suspendWiProxReadinessTimer
+_createWaitWiProxTimer:waitBlock:
 _waitWiProx:andExecute:
 myriadCoordinatorDidHandleEmergency:
 didChangeDefaults
@@ -11310,7 +11461,6 @@ _coreDuetStore
 _designatedSelfID
 _lastSiriActivationTime
 _triggerTime
-_advertTriggerAdvStartTime
 _nDeltaTs
 _callPunchout
 _lastDecisionTime
@@ -11321,6 +11471,7 @@ _wasEmergency
 _suppressLateTrigger
 _heySiriBTLEState
 _wiproxReadinessTimer
+_advTiming
 _advContextManager
 _contextRecord
 _electionBeginPublisher
@@ -11454,6 +11605,18 @@ initWithStartRequest:requestOptions:
 initWithStartRequest:
 _startRequestData
 _requestOptions
+_beginGrouping
+_updateState:
+_updateLastPlayedAnnouncement:
+_endGrouping
+_fetchStateAndLastPlayedAnnouncementForReason:completion:
+_handleNotifyStateChangeFrom:to:
+homeAnnouncementObserver:stateDidUpdateFrom:to:
+homeAnnouncementObserver:snapshotDidUpdateFrom:to:
+_updateSnapshot:
+getSnapshotWithCompletion:
+_snapshotGroup
+_snapshot
 af_isUserUtterance
 af_waitsForConfirmation
 af_speechModel
@@ -11503,6 +11666,16 @@ _settingChanges
 initWithActionType:error:
 _actionType
 _error
+executionID
+requestID
+originPeerInfo
+initWithExecutionID:requestID:originPeerInfo:userInfo:
+_executionID
+_requestID
+_originPeerInfo
+setExecutionID:
+setRequestID:
+setOriginPeerInfo:
 setHasEventType:
 hasEventType
 hasEventData
@@ -11626,10 +11799,7 @@ setIsDeviceOwnedByCurrentUser:
 setIdsIdentifier:
 setIdsDeviceUniqueIdentifier:
 setRapportEffectiveIdentifier:
-setMediaSystemIdentifier:
-setMediaRouteIdentifier:
 setIsCommunalDevice:
-setRoomName:
 setBuildVersion:
 setUserInterfaceIdiom:
 setAceVersion:
@@ -11700,6 +11870,7 @@ v32@0:8@16@?24
 v52@0:8@16B24q28d36@?44
 v20@0:8I16
 v24@0:8Q16
+v40@0:8@16q24@32
 v32@0:8@16@24
 v40@0:8q16@24@?32
 v24@0:8q16
@@ -11717,7 +11888,6 @@ v48@0:8@16@24@32@40
 @24@0:8q16
 v36@0:8@16@24B32
 @?24@0:8@16
-v40@0:8@16q24@32
 v48@0:8@16q24@32@40
 v32@0:8@16d24
 I16@0:8
@@ -11819,18 +11989,17 @@ Vv40@0:8@"NSDictionary"16q24@?<v@?@"NSDictionary"@"NSDictionary">32
 Vv48@0:8@"NSData"16@"NSString"24@"NSString"32@?<v@?@"NSError">40
 v40@0:8@16q24@?32
 Vv56@0:8@16@24@32@40@?48
-Vv48@0:8@"NSString"16@"NSString"24@"NSDictionary"32@?<v@?@"NSDictionary"@"NSArray"@"NSError">40
+Vv56@0:8@"NSString"16@"NSString"24@"NSDictionary"32@"AFCommandExecutionInfo"40@?<v@?@"NSDictionary"@"NSArray"@"NSError">48
 Vv56@0:8@"NSString"16@"NSString"24@"NSUUID"32@"AFSyncInfo"40@?<v@?>48
 Vv48@0:8@"NSString"16@"NSString"24@"NSString"32@?<v@?@"AFSyncSnapshot">40
 Vv32@0:8@"NSString"16@"NSString"24
 Vv40@0:8@"NSString"16@"NSString"24@?<v@?>32
 Vv72@0:8@16@24@32@40@48@56@?64
-Vv36@0:8@16B24@?28
+Vv44@0:8@16@24B32@?36
 Vv72@0:8@"NSString"16@"NSString"24@"NSArray"32@"NSArray"40@"NSString"48@"NSUUID"56@?<v@?B>64
 Vv24@0:8@?<v@?B>16
-Vv32@0:8@"SABaseCommand"16@?<v@?@"SABaseCommand"@"NSError">24
-Vv32@0:8@"NSString"16@?<v@?@"AFPeerInfo">24
-Vv36@0:8@"NSSet"16B24@?<v@?@"NSArray">28
+Vv40@0:8@"SABaseCommand"16@"AFCommandExecutionInfo"24@?<v@?@"SABaseCommand"@"NSError">32
+Vv44@0:8@"NSSet"16@"NSString"24B32@?<v@?@"NSArray">36
 Q40@0:8^{?=Q^@^Q[5Q]}16^@24Q32
 @"AFLinkedListItem"
 @"<AFQueueDelegate>"
@@ -11947,7 +12116,6 @@ Vv28@0:8B16@?20
 Vv56@0:8@16@24Q32@40@?48
 Vv36@0:8f16@20@?28
 Vv60@0:8@16@24@32@40B48@?52
-Vv44@0:8@16@24B32@?36
 Vv32@0:8B16B20@?24
 Vv56@0:8@16d24d32q40@?48
 Vv24@0:8@?<v@?@"NSArray"@"NSError">16
@@ -12115,6 +12283,7 @@ B32@0:8@"AFSiriActivationContext"16@?<v@?@"AFSiriActivationResult">24
 @"AFBluetoothDeviceInfo"
 {_mutationFlags="isDirty"b1"hasAddress"b1"hasDeviceUID"b1"hasVendorID"b1"hasProductID"b1"hasIsAdvancedAppleAudioDevice"b1"hasSupportsInEarDetection"b1"hasSupportsVoiceTrigger"b1"hasSupportsSpokenNotification"b1"hasSupportsListeningModeANC"b1"hasSupportsListeningModeTransparency"b1}
 Vv128@0:8@16@24@32@40@48B56B60B64d68B76@80@88B96@100@108B116@?120
+Vv36@0:8@16B24@?28
 Vv68@0:8@16@24@32@40@48B56@?60
 Vv32@0:8@"NSString"16@"NSURL"24
 Vv128@0:8@"NSString"16@"NSString"24@"NSString"32@"NSArray"40@"NSData"48B56B60B64d68B76@"NSDictionary"80@"NSURL"88B96@"NSURL"100@"NSString"108B116@?<v@?@"NSString"@"NSString"@"NSError">120
@@ -12140,6 +12309,7 @@ v24@0:8@"AFSpeechRecordingAlertBehavior"16
 @"NSDate"16@0:8
 @"<AFClockItemStorageDelegate>"
 @28@0:8B16@?20
+Vv32@0:8@"SABaseCommand"16@?<v@?@"SABaseCommand"@"NSError">24
 @48@0:8@16B24B28@?32@?40
 v40@0:8@16B24B28@?32
 v48@0:8@16B24B28@?32@?40
@@ -12234,6 +12404,9 @@ v76@0:8@16@24@32@40@48@56B64@?68
 @"NSOrderedSet"
 v24@0:8@"NSOrderedSet"16
 {_mutationFlags="isDirty"b1"hasGeneration"b1"hasDate"b1"hasAlarmsByID"b1"hasNotifiedFiringAlarmIDs"b1}
+@80@0:8@16@24@32@40q48@56@64@72
+@"AFServiceDeviceContext"
+{_mutationFlags="isDirty"b1"hasIdentifier"b1"hasMediaSystemIdentifier"b1"hasMediaRouteIdentifier"b1"hasRoomName"b1"hasProximity"b1"hasContextSnapshots"b1"hasSerializedContextByKey"b1"hasMetricsContext"b1}
 @"NSFileHandle"
 @"NSXPCListenerEndpoint"
 @"AFSpeechSynthesisRecord"
@@ -12246,6 +12419,10 @@ v24@0:8#16
 @"AFExperimentContext"
 {_mutationFlags="isDirty"b1"hasExperimentsByConfigurationIdentifier"b1}
 @"STContactAddress"
+@"AFHomeAnnouncement"
+v24@0:8@"AFHomeAnnouncement"16
+@"AFHomeAnnouncementSnapshot"
+{_mutationFlags="isDirty"b1"hasState"b1"hasLastPlayedAnnouncement"b1}
 @"AFSiriTaskDeliveryHandler"
 v32@0:8@"AFSiriTask"16@?<v@?@"NSError">24
 @"AFSiriTaskService"
@@ -12283,6 +12460,8 @@ v40@0:8q16Q24@?32
 v48@0:8q16Q24@32@?40
 @"<AFSiriActivationListenerDelegate>"
 @"<AFUtteranceSuggestionsDelegate>"
+@56@0:8@16Q24Q32@40@48
+{_mutationFlags="isDirty"b1"hasIdentifier"b1"hasStartedHostTime"b1"hasFinishedHostTime"b1"hasStartedDate"b1"hasFinishedDate"b1}
 v48@0:8@"AFClockItemStorage"16@"NSSet"24@"NSSet"32@"NSSet"40
 @"AFClockItemStorage"
 @"NSMutableOrderedSet"
@@ -12333,7 +12512,8 @@ B20@0:8C16
 @"_DKKnowledgeStore"
 @"AFMyriadEmergencyCallPunchout"
 {?="didRequestForBTLEScan"B"didRequestForBTLEAdvertisement"B}
-{?="waitTimer"@"AFWatchdogTimer""waitBlock"@?}
+{?="waitTimer"@"NSObject<OS_dispatch_source>""waitBlock"@?"isWaitTimerSuspended"B}
+{?="advertTriggerAdvStartTime"@"NSDate""advertTriggerEndTime"@"NSDate"}
 @"AFMyriadAdvertisementContextManager"
 @"AFMyriadAdvertisementContextRecord"
 @"AFNotifyStatePublisher"
@@ -12389,6 +12569,9 @@ v32@0:8@16^v24
 v24@0:8@"NSError"16
 @"AFSiriActivationResult"
 {_mutationFlags="isDirty"b1"hasActionType"b1"hasError"b1}
+v24@0:8@"AFPeerInfo"16
+@"AFCommandExecutionInfo"
+{_mutationFlags="isDirty"b1"hasExecutionID"b1"hasRequestID"b1"hasOriginPeerInfo"b1"hasUserInfo"b1}
 {?="eventType"b1}
 B28@0:8@16i24
 v36@0:8@16i24@28

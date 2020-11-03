@@ -57,6 +57,7 @@ flow-host-address
 flow-host-port
 flow-multipath-requested
 app-data
+aggregate_unit
 NetworkExtension
 PathController
 Stop command received
@@ -206,6 +207,7 @@ AllowedCaptiveNetworkPlugins
 Missing interface to protocol mapping
 Invalid interface name in interface to protocol mapping
 Invalid protocol
+Invalid DH group (parent %ld child %ld), mininum allowed is %ld
 Invalid service name for service exceptions
 Invalid service exception
 Invalid bundle identifier for application exception
@@ -321,8 +323,10 @@ metaData
 T@"NEFlowMetaData",R,V_metaData
 networkInterface
 T@"NSObject<OS_nw_interface>",C
+remoteHostname
+T@"NSString",R,V_remoteHostname
 -[NEAppProxyTCPFlow initWithNEFlow:queue:]
-/Library/Caches/com.apple.xbs/Sources/NetworkExtension_Sim/NetworkExtension-1295.40.21/Framework/NEAppProxyTCPFlow.m
+/Library/Caches/com.apple.xbs/Sources/NetworkExtension_Sim/NetworkExtension-1295.40.28/Framework/NEAppProxyTCPFlow.m
 _remoteEndpoint != nil
 v24@?0@"NSObject<OS_dispatch_data>"8q16
 v16@?0q8
@@ -543,6 +547,7 @@ DisconnectOnFastUserSwitch
 DisconnectOnLogout
 IncludeAllNetworks
 ExcludeLocalNetworks
+EnforceRoutes
 Certificate
 Extended
 Prompt
@@ -1201,7 +1206,6 @@ RemoteHostname
 SocketID
 %llx
 socketID
-remoteHostname
 family
 procUUID
 eprocUUID
@@ -1708,12 +1712,15 @@ T@"NSArray",R
 v16@?0^{__CNPluginCommand=}8
 included-rules
 excluded-rules
+is-fully-transparent
 NETWORK_RULE_ERROR_INVALID_ADDRESS
 NETWORK_RULE_ERROR_INVALID_PORT
 NETWORK_RULE_ERROR_INVALID_LOCAL_NETWORK
 NETWORK_RULE_ERROR_UNSUPPORTED_DIRECTION
 includedNetworkRules
 excludedNetworkRules
+isFullyTransparent
+TB,V_isFullyTransparent
 T@"NSArray",C,V_includedNetworkRules
 T@"NSArray",C,V_excludedNetworkRules
 ChildSA[%u, %@-%@]
@@ -2962,6 +2969,8 @@ mobikeHandle
 T@"NEIKEv2MOBIKE",&,V_mobikeHandle
 startTunnelCompletionHandler
 T@?,C,V_startTunnelCompletionHandler
+stopTunnelCompletionHandler
+T@?,C,V_stopTunnelCompletionHandler
 dnsResolverCompletionHandler
 T@?,C,V_dnsResolverCompletionHandler
 dispose
@@ -4649,6 +4658,8 @@ onDemandEnabled
 TB,V_onDemandEnabled
 appRules
 T@"NSArray",&,V_appRules
+gracefulShutdown
+TB,V_gracefulShutdown
 routingMethod
 safariDomains
 T@"NSArray",C,V_safariDomains
@@ -4714,6 +4725,7 @@ T@,&,V_notification
 notificationSource
 T@,&,V_notificationSource
 T@"NSObject<OS_dispatch_queue>",&,V_callbackQueue
+Only NETransparentProxyNetworkSettings can be used with NETransparentProxyProvider
 app:
 enterprise
 personal
@@ -4754,9 +4766,10 @@ Invalid %@ index, use the "list-identities" command to obtain a list of availabl
 "designated-requirement" can only be specified for provider-based configurations
 access-group
 include-all-networks
+exclude-local-networks
+enforce-routes
 Provider type can only be set for plugin-based per-app VPN configurations
 Invalid %@, must be either "app-proxy" or "packet-tunnel"
-exclude-local-networks
 Configuration VPN type is not IPSec
 authentication-method
 certificate
@@ -5119,6 +5132,7 @@ disconnectOnWake
 disconnectOnWakeTimeout
 includeAllNetworks
 excludeLocalNetworks
+enforceRoutes
 keychainDomain
 Tq,V_keychainDomain
 T@"NSString",&,V_keychainAccessGroup
@@ -5146,6 +5160,7 @@ T@"NSString",C,V_identityDataPassword
 TB,V_disconnectOnSleep
 TB,V_includeAllNetworks
 TB,V_excludeLocalNetworks
+TB,V_enforceRoutes
 -[NEIKEv2RTT getCurrentTime:]
 Ti,N,V_lastRequestMessageID
 rtt_cur
@@ -5480,6 +5495,7 @@ NEConfiguration configureAOVPNTunnelFromTunnelDict failed to create object
 %@ configureAOVPNTunnelFromTunnelDict: invalid ProtocolType (%@),  IKEv2 expected
 %@ configureAOVPNTunnelFromTunnelDict: unsupported shared secret data type %@
 %@ configureAOVPNTunnelFromTunnelDict: %@ required with %@ method
+%@ configureAOVPNTunnelFromTunnelDict: Invalid DH group (parent %ld child %ld), mininum allowed is %ld
 %@ initWithAlwaysOnVPNPayload: '%@'
 %@ initWithAlwaysOnVPNPayload: empty payload atom
 %@ initWithAlwaysOnVPNPayload: missing %@ dictionary
@@ -5706,8 +5722,8 @@ NEDNSProxyManager objects cannot be instantiated from NEProvider processes
 %s: failed to remove the configuration: %@
 %s: failed to save the new configuration: %@
 %@: Opening new flow divert control socket
-%@: provider %s new flow %@
 %@: Calling handleNewUDPFlow with %@, remoteEndpoint = %@
+%@: provider %s new flow %@
 %@: Calling stopProxyWithReason because: %s
 Failed to parse RR name
 Failed to parse RR type
@@ -6926,6 +6942,9 @@ stateUpdateBlock callback: provider is nil
 %@: Could not start child
 %@: Started Child Connection %X
 %@ tunnel bringup requested
+%@: tunnelTeardown (graceful) - Clearing tunnel configuration
+%@: tunnelTeardown (graceful) - Invalidating session
+%@: tunnelTeardown (graceful) - Invalidated session (%@)
 %@: Invalidated session (%@)
 %@: %s: Invoked start tunnel completion handler
 %@: %s: No redirectServer received
@@ -7117,6 +7136,7 @@ Resetting %@
 %@ reset child SA %@
 %s called with null requestContext
 %@ Enqueueing %@
+%@ flushed all pending requests
 %@ Dequeueing %@
 %@ Session aborted, skip request %@
 bad request type %@
@@ -8144,6 +8164,7 @@ NEIPCWrapper
 NEFilterPacketExtensionProviderHostContext
 NEFilterSettings
 NEUserNotification
+NETransparentProxyProvider
 NEUtilConfigurationClient
 NEExtensionAppPushProviderContext
 NEVPN
@@ -8245,6 +8266,10 @@ setServiceExceptions:
 setApplicationExceptions:
 setAllowedCaptiveNetworkPlugins:
 objectForKeyedSubscript:
+IKESecurityAssociationParameters
+diffieHellmanGroup
+childSecurityAssociationParameters
+stringWithFormat:
 count
 appendPrettyBOOL:withName:andIndent:options:
 _enabled
@@ -8411,14 +8436,15 @@ setApplicationData:
 networkInterface
 setNetworkInterface:
 setMetadata:
+remoteHostname
 setFlow:
 setQueue:
 _metaData
+_remoteHostname
 _flow
 _queue
 __networkInterface
 remoteEndpoint
-stringWithFormat:
 readDataWithCompletionHandler:
 writeData:withCompletionHandler:
 _remoteEndpoint
@@ -8557,6 +8583,7 @@ setAuthenticationPluginType:
 ingestDisconnectOptions:
 setIncludeAllNetworks:
 setExcludeLocalNetworks:
+setEnforceRoutes:
 serverAddress
 providerConfiguration
 getConfigurationProtocol
@@ -8716,8 +8743,6 @@ initWithDNSProxyPayload:configurationName:grade:
 setDeadPeerDetectionRate:
 setServerCertificateIssuerCommonName:
 setServerCertificateCommonName:
-IKESecurityAssociationParameters
-childSecurityAssociationParameters
 setCertificateType:
 setUseConfigurationAttributeInternalIPSubnet:
 setDisableMOBIKE:
@@ -8899,6 +8924,7 @@ sharedManagerForAllUsers
 initForAllUsers
 initSynchronous
 postGeneration
+isSystemConfiguration:
 saveConfigurationToDisk:currentSignature:userUUID:isUpgrade:completionQueue:completionHandler:
 removeConfigurationFromDisk:completionQueue:completionHandler:
 syncConfigurationsWithSC:completionQueue:completionHandler:
@@ -9152,6 +9178,7 @@ _stopped
 _isHostingSystemExtension
 _vendorConnection
 setProtocolConfiguration:
+setGracefulShutdown:
 protocolConfiguration
 setIpc:
 ipcIdleTimer
@@ -9506,7 +9533,6 @@ setLocalEndpoint:
 setRemoteEndpoint:
 socketFamily
 socketType
-remoteHostname
 socketUUID
 writeXPCMessage:drop:inboundPassOffset:inboundPeekOffset:outboundPassOffset:outboundPeekOffset:statsReportFrequency:
 cStringUsingEncoding:
@@ -9517,7 +9543,6 @@ _generateIdentifierOnce
 _socketFamily
 _socketType
 _socketProtocol
-_remoteHostname
 _euuid
 _socketID
 _socketUUID
@@ -9984,10 +10009,13 @@ supportedNetworkInterfaces
 bindToHotspotHelperCommand:
 includedNetworkRules
 excludedNetworkRules
+isFullyTransparent
 setIncludedNetworkRules:
 setExcludedNetworkRules:
+setIsFullyTransparent:
 addressFamily
 validateNetworkRule:collectErrors:
+_isFullyTransparent
 _includedNetworkRules
 _excludedNetworkRules
 childID
@@ -11158,6 +11186,8 @@ setDispose:
 setStartTunnelCompletionHandler:
 startIKEv2TunnelWithOptions:
 tunnelTeardown
+gracefulShutdown
+setStopTunnelCompletionHandler:
 stopIKEv2TunnelWithReason:completionHandler:
 getViableServerAddressForPath:
 mobikeCapable
@@ -11202,6 +11232,8 @@ setClientQueue:
 setupIKEv2CallbackBlocks
 connect
 startRedirectTimer
+stopTunnelCompletionHandler
+invalidateWithCompletionHandler:completionHandler:
 initWithTunnelRemoteAddress:
 createDNSSettingsFromTunnelConfig:
 createIPv4SettingsFromTunnelConfig:localTS:remoteTS:
@@ -11268,6 +11300,7 @@ _rekey
 _getSocketSemaphore
 _mobikeHandle
 _startTunnelCompletionHandler
+_stopTunnelCompletionHandler
 _dnsResolverCompletionHandler
 _tunnelKind
 _path
@@ -11379,7 +11412,6 @@ initWithAddresses:networkPrefixLengths:
 certificateType
 encryptionAlgorithm
 integrityAlgorithm
-diffieHellmanGroup
 IKESecurityAssociationParametersArray
 createIKESAProposalFromProtocol:saParameters:options:nonceSize:
 enablePFS
@@ -11542,6 +11574,7 @@ removeSA:
 removeAllSAs
 trafficSelectorUpdateBlock
 setIsInvalidated:
+flushPendingRequestContexts
 unestablishConfiguration
 uninstallChildSA:
 pendingRequestContexts
@@ -11962,6 +11995,9 @@ _predictedInterfaceArray
 _advisoryInterfaceArray
 _advisoryAgentDomain
 _advisoryAgentType
+initWithURL:resolvingAgainstBaseURL:
+percentEncodedHost
+percentEncodedPath
 setAgentData:
 agentData
 initWithProxyConfiguration:
@@ -12853,6 +12889,7 @@ reasserting
 routingMethod
 _reasserting
 _onDemandEnabled
+_gracefulShutdown
 _protocolConfiguration
 _appRules
 setNotificationSent:
@@ -13034,6 +13071,7 @@ disconnectOnSleep
 disconnectOnWake
 disconnectOnWakeTimeout
 excludeLocalNetworks
+enforceRoutes
 initWithProtocolIdentifier:
 setIdentityDataInternal:
 setIdentityDataPassword:
@@ -13052,6 +13090,7 @@ setDisconnectOnLogout:
 _disconnectOnSleep
 _includeAllNetworks
 _excludeLocalNetworks
+_enforceRoutes
 _disconnectOnWake
 _identityDataImported
 _disconnectOnIdle
@@ -13581,6 +13620,7 @@ B20@0:8i16
 i68@0:8@16Q24I32@36B44i48@?52@?60
 i36@0:8@16B24@?28
 i44@0:8@16B24@?28@?36
+v28@0:8B16@?20
 ^?16@0:8
 v24@0:8^?16
 @"NEIKEv2RTT"
@@ -13756,7 +13796,6 @@ v36@0:8B16@20@?28
 @56@0:8@16@24Q32@40@?48
 @56@0:8@16@24@32@40@?48
 @48@0:8@16@24@32@?40
-v28@0:8B16@?20
 @40@0:8@16^@24^@32
 B24@0:8^@16
 @"NEVPNConnection"

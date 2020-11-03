@@ -2074,7 +2074,9 @@ paymentRequest
 confirmationStyle
 _presentInAppPaymentAlertAfterSubscriptionPolicyConfirmation:forSubscriptionPaymentRequest:
 _presentAddPaymentPassAlert:
+beginSubjectReporting:
 expressAlertViewController
+endSubjectReporting:
 authorizationDelegate
 authorizationDidFinishWithError:
 canHandleDoublePressEvent

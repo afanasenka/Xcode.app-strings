@@ -11,7 +11,7 @@ AIR_LLD_FLAVOR
 Cannot detect flavor from command line option
 air-lld
 metallib
-AIR-LLD 31001.40 (metalfe-31001.40)
+AIR-LLD 31001.43 (metalfe-31001.43)
 AIR Linker
 never
 auto
@@ -314,7 +314,7 @@ ignoring metallib, metallib type is not compatible with ci libraries
 AIR_ENABLE_VM
 llvm.dbg.cu
 Debug Info Version
-AIR-LLD 31001.40 (metalfe-31001.40) (compatible with legacy metallib linker)
+AIR-LLD 31001.43 (metalfe-31001.43) (compatible with legacy metallib linker)
 Metal Linker (and other random stuff)
 option 
  requires --split-module
@@ -3796,7 +3796,7 @@ Used in deployment target
 Used from Metal 
  but defined in Metal 
 clang
-31001.40
+31001.43
 Failed to write: 
 Error opening 
 Duplicate function: '
@@ -23505,4 +23505,4 @@ Microsoft C/C++
 [0;1;45m
 [0;1;46m
 [0;1;47m
-31001.40
+31001.43

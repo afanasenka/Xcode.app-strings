@@ -45,7 +45,7 @@ maximumNumberOfTrackedFaces
 Tq,N,V_maximumNumberOfTrackedFaces
 worldTrackingEnabled
 TB,N,GisWorldTrackingEnabled,V_worldTrackingEnabled
-321.12
+321.12.1
 count
 TQ,R,N,V_count
 points

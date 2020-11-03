@@ -91,6 +91,7 @@ v@aTR'
 SolsticeAndEquinox
 AstronomicalType
 SolsticeError
+MeCardIdProvider
 TemporalIntent
 DefinedDate
 MetricsService
@@ -951,7 +952,6 @@ requestIntent
 hasOnly1pAppCandidates
 allowSuggestedContacts
 recommenderUsed
-speakableGroupName
 versiondate
 country
 newInfo
@@ -964,26 +964,10 @@ ambiguousContact
 noMatch
  handle not found
 missingSignal
-_CDLocalContext
-B32@0:8@16@24
-B40@0:8@16@24@32
-@32@0:8@16@24
-B32@0:8@"NSObject<NSCopying><NSSecureCoding>"16@"_CDContextualKeyPath"24
-@"NSObject<NSCopying><NSSecureCoding>"24@0:8@"_CDContextualKeyPath"16
-B32@0:8@"NSArray"16@"_CDContextualKeyPath"24
-B40@0:8@"NSArray"16@"NSArray"24@"_CDContextualKeyPath"32
-@"NSArray"32@0:8@"NSPredicate"16@"_CDContextualKeyPath"24
-_DKKnowledgeQuerying
-@32@0:8@16^@24
-v40@0:8@16@24@?32
-v32@0:8@16@24
-@"NSObject"32@0:8@"_DKQuery"16^@24
-v40@0:8@"_DKQuery"16@"OS_dispatch_queue"24@?<v@?@"NSObject"@"NSError">32
-v32@0:8@"_DKQuery"16@"OS_dispatch_queue"24
 NSObject
+q16@0:8
 #16@0:8
 @24@0:8:16
-@32@0:8:16@24
 @40@0:8:16@24@32
 B24@0:8#16
 B24@0:8:16
@@ -999,6 +983,23 @@ T@"NSString",N,R
 debugDescription
 B24@0:8@"Protocol"16
 @"NSString"16@0:8
+_CDLocalContext
+B32@0:8@16@24
+@24@0:8@16
+B40@0:8@16@24@32
+@32@0:8@16@24
+B32@0:8@"NSObject<NSCopying><NSSecureCoding>"16@"_CDContextualKeyPath"24
+@"NSObject<NSCopying><NSSecureCoding>"24@0:8@"_CDContextualKeyPath"16
+B32@0:8@"NSArray"16@"_CDContextualKeyPath"24
+B40@0:8@"NSArray"16@"NSArray"24@"_CDContextualKeyPath"32
+@"NSArray"32@0:8@"NSPredicate"16@"_CDContextualKeyPath"24
+_DKKnowledgeQuerying
+@32@0:8@16^@24
+v40@0:8@16@24@?32
+v32@0:8@16@24
+@"NSObject"32@0:8@"_DKQuery"16^@24
+v40@0:8@"_DKQuery"16@"OS_dispatch_queue"24@?<v@?@"NSObject"@"NSError">32
+v32@0:8@"_DKQuery"16@"OS_dispatch_queue"24
 OS_xpc_object
 MLFeatureProvider
 featureNames
@@ -1168,7 +1169,6 @@ Purging malformed asset %s
 Will retry installing asset at %s
 could not open SiriRemembersStore DB
 database at %{public}s does not exist
-yyyy-MM-dd'T'HH:mm:ss
 SiriRemembers.ScrubOldRecords
 _TtC13SiriInference15ScrubOldRecords
 cutoffDate
@@ -1178,18 +1178,17 @@ scrubbed old records from db
 scrubbing old records from db
 _TtC13SiriInference18SolsticeAndEquinox
 calendar
+_TtC13SiriInference16MeCardIdProvider
+observer
+siriinference-atomic
+v16@?0@"NSNotification"8
 Error serializing report %{public}s
 sending metric %{public}s to Core Analytics
 Error in XPC connection: %{public}s
 ContactResolver.refreshSharedCache
 ContactResolver.MakeRecommendationsInternal
-isFavoriteForContact: %s
-isMeCardRelation: %s
-requestMatch.allTokensQueried: %s
 recencyFrequencySignals: %s
-isSuggested: %s
-originalContact: <redacted>
-Signals:
+isSuggested: %{bool}d requestMatch.allTokensQueried: %{bool}d isMeCardRelation: %{bool}d isFavoriteForContact: %{bool}d
 ContactResolver.ContactResolution.makeRecommendation
 RequestContext ==
     locale: 
@@ -1263,8 +1262,7 @@ ContactResolver.findMatches
 Attempting to generate matches for %@
 ContactResolver.findMatches.log
 Found %ld matches for group number %ld
-Match number %ld: Signals:
-Match number %ld: %s
+Match number %ld: %s, Signals:
 ContactResolver.QuickResolver
 makeRecommendations(values:context:spec:)
 ContactResolver.ContactResolution
@@ -1373,7 +1371,6 @@ AppMatches signals is missing and cannot be decoded
 SiriInference.AppMatches
 v20@0:8B16
 TB,N
-q16@0:8
 @24@0:8^v16
 recommendation
 bundleIds
@@ -1398,6 +1395,7 @@ date
 INPlayMediaIntent is inferred
 mediaSearchItems
 B24@0:8@16
+@32@0:8:16@24
 _TtC13SiriInference26CoreDuetInteractionMonitor
 context
 registering CDContextualChangeRegistration
@@ -1555,6 +1553,7 @@ WHERE type_id = (SELECT id FROM entity_types WHERE name = ?1 LIMIT 1)
 AND id IN (SELECT rowid FROM entities_fts WHERE entities_fts = ?2)
 ORDER BY id ASC
 contact is not queryable in SiriRemembers. contact=%@
+groupAggregations:(
 groupAggregations
 com.apple.intents.PersonHandleLabel.
 globalPlaylistID=
@@ -2112,7 +2111,6 @@ Siri is on. Enabling background tasks...
 Siri is already off. skipping.
 Siri is already on. skipping.
 registering XPC activities
-v16@?0@"NSNotification"8
 listening for %s
 starting CoreDuetInteractionMonitor
 starting TrialManager
@@ -2186,6 +2184,7 @@ partialNameMatchContactsSize
 Generated %ld candidates using partial name expander
 Attempting to run FirstContactQuery
 Attempting to Me Card expander
+speakableGroupName
 _TtC13SiriInference12Thanksgiving
 v16@?0@"<OS_xpc_object>"8
 registering XPC activity
@@ -2204,8 +2203,6 @@ recurrencePattern=
 _TtC13SiriInference8DateTime
 time
 temporalIntent
-(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})
-SiriInference/DateTime.swift
 Error resolving date %s in year %ld: %s
 _TtC13SiriInference21PickFirstResolverRule
 SiriInference.SaveInteraction
@@ -2250,12 +2247,13 @@ Problem accessing count in processedIntents
 Checking if taskId  %s is already processed
 select taskId, min(created_at) as min_created_at from valueInferenceData group by taskId
 Retrieving taskId's from runtime data DB
-siriinference-atomic
 ContactResolver.ContactStore.Init
 ContactResolver.SuggestedContactStore.Init
+got nil favorites from CNFavorites(contactStore:).entries
 ContactResolver.Recommend.ML.init
 ContactResolver.Recommend.ML.Init failed. error=%s
-/Library/Caches/com.apple.xbs/Sources/SiriInference_Sim/SiriInference-58.5/SiriInference/SiriInference/ContactResolver/ContactResolverCache.swift
+/Library/Caches/com.apple.xbs/Sources/SiriInference_Sim/SiriInference-58.8/SiriInference/SiriInference/ContactResolver/ContactResolverCache.swift
+com.apple.siri.inference.resolvercache
 _TtC13SiriInference27DateTimeSuggestionGenerator
 definedDateTimeRangeStore
 definedTimeStore
@@ -2296,7 +2294,6 @@ fromDateTime
 toDateTime
 _TtC13SiriInference26AnonymizeIdsInStitchedData
 _TtC13SiriInference18ContactRankerInput
-@24@0:8@16
 inputs
 T@"NSSet",N,R
 _TtC13SiriInference19ContactRankerOutput
@@ -2364,8 +2361,8 @@ $ss21_ObjectiveCBridgeableP
 $ss25ExpressibleByArrayLiteralP
 $ss10SetAlgebraP
 $ss9OptionSetP
-ySo15CNKeyDescriptor_pG
 So15CNKeyDescriptor_p
+ySo15CNKeyDescriptor_pG
 SaySSG
 SiSg
 ySay
@@ -2447,6 +2444,8 @@ _pSgIegg_
 So11NSOperationCIegg_
 XDXMT
 ySdG
+So8NSObject_p
+Igl_
 SbSg
 ySS11dkEventUuid_SS8bundleIdtG
 SS11dkEventUuid_SS8bundleIdt
@@ -2455,13 +2454,13 @@ ySay
 ySaySay
 SaySay
 ySS_
-ySo8INPersonCG
 ySS3key_
 5valuetG
 SS3key_
 5valuet
 ySo13OS_xpc_object_pSgG
 So13OS_xpc_object_pSg
+ySo8INPersonCG
 ySS3key_
 5valuetG
 SS3key_
@@ -2632,7 +2631,6 @@ GSpySo8NSObjectCGSgSpyypGSgytIeglllr_
 $s13SiriInference10MetricKeysP
 8RawValueSYQz
 SDyx
-So8NSObject_p
 XDXMT
 $s13SiriInference19ContactNameExpanderP
 $s13SiriInference14ContactMatcherP
@@ -2655,6 +2653,13 @@ $s13SiriInference9VersionedP
 21PrivacyApprovedSignal
 9ValueType
 So14CNContactStoreC
+SaySo16CNFavoritesEntryCGSg
+GSgz_Xx
+So17OS_dispatch_groupC
+GSgz_Xx
+Sgz_Xx
+So9CNContactCSgz_Xx
+SaySo16CNFavoritesEntryCGSgz_Xx
 So8INPersonC
 ySS_
 SayShySSGG
@@ -2898,6 +2903,7 @@ decemberSolstice
 badYear
 calcFailed
 badCoefficients
+observer
 past
 present
 future
@@ -3970,16 +3976,6 @@ SQLITE_IOERR_CONVPATH
 RawValue
 initWithInteger:
 initWithUTF8String:
-setObject:forContextualKeyPath:
-objectForKeyedSubscript:
-setObject:forKeyedSubscript:
-addObjects:toArrayAtKeyPath:
-removeObjects:fromArrayAtKeyPath:
-addObjects:andRemoveObjects:fromArrayAtKeyPath:
-removeObjectsMatchingPredicate:fromArrayAtKeyPath:
-executeQuery:error:
-executeQuery:responseQueue:withCompletion:
-executeQuery:responseQueue:
 isEqual:
 hash
 superclass
@@ -4000,6 +3996,16 @@ retainCount
 zone
 description
 debugDescription
+setObject:forContextualKeyPath:
+objectForKeyedSubscript:
+setObject:forKeyedSubscript:
+addObjects:toArrayAtKeyPath:
+removeObjects:fromArrayAtKeyPath:
+addObjects:andRemoveObjects:fromArrayAtKeyPath:
+removeObjectsMatchingPredicate:fromArrayAtKeyPath:
+executeQuery:error:
+executeQuery:responseQueue:withCompletion:
+executeQuery:responseQueue:
 featureNames
 featureValueForName:
 searchSiriRemembersV0WithQuery:type:completionHandler:
@@ -4047,9 +4053,11 @@ initWithDouble:
 cancel
 isReady
 addOperation:
-setDateFormat:
-setTimeZone:
-stringFromDate:
+defaultCenter
+removeObserver:
+_ios_meContactWithKeysToFetch:error:
+addObserverForName:object:queue:usingBlock:
+identifier
 bundleForClass:
 URLForResource:withExtension:
 copyItemAtURL:toURL:error:
@@ -4116,7 +4124,6 @@ synchronousRemoteObjectProxyWithErrorHandler:
 remoteObjectProxyWithErrorHandler:
 initWithStartDateComponents:endDateComponents:recurrenceRule:userInput:allDay:
 initWithInterval:frequency:
-identifier
 isSuggested
 hasSuggestedProperties
 initWithShape:dataType:error:
@@ -4170,7 +4177,6 @@ fetchSavedRecordInfoWithCompletion:
 deleteSavedRecordWithIdentfier:completion:
 saveRecordWithData:recordInfo:completion:
 initWithBundleIdentifier:
-_ios_meContactWithKeysToFetch:error:
 setSuspended:
 operations
 isExecuting
@@ -4183,17 +4189,15 @@ displayName
 relationship
 setFormatOptions:
 dateFromString:
-parametersByName
+stringFromDate:
 spokenPhrase
 callStackSymbols
-defaultCenter
 removeObserver:name:object:
 cancelAllOperations
 waitUntilAllOperationsAreFinished
-addObserverForName:object:queue:usingBlock:
-initWithPattern:options:error:
-matchesInString:options:range:
-rangeAtIndex:
+recipients
+sender
+speakableGroupName
 compileModelAtURL:error:
 setBundleIds:
 setDomain:
@@ -4235,7 +4239,4 @@ Fzkg
 3333335@
 9#J{
 =@?5^
-contacts
-recipients
-sender
 inputs

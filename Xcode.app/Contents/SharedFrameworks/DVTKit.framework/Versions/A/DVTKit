@@ -1,4 +1,5 @@
-@(#)PROGRAM:DVTKit  PROJECT:DVTFrameworks-17511
+@(#)PROGRAM:DVTKit  PROJECT:DVTFrameworks-17515.1
+ffff
 ?333333
 @ffffff
 ?UUUUUU
@@ -4603,6 +4604,9 @@ indexOfObjectAtIndexes:options:passingTest:
 reflectScrolledClipView:
 _pointInVisibleScroller:
 initWithWindowNibName:presentingError:
+date
+defaultTimeZone
+stringFromDate:timeZone:formatOptions:
 infoDictionary
 operatingSystemVersionString
 URLQueryAllowedCharacterSet
@@ -5286,12 +5290,10 @@ currentKey
 currentString
 parser
 interestedInCharacters
-date
 stringFromDate:
 dateFromString:
 encodedString
 timeZoneWithName:
-stringFromDate:timeZone:formatOptions:
 setDateStyle:
 setTimeStyle:
 setLenient:
@@ -9488,13 +9490,16 @@ T@"DVTComparisonSplitView",&,V_comparisonSplitView
 DVTAlertDetailController.m
 windowNibName
 +[DVTAlertDetailController alertDetailControllerForError:]
-/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17511/DVTKit/Error Reporting/Alert Detail View/DVTAlertDetailController.m
+/Library/Caches/com.apple.xbs/Sources/DVTFrameworks/DVTFrameworks-17515.1/DVTKit/Error Reporting/Alert Detail View/DVTAlertDetailController.m
 DVTAlertDetailController
+ (Build %@%@)
+ Internal
 CFBundleVersion
 CFBundleShortVersionString
 System Information
 macOS %@
-Xcode %@ (%@)
+Xcode %@ (%@)%@
+Timestamp: %@
 -[DVTAlertDetailController _radarUrlForError:]
 ((error)) != nil
 (error)
@@ -10718,14 +10723,12 @@ $s6DVTKit38DVTNavigationPopoverControllerDelegateP
 $s6DVTKit44DVTNavigationPopoverControllerFilterDelegateP
 So6NSViewC
 ySo20DVTDealloc2Main_ViewCG
-ySo15DVTBorderedViewCG
 ySo6NSViewCG
 So11NSTextFieldCSg
 So11NSImageViewCSg
 _pSg
 ypSg
 ySnySiGG
-ySiG
 yypG
 $ss9OptionSetP
 $ss10SetAlgebraP
@@ -10782,11 +10785,14 @@ So21DVTTextCompletionItem_pSg
 So8NSObjectC
 So13DVTScrollViewCSg
 So11NSTableViewCSg
+SaySo20DVTDealloc2Main_ViewCG
+ySo15DVTBorderedViewCG
 SDySo6NSFontC
 _yptG
 _ypt
 ySo6NSFontC
 SaySo6NSViewCG
+ySiG
 SJSg
 SgXw
 filterFieldDelegate

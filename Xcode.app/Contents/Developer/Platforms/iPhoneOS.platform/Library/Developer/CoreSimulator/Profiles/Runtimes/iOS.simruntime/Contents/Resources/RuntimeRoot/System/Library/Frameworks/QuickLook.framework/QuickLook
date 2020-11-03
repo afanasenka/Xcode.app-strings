@@ -1391,6 +1391,7 @@ PHLivePhoto
 /System/Library/PrivateFrameworks/PhotosFormats.framework/PhotosFormats
 /AppleInternal/Library/Frameworks/PhotosFormats.framework/PhotosFormats
 PFVideoComplement
+PFVideoMetadata
 /System/Library/Frameworks/PhotosUICore.framework/PhotosUICore
 /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
 /AppleInternal/Library/Frameworks/PhotosUICore.framework/PhotosUICore
@@ -5153,6 +5154,8 @@ setContentWidth:
 setBadgeInfo:
 performChanges:animated:
 _hideHDRBadgeViewAfterDelayIfNeeded:
+videoAssetIsHighDynamicRange:
+numberWithBool:
 pictureInPictureControllerWillStartPictureInPicture:
 pictureInPictureControllerDidStartPictureInPicture:
 pictureInPictureController:failedToStartPictureInPictureWithError:
@@ -5354,7 +5357,6 @@ decodeUIEdgeInsetsForKey:
 _topInset
 _bottomInset
 fileExistsAtPath:isDirectory:
-numberWithBool:
 dataCallbackForUTI:andSize:
 isBundleURL:
 urlCallbackForUTI:

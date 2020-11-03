@@ -36,6 +36,7 @@ allObjects
 allKeys
 enumerateEmailAddresses:
 emailAddressesForAccount:
+.cxx_destruct
 _accountStore
 stop
 start
@@ -406,7 +407,6 @@ searchRecentsUsingQuery:completion:
 recordContactEvents:domain:sendingAddress:source:completion:
 removeRecentContactsWithRecentIDs:syncKeys:domain:
 _remoteLibraryWithErrorHandler:
-.cxx_destruct
 _client
 _vfsModuleName
 connectionToNewInMemoryStore

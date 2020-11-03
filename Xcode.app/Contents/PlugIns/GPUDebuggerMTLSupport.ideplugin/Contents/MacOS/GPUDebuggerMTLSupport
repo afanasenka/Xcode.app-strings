@@ -407,6 +407,8 @@ IOGPU
 CPU Backtrace
 [MTLCommandBuffer commit]
 message
+Message Payload doesn't exist
+Log message is nil - likely corrupted transport payload
 Xcode.SourceCodeLanguage.Metal
 Xcode.GPUDebuggerFoundation.invalidFunctionSourceURLMessage
 Xcode.GPUDebuggerFoundation.invalidFunctionSourceURLInformation.Online
@@ -3496,10 +3498,10 @@ So14DYTextureImage_p
 So022DYPPostVertexTransformB24AmplificationViewMapping_p
 ySuG
 ySo31DYPPostVertexTransformAttribute_pG
-ySSSo21DYRenderingAttributesCG
-So10MTLTexture_p
 ySo10MTLTexture_pG
+So10MTLTexture_p
 ySo8NSObject_pG
+ySSSo21DYRenderingAttributesCG
 $sSY
 startPosition
 startRotation

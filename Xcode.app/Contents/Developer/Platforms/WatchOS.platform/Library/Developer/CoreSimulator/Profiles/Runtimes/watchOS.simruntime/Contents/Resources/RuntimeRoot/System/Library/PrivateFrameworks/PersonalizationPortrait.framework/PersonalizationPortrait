@@ -219,7 +219,7 @@ decayRate:%f
 perRecordDecayRate:%f
 deviceFilter:%@
 matchingSourceBundleIds:%@
-toDate:'%@'
+fromDate:'%@'
 limit:%tu
 <PPLocationQuery l:%tu d:%@-%@ sd:%@ mid:%@ eid:%@ df:%@ fms:%tu c:%@ ma:%@ ea:%@ ens:%@> cons:%@ mch:%@
 cons
@@ -457,7 +457,7 @@ matchingDocumentIds:%@
 matchingDocumentIds.count:%tu
 matchingGroupIds:%@
 matchingGroupIds.count:%tu
-fromDate:'%@'
+toDate:'%@'
 <PPTopicQuery l:%tu, d:%@-%@ sd:%@ mid:%@ eid:%@ gid:%@ mdid:%@ df:%@ sb:%@ mti:%tu tri:%@ sc:%@ mcc:%tu ma:%@ ea:%@ ssf:%@ ews:%@ obi:%@ mch:%@>
 scali
 trie

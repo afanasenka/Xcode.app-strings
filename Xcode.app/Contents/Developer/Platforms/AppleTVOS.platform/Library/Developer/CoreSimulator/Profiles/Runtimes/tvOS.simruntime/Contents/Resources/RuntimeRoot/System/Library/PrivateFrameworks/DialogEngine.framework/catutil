@@ -170,7 +170,7 @@ Deleting ALL Morphun assets...
 No Morphun locales installed on device!
 No such locale(s) installed on device!
 allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size
-CAT file command line utility. Version 2.1.4.
+CAT file command line utility. Version 2.1.9.
 usage:
   (See 'catutil <command> --help' for details about a specific command.)
   catutil [-h] [--help]

@@ -132,6 +132,7 @@ SBMediaController
 SBOrientationLockManager
 sharedTelephonyManagerCreatingIfNecessary:
 SBMainSwitcherViewController
+loginApplication
 SBSystemGestureManager
 isGestureWithTypeAllowed:
 mainDisplayManager
@@ -161,6 +162,7 @@ CSCoverSheetView
 scrollView
 SBFPagedScrollView
 currentPageIndex
+processState
 SBApplicationProcessState
 _updateProcess:withState:
 taskState
@@ -561,7 +563,6 @@ applicationHoster
 SBApplicationHosting
 hostedAppSceneHandle
 SBApplicationSceneHandle
-processState
 SiriPresentationSpringBoardMainScreenViewController
 SiriPresentationViewController
 siriViewController

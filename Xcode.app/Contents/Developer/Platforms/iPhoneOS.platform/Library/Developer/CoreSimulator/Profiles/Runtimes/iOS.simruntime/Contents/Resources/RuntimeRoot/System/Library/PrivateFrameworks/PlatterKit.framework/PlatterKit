@@ -1217,6 +1217,7 @@ _includePresentingViewInAnimation
 _runAlongsideAnimationsManually
 _propertyAnimator
 initWithLeadingAccessoryView:trailingAccessoryView:
+setShadowed:
 setCenterContentItems:animated:
 isEqualToArray:
 _configureCenterStackViewIfNecessary
@@ -1247,7 +1248,7 @@ bs_traitCollectionDidChange:forManagedTraitEnvironment:
 setNeedsUpdateConstraints
 _isWrappingRequiredForView:inBounds:
 arrayByAddingObject:
-initWithShadowAttributes:maskCornerRadius:
+initWithShadowAttributes:maskCornerRadius:continuousCorners:
 isLikePillContentItem:
 leadingAnchor
 trailingAnchor
@@ -1478,6 +1479,7 @@ setRecipe:
 _isMaterialViewSufficientlySpecified
 materialViewWithRecipeNamesByTraitCollection:compatibleWithTraitCollection:bundle:configuration:initialWeighting:scaleAdjustment:
 _newDefaultBackgroundView
+initWithShadowAttributes:maskCornerRadius:
 _configureBackgroundViewIfNecessary
 _layoutShadowView
 platterViewWithStyle:

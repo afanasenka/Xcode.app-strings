@@ -318,6 +318,8 @@ v24@?0@"NSString"8@"NSData"16
 v32@?0@"NSString"8@"SCNAnimation"16^B24
 v32@?0@"NSString"8@"NSArray"16^B24
 /%@.morpher.weights[%ld]
+v48@?0@"NSString"8{?=@@qB}16
+v40@?0{?=@@qB}8
 /%@.%@
 -%ld
 staticPose
@@ -689,6 +691,7 @@ com.apple.avatar.StickerPack
 Stickers
 T@"NSObject<OS_os_log>",R,N,V_log
 AVTViewSnapshotDisableSuperSamplingFactorKey
+cameraGridMemoji
 [AvatarKit] Failed to find the "%@" camera, using the default one instead ("%@")
 v16@?0@"<MTLCommandBuffer>"8
 T@"AVTAvatar",&,N
@@ -764,7 +767,6 @@ cameraSideburns
 cameraGrid
 cameraFunCamCarousel
 cameraWatchface
-cameraGridMemoji
 T@"SCNRenderer",R,N
 AVTRendererOptionInitiallyConfigureForARMode
 _maskRenderer
@@ -4450,8 +4452,12 @@ animation
 subAnimations
 animationFromRepresentation:keyPath:
 enumerateRepresentationsForAnimation:block:
-blendShapeIndexForBlendShapeName:
+setFromValue:
+setToValue:
+animationWithCAAnimation:
+blendShapeIndexForARKitBlendShapeName:
 morphInfoForARKitBlendShapeIndex:
+enumerateMorphInfoForCustomCustomBlendShapeName:usingBlock:
 addToAvatar:options:transitionDuration:
 setPose:
 stickerPhysicsStateIdentifier
@@ -4778,6 +4784,7 @@ setWritesToDepthBuffer:
 setReadsFromDepthBuffer:
 redColor
 stringWithContentsOfFile:encoding:error:
+updateCustomCameras
 updateSpecializedLighting
 updateARMode:
 setHidden:
@@ -4793,8 +4800,6 @@ showTrackingLossIndicator
 hideTrackingLossIndicator
 animationWithKeyPath:
 valueWithSCNVector3:
-setFromValue:
-setToValue:
 functionWithName:
 setAnimationTimingFunction:
 removeAnimationForKey:
@@ -4814,6 +4819,9 @@ _shadowPlaneMaterial
 _whitePlane
 _environmentNode
 _defaultPointOfView
+_animojiCamera
+_memojiCameraGroup
+_customCamera
 _specializedLightingNode
 _defaultLightingNode
 null
@@ -4974,7 +4982,7 @@ evaluatePhysicalizedDescriptors
 applyCorrectiveDescriptors
 updateEyeOrientationAndReflections
 updateMorpherDrivenMaterialsWithDeltaTime:
-blendShapeNameForBlendShapeIndex:
+blendShapeNameForARKitBlendShapeIndex:
 setWeight:forBlendShapeNamed:
 setNeckPosition:
 simdOrientation
@@ -5142,6 +5150,7 @@ lockAvatar
 _drawAtTime:
 unlockAvatar
 avatarView:didRenderAvatar:
+updatePointOfViewFromFramingMode
 avatarDidChange
 didMoveToWindow
 updateInterfaceOrientation
@@ -5354,8 +5363,8 @@ movabilityHint
 setMovabilityHint:
 rndRange::
 rndIndex:
-unapplyPresetDependenciesForPreset:ignoringDependenciesFromCategories:recursionDepth:
-applyPresetDependenciesForPreset:ignoringDependenciesFromCategories:recursionDepth:
+unapplyPresetDependenciesForPreset:presetsBeingReplacedCategories:recursionDepth:
+applyPresetDependenciesForPreset:presetsBeingReplacedCategories:recursionDepth:
 _applyAllColorPresets:
 _updateAO
 multiply

@@ -30,6 +30,9 @@ WebEmbedViewEvent
 Model
 CodingKeys
 ActionMethod
+GroupLoadEvent
+Model
+CodingKeys
 SubscriptionResultData
 CodingKeys
 AudioEngagementData
@@ -169,6 +172,9 @@ SubscribedTagListData
 CodingKeys
 SessionAccess
 EmailShareUserActionType
+FeedLoadEvent
+Model
+CodingKeys
 SectionData
 CodingKeys
 FollowingType
@@ -230,6 +236,8 @@ CodingKeys
 UnblockTagEvent
 Model
 CodingKeys
+ResultActionData
+CodingKeys
 WidgetEngagementData
 CodingKeys
 DownloadLocation
@@ -240,6 +248,10 @@ IssueTocViewEvent
 Model
 CodingKeys
 FollowTagEventTranslator
+ArticleLoadEvent
+Model
+CodingKeys
+ValidationEventProcessor
 DownloadStateData
 CodingKeys
 PersonalizationFeatureCTRData
@@ -421,6 +433,8 @@ CodingKeys
 EOAGroupExposureEventTranslator
 TagData
 CodingKeys
+AppStateRestoreData
+CodingKeys
 AutoSubscribedTagListData
 CodingKeys
 GroupExposureEventTranslator
@@ -543,6 +557,7 @@ PlaybackData
 CodingKeys
 ArticleSaveEventEventTranslator
 GroupLocation
+ResultAction
 ListenSheetActionData
 SearchResultSelectEvent
 Model
@@ -829,6 +844,7 @@ explicit
 cvws
 ckPublicDB
 ckPrivateDB
+newsEdgeSearch
 newspaper
 localNews
 trending
@@ -884,6 +900,9 @@ other
 failedToCreateContext
 failedToRender
 requestFailed
+abandoned
+loaded
+appBackgrounded
 listenNow
 listenNext
 listenLater
@@ -929,6 +948,7 @@ inApp
 carPlay
 sessionStartSource
 FCFeedPersonalizingItem
+@16@0:8
 Q16@0:8
 d16@0:8
 B16@0:8
@@ -1232,16 +1252,13 @@ mediaEngagementData
 anfComponentData
 articleExposureContextData
 NewsAnalytics
-v40@0:8@16@24@32
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+UserBundleSubscriptionContextData.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+UserBundleSubscriptionContextData.swift
 FCBundleSubscriptionChangeObserver
 v24@0:8@"FCBundleSubscription"16
-v40@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24@"FCBundleSubscriptionChangeSet"32
-q16@0:8
-@16@0:8
-@24@0:8:16
+v32@0:8@"FCBundleSubscription"16@"FCBundleSubscription"24
 superclass
 description
+resultActionData
 opportunityIdentifier
 placementIdentifier
 _TtC13NewsAnalytics31WebEmbedExposureEventTranslator
@@ -1273,7 +1290,9 @@ _TtC13NewsAnalytics27ArticleShareEventTranslator
 NYAssembly
 assemblies
 NFFrameworkAssembly
+q16@0:8
 #16@0:8
+@24@0:8:16
 NFBundleAssembly
 _TtC13NewsAnalytics21NewsDESEventProcessor
 clickCount
@@ -1383,6 +1402,29 @@ _TtC13NewsAnalytics32FlushAnalyticsBatchesStartupTask
 flushManager
 _TtC13NewsAnalytics28DownloadIssueEventTranslator
 _TtC13NewsAnalytics24FollowTagEventTranslator
+_TtC13NewsAnalytics24ValidationEventProcessor
+End of Article headline exposure events must have group data
+End of Article headline exposure events must not have unknown group types
+End of Article headline exposure events must not have ad group types
+Magazine feed article view events must have group data
+Magazine feed article view events must not have unknown group types
+Magazine feed article view events must not have ad group types
+Today feed article view events must have group data
+Today feed article view events must not have unknown group types
+Today feed article view events must not have ad group types
+Model validation failed: %{public}@, model=%@
+Magazine feed headline exposure events must have group data
+Magazine feed headline exposure events must not have unknown group types
+Magazine feed headline exposure events must not have ad group types
+Today feed headline exposure events must have group data
+Today feed headline exposure events must not have unknown group types
+Today feed headline exposure events must not have ad group types
+Magazine feed issue exposure events must have group data
+Magazine feed issue exposure events must not have unknown group types
+Magazine feed issue exposure events must not have ad group types
+Today feed issue exposure events must have group data
+Today feed issue exposure events must not have unknown group types
+Today feed issue exposure events must not have ad group types
 personalizationFeatureID
 _TtC13NewsAnalytics28IssueExposureEventTranslator
 magazineCategoryData
@@ -1472,6 +1514,7 @@ _TtC13NewsAnalytics39AppSessionStartEventQueryItemsGenerator
 issueViewContext
 referringArticleData
 purchaseOffersData
+stateRestoreData
 _TtC13NewsAnalytics32ArticleViewResignEventTranslator
 _TtC13NewsAnalytics31HeadlineExposureEventTranslator
 _TtC13NewsAnalytics35ArticleViewEventQueryItemsGenerator
@@ -1479,19 +1522,20 @@ _TtC13NewsAnalytics41SubscriptionOffersExposureEventTranslator
 issueScienceData
 isNewsAppPurchase
 NewsAnalytics6
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+UserSubscriptionContextData.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+UserSubscriptionContextData.swift
 isNewIssueNotificationEnabled
 isMarketingNotificationEnabled
 isDailyBriefingNotificationEnabled
 isEmailNewsletterSwitchEnabled
 _TtC13NewsAnalytics31EOAGroupExposureEventTranslator
+isFromStateRestoration
 _TtC13NewsAnalytics28GroupExposureEventTranslator
 NewsAnalytics7
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+SessionData.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+SessionData.swift
 v16@?0@"NSArray"8
 NewsAnalytics8
 v28@0:8@16B24
-/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2624.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+UserData.swift
+/Library/Caches/com.apple.xbs/Sources/Feldspar_Sim/Feldspar-2633.2/Modules/news-reader/NewsAnalytics/Session/SessionObserver+UserData.swift
 FCUserInfoObserving
 v24@0:8@16
 v36@0:8@16@24B32
@@ -1627,6 +1671,7 @@ So31FCBundleSubscriptionManagerType_p
 So20FCPurchaseControllerC
 So24FCSubscriptionControllerC
 $s13NewsAnalytics24XavierEventProcessorTypeP
+SbSg
 SgXw
 $s13NewsAnalytics34ArticleLikeLocationEventTranslatorP
 $s13NewsAnalytics08ExternalB15URLProviderTypeP
@@ -1709,6 +1754,11 @@ menubar
 view
 keyCommand
 RawValue
+eventData
+feedData
+timedData
+groupData
+resultActionData
 resultType
 timePlayed
 deltaTimePlayed
@@ -1776,6 +1826,7 @@ articleIDs
 topResultTagID
 topResultArticleID
 totalResults
+completedString
 eventData
 exposureData
 groupDataList
@@ -1785,6 +1836,7 @@ timedData
 appVersion
 appBuildNumber
 eventData
+timedData
 tagData
 feedPositionData
 viewData
@@ -2004,6 +2056,10 @@ unknown
 share
 cancel
 RawValue
+eventData
+feedData
+timedData
+viewData
 sectionID
 unknown
 following
@@ -2067,6 +2123,7 @@ hostArticleViewData
 hostArticleNewsArticleData
 hostArticleChannelData
 userBundleSubscriptionContextData
+viewEndData
 userAction
 configurationManager
 eventStreamObserver
@@ -2100,6 +2157,7 @@ feedData
 articleData
 userBundleSubscriptionContextData
 actionData
+action
 identifier
 engagementType
 webEmbedData
@@ -2132,6 +2190,12 @@ timedData
 feedData
 userChannelContextData
 userBundleSubscriptionContextData
+eventData
+timedData
+feedData
+articleData
+resultActionData
+jsonDecoder
 state
 personalizationFeatureID
 viewData
@@ -2524,6 +2588,7 @@ widgetEngagementData
 referringArticleData
 searchData
 purchaseOffersData
+stateRestoreData
 unknown
 article
 feed
@@ -2583,8 +2648,8 @@ isMarketingNotificationEnabled
 isDailyBriefingNotificationEnabled
 isEmailNewsletterSwitchEnabled
 searchString
-completedString
 tagID
+isFromStateRestoration
 tagIDs
 eventData
 actionData
@@ -2613,7 +2678,6 @@ timedData
 adUserData
 userBundleSubscriptionContextData
 channelData
-groupData
 feedData
 adStateData
 adPlacementData
@@ -2678,6 +2742,7 @@ unknown
 cvws
 ckPublicDB
 ckPrivateDB
+newsEdgeSearch
 RawValue
 unknown
 curated
@@ -2897,6 +2962,11 @@ unknown
 article
 feed
 endOfArticle
+RawValue
+unknown
+abandoned
+loaded
+appBackgrounded
 RawValue
 unknown
 listenNow
@@ -3130,6 +3200,7 @@ campaignData
 referralData
 userBundleSubscriptionContextData
 searchData
+viewEndData
 potraitCount
 safariCount
 appsAutoSubscribedCount
@@ -3157,6 +3228,7 @@ sceneBackground
 readingHistoryCleared
 forceQuit
 feldsparIDReset
+userNavigation
 RawValue
 unknown
 inApp
@@ -3415,7 +3487,7 @@ canBePurchased
 copyWithZone:
 bundleSubscriptionDidExpire:
 bundleSubscriptionDidSubscribe:
-bundleSubscriptionDidChange:previousBundleSubscription:changeSet:
+bundleSubscriptionDidChange:previousBundleSubscription:
 bundleSubscriptionManager
 init
 setFeedType:
@@ -3496,6 +3568,7 @@ unprotectedSubscriptionState
 bundlePurchaseID
 isPurchaser
 isAmplifyUser
+servicesBundlePurchaseID
 setResultType:
 setContentId:
 setContentType:
@@ -3663,6 +3736,7 @@ setBundleSubscriptionStatus:
 setBundlePurchaseId:
 setIsBundlePurchaser:
 setIsAmplifyUser:
+setSBundlePurchaseId:
 setIsPaidSubscriberDuringEvent:
 setIsPaidSubscriberFromNewsDuringEvent:
 setIsPaidSubscriberFromAppStoreDuringEvent:
@@ -3753,12 +3827,12 @@ setSectionIds:
 pushSessionDataWithRegionIDs:
 sharedAccount
 isUserSignedInToiCloud
-_authorizationStatus
 sharedConnection
 isDiagnosticSubmissionAllowed
 appConfigurationManager
 intValue
 longLongValue
+_authorizationStatus
 localRegionProvider
 fetchRegions:
 userInfoDidChangeFeldsparID:fromCloud:

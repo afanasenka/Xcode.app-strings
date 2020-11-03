@@ -1316,8 +1316,10 @@ sendGUID
 shouldCancelForInstalledBundleItems
 softwarePlatform
 preflightURL
+expectsIOSAppOnMac
 installUniversalVariant
 [%@]: bundleID: %@ accountID: %@ bagKey: %@ buyParams: %@ extensionsToEnable: %lu isBackgroundUpdate: %d isRedownload: %d isUpdate: %d itemID: %@ itemName: %@ purchaseID: %lld vendorName: %@ softwarePlatform: %ld]
+TB,N,V_expectsIOSAppOnMac
 TB,N,V_installUniversalVariant
 T@"NSString",C,N,V_clientID
 isCompatibilityUpdate
@@ -1378,6 +1380,8 @@ TB,V_is32BitOnly
 TB,V_isPreorder
 longTitle
 T@"NSString",C,V_longTitle
+macAppRequiredCapabilities
+T@"NSArray",C,V_macAppRequiredCapabilities
 mediaKind
 TI,V_mediaKind
 isIOSBinaryMacOSAvailable
@@ -2350,6 +2354,7 @@ rawUpdateDictionary
 rawUpdateState
 timestamp
 updateState
+boolValue
 initWithUpdateDictionary:
 bundleIdentifier
 buyParams
@@ -2358,6 +2363,7 @@ parentalControlsRank
 releaseDate
 storeItemIdentifier
 updateDictionary
+_boolValueForProperty:withDefaultValue:
 setBlockedBy:
 setDeviceFamilies:
 setInstallDate:
@@ -3902,7 +3908,6 @@ connection
 setConnection:
 _activeRequests
 _valueForKey:ofType:
-boolValue
 _dateFromDateString:
 decodePropertyListForKey:
 initWithDictionary:forAppAdamID:segment:
@@ -4001,6 +4006,8 @@ shouldCancelForInstalledBundleItems
 setShouldCancelForInstalledBundleItems:
 preflightURLString
 setPreflightURLString:
+expectsIOSAppOnMac
+setExpectsIOSAppOnMac:
 installUniversalVariant
 setInstallUniversalVariant:
 clientID
@@ -4022,6 +4029,7 @@ _isUpdate
 _isBackgroundUpdate
 _isRedownload
 _shouldCancelForInstalledBundleItems
+_expectsIOSAppOnMac
 _installUniversalVariant
 _isCompatibilityUpdate
 _isRefresh
@@ -4077,11 +4085,13 @@ setHiddenFromSpringboard:
 setIconURLString:
 setIs32BitOnly:
 setIsIOSBinaryMacOSAvailable:
+setLongTitle:
+macAppRequiredCapabilities
+setMacAppRequiredCapabilities:
+setMediaKind:
 setRequiresRosetta:
 setRunsOnIntel:
 setRunsOnAppleSilicon:
-setLongTitle:
-setMediaKind:
 setOvalIconURLString:
 setPreflightPackageURL:
 setProductURL:
@@ -4121,6 +4131,7 @@ _genreID
 _genreName
 _iconURLString
 _longTitle
+_macAppRequiredCapabilities
 _ovalIconURLString
 _preflightPackageURL
 _productURL
@@ -4572,6 +4583,7 @@ v24@0:8@"NSCoder"16
 B24@0:8q16
 v24@0:8q16
 @"NSNumber"
+B28@0:8@16B24
 @"NSDate"
 @"NSDictionary"
 v32@0:8@"ASDCheckQueueRequestOptions"16@?<v@?B@"NSError">24

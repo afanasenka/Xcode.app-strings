@@ -1,5 +1,4 @@
-@(#)PROGRAM:MetadataUtilities  PROJECT:Matador-2146.1
-33333
+@(#)PROGRAM:MetadataUtilities  PROJECT:Matador-2148
 ""#"$"%"&"<"A"C"D"E"G"H"I"M"m"a"b"d"p"e"q"r"t"s"u"v"x"w"y"z"
 FH
 0K0L0M0N0O0P0Q0R0S0T0U0V0W0X0Y0Z0[0\0]0^0_0`0a0b0d0e0f0g0h0i0o0p0r0s0u0v0x0y0{0|0
@@ -369,8 +368,6 @@ EXTENSIONS
 HIDDEN_EXTENSIONS
 PREFIXES
 /System/Library
-/AppleInternal
-/var/db/disableAppleInternal
 /System
 /System/Applications
 /System/Applications/Utilities
@@ -379,6 +376,7 @@ PREFIXES
 /sbin
 /usr
 /usr/libexec
+/AppleInternal
 /Applications
 /Library
 /Users
@@ -476,7 +474,10 @@ PREFIXES
 <HOME-LIBRARY>
 /Accounts
 /Application Data
+/Application Scripts
 /Application Support
+/Application Support/com.apple.sharedfilelist
+/Application Support/com.apple.spotlight
 /Application Support/BOINC Data
 /Application Support/AddressBook/Metadata
 /Application Support/AddressBook/Sources
@@ -500,6 +501,8 @@ PREFIXES
 /CloudDataStorage
 /CloudStorage
 /CloudStorage/*/*
+/Containers
+/Group Containers
 /Containers/*/Data/<HOME_CONTAINER>
 /Group Containers/*/<HOME_CONTAINER>
 /Cookies
@@ -551,15 +554,24 @@ PREFIXES
 /V6/*/**/Attachments/*/*/*
 <MAIL_OUT>
 <SYSTEM-LIBRARY>
+/Application Support/com.apple.icloud.searchpartyd
+/Assets
+/AssetsV2
 /Audio/Apple Loops/Apple
 /Catacomb
 /CoreServices/Applications
 /CoreServices/Finder.app
 /CoreServices/Finder.app/Contents/Applications
+/CoreServices/Finder.app/Contents/Applications/All My Files.app
 /CoreServices/HelpViewer.app
 /DirectoryServices/DefaultLocalDB
+/Developer/CommandLineTools/Library/PrivateFrameworks/Applications/Xcode.app
+/Developer/CommandLineTools/SDKs/*/Applications/Xcode.app
+/Developer/CommandLineTools/Library/SDKs/MacOSX/AppleInternal/BuildRoot/Applications/Xcode.app
 /Documentation/User Guides And Information.localized
 /Metadata
+/PreinstalledAssets
+/PreinstalledAssetsV2
 /Sounds
 /Templates
 /User Template

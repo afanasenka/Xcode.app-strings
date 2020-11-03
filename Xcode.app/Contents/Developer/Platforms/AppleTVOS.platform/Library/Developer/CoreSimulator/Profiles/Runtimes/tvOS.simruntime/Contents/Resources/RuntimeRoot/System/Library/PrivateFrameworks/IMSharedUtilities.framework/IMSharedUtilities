@@ -1,7 +1,7 @@
 @(#)PROGRAM:IMSharedUtilities  PROJECT:IMSharedUtilities-1
 0Effffff
 @UUUUUU
-31 October 2006 - Apple Inc. build 1731
+31 October 2006 - Apple Inc. build 2057
 v8@?0
 IMEventListenerErrorDomain
 command succeeded: %@, error: %@, userInfo: %@
@@ -1609,9 +1609,10 @@ Contacts
 ContactStore
 Failed to setup CNContactStore
 CNContactStore setup completed!
+com.apple.private.IMSharedUtilities.IMContactStore
 CNMeCardSharingPickerViewControllerDidSaveNotification
 CNContactFormatter
-/Library/Caches/com.apple.xbs/Sources/MessagesCore_Sim/Messages-1125.19/IMCore/IMSharedUtilities/Contacts/IMContactStore.m
+/Library/Caches/com.apple.xbs/Sources/MessagesCore_Sim/Messages-1125.23/IMCore/IMSharedUtilities/Contacts/IMContactStore.m
 void SetupContactClassesIfNeeded(void)_block_invoke
 SetupContactClassesIfNeeded_block_invoke
 Unexpected nil '%@' in %s at %s:%d. %@
@@ -1716,6 +1717,8 @@ lastMeContactStoreSync
 Td,N,V_lastMeContactStoreSync
 meContact
 T@"CNContact",&,N,V_meContact
+changeHistoryFetchQueue
+T@"NSObject<OS_dispatch_queue>",&,N,V_changeHistoryFetchQueue
 CNIDsForBatchFetch
 T@"NSArray",&,N,V_CNIDsForBatchFetch
 Received Me Card Picker Changed Notification (IMContactStore)
@@ -6081,6 +6084,8 @@ setLastContactStoreSync:
 lastMeContactStoreSync
 setLastMeContactStoreSync:
 meContact
+changeHistoryFetchQueue
+setChangeHistoryFetchQueue:
 CNIDsForBatchFetch
 setCNIDsForBatchFetch:
 _batchFetchingForLaunchCompleted
@@ -6092,6 +6097,7 @@ _IDToCNContactMap
 _lastContactStoreSync
 _lastMeContactStoreSync
 _meContact
+_changeHistoryFetchQueue
 _CNIDsForBatchFetch
 setGroupTitle:
 hasGroupTitle

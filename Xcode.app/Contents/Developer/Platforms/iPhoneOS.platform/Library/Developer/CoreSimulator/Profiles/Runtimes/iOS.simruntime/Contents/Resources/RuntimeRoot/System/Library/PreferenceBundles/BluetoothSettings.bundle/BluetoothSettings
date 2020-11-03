@@ -135,6 +135,7 @@ runLoopSource
 T^{__CFRunLoopSource=},N,V_runLoopSource
 notification
 T^{__CFUserNotification=},N,V_notification
+q16@?0@"MPRemoteCommandEvent"8
 SPATIAL_AUDIO_DETAIL_
 SPATIAL_AUDIO
 SPATIAL_TUTORIAL_STEREO_OPTION
@@ -162,10 +163,13 @@ CONNECTION_FAILED_TITLE
 PAIRING_FAILED_TITLE
 keyboardShownOnce
 TB,N,V_keyboardShownOnce
+com.apple.springboard.spatial-audio-accessory-feature.changed
+SPATIAL_ID
+v12@?0i8
 FORGET_MAGIC_PAIRED_DEVICE_WARNING
 FORGET_SHEET_TITLE
 -[BTSDeviceConfigController deviceSupportsSync:]
-/Library/Caches/com.apple.xbs/Sources/BluetoothSettings_Sim/BluetoothSettings-403.1/BTSDeviceConfigController.m
+/Library/Caches/com.apple.xbs/Sources/BluetoothSettings_Sim/BluetoothSettings-401.1/BTSDeviceConfigController.m
 _syncSettings.supported
 MAP_SWITCH
 FORGET_BUTTON
@@ -179,7 +183,6 @@ LEFT_ID
 RIGHT_ID
 com.apple.springboard
 spatial-audio-accessory-feature
-SPATIAL_ID
 PhoneFavorites
 PhoneRecents
 None
@@ -226,10 +229,17 @@ FIT_TEST_GROUP_ID
 FIT_TEST
 FIT_TEST_FOOTER
 IED_GROUP_ID
+MED_FOOTER_TEXT
+DeviceConfig-B372
+MED_SWITCH
 IED_FOOTER_TEXT_PB
 IED_FOOTER_TEXT
 IED_SWITCH
 IED_ID
+AUTO_ANSWER_CALL_GROUP_ID
+AUTO_ANSWER_CALL_FOOTER_TEXT
+AUTO_ANSWER_CALL_SWITCH
+AUTO_CALL_ANSWER_ID
 SR_GROUP_ID
 SMARTROUTE_
 SMARTROUTE_MANUAL_
@@ -262,6 +272,7 @@ VERSION_TYPE
 CaseInfoName
 ACCESSORY_ABOUT_CASE_NAME
 ACCESSORY_ABOUT_CASE_VERSION_FIRMWARE
+ACCESSORY_MODEL_NAME_16
 Any-Hex/Java
 %@%@
 ACCESSORY_ABOUT_SERIAL_NUMBER_LEFT
@@ -995,8 +1006,17 @@ _notification
 initCommon
 setupWelcomeController
 notifySpatialAudioUpdate:
+_start
 checkStatusAndPlay
+sharedCommandCenter
+playCommand
+startPlayers
+addTargetWithHandler:
+pauseCommand
+stopPlayers
 stopPlayingContent
+_stop
+removeTarget:
 viewWillLayoutSubviews
 setupConstraints
 uppercaseString
@@ -1029,8 +1049,6 @@ constraintEqualToConstant:
 topAnchor
 bottomAnchor
 activateConstraints:
-startPlayers
-stopPlayers
 updateInEarState
 showAlert
 startPlayingContent
@@ -1038,7 +1056,9 @@ inEarStatusPrimary:secondary:
 postNotificationName:object:userInfo:
 selectedSegmentIndex
 setMode:
+_resetTrackingForAllClients
 unsignedIntegerValue
+initWithMode:device:
 viewDidDisappear:
 _welcomeController
 _stackView
@@ -1046,6 +1066,7 @@ _segmentedControl
 _spacerView
 _spatialTutorialContentView
 _constraints
+_mediaSession
 _isCurrentModeSpatial
 _isCurrentModeChanged
 _budsInEar
@@ -1137,6 +1158,8 @@ canUnpair
 loadSyncSettings
 getServiceSetting:key:
 setServiceSetting:key:value:
+autoAnswerMode
+setAutoAnswerMode:
 doubleTapAction
 intValue
 setDoubleTapAction:
@@ -1218,6 +1241,8 @@ clickHoldModeRight
 sealDetectSet:
 sealDetect
 presentFitTestController:
+setAutomaticAnswerCallsEnabled:
+automaticAnswerCallsEnabled
 stringByAppendingFormat:
 getAACPCapabilityBit:
 getSpatialAudioPlatformSupport
@@ -1259,6 +1284,7 @@ _nameControlSpecifiers
 _accessoryInfoSpecifiers
 _lastSelectedSyncGroup
 _ctkdLeDevice
+_spatialNotifyToken
 _vehicleManager
 _carplayPreferences
 _cachedCarplayPairingStatus
@@ -1516,6 +1542,7 @@ v24@0:8^{__CFUserNotification=}16
 @"UISegmentedControl"
 @"UIView"
 @"VPSpatialTutorialContentView"
+@"RMMediaSession"
 v32@0:8@16q24
 B48@0:8@16{_NSRange=QQ}24@40
 B24@0:8@"UITextField"16

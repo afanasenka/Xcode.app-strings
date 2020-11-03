@@ -270,6 +270,7 @@ playback
 serialNumber
 metrics
 newsEntitlements
+activityEntitlements
 appStoreEntitlements
 need-apple-pay-auto-enroll-retry
 aps-allowed-product-type
@@ -3797,8 +3798,8 @@ v16@?0@"DownloadHandlerClient"8
 [%@]: Unable to restart software downloadID: %@
 %@: Retrying all failed restore downloads
 com.apple.itunesstored.Daemon
-Sep 20 2020
-00:09:31
+Oct  7 2020
+02:34:51
 %@: Starting... (Built: %s %s)
 %@: Starting XPC server
 com.apple.itunesstored.launch
@@ -3877,6 +3878,7 @@ com.apple.MobileAsset
 %@: Flagging download %lld as "finish only", already have asset: %lld
 %@: Skipping prepare for file URL download: %lld
 %@: Keeping safe harbor data with finish only for atc download: %lld bundleID: %@
+[%{public}@] Skipping AV asset download for podcast restore download: %lld asset: %lld
 %@: Asking data consumer to override progress value
 %@: Fail download without enough disk space: %lld
 com.apple.podcasts
@@ -4739,6 +4741,7 @@ ASDPersonalizationStore
 [%{public}@]: Sending %lu downloads from %{public}@
 [%{public}@]: Sending News subscription entitlements
 ASDSubscriptionEntitlements
+[%{public}@]: Sending Activity subscription entitlements
 [%{public}@]: Sending AppStore subscription entitlements
 v32@?0@"Download"8Q16^B24
 [%{public}@]: Checking claims for accountID: %@ claimStyle: %ld
@@ -5770,6 +5773,7 @@ importSubscriptionKeyBagData:returningError:
 reportAnonymousPings:
 sendNewsSubscriptionEntitlementsWithDictionary:forAccountID:
 sendAppStoreSubscriptionEntitlementsWithDictionary:forAccountID:
+sendActivitySubscriptionEntitlementsWithDictionary:forAccountID:
 lowercaseString
 clearAutoEnrollmentIdentifier
 updateAutoEnrollmentIdentifier
@@ -9905,6 +9909,7 @@ setDestinationPath:
 setHasHDR:
 setHas4K:
 _newURLRequestWithAsset:
+_isPodcastRestore
 _newAVAssetDownloadSessionOptionsWithAsset:URLRequest:
 setAVAssetDownloadSessionOptions:
 _newDataConsumerWithAsset:destinationPath:
@@ -9945,7 +9950,6 @@ allHTTPHeaderFields
 userAgentWithBundleIdentifier:version:
 _usesStreamingZipDataConsumerForAsset:
 _allowsCellularAccessForAsset:
-_isPodcastRestore
 _setRequiresShortConnectionTimeout:
 powerStates
 _itemIsInMediaLibrary
@@ -12494,6 +12498,7 @@ Daemon: Device offers auth failed with error: %{public}@
 %@: Flagging download %lld as "finish only", already have asset: %lld
 %@: Skipping prepare for file URL download: %lld
 %@: Keeping safe harbor data with finish only for atc download: %lld bundleID: %@
+[%{public}@] Skipping AV asset download for podcast restore download: %lld asset: %lld
 %@: Asking data consumer to override progress value
 %@: Fail download without enough disk space: %lld
 %@: Set infersdiscretionary for podcast download: %lld
@@ -12785,6 +12790,7 @@ Found existing download for purchase but no matching purchase, canceling downloa
 [%{public}@]: Sent %lu cluster mapping(s) with result: %d
 [%{public}@]: Sending %lu downloads from %{public}@
 [%{public}@]: Sending News subscription entitlements
+[%{public}@]: Sending Activity subscription entitlements
 [%{public}@]: Sending AppStore subscription entitlements
 [%{public}@]: Checking claims for accountID: %@ claimStyle: %ld
 [%{public}@]: appstored replied to claim request with result: %d claimedBundleIdentifiers: [%{public}@] error: %@

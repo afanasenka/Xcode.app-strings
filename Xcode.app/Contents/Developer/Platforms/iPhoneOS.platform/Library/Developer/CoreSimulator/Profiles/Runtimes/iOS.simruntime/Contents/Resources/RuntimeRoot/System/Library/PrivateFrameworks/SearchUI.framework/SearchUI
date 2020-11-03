@@ -2975,6 +2975,7 @@ initWithResults:cardSection:queryId:
 setIdentifyingResult:
 isQuerySuggestion
 accessibilityIdentifier
+isEqualToModel:
 _isTappable
 _isDraggable
 _supportsCustomUserReportRequestAfforance
@@ -3749,11 +3750,12 @@ _spacerDebuggerViews
 _arrangment
 disableUnbatchedUpdates
 setSplitHeaderView:
-titleForScoreBoard:forDisplay:
 splitHeaderView
 team1
 score
 team2
+setCenterLeadingTitle:
+setCenterTrailingTitle:
 setUseLargeTitle:
 setSubtitle1:
 eventStatus
@@ -3769,6 +3771,7 @@ setLeadingSubtitle:
 setTrailingSubtitle:
 setUseCompactWidth:
 effectiveLayoutSizeFittingSize:
+titleForScoreBoard:forDisplay:
 _splitHeaderView
 expanded
 setExpanded:
@@ -4181,6 +4184,7 @@ updateTimerAndCardSections:
 loadCardSectionsWithCompletionHandler:
 updateWithCardSections:
 loadingScreenTimer
+hasCustomViewControllersForCardSections
 stopAnimating
 cardViewDidAppear
 cardViewController:preferredContentSizeDidChange:animated:

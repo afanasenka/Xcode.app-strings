@@ -501,12 +501,16 @@ valueForProperty:
 initializeView
 _loadHealthStoreForActiveDevice
 _addExpectedHealthSettingsViewAsChildViewController
+appleID
 setProfileIdentifier:
 resume
 setLoadingHealthStore:
-fetchProfileIdentifierForNRDeviceUUID:completion:
-addChildViewController:
+fetchProfileIdentifierForNRDeviceUUID:ownerAppleID:completion:
+fetchFamilyMemberForDevice:withCompletion:
+setTranslatesAutoresizingMaskIntoConstraints:
 addSubview:
+hk_alignCenterConstraintsWithView:
+addChildViewController:
 hk_alignConstraintsWithView:
 didMoveToParentViewController:
 removeFromParentViewController
@@ -515,8 +519,11 @@ setCurrentBridgeViewController:
 isTinkerDevice
 setIsTinkerDevice:
 loadingHealthStore
+tinkerLoadingActivityIndicator
+setTinkerLoadingActivityIndicator:
 _loadingHealthStore
 _currentBridgeViewController
+_tinkerLoadingActivityIndicator
 setAccessoryType:
 setEditingAccessoryType:
 setTextColor:
@@ -686,6 +693,8 @@ isTinkerDevice
 TB,N,V_isTinkerDevice
 loadingHealthStore
 TB,N,V_loadingHealthStore
+tinkerLoadingActivityIndicator
+T@"UIActivityIndicatorView",&,N,V_tinkerLoadingActivityIndicator
 BHSTextViewController
 BridgeHealthProfileDiffableDataSource
 _BHSHealthProfileDatePicker
@@ -806,4 +815,5 @@ Successfully tore down sharing.
 [sharing-setup] %{public}@ Failed to fetch tinker family member with error: %{public}@
 [sharing-setup] %{public}@ Failed to fetch family circle with error : %{public}@
 [sharing-setup] %{public}@ Failed to find family organizer in family circle: %@
-%{public}@ Profile identifier is Nil for NRDevice UUID %{public}@, Error: %{public}@
+%{public}@ Failed to fetch family member %{public}@ for pairingID %{public}@, %{public}@
+%{public}@ Profile identifier is Nil for NRDeviceUUID %{public}@, appleID %{public}@, %{public}@

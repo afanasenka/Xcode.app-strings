@@ -546,6 +546,11 @@ Read/Write
 Read Only
 Setting '%@' is not controllable: %@/%@
 NOT CONTROLLABLE
+HomePod
+Announce
+Home
+JMjIql4w2ryl8XrRuebT
+Announce settings should be hidden
 T@"<HFHomeKitSettingsVendor>",R,N
 entity
 T@"HFAccessorySettingsEntity",R,N
@@ -577,6 +582,8 @@ AirDropID
 com.apple.sharingd
 @16@?0@"NSString"8
 HFUniqueNameFormat
+Caches
+com.apple.announce
 Library
 Application Support
 Wallpapers
@@ -627,6 +634,7 @@ hf_isReachable
 hf_supportsSoftwareUpdate
 hf_supportsStereoPairing
 hf_showsAudioSettings
+hf_supportsMusicAlarm
 hf_prettyDescription
 hf_categoryLocalizedDescription
 hf_backingAccessory
@@ -639,7 +647,7 @@ T@"<HFMediaValueSource>",R,N
 hf_deviceIdentifiers
 T@"NSSet",R,C,N
 hf_mediaRouteIdentifier
-hf_supportsPreferredMediaUser
+hf_supportsHomeTheater
 HFPowerStateControlItem.m
 -[HFPowerStateTargetValueTuple init]
 characteristicType
@@ -785,6 +793,38 @@ timeContext
 TQ,N,V_timeContext
 type
 TQ,N,V_type
+User Initiated
+Audio Session Interrupted
+Audio Session Lost
+Audio Session Reset
+Audio Routes Changed
+audioFileURL
+T@"NSURL",&,N,V_audioFileURL
+audioPlayer
+T@"AVAudioPlayer",&,N,V_audioPlayer
+audioSession
+T@"AVAudioSession",&,N,V_audioSession
+audioSessionIsActive
+TB,N,GisAudioSessionActive,V_audioSessionIsActive
+playerCurrentTime
+Td,N,V_playerCurrentTime
+audioSessionOptions
+TQ,N,V_audioSessionOptions
+displayLink
+T@"CADisplayLink",&,N,V_displayLink
+paused
+TB,N,GisPaused,V_paused
+T@"<HFAudioPlayerDelegate>",W,N,V_delegate
+playerStopSource
+TQ,N,V_playerStopSource
+routeChangeReason
+T@"NSNumber",&,N,V_routeChangeReason
+playing
+TB,R,N,GisPlaying
+duration
+Td,R,N
+volume
+Tf,N
 @"<NSCopying>"16@?0@"HFUserNotificationServiceTopic"8
 @"<NSCopying>"16@?0@"HFUserNotificationServiceTopicItem"8
 @"HFUserNotificationServiceTopicItem"16@?0@"HFUserNotificationServiceTopic"8
@@ -795,7 +835,6 @@ T@"NSSet",C,N,V_topicItems
 B16@?0@"HMLightProfile"8
 @"NAFuture"16@?0@"HMLightProfile"8
 lightProfiles
-Home
 Wr6cjgH4QIyDVQAA6DJCCA
 HF_NaturalLightDemoMode
 v16@?0@"<HFLightObserver>"8
@@ -937,10 +976,19 @@ T@"<HFCharacteristicValueSource>",&,N,V_overrideValueSource
 T@"<HFCharacteristicValueSource>",&,N
 HFAnalyticsHomePodAlarmID is nil
 HFAnalyticsHomePodAlarmDeletedSuccessfullyKey is nil
+HFAnalyticsHomePodMusicAlarmKey is nil
+HFAnalyticsHomePodMusicAlarmCustomVolumeKey is nil
+HFAnalyticsHomePodMusicAlarmCustomVolumeLevelKey is nil
 homePodAlarmID
 T@"NSString",&,N,V_homePodAlarmID
 alarmDeletedSuccessfully
 TB,N,V_alarmDeletedSuccessfully
+isMusicAlarm
+TB,N,V_isMusicAlarm
+hasCustomVolume
+TB,N,V_hasCustomVolume
+customVolumeLevel
+Tf,N,V_customVolumeLevel
 processName
 T@"NSString",&,N,V_processName
 HFAccessorySettingSiriLanguageAdapter.m
@@ -1019,7 +1067,6 @@ status
 currentItem
 muted
 v32@?0{?=qiIq}8
-duration
 queuableItems
 T@"NSArray",R,N
 player
@@ -1235,6 +1282,7 @@ bridgedAccessories
 firmwareUpdateAvailable
 softwareUpdateController
 mediaProfile
+availableDestinations
 device
 isFavorite
 showInFavorites
@@ -1305,7 +1353,6 @@ sessionInProgress
 loggedInAccount
 anisetteDataProvider
 %.2f
-volume
 Canceled
 Pending
 Accepted
@@ -1498,6 +1545,7 @@ exitCard
 transportIP
 transportWAC
 transportBTLE
+transportThread
 manufacturer
 cardName
 cardTime
@@ -1511,6 +1559,11 @@ offerPresented
 iCloudUpgradeState
 predictionStage
 predictionCount
+learnInteractionLinkType
+discoverThemeTapKey
+discoverTabTapCountKey
+discoverTabContentViewedIDKey
+discoverTabContentViewedLocaleKey
 isNewPerson
 faceRecognitionNotificationAssociatePersonCount
 faceRecognitionNotificationAssociatePersonSuccess
@@ -1732,8 +1785,10 @@ HFSetupPairingControllerStatusTitleSuccess
 HFSetupPairingControllerStatusDescriptionSuccess
 %@_withoutName
 accessoryDiscoverySoftTimeout
-Td,R,N
 accessoryDiscoveryFatalTimeout
+9BFF8F87
+Logitech Circle View Doorbell
+http://logi.com/circleviewdoorbell/setup
 hf_marketingName
 hf_installationGuideURL
 T@"NSURL",R,N
@@ -2094,6 +2149,7 @@ HFNetworkProtectionSupportIncompatibleHomeHub
 HFNetworkProtectionSupport
 B16@?0@"HMResidentDevice"8
 B16@?0@"HMMediaSystemComponent"8
+cce7c4ecef404121ae8971
 @"NSArray"16@?0@"HMLightProfile"8
 @"HMAccessory"16@?0@"HMService"8
 @"NSSet"16@?0@"HMAccessory"8
@@ -2892,7 +2948,6 @@ T@"HFNullValueSource",R,N,V_mediaValueSource
 T@"HMAccessory",W,N,V_accessory
 primaryDisplayState
 AppleTV
-HomePod
 MediaSystem-HomePod
 icon
 serialNumber
@@ -2961,7 +3016,8 @@ HFCAPackageIconIdentifierTelevision
 HFCAPackageIconIdentifierTelevisionSetTopBox
 HFCAPackageIconIdentifierTelevisionStreamingStick
 HFCAPackageIconIdentifierRemoteControl
-HFCAPackageIconIdentifierHomePod
+HFCAPackageIconIdentifierHomePod_Original_Single
+HFCAPackageIconIdentifierHomePod_Mini_Single
 HFCAPackageIconIdentifierRectangularSpeaker
 HFCAPackageIconIdentifierReceiver
 HFCAPackageIconIdentifierAppleTV
@@ -3189,6 +3245,36 @@ T@"NSObject<OS_dispatch_queue>",R,N,V_resourceLoaderQueue
 videoContextProvider
 T@"HFCameraClipVideoAssetContextProvider",R,N,V_videoContextProvider
 T@"HMCameraClip",R,N,V_clip
+audioRecorderDelegate
+T@"<HFAudioRecorderDelegate>",W,N,V_audioRecorderDelegate
+recording
+TB,N,GisRecording,V_recording
+recordingQueue
+T@"NSObject<OS_dispatch_queue>",&,N,V_recordingQueue
+powerMeteringTimer
+T@"NSObject<OS_dispatch_source>",&,N,V_powerMeteringTimer
+audioRecorder
+T@"AVAudioRecorder",&,N,V_audioRecorder
+recordingStartTimeInterval
+Td,N,V_recordingStartTimeInterval
+recordingStopTimeInterval
+Td,N,V_recordingStopTimeInterval
+recordingAudiofileID
+T^{OpaqueAudioFileID=},N,V_recordingAudiofileID
+recordingAudiofileURL
+T@"NSURL",&,N,V_recordingAudiofileURL
+totalPacketsCount
+Tq,N,V_totalPacketsCount
+dateFormatter
+T@"NSDateFormatter",&,N,V_dateFormatter
+soundIDForRecordBegin
+TI,N,V_soundIDForRecordBegin
+soundIDForRecordEnd
+TI,N,V_soundIDForRecordEnd
+recordingStopSource
+TQ,N,V_recordingStopSource
+recordingDurationLimit
+Td,N,V_recordingDurationLimit
 hf_requiresEthernet
 @"<NSCopying>"16@?0@"HFControlItem"8
 @"<NSCopying>"16@?0@"NSString"8
@@ -3279,6 +3365,8 @@ currentZoneItem
 T@"HFCurrentZonesItem",R,N,V_currentZoneItem
 expanded
 TB,N,GisExpanded,V_expanded
+themeType
+T@"NSString",&,N,V_themeType
 T@"NSString",C,N,V_groupIdentifier
 T@"NSArray",C,N,V_diffableItems
 B24@?0@"<HFDiffableItemGroup>"8@"<HFDiffableItemGroup>"16
@@ -3342,6 +3430,8 @@ v24@?0@"NSError"8@"HMMediaSystem"16
 HFMediaSystemBuilder.createMediaSystem
 HFMediaSystemBuilder.updateMediaSystem
 v16@?0@"<HFMediaObjectObserver>"8
+-[HFMediaSystemBuilder _setHomeTheaterSource:toDestination:]
+-[HFMediaSystemBuilder _setHomeTheaterSource:toDestination:]_block_invoke
 HFMediaSystemBuilder.updateFavorite
 HFMediaSystemBuilder.updateAssistantAccessControl
 accountArbitrator
@@ -3360,6 +3450,7 @@ firstSetupSourceAccessory
 T@"HMAccessory",R,N,V_firstSetupSourceAccessory
 TB,N,V_isFavorite
 T@"<HFIconDescriptor>",&,N,V_iconDescriptor
+@"HMAccessory"16@?0@"HMRoom"8
 T@"HMHome",R,W,D,N
 hf_allCameraProfiles
 hf_allServices
@@ -3367,9 +3458,13 @@ hf_allZones
 hf_unitaryCameraProfile
 T@"HMCameraProfile",R,W,N
 hf_pairedHomePods
+hf_homePodPairsNotInHomeTheaterGroup
+hf_homePodsNotInHomeTheaterGroup
 hf_allVisibleServices
 hf_visibleAccessories
 hf_hasAtleastOneHomePod
+hf_shouldShowAnnounceButtonForThisRoom
+hf_shouldShowAnnounceFeatureForThisRoom
 hf_hasAtleastOneReachableHomePod
 HFCameraItemProvider.m
 -[HFCameraItemProvider init]
@@ -3642,6 +3737,7 @@ TB,N,V_loggerIsExternal
 HOMainTabIdentifierHome
 HOMainTabIdentifierRooms
 HOMainTabIdentifierTriggers
+HOMainTabIdentifierDiscover
 HOLastSelectedTab
 -selectedRoom
 HFSelectedHomeKey
@@ -4028,7 +4124,7 @@ v16@?0@"HMAccessoryCollectionSettingItem"8
 -[HFAccessorySettingManagedConfigurationAdapter _synchronizeManagedConfigurationToHomeKit]_block_invoke
 _synchronizeManagedConfigurationToHomeKit
 -[HFAccessorySettingManagedConfigurationAdapter _synchronizeHomeKitToManagedConfiguration]_block_invoke
-v16@?0@"NSData"8
+v24@?0@"NSString"8^B16
 profile removal requested reboot
 MCProfiles
 HKProfiles
@@ -4393,6 +4489,7 @@ HFStatusLightbulbMultipleOnOneRoom
 HFStatusTitleLightbulb_MultipleOn
 HFStatusLightbulbMultipleOnMultipleRooms
 HFStatusTitleLightbulb_MultipleOff
+T@"NSString",&,N,V_interactionType
 HFStatusTitleContactSensor_MultipleUnknown
 v24@?0@"HMService"8^B16
 HFStatusTitleContactSensor_OneOpen
@@ -4464,6 +4561,7 @@ HFUserNotificationServiceTopic.m
 service-{%@} topicName-%@
 @"NSSet"16@?0@"HFUserNotificationServiceTopic"8
 @"HFUserNotificationServiceTopic"8@?0
+HFUserNotificationServiceTopicName_Announce
 HFUserNotificationServiceTopicName_Camera
 T@"NSSet",R,C,N,V_serviceTypes
 accessoryCategoryTypes
@@ -4533,6 +4631,9 @@ HF_AccessoryDiagnostics
 HF_Camera_Activity_Zones
 HF_AMS_Accounts
 HF_Analytics
+HF_Announce
+HF_AudioPlayer
+HF_AudioRecorder
 HF_AppEvent
 HF_AppOnboarding
 HF_Bolt
@@ -4553,6 +4654,7 @@ HF_ControlCenter
 HF_Demo_Mode
 HF_FeatureOnboarding
 HF_HomeKitDelegate
+HF_HomeTheater
 HF_Invitations
 HF_ItemBuilder
 HF_ItemUpdate
@@ -4579,12 +4681,15 @@ HF_Users
 HF_ViewVisibility
 HF_Wallpaper
 HF_Sidebar
+HF_Store
 HFLocalizable
 HFUserFriendlyNameLocalizable
 HFUserFriendlyNameDerivedLocalizable
 Missing localized string key %@ in table %@
+HFSensitiveStrings-Announce
 HFSensitiveStrings-DoorbellChime
-HFSensitiveStrings-BoltPrimaryUser
+HFSensitiveStrings-MusicAlarms
+HFSensitiveStrings-Store
 HFSensitiveStrings-TVDevices
 com.apple.Home.framework
 T@?,R,C,N,V_filter
@@ -4783,6 +4888,9 @@ com.apple.homed.preferenceschanged
 HFForceFirstTimeOnboardingKey
 HFForceMigrationOnboardingKey
 HFResetIdentifyVoiceOnboardingKey
+HFResetAnnounceOnboardingKey
+HFResetAnounceTextButtonDisplayStatsKey
+HFResetHomeTheaterOnboardingKey
 HFResetTVViewingProfilesOnboardingKey
 HFResetNaturalLightingOnboardingKey
 HFResetCameraRecordingOnboardingKey
@@ -4820,6 +4928,10 @@ HFForceCameraQRCodeURLString
 HFForceCameraLegacyCodeURLString
 HFForceNFCURLString
 HFForceAllowAutomationCreation
+HFForceStoreUseStagingURLKey
+HFStoreStagingURLStringKey
+HFForceInstallationGuideUseStagingURLKey
+HFStoreInstallationGuideStagingURLStringKey
 -AccessoryDictionary
 NSDictionary *_HFPreferencesGetAccessoryDictionary(NSString *__strong)
 HFPreferences.m
@@ -5023,7 +5135,6 @@ HFStatusLeakAlarmTriggeredWithRoomMultiple
 firmware version
 supportsMultiUser
 HMMediaSystem is a composite of several objects, and does not support fetching logs
-BoltPrimaryUser
 T@"NSSet",R,D,N
 HFServiceState.m
 +[HFServiceState stateClassIdentifier]
@@ -5143,6 +5254,8 @@ root.home.dismissedIdentifyVoiceSetupBanner
 root.home.dismissedIdentifyVoiceOnboarding
 root.home.dismissedTVViewingProfileOnboarding
 root.home.dismissedTVViewingProfileSetupBanner
+root.home.dismissedAnnounceOnboarding
+root.home.dismissedHomeTheaterOnboarding
 root.home.dismissedNaturalLightingOnboarding
 root.home.dismissedCameraRecordingSetupBanner
 root.home.dismissedCameraRecordingOnboarding
@@ -5151,6 +5264,8 @@ root.home.completedSwitchingHomesOnboardingUI
 root.home.addSceneButtonPresentedCount
 root.home.dismissedWelcomeUI
 RecordingSettings
+root.announce
+root.announce.enabled
 HFResidentDeviceItemProvider.m
 -[HFResidentDeviceItemProvider init]
 T@"HMPersonManager",&,N,V_personManager
@@ -5399,6 +5514,10 @@ com.apple.Home.FaceRecognitionNamedPerson
 com.apple.Home.FaceRecognitionNotificationAssociatePerson
 com.apple.Home.FaceRecognitionOpenPhotosLibraryPeopleAlbum
 com.apple.Home.FaceRecognitionRecentVisitorsListCount
+com.apple.Home.LearnTabInteraction
+com.apple.Home.DiscoverThemeOverlayTap
+com.apple.Home.DiscoverTabTap
+com.apple.Home.DiscoverTabContentViewed
 com.apple.Home.RecommendationsEnabled
 com.apple.Home.TileInteraction
 com.apple.Home.SmartConfiguration.RecommendationsEnabled
@@ -5802,7 +5921,6 @@ streamError
 streamAudioEnabled
 TB,N,GisStreamAudioEnabled
 streamAudioVolume
-Tf,N
 microphoneEnabled
 TB,N,GisMicrophoneEnabled
 audioManager
@@ -5996,7 +6114,7 @@ HFStatusNetworkRouterNotConnectedAll
 HFStatusNetworkRouterNotConnectedOne
 v16@?0@"HMNetworkRouterProfile"8
 HFStatusSortKeyNetworkRouter
-HFEmployeeAcceptedCameraFeedbackConsent
+HFEmployeeAcceptedCameraFeedbackConsent_2020
 HH:mm:ss
 EEEE
 HFCameraToday
@@ -6478,7 +6596,6 @@ AccessorySettingsInterfaceModalityPasswordField
 AccessorySettingsInterfaceModalityButton
 AccessorySettingsInterfaceModalityAXSecondStepper
 AccessorySettingsInterfaceModalitySelection
-root.*dertbu*
 +[HFAccessorySettingsEntity settingsAtURL:error:]_block_invoke
 v24@?0@"NAMutableTreeNode"8@"NSDictionary"16
 HFAccessorySettingsEntity.m
@@ -6567,12 +6684,18 @@ attributedFormatterBlock
 T@?,R,C,N,V_attributedFormatterBlock
 playbackSessionID
 previousPlaybackSessionID
+linkType
+themeOverlayType
+tapCount
 namedPersonIsNew
 namedPersonType
 unknownCountIdentityTotal
 homePodAlarmAddedSuccessfully
 homePodAlarmUpdatedSuccessfully
 homePodAlarmDeletedSuccessfully
+isHomePodMusicAlarm
+homePodMusicAlarmHasCustomVolume
+homePodMusicAlarmCustomVolumeLevel
 HFStatusTitleTemperature
 HFStatusTemperature
 HMCameraClipManager+HFAdditions.m
@@ -6670,6 +6793,8 @@ userObserverDispatcher
 T@"NADelegateDispatcher",&,N,V_userObserverDispatcher
 symptomsHandlerObserverDispatcher
 T@"NADelegateDispatcher",&,N,V_symptomsHandlerObserverDispatcher
+mediaDestinationControllerObserverDispatcher
+T@"NADelegateDispatcher",&,N,V_mediaDestinationControllerObserverDispatcher
 symptomFixSessionObserverDispatcher
 T@"NADelegateDispatcher",&,N,V_symptomFixSessionObserverDispatcher
 homeKitSettingsObserverDispatcher
@@ -6712,7 +6837,6 @@ HFServiceItems
 ServiceItems
 HFTelevisionServiceItem
 HFInputSourceServiceItem
-v24@?0@"NSString"8^B16
 HFServiceItem is an abstract base class. It must be instantiated using +serviceItemForService:valueSource: or using one of its concrete subclasses directly.
 -[HFServiceItem init]
 results:
@@ -6753,6 +6877,10 @@ HFDataAnalyticsLogItem.m
 _cached_hasSeenOnboardingWelcomeViewNumber
 T@"NSNumber",&
 _cached_lastOnboardingNewFeaturesVersionSeenNumber
+HFAnnounceNotificationSetting_Never
+HFAnnounceNotificationSetting_AtHome
+HFAnnounceNotificationSetting_Always
+HFAnnounceNotificationSetting_NotSet
 topic
 T@"HFUserNotificationServiceTopic",R,N,V_topic
 hf_isHomeKitNamingError
@@ -6769,9 +6897,13 @@ HFImageIconIdentifierNetworkRouterOn
 HFImageIconIdentifierZones
 HFImageIconIdentifierAirPort
 HFImageIconIdentifierAppleTV
-HFImageIconIdentifierHomePodSiriDisabled
-HFImageIconIdentifierHomePodStereoPair
-HFImageIconIdentifierHomePodStereoPairSiriDisabled
+HFImageIconIdentifierHomePod_Original_Single_SiriDisabled
+HFImageIconIdentifierHomePod_Original_Pair_Base
+HFImageIconIdentifierHomePod_Original_Pair_SiriDisabled
+HFImageIconIdentifierHomePod_Mini_Single_SiriDisabled
+HFImageIconIdentifierHomePod_Mini_Pair_Base
+HFImageIconIdentifierHomePod_Mini_Pair_SiriDisabled
+HFImageIconIdentifierAnnounce
 HFImageIconIdentifierSceneArrivingHome
 HFImageIconIdentifierSceneBreakfast
 HFImageIconIdentifierSceneChillOut
@@ -6838,7 +6970,8 @@ HFImageIconIdentifierProgrammableSwitch
 HFImageIconIdentifierServiceAirPurifier
 HFImageIconIdentifierServiceHumidifierDehumidifier
 HFImageIconIdentifierSpeaker
-HFImageIconIdentifierHomePod
+HFImageIconIdentifierHomePod_Original_Single_Base
+HFImageIconIdentifierHomePod_Mini_Single_Base
 HFImageIconIdentifierRemoteControl
 HFImageIconIdentifierServiceLightSensor
 HFImageIconIdentifierServiceTemperatureSensor
@@ -6887,6 +7020,8 @@ TQ,N,V_numberOfProfiles
 SiriRecognitionLanguageFormatter
 SiriOutputVoiceFormatter
 SiriPersonalRequestsFormatter
+AnnounceEnabledFormatter
+AnnounceFooterTitleFormatter
 DoorbellChimeEnabledFormatter
 @"NSFormatter"8@?0
 Requested nil formatter! Bad things could happen! People are assuming this returns something.
@@ -6895,6 +7030,7 @@ You're attempting to use a bool formatter for a value that doesn't respond to -[
 HFAccessorySettingGroupItemOn
 @"NSString"16@?0@"NSNumber"8
 HFAccessibilitySecondsFormatString
+HFAnnounceFooterText
 (unsupported)
 HFPlaybackInfluencesSettingNever
 @"NSAttributedString"24@?0@8@"NSDictionary"16
@@ -6906,6 +7042,8 @@ HFPrivacyFooterSectionTypeLocationServices
 @"NSString"16@?0@"<HFMediaProfileContainer>"8
 HFSiriPersonalRequestsValueOn
 HFSiriPersonalRequestsValueOff
+HFAnnounceEnabledValueOn
+HFAnnounceEnabledValueOff
 HFChimeOnHomePod_ValueOff
 HFChimeOnHomePod_ValueAll
 formattersForKey
@@ -6923,6 +7061,7 @@ HFProgrammableSwitchValue_SinglePress
 HFProgrammableSwitchValue_LongPress
 HFProgrammableSwitchValue_DoublePress
 HFProgrammableSwitchUndefinedValue
+T@"NSNumber",&,N,V_tapCount
 serviceSubtypes
 includeChildServices
 @"NSSet"16@?0@"HFServiceTreeTypePredicate"8
@@ -6964,6 +7103,9 @@ HFGenericAccessoryItemProvider.m
 -[HFGenericAccessoryItemProvider init]
 genericItems
 T@"NSMutableSet",&,N,V_genericItems
+contentID
+T@"NSString",&,N,V_contentID
+T@"NSString",&,N,V_locale
 HFServiceNameFormat
 rawServiceName
 T@"NSString",&,N,V_rawServiceName
@@ -7114,6 +7256,7 @@ Unable to access libraryDirectoryURL
 Unable to access applicationSupportDirectoryURL
 Unable to access cachesDirectoryURL
 Unable to access documentsDirectoryURL
+Unable to access sharedCachesDirectoryURL
 Unable to access sharedUserDirectoryURL
 Unable to access sharedLibraryDirectoryURL
 Unable to access sharedApplicationSupportDirectoryURL
@@ -7143,6 +7286,20 @@ Error setting incoming audio volume:%@
 Ignoring request to update audio stream setting to %@ for %@, as the stream is stopping or has already stopped.
 Updating audio stream setting to %@ for %@
 Error updating audio stream setting:%@
+Error setting Default Audio Session Mode [%@]
+Now setting audioSession Category = [%@] with Category Option = [%@]
+Error setting Default Audio Session Category [%@]
+Error setting activation context [%@]
+Successfully configured Audio session with outputDataSources [%@]
+Error deactivating audio session [%@]
+Failed activating audio session [%@]
+Setting player volume to [%f]
+Audio Session was interrupted [%@]
+Media Services Were Lost [%@]
+Media Services Were Reset [%@]
+Audio Session Route Changed [%@]
+Routes Changed for reason [%@]
+Audio Player Decode Error [%@]
 Updating natural light state IN DEMO MODE to %{BOOL}d for profile: %@
 Updating natural light state to %{BOOL}d for profile: %@ %@
 Error updating natural light state for profile %@. Error: %@
@@ -7350,6 +7507,7 @@ No cameras in home %@ support recording
 Unable to remove software update license versions & update application data: %@
 Successfully removed all software update license agreement versions
 Reprovision status - accessory: %@ error:%@
+Unique Rooms for HomePods = [%@] HomePods Supporting Announce [%@], %@
 Failed to set user has acknowledged camera recording onboarding. Error: %@
 Checking if home has visible triggers hasVisibleTriggers:%d
 Checking if triggers can be added to this home hasRemoteAccessProblem:%d hasiCloudProblem:%d hasResident:%d isAutomatable:%d
@@ -7455,6 +7613,8 @@ HLS Playlist was nil
 Asked to load resource for unexpected URL %@ for clip: %@
 Request to add an accessory that is not supported in this media system pair. We'll allow this to proceed (because there are no API restriction of what services can go into a pair; we just want to enforce restrictions in our UI). Accessory: %@
 Removing mediasystem '%@' from home '%@'
+(%s) setting Apple TV (%@) Home Theater destination to %@
+(%s) After setting Apple TV (%@) Home Theater destination, it is %@ (w/ error %@)
 Mismatch between Personal Requests options for the media system %@
 Updating Personal Requests %@ for media system %@
 Camera-associated filtering for camera:%@ services:%@
@@ -7688,6 +7848,9 @@ HFResidentDeviceStatusItem: showing "Remote access not set up" because the statu
 %@ Clearing item invalidation timer due to reason: No items pending invalidation.
 %@ Invalidating status items: %@
 Both the heater/cooler service (%@) and the fan child service (%@) have a rotation speed characteristic. This is not a valid configuration. Arbitrarily choosing to use the child fan's characteristic,
+No Accessories Found that Supports Music Alarm mediaprofilecontainer %@
+Accessory Supports Music Alarm (%@) mediaprofilecontainer %@
+Accessory Supports Music Alarm (%@) mediaProfileContainer (%@)
 %@:%@: %{BOOL}d (Mac = %{BOOL}d, MU enabled = %{BOOL}d, is HomePod = %{BOOL}d, MU HomePod = %{BOOL}d, is Owner = %{BOOL}d, Home has users = %{BOOL}d,)
 %@ Error fetching mediaAccount for HomePod [%@]
 %@:%@ Fetched Media Account [%@]
@@ -7763,6 +7926,7 @@ HFServiceBuilder: Updating associated service type (%@)
 HFServiceBuilder: Request to update associated service type (%@) finished with error: %@
 HFServiceBuilder: Not updating configuration state because it hasn't changed (%@)
 HFServiceBuilder: Request to update configuration state (%@) finished with error: %@
+Successfully loaded image for URL : %@
 Failed to load image for URL : %@
 Loading wallpaper for HomeKit object %@
 Wallpaper: %@, variant: %@, preloading: %d
@@ -8216,6 +8380,9 @@ HFPresenceCondition
 HFLocationManagerDispatcher
 HFCameraAudioManager
 HFTimeConditionNaturalLanguageOptions
+HFAudioPlayerDelegate
+HFAudioPlayer
+AVAudioPlayerDelegate
 HFUserNotificationServiceTopicItemProvider
 HFLightProfileValueSource
 HFLightProfileAggregatedValueSource
@@ -8348,6 +8515,8 @@ HMTelevisionProfileDelegate
 HFPersonManagerObserver
 HMPersonManagerObserver
 HFSymptomFixSessionObserver
+HFMediaDestinationControllerObserver
+HMMediaDestinationControllerDelegate
 HFLightObserver
 HMLightProfileDelegate
 HFAnalyticsFaceRecognitionOpenPhotosLibraryPeopleAlbumEvent
@@ -8450,6 +8619,8 @@ HFTimerTriggerCalendarEventAdapter
 HFCameraClipPlayerItem
 AVAssetResourceLoaderDelegate
 HFCameraClipQueuableItem
+HFAudioRecorder
+AVAudioRecorderDelegate
 HFControlPanelItem
 HFSimpleItemModule
 HFServiceDescriptor
@@ -8463,6 +8634,7 @@ NSFastEnumeration
 HFItemDeletionProtocol
 _HFDeletableTransformItem
 HFZoneModule
+HFAnalyticsDiscoverThemeOverlayTapEvent
 HFSimpleDiffableItemGroup
 HFGroupedItemDiff
 HFGroupDiffOperation
@@ -8578,6 +8750,7 @@ HFHomeKitObjectConformance
 HFHomeContainedObjectConformance
 HFHomeContainedObject
 HFLightbulbStatusItem
+HFAnalyticsLearnTabInteractionEvent
 HFContactSensorStatusItem
 HFNetworkConfigurationGroupItemProvider
 HFHomeManagerCreator
@@ -8846,6 +9019,7 @@ HFAdditionsHelper
 HFUserNotificationServiceTopicItem
 HFAccessorySettingProfilesFormatter
 HFAccessorySettingFormatterFactory
+HFAnalyticsDiscoverTabTapEvent
 HFServiceTreeTypePredicate
 HFServiceTreeMatching
 HFServiceTreeCompoundPredicate
@@ -8854,6 +9028,7 @@ HFServiceStateCharacteristicRecipe
 HFServiceStateRecipe
 HFReordering
 HFGenericAccessoryItemProvider
+HFAnalyticsDiscoverTabContentViewedEvent
 HFServiceNameComponents
 HFSynchronizedTimer
 arrayWithObjects:count:
@@ -9895,7 +10070,11 @@ stepValue
 maximumValue
 minimumValue
 interfaceModality
-hf_isHomePod
+mediaProfile
+isHomePodOriginal:
+isHomePodMini:
+isHomePodOriginalMediaSystem:
+isHomePodMiniMediaSystem:
 localizedTitle
 isWritable
 handleButtonPressForEntity:
@@ -9916,6 +10095,8 @@ isControllable
 alwaysShowGroup
 _validateKeyPathDependencies
 requiresDependenciesToShowSetting
+hf_isHomePod
+hf_atleastTwoDistinctHomePodsSupportsAnnounce
 setHomeKitSettingsVendor:
 setSetting:
 setEntity:
@@ -9969,10 +10150,10 @@ componentsJoinedByString:
 whitespaceAndNewlineCharacterSet
 lowercaseString
 URLsForDirectory:inDomains:
+sharedLibraryDirectoryURL
+URLByAppendingPathComponent:isDirectory:
 fileURLWithPath:isDirectory:
 sharedUserDirectoryURL
-URLByAppendingPathComponent:isDirectory:
-sharedLibraryDirectoryURL
 applicationSupportDirectoryURL
 sharedApplicationSupportDirectoryURL
 isReadableFileAtPath:
@@ -9998,6 +10179,7 @@ sanitizeUserEnteredHomeKitName:
 uniqueHomeKitNameForName:allNames:
 libraryDirectoryURL
 documentsDirectoryURL
+sharedAnnouncementsDirectoryURL
 wallpaperURL
 isDeviceUnlocked
 hf_arrayWithNumbersInRange:stride:
@@ -10029,7 +10211,7 @@ hf_homePodMediaAccountIsMismatchedWithHomeMediaAccount
 hf_fetchLogListWithTimeout:
 hf_fetchLog:timeout:
 hf_idsDeviceIdentifierWithError:
-hf_preferredMediaUser
+hf_destination
 mediaProfiles
 hf_isCurrentAccessory
 hf_isAccessorySettingsReachable
@@ -10038,6 +10220,7 @@ hf_isReachable
 hf_supportsSoftwareUpdate
 hf_supportsStereoPairing
 hf_showsAudioSettings
+hf_supportsMusicAlarm
 hf_categoryLocalizedDescription
 hf_backingAccessory
 hf_homePodSupportsMultiUser
@@ -10046,7 +10229,7 @@ hf_fakeDebugSymptoms
 hf_mediaValueSource
 hf_deviceIdentifiers
 hf_mediaRouteIdentifier
-hf_supportsPreferredMediaUser
+hf_supportsHomeTheater
 shouldShowSettingsEntity:
 configureSection:forEntity:
 customizeSections:forEntity:
@@ -10102,7 +10285,6 @@ hf_reorderableCamerasList
 hf_reorderableRoomsList
 homeManager
 incomingHomeInvitations
-mediaProfile
 areAllAccessoriesLoggedIntoSameAccount:
 areAllAccessoriesLoggedOut:
 anyObject
@@ -10266,6 +10448,89 @@ setTimeContext:
 setType:
 _timeContext
 _type
+isPlaying
+stop
+_cleanup
+audioSessionDidInterrupt:
+audioSessionRouteChanged:
+audioSessionMediaServicesWereLost:
+audioSessionMediaServicesWereReset:
+removeObserver:name:object:
+audioPlayer
+currentTime
+setPlayerCurrentTime:
+audioPlayer:didPausePlaybackWithReason:
+audioPlayerDidStopPlayback:
+audioPlayerDidResumePlayback:
+audioPlayer:didUpdatePlaybackTime:
+audioPlayer:didUpdateAveragePower:
+audioPlayerDidFinishPlayback:withError:
+playerCurrentTime
+averagePowerForChannel:
+setAudioSession:
+audioSession
+setMode:error:
+_audioSessionCategory
+_audioSessionCategoryOptions
+setCategory:mode:options:error:
+setActivationContext:error:
+outputDataSources
+setActive:withOptions:error:
+setAudioSessionIsActive:
+audioSessionOptions
+pause
+displayLink
+setPaused:
+invalidate
+_deregisterAudioSessionObservers
+_deactivateAudioSession
+audioFileURL
+initWithContentsOfURL:error:
+setAudioPlayer:
+setMeteringEnabled:
+_configureAudioSession:
+setActive:error:
+prepareToPlay
+_registerAudioSessionObservers
+_displayLinkUpdated:
+displayLinkWithTarget:selector:
+setDisplayLink:
+setPreferredFramesPerSecond:
+mainRunLoop
+addToRunLoop:forMode:
+play
+_pauseWithReason:
+setCurrentTime:
+setVolume:
+setPlayerStopSource:
+isAudioSessionActive
+unsignedIntegerValue
+audioPlayerDidFinishPlaying:successfully:
+audioPlayerDecodeErrorDidOccur:error:
+audioPlayerBeginInterruption:
+audioPlayerEndInterruption:withOptions:
+audioPlayerEndInterruption:withFlags:
+audioPlayerEndInterruption:
+initWithAudioFileURL:audioSessionOptions:delegate:
+updateAudioFileURL:
+prepareToPlay:
+resume
+isPaused
+playerStopSource
+routeChangeReason
+setRouteChangeReason:
+setAudioFileURL:
+setAudioSessionOptions:
+_paused
+_audioSessionIsActive
+_playerStopSource
+_routeChangeReason
+_audioFileURL
+_audioPlayer
+_audioSession
+_playerCurrentTime
+_audioSessionOptions
+_displayLink
 hf_userNotificationServiceTopics
 topic
 initWithHome:topic:
@@ -10362,7 +10627,6 @@ _stringProvider
 associatedServiceTypesSetFor:
 hf_userFriendlyLocalizedCapitalizedDescription:
 associatedServiceTypesArrayFor:
-unsignedIntegerValue
 livePosition
 initWithCameraProfile:clips:
 initWithHome:cameraProfile:
@@ -10469,14 +10733,24 @@ setAccessoryItems:
 _accessoryItems
 _overrideValueSource
 initWithEventType:
+processInfo
+processName
 payload
 homePodAlarmID
 alarmDeletedSuccessfully
-processName
+isMusicAlarm
+hasCustomVolume
+customVolumeLevel
 setHomePodAlarmID:
 setAlarmDeletedSuccessfully:
+setIsMusicAlarm:
+setHasCustomVolume:
+setCustomVolumeLevel:
 setProcessName:
 _alarmDeletedSuccessfully
+_isMusicAlarm
+_hasCustomVolume
+_customVolumeLevel
 _homePodAlarmID
 _processName
 _reloadLanguagesFromHomeKitNotifyingObservers:
@@ -10567,7 +10841,6 @@ _setupPlayerObservation
 queuePlayer
 removeObserver:forKeyPath:
 currentItem
-currentTime
 positionWithClip:offset:
 hasFatalError
 currentPosition
@@ -10575,8 +10848,6 @@ _rebuildPlayerQueueForPosition:
 player
 _setupObservationForLastPlayerItem:
 timeControlStatus
-play
-pause
 setScrubbing:
 scrubber
 endScrubbingWithTargetTime:
@@ -10595,7 +10866,6 @@ clipPlayer:didUpdateMuted:
 observeValueForKeyPath:ofObject:change:context:
 addObserver:forKeyPath:options:context:
 lastPlayerItem
-removeObserver:name:object:
 playerItemDidPlayToEndTime:
 setMutatingQueue:
 setLastPlayerItem:
@@ -10613,7 +10883,6 @@ endScrubbingWithOffset:
 setClips:
 setScrubber:
 setCurrentPosition:
-setCurrentTime:
 _scrubbing
 _mutatingQueue
 _scrubber
@@ -10721,6 +10990,7 @@ mediaSystem:didUpdateName:
 mediaSystem:didUpdateConfiguredName:
 mediaSystem:didUpdateComponents:
 mediaSystem:didUpdateApplicationData:
+mediaSystemDidUpdateAudioDestination:
 initWithHomeKitSettingsVendor:keyPaths:updateHandlerBlock:
 initWithHomeKitSettingsVendor:keyPaths:
 updateSettingWithKeyPath:value:
@@ -10923,6 +11193,8 @@ hf_accessoryWithIdentifier:
 appendObject:withName:context:options:
 isFirmwareUpdateAvailable
 softwareUpdateController
+audioDestinationController
+availableDestinations
 device
 appendBool:withName:
 hf_descriptionForServiceSubtype:
@@ -11331,7 +11603,6 @@ isShuffleEnabled
 isShuffleSupported
 setShuffleEnabled:
 setState:
-setVolume:
 updateWithAction:completionHandler:
 defaultActionIfMediaActionInvalid
 _mediaProfiles
@@ -11431,8 +11702,13 @@ setManufacturer:
 userDidRespondToConsentRequestForSetupAccessoryDescription:withResponse:
 _context:requiresUserConsentToReplaceInHome:
 accessoryDiscoveryFatalTimeout
+setupAccessoryPayload
+productNumber
+uppercaseString
 marketingName
+hf_isLogitechCircleViewDoorbell
 installationGuideURL
+URLWithString:
 addAndSetupAccessories
 ownershipToken
 hf_populateSetupMetadata
@@ -11562,6 +11838,7 @@ hf_accessoryForSymptomsHandler:
 _itemsToUpdateForModifiedNetworkConfigurationProfiles:
 _itemsToUpdateForModifiedNetworkRouterProfiles:
 _itemsToUpdateForTelevisionProfiles:
+_itemsToUpdateForModifiedMetadataForMediaDestinationController:
 _itemsToUpdateForLightProfiles:
 _updateLoadingStateAndNotifyDelegateForItems:canFinishTransaction:
 updateResultsForItems:senderSelector:
@@ -11603,7 +11880,9 @@ accessoryDidUpdateTargetControlSupport:
 accessory:didAddControlTarget:
 accessory:didRemoveControlTarget:
 accessory:didUpdateLastKnownSleepDiscoveryModeForService:
-accessoryDidUpdatePreferredMediaUser:
+accessoryDidUpdateAudioDestinationController:
+accessoryDidUpdateAudioDestination:
+accessory:didUpdateLastKnownOperatingStateResponseForService:
 residentDevice:didUpdateName:
 residentDevice:didUpdateCapabilities:
 residentDevice:didUpdateEnabled:
@@ -11633,6 +11912,8 @@ profileDidUpdateWiFiCredentialType:
 profileDidUpdateNetworkStatus:
 profileDidUpdateSatellites:
 profileDidUpdateMediaSourceDisplayOrder:
+mediaDestinationController:didUpdateDestination:
+mediaDestinationControllerDidUpdateAvailableDestinations:
 mediaSession:willUpdatePlaybackState:
 mediaSession:didUpdatePlaybackState:
 mediaSession:failedToUpdatePlaybackStateWithError:
@@ -11650,14 +11931,14 @@ accessory:didUpdateSettings:
 accessory:didUpdatePairingIdentity:
 accessoryDidUpdateMultiUserSupport:
 accessoryDidUpdateSupportsCompanionInitiatedRestart:
+accessoryDidUpdateSupportsMusicAlarm:
+accessoryDidUpdateSupportsAnnounce:
 accessoryDidUpdateSupportsThirdPartyMusic:
 accessoryDidUpdateSupportsDoorbellChime:
-accessory:didUpdateLastKnownOperatingStateResponseForService:
 accessory:didUpdateDevice:
 accessoryDidUpdatePairingIdentity:
 accessoryDidUpdateDiagnosticsTransferSupport:
 accessoryDidSetHasOnboardedForNaturalLighting:
-accessoryDidUpdateSupportsPreferredMediaUser:
 clipManager:didUpdateClips:
 clipManager:didRemoveClipsWithUUIDs:
 profileDidUpdateNetworkAccessMode:
@@ -11669,7 +11950,6 @@ personManager:didUpdateUnassociatedFaceCrops:
 personManager:didUpdateFaceprints:
 personManager:didRemoveFaceprintsWithUUIDs:
 rangeOfString:options:
-URLWithString:
 addAttributes:range:
 rangeOfString:
 hf_hasAppleTVs
@@ -11886,6 +12166,14 @@ hf_isVisibleAccessory
 hf_mediaSystemForSymptomsHandler:
 hf_isBridge
 components
+hf_appleTVs
+destination
+audioDestinationIdentifier
+isHomePod:
+hf_appleTVUsingAudioDestination:
+isHomePodMediaSystem:
+isAppleTV:
+hf_allHomePodsOrStereoPairs
 accessoriesSupportingSoftwareUpdate
 hf_allLightProfilesSupportingNaturalLighting
 hf_allServices
@@ -11898,7 +12186,6 @@ cameraProfileUUID
 hf_serviceOfType:
 hf_allCameraProfilesSupportingRecording
 accessModeForPresenceType:
-hf_allHomePodsOrStereoPairs
 isDoorbellChimeEnabled:
 setFaceClassificationEnabled:
 updatePersonManagerSettings:completion:
@@ -11923,6 +12210,7 @@ presenceAuthorizationStatus
 hf_primaryResidentDevice
 reprovisionAccessory:completionHandler:
 hf_homePods
+supportsAnnounce
 hasAnyUserAcknowledgedCameraRecordingOnboarding
 setHasAnyUserAcknowledgedCameraRecordingOnboardingWithCompletionHandler:
 hf_shouldDisplayTrigger
@@ -11968,6 +12256,8 @@ hf_allTargetControlAccessories
 hf_actionSetWithUUID:
 hf_serviceGroupWithIdentifier:
 hf_mediaSystemWithIdentifier:
+hf_relatedHomeTheaterMediaProfileContainerFor:
+hf_appleTVsSupportingHomeTheater
 availableSoftwareUpdates
 hf_accessoriesSupportingNaturalLighting
 hf_homeKitObjectsSupportingNaturalLighting
@@ -11992,7 +12282,6 @@ hf_resetAllNetworkConfigurationProfiles
 hf_accessoriesRequiringManualWiFiReconfiguration
 hf_updateAutomaticSoftwareUpdateEnabled:
 hf_mediaAccessories
-hf_appleTVs
 hf_allResidentAccessories
 hf_notesApplicationData
 hf_setNotesApplicationData:
@@ -12010,6 +12299,10 @@ hf_numberOfHomePods
 hf_hasCameraRecordingResident
 hf_supportsReachabilityNotifications
 hf_startReprovisioningAccessory:
+hf_shouldShowAnnounceButtonForThisHome
+hf_shouldShowAnnounceFeatureForThisHome
+hf_atleastOneHomePodSupportsAnnounce
+hf_atleastOneHomePodSupportsAndHasAnnounceEnabled
 hf_hasAtleastOneReachableHomePod
 hf_cameraRecordingHasBeenOnboarded
 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
@@ -12247,13 +12540,11 @@ queryItems
 scheme
 initWithURL:homeKitDispatcher:
 host
-uppercaseString
 hasPrefix:
 pathComponents
 homeKitDispatcher
 valueForParameter:
 initWithUUIDString:
-destination
 _homeKitIdentifier
 _URLComponentsForDestination:
 secondaryDestination
@@ -12429,7 +12720,6 @@ addResultsFromDictionary:
 removeObjectsForKeys:
 safeSetObject:forKey:
 _mutableResults
-invalidate
 accessoryNotFoundSoftTimeoutTimer
 setAccessoryNotFoundSoftTimeoutTimer:
 accessoryNotFoundFatalTimeoutTimer
@@ -12479,8 +12769,10 @@ _demoItems
 initWithCameraProfile:
 currentAccessMode
 isCameraManuallyDisabled
-hasOperatingStateAbnormalReasons
+hasOperatingState
+lastKnownOperatingState
 lastKnownOperatingStateAbnormalReasons
+hasOperatingStateAbnormalReasons
 bulletinBoardNotification
 hf_doorbellChimeMuteCharacteristic
 fetchSignificantEventsWithUUIDs:completion:
@@ -12742,6 +13034,56 @@ resourceLoader:didCancelAuthenticationChallenge:
 resourceLoaderQueue
 _resourceLoaderQueue
 _videoContextProvider
+audioRecorderDidFinishRecording:successfully:
+audioRecorderEncodeErrorDidOccur:error:
+audioRecorderBeginInterruption:
+audioRecorderEndInterruption:withOptions:
+audioRecorderEndInterruption:withFlags:
+audioRecorderEndInterruption:
+recordingDurationLimit
+setRecordingDurationLimit:
+isRecording
+setRecording:
+recordingStopSource
+setRecordingStopSource:
+audioRecorderDelegate
+setAudioRecorderDelegate:
+recordingQueue
+setRecordingQueue:
+powerMeteringTimer
+setPowerMeteringTimer:
+audioRecorder
+setAudioRecorder:
+recordingStartTimeInterval
+setRecordingStartTimeInterval:
+recordingStopTimeInterval
+setRecordingStopTimeInterval:
+recordingAudiofileID
+setRecordingAudiofileID:
+recordingAudiofileURL
+setRecordingAudiofileURL:
+totalPacketsCount
+setTotalPacketsCount:
+setDateFormatter:
+soundIDForRecordBegin
+setSoundIDForRecordBegin:
+soundIDForRecordEnd
+setSoundIDForRecordEnd:
+_recording
+_soundIDForRecordBegin
+_soundIDForRecordEnd
+_recordingDurationLimit
+_recordingStopSource
+_audioRecorderDelegate
+_recordingQueue
+_powerMeteringTimer
+_audioRecorder
+_recordingStartTimeInterval
+_recordingStopTimeInterval
+_recordingAudiofileID
+_recordingAudiofileURL
+_totalPacketsCount
+_dateFormatter
 supportsIP
 supportsWAC
 valueWithPointer:
@@ -12836,6 +13178,9 @@ _createNewZoneItemProvider
 _currentZoneItemProvider
 _zoneItemProvider
 _zoneSuggestionItemProvider
+themeType
+setThemeType:
+_themeType
 setDiffableItems:
 setGroupIdentifier:
 _groupIdentifier
@@ -12915,6 +13260,7 @@ removeMediaSystem:completionHandler:
 _updateRoom
 _arbitrateMusicAccount
 _commitChangesToMediaSystemBuilder
+_clearAndRecreateHomeTheater
 _updateFavorite
 _updateAssistantAccessControl
 setMediaSystem:
@@ -12923,6 +13269,9 @@ commitWithCompletionHandler:
 dispatchMediaObjectObserverMessage:sender:
 accountArbitrator
 pendingArbitrationExecutionFuture
+firstSetupSourceAccessory
+_setHomeTheaterSource:toDestination:
+updateDestination:options:completionHandler:
 hasSetRoom
 setRoomBuilder:
 assistantAccessControlForHome:
@@ -12934,7 +13283,6 @@ orderedSetWithArray:
 setAccountArbitrator:
 swapRoles
 _rooms
-firstSetupSourceAccessory
 setIsCreatingMediaSystem:
 _isFavorite
 _hasSetRoom
@@ -12943,10 +13291,15 @@ _accountArbitrator
 _firstSetupSourceAccessory
 _homeKitMediaSystemBuilder
 _roomBuilder
-supportedStereoPairVersions
 hf_pairedHomePods
+hf_homePodPairsNotInHomeTheaterGroup
+hf_homePodsNotInHomeTheaterGroup
+supportedStereoPairVersions
+availableHomeTheaterMediaPartnerFor:
 availableHomePodsSupportingStereoPairingVersions:
 hf_hasAtleastOneHomePod
+hf_shouldShowAnnounceButtonForThisRoom
+hf_shouldShowAnnounceFeatureForThisRoom
 setCameraItems:
 initWithProfile:valueSource:
 cameraItems
@@ -13303,7 +13656,6 @@ setSignificantEventOffset:
 _updateTimeZone
 updateRecurrence:completionHandler:
 updateTimeZone:completionHandler:
-processInfo
 foregroundDuration
 userHasAccessories
 setForegroundDuration:
@@ -13400,6 +13752,7 @@ addSoftwareUpdateControllerObserver:
 addSymptomsHandlerObserver:
 addTelevisionObserver:
 addUserObserver:
+addMediaDestinationControllerObserver:
 addSymptomFixSessionObserver:
 addLightObserver:
 registerForExternalUpdates
@@ -13420,6 +13773,7 @@ removeAccessorySettingObserver:
 removeSymptomsHandlerObserver:
 removeTelevisionObserver:
 removeUserObserver:
+removeMediaDestinationControllerObserver:
 removeSymptomFixSessionObserver:
 removeLightObserver:
 unregisterForExternalUpdates
@@ -13745,10 +14099,8 @@ _stateHandlerQueue
 _stateDumpHandlersByName
 dataWithPropertyList:format:options:error:
 bytes
-isHomePodMediaSystem:
+homePodVariant
 isSiriDisabled:
-isHomePod:
-isAppleTV:
 isAirPortExpress:
 isAudioReceiver:
 wallpaperFolderURL
@@ -13799,12 +14151,18 @@ _setSettingsValueForKeyPath:settingsType:usingBlock:
 _fakeHMSettings
 _getBoolSettingsValueForKeyPath:defaultValue:settingsType:
 _setBoolSettingsValueForKeyPath:newValue:settingsType:
+updateAnnounceAccess:completionHandler:
+isAnnounceAccessAllowed
 _isSettingsValueForKeyPath:atMaximumValue:settingsType:
 _incrementSettingsValueForKeyPath:stepValue:maximumValue:settingsType:
 hasDismissedVoiceProfileOnboarding
 setDismissIdentifyVoiceOnboarding:
 hasDismissedIdentifyVoiceReminderBanner
 setDismissIdentifyVoiceReminderBanner:
+hasDismissedAnnounceOnboarding
+setDismissAnnounceOnboarding:
+hasDismissedHomeTheaterOnboarding
+setDismissHomeTheaterOnboarding:
 hasDismissedTVViewingProfilesOnboarding
 setDismissTVViewingProfilesOnboarding:
 hasDismissedTVViewingProfilesReminderBanner
@@ -13823,6 +14181,10 @@ setDismissUserSplitMediaAccountWarning:
 hasDismissedUserSplitMediaAccountWarning
 setCompletedNonOwnerUserHomeSwitchingUI:
 hasCompletedNonOwnerUserHomeSwitchingUI
+hasDismissedWelcomeUIBanner
+setDismissedWelcomeUIBanner:
+setEnableAnnounce:
+isAnnounceEnabled
 shouldHideAddSceneButton
 incrementAddSceneButtonPresentedCount
 setHf_home:
@@ -14062,6 +14424,9 @@ hf_setMinimumDisplayPriority:
 _appendSoftwareUpdateResultsForAccessory:toResults:
 _appendDestinationURLResultsForHomeKitObject:backingAccessory:toResults:
 supportsIdentify
+interactionType
+setInteractionType:
+_interactionType
 displayNameForHomeKitObject:
 groupItems
 setGroupItems:
@@ -14127,6 +14492,7 @@ hf_isHomeAppCreatedTrigger
 initWithServiceTypes:accessoryCategoryTypes:topicName:iconDescriptor:
 topicName
 accessoryCategoryTypes
+_announceTopic
 _cameraTopic
 initWithServiceType:topicName:
 _accessoryCategoryTypes
@@ -14427,7 +14793,6 @@ setZone:
 _zone
 filteredServices
 _numberOfRepresentedHomeKitObjectsForItem:
-interactionType
 isRoomDashboard
 isActionSetItem
 isCameraItem
@@ -14438,7 +14803,6 @@ numberOfRepresentedHomeKitObjects
 itemPrimaryState
 itemPriority
 sourceViewControllerClassName
-setInteractionType:
 setIsRoomDashboard:
 setIsActionSetItem:
 setIsCameraItem:
@@ -14454,7 +14818,6 @@ _isActionSetItem
 _isCameraItem
 _isServiceLikeItem
 _isStatusItem
-_interactionType
 _itemClassName
 _itemPrimaryState
 _itemPriority
@@ -14518,9 +14881,9 @@ _hf_doorbellBulletinNotification
 hf_bulletinNotifications
 iconDescription
 _multipleTriggeredRoomsFormatString
+supportsMusicAlarm
 remoteLoginHandler
-supportsPreferredMediaUser
-preferredMediaUser
+supportsAudioDestination
 ams_altDSID
 hf_appleTVMediaProfiles
 hf_homePodMediaProfiles
@@ -15668,6 +16031,7 @@ hasChanges
 _hasChanges
 discoveredAccessory
 initWithDiscoveredAccessory:valueSource:
+deviceModelCode
 _discoveredAccessory
 initWithSettings:setting:observer:owner:
 setObserver:
@@ -15965,6 +16329,7 @@ userObserverDispatcher
 symptomsHandlerObserverDispatcher
 televisionObserverDispatcher
 homePersonManagerDispatcher
+mediaDestinationControllerObserverDispatcher
 lightObserverDispatcher
 _setDelegationEnabledForObjectsInCurrentHome:
 firstHomeAddedPromises
@@ -16003,6 +16368,7 @@ dispatchTelevisionObserverMessage:sender:
 dispatchHomeKitSettingsObserverMessage:sender:
 dispatchNetworkConfigurationObserverMessage:sender:
 dispatchNetworkRouterObserverMessage:sender:
+dispatchMediaDestinationControllerObserverMessage:sender:
 warmup
 setSelectedHome:
 setSelectedHomeWithName:
@@ -16024,6 +16390,7 @@ setSoftwareUpdateControllerObserverDispatcher:
 setSoftwareUpdateObserverDispatcher:
 setUserObserverDispatcher:
 setSymptomsHandlerObserverDispatcher:
+setMediaDestinationControllerObserverDispatcher:
 setSymptomFixSessionObserverDispatcher:
 setHomeKitSettingsObserverDispatcher:
 setNetworkConfigurationObserverDispatcher:
@@ -16055,6 +16422,7 @@ _softwareUpdateControllerObserverDispatcher
 _softwareUpdateObserverDispatcher
 _userObserverDispatcher
 _symptomsHandlerObserverDispatcher
+_mediaDestinationControllerObserverDispatcher
 _symptomFixSessionObserverDispatcher
 _homeKitSettingsObserverDispatcher
 _networkConfigurationObserverDispatcher
@@ -16112,6 +16480,9 @@ pathExtension
 stringWithContentsOfFile:encoding:error:
 isDisplayDisabled
 fetchLog
+announceUserSettings
+deviceNotificationMode
+_notificationModeToString:
 _topic
 hf_isHomeKitNamingError
 setNumberOfProfiles:
@@ -16121,11 +16492,15 @@ _buildFormatterForKey:
 _siriRecognitionLanguageFormatter
 _siriOutputVoiceFormatter
 _siriPersonalRequestsFormatter
+_announceEnabledFormatter
 _doorbellChimeEnabledFormatter
 localizedStringFromNumber:numberStyle:
 formatterForKey:copy:
 setFormattersForKey:
 _formattersForKey
+tapCount
+setTapCount:
+_tapCount
 predicateWithServiceType:includeChildServices:
 serviceSubtypes
 _matchesService:
@@ -16159,6 +16534,9 @@ _isAccessorySupported:
 genericItems
 setGenericItems:
 _genericItems
+contentID
+setContentID:
+_contentID
 setRawServiceName:
 setServiceName:
 setRoomName:
@@ -16372,7 +16750,7 @@ v24@0:8@"<HMMediaObjectDelegate>"16
 @"NAFuture"24@0:8d16
 @"NAFuture"32@0:8@"NSString"16d24
 @"NSString"24@0:8^@16
-@"HMUser"16@0:8
+@"<HMMediaDestination>"16@0:8
 @"HMAccessory"16@0:8
 @"<HFMediaValueSource>"16@0:8
 v32@0:8@"HFMutableItemSection"16@"HFAccessorySettingsEntity"24
@@ -16408,6 +16786,23 @@ f16@0:8
 @40@0:8Q16q24q32
 @40@0:8@16Q24q32
 @40@0:8q16q24Q32
+v32@0:8@16d24
+v32@0:8@"HFAudioPlayer"16@"NSString"24
+v24@0:8@"HFAudioPlayer"16
+v32@0:8@"HFAudioPlayer"16d24
+v32@0:8@"HFAudioPlayer"16@"NSError"24
+v28@0:8@"AVAudioPlayer"16B24
+v32@0:8@"AVAudioPlayer"16@"NSError"24
+v24@0:8@"AVAudioPlayer"16
+v32@0:8@"AVAudioPlayer"16Q24
+@40@0:8@16Q24@32
+B24@0:8^@16
+v20@0:8f16
+v24@0:8d16
+@"AVAudioPlayer"
+@"AVAudioSession"
+@"CADisplayLink"
+@"<HFAudioPlayerDelegate>"
 @28@0:8B16@20
 v40@0:8q16@24@?32
 B24@0:8@"HMLightProfile"16
@@ -16432,7 +16827,6 @@ v24@0:8q16
 @"CNContactStore"
 @"HFSiriLanguageOption"
 @"<HFApplicationURLHandling>"
-v24@0:8d16
 v32@0:8d16@24
 @"<HFCameraClipQueuableItem>"32@0:8@"HMCameraClipManager"16@"HMCameraClip"24
 v32@0:8@"<HFCameraClipQueuableItem>"16@"<HFCameraClipQueuableItem>"24
@@ -16474,6 +16868,7 @@ v32@0:8@"<HMMediaObject>"16@"HMAccessorySettings"24
 v32@0:8@"HMMediaSystem"16@"NSString"24
 v32@0:8@"HMMediaSystem"16@"NSArray"24
 v32@0:8@"HMMediaSystem"16@"HMApplicationData"24
+v24@0:8@"HMMediaSystem"16
 @"HFHomeKitSettingsValueManager"
 q32@0:8@16@24
 @"HFAccessorySettingManagedConfigurationAdapter"
@@ -16517,7 +16912,6 @@ v24@0:8@"<HFIconDescriptor>"16
 B24@0:8q16
 @"HMCharacteristic"
 @"<NSCopying>"
-B24@0:8^@16
 @"HFPlaybackArchive"
 @"HMLightProfile"
 @"<HFItemSectionAccessoryButtonHeaderDelegate>"
@@ -16572,6 +16966,8 @@ v32@0:8@"HMUser"16@"HMFPairingIdentity"24
 v28@0:8@"HMUser"16B24
 v24@0:8@"HMTelevisionProfile"16
 v32@0:8@"HMPersonManager"16@"NSSet"24
+v32@0:8@"HMMediaDestinationController"16@"<HMMediaDestination>"24
+v24@0:8@"HMMediaDestinationController"16
 v32@0:8@"HMLightProfile"16@"HMLightProfileSettings"24
 v32@0:8Q16@24
 @"HMAccessoryCategory"
@@ -16619,7 +17015,6 @@ B32@0:8q16q24
 v24@0:8@?<v@?>16
 @"<NACancelable>"24@0:8@?<v@?@"NACancelationToken">16
 @"<NACancelable>"32@0:8d16@?<v@?>24
-@40@0:8@16Q24@32
 @"HFActionNaturalLanguageOptions"
 @32@0:8{?=dd}16
 {?=dd}16@0:8
@@ -16656,6 +17051,19 @@ B32@0:8@"AVAssetResourceLoader"16@"NSURLAuthenticationChallenge"24
 v32@0:8@"AVAssetResourceLoader"16@"NSURLAuthenticationChallenge"24
 @"HMCameraClip"16@0:8
 @"HFCameraClipVideoAssetContextProvider"
+v28@0:8@"AVAudioRecorder"16B24
+v32@0:8@"AVAudioRecorder"16@"NSError"24
+v24@0:8@"AVAudioRecorder"16
+v32@0:8@"AVAudioRecorder"16Q24
+^{OpaqueAudioFileID=}16@0:8
+v24@0:8^{OpaqueAudioFileID=}16
+I16@0:8
+v20@0:8I16
+@"<HFAudioRecorderDelegate>"
+@"NSObject<OS_dispatch_source>"
+@"AVAudioRecorder"
+^{OpaqueAudioFileID=}
+@"NSDateFormatter"
 @"NAFuture"24@0:8@"UIImage"16
 @"UIImage"16@0:8
 @"HFTemperatureFormatter"
@@ -16689,7 +17097,6 @@ v24@0:8@"HFAccessoryProfileGroupOptions"16
 @"HFAccessoryProfileGroupOptions"
 @"HFItemProvider"
 @"HMAccessoryProfile"
-I16@0:8
 @28@0:8*16I24
 @"NATreeNode"
 @"HFMutableAggregatedCharacteristicReadPolicy"
@@ -16858,7 +17265,6 @@ v56@0:8@16@24@32@40@?48
 @"HFDemoModeFaceRecognitionDataSource"
 v40@0:8o^@16o^@24@32
 @"HMHomeManager"
-v20@0:8f16
 @"<HFCameraLiveStreamControllerDelegate>"16@0:8
 v24@0:8@"<HFCameraLiveStreamControllerDelegate>"16
 @"HMCameraSource"16@0:8

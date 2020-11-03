@@ -87,7 +87,6 @@ startConfigurationWithCompletionHandler: Failed to get remote object proxy: %s
 Cached %d enabled backends, (%@, %@) listed events
 fetchReportingStatesWithUserInfo: Failed to get remote object proxy: %s
 setMessageLoggingBlock: called
-notifyMessageWasSent: called
 Event %u is filtered by storebag
 sendMessageWithDictionary: Failed to get remote object proxy: %s
 sendMessageWithDictionary: %s

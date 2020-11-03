@@ -3180,6 +3180,7 @@ textView:shouldInteractWithURL:inRange:interaction:
 textView:shouldInteractWithTextAttachment:inRange:interaction:
 textView:shouldInteractWithURL:inRange:
 textView:shouldInteractWithTextAttachment:inRange:
+legibilityWeight
 updateFavoritesRanksToMatchOrderedFavorites:completion:
 moveTag:toIndex:
 _alternateLargeTitles

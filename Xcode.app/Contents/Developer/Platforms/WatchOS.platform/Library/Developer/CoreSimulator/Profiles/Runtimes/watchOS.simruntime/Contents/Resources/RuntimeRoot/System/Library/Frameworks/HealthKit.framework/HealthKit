@@ -2234,8 +2234,6 @@ Only range collection should be used to create a reference range
 T@"NSString",R,N,V_referenceRangeIdentifier
 T@"HKInspectableValueCollection",R,N,V_valueRange
 Sleep
-ListeningExperience
-HAELiveNotification
 HeartRateNotifications
 heartRateNotificationsByDefault
 FriendUUID
@@ -3731,6 +3729,7 @@ HKKeyValueDomainServerIdentifier
 DomainName
 <%@:%p>
 <sensitive>
+hk_redactedDescription
 hkqd_id
 hkqd_dt
 hkqd_qt
@@ -4636,6 +4635,8 @@ NSString *getNRPairedDeviceRegistryDeviceDidUnpairNotification(void)
 NRPairedDeviceRegistryDeviceDidUnpairNotification
 NSString *getNRPairedDeviceRegistryDeviceDidBecomeActive(void)
 NRPairedDeviceRegistryDeviceDidBecomeActive
+NSString *getNRDevicePropertyCurrentUserLocale(void)
+NRDevicePropertyCurrentUserLocale
 NSString *getNRDevicePropertyIsAltAccount(void)
 NRDevicePropertyIsAltAccount
 NSString *getNRDevicePropertyName(void)
@@ -6353,10 +6354,15 @@ Failed to remove first onboarding completed dates: %{public}@
 [%{public}@ %{public}@] -> 0 (Not allowed in Store Demo Mode)
 [%{public}@ %{public}@] -> 0 (Not allowed in Satellite Pairing Mode)
 [%{public}@ %{public}@] -> 0 (Device hardware not supported)
+[%{public}@ %{public}@] -> 1 (Watch locale is supported)
+[%{public}@ %{public}@] -> 1 (Paired companion locale is supported)
+[%{public}@ %{public}@] -> Watch and paired companion locales are NOT supported
 [%{public}@ %{public}@] -> 1 (HKElectrocardiogramWatchAppInstallIsAllowed is set to True
 [%{public}@ %{public}@] -> 1 (Onboarding has been completed (From Cached Value))
 [%{public}@ %{public}@] -> 1 (electrocardiogramAppIsInstalled: %{public}d, electrocardiogramAppIsPlaceholder: %{public}d)
 [%{public}@ %{public}@] -> 0 (device supported (%{public}d), app install allowed (%{public}d), electrocardiogram app is installed (%{public}d), electrocardiogramAppisPlaceholder (%{public}d), current onboarding version completed (%{public}d)) 
+[%{public}@ %{public}@] -> Locale contained a nil country code
+[%{public}@ %{public}@] -> Locale: %{public}@), Country Code: %{public}@)
 [%{public}@ %{public}@] -> %{public}d
 [%{public}@ %{public}@] -> Triggered NanoPreferencesSync (key: %{public}@; value: %{public}d)
 [%{public}@ %{public}@"%{public}@"] -> %{public}d (Device supported: %{public}d; Alt Account: %{public}d; Region supported: %{public}d;)
@@ -6478,7 +6484,7 @@ Failed to get health services proxy: %{public}@
 %{public}@: Unable to start task server %@ with error: %@
 %{public}@: Unable to fetch data source %@ proxy after interrupted connection with error: %@
 Sample %{public}@ has no measurement frequency
-}p2
+} 8
 N12binarysample21ElectrocardiogramLeadE
 NSt3__117bad_function_callE
 NSt3__110__function6__funcIZ37-[HKDateIntervalTree mergedIntervals]E3$_0NS_9allocatorIS2_EEFvP18HKIntervalTreeNodeIdEEEE
@@ -7048,6 +7054,7 @@ HKKeyValueDomainServerInterface
 HKKeyValueDomainClientInterface
 HKKeyValueDomain
 HKKeyValueDomainServerConfiguration
+HKRedactedDescription
 HKQuantityDatum
 _HKCDADocumentSampleComparisonFilter
 HKSeriesSample
@@ -7389,6 +7396,7 @@ hk_dictionaryByAddingEntriesFromDictionary:
 initWithDomain:code:userInfo:
 hk_isDatabaseAccessibilityError
 hk_isDatabaseTransactionError
+hk_isHealthStoreUnavailableError
 hk_isDatabaseSchemaRolledBackError
 hk_isTransactionInterruptedError
 hk_isServiceDeviceNotFoundError
@@ -7396,6 +7404,7 @@ hk_isAuthorizationDeniedError
 hk_isAuthorizationNotDeterminedError
 hk_isInvalidArgumentError
 hk_isInternalFailureError
+hk_isFeatureDisabledError
 hk_isRequiredAuthorizationError
 hk_isStreamFailureError
 hk_isTimeoutError
@@ -11685,7 +11694,7 @@ allValuesWithCompletion:
 domainName
 _domainName
 showSensitiveLogItems
-redactedDescription
+hk_redactedDescription
 initWithIdentifier:dateInterval:quantity:resumeContext:
 resumeContext
 saveCompletion
@@ -12692,11 +12701,14 @@ currentDeviceRegionCode
 _isOnboardingCompletedForKey:version:useCache:
 heartRhythmUserDefaults
 onboardingKeysReadSet
+_getOnboardingVersionForKey:
+_updateOnboardingCompletionForKey:andVersion:
 keyValueDomain
 setInteger:forKey:
 featureAvailabilityUserDefaults
 newestAvailableVersion
 _isOnboardingCompletedForKey:version:
+electrocardiogramOnboardingCompletedVersionNoCache
 _setOnboardingVersionCompleted:forKey:additionalValues:completion:
 _setFirstOnboardingCompletedDate:forKey:completion:
 _setElectrocardiogramOnboardingCompletedForVersion:inCountryCode:
@@ -12705,6 +12717,7 @@ setBool:forKey:
 hk_setElectrocardiogramSetupModalViewPresented:
 _removeFirstOnboardingCompletedDatesForKey:completion:
 tinkerModeEnabled
+isElectrocardiogramAppInstallableForLocale:
 hk_electrocardiogramWatchAppInstallHasBeenAllowed
 isElectrocardiogramAppInstalled
 isElectrocardiogramAppPlaceholder
@@ -12776,6 +12789,7 @@ isElectrocardiogramAvailableOnWatch:countryCode:
 isElectrocardiogramAvailableForOnboardingCountryCode:
 isElectrocardiogramOnboardingCompleted
 isElectrocardiogramOnboardingCompletedNoCache
+updateOnboardingCompletionVersionCache
 setElectrocardiogramOnboardingCompleted
 setElectrocardiogramFirstOnboardingCompletedDate:
 setElectrocardiogramOnboardingCompletedForCountryCode:
@@ -13212,6 +13226,7 @@ remote_createProfileOfType:displayName:completion:
 remote_deleteProfile:completion:
 remote_getAllProfilesWithCompletion:
 remote_profileIdentifierForNRDeviceUUID:completion:
+remote_profileIdentifierForNRDeviceUUID:ownerAppleID:completion:
 remote_fetchDisplayNameWithCompletion:
 remote_setDisplayFirstName:lastName:completion:
 remote_fetchDisplayImageData:
@@ -13224,6 +13239,7 @@ client_remoteDidUpdateProfileList
 createProfileOfType:displayName:completion:
 deleteProfile:completion:
 fetchAllProfilesWithCompletion:
+fetchProfileIdentifierForNRDeviceUUID:ownerAppleID:completion:
 fetchDisplayName:
 setDisplayFirstName:lastName:completion:
 fetchDisplayImageData:
@@ -15106,6 +15122,7 @@ v24@0:8@"NSExtensionContext"16
 @64@0:8@16@24@32{?=qqq}40
 v40@0:8q16@"NSString"24@?<v@?@"HKProfileIdentifier"@"NSError">32
 v32@0:8@"NSUUID"16@?<v@?@"HKProfileIdentifier"@"NSError">24
+v40@0:8@"NSUUID"16@"NSString"24@?<v@?@"HKProfileIdentifier"@"NSError">32
 v24@0:8@?<v@?@"NSString"@"NSString"@"NSError">16
 v24@0:8@?<v@?@"NSData"@"NSError">16
 v32@0:8@"NSData"16@?<v@?B@"NSError">24
@@ -15120,9 +15137,11 @@ v64@0:8{Electrocardiogram=^^?d{PtrVector<binarysample::ElectrocardiogramLead>={v
 @48@0:8Q16@24@32@?40
 @"NSProgress"56@0:8Q16@"NSUUID"24@"NSURL"32Q40@?<v@?B@"NSError">48
 @"NSProgress"48@0:8Q16@"NSUUID"24@"NSURL"32@?<v@?B@"NSError">40
-MbP?<
+MbP?
 XzY<@
 XzY|@
 ?fffff
-MbP?
+MbP?Ee 
+>R` 
+q=U` 
 MbP?

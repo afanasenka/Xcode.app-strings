@@ -118,6 +118,7 @@ readPenalty
 seenPenalty
 serverScoreCoefficientHalfLife
 serverScoreCoefficientInitialMultiplier
+sparseTagsPenalty
 subscribedChannelScoreCoefficent
 subscribedTopicScoreCoefficient
 subscribedTopicScoreConfiguration
@@ -256,6 +257,9 @@ Property subscribedTopicScoreCoefficient failed validation, set as
 Property subscribedChannelScoreCoefficent failed validation, set as 
  but should satisfy subscribedChannelScoreCoefficent >= 0.0
  but should satisfy subscribedChannelScoreCoefficent <= 1.0
+Property sparseTagsPenalty failed validation, set as 
+ but should satisfy sparseTagsPenalty >= 0.0
+ but should satisfy sparseTagsPenalty <= 1.0
 Property serverScoreCoefficientHalfLife failed validation, set as 
  but should satisfy serverScoreCoefficientHalfLife > 0.0
 Property seenPenalty failed validation, set as 
@@ -537,6 +541,7 @@ readPenalty
 seenPenalty
 serverScoreCoefficientHalfLife
 serverScoreCoefficientInitialMultiplier
+sparseTagsPenalty
 subscribedChannelScoreCoefficent
 subscribedTopicScoreCoefficient
 subscribedTopicScoreConfiguration
@@ -612,6 +617,7 @@ readPenalty
 seenPenalty
 serverScore
 serverScoreCoefficient
+sparseTagsPenalty
 subscribedChannelScore
 subscribedTopicScore
 timeDecayedScore

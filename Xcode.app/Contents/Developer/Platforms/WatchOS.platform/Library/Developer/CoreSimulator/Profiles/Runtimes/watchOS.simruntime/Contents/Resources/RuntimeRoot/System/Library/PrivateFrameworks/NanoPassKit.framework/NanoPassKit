@@ -592,10 +592,17 @@ hasCryptogram
 T@"NSData",&,N,V_cryptogram
 hasChallengeResponse
 T@"NSData",&,N,V_challengeResponse
+transactionData
+appLaunchToken
+hasPassData
+hasTransactionData
+T@"NSData",&,N,V_transactionData
+hasAppLaunchToken
+T@"NSString",&,N,V_appLaunchToken
 (%@ outgoingResponseIdentifier %@ incomingResponseIdentifier %@ expectsPeerResponse %d)
 %@, <%p> type %d isResponse %d context %@ length %lu
 -[NPKProtoStandalonePaymentProvisioningFlowStartIssuerVerificationFlowForPaymentPassRequest writeTo:]
-/Library/Caches/com.apple.xbs/Sources/NanoPassbook_Sim/NanoPassbook-1002.1.1/NanoPassKit/Generated/NPKProtoStandalonePaymentProvisioningFlowStartIssuerVerificationFlowForPaymentPassRequest.m
+/Library/Caches/com.apple.xbs/Sources/NanoPassbook_Sim/NanoPassbook-1002.1.3.1/NanoPassKit/Generated/NPKProtoStandalonePaymentProvisioningFlowStartIssuerVerificationFlowForPaymentPassRequest.m
 T@"<NPKValueAddedServiceAutomaticSelectionCoordinatorDelegate>",W,N,V_delegate
 dataSource
 T@"<NPKPassesDataSource>",W,N,V_dataSource
@@ -2362,10 +2369,9 @@ T@"NSMutableArray",&,N,V_conflictingExpressPassIdentifiers
 T@"NSMutableArray",&,N,V_conflictingReferenceExpressPassIdentifiers
 hasCameraFirstProvisioningEnabled
 v32@?0@"NSString"8@"NSString"16^B24
-hasPassData
 com.apple.nanopasskit.ostransaction
 com.apple.nanopasskit.
-/Library/Caches/com.apple.xbs/Sources/NanoPassbook_Sim/NanoPassbook-1002.1.1/NanoPassKit/NPKOSTransaction.m
+/Library/Caches/com.apple.xbs/Sources/NanoPassbook_Sim/NanoPassbook-1002.1.3.1/NanoPassKit/NPKOSTransaction.m
 name
 T@"NSString",R,C,N,V_name
 NPKPeerPaymentConversationManagerRecipientUpdatedNotification
@@ -2833,6 +2839,7 @@ v16@?0@"PKPaymentBalanceReminder"8
 v16@?0@"PKPaymentCommutePlanReminder"8
 Error connecting to target device.
 v40@?0@"NSString"8Q16@"NSData"24@"NSError"32
+v32@?0@"PKPaymentPass"8@"PKPaymentTransaction"16@"NSString"24
 cachedUniqueIDs
 T@"NSMutableSet",&,V_cachedUniqueIDs
 cachedPasses
@@ -2917,6 +2924,8 @@ currentTransactionStatus
 TQ,N,V_currentTransactionStatus
 currentTransaction
 T@"PKPaymentTransaction",&,N,V_currentTransaction
+submittingAuthenticationResult
+TB,N,V_submittingAuthenticationResult
 authorizationCredential
 T@"NSData",&,N,V_authorizationCredential
 sessionTimeoutTimer
@@ -2986,6 +2995,7 @@ NanoPeerPaymentAccount.archive
 RasterizedPasses
 PassSyncEngine.archive
 AutomaticProvisioning.archive
+PendingTransactionsCache.archive
 BalanceReminder-%@-%@
 NPKInternalSyncedSettingsChangedRemotely
 NPKInternalExpressPassesInformationChangedRemotely
@@ -3194,8 +3204,9 @@ Notice: missing required value: passUniqueID:%@ fieldIdentifier:%@
 Notice: [NanoPassdXPC] New connection created: %@
 Notice: [NanoPassdXPC] Connection handleMetadataRequestOnPairedDevice %@
 Notice: [NanoPassdXPC] Connection got response (%@, %@) for request %@
-Notice: [NanoPassdXPC] Connection startSubcredentialProvisioningOnRemoteDeviceForInvitation: %@
+Notice: [NanoPassdXPC] Connection applicationRedirectRequestOnPairDevice %@-%@
 Error: [NanoPassdXPC] Failed to create remoteObjectProxy
+Notice: [NanoPassdXPC] Connection startSubcredentialProvisioningOnRemoteDeviceForInvitation: %@
 Notice: [NanoPassdXPC] Connection startSubcredentialProvisioningOnLocalDeviceMatchingInvitation: %@ shouldFetchAnonymizationSaltFromRemoteDevice: %@ completion: %@
 Notice: [NanoPassdXPC] Connection got response (%@, %@) for invitation %@
 Notice: [NanoPassdXPC] Connection statusForSentInvitation: %@ completion: %@
@@ -3873,11 +3884,11 @@ Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: Pass %@ h
 Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: Nil database handle; did you check passDBIsAvailable before calling?)
 Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: Unique ID %@ is nil)
 Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: Cannot remove pass with nil unique ID)
+Error: Transaction is not allowed in UI; not inserting transaction %@ for pass: %@
 Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: Transaction is nil)
 Error: No transaction source identifier; not inserting transaction %@
 Error: Transaction does not have identifier; not inserting %@
 Error: Transaction should be suppressed from UI; not inserting %@
-Error: Barcode transaction doesn't have data yet; not inserting transaction %@
 Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: Transaction Unique ID is nil)
 Error: *** NPKAssertion failure in %{public}@, %{public}s:%ld (reason: transaction source cannot not be nil)
 Notice: Fetching Volatile Pass Data from DB
@@ -4465,6 +4476,8 @@ Notice: NPKCompanionAgentConnection (%@): Payment pass did update balances: %@, 
 Notice: NPKCompanionAgentConnection (%@): Payment pass did update balance reminder: %@, reminder %@, balance %@
 Notice: NPKCompanionAgentConnection (%@): Payment pass did update credentials: %@, credentials %@
 Notice: NPKCompanionAgentConnection (%@): Payment pass with uniqueID:%@ did enable message service:%d
+Notice: NPKCompanionAgentConnection (%@): Fetching pending app redirect url for pass %@
+Notice: NPKCompanionAgentConnection (%@): Marking pending transaction as processed for pass %@
 Notice: NPKCompanionAgentConnection (%@): XPC connection to daemon was interrupted
 Notice: [BarcodePayment] New barcode session created for pass: %@
 Notice: [BarcodePayment] %@ session started!
@@ -4473,6 +4486,7 @@ Notice: [BarcodePayment] %@ session invalidated!
 Notice: [BarcodePayment] PKPaymentTransaction %@ user intention confirmation step up result: %@, error: %@
 Notice: [BarcodePayment] Failed to encrypt PIN for pass %@ with error %@
 Notice: [BarcodePayment] PKPaymentTransaction %@ pin step up result: %@, error: %@
+Notice: [BarcodePayment] Ignoring transaction update while submitting authentication result. %@
 Notice: [BarcodePayment] Start fetching decrypted barcode with credential: %@
 Notice: [BarcodePayment] Fetched barcode with identifier: %@
 Error: [BarcodePayment] Failed to fetch barcode due to: %@
@@ -4759,6 +4773,7 @@ NPKProtoStandalonePaymentProvisioningFlowChooseFlowStepContext
 NPKButtonListener
 NPKProtoResyncNeededRequest
 NPKProtoSecureElementSetNewAuthRandomResponse
+NPKProtoBarcodeApplicationRedirectRequest
 NPKProtoAdditions
 NPKProtoCanAcceptInvitationResponse
 NPKProtoStandalonePaymentProvisioningFlowStartIssuerVerificationFlowForPaymentPassRequest
@@ -5813,6 +5828,7 @@ initWithMachServiceName:remoteObjectInterface:exportedObjectInterface:exportedOb
 setForceConnectionOnResume:
 _remoteObjectProxySynchronous:withFailureHandler:
 handleMetadataRequestOnPairedDevice:withAssociatedApplicationIdentifiers:completion:
+handleApplicationRedirectRequestOnPairedDeviceForPaymentPass:transaction:
 startSubcredentialProvisioningOnRemoteDeviceForInvitation:
 startSubcredentialProvisioningOnLocalDeviceMatchingInvitation:shouldFetchAnonymizationSaltFromRemoteDevice:completion:
 statusForSentInvitation:completion:
@@ -6243,6 +6259,15 @@ cryptogram
 challengeResponse
 _challengeResponse
 _cryptogram
+setTransactionData:
+setAppLaunchToken:
+hasPassData
+hasTransactionData
+hasAppLaunchToken
+transactionData
+appLaunchToken
+_appLaunchToken
+_transactionData
 linkedDevicesWithRelationship:
 isActive
 setWithObject:
@@ -8495,7 +8520,6 @@ transactionSourceIdentifier
 paymentNetworkIdentifier
 _saveTransaction:forTransactionSourceIdentifier:withPaymentCredentialType:shouldTrim:
 suppressBehavior
-hasNotificationServiceData
 isCloudKitArchived
 _removeTransactionWithServiceIdentifierLocked:forTransactionSourceIdentifier:
 _saveTransactionLocked:forTransactionSourceIdentifier:
@@ -8553,6 +8577,7 @@ _removeTransactionSourceIdentifierForPassWithUniqueIDLocked:
 insertTransactionStatement
 transactionDate
 transactionSource
+hasNotificationServiceData
 removeTransactionWithServiceIdentifierStatement
 removeTransactionStatement
 trimTransactionsForTransactionSourceStatement
@@ -8931,6 +8956,7 @@ _applyRestrictions
 hasBalanceBytes
 peerPaymentServiceURL
 npkPossiblyOverriddenPeerPaymentServiceURL
+subjects:sendEvent:
 _invokeCompletionHandlerForInvalidationWithError:
 setUiDelegate:
 _handleLocalAuthenticationPolicyEvaluatedWithContext:error:
@@ -9319,7 +9345,6 @@ addManifestEntry:
 initWithProtoSyncStateItem:
 protoSyncStateItem
 initWithSyncStateItems:
-hasPassData
 _initWithName:
 _name
 _accountDidChange
@@ -10112,6 +10137,8 @@ initiateLostModeExitAuthWithCompletion:
 transactionsForTransactionSourceIdentifiers:withTransactionSource:withBackingData:startDate:endDate:orderedByDate:limit:completion:
 deletePaymentTransactionWithIdentifier:fromDeviceWithPairingID:completion:
 balanceReminderForBalance:pass:withCompletion:
+fetchPendingTransactionForPassWithUniqueID:completion:
+markPendingTransactionAsProcessedForPassWithUniqueID:
 trustedDeviceEnrollmentSignatureWithAccountDSID:sessionData:handler:
 paymentPassWithUniqueIdentifier:didUpdateWithBalances:
 paymentPassWithUniqueIdentifier:didUpdateBalanceReminder:forBalance:
@@ -10243,6 +10270,7 @@ _extendSessionTimeoutTimer
 _stopSessionTimeoutTimer
 _releaseNotificationSuppressionAssertion
 _releaseExpressTransactionSuppressionAssertion
+setSubmittingAuthenticationResult:
 currentTransaction
 _handleUpdatedPaymentTransaction:
 submitUserConfirmation:forTransactionIdentifier:completion:
@@ -10250,6 +10278,7 @@ _completedAuthenticationForTransaction:
 _handleUpdatedTransactionStatus:
 submitEncryptedPIN:forTransactionIdentifier:completion:
 retrievePINEncryptionCertificateForPassUniqueIdentifier:withCompletion:
+submittingAuthenticationResult
 retrieveDecryptedBarcodeCredentialForPassUniqueIdentifier:authorization:withCompletion:
 initWithPID:flags:reason:name:withHandler:
 setEventType:
@@ -10269,7 +10298,6 @@ setCurrentPaymentBarcode:
 _insertPaymentTransactionForActiveBarcode
 _invokeExtensionToCollectPaymentInformation
 authenticationContext
-complete
 requestedAuthenticationMechanisms
 _processedAuthenticationMechanismForTransaction:
 _updateCurrentTransactionStatus:transaction:
@@ -10293,6 +10321,7 @@ setSessionTimeoutTimer:
 _handleSessionTimeout
 setAuthorizationCredential:
 setSerialQueue:
+_submittingAuthenticationResult
 _currentPaymentBarcode
 _currentTransactionStatus
 _currentTransaction
@@ -10933,6 +10962,7 @@ v32@0:8@"PKContactlessCardIngester"16Q24
 v40@0:8@"PKContactlessCardIngester"16@"NSError"24B32B36
 v48@0:8@16^@24^@32^@40
 v40@0:8@"PKBarcodeEventMetadataRequest"16@"NSSet"24@?<v@?@"PKBarcodeEventMetadataResponse"@"NSError">32
+v32@0:8@"PKPaymentPass"16@"PKPaymentTransaction"24
 v36@0:8@"PKAppletSubcredentialSharingInvitation"16B24@?<v@?@"PKPaymentPass"@"NSError">28
 v32@0:8@"PKAppletSubcredentialSharingInvitation"16@?<v@?Q>24
 {?="passSettings"b1}
@@ -11070,6 +11100,7 @@ v48@0:8@"PKPaymentBalanceReminder"16@"PKPaymentBalance"24@"PKPaymentPass"32@?<v@
 v40@0:8@"PKTransitCommutePlan"16@"PKPaymentPass"24@?<v@?@"PKPaymentCommutePlanReminder">32
 v48@0:8@"PKPaymentCommutePlanReminder"16@"PKTransitCommutePlan"24@"PKPaymentPass"32@?<v@?B>40
 B24@0:8@"PKAddSecureElementPassConfiguration"16
+v32@0:8@"NSString"16@?<v@?@"PKPaymentPass"@"PKPaymentTransaction"@"NSString">24
 v40@0:8@"NSString"16@"NSData"24@?<v@?@"NSString"Q@"NSData"@"NSError">32
 v40@0:8@"NSString"16@"PKPaymentBalanceReminder"24@"PKPaymentBalance"32
 {?="cardType"b1"priority"b1"supportedProtocols"b1}

@@ -1,5 +1,4 @@
-@(#)PROGRAM:UVPreviewPipeline  PROJECT:Ultraviolet-17517.1
-ffffF
+@(#)PROGRAM:UVPreviewPipeline  PROJECT:Ultraviolet-17521
 UVPreviewPipeline
 PreviewStructure
 Status
@@ -339,22 +338,7 @@ RecipeGenerationError
 ySay
 _pSg
 _pSg
-ySS3key_
-5valuetG
-3key_SDySS
-G5valuetG
 ySSG
-ySay
-G8prefixes_AC8suffixestG
-ySS4name_Say
-G10parameters
-Sg4type
-4pathtG
-ySS4name_
-4type
-4nesttG
-ySS4name_
-4pathSaySSGSg10attributestG
 _p_SStSg
 SgSg
 ySay
@@ -394,7 +378,6 @@ yx_GG
 yx_Gc
 qd__Sg
 yx_GG
-qd_0_
 yx__G
 $sSt
 $s17UVPreviewPipeline32PreviewUpdaterStoreConfigurationP
@@ -599,24 +582,24 @@ ySaySS4name_
 4pathSaySSGSg10attributestGSSGABySaySSAC_
 4typeAD4nesttGSSGGAOGABySaySSAC_Say
 G10parametersAKSgAldEtGSSGG
+ySS4name_Say
+G10parameters
+Sg4type
+4pathtG
 SS4name_Say
 G10parameters
 Sg4type
 4patht
-SS3key_Say
-G10parameters_
-Sg4type
-4nestt5valuetSg
 SS4name_
 4type
 4nestt
-SS3key_
-4type_
-4nestt5valuetSg
+ySS4name_
+4type
+4nesttG
+ySS4name_
+4pathSaySSGSg10attributestG
 SS4name_
 4pathSaySSGSg10attributest
-SS3key_
-_SaySSGSg10attributest5valuetSg
 _p4expr_
 4nesttSg
 _pSg
@@ -797,6 +780,12 @@ $s7UVModel16ParseTreeVisitorP
 $s7UVModel16RecordingVisitorP
 $s17UVPreviewPipeline19PreviewUpdateResultP
 $s17UVPreviewPipeline15PreviewGeometryP
+ySS3key_
+5valuetG
+3key_SDySS
+G5valuetG
+ySay
+G8prefixes_AC8suffixestG
 G8prefixes_AB8suffixest
 Iegr_
 _pGG
@@ -931,6 +920,7 @@ yxGSgXw
 yxGSgXwz_x_qd__qd_0_
 RzSHRd__r_0_lXX
 yx_G
+qd_0_
 SDySS
 ShySSG
 $s17UVPreviewPipeline18RemoteAgentTrackerP
@@ -1188,13 +1178,14 @@ prefixes suffixes
 Single file workspace builder must have exactly one translation unit
 _TtC17UVPreviewPipelineP33_528FD6963ED49D409433442C74CF3E9F28AnyPreviewInstanceVariantBox
 storage
-/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17517.1/IDE/PreviewInstanceVariant.swift
+/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17521/IDE/PreviewInstanceVariant.swift
 description
 isEqual(to:)
+hash(into:)
 _TtC17UVPreviewPipelineP33_F50F9C3D49CCC851C9A256EA5455539A35AnyPreviewDestinationDescriptionBox
 UVPreviewPipeline/PreviewDestinationDescription.swift
-/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17517.1/IDE/PreviewDestinationDescription.swift
-hash(into:)
+Fatal error
+/Library/Caches/com.apple.xbs/Sources/UITestingAgent/UITestingAgent-17521/IDE/PreviewDestinationDescription.swift
 Paused by debugger
 No workspace build information available
 Edited file changed in way requiring rebuild of containing module
@@ -1329,8 +1320,7 @@ workspace thunks
 Removing and canceling previous built product for %{public}@: %@
 cancelEntry(_:for:)
 Removing %d incremental update key(s) for %{public}@
-Swift/x86_64-apple-macos.swiftinterface
-Fatal error
+Swift/NativeDictionary.swift
 Duplicate values for key: '
 product(for:anyKey:in:noProductHandler:)
 [build request %{public}@] Failed or canceled building, so clearing from build cache

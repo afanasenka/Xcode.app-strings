@@ -17,6 +17,8 @@
 <true/>
 <key>com.apple.geoservices.navigation_info</key>
 <true/>
+<key>com.apple.geoservices.setanydefault</key>
+<true/>
 <key>com.apple.geoservices.utility</key>
 <true/>
 <key>com.apple.locationd.effective_bundle</key>
@@ -910,6 +912,8 @@ Scheduling update of SharedTripServer in 2s
 Will update SharedTripServer state if needed (enabled: %@, server: %@)
 Create new SharedTripServer: %@
 Clean and nil out SharedTripServer: %@
+Will migrate legacy Share ETA user enabled flag: %d
+No legacy Share ETA user enabled flag to migrate
 Invalid data. Ignoring...
 Error: no problem status found in notification.
 Error reloading manifest: %@. Showing notification anyway...
@@ -1682,6 +1686,7 @@ startXPCServer
 _cleanupRAPNotifications
 updateMapsModelBackupAttributesIfNeeded
 initWithEffectiveBundleIdentifier:delegate:onQueue:
+_migrateLegacyShareETAUserEnabledFlag
 updateSharedETAServerState
 _updateSharedETAServerState
 callStackSymbols

@@ -186,6 +186,7 @@ v24@0:8@"NSError"16
 @"NSDate"16@0:8
 @"<APPCPromotableContentRepresentation>"16@0:8
 v24@0:8@"<APPCPromotableContentRepresentation>"16
+v24@0:8@"<APPCJourneyMetricsHelping>"16
 APPCSupplementalContextAllowedTypes
 APPCPromotableContentRepresentation
 {CGSize=dd}16@0:8
@@ -255,7 +256,6 @@ T@"<APPCPromotableContent>",N,W
 @"<APMetricPrimitiveCreating>"16@0:8
 @"<APPCPromotableContent>"16@0:8
 v24@0:8@"<APPCPromotableContent>"16
-v24@0:8@"<APPCJourneyMetricsHelping>"16
 v48@0:8q16@"NSDate"24d32f40B44
 APPCDiagnosticMetricsHelping
 v32@0:8@"NSString"16q24
@@ -412,6 +412,7 @@ TB,N,Vplaceholder
 v28@0:8q16B24
 TB,N,R
 PC %@: Video duration is invalid.
+%@: Unable to send initial volume.
 PC %@: Progress %d is out of range and thus clamped to %d.
 PromotedContent.MediaMetricsHelper
 APPCMediaMetricsHelper
@@ -423,7 +424,10 @@ videoDuration
 videoURL
 videoQuality
 mediaHasStarted
+$__lazy_storage_$_initialVolumeSender
 PC %@: Video selected with url %@, quality %@ and duration %f.
+PC %@: Ad type is %@ but mediaPlayed is triggered.
+PC %@: Ad type is not set.
 PC %@: Position %f is out of range and thus clamped to %f.
 PC %@: Cannot read the video duration.
 webview_terminated
@@ -433,6 +437,7 @@ PromotedContent.DiagnosticMetricsHelper
 APPCDiagnosticMetricsHelper
 v32@0:8@16q24
 v32@0:8@16@24
+Placeholder is no longer replacable
 Webview loaded slowly
 Webview process terminated
 Webview failed to load
@@ -678,8 +683,8 @@ context
 unfilledReasonDelegate
 overriddenAdType
 discardReason
-T@"<APPCJourneyMetricsHelping>",N,R,VmetricsHelper
 T@"<APPCDiagnosticMetricsHelping>",N,R,VdiagnosticMetricHelper
+T@"<APPCJourneyMetricsHelping>",N,&,VmetricsHelper
 T@"<APPCPromotableContext>",N,W,Vcontext
 TQ,N,VminimumTimeBetweenPresentation
 T@"<APPCPromotableContentRepresentation>",N,&,VbestRepresentation
@@ -764,6 +769,8 @@ ySS_So30APMetricPropertySupportedTypes_ptG
 SS_So30APMetricPropertySupportedTypes_pt
 So25APMetricPrimitiveCreating_p
 So33APMetricNotificationRegisterOwner_p
+So21APPCPromotableContent_pSgXw
+SbSg
 yS2SG
 ySSSo35APPCSupplementalContextAllowedTypes_pG
 ySSySo16APMetricProtocol_pcG
@@ -838,7 +845,6 @@ So35APPCPromotableContentRepresentation_pSg
 So7NSErrorCSg
 So23APPCMediaMetricsHelping_pSg
 _pSgXw
-So21APPCPromotableContent_pSgXw
 SdSg
 promotedContentIdentifier
 contextIdentifier
@@ -913,6 +919,8 @@ videoDuration
 videoURL
 videoQuality
 mediaHasStarted
+promotedContent
+$__lazy_storage_$_initialVolumeSender
 contextIdentifier
 promotedContentIdentifier
 primitiveCreator
@@ -1061,8 +1069,8 @@ currentIssueId
 anfComponentMetadataInternal
 currentIssueIsDraftInternal
 currentIssueIsCurrentInternal
-metricsHelper
 diagnosticMetricHelper
+metricsHelper
 identifier
 journeyIdentifier
 context
@@ -1147,6 +1155,7 @@ isMRAID
 bestRepresentation
 setBestRepresentation:
 discarded
+replaceMetricsHelperWithNewMetricsHelper:
 desiredPosition
 privacyMarkerPosition
 adSize
@@ -1218,7 +1227,7 @@ notConsumedWithCode:placeholder:
 createdWithAdType:
 replacedWithHelper:
 loaded
-placedWithPlacement:wasNativeSlot:
+placedWithPlacementType:wasNativeSlot:
 ready
 onScreenWithCollapsed:
 visibleWithPercent:starting:duration:scrollVelocity:collapsed:
@@ -1330,6 +1339,8 @@ processInfo
 isRunningTests
 initWithInteger:
 initWithContextIdentifier:promotedContentIdentifier:primitiveCreator:notificationOwner:
+sharedInstance
+outputVolume
 globalCategories
 setGlobalCategories:
 globalKeywords
@@ -1504,6 +1515,7 @@ setSubscriptionType:
 setCurrentIssueId:
 setCurrentIssueIsDraft:
 setCurrentIssueIsCurrent:
+setMetricsHelper:
 setJourneyIdentifier:
 setContext:
 setMetaData:
@@ -1518,7 +1530,7 @@ setServerUnfilledReason:
 setMediaMetricHelper:
 setDiscarded:
 metadata
-initWithUnsignedInteger:
+initWithString:
 setPromotedContentIdentifier:
 setPrimitiveCreator:
 setHasBeenOnScreen:

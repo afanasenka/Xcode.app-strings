@@ -338,6 +338,8 @@ disabledByUI
 waterEjection
 HomeCameraStream
 HomeWaitForIdle
+HomeAnnouncePlayback
+HomeAnnounceRecording
 GenericExternalReason
 WatchFaceExtension
 Unknown-%u

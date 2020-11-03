@@ -117,6 +117,7 @@ presentPeerPaymentPassAnimated:completion:
 presentSearchWithCompletion:
 showStatementForIdentifier:passUniqueIdentifier:animated:completion:
 presentInstallmentPlansForFeature:completion:
+associatedPassUniqueID
 webpageURL
 addObject:
 defaultWorkspace
@@ -356,6 +357,8 @@ simulator
 /simulator
 v20@?0B8@"NSString"12
 v24@?0@"PKAccount"8@"NSError"16
+month
+year
 http
 https
 wallet.apple.com

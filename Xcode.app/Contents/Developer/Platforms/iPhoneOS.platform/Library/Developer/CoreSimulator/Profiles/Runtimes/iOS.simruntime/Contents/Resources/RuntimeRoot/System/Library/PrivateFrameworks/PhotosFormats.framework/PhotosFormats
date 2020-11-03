@@ -238,14 +238,15 @@ com.apple.photos.variation-identifier
 com.apple.photos.live-photo.minimum-client-version
 com.apple.photos.render.originating.signature
 v28@?0r^{opaqueCMFormatDescription=}8I16^B20
+dvvC
 video
 com.apple.PhotosFormatsMediaMetadataErrorDomain
 Specified type (%d) is invalid for the media type %s
 convertTypeToKey
-/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.1.190/Projects/PhotosFormats/PhotosFormats/PFMediaMetadata.m
+/Library/Caches/com.apple.xbs/Sources/Photos_Sim/Photos-310.2.160/Projects/PhotosFormats/PhotosFormats/PFMediaMetadata.m
 Unable to access input media through URL %@
 LOOP
-%@ %@transfer=%@ color=%@
+%@ %@%@ transfer=%@ color=%@ dv84=%@ (current device eligible for HDR: %@)
 %@bit 
 BitsPerComponent
 v32@?0^{CGImageSource=}8Q16^B24
@@ -321,6 +322,17 @@ qualityMeasure
 localIdentifier
 q24@?0@"<PFPhotosFaceRepresentation>"8@"<PFPhotosFaceRepresentation>"16
 q24@?0@"NSNumber"8@"NSNumber"16
+CIDynamicRender
+CIDynamicFood
+PhotosHide
+SemanticDevelopment
+landscape_cityscape
+landscape
+food
+semantic_enhance_face_threshold
+semantic_enhance_landscape_threshold
+semantic_enhance_food_threshold
+CAMUserPreferenceEnableSemanticDevelopment
 v32@?0d8d16q24
 v48@?0{CGRect={CGPoint=dd}{CGSize=dd}}8q40
 OjzOua0LkOegX7pQdgMksw
@@ -512,12 +524,25 @@ T@"NSArray",R,N,V_detectedSalientObjects
 TQ,R,N,V_stitchConfidence
 TB,R,N,V_horizonLinePresent
 Tf,R,N,V_horizonLineAngleInDegrees
+T@"NSArray",R,N,V_semanticDevelopmentGatingObservations
+T@"NSArray",R,N,V_faceObservations
+T@"NSArray",R,N,V_foodAndDrinkObservations
+Tq,N,V_semanticEnhanceScene
+Td,N,V_semanticEnhanceSceneConfidence
 T@"NSString",R,N,V_captureFolderPath
 JSONDebugDescription
 T@"NSData",R
+faceBoxes
+VNFaceObservation
+foodBoxes
+semanticEnhanceSceneConfidence
+semanticEnhanceScene
 horizonLineAngleInDegrees
 horizonLinePresent
 stitchConfidence
+foodAndDrinkObservations
+faceObservations
+semanticDevelopmentGatingObservations
 captureFolderPath
 compressedScenePrintObservation
 scenePrintObservation
@@ -528,7 +553,9 @@ humanBodies
 humanFaces
 imageAestheticsObservation
 junkImageClassificationObservations
-VNFaceObservation
+VisionFoodAndDrinkObservations
+VisionExtendedFaceObservations
+VisionSemanticDevelopmentGatingClassificationObservation
 VNImageAestheticsObservation
 volumeDuringSlowMotion
 Tf,R,N,V_volumeDuringSlowMotion
@@ -1106,6 +1133,9 @@ NULL image source, unable to query image properties
 failed to insert tracks of asset: %@, error: %@
 Failed to delete temporary file: %@
 aborting export session at path %@
+[SemDev] Error deserializing camera metadata: %@
+[SemDev] Detected faces larger than threshold, skipping semantic development
+[SemDev] Semantic development gating observations: %@
 [PFPhotoSharingOperation] Could not create imageSource from image URL: %@
 [PFPhotoSharingOperation] Could not determine the UTI type for file: %{public}@. Falling back to JPG.
 [PFPhotoSharingOperation] Output to file type: %{public}@ is not supported when performing metadata changes for file: %{public}@. Falling back to JPG.
@@ -1284,6 +1314,7 @@ PFLivePhotoEditSession
 PFLivePhotoPlaybackResult
 PFPhotosFaceRepresentation
 PFPhotosFaceUtilities
+PFSemanticEnhancePregateCalculator
 PFPhotoSharingOperation
 PFFrameCache
 PFSharingRemakerOptions
@@ -1738,6 +1769,8 @@ capabilitiesForCurrentDeviceWithOptions:
 legacyCapabilities
 capabilitiesInformationForCurrentDeviceWithOptions:
 currentDeviceHEVCCapabilities
+currentDeviceIsEligibleForHDRPlayback
+eligibleForHDRPlayback
 testCapabilitiesNotSupportingHEVC
 testCapabilitiesNotSupportingHEIF
 setRecordSlomoConfiguration:
@@ -1757,6 +1790,9 @@ metadataItemsWithMetadataType:value:error:
 arrayByRemovingMetadataItemOfType:fromArray:error:
 videoAssetIsDecodable:
 videoAssetIsPlayable:
+videoAssetIsHighDynamicRange:
+videoTrackFormatDescriptionHasDolby8_4Metadata:
+videoTrackFormatDescriptionIsHighDynamicRange:
 enumerateVideoTrackFormatDescriptionsInAsset:withBlock:
 videoCodecFourCharCodeNumberForAVAsset:
 isPlayable
@@ -1813,6 +1849,7 @@ isValidImageFileForURL:
 isValidAVFileForURL:
 UTIRequiresRasterizationDPI:
 defaultRasterizationDPI
+embeddedJPEGSuitableForDerivatives:imageProperties:
 imagePropertiesFromImageSource:
 imagePropertiesFromImageSource:atIndex:
 isAudioUTI:
@@ -2005,6 +2042,13 @@ sortedArrayUsingComparator:
 compare:
 insertObject:atIndex:
 indexOfObject:inSortedRange:options:usingComparator:
+isSemanticDevelopmentEnabledInCameraSettings
+semanticEnhanceSceneForCameraMetadata:
+semanticEnhanceSceneForCameraMetadata:ignoreCameraSetting:
+semanticEnhanceSceneForPrivateClientMetadata:
+filterForSemanticEnhanceScene:
+boundingBox
+doubleForKey:
 _externalIsolation
 _operationError
 _operationComplete
@@ -2264,7 +2308,6 @@ bottomRight
 bottomLeft
 topRight
 topLeft
-boundingBox
 salientObjects
 featureName
 sceneprints
@@ -2297,8 +2340,13 @@ _detectedCatBodies
 _detectedDogBodies
 _detectedSalientObjects
 _stitchConfidence
+_semanticDevelopmentGatingObservations
+_faceObservations
+_foodAndDrinkObservations
+_semanticEnhanceScene
+_semanticEnhanceSceneConfidence
 _captureFolderPath
-initWithJunkImageClassificationObservations:imageAestheticsObservation:saliencyObservation:scenePrintObservation:compressedScenePrintObservation:detectedObjectsInfoHumanFaces:detectedObjectsInfoHumanBodies:detectedObjectsInfoCatBodies:detectedObjectsInfoDogBodies:detectedObjectsSalientObjects:stitchConfidence:horizonLinePresent:horizonLineAngleInDegrees:captureFolderPath:
+initWithJunkImageClassificationObservations:imageAestheticsObservation:saliencyObservation:scenePrintObservation:compressedScenePrintObservation:detectedObjectsInfoHumanFaces:detectedObjectsInfoHumanBodies:detectedObjectsInfoCatBodies:detectedObjectsInfoDogBodies:detectedObjectsSalientObjects:stitchConfidence:horizonLinePresent:horizonLineAngleInDegrees:captureFolderPath:semanticDevelopmentGatingObservations:faceObservations:foodAndDrinkObservations:semanticEnhanceScene:
 initWithSpatialOverCapturePrivateClientMetadata:
 JSONDebugDescription
 junkImageClassificationObservations
@@ -2314,7 +2362,17 @@ detectedSalientObjects
 stitchConfidence
 horizonLinePresent
 horizonLineAngleInDegrees
+semanticDevelopmentGatingObservations
+faceObservations
+foodAndDrinkObservations
+semanticEnhanceScene
+setSemanticEnhanceScene:
+semanticEnhanceSceneConfidence
+setSemanticEnhanceSceneConfidence:
 captureFolderPath
+setWithObjects:
+floatValue
+decodeObjectForKey:
 numberWithBool:
 spatialOverCaptureImageHorizonLineAngleInDegrees
 spatialOverCaptureImageHorizonLinePresent
@@ -2325,7 +2383,6 @@ serializedDataFromClientMetadata:error:
 captureFolderClientPath
 detectedObjectInfo
 unarchivedObjectOfClasses:fromData:error:
-setWithObjects:
 inferenceAttachments
 _volumeDuringSlowMotion
 _volumeDuringRampToSlowMotion
@@ -2357,7 +2414,6 @@ playbackRampCurveExponent
 exportRampCurveExponent
 enumerateObjectsUsingBlock:
 replaceObjectAtIndex:withObject:
-floatValue
 doesNotRecognizeSelector:
 _rate
 _rampInStartTime
@@ -2979,6 +3035,7 @@ B32@0:8q16q24
 @40@0:8@16@24@32
 B44@0:8C16@20^@28^@36
 @36@0:8C16@20^@28
+B24@0:8^{opaqueCMFormatDescription=}16
 I24@0:8@16
 @40@0:8@16r^v24r^v32
 B56@0:8@16r^v24r^v32^@40^@48
@@ -3026,6 +3083,8 @@ q32@0:8@16Q24
 @48@0:8@16@24@32@40
 B64@0:8^{CGRect={CGPoint=dd}{CGSize=dd}}16d24d32d40d48d56
 {CGSize=dd}48@0:8{CGSize=dd}16d32d40
+{?=qd}24@0:8@16
+{?=qd}28@0:8@16B24
 @"NSError"
 @"CLLocation"
 @"PFAssetAdjustments"
@@ -3058,7 +3117,7 @@ v32@0:8@16@24
 @"VNImageAestheticsObservation"
 @"VNSaliencyImageObservation"
 @"VNSceneObservation"
-@120@0:8@16@24@32@40@48@56@64@72@80@88Q96B104f108@112
+@152@0:8@16@24@32@40@48@56@64@72@80@88Q96B104f108@112@120@128@136q144
 @"PFSlowMotionRampConfiguration"
 @20@0:8B16
 v40@0:8f16B20^@24^@32

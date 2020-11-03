@@ -1,4 +1,5 @@
-@(#)PROGRAM:SwiftUI  PROJECT:_SwiftUI-111
+@(#)PROGRAM:SwiftUI  PROJECT:_SwiftUI-114.1
+fffff
 FileDocumentWriteConfiguration
 FileDocumentReadConfiguration
 Style
@@ -1274,6 +1275,9 @@ MultiEventListener
 UnifiedCompactWindowToolbarStyle
 _BindingActionModifier
 BindingActionDispatcher
+SwiftUI
+PresentationHostingControllerDelegate
+PresentationHostingController
 WheelPickerStyle
 Body
 WheelPicker
@@ -1368,6 +1372,7 @@ AnyGestureChild
 AnyResetSeed
 _CompositingGroupEffect
 DisclosureGroup
+IsExpandedTraitKey
 DisclosureGroupConfiguration
 DisclosureGroupDepthKey
 _DataProvider
@@ -1523,6 +1528,10 @@ Transform
 AccessibilityLabeledViewModifier
 Q@PopoverAttachmentAnchor
 PopoverPresentation
+PopoverPresentationModifier
+ItemPopoverPresentationModifier
+PopoverModifier
+PopoverContent
 LabelStyle
 Body
 LabelStyleConfiguration
@@ -2519,8 +2528,6 @@ CodingKeys
 SpringAnimator
 SwiftUI
 SheetBridge
-SheetHostingControllerDelegate
-SheetHostingController
 ToolbarButtonStyle
 Body
 MenuToggleStyle
@@ -4233,6 +4240,10 @@ v32@0:8@"UIDocumentPickerViewController"16@"NSURL"24
 _TtC7SwiftUIP33_B07689AF38C6459AC9750094550967FF20OpacityViewResponder
 _opacity
 v16@?0@"NSTimer"8
+@24@0:8@16
+dismissedProgramatically
+SwiftUI.PresentationHostingController
+init(coder:rootView:)
 nextIndex
 indexMap
 tagMap
@@ -4494,7 +4505,6 @@ parent
 (luminance-to-alpha)
 (color-multiply 
 display-list-item
-@24@0:8@16
 {CGSize=dd}16@0:8
 f24@0:8q16
 viewPhase
@@ -4756,9 +4766,6 @@ isRemoved
 isPresentingAfterDismiss
 lastPresentation
 presenterOverride
-dismissedProgramatically
-SwiftUI.SheetHostingController
-init(coder:rootView:)
 SheetBridge: abandoned presentation detected
 _TtC7SwiftUI11WidgetGraph
 makeRootWidget
@@ -5104,6 +5111,7 @@ SwiftUI10
 @32@0:8d16q24
 @"NSArray"8@?0
 B16@?0@8
+B8@?0
 UIAccessibilityReadingContent
 @"NSString"24@0:8q16
 @"NSAttributedString"24@0:8q16
@@ -5282,7 +5290,8 @@ $ss21_ObjectiveCBridgeableP
 So13NSFileWrapperC
 $s7SwiftUI13TupleProtocolP
 4Tail
-yACyACyACy
+ySbG
+yACyACy
 SgGGAEy
 G_ACy
 GGtGG
@@ -5570,12 +5579,10 @@ GGXMT
 yAByAByAByABy
 AEGG
 GAJG
-yAEGGGXMT
+GGXMT
 yAAyAAyAAyAAy
 ADGG
 GAIG
-yADGG
-GGXMT
 GXMT
 SgGXMT
 yAByAByABy
@@ -6144,14 +6151,11 @@ yAByAByAByAByABy
 AEGGADy
 AEGG
 GAMG
-yAEGGGXMT
+GGXMT
 yAAyAAyAAyAAyAAy
 ADGGACy
 ADGG
 GALG
-yADGG
-GGXMT
-GXMT
 yAByAByAByABy
 AEGGADy
 AEGG
@@ -6904,14 +6908,11 @@ yAByAByAByAByABy
 GGADy
 AFGG
 GANG
-yAFGGGXMT
+GGXMT
 yAAyAAyAAyAAyAAy
 GGACy
 AEGG
 GAMG
-yAEGG
-GGXMT
-GXMT
 yAByAByAByABy
 GGADy
 AFGG
@@ -6954,14 +6955,11 @@ yAByAByAByAByABy
 GGADy
 AFGG
 GANG
-yAFGGGXMT
+GGXMT
 yAAyAAyAAyAAyAAy
 GGACy
 AEGG
 GAMG
-yAEGG
-GGXMT
-GXMT
 yAByAByAByABy
 GGADy
 AFGG
@@ -7040,6 +7038,7 @@ GXMT
 GXMT
 yABy
 GGXMT
+yAAy
 GXMT
 GGXMT
 GXMT
@@ -7058,7 +7057,6 @@ GXMT
 GXMT
 ytIeglr_
 __GXMT
-7ElementST_2ID
 yADGG
 _ADt
 AHyAI
@@ -7246,12 +7244,11 @@ yAByAByAByAByABy
 GGADy
 AFGG
 GANG
-yAFGGGXMT
+GGXMT
 yAAyAAyAAyAAyAAy
 GGACy
 AEGG
 GAMG
-yAEGG
 yAByAByAByABy
 GGADy
 AFGG
@@ -7279,7 +7276,7 @@ GGGXMT
 GGXMT
 GGXMT
 GXMT
-yADyADyADy
+yADyADy
 SgGGAFy
 G_ADy
 GGtGGGXMT
@@ -7500,15 +7497,11 @@ yAByAByAByAByABy
 tGGGGADy
 AKGG
 GASG
-yAKGGGXMT
+GGXMT
 yAAyAAyAAyAAyAAy
 tGGGGACy
 AJGG
 GARG
-yAJGG
-tGGGGXMT
-tGGG
-tGGGXMT
 yAByAByAByABy
 tGGGGADy
 AKGG
@@ -7573,7 +7566,6 @@ yAAy
 GGGXMT
 GGXMT
 $s7SwiftUI7GestureP
-$s14AttributeGraph4RuleP
 $s7SwiftUI19GestureViewModifierP
 $s7SwiftUI15DatePickerStyleP
 5_Body
@@ -7618,7 +7610,6 @@ SSGG
 qd__XMT
 yytGG
 GGGG
-tGGGG
 ySbGAAy
 ySbGAAy
 ySbAAy
@@ -7658,7 +7649,6 @@ So14NSItemProviderCSgIego_
 So14NSItemProviderCSgycSg
 yAAyAAyAAyAAy
 GAIG
-yxGG
 14AnimatableData
 Iegn_
 $s7SwiftUI22EnvironmentReadingViewP
@@ -8541,7 +8531,6 @@ y10InsetShape
 $s7SwiftUI15InsettableShapeP
 So22NSManagedObjectContextC
 ypSg
-ySbG
 _pSgXw
 So13CADisplayLinkCSg
 $s7SwiftUI21UIHostingViewDelegateP
@@ -8619,6 +8608,7 @@ So8UISwitchC
 $s7SwiftUI11ToggleStyleP
 yxGG
 GABy_
+7ElementST_2ID
 yAAy
 GGAByAcdCGGAByA2C
 ACGGGG
@@ -9079,6 +9069,8 @@ ySDy
 yqd__GG
 yxGG
 yxcSg
+$s7SwiftUI37PresentationHostingControllerDelegateP
+_pSgXw
 yx_G
 yx_G
 SaySiGIego_
@@ -9105,6 +9097,7 @@ SgGG
 y_xG
 Sb8required_t
 tc_Sb8animatedt
+SgIegyyd_
 SgIegyyd__Sb8animatedt
 yACq_G
 yAAyAAyAAyAAyx
@@ -9132,6 +9125,7 @@ yAAy
 xGGACy
 AAyq_
 ySiGGGG
+ySbGSg
 ySbG
 yxq_G
 $s7SwiftUI13_DataProviderP
@@ -9219,11 +9213,15 @@ GG_AByABy
 GGAFG
 AGtG
 yxq_GG
-_GSg
-qd__qd_0_Iegnr_
-qd__Iegr_
+yqd__qd_0_GG
+yqd__GG
+yxq__G
+yx_G
+yxq__GG
+yx_GG
 SgGSay
 GIeggo_
+yAAyx
 4Body
 yqd__GG
 yAAyAAyAAyAAyAAyAAyAAyAAy
@@ -9290,6 +9288,7 @@ yxGG
 yxGG
 yxGG
 Sb7ElementSTQz_ABtc
+AAIeggo_
 AAyA2BGG
 6offset_AA4sizetG
 So12NSFileHandleC
@@ -9422,8 +9421,6 @@ SgGG_
 tGGGG
 yAEyAEyAEyAEyAH
 GALGANGGGGGG
-yAByABy
-SgGG
 ySnySiGSi
 yAHG
 ySbGGGGGGGG
@@ -9440,7 +9437,7 @@ yAEyAEyAEyAEy
 yAEy
 yADGGG
 GAPGARGGGGGG
-yAEyAEyAEy
+yAEyAEy
 SgGGAGy
 G_AEy
 GGtGGGG
@@ -9457,13 +9454,19 @@ yADy
 GtGG
 GARG_AEyACy
 GGSgtGGGG
+yABy
+G_ADyABy
+tGSgtGG
+yAByABy
 G_ADyAEy
 tGSgtGGGG
+yABy
+G_ADyABy
+GG_ABy
+AFGtGSgtGG
 G_ADyAEy
 GG_AEy
 AGGtGSgtGGGG
-yABy
-G_ABy
 G_AEy
 tGGGG
 tGGG
@@ -9511,6 +9514,7 @@ yycSg
 _pSg
 $ss12IdentifiableP
 $sSk
+$s14AttributeGraph4RuleP
 yxGG
 yAAy
 ABGABG
@@ -9688,7 +9692,6 @@ yxGG
 $s7SwiftUI18EventBindingSourceP
 _pcSg
 _pIegg_
-yxGG
 y5Value
 Qzq_GxG
 yq_GAAyxGc
@@ -9874,12 +9877,13 @@ $s7SwiftUI12FontModifierP
 tcSg
 SgXw
 SgXwz_Xx
-SgIegyyd_
 SgXw
 yAAyAAy
 GGGAGyAHy
 GAMy
 GGGAMy
+ypSg
+GIgnyy_
 9capHeight_AA8ascenderAA9descendert
 So25NSMutableAttributedStringC
 15EnvironmentBody
@@ -9958,8 +9962,6 @@ ySdGG
 S2dIegyd_
 Sdz_Xx
 SdSgSdc
-$s7SwiftUI30SheetHostingControllerDelegateP
-_pSgXw
 yxGSgXw
 yxGSgXwz_x_
 RzlXX
@@ -10010,7 +10012,6 @@ yqd__GG
 So18NSAttributedStringCSg
 SiSg
 yXlSg
-yAAy
 yAByAByABy
 GGGADy
 AGGGG
@@ -10027,10 +10028,6 @@ yAByABy
 AByAE
 GGGADy
 AByAjFGGG
-yAByAByAByABy
-AEGG
-GAJG
-yAEGGG
 yAByAByABy
 AEGG
 GAJGG
@@ -10050,11 +10047,6 @@ SgGG_
 yAByABy
 GAFGG
 yABy
-yAByAByAByAByABy
-AEGGADy
-AEGG
-GAMG
-yAEGGG
 yAByAByAByABy
 AEGGADy
 AEGG
@@ -10078,11 +10070,10 @@ SgGG
 yABy
 yAByAByAByAByAF
 GAJGALGGGG
-AAIeggo_
 yAByABy
 GADGG
-ypSg
-GIgnyy_
+yAByABy
+SgGG
 yABy
 yABy
 GGGG
@@ -10110,11 +10101,6 @@ ySnySiGSi
 yAByABy
 GSgGG
 yAByABy
-yAByAByAByAByABy
-GGADy
-AFGG
-GANG
-yAFGGG
 yAByAByAByABy
 GGADy
 AFGG
@@ -10125,11 +10111,6 @@ AFGG
 yAByABy
 GGADy
 AFGG
-yAByAByAByAByABy
-GGADy
-AFGG
-GANG
-yAFGGG
 yAByAByAByABy
 GGADy
 AFGG
@@ -10152,11 +10133,6 @@ yAByABy
 yABy
 GAJGG
 yABy
-yAByAByAByAByABy
-GGADy
-AFGG
-GANG
-yAFGGG
 yAByAByAByABy
 GGADy
 AFGG
@@ -10171,21 +10147,10 @@ yAByABy
 yABy
 yAByABy
 yABy
-G_ADyABy
-tGSgtGG
+yABy
+G_ABy
 yAByABy
 yABy
-yABy
-G_ADyABy
-GG_ABy
-AFGtGSgtGG
-yAByABy
-yABy
-yAByAByAByAByABy
-tGGGGADy
-AKGG
-GASG
-yAKGGG
 yAByAByAByABy
 tGGGGADy
 AKGG
@@ -10542,7 +10507,6 @@ So6UIViewC
 yAAyAAyAAyAAyAAy
 xGGACy
 GALG
-yxGG
 yAAy
 yq_G
 yq__GxGGADy
@@ -10563,7 +10527,6 @@ _pXp
 SaySo14NSItemProviderCGSbIeggd_
 $s7SwiftUI16PlatformDropInfoP
 $s7SwiftUI12DropDelegateP
-ySbGSg
 SbSaySo14NSItemProviderCG_
 $s7SwiftUI17AnimationListenerP
 _pSg
@@ -10692,12 +10655,12 @@ existingFile
 file
 rawValue
 _details
+origin
+size
 width
 height
 type
 points
-origin
-size
 _rawValue
 identifier
 seed
@@ -10724,6 +10687,7 @@ Tail
 configuration
 _scaledWidth
 _sizeCategory
+_isEmphasized
 _tint
 _sizeClass
 Body
@@ -12931,6 +12895,8 @@ lastAction
 lastSeed
 Body
 Value
+delegate
+dismissedProgramatically
 configuration
 _base
 children
@@ -13420,13 +13386,22 @@ Body
 Value
 rect
 point
-content
-arrowEdge
-targetAnchor
+_item
 onDismiss
+popoverContent
+attachmentAnchor
+arrowEdge
+_isPresented
+content
+targetAnchor
 viewID
 itemID
 environment
+_namespace
+minimumPopoverSize
+_mode
+ResolvedModifier
+Body
 Value
 style
 Body
@@ -14561,7 +14536,6 @@ sourceID
 reset
 modifiers
 character
-label
 action
 shortcut
 title
@@ -15322,8 +15296,6 @@ presentedVC
 lastPresentation
 presenterOverride
 lastEnvironment
-delegate
-dismissedProgramatically
 configuration
 Body
 configuration
@@ -17003,21 +16975,16 @@ toolbarCoordinator
 swiftUIToolbar
 toolbarBridge
 keyboardShortcutBridge
-P&f`&
-@'eP'
-'c (
-/_`0^p0]
-`4Yp4
-@5WP5
-`7Up7T
-p8S
-9P 9O
-PCM`CL
-@aKPa
-bJ b
-iF`j
-@u0v
-}C@}
+@-QP-
+.P .
+5L`6
+?`@
+`IKpI
+LJ0L
+0NI@N
+0QG@Q
+`R
+ZPZ
 BaseDateProvider
 DateProvider
 TimeIntervalProvider
@@ -17151,18 +17118,6 @@ _startDate
 _endDate
 identifier
 swiftui_identifier
-scale
-contentBounds
-alignmentRect
-_imageWithContentInsets:
-baselineOffset
-imageWithBaselineOffsetFromBottom:
-pointSize
-systemFontOfSize:
-ascender
-descender
-imageWithAlignmentRectInsets:
-applyingMetricsFromGlyph:
 effectiveUserInterfaceLayoutDirection
 safeAreaInsets
 _defaultLeadingCellMarginWidth
@@ -17178,6 +17133,7 @@ _referenceBounds
 _pointsPerInch
 delegateClass
 sceneDelegate
+scale
 _SwiftUITesting_currentScreenScale
 _wantsWideContentMargins
 _SwiftUITesting_wantsWideContentMargins
@@ -17468,6 +17424,8 @@ isFlippable
 hasSliceInformation
 edgeInsets
 resizingMode
+imageWithName:scaleFactor:deviceIdiom:deviceSubtype:displayGamut:layoutDirection:sizeClassHorizontal:sizeClassVertical:appearanceName:
+appearance
 initWithName:fromBundle:error:
 initWithPath:
 floatValue
@@ -17745,16 +17703,19 @@ setPreferredFramesPerSecond:
 _performScrollTest:iterations:delta:length:scrollAxis:extraResultsBlock:completionBlock:
 setNeedsStatusBarAppearanceUpdate
 animateWithDuration:animations:
+baselineOffset
+alignmentRect
 capHeight
+contentBounds
 initWithItems:
 selectionChanged:
 setSelectedSegmentIndex:
 selectedSegmentIndex
 setImage:forSegmentAtIndex:
-infoViewForSegment:
 initWithCGImage:scale:orientation:
 imageWithRenderingMode:
 imageForSegmentAtIndex:
+_imageWithSymbolMetricsFromNamedVectorGlyph:
 titleForSegmentAtIndex:
 insertSegmentWithImage:atIndex:animated:
 removeSegmentAtIndex:animated:
@@ -17904,6 +17865,8 @@ initForExportingURLs:
 documentPicker:didPickDocumentAtURL:
 addTimer:forMode:
 timerWithTimeInterval:repeats:block:
+viewDidDisappear:
+isBeingDismissed
 hasItemConformingToTypeIdentifier:
 getObjectValue:forString:errorDescription:
 doubleValue
@@ -17914,7 +17877,6 @@ itemSetWithPasteboardTypes:
 pasteboardTypesForItemSet:
 registerDataRepresentationForTypeIdentifier:visibility:loadHandler:
 dataForPasteboardType:inItemSet:
-imageWithName:scaleFactor:deviceIdiom:deviceSubtype:displayGamut:layoutDirection:sizeClassHorizontal:sizeClassVertical:appearanceName:
 namedVectorGlyphWithName:scaleFactor:deviceIdiom:layoutDirection:glyphSize:glyphWeight:glyphPointSize:appearanceName:
 colorWithName:displayGamut:appearanceName:
 selectedViewController
@@ -18022,6 +17984,8 @@ insertRowsAtIndexPaths:withRowAnimation:
 reloadSections:withRowAnimation:
 moveRowAtIndexPath:toIndexPath:
 reloadData
+sharedApplication
+_performBlockAfterCATransactionCommits:
 _setSectionContentInsetFollowsLayoutMargins:
 scrollToRowAtIndexPath:atScrollPosition:animated:
 layoutIfNeeded
@@ -18159,7 +18123,6 @@ state
 titleForState:
 setState:
 setTitle:forState:
-sharedApplication
 setSensitive:
 connectedScenes
 _currentOpenApplicationEndpoint
@@ -18329,8 +18292,6 @@ setFirstLineHeadIndent:
 colorWithAlphaComponent:
 replaceCharactersInRange:withString:
 _defaultTextColorForTableViewStyle:isSectionHeader:
-viewDidDisappear:
-isBeingDismissed
 __swift_setObject:forKeyedSubscript:
 initWithUnsignedLongLong:
 initWithUnsignedInt:
@@ -18460,6 +18421,7 @@ maximumPossibleForce
 majorRadius
 setAllowedPressTypes:
 setDelaysTouchesEnded:
+imageWithBaselineOffsetFromBottom:
 CGImage
 imageOrientation
 renderingMode
@@ -18540,7 +18502,6 @@ _outermostNavigationController
 _updateBarsForCurrentInterfaceOrientation
 popViewControllerAnimated:
 popToViewController:animated:
-_performBlockAfterCATransactionCommits:
 showColumn:
 pushViewController:animated:
 setNavigationBarHidden:
@@ -18548,7 +18509,7 @@ setNavigationBarHidden:animated:
 indexPathForSelectedRow
 animateAlongsideTransition:completion:
 isCancelled
-imageWithTintColor:renderingMode:
+imageWithTintColor:
 _systemImageNamed:
 ioSurface
 size
@@ -18634,6 +18595,8 @@ initWithName:target:selector:
 _setAccessibilityElementsBlock:
 _setAccessibilityLinkedUIElementsBlock:
 _accessibilitySetActionBlock:withValue:forKey:
+_setIsAccessibilityElementBlock:
+_setAccessibilityElementsHiddenBlock:
 _accessibilityDidChangeSonificationPlaybackPosition:
 initWithDynamicProvider:
 setObject:forKey:

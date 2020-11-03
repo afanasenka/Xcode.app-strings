@@ -104,10 +104,6 @@ T@?,C,N,V_exitBlock
 SCHOOL_MODE_EXIT_INSTRUCTIONS_SCHEDULED
 SCHOOL_MODE_EXIT_INSTRUCTIONS_SCHEDULED_REMAININGTIME_FORMAT
 SCHOOL_MODE_EXIT_INSTRUCTIONS_MANUAL_FORMAT
-hideInternalUISetting
-com.apple.NanoSettings.internal
-userDefaults
-T@"NSUserDefaults",R,N,V_userDefaults
 shouldHideSchooltimeReferences
 TB,R,N,V_shouldHideSchooltimeReferences
 T@"SCLSchoolMode",W,N,V_schoolMode
@@ -429,9 +425,7 @@ setAttributes:range:
 initWithString:
 appendAttributedString:
 initWithUserDefaults:
-userDefaults
 _shouldHideSchooltimeReferences
-_userDefaults
 serviceForClientIdentifier:
 addStateUpdateListener:withCompletionHandler:
 removeStateUpdateListener:
@@ -467,7 +461,6 @@ _avInterruptionObserver
 _suppressionActive
 _avSession
 _lastSessionWasRingtone
-initWithSuiteName:
 viewController
 crownUnlockingViewControllerDidUnlock:
 crownUnlockingViewControllerWillUnlock:
@@ -598,7 +591,6 @@ v32@0:8@"PUICActionSheetController"16@"NSIndexPath"24
 @40@0:8@16@24@?32
 @"NSDateComponentsFormatter"
 @"NSAttributedString"16@0:8
-@"NSUserDefaults"
 v32@0:8@"DNDStateService"16@"DNDStateUpdate"24
 @"DNDStateService"
 @"DNDModeAssertionService"

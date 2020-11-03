@@ -942,6 +942,7 @@ WAYPOINT_STOP_LEFT
 WAYPOINT_STOP_RIGHT
 RESUME_ROUTE
 NavigationSettingsMonitorDidUpdateSettings
+@"MNMutableSettings"8@?0
 MNDefaultBeepBeforeInstruction
 VoiceGuidanceLanguage
 Off Volume
@@ -2475,12 +2476,16 @@ addObserver:forKeyPath:options:context:
 _localeMetricDidChange:
 removeObserver:forKeyPath:
 _volumeFromDefaults
+voiceVolume
 setVoiceVolume:
 currentLocale
 _navigation_distanceUsesMetricSystem
+distanceUnits
 setDistanceUnits:
+pauseSpokenAudio
 setPauseSpokenAudio:
 boolForKey:
+beepBeforeInstruction
 setBeepBeforeInstruction:
 stringForKey:
 setVoiceLanguage:
@@ -2492,7 +2497,7 @@ _isCarPlay
 _settings
 _userDefaults
 path
-applicationProxyForIdentifier:
+initWithBundleIdentifier:allowPlaceholder:error:
 dataContainerURL
 exceptionWithName:reason:userInfo:
 raise
@@ -2608,6 +2613,7 @@ _changeCount
 _lock
 _hasOngoingRequest
 _delegate
+applicationProxyForIdentifier:
 stringByAppendingPathComponent:
 pairingStorePath
 nanoRegistryDirectory

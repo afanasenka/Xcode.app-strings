@@ -494,6 +494,7 @@ T@"SASPresentationManager",&,N,V_presentationManager
 -[SiriSpotlightSource configureConnection]_block_invoke
 SBSAssistantActivationContextBundleID
 com.apple.MobileSMS
+com.apple.Home
 com.apple.shortcuts
 <SiriDirectActionContext contextOverride:%@, payload:%@, bulletin:%@, notification:%@, directActionEvent:%@, bundleId:%@>
 payload

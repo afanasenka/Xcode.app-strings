@@ -1,9 +1,3 @@
-%
-% 
-%"
-%$
-%&
-%(
 init
 _publishStreamEvent:
 setStreamStatus:
@@ -224,18 +218,19 @@ _dispatchQueue
 _extractor
 _streamReader
 _errorHandler
+dictionaryWithObjects:forKeys:count:
 tcr_integerValueForKey:missingValue:
 tcr_urlForKey:
 urlWithHeight:width:format:
 urlWithHeight:width:cropStyle:format:
 tcr_stringForKey:
 stringValue
-dictionaryWithObjects:forKeys:count:
 rangeOfString:options:
 mutableCopy
 replaceCharactersInRange:withString:
 enumerateKeysAndObjectsUsingBlock:
 URLWithString:
+initWithString:
 height
 width
 urlWithHeight:width:
@@ -373,8 +368,8 @@ setTotalUnitCount:
 setCompletionDate:
 countOfBytesReceived
 setCompletedUnitCount:
-bytes
 writeBytes:length:error:
+enumerateByteRangesUsingBlock:
 asset_cdnUUID
 lib_statusCode
 countOfBytesExpectedToReceive
@@ -567,6 +562,7 @@ _jobSupervisor
 _jobScheduler
 _appMetricsMonitor
 _beginSessionWithDPInfo:error:
+bytes
 _decryptBuffer:length:allowPartial:error:
 dataWithBytes:length:
 initWithDPInfo:streamReader:error:
@@ -649,6 +645,7 @@ componentsJoinedByString:
 iOSSupportVersion
 currentDevice
 copyThinningHeaders
+isAppleSiliconMac
 _iOSSupportVersion
 _productVariants
 _productVersion
@@ -1840,7 +1837,7 @@ _appPluginBlacklist
 _watchAppBundlesWithLogKey:
 offloadingAppsEnabled
 boolForKey:
-purgeAppsForVolume:urgency:desiredPurge:performAvailabilityCheck:additionalApps:offloadOnly:client:
+purgeAppsForVolume:urgency:desiredPurge:performAvailabilityCheck:additionalApps:offloadOnly:logKey:client:
 purgedApps
 purgedSize
 applicationsWithVPNPlugins
@@ -1973,6 +1970,8 @@ substringFromIndex:
 valueOfClass:forKeyPath:
 _keyPathCache
 _tcr_associatedReader
+tcr_boolForKey:missingValue:
+tcr_boolForKeyPath:missingValue:
 initWithBase64EncodedString:options:
 scanInteger:
 tcr_stringForKeyPath:
@@ -2656,6 +2655,9 @@ installDate
 isBackground
 isPerDevice
 parentalControlsName
+requiresRosetta
+runsOnAppleSilicon
+runsOnIntel
 setOffloaded:
 setBackground:
 setInstallDate:
@@ -2809,8 +2811,8 @@ ams_sharedAccountStoreForMediaType:
 _finishWithReceiptData:error:
 initWithDSID:altDSID:username:options:
 customReceiptURL
-writeReceiptData:toURL:error:
-writeReceiptData:forApplication:error:
+writeReceiptData:toURL:logKey:error:
+writeReceiptData:forApplication:logKey:error:
 receiptWithData:
 octaneEnabledForApplicationWithBundleID:
 octaneBag
@@ -2994,7 +2996,7 @@ preallocatedFiles
 setPreallocatedFiles:
 _spaceReduction
 _preallocatedFiles
-_writeReceipt:forApplication:error:
+_writeReceipt:forApplication:logKey:error:
 initWithBundleURL:
 URLByDeletingLastPathComponent
 createDirectoryAtURL:withIntermediateDirectories:attributes:error:
@@ -3178,7 +3180,6 @@ _percentComplete
 _diskUsage
 _digest
 _initWithRevision:forAccount:client:logUUID:
-newContextWithRevision:forAccount:token:
 completionDate
 installKey
 setInstallKey:
@@ -3415,6 +3416,8 @@ appAdamId
 sourceAppAdamId
 registerInstallAttributionDatabaseCleanTask
 addInstallAttributionPingback:withError:
+adNetworkId
+pingbackUrl
 installAttributionPingbackForApp:
 setInstallAttributionPingbackRegisteredForApp:withError:
 registerInstallAttributionPingbackRetryTask
@@ -3427,9 +3430,7 @@ installAttributionPingbackDelay
 _sendMaturePingbacksWithXPCActivity:
 installAttributionMaxPingbackRetries
 maturePingbacks
-pingbackUrl
 _removePingbackForApp:
-adNetworkId
 transactionId
 attributionSignature
 version
@@ -3440,6 +3441,7 @@ setHTTPMethod:
 setHTTPBody:
 retryCount
 _incrementPingbackRetryCountForApp:
+conversionValueTimestamp
 _cleanDatabase
 hasEntries
 installAttributionMaxParamsAge
@@ -3553,7 +3555,7 @@ propertyForKey:
 allConnections
 processPaymentResponse:
 proxyForItemID:
-writeReceiptData:forBundleURL:error:
+writeReceiptData:forBundleURL:logKey:error:
 stringWithUTF8String:
 _storeKitClientInterface
 _storeKitServiceInterface
@@ -3698,8 +3700,6 @@ setStoreMetadata:
 _handlePingMessage:fromDevice:
 receiveMessage:
 initWithListenerEndpoint:
-performAuthorizationWithCompletionHandler:
-initWithItemName:
 activeClientsWithReplyHandler:
 addSubscriberWithEndpoint:
 pingWithReplyHandler:
@@ -3751,6 +3751,8 @@ setClientType:
 setDiscoveredUpdate:
 expectedSoftwarePlatform
 setExpectedSoftwarePlatform:
+expectsIOSAppOnMac
+setExpectsIOSAppOnMac:
 generatedVendorID
 setGeneratedVendorID:
 setMachineBased:
@@ -4498,8 +4500,8 @@ volume
 urgency
 desiredPurgeAmount
 performAvailablityCheck
-appPurgeCoordinator
 apps
+appPurgeCoordinator
 offloadOnly
 initWithDatabaseEntity:properties:
 bestPackageOnConnection:withProperties:
@@ -4760,7 +4762,6 @@ _updateState
 _elevated
 arrayWithObjects:
 _initWithComponents:
-initWithString:
 subarrayWithRange:
 _isValid
 isAnyVersion
@@ -5121,6 +5122,7 @@ _serviceHost
 _isActivityRegistered
 makeObjectsPerformSelector:withObject:
 _registerNotificationSource
+notificationWithName:userInfo:
 _validatePredicate:error:
 allowEvaluation
 predicateFormat
@@ -5138,7 +5140,6 @@ lookupItemIDsForDeletableSystemAppsForWatchWithBundleIDs:error:
 notificationForRegisteredApps:
 notificationForRefreshWithBundleIDs:
 notificationForUnregisteredBundleIDs:
-notificationWithName:userInfo:
 registerNotificationSource:
 lib_copyPropertyGetterNames
 catalogUnregisteredBundleIDs:
@@ -5156,6 +5157,7 @@ lookupItemIDsForDeletableSystemAppsWithBundleIDs:withReplyHandler:
 lookupBundleIDsForDeletableSystemAppsForWatchWithItemIDs:withReplyHandler:
 lookupItemIDsForDeletableSystemAppsForWatchWithBundleIDs:withReplyHandler:
 uninstallApp:requestUserConfirmation:withReplyHandler:
+forceRefreshAllQueries
 _validKeyPaths
 _libraryCatalogs
 _libraryOpen
@@ -5518,6 +5520,7 @@ promiseWithResult:
 uppercaseString
 _buildRequest
 valuePromise
+performAuthorizationWithCompletionHandler:
 _authorizeReason
 _familyMemberAccountID
 systemUptime
@@ -5529,6 +5532,7 @@ notificationForFailedInstalls:
 postNotification:
 importInstall:mustExist:error:
 predicateForInstallFromSource:bundleID:itemID:error:
+getUUIDBytes:
 setPackagesWithArray:
 setInstallError:
 initWithInstallKey:code:shouldPost:
@@ -5578,6 +5582,7 @@ lib_categorizeItemsUsingBlock:
 lib_enumerateObjectsUsingBlock:
 lib_flatMap:
 lib_filter:
+lib_contentType
 _recordBusinessMetrics
 _writeReceipt
 cleanupDownloadPathForID:
@@ -5625,7 +5630,6 @@ protocolClasses
 setProtocolClasses:
 asset_ephemeralSessionConfigurationUsingProperties:
 _asset_initializeConnectionPools
-conversionValueTimestamp
 registered
 removeInstallAttributionParamsForApp:withError:
 weakObjectsHashTable
@@ -6097,6 +6101,7 @@ _refreshIAPsForActiveAccountIfAllowedWithToken:completionHandler:
 _forceRefreshIAPsForActiveAccountWithToken:completionHandler:
 IAPInfoForcedRefreshMinutes
 IAPInfoUpdatePollingFrequencySeconds
+newContextWithRevision:forAccount:token:
 _sendUpdateRequestWithAccount:token:completionHandler:
 _getItemsRequestContextForAccount:withToken:error:
 _updateDatabaseWithRequestResponse:error:
@@ -6593,7 +6598,11 @@ setShouldCopy:
 _newURLByPopulatingTemplate:withValues:
 setSoftwareVersionExternalIdentifier:
 accountName
+setAppleID:
 setDSPersonID:
+setDownloaderID:
+setPurchaserID:
+setAltDSID:
 setDeviceBasedVPP:
 setSourceApp:
 initWithName:client:data:
@@ -6721,26 +6730,29 @@ revokedApps
 expiredApps
 isConfiguratorInstall
 attemptVPPMigrationForApp:
-_refreshReceiptForApp:
+refreshStoreOriginated
+_refreshReceiptForApp:receipt:
 _postNotificationForRevoked
 _postNotificationForExpiring
 _receiptExperationDateForReceipt:
 setDestinations:
 purchaseOwner
 _checkExpirationNotificationDate:receipt:
+setRefreshStoreOriginated:
 _expiring
 _soonestExpiring
 _soonestExpiringDate
 _qaVerficationExpiredApps
 _qaVerficationRevokedApps
+_refreshStoreOriginated
 indexOfObjectPassingTest:
 lib_URLByAppendingPathComponents:
 removeCharactersInString:
 lib_sanitizedFilePath
+_doubleForKey:applicationId:ifMissing:
 _setNullableValue:forKey:
 _boolForKey:applicationId:ifMissing:
 _setBool:forKey:applicationId:
-_doubleForKey:applicationId:ifMissing:
 _setDouble:forKey:applicationId:
 _copyNumberForKey:applicationId:
 accountPropertyForKey:
@@ -6818,8 +6830,6 @@ sourceAppBundleId
 overrideCampaignLimit
 addInstallAttributionParamsWithConfig:completionHandler:
 addProvisioningProfile:
-setAltDSID:
-setAppleID:
 setExternalIDString:
 setArtworkURLString:
 setMessagesArtworkURLString:
@@ -6834,7 +6844,6 @@ hasType
 hasAltDSID
 hasAppleID
 hasBundleID
-setDownloaderID:
 setHasDownloaderID:
 hasDownloaderID
 hasExternalIDString
@@ -6842,7 +6851,6 @@ setHasExternalVersionID:
 hasExternalVersionID
 setHasItemID:
 hasItemID
-setPurchaserID:
 setHasPurchaserID:
 hasPurchaserID
 hasRedownloadParams
@@ -7069,9 +7077,12 @@ gizmoPairingID
 buildCoordinatorWithError:
 setGizmoPairingID:
 setIntent:
+targetBundleURL
+setTargetBundleURL:
 _gizmoPairingID
 _intent
 _priority
+_targetBundleURL
 coordinatorBuilderWithError:
 deviceIsMac
 shouldUseJSONContentTypeForPurchaseInfo:
@@ -7092,7 +7103,6 @@ _logDeferred:
 initWithApps:context:
 initWithUUIDBytes:
 _lib_getBytes:count:
-getUUIDBytes:
 refreshKeybagWithReplyHandler:
 repairAppWithOptions:replyHandler:
 initWithCatalog:andListener:
@@ -7677,6 +7687,7 @@ _iCloudUsername
 _iTunesDSID
 _iTunesUsername
 _lastName
+initWithItemName:
 _titleForItemName:andTotalCount:
 dialogWithItemName:
 _dataConsumerError:promiseConsumer:
@@ -7965,6 +7976,7 @@ sbsyncRefreshIntervalSeconds
 switchArcadeUserFallbackURL
 switchArcadeUserURL
 enableMacOSCompatibleIOSApps
+enableMacOSCompatibleIOSAppsForCarry
 enableMacOSCompatibleIOSAppsForDTK
 _identifier
 _task
@@ -8154,6 +8166,7 @@ T@"NSArray",&,V_statusItems
 B32@?0@"RequestThrottleRecord"8Q16^B24
 v32@?0@"RequestThrottleRecord"8Q16^B24
 Apple-Download-Type
+v40@?0r^v8{_NSRange=QQ}16^B32
 Invalid status code (%lu)
 attributes
 appContentRatingsBySystem
@@ -8187,8 +8200,8 @@ T@"VariantDescriptor",R,V_variantDescriptor
 com.apple.appstored.signal.Debug
 osVersionStringKey
 com.apple.appstored.Daemon
-Sep 23 2020
-20:50:22
+Oct  7 2020
+02:51:40
 com.apple.appstored.daemon.launched
 v16@?0@"NSNotification"8
 appstored
@@ -8278,6 +8291,8 @@ inAppsByAppBundleId
 v32@?0@"NSString"8Q16^B24
 X-Apple-TA-Device
 X-Apple-TA-OS-Version
+appleSiliconMac
+TB,R,GisAppleSiliconMac
 deviceGUID
 T@"NSString",R
 deviceName
@@ -8606,6 +8621,9 @@ store_item_data
 store_item_id
 store_software_version_id
 update_state
+requires_rosetta
+runs_on_apple_silicon
+runs_on_intel
 lib_connectInterval
 T@"NSDateInterval",R,C
 lib_domainLookupInterval
@@ -8860,6 +8878,7 @@ v24@?0@"LSBundleProxy"8^B16
 v24@?0Q8@"NSError"16
 System
 Requested by %@
+LastModifiedOffset
 In app blacklist
 Has blacklisted plugins: [%@]
 Is within grace period with %ld plugin(s)
@@ -9783,10 +9802,17 @@ attribution-signature
 source-app-id
 conversion-value
 redownload
+com.apple.appstored.skadnetworkpingbackcreated
+com.apple.appstored.skadnetworkpingbackcreationfailed
+com.apple.appstored.skadnetworkpingbacksucceeded
+adNetworkName
+delayTime
+retryCount
 v16@?0@"InstallAttributionDatabaseSession"8
 Campaign id larger than maximum
 Campaign id smaller than 1
 B16@?0@"InstallAttributionDatabaseTransaction"8
+@"NSDictionary"8@?0
 com.apple.appstored.InstallAttributionManager.PingbackRetry
 POST
 User-Agent
@@ -10022,6 +10048,7 @@ clientType
 discoveredUpdate
 isDiscretionary
 expectedSoftwarePlatform
+expectsIOSAppOnMac
 generatedVendorID
 isMachineBased
 postMetrics
@@ -10128,7 +10155,7 @@ DELETE FROM app_updates WHERE is_profile_validated = 1;
 ALTER TABLE app_updates ADD COLUMN current_version_release_date DATETIME;
 ALTER TABLE app_updates ADD COLUMN device_families INTEGER;
 ALTER TABLE app_updates ADD COLUMN software_platform INTEGER NOT NULL DEFAULT 0;
-CREATE TABLE IF NOT EXISTS purchase_history_apps (pid INTEGER PRIMARY KEY, bundle_id TEXT, content_rating_flags INTEGER, date_purchased DATETIME, developer_name TEXT, family_shared INTEGER, first_party INTEGER, is_ios_binary_macos_available INTEGER, is_ios_binary_macos_compatible INTEGER, has_messages_extension INTEGER, hidden INTEGER, hidden_from_springboard INTEGER, icon_url_template TEXT, is_32_bit_only INTEGER, is_preorder INTEGER, long_title TEXT, media_kind INTEGER, oval_icon_url_template TEXT, preflight_package_url URL, product_url URL, purchaser_dsid INTEGER, redownload_params TEXT, required_capabilities JSON, requires_rosetta INTEGER, runs_on_apple_silicon INTEGER, runs_on_intel INTEGER, store_item_id INTEGER, supports_ipad INTEGER, supports_iphone INTEGER, supports_mac INTEGER, purchase_token INTEGER, locker_item_id INTEGER, genre_id INTEGER, genre_name TEXT, watch_app_delivered_in_ios_app INTEGER, watch_app_runs_independently INTEGER, watch_app_watch_only INTEGER, supports_layered_image INTEGER, has_p3 INTEGER, title TEXT, circular_icon_url TEXT, UNIQUE(purchaser_dsid, store_item_id) ON CONFLICT REPLACE);
+CREATE TABLE IF NOT EXISTS purchase_history_apps (pid INTEGER PRIMARY KEY, bundle_id TEXT, content_rating_flags INTEGER, date_purchased DATETIME, developer_name TEXT, family_shared INTEGER, first_party INTEGER, is_ios_binary_macos_available INTEGER, is_ios_binary_macos_compatible INTEGER, has_messages_extension INTEGER, hidden INTEGER, hidden_from_springboard INTEGER, icon_url_template TEXT, is_32_bit_only INTEGER, is_preorder INTEGER, long_title TEXT, mac_app_required_capabilities JSON, media_kind INTEGER, oval_icon_url_template TEXT, preflight_package_url URL, product_url URL, purchaser_dsid INTEGER, redownload_params TEXT, required_capabilities JSON, requires_rosetta INTEGER, runs_on_apple_silicon INTEGER, runs_on_intel INTEGER, store_item_id INTEGER, supports_ipad INTEGER, supports_iphone INTEGER, supports_mac INTEGER, purchase_token INTEGER, locker_item_id INTEGER, genre_id INTEGER, genre_name TEXT, watch_app_delivered_in_ios_app INTEGER, watch_app_runs_independently INTEGER, watch_app_watch_only INTEGER, supports_layered_image INTEGER, has_p3 INTEGER, title TEXT, circular_icon_url TEXT, UNIQUE(purchaser_dsid, store_item_id) ON CONFLICT REPLACE);
 CREATE TABLE IF NOT EXISTS purchase_history_db_properties (key TEXT PRIMARY KEY, value TEXT)
 purchase_history
 DROP TABLE purchase_history_apps;
@@ -11100,6 +11127,9 @@ isHiddenFromSpringboard
 isIOSBinaryMacOSCompatible
 ovalArtwork
 releaseDate
+requiresRosetta
+runsOnIntel
+runsOnAppleSilicon
 updateFileSizeInfo
 deltaSizeByExternalVersionId
 versionId
@@ -11146,6 +11176,7 @@ T@"<SZExtractorDelegate>",W,N,V_extractorDelegate
 1.2.11
 lib_digestMD5
 lib_shortDigestMD5
+lib_contentType
 lib_statusCode
 notZero
 TB,R,GisNotZero
@@ -11229,7 +11260,7 @@ Invalid action (action: %ld)
 No active connection to %@
 T@"OctaneBag",R,N,V_bag
 CREATE TABLE IF NOT EXISTS app_done (pid INTEGER, account_id INTEGER, item_id INTEGER, machine_based INTEGER NOT NULL DEFAULT 0, request_url URL, transaction_id TEXT, PRIMARY KEY(pid));
-CREATE TABLE IF NOT EXISTS app_install (pid INTEGER, account_id INTEGER, apple_id TEXT, arcade INTEGER NOT NULL DEFAULT 0, alt_dsid TEXT, approved INTEGER NOT NULL DEFAULT 0, artwork_url URL, auto_install_override INTEGER NOT NULL DEFAULT 0, automatic_type INTEGER NOT NULL DEFAULT 0, bundle_id TEXT, bundle_name TEXT, bundle_url URL, bundle_version TEXT, bootstrapped INTEGER NOT NULL DEFAULT 2, cancel_download_url URL, cancel_if_duplicate INTEGER NOT NULL DEFAULT 0, companion_bundle_id TEXT, client_id TEXT, client_type INTEGER NOT NULL DEFAULT 0, coordinator_id UUID, coordinator_intent INTEGER NOT NULL DEFAULT 1, device_based_vpp INTEGER, downloader_id INTEGER, download_path TEXT, external_id UUID, external_order INTEGER, evid INTEGER, failure_error BLOB, gizmo_pairing_id UUID, has_messages_extension INTEGER NOT NULL DEFAULT 0, item_id INTEGER, launch_prohibited INTEGER NOT NULL DEFAULT 0, log_code TEXT, messages_artwork_url URL, optimal_download_start INTEGER, metrics_install_type INTEGER NOT NULL DEFAULT 0, order_index INTEGER, phase INTEGER NOT NULL DEFAULT 10, policy JSON, post_metrics INTEGER NOT NULL DEFAULT 0, placeholder_entitlements BLOB, priority INTEGER NOT NULL DEFAULT 0, receipt BLOB, recovery_count INTEGER NOT NULL DEFAULT 0, redownload INTEGER NOT NULL DEFAULT 0, remote_install INTEGER NOT NULL DEFAULT 0, restore_state INTEGER NOT NULL DEFAULT 0, restore_retry_count INTEGER NOT NULL DEFAULT 0, restore_type INTEGER NOT NULL DEFAULT 0, software_platform INTEGER NOT NULL DEFAULT 0, source_type INTEGER NOT NULL DEFAULT 0, storefront TEXT, store_cohort TEXT, store_metadata BLOB, supports_32bit_only INTEGER NOT NULL DEFAULT 0, supress_dialogs INTEGER NOT NULL DEFAULT 0, timestamp DATETIME DEFAULT (timestamp()), transaction_id TEXT, update_type INTEGER NOT NULL DEFAULT 0, vid UUID, vendor_name TEXT, watch_type INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(pid));
+CREATE TABLE IF NOT EXISTS app_install (pid INTEGER, account_id INTEGER, apple_id TEXT, arcade INTEGER NOT NULL DEFAULT 0, alt_dsid TEXT, approved INTEGER NOT NULL DEFAULT 0, artwork_url URL, auto_install_override INTEGER NOT NULL DEFAULT 0, automatic_type INTEGER NOT NULL DEFAULT 0, bundle_id TEXT, bundle_name TEXT, bundle_url URL, bundle_version TEXT, bootstrapped INTEGER NOT NULL DEFAULT 2, cancel_download_url URL, cancel_if_duplicate INTEGER NOT NULL DEFAULT 0, companion_bundle_id TEXT, client_id TEXT, client_type INTEGER NOT NULL DEFAULT 0, coordinator_id UUID, coordinator_intent INTEGER NOT NULL DEFAULT 1, device_based_vpp INTEGER, downloader_id INTEGER, download_path TEXT, external_id UUID, external_order INTEGER, evid INTEGER, failure_error BLOB, gizmo_pairing_id UUID, has_messages_extension INTEGER NOT NULL DEFAULT 0, item_id INTEGER, launch_prohibited INTEGER NOT NULL DEFAULT 0, log_code TEXT, messages_artwork_url URL, optimal_download_start INTEGER, metrics_install_type INTEGER NOT NULL DEFAULT 0, order_index INTEGER, phase INTEGER NOT NULL DEFAULT 10, policy JSON, post_metrics INTEGER NOT NULL DEFAULT 0, placeholder_entitlements BLOB, priority INTEGER NOT NULL DEFAULT 0, receipt BLOB, recovery_count INTEGER NOT NULL DEFAULT 0, redownload INTEGER NOT NULL DEFAULT 0, remote_install INTEGER NOT NULL DEFAULT 0, requires_rosetta INTEGER NOT NULL DEFAULT 0, restore_state INTEGER NOT NULL DEFAULT 0, restore_retry_count INTEGER NOT NULL DEFAULT 0, restore_type INTEGER NOT NULL DEFAULT 0, runs_on_apple_silicon INTEGER NOT NULL DEFAULT 1, runs_on_intel INTEGER NOT NULL DEFAULT 1,software_platform INTEGER NOT NULL DEFAULT 0, source_type INTEGER NOT NULL DEFAULT 0, storefront TEXT, store_cohort TEXT, store_metadata BLOB, supports_32bit_only INTEGER NOT NULL DEFAULT 0, supress_dialogs INTEGER NOT NULL DEFAULT 0, timestamp DATETIME DEFAULT (timestamp()), transaction_id TEXT, update_type INTEGER NOT NULL DEFAULT 0, vid UUID, vendor_name TEXT, watch_type INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(pid));
 CREATE TABLE IF NOT EXISTS app_install_remote (pid INTEGER, destination_id TEXT, external_id UUID, metadata BLOB, PRIMARY KEY(pid));
 CREATE TABLE IF NOT EXISTS app_package (pid INTEGER, archive_type INTEGER NOT NULL DEFAULT 0, blocked INTEGER NOT NULL DEFAULT 0, bytes_offset INTEGER, bytes_remaining INTEGER, bytes_total INTEGER, clear_hash_array JSON, compression INTEGER NOT NULL DEFAULT 0, data_promise_id UUID, disk_usage INTEGER, dp_info BLOB, hash_array JSON, hash_size INTEGER, hash_type INTEGER, initial_odr_size INTEGER, locate_asset_cache INTEGER, odr_manifest_url URL, package_type INTEGER, package_url URL, parent_id UUID, provisioning_profiles JSON, request_count INTEGER DEFAULT 0, sinf BLOB, streaming_zip INTEGER, timestamp DATETIME DEFAULT (timestamp()), variant_id TEXT, PRIMARY KEY(pid));
 DROP TABLE app_done
@@ -11876,7 +11907,6 @@ com.apple.itunes.store.currently-opted-in-for-mac-os-eligibility
 sandboxReceipt
 lib_receiptURL
 receipt-expiration-warning-threshold-seconds
-receipt-max-lookup-count
 REVOKED_MESSAGE
 REVOKED_MESSAGE_PAIR
 REVOKED_MESSAGE_PAIR_ANON
@@ -11887,6 +11917,8 @@ EXPIRING_MESSAGE_PAIR
 EXPIRING_MESSAGE
 EXPIRING_MESSAGE_ANON
 EXPIRING_TITLE
+refreshStoreOriginated
+TB,N,V_refreshStoreOriginated
 com.apple.odr.appreview
 App Review
 B32@?0@8Q16^B24
@@ -12356,6 +12388,8 @@ intent
 TQ,V_intent
 priority
 Tq,V_priority
+targetBundleURL
+T@"NSURL",&,V_targetBundleURL
 v24@?0@"AMSEngagementResult"8@"NSError"16
 Unable to purchase discretionary item with no account
 Unable to authenticate for purchase with dsID but no username
@@ -12955,7 +12989,6 @@ T@"NSString",&,N,V_pingbackUrl
 TB,N,V_redownload
 registered
 TB,N,V_registered
-retryCount
 Tq,N,V_retryCount
 app_usage_session_reporter_keys
 session_reporter_key
@@ -13097,6 +13130,7 @@ adopt-product
 adoption-eligibility
 unadopt-product
 enableMacOSCompatibleIOSApps
+enableMacOSCompatibleIOSAppsForCarry
 enableMacOSCompatibleIOSAppsForDTK
 app-usage-flush-interval-seconds
 arcade-iap-family-id
@@ -13185,6 +13219,7 @@ receipt-expiration-warning-threshold
 metrics/scorecardInstallSamplingPercentage
 metrics/scorecardInstallSamplingPercentageSeed
 p2-content-restore/gzip
+metrics/metricsBase/storeFrontHeader
 up-to-date-claim
 lowDataPromptThreshold
 push-notification-types/add-push-notification-type-url
@@ -13363,7 +13398,7 @@ InteractiveRequestPresenter
 SilentRequestPresenter
 StreamingZipStreamConsumer
 StreamDelegate
-ArtworkFormatter
+ArtworkURLFormatter
 DispatchQueue
 ClipAdditionalDataResponseDecoder
 AMSResponseDecoding
@@ -14448,7 +14483,7 @@ q36@0:8@"NSString"16q24B32
 @20@0:8B16
 @36@0:8@16q24B32
 @44@0:8@16q24B32@36
-@64@0:8@16q24@32B40@44B52@56
+@72@0:8@16q24@32B40@44B52@56@64
 @40@0:8q16@24^@32
 B56@0:8q16@24@32@40^@48
 v40@0:8q16@24@32
@@ -14575,6 +14610,7 @@ v20@0:8i16
 i16@0:8
 {?="error"b1}
 v32@0:8@"RequestProxy"16@?<v@?@"NSError">24
+B48@0:8@16@24@32^@40
 v20@0:8C16
 @40@0:8q16@24@32
 @"AIMInstallEvent"
@@ -14866,8 +14902,8 @@ v40@0:8@"NSArray"16@"XPCRequestToken"24@?<v@?B@"NSArray"@"NSError">32
 {?="availableBytes"b1"totalBytes"b1}
 @"<Device>"
 v32@0:8q16@24
-{?=qq}32@0:8@16^@24
-{?=qq}36@0:8@16B24^@28
+{?=q[16C]q}32@0:8@16^@24
+{?=q[16C]q}36@0:8@16B24^@28
 v40@0:8q16q24q32
 @"AppInstallsDatabaseChangeset"
 v24@0:8^{__CFBundle=}16
@@ -14876,7 +14912,6 @@ v24@0:8^{__CFBundle=}16
 v40@0:8Q16Q24@?32
 @"NSEnumerator"
 @"NSPredicate"
-B48@0:8@16@24@32^@40
 v32@0:8@"StoreKitStorefront"16@"NSDictionary"24
 v32@0:8@"InAppDownloadManager"16@"InAppDownloadStatus"24
 v36@0:8@16I24@?28
@@ -15025,6 +15060,7 @@ B24@0:8^B16
 v40@0:8@16d24Q32
 @48@0:8@16@24@32q40
 @28@0:8@16I24
+d24@0:8^{__CFString=}16
 @24@0:8^{__CFString=}16
 v32@0:8@16^{__CFString=}24
 B36@0:8^{__CFString=}16^{__CFString=}24B32
@@ -15523,15 +15559,17 @@ Skipping bundleID: %{public}@ last modified date: %{public}@
 [%{public}@] [%{public}@] Unsupported source stream: %ld
 [%{public}@] [%{public}@] Updating last usage to startTime: %{public}@ endTime: %{public}@
 Error finding modified date for bundleID: %{public}@ error: %{public}@
+Updating last modified date for %{public}@ by offset: %f
 [%{public}@] Error finding modified date for bundleID: %{public}@ error: %{public}@
 [%{public}@] [%{public}@] Adding with reason: %{public}@
 [%{public}@] [%{public}@] Skipping with reason: %{public}@
 [%{public}@] [%{public}@] Skipping with reason: Has usage in window
-Error obtaining termination assertion before offloading bundleID: %{public}@
-Timeout waiting for assertion for bundleID: %{public}@
-Purged app: %{public}@ purged: %lld
-Unable to purged app: %{public}@ result: %d error: %{public}@
+[%{public}@] [%{public}@] Error obtaining termination assertion before offloading
+[%{public}@] [%{public}@] Timeout waiting for assertion
+[%{public}@] [%{public}@] Purged app: %{public}@ purged: %lld
+[%{public}@] [%{public}@] Unable to purged app: %{public}@ result: %d error: %{public}@
 Could not purge bundleID: %{public}@ becasue we could not get a termination assertion
+[%{public}@] Completed purging of %lld bytes where the desired purged amount is %lld
 %{public}@: No downloads to start for ID %{public}@
 %{public}@: Download already started for ID %{public}@
 %{public}@: Download already finished for ID %{public}@
@@ -15707,7 +15745,7 @@ Invalid hash '%@' expected '%@'
 Receipt data string is not valid base64 %{public}@
 Receipt format invalid in response %{public}@
 No receipt in response
-[%{public}@: Found %ld products in receipt with ID %{public}@
+[%{public}@]: Found %ld products in receipt with ID %{public}@
 No URL to write receipt
 Error removing purchase intents for %{public}@: %{public}@
 Error updating purchase intent timestamps for %{public}@: %{public}@
@@ -15766,7 +15804,6 @@ Encountered error opening store. Error: %{public}@
 [%{public}@] [%{public}@] Handling authentication request
 [%{public}@] [%{public}@] Sending authentication request for receipt renewal
 [%{public}@] [%{public}@] No account for receipt renewal: %{public}@
-[%{public}@] [%{public}@] Fetching receipt
 [%{public}@] [%{public}@] Receipt format invalid
 [%{public}@] [%{public}@] Fetching vpp app receipt
 [%{public}@] [%{public}@] Fetching app receipt
@@ -15833,10 +15870,10 @@ Owns check completed sucessfully
 Error doing sbysnc. error: %{public}@
 Tap-to-radar failed: %{public}@ error: %{public}@
 Completed request %{public}@
-Writing receipt failed - invalid or missing data (%lu bytes)
-Writing receipt failed - could not find valid application for URL %{public}@
-Writing receipt (%ld bytes) to %{public}@
-Error writing receipt (%ld bytes) to %{public}@: %{public}@
+[%{public}@] Writing receipt failed - invalid or missing data (%lu bytes)
+[%{public}@] Writing receipt failed - could not find valid application for URL %{public}@
+[%{public}@] Writing receipt (%ld bytes) to %{public}@
+[%{public}@] Error writing receipt (%ld bytes) to %{public}@: %{public}@
 NotifyTestFlightClient: extension not available. Quitting.
 Error looking up app with id %{public}@: %{public}@
 Application %{public}@ wasn't installed, ignoring the install notification from LaunchServices
@@ -15996,6 +16033,7 @@ Campaign id smaller than 1
 Error adding params to DB: %{public}@
 Successfully added install attribution params to the database for app adamID: %{public}@ from source app adamID: %{public}@
 Successfully inserted pingback into database for app adamID: %{public}@
+Could not send analytics event for pingback creation since adNetworkId is missing. URL is %{public}@
 Error adding pingback to DB: %{public}@
 Error setting install attribution pingback registered for app: %{public}@, error: %{public}@, result: %i
 Registered pingback for app: %{public}@
@@ -16016,6 +16054,7 @@ Failed to initialize url for pingback: %{public}@
 Install attribution pingback serialization for app: %{public}@ failed with error: %{public}@
 Install attribution pingback for app: %{public}@ failed with error: %{public}@
 Pingback sent successfully
+Could not send analytics event for pingback completion since adNetworkId is missing. URL is %{public}@
 Could not set state of the install attribution pingback retry task activity to XPC_ACTIVITY_STATE_DONE
 Setting criteria for Install Attribution clean params task
 Could not set state of the Install Attribution clean params task activity to XPC_ACTIVITY_STATE_DONE
@@ -16443,9 +16482,9 @@ Requesting purge of asset pack [%{public}@]
 [DT] Importing %lu byte manifest for %{public}@
 Created the launch services client.
 (ODRLaunchServicesClient) [%p] bytes used for '%@' = %@
-[%@]: Purge request with volume: %@ urgency: %ld desired amount: %@ perfrom store check: %d client: %@
-[%@]: Purge app request resulted in error: %@
-[%@]: Purge %ld app%@ for volume: %@ urgency: %ld purged size: %ld client: %@
+[%{public}@] Purge request with volume: %{public}@ urgency: %ld desired amount: %{public}@ perfrom store check: %d additionalAppCount: %ld client: %{public}@
+[%{public}@] Purge app request resulted in error: %{public}@
+[%{public}@] Purged %ld app(s) for volume: %{public}@ urgency: %ld desired amount: %{public}@ purged size: %ld client: %{public}@
 [%{public}@] Performing preamble checks
 [%{public}@] Application only supports 32-bit architecture
 [%{public}@] Automatic downloads have been disabled
@@ -17343,7 +17382,7 @@ Install
 Install/Preamble
 [%{public}@] Queuing preamble task
 [%{public}@] Waiting for installation to complete
-[%{public}@] Preflight canceled with coordinator: %{public}@
+[%{public}@] Preflight canceled with coordinator: %{public}@ error: %{public}@
 [%{public}@] Preflight succeeded
 [%{public}@] Preflight failed with error: %{public}@
 [%{public}@}] Preflight finished and will proceed to installation
@@ -17399,8 +17438,8 @@ Failed to add parameters to messages request URL
 [%{public}@] Starting receipt refresh
 [%{public}@] Including the following for QA verification. revoked: %{public}@ expired: %{public}@
 [%{public}@] [%{public}@] Receipt refresh migrating VPP app
-[%{public}@] [%{public}@] Skipping receipt refresh. iOSCompatible: %d
-[%{public}@] Receipt refresh complete
+[%{public}@] Attempted migration for %ld app(s)
+[%{public}@] Receipt refresh complete for %ld app(s)
 [%{public}@] [%{public}@] Using QA receipt expiration date: %{public}@ 
 [%{public}@] [%{public}@] Falling back to default threshold following error loading bag key: %{public}@
 [%{public}@] [%{public}@] Receipt expiration in %ld days today: %{public}@ expiration: %{public}@
@@ -17465,7 +17504,7 @@ Failed to create destination path at %{public}@
 Truncating promise after failure to reset promise %{public}@ with error: %{public}@
 [%{public}@] Invalid coordinator intent, treating as initiating instead
 [%{public}@] Establishing coordinator for intent `%{public}@` with importance `%{public}@`
-Error setting the gizmo pairing ID: %{public}@
+[%{public}@] Error setting the gizmo pairing ID: %{public}@
 [%{public}@] Client %{public}@ failed authentication request with error %{public}@
 [%{public}@] System Dialogs are not supports on macOS. Using remote dialog requests
 [%{public}@] Sending dialog request to client %{public}@
@@ -17907,13 +17946,13 @@ No items to restore
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18B5061c</string>
+<string>12A8179f</string>
 <key>DTPlatformName</key>
 <string>iphonesimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B5061c</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>

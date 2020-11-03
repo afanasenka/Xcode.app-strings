@@ -214,6 +214,8 @@ unlink
 follow
 error
 Unknown value for kBOMCopierOptionSymlinkTreatmentKey
+enforceDestinationEncapsulation
+kBOMCopierOptionEnforceDestinationEncapsulationKey is not a CFBooleanRef
 zipFileEncryptionKey
 kBOMCopierOptionEncryptionKey is not a CFStringRef
 Cannot convert kBOMCopierOptionEncryptionKey from options dictionary into UTF8 encoded C string
@@ -273,12 +275,15 @@ Couldn't read pkzip signature.
 /.BC.D_XXXXXX
 com.apple.FinderInfo
 dstPath is NULL
+Could not get current working directory: %s
+Could not allocate unresolved prefix
+Could not allocate path to resolve
+%s/%s
 Filename('%s') too long [%lu >= %lu]!
 Could not create a BOMPKZip object
 %s%s
 Not a central directory signature
 Couldn't read pkzip central header
-%s/%s
 Could not chmod %s: %s
 Could not lstat %s: %s
 %s is too large: %ld

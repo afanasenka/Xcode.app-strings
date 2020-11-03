@@ -712,6 +712,9 @@ integerValue
 _isTransparentFocusRegion
 frame
 _accessibilityUIViewCanPerformEscapeAction
+initForPortalView:
+safeSetForKey:
+_setAccessibilityLabelBlock:
 defaultConnection
 _registerVOTConnectionWithPort:
 setLabelElementPanelVisible:initialValue:
@@ -951,7 +954,6 @@ setArtworkView:
 isMediaPlaying
 setBacklightFactorPending:
 screenIsDim
-safeSetForKey:
 bundleIdentifier
 v32@?0@8Q16^B24
 SBApplicationController
@@ -1248,7 +1250,6 @@ SB_UIStatusBarAccessibility
 SBHomeScreenOverlayControllerAccessibility
 SBHomeScreenOverlayViewControllerAccessibility
 SBRecordingIndicatorViewControllerAccessibility
-SBRecordingIndicatorViewAccessibility
 SBDeviceApplicationSceneViewControllerAccessibility
 SBAppClipOverlayViewControllerAccessibility
 SBApplicationAccessibility
@@ -1910,6 +1911,12 @@ app.pip.open.floating.switcher
 app.pip.swipe.right.floating.switcher
 SBRecordingIndicatorViewController
 indicatorView
+initForPortalView:
+@"NSString"8@?0
+activeSensorActivityAttributions
+camera.mic.in.use
+camera.in.use
+mic.in.use
 VoiceOverTouch is back... (%d)
 com.apple.SpringBoard.VOT
 Could not check in as: %s
@@ -2116,11 +2123,6 @@ screenIsOn
 setBacklightFactorPending:
 screenIsDim
 screen.dimmed
-SBRecordingIndicatorView
-activeSensorActivityAttributions
-camera.mic.in.use
-camera.in.use
-mic.in.use
 AXSpringBoardGlue
 __SBDeviceApplicationSceneViewControllerAccessibility_super
 SafeCategory
@@ -2372,8 +2374,6 @@ ___NowPlayingArtViewAccessibility_super
 _NowPlayingArtViewAccessibility
 __SBBacklightControllerAccessibility_super
 SBBacklightControllerAccessibility
-__SBRecordingIndicatorViewAccessibility_super
-SBRecordingIndicatorViewAccessibility
 B16@0:8
 v16@0:8
 v24@0:8d16

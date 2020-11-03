@@ -21,6 +21,7 @@ NNSFileAttributeKey
 URLResourceKey
 NNSURLResourceKey
 _CPTriggerEngagementEvent
+_CPBundleIdentifier
 _CPCBAEngagementType
 _CPClient
 Foundation

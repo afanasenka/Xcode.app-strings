@@ -118,6 +118,8 @@ __PUICTableViewAccessibility_super
 PUICTableViewAccessibility
 __PUICQuickboardListTrayButtonAccessibility_super
 PUICQuickboardListTrayButtonAccessibility
+__PUICNavigationBarAccessibility_super
+PUICNavigationBarAccessibility
 __PUICStatusBarCubicContainerAccessibility_super
 PUICStatusBarCubicContainerAccessibility
 __PUICQuickboardListViewControllerAccessibility_super
@@ -621,6 +623,8 @@ quickboard.action.AddNumber
 quickboard.action.RemoteTextInput
 quickboard.action.Braille
 quickboard.action.ContactsList
+PUICNavigationBar
+B24@?0@"UIView"8^B16
 PUICStatusBarCubicContainer
 _incomingContainer
 dictationButton
@@ -736,6 +740,7 @@ _appContextView
 _currentActionController
 AX PepperUICore
 v16@?0@"AXValidationManager"8
+PUICNavigationBarAccessibility
 PUICMenuActionSwitchCellAccessibility
 PUICMenuActionCheckmarkCellAccessibility
 PUICMenuActionCellAccessibility
@@ -1232,6 +1237,7 @@ _accessibilityTableViewDelegateHasLeadingSwipeActions
 _accessibilityRowActionsForIndexPath:swipeDirection:
 action
 _accessibilityLabelForQuickBoardAction:
+_accessibility_triggerBarButtonItem:
 safeValueForKeyPath:
 _accessibilityLabelDictationButton:
 _accessibilityUpdateTrayViewElements

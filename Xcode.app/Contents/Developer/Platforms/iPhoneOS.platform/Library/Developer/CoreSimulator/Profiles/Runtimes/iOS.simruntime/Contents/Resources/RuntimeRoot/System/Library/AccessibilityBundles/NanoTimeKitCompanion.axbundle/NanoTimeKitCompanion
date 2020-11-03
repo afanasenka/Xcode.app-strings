@@ -915,6 +915,7 @@ setEditMode:
 _endTransitionToValue:forEditMode:
 _transitionFraction:fromValue:toValue:forEditMode:slot:
 AX NanoTimeKit
+NTKRichComplicationCircularBaseTextViewAccessibility
 NTKRichComplicationRectangularFullViewAccessibility
 NTKSiderealFaceViewAccessibility
 NTKDateRichComplicationCornerViewAccessibility

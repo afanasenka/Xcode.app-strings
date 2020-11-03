@@ -3,7 +3,7 @@ ss9m+
 D-u<
 ?@K/
 Starting up the daemon.
-Failed to set sandbox tmp directory.
+failed to initialize temporary directory: %{darwin.errno}d
 Daemon Status:
 Initiating main queue.
 Updating Personalized Ads value.
@@ -49,6 +49,11 @@ File enumeration error. %@
 Invalid characters in URL.
 Failed to create Application Support subdirectory: %@ %@ %@
 Failed to create directory, %@
+There is no EFS folder.
+Sucessfully removed EFS folder.
+Failed to remove EFS folder: %@
+Failed to move EFS folder: %@
+Failed to remove EFS folder in place: %@
 Reloading ID accounts.
 Error reading from settings module.
 [%@]: Successfully read key: %@
@@ -114,8 +119,9 @@ Error %ld encrypting string: %@.
 Pending request with token %@ not found.
 Placement types list is empty, nothing to request.
 Rate limit was expired. Setting it to 1.0.
+No rate limits set, sending all requests. Token: %@
 Rate limit is 1.0, sending all requests. Token: %@
-Rate limiting %lu request(s) using %f rate. Token: %@
+Rate limiting %lu request(s) using %f rate. Ad position: %@. Token: %@
 Returning rate limited adOpID: %@. Token: %@
 Rate limited: %ld request(s). Going to send: %ld request(s). Token: %@
 Ad %@ returned unfilled with code %ld (%@) and reason %@
@@ -128,6 +134,9 @@ Candidate size: (%.0f, %.0f) Aspect: %.2f
 Scaling candidate to (%.0f, %.0f) Aspect: %.2f, Scale factor: %.2f, to fit in container (%.0f, %.0f)
 Scaled candidate fill ratio: %.2f
 We can't decode a nil string.
+Missing supplemental context.
+Can't find 'header.placement' in supplemental context.
+Unknown 'header.placement' value: %@
 No key found for property %ld
 Cannot find value for property %@
 Delaying send of metric by %.2f seconds for metric:
@@ -135,20 +144,19 @@ Received metric %ld with ID %@ for adOpID %@ from PCCD
 A placeholder APContentData is reporting metric %ld and will not be processed. content: %@ context: %@.
 Ignoring metric %ld for Content %@ received from %@
 Metric %ld for content %@ does not send a metric request.
-Recieved ClientDiscarded metric %@ with unknown reason code %ld. Ignoring.
-Metric %ld with content %@ has no tap action.
+Content %@ is reporting clientDiscarded with no discard code. No ASE sent.
+Content %@ is being discarded with reason code %ld.
+Content %@ is allowed to send %@ for discard code %ld.
+RepresentationIdentifier missing for content %@ in metric %@
+Representation %@ for content %@ is not a valid UUID.
+Representation %@ in content %@ has no tap action.
 [%@] Sending impression request due to interaction event.
 %@ already has a confirmed click or a pending confirmed click request. Not posting another one.
+Metric %ld with content %@ has no tap action.
 Missing required parameters to handle on screen for content identifier %@!
-OnScreen metric with content identifier %@ does not have a valid collapsed value %@.
-OnScreen metric with content identifier %@ does not have a valid placeholder value %@.
-OnScreen metric with content identifier %@ for placeholder is not reporting AdNotAvailable (ASE 3001)! Instead is ASE: %d Unfilled Reason: %ld
-OnScreen metric with content identifier %@ for non-placeholder that was not an unfilled network error is reporting AdNotAvailable (ASE 3001)! Instead is ASE %d Unfilled Reason: %ld
 Delaying ASE AdNotAvailable for preroll video placeholder %@, waiting for preroll timeout before sending.
-OnScreen metric with content identifier %@ is reporting as expanded with unfilled reason code %ld. Not sending AdSpaceStatusEvent.
 OnScreen metric with content identifier %@ is reporting as expanded but a ready metric has not been received.
 OnScreen metric with content identifier %@ is reporting on screen and ready but is still collapsed!
-OnScreen metric with content identifier %@ occured without reporting an ASE. collapsed: %@ placeholder: %@ unfilled reason: %ld ready: %@ client rendered: %@ metric: %@
 InterfaceReplaced metric sent for content %@ with no placeholder. Ignoring.
 Replacing %@ with %@
 Content %@ reporting visible but is collapsed.
@@ -173,6 +181,10 @@ Content with ID %@ can NOT send viewable impression - current ASE code is %@.
 Content with ID %@ can send viewable impression due to interaction
 Content with ID %@ can NOT send viewable impression - at visible threshold for only %.2f of %.2f seconds
 Content with ID %@ can send viewable impression - at visible threshold more than %.2f seconds (%.2f)
+shouldSendAdSpaceStatusEvent: NOT sending ASE %@ for content %@ - a final ASE was previously sent.
+shouldSendAdSpaceStatusEvent: NOT sending ASE %@ for content %@ - it has been discarded.
+shouldSendAdSpaceStatusEvent: NOT sending AssetLoadFailure for content %@ because the WebView never appeared on screen.
+shouldSendAdSpaceStatusEvent: AssetLoadFailure will%@ be sent because content %@ last event was %.0f seconds ago.
 shouldSendAdSpaceStatusEvent for %@: %@ statusCodeSent: %@ codeToSend: %d lastStatusCode: %d isPlaceholder: %@ interfaceReplaced: %@
 %@ has already reported AdSpaceStatusEvent %@. Ignoring.
 updateAccumulatedPlaybackTime: position cannot be negative (%.2f)
@@ -201,9 +213,8 @@ server transmitted date: %@ interval: %.9f
    client received date: %@ interval: %.9f
 Averages over %d requests
 average offset: %.9f
-[%@] Meets requirements for diagnostics (%@) and date (%@).
 [%@] Failed to get a signature for Journey Server request: %@
-[%@] Data sent to server (%@) with result (%ld).
+[%@] Metric data sent to server (%@) with result (%ld).
 Metric data was sent to the server!
 We timed out waiting for the metric data to be sent to the server!
 The path (%@) resulted in zero path components somehow!
@@ -227,6 +238,7 @@ Error removing file at path! %@
 [%@] Opening new connection from %@
 Unknown system name: %@
 Metric (%d) for route (%d) is not known!
+%@ Not a NSDate %@!
 The route (%@) metric (%@) value (%@) isn't a number!
 The route (%@) metric (%@) dnu (%@) isn't a number!
 The route (%@) value for metric (%@) isn't a dictionary!
@@ -366,6 +378,9 @@ APPCControllerCoordinator was destroyed by the time when we got a response back.
 [%@] Retrieved APProxySettings, resourceConnectProxyURL is %@
 [%@] Connection from client has been interrupted.
 [%@] Connection from client has been invalidated.
+Detected a run on a new EFS version: %lu
+Running on same EFS version: %lu
+Detected a first run on EFS version: %lu
 %@ is now on screen but is is collapsed. Do not mark it as used in the cache.
 %@ was already marked as used.
 %@ is now on screen and mark it as used in the cache.
@@ -397,7 +412,7 @@ Successfully retrieved cached context data %@ for content identifier %@.
 No managed content found for content identifier %@. Assuming there was no response from server for ad request with that identifier.
 Unable to find managed context %@ for content %@. Cannot continue, metric ignored.
 Successfully retrieved cached content data for identifier %@.
-APInternalMessageRateLimitAdRequests metric must have NSNumber kAPMetricInternalMessageRateKey property.
+APInternalMessageRateLimitAdRequests metric must have NSNumber %@ property.
 [%s]: setting status condition %@ for bundle %@.
 [%s]: clearing status condition %@ for bundle %@.
 [%s]: status condition %@ for bundle %@ doesn't exist.
@@ -577,6 +592,7 @@ Could not read item header.
 Data is larger than intended for read.
 bytesRead(%zu) is not multiple of 16 bytes.
 The data is wrong length(%lu) not (%lu).
+Invalid path for EFS.
 Found corrupted EFS file at path: %@.
 Cause: %@
 Removal Error: %@
@@ -601,10 +617,10 @@ B24@?0@"NSURL"8@"NSError"16
 path was nil.
 %@/%@
 /../
-Invalid path for EFS.
 //localhost
 /localhost
 Could not append path
+Failed to remove EFS folder in place.
 fileManager
 T@"NSFileManager",&,N,V_fileManager
 pathPrefix
@@ -698,6 +714,7 @@ lastStatusCode
 sentStatusCodes
 accumulatedVisibilityTime
 accumulatedPlaybackTime
+lastSentEventTime
 duration
 lastPosition
 lastPlaybackTimestamp
@@ -706,6 +723,7 @@ volume
 hasBeenOnScreen
 interfaceReady
 interfaceReplaced
+discarded
 hasConfirmedImpression
 hasConfirmedClick
 clickCount
@@ -720,6 +738,7 @@ Ti,V_clickCount
 clickLocation
 T{?=dd},V_clickLocation
 Td,V_clickTime
+TB,V_discarded
 Td,V_duration
 TB,V_hasBeenOnScreen
 TB,V_interfaceReady
@@ -727,6 +746,7 @@ TB,V_hasConfirmedClick
 TB,V_hasConfirmedImpression
 Td,V_lastPosition
 Td,V_accumulatedVisibilityTime
+Td,V_lastSentEventTime
 Td,V_lastPlaybackTimestamp
 TB,V_playbackInProgress
 TB,V_interfaceReplaced
@@ -740,11 +760,14 @@ T@"<APContentDataTransientDelegate>",W,N,V_delegate
 hasDuration
 Ti,R,V_impressionSequenceNumber
 formatOneLine
+%@ %@
 section
 type
 hasSection
+TB,R,N
 T@"NSString",&,N,V_section
 hasType
+TB,N
 Ti,N,V_type
 Banner
 Interstitial
@@ -753,6 +776,7 @@ Audio
 Video
 Flexible
 Native
+(unknown: %i)
 bundleId
 requestType
 baseUrl
@@ -762,24 +786,23 @@ hasRequestType
 Ti,N,V_requestType
 hasBaseUrl
 T@"NSString",&,N,V_baseUrl
-rateLimit
-T@"NSNumber",&,D,N
+rateLimits
+T@"NSDictionary",&,D,N
 lastUpdated
 T@"NSDate",&,D,N
+rateLimitsObject
+T@"APRateLimits",&,N
 messageIndex
 URLSuffix
 /event/sys/event
-%@ %@
 metaData
 eventType
 actionableDuration
 bannerCustomMetadata
 requestCount
 hasMetaData
-TB,R,N
 T@"APPBLogMetaData",&,N,V_metaData
 hasEventType
-TB,N
 Ti,N,V_eventType
 hasClickLocation
 T@"APPBClickLocation",&,N,V_clickLocation
@@ -853,7 +876,6 @@ PrivacyAdTransparencyDidLinkOut
 AdCreativeDidUnload
 TapGestureTimerDidExpireBeforePrimaryActionWasInvoked
 NavigationActionBlockedDueToAccidentalTap
-(unknown: %i)
 value_bool
 value_int
 value_double
@@ -926,6 +948,15 @@ radius
 Td,N,V_latitude
 Td,N,V_longitude
 Td,N,V_radius
+APAdPositionUnknown
+APAdPositionInFeed
+APAdPositionInArticle
+APAdPositionBetweenArticle
+APAdPositionVideoInArticle
+APAdPositionNativeInFeed
+APAdPositionNativeInArticle
+UNKNOWN
+T@"NSDictionary",&,N,V_rateLimits
  and adOpID %@
 content
 T@"APContentDataInternal",&,V_content
@@ -988,7 +1019,7 @@ Td,N,V_time
 mediaAssets
 Td,N,V_duration
 T@"NSMutableArray",&,N,V_mediaAssets
-https://news.iadsdk.apple.com/adserver
+https://iadsdk.apple.com/adserver
 ADConfigurationDidChangeNotification
 configurations
 T@"NSDictionary",&,V_configurations
@@ -1000,7 +1031,6 @@ Request-Source
 User-Agent
 os_Version
 device
-bundleID
 timestamp
 protocolVersion
 X-Apple-ActionSignature
@@ -1023,7 +1053,6 @@ body
 Deserializing protobuffer failed for request %@.
 requestIdentifier
 T@"NSUUID",&,V_requestIdentifier
-T@"NSString",&,N,V_bundleID
 cancelled
 TB,V_cancelled
 responseTime
@@ -1032,7 +1061,6 @@ responseClass
 T@"<APIDAccount_Private>",R,N,V_idAccount
 isAllowedEmptyResponse
 com.apple.ap.legacyRetryManager.queue
-v32@?0@"NSString"8@"NSNumber"16^B24
 v32@?0@"NSString"8Q16^B24
 T@"NSObject<OS_dispatch_queue>",&,N,V_queue
 encryptedFileManager
@@ -1101,15 +1129,17 @@ MPEG4
 AACLC
 versionedAttributionDetails
 T@"NSMutableArray",&,N,V_versionedAttributionDetails
+RateLimits
 com.apple.ap.pclegacyinterface
 v16@?0@"APContentDataInternal"8
+v32@?0@"NSString"8@"NSNumber"16^B24
 pendingRequests
 T@"NSMutableDictionary",R,N,V_pendingRequests
 T@"NSObject<OS_dispatch_queue>",R,N,V_queue
 T@"APUnfairLock",R,N,V_lock
-rateLimitSettings
-T@"APRateLimitSettings",&,N,V_rateLimitSettings
-Tf,N
+T@"APRateLimits",&,N,V_rateLimits
+rateLimitsLastUpdatedOn
+Td,N,V_rateLimitsLastUpdatedOn
 /event/analytics/video
 currentPlaybackTime
 totalDuration
@@ -1344,12 +1374,14 @@ hasStatusChangeTimestamp
 Td,N,V_statusChangeTimestamp
 hasTimezone
 Tf,N,V_timezone
+bundleID
 count
 average
 standardDeviation
 hasMetric
 T@"NSString",&,N,V_metric
 hasBundleID
+T@"NSString",&,N,V_bundleID
 hasCount
 Ti,N,V_count
 hasAverage
@@ -1408,6 +1440,13 @@ resultTags
 T@"NSMutableArray",&,N,V_requiredTags
 T@"NSMutableArray",&,N,V_resultTags
 news-context:
+header.placement
+BETWEENARTICLE
+INARTICLE
+INFEED
+NATIVEINARTICLE
+NATIVEINFEED
+VIDEOINARTICLE
 event
 Ti,N,V_event
 Td,N,V_timestamp
@@ -1464,6 +1503,7 @@ placeholderIdentifier
 placement
 progress
 quality
+representationIdentifier
 scroll_velocity
 start_date
 template_argument
@@ -1477,12 +1517,12 @@ x_position
 y_position
 v32@?0@"NSUUID"8@"APLegacyMetricRequester"16^B24
 v16@?0@"APServerRequester"8
-OnScreen does not have a valid collapsed property.
-OnScreen does not have a valid placeholder property.
-OnScreen metric for placeholder is not reporting AdNotAvailable!
-OnScreen metric for non-placeholder is reporting AdNotAvailable!
-OnScreen metric for expanded placeholder in unexpected state.
-OnScreen metric occured without reporting an ASE!
+OnScreen metric with content identifier %@ does not have a valid collapsed property %@.
+OnScreen metric with content identifier %@ does not have a valid placeholder value %@.
+OnScreen metric with content identifier %@ for placeholder is not reporting AdNotAvailable (ASE 3001)! Instead is ASE: %d Unfilled Reason: %ld
+OnScreen metric with content identifier %@ for non-placeholder that was not an unfilled network error is reporting AdNotAvailable (ASE 3001)! Instead is ASE %d Unfilled Reason: %ld
+OnScreen metric %@ for expanded placeholder %@ with unfilled reason code %ld is in an unexpected state
+OnScreen metric with content identifier %@ occured without reporting an ASE. collapsed: %@ placeholder: %@ unfilled reason: %ld ready: %@ client rendered: %@ metric: %@
 pendingDelayedRequests
 T@"NSMutableDictionary",R,V_pendingDelayedRequests
 delayedRequestLock
@@ -1654,6 +1694,7 @@ T@"NSString",&,V_qToken
 T@"NSString",&,V_subscriptionSourceID
 subscriptionType
 Ti,V_subscriptionType
+T@"NSMutableArray",&,V_parameters
 serverRequest
 T@"APServerRequest",&,N,V_serverRequest
 responseResult
@@ -1831,6 +1872,7 @@ hasBackgroundImage
 T@"NSString",&,N,V_backgroundImage
 hasEndCard
 T@"NSString",&,N,V_endCard
+/event/sys/error
 errorCode
 badResponse
 failingURLs
@@ -2137,6 +2179,7 @@ com.apple.ap.AdValidationErrorDomain
 com.apple.ap.DaemonDiscardedErrorDomain
 com.apple.ap.InvalidRequestErrorDomain
 placeholder: 
+ NOT
 contentDataProvider
 T@"<APContentDataProviderProtocol>",R,N,V_contentDataProvider
 T@"APContentData",R,V_content
@@ -2177,7 +2220,6 @@ ADStatusCodeAdCampaignKeywordBlacklisted
 ADStatusCodeAdMetadataError
 ADStatusCodeAdArticleLoadError
 ADStatusCodeAdVideoLoadError
-/event/sys/error
 errorType
 errorMessage
 lineNumber
@@ -2223,7 +2265,6 @@ PurchasedSubscription
 AlreadySubscribedViaNativeAd
 PurchasedSubscriptionViaNativeAd
 Ti,V_eventType
-T@"APPBClickLocation",&,V_clickLocation
 com.apple.ap.promotedcontent.mescalinterface
 v24@?0@"NSString"8@"NSError"16
 exportedObject
@@ -2241,6 +2282,9 @@ T@"NSString",&,D,N
 journey-batch-settings
 batchSize
 periodicDelay
+T@"NSNumber",&,D,N
+time.apple.com
+pool.ntp.org
 ntpReferenceDate
 T@"NSDate",&,N,V_ntpReferenceDate
 unixReferenceDate
@@ -2254,8 +2298,6 @@ Content-Encoding
 gzip
 Content-Type
 application/json; charset=utf-8
-true
-false
 journeySettings
 T@"APJourneySettings",R,N,V_journeySettings
 yyyyDDDHHmm
@@ -2314,6 +2356,7 @@ com.apple.ap.promotedcontent.metrics
 node_id
 connection_id
 route%ld
+%@ Not a NSDate %@! Value: %@
 %@ (%ld)
 none
 CBID
@@ -2341,7 +2384,6 @@ conversion
 downloaded
 request_failed
 delivered
-discarded
 not_consumed
 created
 replaced
@@ -2409,8 +2451,6 @@ conversion_value
 T@"APContentData",R,N,V_contentData
 ntp-settings
 hostnames
-time.apple.com
-pool.ntp.org
 retryInterval
 T@"NSArray",&,D,N
 connection
@@ -2454,7 +2494,6 @@ https
 journey
 pcms
 /api/1/route-input
-T@"NSDictionary",&,D,N
 lastActivity
 route100
 route101
@@ -2623,6 +2662,7 @@ T@"NSDictionary",R,N,V_properties
 T@"NSDictionary",R,N,V_internalProperties
 Tq,R,N,V_options
 TB,R,N,V_areNetworkDates
+APPromotedContentDaemonSettings.efsVersion
 idAccounts
 T@"NSPointerArray",&,N,V_idAccounts
 v16@?0@"<APMetricProtocol>"8
@@ -2664,7 +2704,6 @@ contentDataPrivate
 T@"APContentDataPrivate",R,N
 contentDataTransient
 T@"APContentDataTransient",R,N
-RateLimit
 internalContent
 T@"APContentDataInternal",R,N
 T@"APClientInfo",R,N
@@ -2997,17 +3036,34 @@ _status
 _initializationVector
 _cryptor
 _nextOffset
+safePath
+URLByDeletingLastPathComponent
+createDirectoryAtURL:withIntermediateDirectories:attributes:error:
 _constructFileForURL:forMode:error:
+_initForWritingFile:forURL:loggablePath:
 _cryptorForEncoding
+dictionaryWithObjects:forKeys:count:
+errorWithDomain:code:userInfo:
 numberWithInt:
 _cryptorForDecodingWithInitializationVector:
+archivedDataWithRootObject:requiringSecureCoding:error:
+addData:error:
 array
+nextObject
 addObject:
 arrayWithArray:
+nextObjectData
+classes
+unarchivedObjectOfClasses:fromData:error:
 _removeCorruptedFile:
 initWithCapacity:
 fileSystemRepresentation
+close
+removeItemAtURL:error:
 _classForCryptor
+initForWritingAtURL:
+initForAppendingAtURL:
+initForReadingAtURL:
 addObject:error:
 allObjects
 loggablePath
@@ -3017,57 +3073,45 @@ _loggablePath
 _fileURL
 _makeApplicationSupportSubdirectory:
 initWithPathPrefix:rootPath:
-archivedDataWithRootObject:requiringSecureCoding:error:
 _storeData:atPath:error:
 _dataStoredAtPath:error:
-classes
-unarchivedObjectOfClasses:fromData:error:
 fileForWritingAtKeyPath:error:
-addData:error:
-close
 fileForReadingAtKeyPath:error:
-nextObjectData
 _fileExistsAtPath:isDirectory:error:
-dictionaryWithObjects:forKeys:count:
-errorWithDomain:code:userInfo:
 _validatedFullPathForPath:error:
 fileExistsAtPath:isDirectory:
 _validatedFullURLForPath:error:
-removeItemAtURL:error:
 _classForEncryptedFile
-initForReadingAtURL:
-safePath
-initForWritingAtURL:
-initForAppendingAtURL:
 getResourceValue:forKey:error:
 setResourceValue:forKey:error:
 absoluteString
 arrayWithObjects:count:
 enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:
-nextObject
 boolValue
 relativePath
 _validatedPath:error:
 hasPrefix:
 containsString:
-path
 substringFromIndex:
 _rootURL
-URLByAppendingPathComponent:
 subpathsOfDirectoryAtPath:error:
 contentsOfDirectoryAtPath:error:
 _createDirectoriesForURL:error:
 moveItemAtURL:toURL:error:
 rootPath
-initFileURLWithPath:
 lastObject
 fileURLWithPathComponents:
 URLByAppendingPathComponent:isDirectory:
-createDirectoryAtURL:withIntermediateDirectories:attributes:error:
+_applicationSupportSubdirectory:
 localizedFailureReason
 userInfo
-URLByDeletingLastPathComponent
+defaultManager
+UUID
+UUIDString
+moveItemAtPath:toPath:error:
+removeItemAtPath:error:
 setRootPath:
+removeStorage
 storeObject:atPath:error:
 objectStoredAtPath:error:
 fileExistsAtPath:error:
@@ -3079,7 +3123,6 @@ lastModifiedDateForFileAtPath:error:
 createdDateForFileAtPath:error:
 touchFileAtPath:error:
 iterateObjectsIncludingFolders:
-moveItemAtPath:toPath:error:
 fileManager
 setFileManager:
 pathPrefix
@@ -3094,14 +3137,15 @@ appendFormat:
 stringWithString:
 initWithString:relativeToURL:
 initWithString:
+path
 stringByAppendingPathComponent:
+initFileURLWithPath:
 setSafeDescription:
 lastPathComponent
 initFileURLWithPath:relativeToURL:
+URLByAppendingPathComponent:
 safeDescription
 _safeDescription
-UUID
-UUIDString
 stringByReplacingCharactersInRange:withString:
 IDAccountsRecord
 storefront
@@ -3168,6 +3212,11 @@ _writeDataToKeychain:andData:
 _keychainQuery:
 setObject:forKeyedSubscript:
 removeObjectForKey:
+videoLoaded:
+videoStateChanged:fromMetric:
+volumeChanged:
+videoUnloaded
+incrementVideoEventSequence
 videoState
 setVideoState:
 setCurrentPlaybackTime:
@@ -3190,6 +3239,7 @@ _visiblePercent
 initWithBundleID:andIdentifier:idAccount:
 provider
 encryptedIDsForIDAccountPrivate:
+privateSegment
 setIAdID:
 setToroID:
 setDPID:
@@ -3201,7 +3251,6 @@ setResetSegmentMembership:
 bundleID
 setAppID:
 setRunState:
-privateSegment
 setPrivateSegment:
 initWithBundleID:identifier:segmentIdentifiers:replaceExisting:privateSegment:
 responseClass
@@ -3244,6 +3293,7 @@ encodeInt32:forKey:
 sentStatusCodes
 accumulatedVisibilityTime
 encodeDouble:forKey:
+lastSentEventTime
 accumulatedPlaybackTime
 lastPlaybackTimestamp
 playbackInProgress
@@ -3251,6 +3301,7 @@ duration
 hasBeenOnScreen
 interfaceReady
 interfaceReplaced
+discarded
 hasConfirmedImpression
 hasConfirmedClick
 lastPosition
@@ -3271,6 +3322,7 @@ setInterfaceReady:
 setInterfaceReplaced:
 setClickTime:
 setAccumulatedVisibilityTime:
+setLastSentEventTime:
 setLastPlaybackTimestamp:
 setAccumulatedPlaybackTime:
 setPlaybackInProgress:
@@ -3283,6 +3335,7 @@ setHasConfirmedImpression:
 setHasConfirmedClick:
 setClickCount:
 setClickLocation:
+setDiscarded:
 setSentStatusCodes:
 _hasBeenOnScreen
 _interfaceReady
@@ -3291,12 +3344,14 @@ _playbackInProgress
 _videoUnloadedSent
 _hasConfirmedImpression
 _hasConfirmedClick
+_discarded
 _impressionSequenceNumber
 _lastStatusCode
 _videoEventSequence
 _clickCount
 _clickTime
 _accumulatedVisibilityTime
+_lastSentEventTime
 _lastPlaybackTimestamp
 _accumulatedPlaybackTime
 _duration
@@ -3304,7 +3359,12 @@ _lastPosition
 _volume
 _sentStatusCodes
 _clickLocation
+dictionaryRepresentation
+dictionary
 setSection:
+allocWithZone:
+copyWithZone:
+options
 hasSection
 type
 setType:
@@ -3312,9 +3372,15 @@ setHasType:
 hasType
 typeAsString:
 StringAsType:
+readFrom:
+writeTo:
+copyTo:
+mergeFrom:
 section
 _section
 _type
+_has
+isEqualToString:
 setBundleId:
 setBaseUrl:
 hasBundleId
@@ -3328,15 +3394,13 @@ baseUrl
 _baseUrl
 _bundleId
 _requestType
-dictionaryRepresentation
-dictionary
+rateLimits
+setRateLimits:
+rateLimitsObject
+setRateLimitsObject:
 numberWithFloat:
 setMetaData:
 setBannerCustomMetadata:
-allocWithZone:
-copyWithZone:
-mergeFrom:
-options
 hasMetaData
 eventType
 setEventType:
@@ -3352,9 +3416,6 @@ hasBannerCustomMetadata
 setRequestCount:
 setHasRequestCount:
 hasRequestCount
-readFrom:
-writeTo:
-copyTo:
 metaData
 actionableDuration
 bannerCustomMetadata
@@ -3364,8 +3425,6 @@ _bannerCustomMetadata
 _eventType
 _metaData
 _requestCount
-_has
-isEqualToString:
 clearOneofValuesForValue
 numberWithBool:
 numberWithLongLong:
@@ -3486,6 +3545,8 @@ setRadius:
 _latitude
 _longitude
 _radius
+floatValue
+_rateLimits
 content
 identifier
 setContextIdentifier:
@@ -3655,11 +3716,9 @@ validationErrorWithCode:andReason:
 makeDelayedRequest:requestSentHandler:responseCallback:
 cancelDelayedRequest
 setRequestIdentifier:
-setBundleID:
 responseTime
 _cancelled
 _requestIdentifier
-_bundleID
 _responseTime
 initWithEncryptedFileManager:
 setWithObject:
@@ -3792,26 +3851,28 @@ versionedAttributionDetailsType
 versionedAttributionDetails
 setVersionedAttributionDetails:
 _versionedAttributionDetails
+_loadRateLimitSettings
 pendingRequests
 cancelRequest
-rateLimit
-_rateLimitPlacementTypes:rate:context:token:completionHandler:
+_rateLimitPlacementTypes:context:token:completionHandler:
 initWithContext:identifier:andBundleID:clientInfo:idAccount:
 _handleAdRequesterResponseForToken:content:completionHandler:
 requestAdsOfType:completionHandler:
-rateLimitSettings
-floatValue
-setRateLimit:
+_loadRateLimitsFromUserDefaults
+setRateLimitsLastUpdatedOn:
 setLastUpdated:
-_getRateLimit
+dictionaryForKey:
 lastUpdated
 timeIntervalSinceDate:
+rateLimitsLastUpdatedOn
+_currentRateLimits
+adPosition
 unsignedIntValue
 cancelPromotedContentRequest:
 requestPromotedContentOfTypes:forContext:withToken:andBundleID:clientInfo:idAccount:completionHandler:
-setRateLimitSettings:
+setRateLimitRequestsInFeed:inArticle:betweenArticle:videoInArticle:nativeInFeed:nativeInArticle:
 _pendingRequests
-_rateLimitSettings
+_rateLimitsLastUpdatedOn
 setHasVideoState:
 hasVideoState
 videoStateAsString:
@@ -4089,6 +4150,7 @@ _statusChangeTimestamp
 _transmitTimestamp
 _timezone
 _optedOutStatus
+setBundleID:
 hasMetric
 hasBundleID
 setCount:
@@ -4103,6 +4165,7 @@ hasStandardDeviation
 average
 standardDeviation
 _average
+_bundleID
 _count
 _standardDeviation
 setProperty:forKey:internal:
@@ -4235,11 +4298,12 @@ handleValidationFailed:internalContent:context:idAccount:
 handleLoadFailed:internalContent:context:idAccount:
 handleArticleLoadFailure:internalContent:context:idAccount:
 handleMediaComplete:internalContent:context:clientInfo:idAccount:
-handleSubscription:clientInfo:idAccount:
+handleSubscription:
 handleInterfaceExceededContainer:internalContent:context:idAccount:
 sendLegacyMetric:
-discardReasonToASEStatusCode:
 _unconfirmedImpressionRequest:internalContent:context:clientInfo:idAccount:
+representationWithIdentifier:
+size
 tapAction
 _confirmedImpressionRequest:internalContent:context:clientInfo:idAccount:forClickInteraction:
 pendingConfirmedClickEvent:
@@ -4252,7 +4316,7 @@ findInternalContentDataById:
 pendingASE3001ForPreroll:
 dateByAddingTimeInterval:
 initWithMetric:content:context:idAccount:error:
-initWithMetric:bundleID:idAccount:
+initWithMetric:bundleID:
 processMetric:environmentProvider:
 _pendingDelayedRequests
 _delayedRequestLock
@@ -4522,6 +4586,7 @@ _allowSelfDismissal
 _loadNewImpressionOnActionComplete
 _scrolling
 _suppressesPermissionToExitDialog
+addParameter:value:parameters:
 subscriptionType
 setSubscriptionType:
 _subscriptionType
@@ -4989,7 +5054,6 @@ timestampEvent
 _timestampEvent
 _deviceOrientation
 _origin
-adOriginalRequesterId
 addParameterList:
 parameterListsCount
 clearParameterLists
@@ -5243,6 +5307,7 @@ setITunesMetadatas:
 nativeMediaCreativeMetadata
 maximumPretapRequestCount
 unfilledReasonInfo
+adOriginalRequesterId
 setJourneyStartRelayValues:
 _minimumIntervalBetweenPresentations
 _rewardTokensExpiration
@@ -5325,16 +5390,12 @@ resetTransientData
 appearedOnScreenWithStatus:
 canSendImpression:
 confirmImpression
+eventSent
 clicked:
 confirmClick
-incrementVideoEventSequence
 loadFailed
 shouldSendAdSpaceStatusEvent:
-videoLoaded:
-videoStateChanged:fromMetric:
-videoUnloaded
 visibleStateChanged:duration:
-volumeChanged:
 contentDataProvider
 _privateContent
 _transientContent
@@ -5468,12 +5529,11 @@ _ntpReferenceDate
 _unixReferenceDate
 journeySettings
 journeyServerEnabled
+stringForKey:
 journeyServerURL
-dateWithTimeIntervalSinceReferenceDate:
 initWithURL:statusCode:HTTPVersion:headerFields:
 gzipBody
 gzip:
-stringForKey:
 URLResponse
 _journeySettings
 setDateFormat:
@@ -5622,6 +5682,7 @@ metricsWaitingFile
 _createNewMetricsWaitingFile
 metricsInWaitingFile
 setMetricsInWaitingFile:
+lastActivity
 resetRouteOffsets
 _notifyListenersOfMetric:
 _storeWaitingMetric:
@@ -5676,7 +5737,6 @@ setBackoffUntilSpecificDate:
 backoffLevelForDestination:
 backoffUntilDateForDestination:
 processMetrics:forDestination:
-lastActivity
 backoffUntilSpecificDate
 lastProcessingDateForDestination:
 processingDestinationsLock
@@ -6081,7 +6141,6 @@ processMetric:
 _setRateLimit:
 legacyMetrics
 _provideEnvironmentForMetric:
-floatForKey:
 stop
 setLegacyMetrics:
 setRegistrationTokens:
@@ -6090,11 +6149,9 @@ _registrationTokens
 objectEnumerator
 addRepeatingObject:count:
 fileURLForCondition:
-defaultManager
 createDirectoryAtPath:withIntermediateDirectories:attributes:error:
 writeToURL:options:error:
 fileExistsAtPath:
-dictionaryForKey:
 baseURL
 storageRepresentation
 setStatusCondition:
@@ -6223,10 +6280,10 @@ APBackoffTimer
 Context
 APContentDataTransient
 APPBAdSpecification
+NSCopying
 APPBConfiguration
 APRateLimitSettings
 APPBLogSysEventRequest
-NSCopying
 APPBAdJourneyStartRelayValue
 APPBConfigurationResponse
 APPBOptOutResponse
@@ -6236,6 +6293,7 @@ APLogImpressionRequester
 APPBLogAggregateMetricsResponse
 APPBClickLocation
 APPBGeofence
+APRateLimits
 APLegacyMetricRequester
 APPBUserTransparencyRequest
 APPBConfigurationRequest
@@ -6419,6 +6477,7 @@ CacheStore
 PCControllerAdditions
 APPersistentCacheStoreProvider
 MockAPMetric
+APPromotedContentControllerDaemonModule
 APIDAccountsWeakContainer
 APCacheStatusUpdater
 APCacheableObjectProxy
@@ -6525,6 +6584,8 @@ v24@0:8Q16
 @"NSData"
 ^{_CCCryptor=}
 ^{__sFILE=*iiss{__sbuf=*i}i^v^?^?^?^?{__sbuf=*i}^{__sFILEX}i[3C][1C]{__sbuf=*i}iq}40@0:8@16*24^@32
+@40@0:8^{__sFILE=*iiss{__sbuf=*i}i^v^?^?^?^?{__sbuf=*i}^{__sFILEX}i[3C][1C]{__sbuf=*i}iq}16@24@32
+B32@0:8@16^@24
 ^{__sFILE=*iiss{__sbuf=*i}i^v^?^?^?^?{__sbuf=*i}^{__sFILEX}i[3C][1C]{__sbuf=*i}iq}16@0:8
 v24@0:8^{__sFILE=*iiss{__sbuf=*i}i^v^?^?^?^?{__sbuf=*i}^{__sFILEX}i[3C][1C]{__sbuf=*i}iq}16
 @"NSURL"
@@ -6532,7 +6593,6 @@ v24@0:8^{__sFILE=*iiss{__sbuf=*i}i^v^?^?^?^?{__sbuf=*i}^{__sFILEX}i[3C][1C]{__sb
 ^{__sFILE=*iiss{__sbuf=*i}i^v^?^?^?^?{__sbuf=*i}^{__sFILEX}i[3C][1C]{__sbuf=*i}iq}
 @32@0:8@16^@24
 B40@0:8@16@24^@32
-B32@0:8@16^@24
 B40@0:8@"<NSSecureCoding>"16@"NSString"24^@32
 @"<NSSecureCoding>"32@0:8@"NSString"16^@24
 B32@0:8@"NSString"16^@24
@@ -6558,11 +6618,11 @@ v32@0:8{?=dd}16
 @"<APContentDataTransientDelegate>"
 @"NSMutableOrderedSet"
 {?="x"d"y"d}
-{?="type"b1}
-{?="expirationDate"b1"requestType"b1"isTest"b1}
 @24@0:8^{_NSZone=}16
 @20@0:8i16
 i24@0:8@16
+{?="type"b1}
+{?="expirationDate"b1"requestType"b1"isTest"b1}
 v20@0:8f16
 f16@0:8
 @"APPBClickLocation"
@@ -6575,6 +6635,7 @@ f16@0:8
 @24@0:8^@16
 {?="heightInset"b1"widthInset"b1"lockAspectRatio"b1}
 {?="h"b1"w"b1"x"b1"y"b1}
+@"NSDictionary"
 @56@0:8@16@24@32@40@48
 v40@0:8@16@24@32
 @"<APMetricProtocol>"
@@ -6609,8 +6670,9 @@ v72@0:8@16@24@32@40@48@56@?64
 v24@0:8@"NSUUID"16
 v72@0:8@"NSArray"16@"APContext"24@"NSUUID"32@"NSString"40@"APClientInfo"48@"<APIDAccount_Private>"56@?<v@?@"APContentDataInternal">64
 v40@0:8@16@24@?32
-@52@0:8@16f24@28@36@?44
-@"APRateLimitSettings"
+v40@0:8f16f20f24f28f32f36
+@48@0:8@16@24@32@?40
+@"APRateLimits"
 {?="currentPlaybackTime"b1"timestamp"b1"totalDuration"b1"visiblePercentage"b1"eventSequence"b1"videoState"b1"volume"b1}
 @72@0:8q16@24@32@40{?=dd}48q64
 v40@0:8{?=dd}16q32
@@ -6687,7 +6749,6 @@ v32@0:8q16d24
 @"APContentData"
 @"APContentDataPrivate"
 @"APContentDataTransient"
-@"NSDictionary"
 @"<APContentDataProviderProtocol>"
 {?="errorType"b1"lineNumber"b1}
 @"APPBRequestProperties"
@@ -6739,6 +6800,7 @@ v40@0:8@"NSString"16q24q32
 @"<APMetricNotificationRegister><APMetricReceiving>"
 @"APEncryptedFile"
 @"<APMetricServerDelivering>"
+@"NSLock"
 @"NSSet"
 v64@0:8q16q24@32@40@48q56
 @"APXPCConnection"
@@ -6747,14 +6809,12 @@ B32@0:8q16@24
 @?16@0:8
 @"<APMetricHTTPDelivering>"
 @"NSObject<OS_dispatch_source>"
-@"NSLock"
 @20@0:8B16
 @32@0:8:16d24
 @24@0:8d16
 @56@0:8@16q24@32@40@?48
 @64@0:8@16q24@32@40@48@?56
 @40@0:8@16@24@?32
-@48@0:8@16@24@32@?40
 @56@0:8@16@24@32@40@?48
 @"APHTTPSession"
 @"APServiceManager"
@@ -6848,13 +6908,13 @@ v32@0:8@"<NSSecureCoding>"16@"NSString"24
 <key>DTCompiler</key>
 <string>com.apple.compilers.llvm.clang.1_0</string>
 <key>DTPlatformBuild</key>
-<string>18B5060x</string>
+<string>12A8179f</string>
 <key>DTPlatformName</key>
 <string>iphonesimulator</string>
 <key>DTPlatformVersion</key>
 <string>14.2</string>
 <key>DTSDKBuild</key>
-<string>18B5060x</string>
+<string>18B5072c</string>
 <key>DTSDKName</key>
 <string>iphonesimulator14.2.internal</string>
 <key>DTXcode</key>
@@ -6938,6 +6998,8 @@ v32@0:8@"<NSSecureCoding>"16@"NSString"24
 </array>
 <key>com.apple.security.network.client</key>
 <true/>
+<key>com.apple.security.ts.tmpdir</key>
+<string>com.apple.ap.promotedcontentd</string>
 <key>com.apple.springboard.activateRemoteAlert</key>
 <true/>
 <key>fairplay-client</key>

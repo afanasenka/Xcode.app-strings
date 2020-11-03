@@ -281,9 +281,13 @@ Last message timestamp: %f
 Last message date: %@
 Missing last read date for chatID %@
 Message: %@ is spoken message whitelisted: %d
+Stripped address: %@, contactToUse: %@
+Contact to use valid. AddressBookName : %@
+Address: %@, displayName = %@. Contact = %@
 We don't have an address book name, so going to try and suggest a name
 Defaulting to the handle for the display name
 Handle display name is equal to lowercase uncanonicalized address, falling back to preserve case
+Display name = %@
 @"NSString"16@?0@"NSString"8
 MAYBE
 We have a nickname suggestion for the title %@
@@ -315,8 +319,6 @@ CNContact for sender %@
 @"NSString"16@?0@8
 notificationCenter
 T@"UNUserNotificationCenter",&,N,V_notificationCenter
-notificationCenterCatalyst
-T@"UNUserNotificationCenter",&,N,V_notificationCenterCatalyst
 incomingMessageNotificationCategory
 T@"UNNotificationCategory",&,N,V_incomingMessageNotificationCategory
 incomingFilesNotificationCategory
@@ -1068,11 +1070,20 @@ chatIdentifier
 groupID
 isBlackholed
 lastMessageDate
-/Library/Caches/com.apple.xbs/Sources/MessagesCore_Sim/Messages-1125.19/IMCore/IMDPersistence/Source/IMDCoreSpotlightIndexHelpers.m
+/Library/Caches/com.apple.xbs/Sources/MessagesCore_Sim/Messages-1125.23/IMCore/IMDPersistence/Source/IMDCoreSpotlightIndexHelpers.m
 NSString *_IMDCoreSpotlightHandleID(IMDHandleRecordRef)
 _IMDCoreSpotlightHandleID
 CNContact *_IMDCoreSpotlightCNContactForHandle(IMDHandleRecordRef)
 _IMDCoreSpotlightCNContactForHandle
+IMDCoreSpotlight
+Adress is not nil, we are returning nil.
+Adding additioanl keys tp fetch.
+We got a cache hit but the cachedContact is nil. We are retruning nil.
+Return cached contact.
+Return  contact.
+Cache contact: %@.
+Cache contact nil.
+Return contact: %@
 CSPerson *_IMDCoreSpotlightPerson(NSString *, NSString *, CNContact *, NSString *)
 _IMDCoreSpotlightPerson
 NSString *_IMDContactsKindForID(NSString *, NSString *)
@@ -1085,7 +1096,6 @@ handledNicknamesKeyStore.db
 handledNicknamesStore
 We got an error loading the nickname info from the kv store for notifications %@
 We got an error unarchiving the nickname dictionary %@
-IMDCoreSpotlight
 We have a nickname dictionary for %@ %@
 CRRecentWeightMessagesReceivedAddress
 CoreRecents
@@ -1898,12 +1908,12 @@ chat_idx_chat_room_name_service_name
 chat(room_name, service_name)
 message_processing_task_idx_guid_task_flags
 message_processing_task(guid, task_flags)
-attachment_idx_purged_attachments
-attachment(hide_attachment,ck_sync_state,transfer_state) WHERE hide_attachment=0 AND ck_sync_state=1 AND transfer_state=0
+attachment_idx_purged_attachments_v2
+attachment(hide_attachment,ck_sync_state,transfer_state) WHERE hide_attachment=0 AND (ck_sync_state=1 OR ck_sync_state=4) AND transfer_state=0
 message_idx_undelivered_one_to_one_imessage
 message(cache_roomnames,service,is_sent,is_delivered,was_downgraded,item_type) where cache_roomnames IS NULL AND service = 'iMessage' AND is_sent = 1 AND is_delivered = 0 AND was_downgraded = 0 AND item_type == 0
 CREATE INDEX IF NOT EXISTS %@ ON %@;
-/Library/Caches/com.apple.xbs/Sources/MessagesCore_Sim/Messages-1125.19/IMCore/IMDPersistence/Source/IMDIndexes.m
+/Library/Caches/com.apple.xbs/Sources/MessagesCore_Sim/Messages-1125.23/IMCore/IMDPersistence/Source/IMDIndexes.m
 BOOL IMDCreateIndexesWithOperation(IMDSqlOperation *, BOOL)
 IMDCreateIndexesWithOperation
 Create index failed: %@: %@
@@ -3133,7 +3143,7 @@ select a.filename, a.guid, a.is_sticker, a.created_date, a.transfer_state from a
 IMDAttachmentRecordCopyAttachmentGUIDsAndPathsForChatIdentifiersOnServicesQuery %@
 SELECT * FROM attachment a INNER JOIN message_attachment_join ma ON   a.ROWID = ma.attachment_id INNER JOIN chat_message_join cm ON   ma.message_id = cm.message_id INNER JOIN message m ON   ma.message_id = m.ROWID WHERE   m.cache_has_attachments   AND m.expire_state != %d   AND cm.chat_id IN (%@)   AND a.hide_attachment == 0   AND a.ck_sync_state == 1   AND a.transfer_state == 0 ORDER BY m.date DESC limit %d
 SELECT c.rowid FROM chat c INDEXED BY chat_idx_chat_identifier_service_name WHERE (c.chat_identifier = ? AND c.service_name = ?)
-select count(*) from attachment a INDEXED BY attachment_idx_purged_attachments join (select ma.attachment_id as a_id, message_date as m_date from message_attachment_join ma INDEXED BY message_attachment_join_idx_attachment_id join (select cm.message_id as message_id, cm.message_date as message_date from message m INDEXED BY message_idx_cache_has_attachments join chat_message_join cm where m.cache_has_attachments = 1 AND cm.chat_id AND cm.chat_id IN (%@) AND m.rowid = cm.message_id) as tmp where ma.message_id = tmp.message_id) as tmp2 where a.rowid = tmp2.a_id AND a.hide_attachment == 0 AND a.ck_sync_state == 1 AND a.transfer_state == 0 ORDER BY tmp2.m_date ASC;
+select count(*) from attachment a INDEXED BY attachment_idx_purged_attachments_v2 join (select ma.attachment_id as a_id, message_date as m_date from message_attachment_join ma INDEXED BY message_attachment_join_idx_attachment_id join (select cm.message_id as message_id, cm.message_date as message_date from message m INDEXED BY message_idx_cache_has_attachments join chat_message_join cm where m.cache_has_attachments = 1 AND cm.chat_id AND cm.chat_id IN (%@) AND m.rowid = cm.message_id) as tmp where ma.message_id = tmp.message_id) as tmp2 where a.rowid = tmp2.a_id AND a.hide_attachment == 0 AND (a.ck_sync_state == 1 OR a.ck_sync_state == 4) AND a.transfer_state == 0 ORDER BY tmp2.m_date ASC;
 IMDAttachment
 Copy purged attachments for chat %@ services %@ limit %@
 "Database": Could not initialize query.
@@ -4143,8 +4153,6 @@ _setSpokenMessageWhitelistLevelVersion:
 _setMessagesSpokenWhitelistLevelInPreferences:
 _setUpSuggestionService
 setNotificationCenter:
-notificationCenterCatalyst
-setNotificationCenterCatalyst:
 incomingMessageNotificationCategory
 setIncomingMessageNotificationCategory:
 incomingFilesNotificationCategory
@@ -4153,7 +4161,6 @@ meContact
 _lastAlertedMessageDate
 _lastAlertedFailedMessageDate
 _notificationCenter
-_notificationCenterCatalyst
 _incomingMessageNotificationCategory
 _incomingFilesNotificationCategory
 _businessNameManager

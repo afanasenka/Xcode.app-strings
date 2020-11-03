@@ -1,4 +1,5 @@
-@(#)PROGRAM:IDEQuickHelp  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:IDEQuickHelp  PROJECT:IDEPlugIns-17510.1
+ffff
 @IDEQuickHelp
 IDEQuickHelpMarkupInspectorViewController
 CGSize
@@ -729,8 +730,8 @@ SgXwz_Xx
 So19DVTSourceExpressionC
 So23IDEQuickHelpDataContext_pSg
 $ss25ExpressibleByArrayLiteralP
-$ss10SetAlgebraP
 $sSY
+$ss10SetAlgebraP
 $ss9OptionSetP
 SgXw
 _pSg
@@ -772,8 +773,8 @@ width
 height
 rawValue
 ArrayLiteralElement
-Element
 RawValue
+Element
 queryResult
 documentationManager
 placeholderString

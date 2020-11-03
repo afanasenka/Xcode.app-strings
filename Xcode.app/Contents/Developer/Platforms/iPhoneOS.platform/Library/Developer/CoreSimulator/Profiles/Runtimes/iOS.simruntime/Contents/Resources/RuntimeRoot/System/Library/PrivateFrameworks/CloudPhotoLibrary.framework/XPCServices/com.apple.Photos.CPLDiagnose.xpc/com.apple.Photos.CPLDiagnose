@@ -1,4 +1,5 @@
-@(#)PROGRAM:com.apple.Photos.CPLDiagnose  PROJECT:CloudPhotoLibrary-310.1.190
+@(#)PROGRAM:com.apple.Photos.CPLDiagnose  PROJECT:CloudPhotoLibrary-310.2.160
+33333cs@
 addObject:
 count
 countByEnumeratingWithState:objects:count:
@@ -346,6 +347,7 @@ copyDatabaseFromPath:toPath:
 enumerateObjectsUsingBlock:
 prependPath:toStringsInArray:
 arrayByAddingObjectsFromArray:
+arrayByAddingObject:
 collectDatabaseAtPath:libraryPath:subdirectory:
 processes
 appendFormat:
@@ -820,6 +822,7 @@ syncstatus.plist
 /var/mobile/Media/PhotoData/private/com.apple.assetsd
 /var/mobile/Media/PhotoData/private/com.apple.accountsd
 Caches/GraphService
+/var/mobile/Media/MediaAnalysis/mediaanalysis.db
 - Could not determine location of client plist and CPL db
 /usr/bin/killall
 v32@?0@"NSString"8@"CPLProcessSpecification"16^B24

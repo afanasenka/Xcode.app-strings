@@ -351,6 +351,7 @@ _TtC13TeaFoundation16ReferenceService
 typeServices
 Unable to decode object=%@, error=%{public}@
 _TtC13TeaFoundation16ReferenceEncoder
+ReferenceDecodingPool(references=
 _TtC13TeaFoundation21ReferenceDecodingPool
 references
 valueLock
@@ -832,6 +833,7 @@ yxGIego_
 ypSg
 $s13TeaFoundation17SceneStateMonitorP
 SayypG
+SDySSypG
 SDySSypGG
 SDySSypGG
 ShySSGG
@@ -929,7 +931,6 @@ yxGyc
 SS3key_yp5valuetSg
 $s13TeaFoundation16ShortDescribableP
 $s13TeaFoundation20ShortDescriptionTypeP
-SDySSypG
 _pSg
 _pSg
 3key_yp5valuetSg

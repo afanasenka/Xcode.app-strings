@@ -2863,8 +2863,8 @@ SDySSypG
 ySS_yptG
 SS_ypt
 $ss25ExpressibleByArrayLiteralP
-$ss10SetAlgebraP
 $sSY
+$ss10SetAlgebraP
 $ss9OptionSetP
 So8NSObjectC
 ypSg
@@ -2899,8 +2899,8 @@ $s24IDEPlaygroundsFoundation29PlaygroundBuildStatusObserverP
 So13IDEPlaygroundCSgXw
 So9IDESchemeCSg
 So14NSPointerArrayC
-So19IDEBuildableProduct_p
 ySo19IDEBuildableProduct_pG
+So19IDEBuildableProduct_p
 ySo12IDEBuildable_pG
 So12NSDictionaryCSgIeyBy_
 So24DVTInvalidation_NSObjectC
@@ -2926,8 +2926,8 @@ SS3key_yp5valuet
 _yptSg
 rawValue
 ArrayLiteralElement
-Element
 RawValue
+Element
 playgroundName
 workspaceProductsURL
 workspaceIntermediatesURL
@@ -2984,6 +2984,7 @@ zPLR
 zPLR
 macosx
 iphonesimulator
+$(inherited)
 $(inherited)
 $(inherited)
 name

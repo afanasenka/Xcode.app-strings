@@ -1,4 +1,5 @@
-@(#)PROGRAM:com.apple.photos.VideoConversionService  PROJECT:MediaConversionService-310.1.190
+@(#)PROGRAM:com.apple.photos.VideoConversionService  PROJECT:MediaConversionService-310.2.160
+33333cs@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -298,6 +299,8 @@ mainSourceResourceURL
 T@"NSURL",R
 candidacy
 T@"NSNumber",&,V_candidacy
+shouldUseEmbeddedImageAsSource
+TB,V_shouldUseEmbeddedImageAsSource
 Invalid job
 Unexpected nil main resource URL
 Unknown finalization behavior choice %ld
@@ -1020,6 +1023,7 @@ initWithDispatchQueue:delegate:
 _applySourceOrientationTransform
 _formatConversionOnly
 _shouldCheckForOutputCorruption
+_shouldUseEmbeddedImageAsSource
 _sourceImageRef
 _sourceImageProperties
 _destinationImageProperties
@@ -1120,6 +1124,8 @@ outputImageSize
 setOutputImageSize:
 candidacy
 setCandidacy:
+shouldUseEmbeddedImageAsSource
+setShouldUseEmbeddedImageAsSource:
 imageSource
 setImageSource:
 imageDestinationData

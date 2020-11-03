@@ -1,4 +1,5 @@
-@(#)PROGRAM:IDEDelta  PROJECT:IDEPlugIns-17507
+@(#)PROGRAM:IDEDelta  PROJECT:IDEPlugIns-17510.1
+ffff
 IDEDelta
 ComparisonLayer
 SourceCodeComparisonEditor
@@ -1815,8 +1816,6 @@ So17DVTObservingTokenCSg
 SDySo25DVTSourceControlBlameItemCSo32IDEBlameAnnotationViewControllerCG
 So32IDEBlameAnnotationViewControllerCSg
 So6NSViewC
-ySo25DVTSourceControlBlameItemC
-ySo25DVTSourceControlBlameItemCSo32IDEBlameAnnotationViewControllerCG
 SgXw
 So31DVTSourceControlLogItemProtocol_p
 _pSg
@@ -1824,8 +1823,10 @@ yycSg
 So14DVTDiffSessionCSg
 SDySi
 IeyB_
+ySo25DVTSourceControlBlameItemC
 ySo25DVTSourceControlBlameItemCG
 ySiSo25DVTSourceControlBlameItemCG
+ySo25DVTSourceControlBlameItemCSo32IDEBlameAnnotationViewControllerCG
 So9IDEEditorC
 ySo18NSLayoutConstraintCG
 SgXw
